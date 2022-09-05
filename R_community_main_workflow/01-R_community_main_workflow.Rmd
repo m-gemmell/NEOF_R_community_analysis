@@ -13,6 +13,14 @@ description: NEOF book for the R community analysis workflow
 cover-image: "figures/NEOF.png"
 ---
 
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'webexercises'
+), 'packages.bib')
+```
+
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ``` 
@@ -23,21 +31,8 @@ knitr::include_graphics(path = "figures/qiime2_supplement.png", auto_pdf = TRUE)
 ``` 
 
 
+## Dataset & goal
 
 
-This bookdown is a supplement to the main one. It contains some workflows and tools that are not part of the core QIIME2 workflow. However, they may prove useful depending on your needs.
-
-The sections in this supplement will cover:
-
-- [Exporting QIIME2 artifacts to text files](#export)
-- [Handy QIIME2 commands](#handy)
-- [Carrying our functional prediction with a taxonomy abundance table](#picrust2)
-- [Introduction to some R packages for 16S rRNA analysis](#rpackages)
-
-Ensure you have the QIIME2 environment activated for all of these materials. For convenience the command is:
-
-```{bash eval=FALSE}
-. useqiime2-2021.2
-```
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

@@ -1,5 +1,6 @@
-book_filename: "Bacterial 16S metabarcoding supplemental"
+book_filename: Bacterial 16S metabarcoding supplemental
 language:
   ui:
-    chapter_name: "Chapter "
-delete_merged_file: FALSE
+    chapter_name: 'Chapter '
+delete_merged_file: no
+before_chapter_script: scripts/webex.R
