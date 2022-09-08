@@ -10,21 +10,33 @@ During this workshop we will use various R packages with their own intricacies. 
 knitr::include_graphics(path = "figures/r_package.png", auto_pdf = TRUE)
 ```
 
-There are lot of R packages/libraries. These can be downloaded with an R function. The most common function used is `install.packages()`. Once you have installed an R package you won't need to install it again on your computer for your current version of R. Unfortunately, if you install a new version of R you will need to reinstall all your packages. I generally install each package when I need them rather than doing them all, once I have a new version of R.
+R packages/libraries contain additional functions, data and code for analysing, manipulating and plotting different types of data. Many common packages will be installed as default when you install R. Other more specialised packages, such as the `ggplot2` package, must be installed by the user.
 
-An R package is not ready to use when you first install it. Every time you open up a new R environment, such as opening up RStudio, you will need to load the package. This can be carried out with the function `library()`. I generally have a list of `library()` functions at the top of my R scripts (`.R` files) for all the packages I use in the script.
+Packages found on The Comprehensive R Archive Network (CRAN) which is R’s central software repository can be installed easily using the following command.
 
-Throughout this course you will get a lot of practice of installing and loading various packages.
+```{r eval=FALSE}
+install.packages("package_name")
+```
 
-`r hide("R package or R Library")`
+Every time you reload R you will need to load the packages you need if they are not one of the ones installed by default. To do this type:
+
+```{r eval=FALSE}
+library("package_name")
+```
+
+I generally have a list of `library()` functions at the top of my R scripts (`.R` files) for all the packages I use in the script.
+
+Throughout this course you will get a lot of practice installing and loading various packages.
+
+`r hide("R package or R Library?")`
 R packages are a collection of R functions, data, and compiled code. You can install these into a directory on your computer.
 
-An R library is then the directory containing the R package.
+An R library is a directory containing a R package.
 
 Because of this, the terms R package and R library may be used synonymously. We will use the term package in this workshop.
 `r unhide()`
 
-As we will be using a lot of packages we shall use a double colons to specify which package each function belongs to, unless the function is from base R. For example if we the function `summarize_phyloseq()` from the package `microbiome` we would type it like below:
+As we will be using a lot of packages we shall use a double colons to specify which package each function belongs to, unless the function is from base R. For example if we use the function `summarize_phyloseq()` from the package `microbiome` we would type the function like below:
 
 __Note__: Do not run the below command.
 
