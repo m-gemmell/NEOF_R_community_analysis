@@ -1,0 +1,577 @@
+1: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516878; Sample name: UD_TSA_rep3; SRA: SRS6996315
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+TSA cultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516878	ID: 15516878
+
+2: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516877; Sample name: UD_KBC_rep3; SRA: SRS6996312
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+KBC cultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516877	ID: 15516877
+
+3: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516876; Sample name: UD_ENV_rep3; SRA: SRS6996308
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+uncultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516876	ID: 15516876
+
+4: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516875; Sample name: UD_CVP_rep3; SRA: SRS6996305
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+CVP cultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516875	ID: 15516875
+
+5: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516874; Sample name: UD_TSA_rep2; SRA: SRS6996314
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+TSA cultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516874	ID: 15516874
+
+6: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516873; Sample name: UD_KBC_rep2; SRA: SRS6996311
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+KBC cultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516873	ID: 15516873
+
+7: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516872; Sample name: UD_ENV_rep2; SRA: SRS6996307
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+uncultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516872	ID: 15516872
+
+8: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516871; Sample name: UD_CVP_rep2; SRA: SRS6996304
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+CVP cultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516871	ID: 15516871
+
+9: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516870; Sample name: UD_TSA_rep1; SRA: SRS6996313
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+TSA cultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516870	ID: 15516870
+
+10: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516869; Sample name: UD_KBC_rep1; SRA: SRS6996310
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+KBC cultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516869	ID: 15516869
+
+11: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516868; Sample name: UD_ENV_rep1; SRA: SRS6996306
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+uncultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516868	ID: 15516868
+
+12: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516867; Sample name: UD_CVP_rep1; SRA: SRS6996303
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="small river biome [ENVO:00000890]"
+    /geographic location="France: upper Durance"
+    /latitude and longitude="44.57 N 6.50 E"
+Description:
+CVP cultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516867	ID: 15516867
+
+13: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516866; Sample name: MD_TSA_rep3; SRA: SRS6996302
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+TSA cultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516866	ID: 15516866
+
+14: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516865; Sample name: MD_ENV_rep3; SRA: SRS6996295
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+uncultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516865	ID: 15516865
+
+15: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516864; Sample name: MD_CVP_rep3; SRA: SRS6996292
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+CVP cultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516864	ID: 15516864
+
+16: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516863; Sample name: MD_TSA_rep2; SRA: SRS6996301
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+TSA cultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516863	ID: 15516863
+
+17: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516862; Sample name: MD_KBC_rep2; SRA: SRS6996297
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+KBC cultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516862	ID: 15516862
+
+18: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516861; Sample name: MD_ENV_rep2; SRA: SRS6996294
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+uncultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516861	ID: 15516861
+
+19: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516860; Sample name: MD_CVP_rep2; SRA: SRS6996291
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+CVP cultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516860	ID: 15516860
+
+20: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516859; Sample name: MD_KBC_rep3; SRA: SRS6996299
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+KBC cultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516859	ID: 15516859
+
+21: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516858; Sample name: MD_TSA_rep1; SRA: SRS6996300
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+TSA cultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516858	ID: 15516858
+
+22: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516857; Sample name: MD_KBC_rep1; SRA: SRS6996296
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+KBC cultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516857	ID: 15516857
+
+23: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516856; Sample name: MD_ENV_rep1; SRA: SRS6996293
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+uncultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516856	ID: 15516856
+
+24: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516855; Sample name: MD_CVP_rep1; SRA: SRS6996290
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: medium Durance"
+    /latitude and longitude="44.48 N 6.11 E"
+Description:
+CVP cultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516855	ID: 15516855
+
+25: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516854; Sample name: LD_TSA_rep3; SRA: SRS6996289
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+TSA cultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516854	ID: 15516854
+
+26: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516853; Sample name: LD_KBC_rep3; SRA: SRS6996320
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+KBC cultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516853	ID: 15516853
+
+27: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516852; Sample name: LD_ENV_rep3; SRA: SRS6996317
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+uncultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516852	ID: 15516852
+
+28: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516851; Sample name: LD_CVP_rep3; SRA: SRS6996298
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+CVP cultured bacteria replicate 3
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516851	ID: 15516851
+
+29: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516850; Sample name: LD_TSA_rep2; SRA: SRS6996288
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+TSA cultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516850	ID: 15516850
+
+30: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516849; Sample name: LD_KBC_rep2; SRA: SRS6996319
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+KBC cultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516849	ID: 15516849
+
+31: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516848; Sample name: LD_ENV_rep2; SRA: SRS6996316
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+uncultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516848	ID: 15516848
+
+32: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516847; Sample name: LD_CVP_rep2; SRA: SRS6996287
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+CVP cultured bacteria replicate 2
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516847	ID: 15516847
+
+33: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516846; Sample name: LD_TSA_rep1; SRA: SRS6996321
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+TSA cultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516846	ID: 15516846
+
+34: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516845; Sample name: LD_KBC_rep1; SRA: SRS6996318
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+KBC cultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516845	ID: 15516845
+
+35: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516844; Sample name: LD_ENV_rep1; SRA: SRS6996309
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+uncultured bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516844	ID: 15516844
+
+36: MIMARKS Survey related sample from freshwater metagenome
+Identifiers: BioSample: SAMN15516843; Sample name: LD_CVP_rep1; SRA: SRS6996286
+Organism: freshwater metagenome
+Attributes:
+    /collection date="2016-05-13"
+    /depth="0 m"
+    /broad-scale environmental context="freshwater biome [ENVO:00000873]"
+    /local-scale environmental context="freshwater river biome [ENVO:01000253]"
+    /environmental medium="large river biome [ENVO:00000887]"
+    /geographic location="France: low Durance"
+    /latitude and longitude="43.68 N 5.5 E"
+Description:
+CVP cultured  bacteria replicate 1
+Keywords: GSC:MIxS;MIMARKS:5.0
+Accession: SAMN15516843	ID: 15516843
+
+
