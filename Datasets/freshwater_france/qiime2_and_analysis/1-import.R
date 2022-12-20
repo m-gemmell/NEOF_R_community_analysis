@@ -1,11 +1,4 @@
-
 #Import data ####
-
-#Install qiime2r package
-#https://github.com/jbisanz/qiime2R
-if (!requireNamespace("devtools", quietly = TRUE)){install.packages("devtools")}
-devtools::install_github("jbisanz/qiime2R")
-
 #Load package
 library("qiime2R")
 
