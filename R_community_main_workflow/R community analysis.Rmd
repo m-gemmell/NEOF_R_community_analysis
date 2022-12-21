@@ -1,0 +1,503 @@
+--- 
+title: "R community analysis"
+author: "Matthew R. Gemmell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+favicon: figures/NEOF_favicon.png
+description: NEOF book for the R community analysis workflow
+cover-image: "figures/NEOF.png"
+---
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'webexercises'
+), 'packages.bib')
+```
+
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
+``` 
+
+# Introduction
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
+``` 
+
+A lot of different analysis and visualisations can be carried out with community data. This includes taxonomy and functional abundance tables from 16S rRNA and Shotgun metagenomics analysis. This workshop will teach you how to use R with the phyloseq R object; a specialised object containing an abundance, taxonomy, and metadata table. 
+
+The workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. Supplementary materials will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.
+ 
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
+
+At the end of the course learners will be able to:
+
+- Import QIIME2 artifacts into a phyloseq object.
+- Summarise the abundance and taxonomy contents of a phyloseq object
+- Preprocess the abundance and taxonomy tables. This will include transforming sample counts, and subsetting samples & taxonomies.
+- Understand the grammar of graphics (ggplot2) used by phyloseq and related packages.
+- Carry out alpha & beta diversity, and biomarker detection with the phyloseq object.
+- Produce and customise publication quality plots.
+- Run statistical analysis and incorporate these values into the plots.
+- Convert static plots into interactive html plots with plotly within R.
+
+
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+<!--chapter:end:01-R_community_main_workflow.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Dataset & workflow
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
+``` 
+
+## Dataset
+```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
+knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
+``` 
+
+
+## Workflow
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
+```
+
+## Scripts and working directory
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
+```
+
+Different people like to sort out their workflows and directories/folders in different ways. Some people like to use [RStudio projects](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects). Personally, I like to create one directory for an analysis project. In this directory I:
+
+- Have a directory with my input.
+- I save my scripts.
+- I save my output, possibly to sub-directories.
+
+This is the method that will be used in these materials. To start, create a directory on your computer for the analysis of the French freshwater data (can be done inside our outside of RStudio. For example:
+
+__"~/R/R_community_course/freshwater_data_analysis/"__
+
+Next we need our data. Download and save the following link into your analysis directory:
+
+__[freshwater_water_france.zip](https://neof-workshops.github.io/Unix_nxcdf7/01-Intro_to_Unix.html)__
+
+It is a zipped directory, therefore unzip the directory/folder.
+
+`r hide("Windows unzipping")`
+- Open File Explorer and find the zipped folder.
+- To unzip the entire folder, right-click to select Extract All, and then click "Extract".
+`r unhide()`
+
+`r hide("Mac unzipping")`
+- Double-click the .zip file.
+`r unhide()`
+
+Finally, set your working directory in RStudio to your analysis directory.
+
+<!--chapter:end:02-Dataset_and_workflow.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# R Packages
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/R.png", auto_pdf = TRUE)
+```  
+
+During this workshop we will use various R packages with their own intricacies. Before going into analysis we'll introduce you to some of these important concepts.
+
+## R packages/libraries
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/r_package.png", auto_pdf = TRUE)
+```
+
+R packages/libraries contain additional functions, data and code for analysing, manipulating and plotting different types of data. Many common packages will be installed as default when you install R. Other more specialised packages, such as the `ggplot2` package, must be installed by the user.
+
+Packages found on The Comprehensive R Archive Network (CRAN) which is R’s central software repository can be installed easily using the following command.
+
+```{r eval=FALSE}
+install.packages("package_name")
+```
+
+Every time you reload R you will need to load the packages you need if they are not one of the ones installed by default. To do this type:
+
+```{r eval=FALSE}
+library("package_name")
+```
+
+I generally have a list of `library()` functions at the top of my R scripts (`.R` files) for all the packages I use in the script.
+
+Throughout this course you will get a lot of practice installing and loading various packages.
+
+`r hide("R package or R Library?")`
+R packages are a collection of R functions, data, and compiled code. You can install these into a directory on your computer.
+
+An R library is a directory containing a R package.
+
+Because of this, the terms R package and R library may be used synonymously. We will use the term package in this workshop.
+`r unhide()`
+
+As we will be using a lot of packages we shall use a double colons to specify which package each function belongs to, unless the function is from base R. For example if we use the function `summarize_phyloseq()` from the package `microbiome` we would type the function like below:
+
+__Note__: Do not run the below command.
+
+```{r eval=FALSE}
+microbiome::summarize_phyloseq()
+```
+
+This convention has 2 benefits:
+
+- We can easily tell which R package each function comes from.
+  - This is useful for your future coding where you may copy some, but not all, commands from one script to another. You will therefore know which packages you will need to load.
+  - If you need some more documentation about a function you will know what package to look up.
+  - Writing your methods will be a lot easier.
+- Different packages may have functions with the same name. Specifying the package will ensure you are using the correct function.
+
+## The grammar of graphics
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
+``` 
+
+During this course we will be using the grammar of graphics coding approach. This approach is implemented by the R package `ggplot2` to create visualisations such as bar charts, box plots, ordination plots etc. In turn `ggplot2` is used by a host of other packages, some of which we will be using. Although `ggplot2` is R code its structure is very different and it takes effort to learn. Thankfully, `ggplot2` is very powerful and flexible, and it produces very professional and clean plots.
+
+We will use the `iris` dataset (inbuilt into R) to show an example of `ggplot2` code and its visualisation output is:
+
+__Note__: If you would like to see the contents of the `iris` dataset you can run the command `View(iris)` in your R instance.
+
+```{r}
+#Load library
+library(ggplot2)
+
+#Create new ggplot2 object using iris dataset
+ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, colour=Species)) +
+  #Make the object a scatter plot 
+  ggplot2::geom_point() +
+  ggplot2::ggtitle("Iris Sepal length vs width") +
+  #Set x and y axis label names
+  ggplot2::labs(x = "Sepal length", y = "Sepal width")
+```
+
+We will not learn `ggplot2` specifically during this course. However, the structure of creating an object will be used. In the above case the initial object was built with `ggplot`. Subsequently additions and edits were carried out with `+` and various other functions.
+
+An important concept of the grammar of graphics is aesthetics. Aesthetics are the parts of a graphic/plot. In the above command we set the aesthetics with the function `aes()` within the `ggplot()` function. The X aesthetic (i.e. what values are assigned to the x axis) was set as the Sepal length values from the column `Sepal.Length` of the dataframe `iris`. In turn the Y axis values are set to the Sepal width and the colouring of the points are set to the Species.
+
+That was a quick introduction to the grammar of graphics. We will be using this to create visualisations with a `phyloseq` object using various R packages specifically designed for community abundance data within `phyloseq` objects.
+
+For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
+
+## phyloseq
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
+``` 
+
+In this book we will be working with `phyloseq` objects to preprocess  our dataset, create visualisations, and carry out statistical analyses. This is a very popular object type for community abundance datasets as it contains the abundance table, metadata, and taxonomy table in one object, optionally containing the phylogenetic tree and reference sequences if wanted/required.
+
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+knitr::include_graphics(path = "figures/phyloseq_input.png", auto_pdf = TRUE)
+``` 
+
+<!--chapter:end:03-R_packages.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Import
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
+``` 
+
+Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called `qiime2R`
+
+## Script
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
+``` 
+
+Prior to any coding, open and save a new script called "01-Import.R". We will be creating a new script for each chapter and numbering them so we can easily see the order of scripts. 
+
+## qiime2R
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
+``` 
+
+[`qiime2R`](https://github.com/jbisanz/qiime2R) has many different commands. However the best way to import your QIIME2 artifacts is with the `qza_to_phyloseq()` function. In your "01-Import.R" script, add the following and run the commands.
+
+```{r, eval=FALSE}
+#Set you working directory
+#This is useful to have at the top of your scripts
+#Esure you set it as your analysis directory
+setwd("~/R/R_community_course/freshwater_data_analysis/")
+
+#Load the package/library
+library("qiime2R")
+
+#Import data
+pseq <- qiime2R::qza_to_phyloseq(
+  features = "table-dada2.qza",
+  tree = "rooted-tree.qza",
+  taxonomy = "taxonomy.sklearn.qza",
+  metadata = "media_metadata.txt"
+)
+```
+
+This command creates a phyloseq object we name `pseq`. It contains:
+
+- The ASV abundance table (`features = "table-dada2.qza"`).
+- The rooted phylogenetic tree (`tree = "rooted-tree.qza"`).
+- The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`).
+- The sample metadata (`metadata = "media_metadata.txt"`)
+
+## Save the phyloseq object
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
+```
+
+When using multiple scripts for analysis it is useful to save the R objects that will be used in different script. This can be carried out with the function `save()`.
+
+```{r, eval=FALSE}
+save(pseq, file = "phyloseq.RData")
+```
+
+This saves our object `pseq` into the file `phyloseq.RData`. The suffix `R.Data` is the normal convention.
+
+Since our final object is saved we no longer need the objects in the environment. Therefore, you can use the sweep button in the Environment pane to remove them.
+
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/RStudio_env_sweep.png", auto_pdf = TRUE)
+``` 
+
+## Recap
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
+```
+
+We have imported our QIIME2 artifacts into one phyloseq object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.
+
+
+
+<!--chapter:end:04-Import.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Preprocess
+
+<Contents>
+
+<!--chapter:end:05-Preprocess_data.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Taxonomy
+
+<contents>
+
+<!--chapter:end:06-Taxonomy.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Alpha
+
+<contents>
+
+<!--chapter:end:07-Alpha.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Beta
+
+<contents>
+
+<!--chapter:end:08-Beta.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Differential abundance analysis
+
+<contents>
+
+<!--chapter:end:09-Differential_abundance_analysis.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# (APPENDIX) Appendix {-}
+
+# Installing required packages
+
+<Note on opening RStudio as administrator.>
+
+<Instructions on Installing all required packages>
+
+
+
+# ggplot2 {#ggplot2_appendix}
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
+```
+
+Below are some useful resource if you would like to learn ggplot2.
+
+The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It contains a section called [Understanding ggplot2](https://r-graphics.org/chapter-ggplot2) in its appendix which is useful for learning some key terminologies and concepts.
+
+`ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](#http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/).
+
+<!--chapter:end:10-Appendix.Rmd-->
+

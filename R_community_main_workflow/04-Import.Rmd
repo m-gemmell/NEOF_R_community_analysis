@@ -1,3 +1,75 @@
 # Import
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
+``` 
 
-<Contents>
+Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called `qiime2R`
+
+## Script
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
+``` 
+
+Prior to any coding, open and save a new script called "01-Import.R". We will be creating a new script for each chapter and numbering them so we can easily see the order of scripts. 
+
+## qiime2R
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
+``` 
+
+[`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R phyloseq object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.
+
+The best way to import all your QIIME2 artifacts is with the `qza_to_phyloseq()` function. In your "01-Import.R" script, add the following and run the commands.
+
+```{r, eval=FALSE}
+#Set you working directory
+#This is useful to have at the top of your scripts
+#Ensure you set it as your analysis directory
+setwd("~/R/R_community_course/freshwater_data_analysis/")
+
+#Load the package/library
+library("qiime2R")
+
+#Import data
+pseq <- qiime2R::qza_to_phyloseq(
+  features = "table-dada2.qza",
+  tree = "rooted-tree.qza",
+  taxonomy = "taxonomy.sklearn.qza",
+  metadata = "media_metadata.txt"
+)
+```
+
+This command creates a phyloseq object named `pseq`. It contains:
+
+- The ASV abundance table (`features = "table-dada2.qza"`).
+- The rooted phylogenetic tree (`tree = "rooted-tree.qza"`).
+- The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`).
+- The sample metadata (`metadata = "media_metadata.txt"`)
+
+## Save the phyloseq object
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
+```
+
+When using multiple scripts for analysis it is useful to save the R objects that will be used in different script. This can be carried out with the function `save()`.
+
+```{r, eval=FALSE}
+save(pseq, file = "phyloseq.RData")
+```
+
+This saves our object `pseq` into the file `phyloseq.RData`. The suffix `R.Data` is the normal convention.
+
+Since our final object is saved we no longer need the objects in the environment. Therefore, you can use the sweep button in the Environment pane to remove them.
+
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/RStudio_env_sweep.png", auto_pdf = TRUE)
+``` 
+
+## Recap
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
+```
+
+We have imported our QIIME2 artifacts into one phyloseq object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.
+
+

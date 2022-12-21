@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | R community analysis</title>
+  <title>Chapter 4 Import | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | R community analysis" />
+  <meta property="og:title" content="Chapter 4 Import | R community analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community analysis workflow" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | R community analysis" />
+  <meta name="twitter:title" content="Chapter 4 Import | R community analysis" />
   
   <meta name="twitter:description" content="NEOF book for the R community analysis workflow" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-
-
+<link rel="prev" href="03-R_packages.html"/>
+<link rel="next" href="05-Preprocess_data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -186,11 +186,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="import" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Import<a href="04-Import.html#import" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figures/import.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called <code>qiime2R</code></p>
+<div id="script" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Script<a href="04-Import.html#script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/r_script.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Prior to any coding, open and save a new script called "01-Import.R". We will be creating a new script for each chapter and numbering them so we can easily see the order of scripts.</p>
+</div>
+<div id="qiime2r" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> qiime2R<a href="04-Import.html#qiime2r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/qiime2r.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><a href="https://github.com/jbisanz/qiime2R"><code>qiime2R</code></a> has many different commands. However the best way to import your QIIME2 artifacts is with the <code>qza_to_phyloseq()</code> function. In your "01-Import.R" script, add the following and run the commands.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="04-Import.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set you working directory</span></span>
+<span id="cb5-2"><a href="04-Import.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#This is useful to have at the top of your scripts</span></span>
+<span id="cb5-3"><a href="04-Import.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Esure you set it as your analysis directory</span></span>
+<span id="cb5-4"><a href="04-Import.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/R/R_community_course/freshwater_data_analysis/&quot;</span>)</span>
+<span id="cb5-5"><a href="04-Import.html#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="04-Import.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the package/library</span></span>
+<span id="cb5-7"><a href="04-Import.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;qiime2R&quot;</span>)</span>
+<span id="cb5-8"><a href="04-Import.html#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="04-Import.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Import data</span></span>
+<span id="cb5-10"><a href="04-Import.html#cb5-10" aria-hidden="true" tabindex="-1"></a>pseq <span class="ot">&lt;-</span> qiime2R<span class="sc">::</span><span class="fu">qza_to_phyloseq</span>(</span>
+<span id="cb5-11"><a href="04-Import.html#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">features =</span> <span class="st">&quot;table-dada2.qza&quot;</span>,</span>
+<span id="cb5-12"><a href="04-Import.html#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">tree =</span> <span class="st">&quot;rooted-tree.qza&quot;</span>,</span>
+<span id="cb5-13"><a href="04-Import.html#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">taxonomy =</span> <span class="st">&quot;taxonomy.sklearn.qza&quot;</span>,</span>
+<span id="cb5-14"><a href="04-Import.html#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> <span class="st">&quot;media_metadata.txt&quot;</span></span>
+<span id="cb5-15"><a href="04-Import.html#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>This command creates a phyloseq object we name <code>pseq</code>. It contains:</p>
+<ul>
+<li>The ASV abundance table (<code>features = "table-dada2.qza"</code>).</li>
+<li>The rooted phylogenetic tree (<code>tree = "rooted-tree.qza"</code>).</li>
+<li>The taxonomic classifications of the ASVs (<code>taxonomy = "taxonomy.sklearn.qza"</code>).</li>
+<li>The sample metadata (<code>metadata = "media_metadata.txt"</code>)</li>
+</ul>
+</div>
+<div id="save-the-phyloseq-object" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Save the phyloseq object<a href="04-Import.html#save-the-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/r_save.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>When using multiple scripts for analysis it is useful to save the R objects that will be used in different script. This can be carried out with the function <code>save()</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="04-Import.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(pseq, <span class="at">file =</span> <span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
+<p>This saves our object <code>pseq</code> into the file <code>phyloseq.RData</code>. The suffix <code>R.Data</code> is the normal convention.</p>
+<p>Since our final object is saved we no longer need the objects in the environment. Therefore, you can use the sweep button in the Environment pane to remove them.</p>
+<p><img src="figures/RStudio_env_sweep.png" width="40%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="recap" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Recap<a href="04-Import.html#recap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/recap.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>We have imported our QIIME2 artifacts into one phyloseq object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.</p>
+
+</div>
 </div>
 <script>
 
@@ -368,8 +414,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-
+<a href="03-R_packages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="05-Preprocess_data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

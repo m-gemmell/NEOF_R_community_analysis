@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | R community analysis</title>
+  <title>Chapter 3 R Packages | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | R community analysis" />
+  <meta property="og:title" content="Chapter 3 R Packages | R community analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community analysis workflow" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | R community analysis" />
+  <meta name="twitter:title" content="Chapter 3 R Packages | R community analysis" />
   
   <meta name="twitter:description" content="NEOF book for the R community analysis workflow" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-
-
+<link rel="prev" href="02-Dataset_and_workflow.html"/>
+<link rel="next" href="04-Import.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -186,11 +186,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="r-packages" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> R Packages<a href="03-R_packages.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figures/R.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>During this workshop we will use various R packages with their own intricacies. Before going into analysis we'll introduce you to some of these important concepts.</p>
+<div id="r-packageslibraries" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> R packages/libraries<a href="03-R_packages.html#r-packageslibraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/r_package.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>R packages/libraries contain additional functions, data and code for analysing, manipulating and plotting different types of data. Many common packages will be installed as default when you install R. Other more specialised packages, such as the <code>ggplot2</code> package, must be installed by the user.</p>
+<p>Packages found on The Comprehensive R Archive Network (CRAN) which is R’s central software repository can be installed easily using the following command.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="03-R_packages.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;package_name&quot;</span>)</span></code></pre></div>
+<p>Every time you reload R you will need to load the packages you need if they are not one of the ones installed by default. To do this type:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="03-R_packages.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;package_name&quot;</span>)</span></code></pre></div>
+<p>I generally have a list of <code>library()</code> functions at the top of my R scripts (<code>.R</code> files) for all the packages I use in the script.</p>
+<p>Throughout this course you will get a lot of practice installing and loading various packages.</p>
+<div class="webex-solution">
+<button>
+R package or R Library?
+</button>
+<p>R packages are a collection of R functions, data, and compiled code. You can install these into a directory on your computer.</p>
+<p>An R library is a directory containing a R package.</p>
+<p>Because of this, the terms R package and R library may be used synonymously. We will use the term package in this workshop.</p>
+</div>
+<p>As we will be using a lot of packages we shall use a double colons to specify which package each function belongs to, unless the function is from base R. For example if we use the function <code>summarize_phyloseq()</code> from the package <code>microbiome</code> we would type the function like below:</p>
+<p><strong>Note</strong>: Do not run the below command.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="03-R_packages.html#cb3-1" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>()</span></code></pre></div>
+<p>This convention has 2 benefits:</p>
+<ul>
+<li>We can easily tell which R package each function comes from.
+<ul>
+<li>This is useful for your future coding where you may copy some, but not all, commands from one script to another. You will therefore know which packages you will need to load.</li>
+<li>If you need some more documentation about a function you will know what package to look up.</li>
+<li>Writing your methods will be a lot easier.</li>
+</ul></li>
+<li>Different packages may have functions with the same name. Specifying the package will ensure you are using the correct function.</li>
+</ul>
+</div>
+<div id="the-grammar-of-graphics" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> The grammar of graphics<a href="03-R_packages.html#the-grammar-of-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/ggplot2.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>During this course we will be using the grammar of graphics coding approach. This approach is implemented by the R package <code>ggplot2</code> to create visualisations such as bar charts, box plots, ordination plots etc. In turn <code>ggplot2</code> is used by a host of other packages, some of which we will be using. Although <code>ggplot2</code> is R code its structure is very different and it takes effort to learn. Thankfully, <code>ggplot2</code> is very powerful and flexible, and it produces very professional and clean plots.</p>
+<p>We will use the <code>iris</code> dataset (inbuilt into R) to show an example of <code>ggplot2</code> code and its visualisation output is:</p>
+<p><strong>Note</strong>: If you would like to see the contents of the <code>iris</code> dataset you can run the command <code>View(iris)</code> in your R instance.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="03-R_packages.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load library</span></span>
+<span id="cb4-2"><a href="03-R_packages.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-3"><a href="03-R_packages.html#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="03-R_packages.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Create new ggplot2 object using iris dataset</span></span>
+<span id="cb4-5"><a href="03-R_packages.html#cb4-5" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Sepal.Width, <span class="at">colour=</span>Species)) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="03-R_packages.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Make the object a scatter plot </span></span>
+<span id="cb4-7"><a href="03-R_packages.html#cb4-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-8"><a href="03-R_packages.html#cb4-8" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggtitle</span>(<span class="st">&quot;Iris Sepal length vs width&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="03-R_packages.html#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Set x and y axis label names</span></span>
+<span id="cb4-10"><a href="03-R_packages.html#cb4-10" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Sepal length&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sepal width&quot;</span>)</span></code></pre></div>
+<p><img src="R-community-analysis_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>We will not learn <code>ggplot2</code> specifically during this course. However, the structure of creating an object will be used. In the above case the initial object was built with <code>ggplot</code>. Subsequently additions and edits were carried out with <code>+</code> and various other functions.</p>
+<p>An important concept of the grammar of graphics is aesthetics. Aesthetics are the parts of a graphic/plot. In the above command we set the aesthetics with the function <code>aes()</code> within the <code>ggplot()</code> function. The X aesthetic (i.e. what values are assigned to the x axis) was set as the Sepal length values from the column <code>Sepal.Length</code> of the dataframe <code>iris</code>. In turn the Y axis values are set to the Sepal width and the colouring of the points are set to the Species.</p>
+<p>That was a quick introduction to the grammar of graphics. We will be using this to create visualisations with a <code>phyloseq</code> object using various R packages specifically designed for community abundance data within <code>phyloseq</code> objects.</p>
+<p>For more resources on <code>ggplot2</code> please see the <a href="10-Appendix.html#ggplot2_appendix">appendix</a> of this book.</p>
+</div>
+<div id="phyloseq" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> phyloseq<a href="03-R_packages.html#phyloseq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/phyloseq_logo.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>In this book we will be working with <code>phyloseq</code> objects to preprocess our dataset, create visualisations, and carry out statistical analyses. This is a very popular object type for community abundance datasets as it contains the abundance table, metadata, and taxonomy table in one object, optionally containing the phylogenetic tree and reference sequences if wanted/required.</p>
+<p><img src="figures/phyloseq_input.png" width="80%" style="display: block; margin: auto;" /></p>
+
+</div>
 </div>
 <script>
 
@@ -368,8 +428,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-
+<a href="02-Dataset_and_workflow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="04-Import.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

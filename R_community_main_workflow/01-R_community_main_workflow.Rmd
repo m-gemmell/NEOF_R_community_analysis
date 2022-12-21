@@ -1,6 +1,6 @@
 --- 
 title: "R community analysis"
-author: "Matthew Gemmell"
+author: "Matthew R. Gemmell"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -30,9 +30,23 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
 ``` 
 
-<Quick introduction>
+A lot of different analysis and visualisations can be carried out with community data. This includes taxonomy and functional abundance tables from 16S rRNA and Shotgun metagenomics analysis. This workshop will teach you how to use R with the phyloseq R object; a specialised object containing an abundance, taxonomy, and metadata table. 
 
-<Learning outcomes>
+The workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. Supplementary materials will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.
+ 
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
+
+At the end of the course learners will be able to:
+
+- Import QIIME2 artifacts into a phyloseq object.
+- Summarise the abundance and taxonomy contents of a phyloseq object
+- Preprocess the abundance and taxonomy tables. This will include transforming sample counts, and subsetting samples & taxonomies.
+- Understand the grammar of graphics (ggplot2) used by phyloseq and related packages.
+- Carry out alpha & beta diversity, and biomarker detection with the phyloseq object.
+- Produce and customise publication quality plots.
+- Run statistical analysis and incorporate these values into the plots.
+- Convert static plots into interactive html plots with plotly within R.
+
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

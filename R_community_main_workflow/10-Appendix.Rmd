@@ -1,5 +1,13 @@
 # (APPENDIX) Appendix {-}
 
+# Installing required packages
+
+<Note on opening RStudio as administrator.>
+
+<Instructions on Installing all required packages>
+
+
+
 # ggplot2 {#ggplot2_appendix}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)

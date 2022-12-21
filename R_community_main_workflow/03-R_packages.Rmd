@@ -54,7 +54,7 @@ This convention has 2 benefits:
 
 ## The grammar of graphics
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
 ``` 
 
 During this course we will be using the grammar of graphics coding approach. This approach is implemented by the R package `ggplot2` to create visualisations such as bar charts, box plots, ordination plots etc. In turn `ggplot2` is used by a host of other packages, some of which we will be using. Although `ggplot2` is R code its structure is very different and it takes effort to learn. Thankfully, `ggplot2` is very powerful and flexible, and it produces very professional and clean plots.

@@ -1,8 +1,47 @@
 # Dataset & workflow
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
+``` 
 
 ## Dataset
+```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
+knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
+``` 
 
-
-Link to download the artifacts.
 
 ## Workflow
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
+```
+
+## Scripts and working directory
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
+```
+
+Different people like to sort out their workflows and directories/folders in different ways. Some people like to use [RStudio projects](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects). Personally, I like to create one directory for an analysis project. In this directory I:
+
+- Have a directory with my input.
+- I save my scripts.
+- I save my output, possibly to sub-directories.
+
+This is the method that will be used in these materials. To start, create a directory on your computer for the analysis of the French freshwater data (can be done inside our outside of RStudio. For example:
+
+__"~/R/R_community_course/freshwater_data_analysis/"__
+
+Next we need our data. Download and save the following link into your analysis directory:
+
+__[freshwater_water_france.zip](https://neof-workshops.github.io/Unix_nxcdf7/01-Intro_to_Unix.html)__
+
+It is a zipped directory, therefore unzip the directory/folder.
+
+`r hide("Windows unzipping")`
+- Open File Explorer and find the zipped folder.
+- To unzip the entire folder, right-click to select Extract All, and then click "Extract".
+`r unhide()`
+
+`r hide("Mac unzipping")`
+- Double-click the .zip file.
+`r unhide()`
+
+Finally, set your working directory in RStudio to your analysis directory.

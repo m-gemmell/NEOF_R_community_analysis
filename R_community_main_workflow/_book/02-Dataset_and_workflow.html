@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | R community analysis</title>
+  <title>Chapter 2 Dataset &amp; workflow | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | R community analysis" />
+  <meta property="og:title" content="Chapter 2 Dataset &amp; workflow | R community analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community analysis workflow" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | R community analysis" />
+  <meta name="twitter:title" content="Chapter 2 Dataset &amp; workflow | R community analysis" />
   
   <meta name="twitter:description" content="NEOF book for the R community analysis workflow" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-
-
+<link rel="prev" href="01-R_community_main_workflow.html"/>
+<link rel="next" href="03-R_packages.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -186,11 +186,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="dataset-workflow" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Dataset &amp; workflow<a href="02-Dataset_and_workflow.html#dataset-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figures/data.png" width="15%" style="display: block; margin: auto;" /></p>
+<div id="dataset" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Dataset<a href="02-Dataset_and_workflow.html#dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/freshwater_france.png" width="50%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="workflow" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Workflow<a href="02-Dataset_and_workflow.html#workflow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/workflow.png" width="15%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="scripts-and-working-directory" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Scripts and working directory<a href="02-Dataset_and_workflow.html#scripts-and-working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/r_script.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Different people like to sort out their workflows and directories/folders in different ways. Some people like to use <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects">RStudio projects</a>. Personally, I like to create one directory for an analysis project. In this directory I:</p>
+<ul>
+<li>Have a directory with my input.</li>
+<li>I save my scripts.</li>
+<li>I save my output, possibly to sub-directories.</li>
+</ul>
+<p>This is the method that will be used in these materials. To start, create a directory on your computer for the analysis of the French freshwater data (can be done inside our outside of RStudio. For example:</p>
+<p><strong>"~/R/R_community_course/freshwater_data_analysis/"</strong></p>
+<p>Next we need our data. Download and save the following link into your analysis directory:</p>
+<p><strong><a href="https://neof-workshops.github.io/Unix_nxcdf7/01-Intro_to_Unix.html">freshwater_water_france.zip</a></strong></p>
+<p>It is a zipped directory, therefore unzip the directory/folder.</p>
+<div class="webex-solution">
+<button>
+Windows unzipping
+</button>
+<ul>
+<li>Open File Explorer and find the zipped folder.</li>
+<li>To unzip the entire folder, right-click to select Extract All, and then click "Extract".</li>
+</ul>
+</div>
+<div class="webex-solution">
+<button>
+Mac unzipping
+</button>
+<ul>
+<li>Double-click the .zip file.</li>
+</ul>
+</div>
+<p>Finally, set your working directory in RStudio to your analysis directory.</p>
+
+</div>
 </div>
 <script>
 
@@ -368,8 +408,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-
+<a href="01-R_community_main_workflow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="03-R_packages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
