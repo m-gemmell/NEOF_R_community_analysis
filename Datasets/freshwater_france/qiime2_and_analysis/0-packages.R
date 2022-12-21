@@ -27,5 +27,7 @@ BiocManager::install('phyloseq')
 #Install microbiome package
 BiocManager::install("microbiome")
 
+#Install vegan
+install.packages("vegan")
 
 

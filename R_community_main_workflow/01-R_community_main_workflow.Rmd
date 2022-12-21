@@ -27,12 +27,12 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 
 # Introduction
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/qiime2_supplement.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
 ``` 
 
+<Quick introduction>
 
-## Dataset & goal
-
+<Learning outcomes>
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
