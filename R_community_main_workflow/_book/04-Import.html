@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2022-12-21" />
+<meta name="date" content="2022-12-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -155,10 +155,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.1" data-path="04-Import.html"><a href="04-Import.html#script"><i class="fa fa-check"></i><b>4.1</b> Script</a></li>
 <li class="chapter" data-level="4.2" data-path="04-Import.html"><a href="04-Import.html#qiime2r"><i class="fa fa-check"></i><b>4.2</b> qiime2R</a></li>
-<li class="chapter" data-level="4.3" data-path="04-Import.html"><a href="04-Import.html#save-the-phyloseq-object"><i class="fa fa-check"></i><b>4.3</b> Save the phyloseq object</a></li>
-<li class="chapter" data-level="4.4" data-path="04-Import.html"><a href="04-Import.html#recap"><i class="fa fa-check"></i><b>4.4</b> Recap</a></li>
+<li class="chapter" data-level="4.3" data-path="04-Import.html"><a href="04-Import.html#summarise-phyloseq"><i class="fa fa-check"></i><b>4.3</b> Summarise phyloseq</a></li>
+<li class="chapter" data-level="4.4" data-path="04-Import.html"><a href="04-Import.html#save-the-phyloseq-object"><i class="fa fa-check"></i><b>4.4</b> Save the phyloseq object</a></li>
+<li class="chapter" data-level="4.5" data-path="04-Import.html"><a href="04-Import.html#recap"><i class="fa fa-check"></i><b>4.5</b> Recap</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="05-Preprocess_data.html"><a href="05-Preprocess_data.html"><i class="fa fa-check"></i><b>5</b> Preprocess</a></li>
+<li class="chapter" data-level="5" data-path="05-Preprocess_data.html"><a href="05-Preprocess_data.html"><i class="fa fa-check"></i><b>5</b> Transformations and preprocessing</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-Preprocess_data.html"><a href="05-Preprocess_data.html#script-setup"><i class="fa fa-check"></i><b>5.1</b> Script setup</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="06-Taxonomy.html"><a href="06-Taxonomy.html"><i class="fa fa-check"></i><b>6</b> Taxonomy</a></li>
 <li class="chapter" data-level="7" data-path="07-Alpha.html"><a href="07-Alpha.html"><i class="fa fa-check"></i><b>7</b> Alpha</a></li>
 <li class="chapter" data-level="8" data-path="08-Beta.html"><a href="08-Beta.html"><i class="fa fa-check"></i><b>8</b> Beta</a></li>
@@ -198,10 +202,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="qiime2r" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> qiime2R<a href="04-Import.html#qiime2r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/qiime2r.png" width="40%" style="display: block; margin: auto;" /></p>
-<p><a href="https://github.com/jbisanz/qiime2R"><code>qiime2R</code></a> has many different commands. However the best way to import your QIIME2 artifacts is with the <code>qza_to_phyloseq()</code> function. In your "01-Import.R" script, add the following and run the commands.</p>
+<p><a href="https://github.com/jbisanz/qiime2R"><code>qiime2R</code></a> is an R package for importing QIIME2 artifacts into a R phyloseq object. The package contains many different commands. Its function <code>read_qza()</code> can read a single artifact at a time.</p>
+<p>The best way to import all your QIIME2 artifacts is with the <code>qza_to_phyloseq()</code> function. In your "01-Import.R" script, add the following and run the commands.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="04-Import.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set you working directory</span></span>
 <span id="cb5-2"><a href="04-Import.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#This is useful to have at the top of your scripts</span></span>
-<span id="cb5-3"><a href="04-Import.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Esure you set it as your analysis directory</span></span>
+<span id="cb5-3"><a href="04-Import.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Ensure you set it as your analysis directory</span></span>
 <span id="cb5-4"><a href="04-Import.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/R/R_community_course/freshwater_data_analysis/&quot;</span>)</span>
 <span id="cb5-5"><a href="04-Import.html#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="04-Import.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the package/library</span></span>
@@ -214,7 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-13"><a href="04-Import.html#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">taxonomy =</span> <span class="st">&quot;taxonomy.sklearn.qza&quot;</span>,</span>
 <span id="cb5-14"><a href="04-Import.html#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> <span class="st">&quot;media_metadata.txt&quot;</span></span>
 <span id="cb5-15"><a href="04-Import.html#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>This command creates a phyloseq object we name <code>pseq</code>. It contains:</p>
+<p>This command creates a phyloseq object named <code>pseq</code>. It contains:</p>
 <ul>
 <li>The ASV abundance table (<code>features = "table-dada2.qza"</code>).</li>
 <li>The rooted phylogenetic tree (<code>tree = "rooted-tree.qza"</code>).</li>
@@ -222,17 +227,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The sample metadata (<code>metadata = "media_metadata.txt"</code>)</li>
 </ul>
 </div>
-<div id="save-the-phyloseq-object" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Save the phyloseq object<a href="04-Import.html#save-the-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summarise-phyloseq" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Summarise phyloseq<a href="04-Import.html#summarise-phyloseq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/list_blue.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Now that we have imported the data we can extract some summary information from it.</p>
+<p>First we will use the <code>microbiome</code> package with its <code>summarize_phyloseq()</code> function.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="04-Import.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load microbiome library</span></span>
+<span id="cb6-2"><a href="04-Import.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
+<span id="cb6-3"><a href="04-Import.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of phyloseq object</span></span>
+<span id="cb6-4"><a href="04-Import.html#cb6-4" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(pseq)</span></code></pre></div>
+<p>This gives us a plethora of information:</p>
+<ul>
+<li>The top line tells us if the data is compositional (relative abundance).</li>
+<li>We get the following list of values in a paragraph and via a list.
+<ul>
+<li>Min. number of reads: Number of reads in the sample with the lowest number of reads.</li>
+<li>Max. number of reads: Number of reads in the sample with the largest number of reads.</li>
+<li>Total number of reads: Sum of all reads across all samples.</li>
+<li>Average number of reads: Sum of all reads / number of samples.</li>
+<li>Median number of reads: Midpoint read abundance across samples.</li>
+<li>Sparsity: See expandable box further down.</li>
+<li>Any OTU sum to 1 or less?: States if there are any ASVs with a summed abundance of 1 or less across all the samples.</li>
+<li>Number of singletons: Number of ASVs with a sum of 1 or less across all samples.</li>
+<li>Percent of OTUs that are singletons: Percentage of ASVs that only contain one read across all the samples.</li>
+<li>Number of sample variables are: Number of sample variables/groupings in our metadata.</li>
+<li>The last line shows the names of the sample variables/groupings in our metadata.</li>
+</ul></li>
+</ul>
+<div class="webex-solution">
+<button>
+Sparsity
+</button>
+<p>Sparsity is a measure of the number of 0s in a table. It can be represented by the following equation:</p>
+<p><span class="math display">\[
+sparsity = Z/C
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li>Z = The number of cells that equal zero.</li>
+<li>C = The total number of cells.</li>
+</ul>
+<p>Let's look at an example of an abundance table with a small amount of ASVs and Samples.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Sample1</th>
+<th>Sample2</th>
+<th>Sample3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ASV1</td>
+<td>0</td>
+<td>10</td>
+<td>24</td>
+</tr>
+<tr class="even">
+<td>ASV2</td>
+<td>1</td>
+<td>0</td>
+<td>37</td>
+</tr>
+<tr class="odd">
+<td>ASV3</td>
+<td>6</td>
+<td>25</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>ASV4</td>
+<td>51</td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>This abundance table has 12 cells, 3 samples * 4 ASVs.</li>
+<li>Of these cells, 4 have an abundance of zero.</li>
+<li>4/12 = 0.3333, therefore its sparsity is 0.3333.</li>
+</ul>
+<p>Sparsity can be any value from 0-1. The higher the value the more sparse it is, with a value of 1 meaning all the cells have an abundance of zero. The lower the value the less sparse it is, with a value of 0 meaning all the cells have an abundance of 1 or more.</p>
+<p>16S data is known to be sparse so high sparsity is not unexpected. Keep in mind that lower levels of taxa (ASVs, Species, &amp; Genera) will generally have more sparse tables that higher levels of taxa (Kingdom, Phylum, Class).</p>
+</div>
+<p>If you would like to see how the function calculates its values you can highlight the function on the script editor and press "F2".</p>
+</div>
+<div id="save-the-phyloseq-object" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Save the phyloseq object<a href="04-Import.html#save-the-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/r_save.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>When using multiple scripts for analysis it is useful to save the R objects that will be used in different script. This can be carried out with the function <code>save()</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="04-Import.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(pseq, <span class="at">file =</span> <span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="04-Import.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(pseq, <span class="at">file =</span> <span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
 <p>This saves our object <code>pseq</code> into the file <code>phyloseq.RData</code>. The suffix <code>R.Data</code> is the normal convention.</p>
 <p>Since our final object is saved we no longer need the objects in the environment. Therefore, you can use the sweep button in the Environment pane to remove them.</p>
 <p><img src="figures/RStudio_env_sweep.png" width="40%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="recap" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Recap<a href="04-Import.html#recap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="recap" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Recap<a href="04-Import.html#recap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/recap.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>We have imported our QIIME2 artifacts into one phyloseq object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.</p>
 
@@ -456,6 +548,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

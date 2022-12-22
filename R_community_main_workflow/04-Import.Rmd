@@ -1,21 +1,23 @@
 # Import
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
-``` 
+```
 
 Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called `qiime2R`
 
 ## Script
+
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
-``` 
+```
 
-Prior to any coding, open and save a new script called "01-Import.R". We will be creating a new script for each chapter and numbering them so we can easily see the order of scripts. 
+Prior to any coding, open and save a new script called "01-Import.R". We will be creating a new script for each chapter and numbering them so we can easily see the order of scripts.
 
 ## qiime2R
+
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
-``` 
+```
 
 [`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R phyloseq object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.
 
@@ -41,10 +43,74 @@ pseq <- qiime2R::qza_to_phyloseq(
 
 This command creates a phyloseq object named `pseq`. It contains:
 
-- The ASV abundance table (`features = "table-dada2.qza"`).
-- The rooted phylogenetic tree (`tree = "rooted-tree.qza"`).
-- The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`).
-- The sample metadata (`metadata = "media_metadata.txt"`)
+-   The ASV abundance table (`features = "table-dada2.qza"`).
+-   The rooted phylogenetic tree (`tree = "rooted-tree.qza"`).
+-   The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`).
+-   The sample metadata (`metadata = "media_metadata.txt"`)
+
+## Summarise phyloseq
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
+```
+
+Now that we have imported the data we can extract some summary information from it.
+
+First we will use the `microbiome` package with its `summarize_phyloseq()` function.
+
+```{r, eval=FALSE}
+#Load microbiome library
+library("microbiome")
+#Summary of phyloseq object
+microbiome::summarize_phyloseq(pseq)
+```
+
+This gives us a plethora of information:
+
+-   The top line tells us if the data is compositional (relative abundance).
+-   We get the following list of values in a paragraph and via a list.
+    -   Min. number of reads: Number of reads in the sample with the lowest number of reads.
+    -   Max. number of reads: Number of reads in the sample with the largest number of reads.
+    -   Total number of reads: Sum of all reads across all samples.
+    -   Average number of reads: Sum of all reads / number of samples.
+    -   Median number of reads: Midpoint read abundance across samples.
+    -   Sparsity: See expandable box further down.
+    -   Any OTU sum to 1 or less?: States if there are any ASVs with a summed abundance of 1 or less across all the samples. 
+    -   Number of singletons: Number of ASVs with a sum of 1 or less across all samples.
+    -   Percent of OTUs that are singletons: Percentage of ASVs that only contain one read across all the samples.
+    -   Number of sample variables are: Number of sample variables/groupings in our metadata.
+    -   The last line shows the names of the sample variables/groupings in our metadata.
+
+`r hide("Sparsity")`
+Sparsity is a measure of the number of 0s in a table. It can be represented by the following equation:
+
+$$
+sparsity = Z/C
+$$
+
+Where:
+
+-   Z = The number of cells that equal zero.
+-   C = The total number of cells.
+
+Let's look at an example of an abundance table with a small amount of ASVs and Samples.
+
+|      | Sample1 | Sample2 | Sample3 |
+|------|---------|---------|---------|
+| ASV1 | 0       | 10      | 24      |
+| ASV2 | 1       | 0       | 37      |
+| ASV3 | 6       | 25      | 0       |
+| ASV4 | 51      | 2       | 0       |
+
+- This abundance table has 12 cells, 3 samples \* 4 ASVs. 
+- Of these cells, 4 have an abundance of zero. 
+- 4/12 = 0.3333, therefore its sparsity is 0.3333.
+
+Sparsity can be any value from 0-1. The higher the value the more sparse it is, with a value of 1 meaning all the cells have an abundance of zero. The lower the value the less sparse it is, with a value of 0 meaning all the cells have an abundance of 1 or more.
+
+16S data is known to be sparse so high sparsity is not unexpected. Keep in mind that lower levels of taxa (ASVs, Species, & Genera) will generally have more sparse tables that higher levels of taxa (Kingdom, Phylum, Class).
+`r unhide()`
+
+If you would like to see how the function calculates its values you can highlight the function on the script editor and press "F2".
 
 ## Save the phyloseq object
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -63,13 +129,12 @@ Since our final object is saved we no longer need the objects in the environment
 
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/RStudio_env_sweep.png", auto_pdf = TRUE)
-``` 
+```
 
 ## Recap
+
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 
 We have imported our QIIME2 artifacts into one phyloseq object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.
-
-

@@ -10,9 +10,11 @@ phyloseq
 import
 script
 qiime2r
+summarise-phyloseq
 save-the-phyloseq-object
 recap
-preprocess
+transformations-and-preprocessing
+script-setup
 taxonomy
 alpha
 beta

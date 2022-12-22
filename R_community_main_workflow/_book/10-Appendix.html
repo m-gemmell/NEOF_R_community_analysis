@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2022-12-21" />
+<meta name="date" content="2022-12-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -155,10 +155,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.1" data-path="04-Import.html"><a href="04-Import.html#script"><i class="fa fa-check"></i><b>4.1</b> Script</a></li>
 <li class="chapter" data-level="4.2" data-path="04-Import.html"><a href="04-Import.html#qiime2r"><i class="fa fa-check"></i><b>4.2</b> qiime2R</a></li>
-<li class="chapter" data-level="4.3" data-path="04-Import.html"><a href="04-Import.html#save-the-phyloseq-object"><i class="fa fa-check"></i><b>4.3</b> Save the phyloseq object</a></li>
-<li class="chapter" data-level="4.4" data-path="04-Import.html"><a href="04-Import.html#recap"><i class="fa fa-check"></i><b>4.4</b> Recap</a></li>
+<li class="chapter" data-level="4.3" data-path="04-Import.html"><a href="04-Import.html#summarise-phyloseq"><i class="fa fa-check"></i><b>4.3</b> Summarise phyloseq</a></li>
+<li class="chapter" data-level="4.4" data-path="04-Import.html"><a href="04-Import.html#save-the-phyloseq-object"><i class="fa fa-check"></i><b>4.4</b> Save the phyloseq object</a></li>
+<li class="chapter" data-level="4.5" data-path="04-Import.html"><a href="04-Import.html#recap"><i class="fa fa-check"></i><b>4.5</b> Recap</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="05-Preprocess_data.html"><a href="05-Preprocess_data.html"><i class="fa fa-check"></i><b>5</b> Preprocess</a></li>
+<li class="chapter" data-level="5" data-path="05-Preprocess_data.html"><a href="05-Preprocess_data.html"><i class="fa fa-check"></i><b>5</b> Transformations and preprocessing</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-Preprocess_data.html"><a href="05-Preprocess_data.html#script-setup"><i class="fa fa-check"></i><b>5.1</b> Script setup</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="06-Taxonomy.html"><a href="06-Taxonomy.html"><i class="fa fa-check"></i><b>6</b> Taxonomy</a></li>
 <li class="chapter" data-level="7" data-path="07-Alpha.html"><a href="07-Alpha.html"><i class="fa fa-check"></i><b>7</b> Alpha</a></li>
 <li class="chapter" data-level="8" data-path="08-Beta.html"><a href="08-Beta.html"><i class="fa fa-check"></i><b>8</b> Beta</a></li>
@@ -417,6 +421,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

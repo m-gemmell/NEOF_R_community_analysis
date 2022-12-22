@@ -273,28 +273,32 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 # Import
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
-``` 
+```
 
 Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called `qiime2R`
 
 ## Script
+
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
-``` 
+```
 
-Prior to any coding, open and save a new script called "01-Import.R". We will be creating a new script for each chapter and numbering them so we can easily see the order of scripts. 
+Prior to any coding, open and save a new script called "01-Import.R". We will be creating a new script for each chapter and numbering them so we can easily see the order of scripts.
 
 ## qiime2R
+
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
-``` 
+```
 
-[`qiime2R`](https://github.com/jbisanz/qiime2R) has many different commands. However the best way to import your QIIME2 artifacts is with the `qza_to_phyloseq()` function. In your "01-Import.R" script, add the following and run the commands.
+[`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R phyloseq object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.
+
+The best way to import all your QIIME2 artifacts is with the `qza_to_phyloseq()` function. In your "01-Import.R" script, add the following and run the commands.
 
 ```{r, eval=FALSE}
 #Set you working directory
 #This is useful to have at the top of your scripts
-#Esure you set it as your analysis directory
+#Ensure you set it as your analysis directory
 setwd("~/R/R_community_course/freshwater_data_analysis/")
 
 #Load the package/library
@@ -309,12 +313,76 @@ pseq <- qiime2R::qza_to_phyloseq(
 )
 ```
 
-This command creates a phyloseq object we name `pseq`. It contains:
+This command creates a phyloseq object named `pseq`. It contains:
 
-- The ASV abundance table (`features = "table-dada2.qza"`).
-- The rooted phylogenetic tree (`tree = "rooted-tree.qza"`).
-- The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`).
-- The sample metadata (`metadata = "media_metadata.txt"`)
+-   The ASV abundance table (`features = "table-dada2.qza"`).
+-   The rooted phylogenetic tree (`tree = "rooted-tree.qza"`).
+-   The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`).
+-   The sample metadata (`metadata = "media_metadata.txt"`)
+
+## Summarise phyloseq
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
+```
+
+Now that we have imported the data we can extract some summary information from it.
+
+First we will use the `microbiome` package with its `summarize_phyloseq()` function.
+
+```{r, eval=FALSE}
+#Load microbiome library
+library("microbiome")
+#Summary of phyloseq object
+microbiome::summarize_phyloseq(pseq)
+```
+
+This gives us a plethora of information:
+
+-   The top line tells us if the data is compositional (relative abundance).
+-   We get the following list of values in a paragraph and via a list.
+    -   Min. number of reads: Number of reads in the sample with the lowest number of reads.
+    -   Max. number of reads: Number of reads in the sample with the largest number of reads.
+    -   Total number of reads: Sum of all reads across all samples.
+    -   Average number of reads: Sum of all reads / number of samples.
+    -   Median number of reads: Midpoint read abundance across samples.
+    -   Sparsity: See expandable box further down.
+    -   Any OTU sum to 1 or less?: States if there are any ASVs with a summed abundance of 1 or less across all the samples. 
+    -   Number of singletons: Number of ASVs with a sum of 1 or less across all samples.
+    -   Percent of OTUs that are singletons: Percentage of ASVs that only contain one read across all the samples.
+    -   Number of sample variables are: Number of sample variables/groupings in our metadata.
+    -   The last line shows the names of the sample variables/groupings in our metadata.
+
+`r hide("Sparsity")`
+Sparsity is a measure of the number of 0s in a table. It can be represented by the following equation:
+
+$$
+sparsity = Z/C
+$$
+
+Where:
+
+-   Z = The number of cells that equal zero.
+-   C = The total number of cells.
+
+Let's look at an example of an abundance table with a small amount of ASVs and Samples.
+
+|      | Sample1 | Sample2 | Sample3 |
+|------|---------|---------|---------|
+| ASV1 | 0       | 10      | 24      |
+| ASV2 | 1       | 0       | 37      |
+| ASV3 | 6       | 25      | 0       |
+| ASV4 | 51      | 2       | 0       |
+
+- This abundance table has 12 cells, 3 samples \* 4 ASVs. 
+- Of these cells, 4 have an abundance of zero. 
+- 4/12 = 0.3333, therefore its sparsity is 0.3333.
+
+Sparsity can be any value from 0-1. The higher the value the more sparse it is, with a value of 1 meaning all the cells have an abundance of zero. The lower the value the less sparse it is, with a value of 0 meaning all the cells have an abundance of 1 or more.
+
+16S data is known to be sparse so high sparsity is not unexpected. Keep in mind that lower levels of taxa (ASVs, Species, & Genera) will generally have more sparse tables that higher levels of taxa (Kingdom, Phylum, Class).
+`r unhide()`
+
+If you would like to see how the function calculates its values you can highlight the function on the script editor and press "F2".
 
 ## Save the phyloseq object
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -333,16 +401,15 @@ Since our final object is saved we no longer need the objects in the environment
 
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/RStudio_env_sweep.png", auto_pdf = TRUE)
-``` 
+```
 
 ## Recap
+
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 
 We have imported our QIIME2 artifacts into one phyloseq object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.
-
-
 
 <!--chapter:end:04-Import.Rmd-->
 
@@ -363,9 +430,183 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# Preprocess
+# Transformations and preprocessing
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/transform.png", auto_pdf = TRUE)
+```
 
-<Contents>
+In this chapter we will learn how to transform our abundance phyloseq table into a relative/compositional abundance phyloseq and a rarefied phyloseq object.
+
+## Script setup
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/setup_2.png", auto_pdf = TRUE)
+```
+
+Before starting analysis create and save a new script called "02-Preprocess.R" into your analysis directory.
+
+It is useful to add a title to the top of scripts. Add the below to your script:
+
+```{r, eval=FALSE}
+#Preprocessing data
+```
+
+Below this add a code section title for our script set-up.
+
+```{r, eval=FALSE}
+#Set-up ####
+```
+
+Next add your command to set the working directory. Below is an example:
+
+```{r, eval=FALSE}
+#Set working directory
+setwd("~/R/R_community_course/freshwater_data_analysis/")
+```
+
+Additionally, I like to load all the libraries to be used in the script in this section. We will explain their uses later in this chapter.
+
+Add the below to your script:
+
+```{r, eval=FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+library("vegan")
+```
+
+Our last bit of set-up is to load in our abundance phyloseq object we created in the previous chapter.
+
+```{r, eval=FALSE}
+#Load the phyloseq object
+load("phyloseq.RData")
+```
+
+
+#Number of reads per sample
+reads_sample <- microbiome::readcount(pseq)
+reads_sample
+
+#Can extract ASV table (known as otu table in phyloseq)
+phyloseq::otu_table(pseq)
+
+#Each row is an ASV and each column is the samples
+#Therefore we can get the number of ASVs in data
+#Let's make a new vector with this info so we can easily keep track
+num_asvs_vec <- c(nrow(phyloseq::otu_table(pseq)))
+#Give the 1st element a relevant name
+names(num_asvs_vec)[1] <- "abundance"
+#View current vector
+num_asvs_vec
+
+#Sample with too few samples?
+#In your analysis you may have a sample with too few reads
+#All our samples are fine for a tutorial case but let us say we only wanted to
+#keep samples with >11k reads
+#We could remove samples with the following code
+pseq_min11K <- phyloseq::subset_samples(pseq, reads_sample > 11000)
+microbiome::summarize_phyloseq(pseq_min11K)
+microbiome::readcount(pseq_min11K)
+
+#We won't be using this as we are happy with our sample numbers
+#Let us therefore remove this sample subsetted variable
+rm(pseq_min11K)
+
+#Relative abundance ####
+#Convert abundance table to relative abundance (compositional) table
+pseq_relabund <- microbiome::transform(pseq, "compositional")
+#Summarise and check sample counts which should each amount to 1
+microbiome::summarize_phyloseq(pseq_relabund)
+microbiome::readcount(pseq_relabund)
+
+#Check the below logic
+#When using total abundance values it is useful to have 0 values, singletons, and doubletons
+#This is because some alpha diversity metrics require them
+#However it is useful to remove low relative abundance data in relative abundance data
+#This is so the rare ASVs do not overly affect certain types of analysis
+
+#first remove ASV with relabund equal to 0
+#This can occur if samples were removed which had ASVs 
+#not present in the remaining samples
+pseq_relabund <-  filter_taxa(pseq_relabund, function(x) sum(x) > 0, TRUE)
+
+#Summarise and check sample counts which should each amount to around 1
+microbiome::summarize_phyloseq(pseq_relabund)
+microbiome::readcount(pseq_relabund)
+
+#All the total relative abundances still equal 1
+#This is expected since no samples were removed
+#As this is the case there is no need to check if ASVs were removed
+
+#We will now remove rare ASVs as these are not as useful in relative abundance data
+#compared to abundance data
+#There are many ways to do this
+#A common way, recommended by the phyloseq developer
+#Remove ASVs with a mean (across samples) less than 1e-5 (relabund)
+pseq_relabund <-  
+  phyloseq::filter_taxa(
+    pseq_relabund, function(x) mean(x) > 1e-5, TRUE)
+
+#Summarise and check sample counts which should each amount to around 1
+microbiome::summarize_phyloseq(pseq_relabund)
+microbiome::readcount(pseq_relabund)
+
+#Total relative abundance has decreased by a very small amount
+#This is what we are looking for, if too much is being removed >0.05
+#you will need to try to be gentler with the filtering
+#Such as trying 1e-6 rather than 1e-5
+
+#We should also check how many ASVs have been removed
+num_asvs_vec["relabund"] <- nrow(phyloseq::otu_table(pseq_relabund))
+num_asvs_vec
+num_asvs_vec["abundance"] - num_asvs_vec["relabund"]
+
+#We have lost a good amount of ASVs but these only equate to a very small
+#amount relabund. This is fine as we generally use relative abundance
+#when looking at the larger picture rather than at closer pictures
+#instead we can use a rarefied abundance table to look at the closer picture
+
+#We are now happy with our relative abundance table
+#Therefore we can save it for further use
+save(pseq_relabund, file = "phyloseq_relabund.RData")
+
+#Rarefy abundance table ####
+#i.e. convert abundance numbers so each sample has equal depth
+
+#Before rarefying a table it is good to make a rarefaction curve
+#This is to help us choose an appropriate rarefaction threshold
+
+#We will use the very useful package vegan
+#Ignore any warning message
+vegan::rarecurve(
+  x = as.data.frame(t(phyloseq::otu_table(pseq))), step = 50)
+
+#Let us improve this and save it into a file
+png(filename = "./rarefaction_plot.png", res = 300,
+    units = "mm", height = 200, width = 300)
+vegan::rarecurve(
+  x = as.data.frame(t(phyloseq::otu_table(pseq))), step = 50,
+  ylab="ASVs", lwd=1,label=F)
+#Add a vertical line of the smallest sample depth
+abline(v = min(reads_sample), col="red")
+dev.off()
+
+#With this we can see that the majorty of samples plateau at 
+#the minimum sampleing depth
+#Therefore we can use this as a rarefaction size
+pseq_rarefy <- 
+  phyloseq::rarefy_even_depth(
+    pseq, sample.size = min(reads_sample), rngseed = 1000)
+
+#Summarise and check sample counts which should each amount to 10433
+microbiome::summarize_phyloseq(pseq_rarefy)
+microbiome::readcount(pseq_rarefy)
+
+#Check ASVs
+num_asvs_vec["rarefied"] <- nrow(phyloseq::otu_table(pseq_rarefy))
+num_asvs_vec
+
+#Save phyloseq object
+save(pseq_relpseq_rarefyabund, file = "phyloseq_rarefied.RData")
 
 <!--chapter:end:05-Preprocess_data.Rmd-->
 

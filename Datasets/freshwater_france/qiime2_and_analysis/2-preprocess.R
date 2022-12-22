@@ -13,6 +13,7 @@ load("phyloseq.RData")
 #Summary of phyloseq objects
 microbiome::summarize_phyloseq(pseq)
 
+
 #Number of reads per sample
 reads_sample <- microbiome::readcount(pseq)
 reads_sample
