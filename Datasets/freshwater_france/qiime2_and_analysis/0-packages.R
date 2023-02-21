@@ -5,7 +5,7 @@ R_LIBS_SITE="F:/R/library"
 #RTools42 needs to be installed for windows users
 #https://cran.r-project.org/bin/windows/Rtools/rtools42/rtools.html
 
-#Install some problem pacages
+#Install some problem packages
 problem_pckgs <- c('rlang', 'vctrs', 'Biostrings', 'cli','DelayedArray', 
                    'GenomicRanges', 'IRanges', 'isoband',
                    'plyr', 'RCurl', 'S4Vectors', 'XVector', 'zlibbioc')

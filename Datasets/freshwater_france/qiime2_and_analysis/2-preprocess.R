@@ -59,7 +59,7 @@ microbiome::readcount(pseq_relabund)
 #first remove ASV with relabund equal to 0
 #This can occur if samples were removed which had ASVs 
 #not present in the remaining samples
-pseq_relabund <-  filter_taxa(pseq_relabund, function(x) sum(x) > 0, TRUE)
+pseq_relabund <-  phyloseq::filter_taxa(pseq_relabund, function(x) sum(x) > 0, TRUE)
 
 #Summarise and check sample counts which should each amount to around 1
 microbiome::summarize_phyloseq(pseq_relabund)
