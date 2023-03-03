@@ -1,0 +1,55 @@
+# Set-up
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/start.png", auto_pdf = TRUE)
+```
+
+Prior to any analysis we need to setup our environment in the webVNC.
+
+## Logon instructions {#cluster}
+
+For this workshop we will be using Virtual Network Computing (VNC). Connect to the VNC with a browser by using the webVNC link you were sent.
+
+You will now be in a logged-in Linux VNC desktop with two terminals. 
+You will see something as below (there may be only one terminal which is fine). 
+If you do not see something similar please ask for assistance.
+
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+knitr::include_graphics(path = "figures/nsc200_logon.png", auto_pdf = TRUE)
+```
+
+If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. 
+You will most likely need to use your browser's tool bar to accomplish this. 
+Ensure you can see the grey borders.
+
+These instructions will not work outside of this workshop. 
+If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
+
+The following link is a guide to install Mint Linux:  
+https://linuxmint-installation-guide.readthedocs.io/en/latest/
+
+## Mamba
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
+```
+
+This workshop requires a lot of packages. 
+These all can be difficult to install with R. 
+Instead we have used Mamba forge to install R, its packages, and Jupyter-notebook (more info below). 
+To learn more about Mamba-forge and how to create your own environment please see the [appendix](#https://github.com/mamba-org/mamba).
+
+To set-up your environment for this workshop please run the following code (you must include the full stop and space at the front of the command).
+
+```{bash, eval=FALSE}
+. usercommunity
+```
+
+You will have successfully activated the environment if you now see `(r_community)` at the start of your command prompt. 
+This indicates you are now in the mamba environment called `r_community` created by the instructor.
+
+If you are interested in the use script you can look at its contents.
+
+```{bash, eval=FALSE}
+less /usr/local/bin/usercommunity
+```
+
+__Tip:__ press `q` to quit `less`.

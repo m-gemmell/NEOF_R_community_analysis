@@ -25,6 +25,8 @@ knitr::write_bib(c(
 knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ``` 
 
+# (PART\*) Intro {-}
+
 # Introduction
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)

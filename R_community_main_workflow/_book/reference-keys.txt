@@ -7,6 +7,17 @@ r-packages
 r-packageslibraries
 the-grammar-of-graphics
 phyloseq
+set-up
+cluster
+mamba
+jupyter
+open-jupyter-notebook
+create-r-notebook
+cells-and-code
+create-new-cells
+running-code
+saving-the-file
+close-the-notebook
 import
 script
 qiime2r
@@ -19,5 +30,6 @@ taxonomy
 alpha
 beta
 differential-abundance-analysis
-installing-required-packages
+mamba_install
+jupyter-notebook
 ggplot2_appendix

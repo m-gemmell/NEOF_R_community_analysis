@@ -1,0 +1,142 @@
+# Jupyter
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_logo.png", auto_pdf = TRUE)
+```
+
+[`Jupyter-notebook`](https://jupyter.org/) is a nice browser based method to write, edit, and run code.
+It was initally created for Python coding, but has since branched out to many other languages, such as `R`.
+
+We are using it in this workshop for a variety of its properties:
+
+- It is popular and well maintained.
+- It is lightweight. Other heavier weight programs, such as RStudio, would struggle in our HPC due to the graphical and CPU load.
+- It is interactive and displays code output. 
+- It allows for easier annotation, editing, and debugging than the command line. 
+- It provides a graphical interface for hanging directories and choosing files.
+
+Before carrying out any analysis we will go through a quick tutorial of `jupyter-notebook`.
+
+## Open Jupyter-notebook
+
+The first step is to open `jupyter-notebook`.
+Run the below command in your `(r_community)` environment.
+
+```{bash, eval=FALSE}
+jupyter-notebook
+```
+
+This will open `jupyter-notebook` in firefox. We won't need to access the linux terminal anymore. Leave it running `jupyter-notebook` and full screen your firefox so you should see something like below.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_example_1.png", auto_pdf = TRUE)
+```
+
+## Create R notebook
+The next step is to create a R notebook.
+
+1. Click on the "New" button towards the top right, right of the "Upload" button.
+2. From the Drop down click "R" below "Python 3 (ipykernel).
+
+This will open up a new R notebook like below.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_example_2.png", auto_pdf = TRUE)
+```
+
+## Cells and code
+
+Jupyter-notebook uses cells (the gray boxes) to separate code. 
+This is very useful to compartmentalise our code.
+
+There will already be one cell. Within the cell, type in the below commands.
+
+```{r, eval=FALSE}
+1+1
+2-3
+```
+
+When pressing enter in cells it will create a new line.
+To run all commands in a cell press `CTRL + enter`. 
+
+Run your current cell and you should see something like below.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_example_3.png", auto_pdf = TRUE)
+```
+
+## Create new cells
+
+You can create new cells by 2 different means.
+
+- Press the `+` button on the tool bar (between the floppy disk `r icons::ionicons("save-outline")` and scissors. This will add a cell below your currently selected option.
+- Click on the `Insert` button and use the dropdown to add a cell above or below your currently selected cell.
+
+__Tip:__ Hover over the toolbar icons to display a text based description of its function.
+
+With that knowledge add a second cell below the first cell. 
+Add the following code to your second cell but do not run it.
+
+```{r, eval=FALSE}
+num_1 <- 3
+num_2 <- 10
+```
+
+__Tip:__ Notice there are green lines around your selected cell.
+
+Insert a third cell and add the following code to it. Do not run the code.
+
+```{r, eval=FALSE}
+num_1 * num_2
+```
+
+## Running code
+
+Try to run the code in the third cell. 
+There should be an error as we have not created the objects `num_1` & `num_2`.
+We have only written the code for these objects but not run them.
+
+We can run all the code in a notebook starting from the first cell to the last cell.
+
+Two methods to run all cells are:
+
+- Click on the "Cell" button.
+- Click "Run All" from the drop-down options.
+
+You should then see something like the below in your notebook.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_example_4.png", auto_pdf = TRUE)
+```
+
+There is no output printed for cell 2 because we are assigning variables. However, now there is the correct output for Cell 3 as the variables were assigned before the command was run.
+
+## Saving the file
+
+As with most RStudio and other good coding interfaces we can save our notebook.
+
+First we should rename the file. Rename the notebook to jupyter_tut:
+
+1. Click on the name of the notebook, currently called "Untitled". This is at the very top of the notebook, right of the Jupyter logo.
+2. A pop-up called "Rename Notebook" will appear. Change the Name to "jupyter_tut".
+3. Click "Rename".
+
+Now we can save the file.
+
+Two methods to save are:
+
+- Click the floppy disk `r icons::ionicons("save-outline")` on the toolbar.
+- Click on the "File" button. Click "Save and Checkpoint" from the dropdown options.
+
+## Close the notebook
+
+To close the notebook click on the "Logout" button on the very top right. This will close the notebook and then you can close the tab.
+
+When you are back in the file explorer page you will not yet set the new file you saved.
+You will need to refresh the page with the Refresh button towards the top right.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_refresh.png", auto_pdf = TRUE)
+```
+
+
+

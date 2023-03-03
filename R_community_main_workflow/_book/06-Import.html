@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Import | R community analysis</title>
+  <title>Chapter 6 Import | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Import | R community analysis" />
+  <meta property="og:title" content="Chapter 6 Import | R community analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community analysis workflow" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Import | R community analysis" />
+  <meta name="twitter:title" content="Chapter 6 Import | R community analysis" />
   
   <meta name="twitter:description" content="NEOF book for the R community analysis workflow" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -23,15 +23,15 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-02-27" />
+<meta name="date" content="2023-03-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-<link rel="prev" href="03-R_packages.html"/>
-<link rel="next" href="05-Preprocess_data.html"/>
+<link rel="prev" href="05-Jupyter.html"/>
+<link rel="next" href="07-Preprocess_data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -138,6 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a>R community analysis</a></li>
 
 <li class="divider"></li>
+<li class="part"><span><b>Intro</b></span></li>
 <li class="chapter" data-level="1" data-path="01-R_community_main_workflow.html"><a href="01-R_community_main_workflow.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="02-Dataset_and_workflow.html"><a href="02-Dataset_and_workflow.html"><i class="fa fa-check"></i><b>2</b> Dataset &amp; workflow</a>
 <ul>
@@ -151,25 +152,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="03-R_packages.html"><a href="03-R_packages.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>3.2</b> The grammar of graphics</a></li>
 <li class="chapter" data-level="3.3" data-path="03-R_packages.html"><a href="03-R_packages.html#phyloseq"><i class="fa fa-check"></i><b>3.3</b> phyloseq</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="04-Import.html"><a href="04-Import.html"><i class="fa fa-check"></i><b>4</b> Import</a>
+<li class="chapter" data-level="4" data-path="04-Setup.html"><a href="04-Setup.html"><i class="fa fa-check"></i><b>4</b> Set-up</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="04-Import.html"><a href="04-Import.html#script"><i class="fa fa-check"></i><b>4.1</b> Script</a></li>
-<li class="chapter" data-level="4.2" data-path="04-Import.html"><a href="04-Import.html#qiime2r"><i class="fa fa-check"></i><b>4.2</b> qiime2R</a></li>
-<li class="chapter" data-level="4.3" data-path="04-Import.html"><a href="04-Import.html#summarise-phyloseq"><i class="fa fa-check"></i><b>4.3</b> Summarise phyloseq</a></li>
-<li class="chapter" data-level="4.4" data-path="04-Import.html"><a href="04-Import.html#save-the-phyloseq-object"><i class="fa fa-check"></i><b>4.4</b> Save the phyloseq object</a></li>
-<li class="chapter" data-level="4.5" data-path="04-Import.html"><a href="04-Import.html#recap"><i class="fa fa-check"></i><b>4.5</b> Recap</a></li>
+<li class="chapter" data-level="4.1" data-path="04-Setup.html"><a href="04-Setup.html#cluster"><i class="fa fa-check"></i><b>4.1</b> Logon instructions</a></li>
+<li class="chapter" data-level="4.2" data-path="04-Setup.html"><a href="04-Setup.html#mamba"><i class="fa fa-check"></i><b>4.2</b> Mamba</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="05-Preprocess_data.html"><a href="05-Preprocess_data.html"><i class="fa fa-check"></i><b>5</b> Transformations and preprocessing</a>
+<li class="chapter" data-level="5" data-path="05-Jupyter.html"><a href="05-Jupyter.html"><i class="fa fa-check"></i><b>5</b> Jupyter</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="05-Preprocess_data.html"><a href="05-Preprocess_data.html#script-setup"><i class="fa fa-check"></i><b>5.1</b> Script setup</a></li>
+<li class="chapter" data-level="5.1" data-path="05-Jupyter.html"><a href="05-Jupyter.html#open-jupyter-notebook"><i class="fa fa-check"></i><b>5.1</b> Open Jupyter-notebook</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Jupyter.html"><a href="05-Jupyter.html#create-r-notebook"><i class="fa fa-check"></i><b>5.2</b> Create R notebook</a></li>
+<li class="chapter" data-level="5.3" data-path="05-Jupyter.html"><a href="05-Jupyter.html#cells-and-code"><i class="fa fa-check"></i><b>5.3</b> Cells and code</a></li>
+<li class="chapter" data-level="5.4" data-path="05-Jupyter.html"><a href="05-Jupyter.html#create-new-cells"><i class="fa fa-check"></i><b>5.4</b> Create new cells</a></li>
+<li class="chapter" data-level="5.5" data-path="05-Jupyter.html"><a href="05-Jupyter.html#running-code"><i class="fa fa-check"></i><b>5.5</b> Running code</a></li>
+<li class="chapter" data-level="5.6" data-path="05-Jupyter.html"><a href="05-Jupyter.html#saving-the-file"><i class="fa fa-check"></i><b>5.6</b> Saving the file</a></li>
+<li class="chapter" data-level="5.7" data-path="05-Jupyter.html"><a href="05-Jupyter.html#close-the-notebook"><i class="fa fa-check"></i><b>5.7</b> Close the notebook</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="06-Taxonomy.html"><a href="06-Taxonomy.html"><i class="fa fa-check"></i><b>6</b> Taxonomy</a></li>
-<li class="chapter" data-level="7" data-path="07-Alpha.html"><a href="07-Alpha.html"><i class="fa fa-check"></i><b>7</b> Alpha</a></li>
-<li class="chapter" data-level="8" data-path="08-Beta.html"><a href="08-Beta.html"><i class="fa fa-check"></i><b>8</b> Beta</a></li>
-<li class="chapter" data-level="9" data-path="09-Differential_abundance_analysis.html"><a href="09-Differential_abundance_analysis.html"><i class="fa fa-check"></i><b>9</b> Differential abundance analysis</a></li>
+<li class="part"><span><b>Data preparation</b></span></li>
+<li class="chapter" data-level="6" data-path="06-Import.html"><a href="06-Import.html"><i class="fa fa-check"></i><b>6</b> Import</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-Import.html"><a href="06-Import.html#script"><i class="fa fa-check"></i><b>6.1</b> Script</a></li>
+<li class="chapter" data-level="6.2" data-path="06-Import.html"><a href="06-Import.html#qiime2r"><i class="fa fa-check"></i><b>6.2</b> qiime2R</a></li>
+<li class="chapter" data-level="6.3" data-path="06-Import.html"><a href="06-Import.html#summarise-phyloseq"><i class="fa fa-check"></i><b>6.3</b> Summarise phyloseq</a></li>
+<li class="chapter" data-level="6.4" data-path="06-Import.html"><a href="06-Import.html#save-the-phyloseq-object"><i class="fa fa-check"></i><b>6.4</b> Save the phyloseq object</a></li>
+<li class="chapter" data-level="6.5" data-path="06-Import.html"><a href="06-Import.html#recap"><i class="fa fa-check"></i><b>6.5</b> Recap</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="07-Preprocess_data.html"><a href="07-Preprocess_data.html"><i class="fa fa-check"></i><b>7</b> Transformations and preprocessing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="07-Preprocess_data.html"><a href="07-Preprocess_data.html#script-setup"><i class="fa fa-check"></i><b>7.1</b> Script setup</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="08-Taxonomy.html"><a href="08-Taxonomy.html"><i class="fa fa-check"></i><b>8</b> Taxonomy</a></li>
+<li class="chapter" data-level="9" data-path="09-Alpha.html"><a href="09-Alpha.html"><i class="fa fa-check"></i><b>9</b> Alpha</a></li>
+<li class="chapter" data-level="10" data-path="10-Beta.html"><a href="10-Beta.html"><i class="fa fa-check"></i><b>10</b> Beta</a></li>
+<li class="chapter" data-level="11" data-path="11-Differential_abundance_analysis.html"><a href="11-Differential_abundance_analysis.html"><i class="fa fa-check"></i><b>11</b> Differential abundance analysis</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="10-Appendix.html"><a href="10-Appendix.html"><i class="fa fa-check"></i><b>A</b> Installing required packages</a></li>
-<li class="chapter" data-level="B" data-path="10-Appendix.html"><a href="10-Appendix.html#ggplot2_appendix"><i class="fa fa-check"></i><b>B</b> ggplot2</a></li>
+<li class="chapter" data-level="A" data-path="12-Appendix.html"><a href="12-Appendix.html"><i class="fa fa-check"></i><b>A</b> Mamba installation and environment</a></li>
+<li class="chapter" data-level="B" data-path="12-Appendix.html"><a href="12-Appendix.html#jupyter-notebook"><i class="fa fa-check"></i><b>B</b> Jupyter-notebook</a></li>
+<li class="chapter" data-level="C" data-path="12-Appendix.html"><a href="12-Appendix.html#ggplot2_appendix"><i class="fa fa-check"></i><b>C</b> ggplot2</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -190,35 +208,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="import" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Import<a href="04-Import.html#import" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="import" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Import<a href="06-Import.html#import" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/import.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called <code>qiime2R</code></p>
-<div id="script" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Script<a href="04-Import.html#script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="script" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Script<a href="06-Import.html#script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/r_script.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Prior to any coding, open and save a new script called "01-Import.R". We will be creating a new script for each chapter and numbering them so we can easily see the order of scripts.</p>
 </div>
-<div id="qiime2r" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> qiime2R<a href="04-Import.html#qiime2r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="qiime2r" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> qiime2R<a href="06-Import.html#qiime2r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/qiime2r.png" width="40%" style="display: block; margin: auto;" /></p>
 <p><a href="https://github.com/jbisanz/qiime2R"><code>qiime2R</code></a> is an R package for importing QIIME2 artifacts into a R phyloseq object. The package contains many different commands. Its function <code>read_qza()</code> can read a single artifact at a time.</p>
 <p>The best way to import all your QIIME2 artifacts is with the <code>qza_to_phyloseq()</code> function. In your "01-Import.R" script, add the following and run the commands.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="04-Import.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set you working directory</span></span>
-<span id="cb5-2"><a href="04-Import.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#This is useful to have at the top of your scripts</span></span>
-<span id="cb5-3"><a href="04-Import.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Ensure you set it as your analysis directory</span></span>
-<span id="cb5-4"><a href="04-Import.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/R/R_community_course/freshwater_data_analysis/&quot;</span>)</span>
-<span id="cb5-5"><a href="04-Import.html#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="04-Import.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the package/library</span></span>
-<span id="cb5-7"><a href="04-Import.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;qiime2R&quot;</span>)</span>
-<span id="cb5-8"><a href="04-Import.html#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="04-Import.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Import data</span></span>
-<span id="cb5-10"><a href="04-Import.html#cb5-10" aria-hidden="true" tabindex="-1"></a>pseq <span class="ot">&lt;-</span> qiime2R<span class="sc">::</span><span class="fu">qza_to_phyloseq</span>(</span>
-<span id="cb5-11"><a href="04-Import.html#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">features =</span> <span class="st">&quot;table-dada2.qza&quot;</span>,</span>
-<span id="cb5-12"><a href="04-Import.html#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">tree =</span> <span class="st">&quot;rooted-tree.qza&quot;</span>,</span>
-<span id="cb5-13"><a href="04-Import.html#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">taxonomy =</span> <span class="st">&quot;taxonomy.sklearn.qza&quot;</span>,</span>
-<span id="cb5-14"><a href="04-Import.html#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> <span class="st">&quot;media_metadata.txt&quot;</span></span>
-<span id="cb5-15"><a href="04-Import.html#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="06-Import.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set you working directory</span></span>
+<span id="cb11-2"><a href="06-Import.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#This is useful to have at the top of your scripts</span></span>
+<span id="cb11-3"><a href="06-Import.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Ensure you set it as your analysis directory</span></span>
+<span id="cb11-4"><a href="06-Import.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/R/R_community_course/freshwater_data_analysis/&quot;</span>)</span>
+<span id="cb11-5"><a href="06-Import.html#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="06-Import.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the package/library</span></span>
+<span id="cb11-7"><a href="06-Import.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;qiime2R&quot;</span>)</span>
+<span id="cb11-8"><a href="06-Import.html#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="06-Import.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Import data</span></span>
+<span id="cb11-10"><a href="06-Import.html#cb11-10" aria-hidden="true" tabindex="-1"></a>pseq <span class="ot">&lt;-</span> qiime2R<span class="sc">::</span><span class="fu">qza_to_phyloseq</span>(</span>
+<span id="cb11-11"><a href="06-Import.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">features =</span> <span class="st">&quot;table-dada2.qza&quot;</span>,</span>
+<span id="cb11-12"><a href="06-Import.html#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">tree =</span> <span class="st">&quot;rooted-tree.qza&quot;</span>,</span>
+<span id="cb11-13"><a href="06-Import.html#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">taxonomy =</span> <span class="st">&quot;taxonomy.sklearn.qza&quot;</span>,</span>
+<span id="cb11-14"><a href="06-Import.html#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> <span class="st">&quot;media_metadata.txt&quot;</span></span>
+<span id="cb11-15"><a href="06-Import.html#cb11-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>This command creates a phyloseq object named <code>pseq</code>. It contains:</p>
 <ul>
 <li>The ASV abundance table (<code>features = "table-dada2.qza"</code>).</li>
@@ -227,15 +245,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The sample metadata (<code>metadata = "media_metadata.txt"</code>)</li>
 </ul>
 </div>
-<div id="summarise-phyloseq" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Summarise phyloseq<a href="04-Import.html#summarise-phyloseq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summarise-phyloseq" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Summarise phyloseq<a href="06-Import.html#summarise-phyloseq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/list_blue.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Now that we have imported the data we can extract some summary information from it.</p>
 <p>First we will use the <code>microbiome</code> package with its <code>summarize_phyloseq()</code> function.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="04-Import.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load microbiome library</span></span>
-<span id="cb6-2"><a href="04-Import.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
-<span id="cb6-3"><a href="04-Import.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of phyloseq object</span></span>
-<span id="cb6-4"><a href="04-Import.html#cb6-4" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(pseq)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="06-Import.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load microbiome library</span></span>
+<span id="cb12-2"><a href="06-Import.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
+<span id="cb12-3"><a href="06-Import.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of phyloseq object</span></span>
+<span id="cb12-4"><a href="06-Import.html#cb12-4" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(pseq)</span></code></pre></div>
 <p>This gives us a plethora of information:</p>
 <ul>
 <li>The top line tells us if the data is compositional (relative abundance).</li>
@@ -314,17 +332,17 @@ sparsity = Z/C
 </div>
 <p>If you would like to see how the function calculates its values you can highlight the function on the script editor and press "F2".</p>
 </div>
-<div id="save-the-phyloseq-object" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Save the phyloseq object<a href="04-Import.html#save-the-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="save-the-phyloseq-object" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Save the phyloseq object<a href="06-Import.html#save-the-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/r_save.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>When using multiple scripts for analysis it is useful to save the R objects that will be used in different script. This can be carried out with the function <code>save()</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="04-Import.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(pseq, <span class="at">file =</span> <span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="06-Import.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(pseq, <span class="at">file =</span> <span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
 <p>This saves our object <code>pseq</code> into the file <code>phyloseq.RData</code>. The suffix <code>R.Data</code> is the normal convention.</p>
 <p>Since our final object is saved we no longer need the objects in the environment. Therefore, you can use the sweep button in the Environment pane to remove them.</p>
 <p><img src="figures/RStudio_env_sweep.png" width="40%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="recap" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Recap<a href="04-Import.html#recap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="recap" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Recap<a href="06-Import.html#recap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/recap.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>We have imported our QIIME2 artifacts into one phyloseq object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.</p>
 
@@ -506,8 +524,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="03-R_packages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="05-Preprocess_data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="05-Jupyter.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="07-Preprocess_data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

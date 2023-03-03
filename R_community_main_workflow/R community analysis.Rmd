@@ -42,6 +42,8 @@ knitr::write_bib(c(
 knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ``` 
 
+# (PART\*) Intro {-}
+
 # Introduction
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
@@ -294,6 +296,245 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
+# Set-up
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/start.png", auto_pdf = TRUE)
+```
+
+Prior to any analysis we need to setup our environment in the webVNC.
+
+## Logon instructions {#cluster}
+
+For this workshop we will be using Virtual Network Computing (VNC). Connect to the VNC with a browser by using the webVNC link you were sent.
+
+You will now be in a logged-in Linux VNC desktop with two terminals. 
+You will see something as below (there may be only one terminal which is fine). 
+If you do not see something similar please ask for assistance.
+
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+knitr::include_graphics(path = "figures/nsc200_logon.png", auto_pdf = TRUE)
+```
+
+If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. 
+You will most likely need to use your browser's tool bar to accomplish this. 
+Ensure you can see the grey borders.
+
+These instructions will not work outside of this workshop. 
+If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
+
+The following link is a guide to install Mint Linux:  
+https://linuxmint-installation-guide.readthedocs.io/en/latest/
+
+## Mamba
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
+```
+
+This workshop requires a lot of packages. 
+These all can be difficult to install with R. 
+Instead we have used Mamba forge to install R, its packages, and Jupyter-notebook (more info below). 
+To learn more about Mamba-forge and how to create your own environment please see the [appendix](#https://github.com/mamba-org/mamba).
+
+To set-up your environment for this workshop please run the following code (you must include the full stop and space at the front of the command).
+
+```{bash, eval=FALSE}
+. usercommunity
+```
+
+You will have successfully activated the environment if you now see `(r_community)` at the start of your command prompt. 
+This indicates you are now in the mamba environment called `r_community` created by the instructor.
+
+If you are interested in the use script you can look at its contents.
+
+```{bash, eval=FALSE}
+less /usr/local/bin/usercommunity
+```
+
+__Tip:__ press `q` to quit `less`.
+
+<!--chapter:end:04-Setup.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Jupyter
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_logo.png", auto_pdf = TRUE)
+```
+
+[`Jupyter-notebook`](https://jupyter.org/) is a nice browser based method to write, edit, and run code.
+It was initally created for Python coding, but has since branched out to many other languages, such as `R`.
+
+We are using it in this workshop for a variety of its properties:
+
+- It is popular and well maintained.
+- It is lightweight. Other heavier weight programs, such as RStudio, would struggle in our HPC due to the graphical and CPU load.
+- It is interactive and displays code output. 
+- It allows for easier annotation, editing, and debugging than the command line. 
+- It provides a graphical interface for hanging directories and choosing files.
+
+Before carrying out any analysis we will go through a quick tutorial of `jupyter-notebook`.
+
+## Open Jupyter-notebook
+
+The first step is to open `jupyter-notebook`.
+Run the below command in your `(r_community)` environment.
+
+```{bash, eval=FALSE}
+jupyter-notebook
+```
+
+This will open `jupyter-notebook` in firefox. We won't need to access the linux terminal anymore. Leave it running `jupyter-notebook` and full screen your firefox so you should see something like below.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_example_1.png", auto_pdf = TRUE)
+```
+
+## Create R notebook
+The next step is to create a R notebook.
+
+1. Click on the "New" button towards the top right, right of the "Upload" button.
+2. From the Drop down click "R" below "Python 3 (ipykernel).
+
+This will open up a new R notebook like below.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_example_2.png", auto_pdf = TRUE)
+```
+
+## Cells and code
+
+Jupyter-notebook uses cells (the gray boxes) to separate code. 
+This is very useful to compartmentalise our code.
+
+There will already be one cell. Within the cell, type in the below commands.
+
+```{r, eval=FALSE}
+1+1
+2-3
+```
+
+When pressing enter in cells it will create a new line.
+To run all commands in a cell press `CTRL + enter`. 
+
+Run your current cell and you should see something like below.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_example_3.png", auto_pdf = TRUE)
+```
+
+## Create new cells
+
+You can create new cells by 2 different means.
+
+- Press the `+` button on the tool bar (between the floppy disk `r icons::ionicons("save-outline")` and scissors. This will add a cell below your currently selected option.
+- Click on the `Insert` button and use the dropdown to add a cell above or below your currently selected cell.
+
+__Tip:__ Hover over the toolbar icons to display a text based description of its function.
+
+With that knowledge add a second cell below the first cell. 
+Add the following code to your second cell but do not run it.
+
+```{r, eval=FALSE}
+num_1 <- 3
+num_2 <- 10
+```
+
+__Tip:__ Notice there are green lines around your selected cell.
+
+Insert a third cell and add the following code to it. Do not run the code.
+
+```{r, eval=FALSE}
+num_1 * num_2
+```
+
+## Running code
+
+Try to run the code in the third cell. 
+There should be an error as we have not created the objects `num_1` & `num_2`.
+We have only written the code for these objects but not run them.
+
+We can run all the code in a notebook starting from the first cell to the last cell.
+
+Two methods to run all cells are:
+
+- Click on the "Cell" button.
+- Click "Run All" from the drop-down options.
+
+You should then see something like the below in your notebook.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_example_4.png", auto_pdf = TRUE)
+```
+
+There is no output printed for cell 2 because we are assigning variables. However, now there is the correct output for Cell 3 as the variables were assigned before the command was run.
+
+## Saving the file
+
+As with most RStudio and other good coding interfaces we can save our notebook.
+
+First we should rename the file. Rename the notebook to jupyter_tut:
+
+1. Click on the name of the notebook, currently called "Untitled". This is at the very top of the notebook, right of the Jupyter logo.
+2. A pop-up called "Rename Notebook" will appear. Change the Name to "jupyter_tut".
+3. Click "Rename".
+
+Now we can save the file.
+
+Two methods to save are:
+
+- Click the floppy disk `r icons::ionicons("save-outline")` on the toolbar.
+- Click on the "File" button. Click "Save and Checkpoint" from the dropdown options.
+
+## Close the notebook
+
+To close the notebook click on the "Logout" button on the very top right. This will close the notebook and then you can close the tab.
+
+When you are back in the file explorer page you will not yet set the new file you saved.
+You will need to refresh the page with the Refresh button towards the top right.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_refresh.png", auto_pdf = TRUE)
+```
+
+
+
+
+<!--chapter:end:05-Jupyter.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# (PART\*) Data preparation {-}
+
 # Import
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
@@ -435,7 +676,7 @@ knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 
 We have imported our QIIME2 artifacts into one phyloseq object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.
 
-<!--chapter:end:04-Import.Rmd-->
+<!--chapter:end:06-Import.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -632,7 +873,7 @@ num_asvs_vec
 #Save phyloseq object
 save(pseq_relpseq_rarefyabund, file = "phyloseq_rarefied.RData")
 
-<!--chapter:end:05-Preprocess_data.Rmd-->
+<!--chapter:end:07-Preprocess_data.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -655,7 +896,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 
 <contents>
 
-<!--chapter:end:06-Taxonomy.Rmd-->
+<!--chapter:end:08-Taxonomy.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -678,7 +919,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 
 <contents>
 
-<!--chapter:end:07-Alpha.Rmd-->
+<!--chapter:end:09-Alpha.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -701,7 +942,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 
 <contents>
 
-<!--chapter:end:08-Beta.Rmd-->
+<!--chapter:end:10-Beta.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -724,7 +965,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 
 <contents>
 
-<!--chapter:end:09-Differential_abundance_analysis.Rmd-->
+<!--chapter:end:11-Differential_abundance_analysis.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -745,13 +986,68 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 ```
 # (APPENDIX) Appendix {-}
 
-# Installing required packages
+# Mamba installation and environment {#mamba_install}
 
-<Note on opening RStudio as administrator.>
+Mamba github: https://github.com/mamba-org/mamba
 
-<Instructions on Installing all required packages>
+Mamba installation: https://github.com/conda-forge/miniforge#mambaforge
 
+Mamba guide: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html
 
+To create the mamba environment `r_community` run the below commands in your bash. You will need to have installed `mamba` first.
+
+```{bash, eval=FALSE}
+#R community
+mamba create r_community
+mamba activate r_community
+mamba install -c bioconda bioconductor-microbiome
+mamba install -c r r-tidyverse
+mamba install -c conda-forge r-devtools
+#Update r-htmltools as loading devtools doesn’t work in R (from 0.5.2 -> 0.5.4)
+mamba install -c conda-forge r-htmltools=0.5.4
+#If using jupyter-notebook, need to install r kernel for it
+mamba install -c conda-forge r-irkernel
+```
+
+Activate the environment in bash.
+
+```{bash, eval=FALSE}
+mamba activate r_community
+```
+
+Activate your `mamba's` `R` and install `Qiime2R`.
+
+```{bash, eval=FALSE}
+R
+```
+
+```{r, eval=FALSE}
+devtools::install_github("jbisanz/qiime2R")
+```
+
+# Jupyter-notebook
+
+If you are running this on your own computer you can use `RStudio`.
+However, you can also use `Jupyter-notebook` if you are using an HPC or prefer it.
+
+If using bash you will need to create an environment with `Jupyter-notebook`.
+Ensure you are in the `(base)` mamba environment.
+
+```{bash, eval=FALSE}
+mamba create -n jupyter
+mamba activate jupyter
+mamba install -c anaconda jupyter
+mamba deactivate
+```
+
+To run `Jupyter-notebook` with your `r_community` environment you can run the following.
+
+```{bash, eval=FALSE}
+#Activate you R_community env
+mamba activate r_community
+#Run jupyter-notebook (may be a slightly different path)
+~/mamba/envs/jupyter/bin/jupyter-notebook
+```
 
 # ggplot2 {#ggplot2_appendix}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -764,5 +1060,5 @@ The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It 
 
 `ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](#http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/).
 
-<!--chapter:end:10-Appendix.Rmd-->
+<!--chapter:end:12-Appendix.Rmd-->
 

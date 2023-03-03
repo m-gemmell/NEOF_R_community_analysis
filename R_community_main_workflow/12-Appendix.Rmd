@@ -1,0 +1,75 @@
+# (APPENDIX) Appendix {-}
+
+# Mamba installation and environment {#mamba_install}
+
+Mamba github: https://github.com/mamba-org/mamba
+
+Mamba installation: https://github.com/conda-forge/miniforge#mambaforge
+
+Mamba guide: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html
+
+To create the mamba environment `r_community` run the below commands in your bash. You will need to have installed `mamba` first.
+
+```{bash, eval=FALSE}
+#R community
+mamba create r_community
+mamba activate r_community
+mamba install -c bioconda bioconductor-microbiome
+mamba install -c r r-tidyverse
+mamba install -c conda-forge r-devtools
+#Update r-htmltools as loading devtools doesn’t work in R (from 0.5.2 -> 0.5.4)
+mamba install -c conda-forge r-htmltools=0.5.4
+#If using jupyter-notebook, need to install r kernel for it
+mamba install -c conda-forge r-irkernel
+```
+
+Activate the environment in bash.
+
+```{bash, eval=FALSE}
+mamba activate r_community
+```
+
+Activate your `mamba's` `R` and install `Qiime2R`.
+
+```{bash, eval=FALSE}
+R
+```
+
+```{r, eval=FALSE}
+devtools::install_github("jbisanz/qiime2R")
+```
+
+# Jupyter-notebook
+
+If you are running this on your own computer you can use `RStudio`.
+However, you can also use `Jupyter-notebook` if you are using an HPC or prefer it.
+
+If using bash you will need to create an environment with `Jupyter-notebook`.
+Ensure you are in the `(base)` mamba environment.
+
+```{bash, eval=FALSE}
+mamba create -n jupyter
+mamba activate jupyter
+mamba install -c anaconda jupyter
+mamba deactivate
+```
+
+To run `Jupyter-notebook` with your `r_community` environment you can run the following.
+
+```{bash, eval=FALSE}
+#Activate you R_community env
+mamba activate r_community
+#Run jupyter-notebook (may be a slightly different path)
+~/mamba/envs/jupyter/bin/jupyter-notebook
+```
+
+# ggplot2 {#ggplot2_appendix}
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
+```
+
+Below are some useful resource if you would like to learn ggplot2.
+
+The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It contains a section called [Understanding ggplot2](https://r-graphics.org/chapter-ggplot2) in its appendix which is useful for learning some key terminologies and concepts.
+
+`ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](#http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/).
