@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-03" />
+<meta name="date" content="2023-03-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>Data preparation</b></span></li>
 <li class="chapter" data-level="6" data-path="06-Import.html"><a href="06-Import.html"><i class="fa fa-check"></i><b>6</b> Import</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="06-Import.html"><a href="06-Import.html#script"><i class="fa fa-check"></i><b>6.1</b> Script</a></li>
+<li class="chapter" data-level="6.1" data-path="06-Import.html"><a href="06-Import.html#import-notebook"><i class="fa fa-check"></i><b>6.1</b> Import notebook</a></li>
 <li class="chapter" data-level="6.2" data-path="06-Import.html"><a href="06-Import.html#qiime2r"><i class="fa fa-check"></i><b>6.2</b> qiime2R</a></li>
 <li class="chapter" data-level="6.3" data-path="06-Import.html"><a href="06-Import.html#summarise-phyloseq"><i class="fa fa-check"></i><b>6.3</b> Summarise phyloseq</a></li>
 <li class="chapter" data-level="6.4" data-path="06-Import.html"><a href="06-Import.html#save-the-phyloseq-object"><i class="fa fa-check"></i><b>6.4</b> Save the phyloseq object</a></li>
@@ -212,31 +212,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 6</span> Import<a href="06-Import.html#import" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/import.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called <code>qiime2R</code></p>
-<div id="script" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Script<a href="06-Import.html#script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="import-notebook" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Import notebook<a href="06-Import.html#import-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/r_script.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>Prior to any coding, open and save a new script called "01-Import.R". We will be creating a new script for each chapter and numbering them so we can easily see the order of scripts.</p>
+<p>Prior to any coding, we will create a new directory for this workshop and create a new notebook called <strong>"01-Import.ipynb"</strong> in it. We will be creating a new notebook for each chapter and numbering them so we can easily see the order of scripts.</p>
+<p>First create a new directory.</p>
+<ul>
+<li>In the notebook file explorer, click the <strong>"New"</strong> button.</li>
+<li>Select <strong>"Folder"</strong></li>
+</ul>
+<p>You will have an <strong>"Untitled Folder"</strong>. To rename it:</p>
+<ul>
+<li>Click on the box left of the name.</li>
+<li>Press the <strong>"Rename"</strong> button that appeared.</li>
+<li>Change the name to <strong>"R_community_workshop"</strong>.</li>
+<li>Click <strong>"Rename"</strong>.</li>
+</ul>
+<p>Click on your <strong>"R_community_workshop"</strong> folder to move into it.</p>
+<p>Next step is to create a new R notebook, rename it to <strong>"01-Import"</strong>, and save it. Then we can carry on.</p>
 </div>
 <div id="qiime2r" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> qiime2R<a href="06-Import.html#qiime2r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/qiime2r.png" width="40%" style="display: block; margin: auto;" /></p>
 <p><a href="https://github.com/jbisanz/qiime2R"><code>qiime2R</code></a> is an R package for importing QIIME2 artifacts into a R phyloseq object. The package contains many different commands. Its function <code>read_qza()</code> can read a single artifact at a time.</p>
 <p>The best way to import all your QIIME2 artifacts is with the <code>qza_to_phyloseq()</code> function. In your "01-Import.R" script, add the following and run the commands.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="06-Import.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set you working directory</span></span>
-<span id="cb11-2"><a href="06-Import.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#This is useful to have at the top of your scripts</span></span>
-<span id="cb11-3"><a href="06-Import.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Ensure you set it as your analysis directory</span></span>
-<span id="cb11-4"><a href="06-Import.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/R/R_community_course/freshwater_data_analysis/&quot;</span>)</span>
-<span id="cb11-5"><a href="06-Import.html#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="06-Import.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the package/library</span></span>
-<span id="cb11-7"><a href="06-Import.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;qiime2R&quot;</span>)</span>
-<span id="cb11-8"><a href="06-Import.html#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="06-Import.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Import data</span></span>
-<span id="cb11-10"><a href="06-Import.html#cb11-10" aria-hidden="true" tabindex="-1"></a>pseq <span class="ot">&lt;-</span> qiime2R<span class="sc">::</span><span class="fu">qza_to_phyloseq</span>(</span>
-<span id="cb11-11"><a href="06-Import.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">features =</span> <span class="st">&quot;table-dada2.qza&quot;</span>,</span>
-<span id="cb11-12"><a href="06-Import.html#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">tree =</span> <span class="st">&quot;rooted-tree.qza&quot;</span>,</span>
-<span id="cb11-13"><a href="06-Import.html#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">taxonomy =</span> <span class="st">&quot;taxonomy.sklearn.qza&quot;</span>,</span>
-<span id="cb11-14"><a href="06-Import.html#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> <span class="st">&quot;media_metadata.txt&quot;</span></span>
-<span id="cb11-15"><a href="06-Import.html#cb11-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><strong>Tip</strong>: You can tab complete and/or copy and paste file paths within the webVNC.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="06-Import.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cell 1</span></span>
+<span id="cb11-2"><a href="06-Import.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the package/library</span></span>
+<span id="cb11-3"><a href="06-Import.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;qiime2R&quot;</span>)</span>
+<span id="cb11-4"><a href="06-Import.html#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="06-Import.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Import data</span></span>
+<span id="cb11-6"><a href="06-Import.html#cb11-6" aria-hidden="true" tabindex="-1"></a>pseq <span class="ot">&lt;-</span> qiime2R<span class="sc">::</span><span class="fu">qza_to_phyloseq</span>(</span>
+<span id="cb11-7"><a href="06-Import.html#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">features =</span> <span class="st">&quot;/pub14/tea/nsc206/NEOF/R_community/data/table-dada2.qza&quot;</span>,</span>
+<span id="cb11-8"><a href="06-Import.html#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">tree =</span> <span class="st">&quot;/pub14/tea/nsc206/NEOF/R_community/data/rooted-tree.qza&quot;</span>,</span>
+<span id="cb11-9"><a href="06-Import.html#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">taxonomy =</span> <span class="st">&quot;/pub14/tea/nsc206/NEOF/R_community/data/taxonomy.sklearn.qza&quot;</span>,</span>
+<span id="cb11-10"><a href="06-Import.html#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">metadata =</span> <span class="st">&quot;/pub14/tea/nsc206/NEOF/R_community/data/media_metadata.txt&quot;</span></span>
+<span id="cb11-11"><a href="06-Import.html#cb11-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>This command creates a phyloseq object named <code>pseq</code>. It contains:</p>
 <ul>
 <li>The ASV abundance table (<code>features = "table-dada2.qza"</code>).</li>
@@ -250,10 +261,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/list_blue.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Now that we have imported the data we can extract some summary information from it.</p>
 <p>First we will use the <code>microbiome</code> package with its <code>summarize_phyloseq()</code> function.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="06-Import.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load microbiome library</span></span>
-<span id="cb12-2"><a href="06-Import.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
-<span id="cb12-3"><a href="06-Import.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of phyloseq object</span></span>
-<span id="cb12-4"><a href="06-Import.html#cb12-4" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(pseq)</span></code></pre></div>
+<p>Create a new cell and write and run the below in it.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="06-Import.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cell 2</span></span>
+<span id="cb12-2"><a href="06-Import.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Load microbiome library</span></span>
+<span id="cb12-3"><a href="06-Import.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
+<span id="cb12-4"><a href="06-Import.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of phyloseq object</span></span>
+<span id="cb12-5"><a href="06-Import.html#cb12-5" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(pseq)</span></code></pre></div>
 <p>This gives us a plethora of information:</p>
 <ul>
 <li>The top line tells us if the data is compositional (relative abundance).</li>
@@ -330,16 +343,18 @@ sparsity = Z/C
 <p>Sparsity can be any value from 0-1. The higher the value the more sparse it is, with a value of 1 meaning all the cells have an abundance of zero. The lower the value the less sparse it is, with a value of 0 meaning all the cells have an abundance of 1 or more.</p>
 <p>16S data is known to be sparse so high sparsity is not unexpected. Keep in mind that lower levels of taxa (ASVs, Species, &amp; Genera) will generally have more sparse tables that higher levels of taxa (Kingdom, Phylum, Class).</p>
 </div>
-<p>If you would like to see how the function calculates its values you can highlight the function on the script editor and press "F2".</p>
+<p>If you would like to see how the function calculates its values you can view the <a href="https://rdrr.io/github/microbiome/microbiome/src/R/summarize_phyloseq.R">source code online</a>.</p>
 </div>
 <div id="save-the-phyloseq-object" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Save the phyloseq object<a href="06-Import.html#save-the-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/r_save.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>When using multiple scripts for analysis it is useful to save the R objects that will be used in different script. This can be carried out with the function <code>save()</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="06-Import.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(pseq, <span class="at">file =</span> <span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
-<p>This saves our object <code>pseq</code> into the file <code>phyloseq.RData</code>. The suffix <code>R.Data</code> is the normal convention.</p>
-<p>Since our final object is saved we no longer need the objects in the environment. Therefore, you can use the sweep button in the Environment pane to remove them.</p>
-<p><img src="figures/RStudio_env_sweep.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>When using multiple notebooks/scripts for analysis it is useful to save the R objects that will be used in different notebooks/scripts. This can be carried out with the function <code>save()</code>.</p>
+<p>Write and run the following code in a third cell.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="06-Import.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cell 3</span></span>
+<span id="cb13-2"><a href="06-Import.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Save phyloseq as file</span></span>
+<span id="cb13-3"><a href="06-Import.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(pseq, <span class="at">file =</span> <span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
+<p>This saves our object <code>pseq</code> into the file <code>phyloseq.RData</code>. The suffix <code>.RData</code> is the normal convention.</p>
+<p>We have saved our final object of the notebook. Close and halt it.</p>
 </div>
 <div id="recap" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> Recap<a href="06-Import.html#recap" class="anchor-section" aria-label="Anchor link to header"></a></h2>

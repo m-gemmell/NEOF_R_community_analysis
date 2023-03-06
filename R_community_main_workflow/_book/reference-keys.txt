@@ -19,7 +19,7 @@ running-code
 saving-the-file
 close-the-notebook
 import
-script
+import-notebook
 qiime2r
 summarise-phyloseq
 save-the-phyloseq-object

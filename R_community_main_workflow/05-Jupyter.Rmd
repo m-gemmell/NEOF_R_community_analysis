@@ -34,8 +34,8 @@ knitr::include_graphics(path = "figures/jupyter_notebook_example_1.png", auto_pd
 ## Create R notebook
 The next step is to create a R notebook.
 
-1. Click on the "New" button towards the top right, right of the "Upload" button.
-2. From the Drop down click "R" below "Python 3 (ipykernel).
+1. Click on the __"New"__ button towards the top right, right of the "Upload" button.
+2. From the dropdown click __"R"__ below "Python 3 (ipykernel)".
 
 This will open up a new R notebook like below.
 
@@ -68,8 +68,8 @@ knitr::include_graphics(path = "figures/jupyter_notebook_example_3.png", auto_pd
 
 You can create new cells by 2 different means.
 
-- Press the `+` button on the tool bar (between the floppy disk `r icons::ionicons("save-outline")` and scissors. This will add a cell below your currently selected option.
-- Click on the `Insert` button and use the dropdown to add a cell above or below your currently selected cell.
+- Press the `+` button on the tool bar (between the floppy disk `r icons::ionicons("save-outline")` and scissors `r icons::ionicons("cut")`). This will add a cell below your currently selected option.
+- Click on the __`Insert`__ button and use the dropdown to add a cell above or below your currently selected cell.
 
 __Tip:__ Hover over the toolbar icons to display a text based description of its function.
 
@@ -99,8 +99,8 @@ We can run all the code in a notebook starting from the first cell to the last c
 
 Two methods to run all cells are:
 
-- Click on the "Cell" button.
-- Click "Run All" from the drop-down options.
+- Click on the __"Cell"__ button.
+- Click __"Run All"__ from the drop-down options.
 
 You should then see something like the below in your notebook.
 
@@ -112,27 +112,29 @@ There is no output printed for cell 2 because we are assigning variables. Howeve
 
 ## Saving the file
 
-As with most RStudio and other good coding interfaces we can save our notebook.
+As with RStudio and other good coding interfaces we can save our notebook.
 
-First we should rename the file. Rename the notebook to jupyter_tut:
+First we should rename the file. Rename the notebook to __"jupyter_tut"__:
 
-1. Click on the name of the notebook, currently called "Untitled". This is at the very top of the notebook, right of the Jupyter logo.
-2. A pop-up called "Rename Notebook" will appear. Change the Name to "jupyter_tut".
-3. Click "Rename".
+1. Click on the name of the notebook, currently called __"Untitled"__.
+  - This is at the very top of the notebook, right of the Jupyter logo.
+2. A pop-up called __"Rename Notebook"__ will appear. Change the Name to __"jupyter_tut"__.
+3. Click __"Rename"__.
 
-Now we can save the file.
-
-Two methods to save are:
+Now we can save the file. Two methods to save are:
 
 - Click the floppy disk `r icons::ionicons("save-outline")` on the toolbar.
-- Click on the "File" button. Click "Save and Checkpoint" from the dropdown options.
+- Click on the __"File"__ button. Click __"Save and Checkpoint"__ from the dropdown options.
 
 ## Close the notebook
 
-To close the notebook click on the "Logout" button on the very top right. This will close the notebook and then you can close the tab.
+To close the notebook:
+
+- Click on __"File"__.
+- From the dropdown options click __"Close and Halt"__.
 
 When you are back in the file explorer page you will not yet set the new file you saved.
-You will need to refresh the page with the Refresh button towards the top right.
+You will need to refresh the page with the Refresh button `r icons::ionicons("refresh")` towards the top right.
 
 ```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
 knitr::include_graphics(path = "figures/jupyter_notebook_refresh.png", auto_pdf = TRUE)

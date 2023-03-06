@@ -407,8 +407,8 @@ knitr::include_graphics(path = "figures/jupyter_notebook_example_1.png", auto_pd
 ## Create R notebook
 The next step is to create a R notebook.
 
-1. Click on the "New" button towards the top right, right of the "Upload" button.
-2. From the Drop down click "R" below "Python 3 (ipykernel).
+1. Click on the __"New"__ button towards the top right, right of the "Upload" button.
+2. From the dropdown click __"R"__ below "Python 3 (ipykernel)".
 
 This will open up a new R notebook like below.
 
@@ -441,8 +441,8 @@ knitr::include_graphics(path = "figures/jupyter_notebook_example_3.png", auto_pd
 
 You can create new cells by 2 different means.
 
-- Press the `+` button on the tool bar (between the floppy disk `r icons::ionicons("save-outline")` and scissors. This will add a cell below your currently selected option.
-- Click on the `Insert` button and use the dropdown to add a cell above or below your currently selected cell.
+- Press the `+` button on the tool bar (between the floppy disk `r icons::ionicons("save-outline")` and scissors `r icons::ionicons("cut")`). This will add a cell below your currently selected option.
+- Click on the __`Insert`__ button and use the dropdown to add a cell above or below your currently selected cell.
 
 __Tip:__ Hover over the toolbar icons to display a text based description of its function.
 
@@ -472,8 +472,8 @@ We can run all the code in a notebook starting from the first cell to the last c
 
 Two methods to run all cells are:
 
-- Click on the "Cell" button.
-- Click "Run All" from the drop-down options.
+- Click on the __"Cell"__ button.
+- Click __"Run All"__ from the drop-down options.
 
 You should then see something like the below in your notebook.
 
@@ -485,27 +485,29 @@ There is no output printed for cell 2 because we are assigning variables. Howeve
 
 ## Saving the file
 
-As with most RStudio and other good coding interfaces we can save our notebook.
+As with RStudio and other good coding interfaces we can save our notebook.
 
-First we should rename the file. Rename the notebook to jupyter_tut:
+First we should rename the file. Rename the notebook to __"jupyter_tut"__:
 
-1. Click on the name of the notebook, currently called "Untitled". This is at the very top of the notebook, right of the Jupyter logo.
-2. A pop-up called "Rename Notebook" will appear. Change the Name to "jupyter_tut".
-3. Click "Rename".
+1. Click on the name of the notebook, currently called __"Untitled"__.
+  - This is at the very top of the notebook, right of the Jupyter logo.
+2. A pop-up called __"Rename Notebook"__ will appear. Change the Name to __"jupyter_tut"__.
+3. Click __"Rename"__.
 
-Now we can save the file.
-
-Two methods to save are:
+Now we can save the file. Two methods to save are:
 
 - Click the floppy disk `r icons::ionicons("save-outline")` on the toolbar.
-- Click on the "File" button. Click "Save and Checkpoint" from the dropdown options.
+- Click on the __"File"__ button. Click __"Save and Checkpoint"__ from the dropdown options.
 
 ## Close the notebook
 
-To close the notebook click on the "Logout" button on the very top right. This will close the notebook and then you can close the tab.
+To close the notebook:
+
+- Click on __"File"__.
+- From the dropdown options click __"Close and Halt"__.
 
 When you are back in the file explorer page you will not yet set the new file you saved.
-You will need to refresh the page with the Refresh button towards the top right.
+You will need to refresh the page with the Refresh button `r icons::ionicons("refresh")` towards the top right.
 
 ```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
 knitr::include_graphics(path = "figures/jupyter_notebook_refresh.png", auto_pdf = TRUE)
@@ -542,13 +544,29 @@ knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 
 Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called `qiime2R`
 
-## Script
+## Import notebook
 
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
 ```
 
-Prior to any coding, open and save a new script called "01-Import.R". We will be creating a new script for each chapter and numbering them so we can easily see the order of scripts.
+Prior to any coding, we will create a new directory for this workshop and create a new notebook called __"01-Import.ipynb"__ in it. We will be creating a new notebook for each chapter and numbering them so we can easily see the order of scripts.
+
+First create a new directory.
+
+- In the notebook file explorer, click the __"New"__ button.
+- Select __"Folder"__
+
+You will have an __"Untitled Folder"__. To rename it:
+
+- Click on the box left of the name.
+- Press the __"Rename"__ button that appeared.
+- Change the name to __"R_community_workshop"__.
+- Click __"Rename"__.
+
+Click on your __"R_community_workshop"__ folder to move into it.
+
+Next step is to create a new R notebook, rename it to __"01-Import"__, and save it. Then we can carry on.
 
 ## qiime2R
 
@@ -560,21 +578,19 @@ knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
 
 The best way to import all your QIIME2 artifacts is with the `qza_to_phyloseq()` function. In your "01-Import.R" script, add the following and run the commands.
 
-```{r, eval=FALSE}
-#Set you working directory
-#This is useful to have at the top of your scripts
-#Ensure you set it as your analysis directory
-setwd("~/R/R_community_course/freshwater_data_analysis/")
+__Tip__: You can tab complete and/or copy and paste file paths within the webVNC.
 
+```{r, eval=FALSE}
+#Cell 1
 #Load the package/library
 library("qiime2R")
 
 #Import data
 pseq <- qiime2R::qza_to_phyloseq(
-  features = "table-dada2.qza",
-  tree = "rooted-tree.qza",
-  taxonomy = "taxonomy.sklearn.qza",
-  metadata = "media_metadata.txt"
+  features = "/pub14/tea/nsc206/NEOF/R_community/data/table-dada2.qza",
+  tree = "/pub14/tea/nsc206/NEOF/R_community/data/rooted-tree.qza",
+  taxonomy = "/pub14/tea/nsc206/NEOF/R_community/data/taxonomy.sklearn.qza",
+  metadata = "/pub14/tea/nsc206/NEOF/R_community/data/media_metadata.txt"
 )
 ```
 
@@ -594,7 +610,10 @@ Now that we have imported the data we can extract some summary information from 
 
 First we will use the `microbiome` package with its `summarize_phyloseq()` function.
 
+Create a new cell and write and run the below in it.
+
 ```{r, eval=FALSE}
+#Cell 2
 #Load microbiome library
 library("microbiome")
 #Summary of phyloseq object
@@ -647,26 +666,26 @@ Sparsity can be any value from 0-1. The higher the value the more sparse it is, 
 16S data is known to be sparse so high sparsity is not unexpected. Keep in mind that lower levels of taxa (ASVs, Species, & Genera) will generally have more sparse tables that higher levels of taxa (Kingdom, Phylum, Class).
 `r unhide()`
 
-If you would like to see how the function calculates its values you can highlight the function on the script editor and press "F2".
+If you would like to see how the function calculates its values you can view the [source code online](https://rdrr.io/github/microbiome/microbiome/src/R/summarize_phyloseq.R).
 
 ## Save the phyloseq object
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
 ```
 
-When using multiple scripts for analysis it is useful to save the R objects that will be used in different script. This can be carried out with the function `save()`.
+When using multiple notebooks/scripts for analysis it is useful to save the R objects that will be used in different notebooks/scripts. This can be carried out with the function `save()`.
+
+Write and run the following code in a third cell.
 
 ```{r, eval=FALSE}
+#Cell 3
+#Save phyloseq as file
 save(pseq, file = "phyloseq.RData")
 ```
 
-This saves our object `pseq` into the file `phyloseq.RData`. The suffix `R.Data` is the normal convention.
+This saves our object `pseq` into the file `phyloseq.RData`. The suffix `.RData` is the normal convention.
 
-Since our final object is saved we no longer need the objects in the environment. Therefore, you can use the sweep button in the Environment pane to remove them.
-
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
-knitr::include_graphics(path = "figures/RStudio_env_sweep.png", auto_pdf = TRUE)
-```
+We have saved our final object of the notebook. Close and halt it.
 
 ## Recap
 

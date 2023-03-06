@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-03" />
+<meta name="date" content="2023-03-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>Data preparation</b></span></li>
 <li class="chapter" data-level="6" data-path="06-Import.html"><a href="06-Import.html"><i class="fa fa-check"></i><b>6</b> Import</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="06-Import.html"><a href="06-Import.html#script"><i class="fa fa-check"></i><b>6.1</b> Script</a></li>
+<li class="chapter" data-level="6.1" data-path="06-Import.html"><a href="06-Import.html#import-notebook"><i class="fa fa-check"></i><b>6.1</b> Import notebook</a></li>
 <li class="chapter" data-level="6.2" data-path="06-Import.html"><a href="06-Import.html#qiime2r"><i class="fa fa-check"></i><b>6.2</b> qiime2R</a></li>
 <li class="chapter" data-level="6.3" data-path="06-Import.html"><a href="06-Import.html#summarise-phyloseq"><i class="fa fa-check"></i><b>6.3</b> Summarise phyloseq</a></li>
 <li class="chapter" data-level="6.4" data-path="06-Import.html"><a href="06-Import.html#save-the-phyloseq-object"><i class="fa fa-check"></i><b>6.4</b> Save the phyloseq object</a></li>
@@ -234,8 +234,8 @@ Run the below command in your <code>(r_community)</code> environment.</p>
 <h2><span class="header-section-number">5.2</span> Create R notebook<a href="05-Jupyter.html#create-r-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The next step is to create a R notebook.</p>
 <ol style="list-style-type: decimal">
-<li>Click on the "New" button towards the top right, right of the "Upload" button.</li>
-<li>From the Drop down click "R" below "Python 3 (ipykernel).</li>
+<li>Click on the <strong>"New"</strong> button towards the top right, right of the "Upload" button.</li>
+<li>From the dropdown click <strong>"R"</strong> below "Python 3 (ipykernel)".</li>
 </ol>
 <p>This will open up a new R notebook like below.</p>
 <p><img src="figures/jupyter_notebook_example_2.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -256,8 +256,8 @@ To run all commands in a cell press <code>CTRL + enter</code>.</p>
 <h2><span class="header-section-number">5.4</span> Create new cells<a href="05-Jupyter.html#create-new-cells" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can create new cells by 2 different means.</p>
 <ul>
-<li>Press the <code>+</code> button on the tool bar (between the floppy disk <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M380.93,57.37A32,32,0,0,0,358.3,48H94.22A46.21,46.21,0,0,0,48,94.22V417.78A46.21,46.21,0,0,0,94.22,464H417.78A46.36,46.36,0,0,0,464,417.78V153.7a32,32,0,0,0-9.37-22.63ZM256,416a64,64,0,1,1,64-64A63.92,63.92,0,0,1,256,416Zm48-224H112a16,16,0,0,1-16-16V112a16,16,0,0,1,16-16H304a16,16,0,0,1,16,16v64A16,16,0,0,1,304,192Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path></svg> and scissors. This will add a cell below your currently selected option.</li>
-<li>Click on the <code>Insert</code> button and use the dropdown to add a cell above or below your currently selected cell.</li>
+<li>Press the <code>+</code> button on the tool bar (between the floppy disk <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M380.93,57.37A32,32,0,0,0,358.3,48H94.22A46.21,46.21,0,0,0,48,94.22V417.78A46.21,46.21,0,0,0,94.22,464H417.78A46.36,46.36,0,0,0,464,417.78V153.7a32,32,0,0,0-9.37-22.63ZM256,416a64,64,0,1,1,64-64A63.92,63.92,0,0,1,256,416Zm48-224H112a16,16,0,0,1-16-16V112a16,16,0,0,1,16-16H304a16,16,0,0,1,16,16v64A16,16,0,0,1,304,192Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path></svg> and scissors <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M103.48,224a71.64,71.64,0,0,0,44.76-15.66l41.5,16.89,6.82-12.63a39.15,39.15,0,0,1,4.32-6.37l14.22-14.42-41.17-24.94A72,72,0,1,0,103.48,224Zm0-112a40,40,0,1,1-40,40A40,40,0,0,1,103.48,112Z"></path> <path d="M480,169l-5.52-12.58c-4.48-10.42-14.74-16-32.78-17.85-10.12-1-26.95-1.24-49.69,3.81-20,4.45-122.14,28.2-164.95,58.62C206.81,215.39,203,234.67,200,250.16c-2.78,14.14-5,25.31-18,35-15,11.14-27.27,16.38-33.58,18.6a71.74,71.74,0,1,0,24.79,38ZM255.48,256a16,16,0,1,1,16-16A16,16,0,0,1,255.48,256Zm-152,144a40,40,0,1,1,40-40A40,40,0,0,1,103.48,400Z"></path> <path d="M343.79,259.87l-83.74,48.18,27.63,13.08,3.62,1.74C310,331.92,359.74,356,410.53,359c3.89.23,7.47.34,10.78.34C442,359.31,453,354,459.75,350L480,336Z"></path></svg>). This will add a cell below your currently selected option.</li>
+<li>Click on the <strong><code>Insert</code></strong> button and use the dropdown to add a cell above or below your currently selected cell.</li>
 </ul>
 <p><strong>Tip:</strong> Hover over the toolbar icons to display a text based description of its function.</p>
 <p>With that knowledge add a second cell below the first cell.
@@ -276,8 +276,8 @@ We have only written the code for these objects but not run them.</p>
 <p>We can run all the code in a notebook starting from the first cell to the last cell.</p>
 <p>Two methods to run all cells are:</p>
 <ul>
-<li>Click on the "Cell" button.</li>
-<li>Click "Run All" from the drop-down options.</li>
+<li>Click on the <strong>"Cell"</strong> button.</li>
+<li>Click <strong>"Run All"</strong> from the drop-down options.</li>
 </ul>
 <p>You should then see something like the below in your notebook.</p>
 <p><img src="figures/jupyter_notebook_example_4.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -285,25 +285,33 @@ We have only written the code for these objects but not run them.</p>
 </div>
 <div id="saving-the-file" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Saving the file<a href="05-Jupyter.html#saving-the-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As with most RStudio and other good coding interfaces we can save our notebook.</p>
-<p>First we should rename the file. Rename the notebook to jupyter_tut:</p>
+<p>As with RStudio and other good coding interfaces we can save our notebook.</p>
+<p>First we should rename the file. Rename the notebook to <strong>"jupyter_tut"</strong>:</p>
 <ol style="list-style-type: decimal">
-<li>Click on the name of the notebook, currently called "Untitled". This is at the very top of the notebook, right of the Jupyter logo.</li>
-<li>A pop-up called "Rename Notebook" will appear. Change the Name to "jupyter_tut".</li>
-<li>Click "Rename".</li>
+<li>Click on the name of the notebook, currently called <strong>"Untitled"</strong>.</li>
 </ol>
-<p>Now we can save the file.</p>
-<p>Two methods to save are:</p>
+<ul>
+<li>This is at the very top of the notebook, right of the Jupyter logo.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>A pop-up called <strong>"Rename Notebook"</strong> will appear. Change the Name to <strong>"jupyter_tut"</strong>.</li>
+<li>Click <strong>"Rename"</strong>.</li>
+</ol>
+<p>Now we can save the file. Two methods to save are:</p>
 <ul>
 <li>Click the floppy disk <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M380.93,57.37A32,32,0,0,0,358.3,48H94.22A46.21,46.21,0,0,0,48,94.22V417.78A46.21,46.21,0,0,0,94.22,464H417.78A46.36,46.36,0,0,0,464,417.78V153.7a32,32,0,0,0-9.37-22.63ZM256,416a64,64,0,1,1,64-64A63.92,63.92,0,0,1,256,416Zm48-224H112a16,16,0,0,1-16-16V112a16,16,0,0,1,16-16H304a16,16,0,0,1,16,16v64A16,16,0,0,1,304,192Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path></svg> on the toolbar.</li>
-<li>Click on the "File" button. Click "Save and Checkpoint" from the dropdown options.</li>
+<li>Click on the <strong>"File"</strong> button. Click <strong>"Save and Checkpoint"</strong> from the dropdown options.</li>
 </ul>
 </div>
 <div id="close-the-notebook" class="section level2 hasAnchor" number="5.7">
 <h2><span class="header-section-number">5.7</span> Close the notebook<a href="05-Jupyter.html#close-the-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To close the notebook click on the "Logout" button on the very top right. This will close the notebook and then you can close the tab.</p>
+<p>To close the notebook:</p>
+<ul>
+<li>Click on <strong>"File"</strong>.</li>
+<li>From the dropdown options click <strong>"Close and Halt"</strong>.</li>
+</ul>
 <p>When you are back in the file explorer page you will not yet set the new file you saved.
-You will need to refresh the page with the Refresh button towards the top right.</p>
+You will need to refresh the page with the Refresh button <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M320,146s24.36-12-64-12A160,160,0,1,0,416,294" style="fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"></path> <polyline points="256 58 336 138 256 218" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></polyline></svg> towards the top right.</p>
 <p><img src="figures/jupyter_notebook_refresh.png" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
