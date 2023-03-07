@@ -7,13 +7,13 @@ knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 
 Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called `qiime2R`
 
-## Import notebook
+## Import: notebook
 
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
 ```
 
-Prior to any coding, we will create a new directory for this workshop and create a new notebook called __"01-Import.ipynb"__ in it. We will be creating a new notebook for each chapter and numbering them so we can easily see the order of scripts.
+Prior to any coding, we will create a new directory, our analysis directory, for this workshop and create a new notebook called __"01-Import.ipynb"__ in it. We will be creating a new notebook for each chapter and numbering them so we can easily see the order of scripts.
 
 First create a new directory.
 
@@ -29,7 +29,7 @@ You will have an __"Untitled Folder"__. To rename it:
 
 Click on your __"R_community_workshop"__ folder to move into it.
 
-Next step is to create a new R notebook, rename it to __"01-Import"__, and save it. Then we can carry on.
+Next step is to create a new R notebook, rename it to __"01-Import"__, and save it.
 
 ## qiime2R
 
@@ -64,7 +64,7 @@ This command creates a phyloseq object named `pseq`. It contains:
 -   The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`).
 -   The sample metadata (`metadata = "media_metadata.txt"`)
 
-## Summarise phyloseq
+## Import: Summarise phyloseq
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
 ```
@@ -150,7 +150,7 @@ This saves our object `pseq` into the file `phyloseq.RData`. The suffix `.RData`
 
 We have saved our final object of the notebook. Close and halt it.
 
-## Recap
+## Import: recap
 
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)

@@ -101,18 +101,24 @@ knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
 
 In this tutorial we will be using 16S metabarcdoing datasets derived from surface water from the Durance River in the south-east of France. Two major comparisons were carried out in combination with each other.
 
+### Sites
+
 Three different sites were chosen on the Durance River. These three sites were representative of an anthropisation (transformation of land by humans) gradient along a river stream. These sites were:
 
-- Upper Durance sampling site (UD): Bottom part of the alpine part of the river with little/no anthropisation.
-- Middle Durance sampling site (MD): Upper part of agricultural land dominated by apple and pear production.
-- Lower Durance sampling site (LD): Lower part of agricultural land with intensive production of fruits, cereals, and vegetables.
+- __Upper Durance sampling site (UD)__: Bottom part of the alpine part of the river with little/no anthropisation.
+- __Middle Durance sampling site (MD)__: Upper part of agricultural land dominated by apple and pear production.
+- __Lower Durance sampling site (LD)__: Lower part of agricultural land with intensive production of fruits, cereals, and vegetables.
+
+### Culture media
 
 Surface water was sampled and different culture media were used to produce bacterial lawns for each site. The media used were:
 
-- Environmental sample (ENV): No media used, frozen at -20°C will DNA extraction.
-- TSA 10% incubated at 28°C for 2 days.
-- KBC incubated at 28°C for 2 days.
-- CVP incubated at 28°C for 3 days.
+- __Environmental sample (ENV)__: No media used, frozen at -20°C will DNA extraction.
+- __TSA 10%__ incubated at 28°C for 2 days.
+- __KBC__ incubated at 28°C for 2 days.
+- __CVP__ incubated at 28°C for 3 days.
+
+### Summary & questions
 
 Each sample and media combination was produced in replicates of three giving a total of 27 samples (3*4*3 = 36). The three replicates were cultured on three different plates with the same media. An ASV table, taxonomy table, and phylogenetic tree were produced with QIIME2 and DADA2.
 
@@ -129,37 +135,6 @@ With this data we can ask and investigate the following questions:
 knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 ```
 
-## Scripts and working directory
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
-```
-
-Different people like to sort out their workflows and directories/folders in different ways. Some people like to use [RStudio projects](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects). Personally, I like to create one directory for an analysis project. In this directory I:
-
-- Have a directory with my input.
-- I save my scripts.
-- I save my output, possibly to sub-directories.
-
-This is the method that will be used in these materials. To start, create a directory on your computer for the analysis of the French freshwater data (can be done inside our outside of RStudio. For example:
-
-__"~/R/R_community_course/freshwater_data_analysis/"__
-
-Next we need our data. Download and save the following link into your analysis directory:
-
-__[freshwater_water_france.zip](https://neof-workshops.github.io/Unix_nxcdf7/01-Intro_to_Unix.html)__
-
-It is a zipped directory, therefore unzip the directory/folder.
-
-`r hide("Windows unzipping")`
-- Open File Explorer and find the zipped folder.
-- To unzip the entire folder, right-click to select Extract All, and then click "Extract".
-`r unhide()`
-
-`r hide("Mac unzipping")`
-- Double-click the .zip file.
-`r unhide()`
-
-Finally, set your working directory in RStudio to your analysis directory.
 
 <!--chapter:end:02-Dataset_and_workflow.Rmd-->
 

@@ -1,8 +1,10 @@
 introduction
 dataset-workflow
 dataset
+sites
+culture-media
+summary-questions
 workflow
-scripts-and-working-directory
 r-packages
 r-packageslibraries
 the-grammar-of-graphics

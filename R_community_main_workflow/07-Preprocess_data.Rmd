@@ -1,39 +1,34 @@
-# Transformations and preprocessing
+# Preprocessing
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/transform.png", auto_pdf = TRUE)
 ```
 
 In this chapter we will learn how to transform our abundance phyloseq table into a relative/compositional abundance phyloseq and a rarefied phyloseq object.
 
-## Script setup
+## Setup
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/setup_2.png", auto_pdf = TRUE)
 ```
 
-Before starting analysis create and save a new script called "02-Preprocess.R" into your analysis directory.
+Before starting analysis create and save a new `R` notebook called __"02-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
 
-It is useful to add a title to the top of scripts. Add the below to your script:
-
-```{r, eval=FALSE}
-#Preprocessing data
-```
-
-Below this add a code section title for our script set-up.
+It is useful to add a title to the top of the first cell. Add the below to the cell:
 
 ```{r, eval=FALSE}
-#Set-up ####
+#Preprocessing data notebook
 ```
 
-Next add your command to set the working directory. Below is an example:
+We will use our first cell to carry out setup. This will involve loading libraries and data we need. 
+
+For good documentation add a title for our cell.
 
 ```{r, eval=FALSE}
-#Set working directory
-setwd("~/R/R_community_course/freshwater_data_analysis/")
+#Setup cell
 ```
 
-Additionally, I like to load all the libraries to be used in the script in this section. We will explain their uses later in this chapter.
+I like to load all the libraries to be used in the notebook in this section. We will explain their uses later in this chapter.
 
-Add the below to your script:
+Add the below to your notebook:
 
 ```{r, eval=FALSE}
 #Libraries
@@ -49,10 +44,58 @@ Our last bit of set-up is to load in our abundance phyloseq object we created in
 load("phyloseq.RData")
 ```
 
+Ensure you have run the code in this cell.
 
+## Preprocess: Summarise 
+
+When you load in a dataset it is always useful to check it. We will therefore use new cells and to inspect the data.
+
+### Summarise phyloseq
+
+Create a second cell and add the following annotation and code. Then run the code.
+
+```{r, eval=FALSE}
+#Summarise the phyloseq object
+#Summary of phyloseq object
+microbiome::summarize_phyloseq(pseq)
+```
+
+We ran this code in the __"01-Import.ipynb"__. You can therefore check if our new output matched the output from that notebook. This should be the case since they are the same data.
+
+Due to the relative large amount of output to screen we'll put the next part into a new cell (third cell).
+
+### Reads per sample
+
+In our third cell we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`). We can even make a quick histogram of read numbers per sample with the base `R` function `hist()`.
+
+Write and run the below code in a third cell.
+
+```{r, eval=FALSE}
 #Number of reads per sample
 reads_sample <- microbiome::readcount(pseq)
 reads_sample
+#Histogram
+hist(reads_samples, "Histogram of read depths")
+```
+
+With this information we can decide if our samples have enough depth or not. Normally, for 16S data, a depth of at least 20K per sample is suggested. However, this is the general consensus for human microbiome data. 
+
+There are 2 main considerations to take into account for what is an appropriate depth for your dataset.
+
+- The biodiversity of your sample.
+  - If your sample is very biodiverse, such as the human gut microbiome, you will need a good depth (>20K per sample).
+  - If your sample is less biodiverse, such as many geological environments or skin, then you will not need as much read depth.
+  - Rarefaction curves are a good method to determine if your samples have enough depth. We will look at this later in this chapter.
+- The biomass of your sample.
+  - Some environments are hard to extract DNA from.
+  - If this is the case for you then people will hopefully accept that this is an unfortunate reality of life and you will use what you can.
+  - However, be careful of your conclusions, if you think your data doesn't have as much as it could do not make very definitive detailed claims.
+
+That is a brief overview of that topic. If you are interested in more I suggest you look at papers where they have studied an environment similar to yours.
+
+### ASVs per sample
+
+The last feature we will look at before some preprocessing is the ASVs (Amplicon Feature Variants).
 
 #Can extract ASV table (known as otu table in phyloseq)
 phyloseq::otu_table(pseq)

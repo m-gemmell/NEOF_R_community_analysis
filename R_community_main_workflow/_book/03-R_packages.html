@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-06" />
+<meta name="date" content="2023-03-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,9 +142,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="01-R_community_main_workflow.html"><a href="01-R_community_main_workflow.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="02-Dataset_and_workflow.html"><a href="02-Dataset_and_workflow.html"><i class="fa fa-check"></i><b>2</b> Dataset &amp; workflow</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="02-Dataset_and_workflow.html"><a href="02-Dataset_and_workflow.html#dataset"><i class="fa fa-check"></i><b>2.1</b> Dataset</a></li>
+<li class="chapter" data-level="2.1" data-path="02-Dataset_and_workflow.html"><a href="02-Dataset_and_workflow.html#dataset"><i class="fa fa-check"></i><b>2.1</b> Dataset</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="02-Dataset_and_workflow.html"><a href="02-Dataset_and_workflow.html#sites"><i class="fa fa-check"></i><b>2.1.1</b> Sites</a></li>
+<li class="chapter" data-level="2.1.2" data-path="02-Dataset_and_workflow.html"><a href="02-Dataset_and_workflow.html#culture-media"><i class="fa fa-check"></i><b>2.1.2</b> Culture media</a></li>
+<li class="chapter" data-level="2.1.3" data-path="02-Dataset_and_workflow.html"><a href="02-Dataset_and_workflow.html#summary-questions"><i class="fa fa-check"></i><b>2.1.3</b> Summary &amp; questions</a></li>
+</ul></li>
 <li class="chapter" data-level="2.2" data-path="02-Dataset_and_workflow.html"><a href="02-Dataset_and_workflow.html#workflow"><i class="fa fa-check"></i><b>2.2</b> Workflow</a></li>
-<li class="chapter" data-level="2.3" data-path="02-Dataset_and_workflow.html"><a href="02-Dataset_and_workflow.html#scripts-and-working-directory"><i class="fa fa-check"></i><b>2.3</b> Scripts and working directory</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="03-R_packages.html"><a href="03-R_packages.html"><i class="fa fa-check"></i><b>3</b> R Packages</a>
 <ul>
@@ -260,7 +264,7 @@ R package or R Library?
 <span id="cb4-8"><a href="03-R_packages.html#cb4-8" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggtitle</span>(<span class="st">&quot;Iris Sepal length vs width&quot;</span>) <span class="sc">+</span></span>
 <span id="cb4-9"><a href="03-R_packages.html#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Set x and y axis label names</span></span>
 <span id="cb4-10"><a href="03-R_packages.html#cb4-10" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Sepal length&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sepal width&quot;</span>)</span></code></pre></div>
-<p><img src="R-community-analysis_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="R-community-analysis_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>We will not learn <code>ggplot2</code> specifically during this course. However, the structure of creating an object will be used. In the above case the initial object was built with <code>ggplot</code>. Subsequently additions and edits were carried out with <code>+</code> and various other functions.</p>
 <p>An important concept of the grammar of graphics is aesthetics. Aesthetics are the parts of a graphic/plot. In the above command we set the aesthetics with the function <code>aes()</code> within the <code>ggplot()</code> function. The X aesthetic (i.e. what values are assigned to the x axis) was set as the Sepal length values from the column <code>Sepal.Length</code> of the dataframe <code>iris</code>. In turn the Y axis values are set to the Sepal width and the colouring of the points are set to the Species.</p>
 <p>That was a quick introduction to the grammar of graphics. We will be using this to create visualisations with a <code>phyloseq</code> object using various R packages specifically designed for community abundance data within <code>phyloseq</code> objects.</p>
