@@ -1,0 +1,59 @@
+# Relative abundance
+
+#Relative abundance ####
+#Convert abundance table to relative abundance (compositional) table
+pseq_relabund <- microbiome::transform(pseq, "compositional")
+#Summarise and check sample counts which should each amount to 1
+microbiome::summarize_phyloseq(pseq_relabund)
+microbiome::readcount(pseq_relabund)
+
+#Check the below logic
+#When using total abundance values it is useful to have 0 values, singletons, and doubletons
+#This is because some alpha diversity metrics require them
+#However it is useful to remove low relative abundance data in relative abundance data
+#This is so the rare ASVs do not overly affect certain types of analysis
+
+#first remove ASV with relabund equal to 0
+#This can occur if samples were removed which had ASVs 
+#not present in the remaining samples
+pseq_relabund <-  filter_taxa(pseq_relabund, function(x) sum(x) > 0, TRUE)
+
+#Summarise and check sample counts which should each amount to around 1
+microbiome::summarize_phyloseq(pseq_relabund)
+microbiome::readcount(pseq_relabund)
+
+#All the total relative abundances still equal 1
+#This is expected since no samples were removed
+#As this is the case there is no need to check if ASVs were removed
+
+#We will now remove rare ASVs as these are not as useful in relative abundance data
+#compared to abundance data
+#There are many ways to do this
+#A common way, recommended by the phyloseq developer
+#Remove ASVs with a mean (across samples) less than 1e-5 (relabund)
+pseq_relabund <-  
+  phyloseq::filter_taxa(
+    pseq_relabund, function(x) mean(x) > 1e-5, TRUE)
+
+#Summarise and check sample counts which should each amount to around 1
+microbiome::summarize_phyloseq(pseq_relabund)
+microbiome::readcount(pseq_relabund)
+
+#Total relative abundance has decreased by a very small amount
+#This is what we are looking for, if too much is being removed >0.05
+#you will need to try to be gentler with the filtering
+#Such as trying 1e-6 rather than 1e-5
+
+#We should also check how many ASVs have been removed
+num_asvs_vec["relabund"] <- nrow(phyloseq::otu_table(pseq_relabund))
+num_asvs_vec
+num_asvs_vec["abundance"] - num_asvs_vec["relabund"]
+
+#We have lost a good amount of ASVs but these only equate to a very small
+#amount relabund. This is fine as we generally use relative abundance
+#when looking at the larger picture rather than at closer pictures
+#instead we can use a rarefied abundance table to look at the closer picture
+
+#We are now happy with our relative abundance table
+#Therefore we can save it for further use
+save(pseq_relabund, file = "phyloseq_relabund.RData")

@@ -126,6 +126,34 @@ Now we can save the file. Two methods to save are:
 - Click the floppy disk `r icons::ionicons("save-outline")` on the toolbar.
 - Click on the __"File"__ button. Click __"Save and Checkpoint"__ from the dropdown options.
 
+## Title cells with markdown
+
+We will be using multiple notebooks in this workshop. 
+However, we will also have multiple sections per notebook. 
+It will therefore be useful to create header cells with markdown to create visual separation of the different sections.
+
+To add a header cell to the top of our notebook:
+
+- Create a new cell at the top of the notebook.
+- Click on the __"Code"__ drop down and select __"Markdown"__.
+  - The __"Heading"__ option no longer works.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_example_5.png", auto_pdf = TRUE)
+```
+
+- Add the following to the __"Markdown"__ cell to create a first level header.
+  - Ensure you have a space between the `#` and header text ("Tutorial").
+```{r, eval=FALSE}
+# Tutorial
+```
+
+Great, we can now add nice headers in our notebooks. __Save__ the notebook once more before carrying on to the next section.
+
+`r hide("Markdown")`
+You won't need to know more about `Markdown` but if you are interested please see the [`Markdown` guide](https://www.markdownguide.org/basic-syntax/).
+`r unhide()`
+
 ## Close the notebook
 
 To close the notebook:
@@ -133,12 +161,12 @@ To close the notebook:
 - Click on __"File"__.
 - From the dropdown options click __"Close and Halt"__.
 
-When you are back in the file explorer page you will not yet set the new file you saved.
-You will need to refresh the page with the Refresh button `r icons::ionicons("refresh")` towards the top right.
+When you are back in the file explorer page you may not yet set the new file you saved.
+If so, you will need to refresh the page with the Refresh button `r icons::ionicons("refresh")` towards the top right.
 
 ```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
 knitr::include_graphics(path = "figures/jupyter_notebook_refresh.png", auto_pdf = TRUE)
 ```
 
-
+With that quick tutorial of `jupyter-notebook` we can start our community analysis ion the next chapter.
 

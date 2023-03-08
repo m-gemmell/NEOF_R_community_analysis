@@ -1,6 +1,4 @@
-# (PART\*) Data preparation {-}
-
-# Import
+# Import {#import_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ```
@@ -151,7 +149,6 @@ This saves our object `pseq` into the file `phyloseq.RData`. The suffix `.RData`
 We have saved our final object of the notebook. Close and halt it.
 
 ## Import: recap
-
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```

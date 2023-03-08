@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 11 Differential abundance analysis | R community analysis</title>
+  <title>Chapter 11 Rarefaction | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 11 Differential abundance analysis | R community analysis" />
+  <meta property="og:title" content="Chapter 11 Rarefaction | R community analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community analysis workflow" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 11 Differential abundance analysis | R community analysis" />
+  <meta name="twitter:title" content="Chapter 11 Rarefaction | R community analysis" />
   
   <meta name="twitter:description" content="NEOF book for the R community analysis workflow" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -23,15 +23,15 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-07" />
+<meta name="date" content="2023-03-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-<link rel="prev" href="10-Beta.html"/>
-<link rel="next" href="12-Appendix.html"/>
+<link rel="prev" href="10-Relative_abundance.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -169,29 +169,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="05-Jupyter.html"><a href="05-Jupyter.html#create-new-cells"><i class="fa fa-check"></i><b>5.4</b> Create new cells</a></li>
 <li class="chapter" data-level="5.5" data-path="05-Jupyter.html"><a href="05-Jupyter.html#running-code"><i class="fa fa-check"></i><b>5.5</b> Running code</a></li>
 <li class="chapter" data-level="5.6" data-path="05-Jupyter.html"><a href="05-Jupyter.html#saving-the-file"><i class="fa fa-check"></i><b>5.6</b> Saving the file</a></li>
-<li class="chapter" data-level="5.7" data-path="05-Jupyter.html"><a href="05-Jupyter.html#close-the-notebook"><i class="fa fa-check"></i><b>5.7</b> Close the notebook</a></li>
+<li class="chapter" data-level="5.7" data-path="05-Jupyter.html"><a href="05-Jupyter.html#title-cells-with-markdown"><i class="fa fa-check"></i><b>5.7</b> Title cells with markdown</a></li>
+<li class="chapter" data-level="5.8" data-path="05-Jupyter.html"><a href="05-Jupyter.html#close-the-notebook"><i class="fa fa-check"></i><b>5.8</b> Close the notebook</a></li>
 </ul></li>
 <li class="part"><span><b>Data preparation</b></span></li>
-<li class="chapter" data-level="6" data-path="06-Import.html"><a href="06-Import.html"><i class="fa fa-check"></i><b>6</b> Import</a>
+<li class="chapter" data-level="6" data-path="06-Preprocess_part.html"><a href="06-Preprocess_part.html"><i class="fa fa-check"></i><b>6</b> Data prep intro</a></li>
+<li class="chapter" data-level="7" data-path="07-Import.html"><a href="07-Import.html"><i class="fa fa-check"></i><b>7</b> Import</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="06-Import.html"><a href="06-Import.html#import-notebook"><i class="fa fa-check"></i><b>6.1</b> Import notebook</a></li>
-<li class="chapter" data-level="6.2" data-path="06-Import.html"><a href="06-Import.html#qiime2r"><i class="fa fa-check"></i><b>6.2</b> qiime2R</a></li>
-<li class="chapter" data-level="6.3" data-path="06-Import.html"><a href="06-Import.html#summarise-phyloseq"><i class="fa fa-check"></i><b>6.3</b> Summarise phyloseq</a></li>
-<li class="chapter" data-level="6.4" data-path="06-Import.html"><a href="06-Import.html#save-the-phyloseq-object"><i class="fa fa-check"></i><b>6.4</b> Save the phyloseq object</a></li>
-<li class="chapter" data-level="6.5" data-path="06-Import.html"><a href="06-Import.html#recap"><i class="fa fa-check"></i><b>6.5</b> Recap</a></li>
+<li class="chapter" data-level="7.1" data-path="07-Import.html"><a href="07-Import.html#import-notebook"><i class="fa fa-check"></i><b>7.1</b> Import: notebook</a></li>
+<li class="chapter" data-level="7.2" data-path="07-Import.html"><a href="07-Import.html#qiime2r"><i class="fa fa-check"></i><b>7.2</b> qiime2R</a></li>
+<li class="chapter" data-level="7.3" data-path="07-Import.html"><a href="07-Import.html#import-summarise-phyloseq"><i class="fa fa-check"></i><b>7.3</b> Import: Summarise phyloseq</a></li>
+<li class="chapter" data-level="7.4" data-path="07-Import.html"><a href="07-Import.html#save-the-phyloseq-object"><i class="fa fa-check"></i><b>7.4</b> Save the phyloseq object</a></li>
+<li class="chapter" data-level="7.5" data-path="07-Import.html"><a href="07-Import.html#import-recap"><i class="fa fa-check"></i><b>7.5</b> Import: recap</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-Preprocess_data.html"><a href="07-Preprocess_data.html"><i class="fa fa-check"></i><b>7</b> Transformations and preprocessing</a>
+<li class="chapter" data-level="8" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html"><i class="fa fa-check"></i><b>8</b> Summarise phyloseq</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="07-Preprocess_data.html"><a href="07-Preprocess_data.html#script-setup"><i class="fa fa-check"></i><b>7.1</b> Script setup</a></li>
+<li class="chapter" data-level="8.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#setup"><i class="fa fa-check"></i><b>8.1</b> Setup</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-header"><i class="fa fa-check"></i><b>8.1.1</b> Summarise header</a></li>
+<li class="chapter" data-level="8.1.2" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-phyloseq"><i class="fa fa-check"></i><b>8.1.2</b> Summarise phyloseq</a></li>
+<li class="chapter" data-level="8.1.3" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#reads-per-sample"><i class="fa fa-check"></i><b>8.1.3</b> Reads per sample</a></li>
+<li class="chapter" data-level="8.1.4" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#asvs-per-sample"><i class="fa fa-check"></i><b>8.1.4</b> ASVs per sample</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="08-Taxonomy.html"><a href="08-Taxonomy.html"><i class="fa fa-check"></i><b>8</b> Taxonomy</a></li>
-<li class="chapter" data-level="9" data-path="09-Alpha.html"><a href="09-Alpha.html"><i class="fa fa-check"></i><b>9</b> Alpha</a></li>
-<li class="chapter" data-level="10" data-path="10-Beta.html"><a href="10-Beta.html"><i class="fa fa-check"></i><b>10</b> Beta</a></li>
-<li class="chapter" data-level="11" data-path="11-Differential_abundance_analysis.html"><a href="11-Differential_abundance_analysis.html"><i class="fa fa-check"></i><b>11</b> Differential abundance analysis</a></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="12-Appendix.html"><a href="12-Appendix.html"><i class="fa fa-check"></i><b>A</b> Mamba installation and environment</a></li>
-<li class="chapter" data-level="B" data-path="12-Appendix.html"><a href="12-Appendix.html#jupyter-notebook"><i class="fa fa-check"></i><b>B</b> Jupyter-notebook</a></li>
-<li class="chapter" data-level="C" data-path="12-Appendix.html"><a href="12-Appendix.html#ggplot2_appendix"><i class="fa fa-check"></i><b>C</b> ggplot2</a></li>
+<li class="chapter" data-level="8.2" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-recap"><i class="fa fa-check"></i><b>8.2</b> Summarise: recap</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html"><i class="fa fa-check"></i><b>9</b> Minimum read depth</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#considerations"><i class="fa fa-check"></i><b>9.1</b> Considerations</a></li>
+<li class="chapter" data-level="9.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#minimum-read-depth-section-title"><i class="fa fa-check"></i><b>9.2</b> Minimum read depth section title</a></li>
+<li class="chapter" data-level="9.3" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#read-depth-vector-and-histogram"><i class="fa fa-check"></i><b>9.3</b> Read depth vector and histogram</a></li>
+<li class="chapter" data-level="9.4" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#sample-depth-boxplot"><i class="fa fa-check"></i><b>9.4</b> Sample depth boxplot</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#creating-data-frame-for-boxplots"><i class="fa fa-check"></i><b>9.4.1</b> Creating data frame for boxplots</a></li>
+<li class="chapter" data-level="9.4.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#depth-boxplots"><i class="fa fa-check"></i><b>9.4.2</b> Depth boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#rarefaction-curve"><i class="fa fa-check"></i><b>9.5</b> Rarefaction curve</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html"><i class="fa fa-check"></i><b>10</b> Relative abundance</a></li>
+<li class="chapter" data-level="11" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html"><i class="fa fa-check"></i><b>11</b> Rarefaction</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -212,14 +227,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="differential-abundance-analysis" class="section level1 hasAnchor" number="11">
-<h1><span class="header-section-number">Chapter 11</span> Differential abundance analysis<a href="11-Differential_abundance_analysis.html#differential-abundance-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><contents></p>
+<div id="rarefaction" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Rarefaction<a href="11-Rarefaction.html#rarefaction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>#Rarefy abundance table ####
+#i.e. convert abundance numbers so each sample has equal depth</p>
+<p>#Before rarefying a table it is good to make a rarefaction curve
+#This is to help us choose an appropriate rarefaction threshold</p>
+<p>#We will use the very useful package vegan
+#Ignore any warning message
+vegan::rarecurve(
+x = as.data.frame(t(phyloseq::otu_table(pseq))), step = 50)</p>
+<p>#Let us improve this and save it into a file
+png(filename = "./rarefaction_plot.png", res = 300,
+units = "mm", height = 200, width = 300)
+vegan::rarecurve(
+x = as.data.frame(t(phyloseq::otu_table(pseq))), step = 50,
+ylab="ASVs", lwd=1,label=F)
+#Add a vertical line of the smallest sample depth
+abline(v = min(reads_sample), col="red")
+dev.off()</p>
+<p>#With this we can see that the majorty of samples plateau at
+#the minimum sampleing depth
+#Therefore we can use this as a rarefaction size
+pseq_rarefy &lt;-
+phyloseq::rarefy_even_depth(
+pseq, sample.size = min(reads_sample), rngseed = 1000)</p>
+<p>#Summarise and check sample counts which should each amount to 10433
+microbiome::summarize_phyloseq(pseq_rarefy)
+microbiome::readcount(pseq_rarefy)</p>
+<p>#Check ASVs
+num_asvs_vec["rarefied"] &lt;- nrow(phyloseq::otu_table(pseq_rarefy))
+num_asvs_vec</p>
+<p>#Save phyloseq object
+save(pseq_relpseq_rarefyabund, file = "phyloseq_rarefied.RData")</p>
 
 </div>
-
-
-
 <script>
 
 /* update total correct if #webex-total_correct exists */
@@ -396,8 +438,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="10-Beta.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="12-Appendix.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="10-Relative_abundance.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

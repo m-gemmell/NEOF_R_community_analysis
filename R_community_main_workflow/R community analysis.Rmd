@@ -102,6 +102,9 @@ knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
 In this tutorial we will be using 16S metabarcdoing datasets derived from surface water from the Durance River in the south-east of France. Two major comparisons were carried out in combination with each other.
 
 ### Sites
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/river.png", auto_pdf = TRUE)
+``` 
 
 Three different sites were chosen on the Durance River. These three sites were representative of an anthropisation (transformation of land by humans) gradient along a river stream. These sites were:
 
@@ -110,6 +113,9 @@ Three different sites were chosen on the Durance River. These three sites were r
 - __Lower Durance sampling site (LD)__: Lower part of agricultural land with intensive production of fruits, cereals, and vegetables.
 
 ### Culture media
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
+```
 
 Surface water was sampled and different culture media were used to produce bacterial lawns for each site. The media used were:
 
@@ -119,6 +125,9 @@ Surface water was sampled and different culture media were used to produce bacte
 - __CVP__ incubated at 28°C for 3 days.
 
 ### Summary & questions
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
+```
 
 Each sample and media combination was produced in replicates of three giving a total of 27 samples (3*4*3 = 36). The three replicates were cultured on three different plates with the same media. An ASV table, taxonomy table, and phylogenetic tree were produced with QIIME2 and DADA2.
 
@@ -228,6 +237,7 @@ library(ggplot2)
 ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, colour=Species)) +
   #Make the object a scatter plot 
   ggplot2::geom_point() +
+  #Add plot tile
   ggplot2::ggtitle("Iris Sepal length vs width") +
   #Set x and y axis label names
   ggplot2::labs(x = "Sepal length", y = "Sepal width")
@@ -474,6 +484,34 @@ Now we can save the file. Two methods to save are:
 - Click the floppy disk `r icons::ionicons("save-outline")` on the toolbar.
 - Click on the __"File"__ button. Click __"Save and Checkpoint"__ from the dropdown options.
 
+## Title cells with markdown
+
+We will be using multiple notebooks in this workshop. 
+However, we will also have multiple sections per notebook. 
+It will therefore be useful to create header cells with markdown to create visual separation of the different sections.
+
+To add a header cell to the top of our notebook:
+
+- Create a new cell at the top of the notebook.
+- Click on the __"Code"__ drop down and select __"Markdown"__.
+  - The __"Heading"__ option no longer works.
+
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook_example_5.png", auto_pdf = TRUE)
+```
+
+- Add the following to the __"Markdown"__ cell to create a first level header.
+  - Ensure you have a space between the `#` and header text ("Tutorial").
+```{r, eval=FALSE}
+# Tutorial
+```
+
+Great, we can now add nice headers in our notebooks. __Save__ the notebook once more before carrying on to the next section.
+
+`r hide("Markdown")`
+You won't need to know more about `Markdown` but if you are interested please see the [`Markdown` guide](https://www.markdownguide.org/basic-syntax/).
+`r unhide()`
+
 ## Close the notebook
 
 To close the notebook:
@@ -481,14 +519,14 @@ To close the notebook:
 - Click on __"File"__.
 - From the dropdown options click __"Close and Halt"__.
 
-When you are back in the file explorer page you will not yet set the new file you saved.
-You will need to refresh the page with the Refresh button `r icons::ionicons("refresh")` towards the top right.
+When you are back in the file explorer page you may not yet set the new file you saved.
+If so, you will need to refresh the page with the Refresh button `r icons::ionicons("refresh")` towards the top right.
 
 ```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
 knitr::include_graphics(path = "figures/jupyter_notebook_refresh.png", auto_pdf = TRUE)
 ```
 
-
+With that quick tutorial of `jupyter-notebook` we can start our community analysis ion the next chapter.
 
 
 <!--chapter:end:05-Jupyter.Rmd-->
@@ -512,20 +550,55 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 ```
 # (PART\*) Data preparation {-}
 
-# Import
+# Data prep intro
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
+```
+
+In the next 5 chapters (7-11) we will learn how to:
+
+- [Import our data.](#import_chap)
+- [Summarise our `phyloseq` object.](#sum_phyloseq_chap)
+- Transform our abundance `phyloseq` object into:
+  - A relative/compositional abundance `phyloseq` object
+  - A rarefied `phyloseq` object.
+
+We will also use this as a chance to reinforce how to use `jupyter-notebook` with clear instructions. 
+However, from chapters 12 onwards you will make decisions on how many __"Coding"__ and __"Markdown"__ cells you want.
+
+<!--chapter:end:06-Preprocess_part.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Import {#import_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ```
 
 Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called `qiime2R`
 
-## Import notebook
+## Import: notebook
 
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
 ```
 
-Prior to any coding, we will create a new directory for this workshop and create a new notebook called __"01-Import.ipynb"__ in it. We will be creating a new notebook for each chapter and numbering them so we can easily see the order of scripts.
+Prior to any coding, we will create a new directory, our analysis directory, for this workshop and create a new notebook called __"01-Import.ipynb"__ in it. We will be creating a new notebook for each chapter and numbering them so we can easily see the order of scripts.
 
 First create a new directory.
 
@@ -541,7 +614,7 @@ You will have an __"Untitled Folder"__. To rename it:
 
 Click on your __"R_community_workshop"__ folder to move into it.
 
-Next step is to create a new R notebook, rename it to __"01-Import"__, and save it. Then we can carry on.
+Next step is to create a new R notebook, rename it to __"01-Import"__, and save it.
 
 ## qiime2R
 
@@ -576,7 +649,7 @@ This command creates a phyloseq object named `pseq`. It contains:
 -   The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`).
 -   The sample metadata (`metadata = "media_metadata.txt"`)
 
-## Summarise phyloseq
+## Import: Summarise phyloseq
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
 ```
@@ -662,15 +735,14 @@ This saves our object `pseq` into the file `phyloseq.RData`. The suffix `.RData`
 
 We have saved our final object of the notebook. Close and halt it.
 
-## Recap
-
+## Import: recap
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 
 We have imported our QIIME2 artifacts into one phyloseq object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.
 
-<!--chapter:end:06-Import.Rmd-->
+<!--chapter:end:07-Import.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -689,42 +761,47 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# Transformations and preprocessing
+# Summarise phyloseq {#sum_phyloseq_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/transform.png", auto_pdf = TRUE)
 ```
 
-In this chapter we will learn how to transform our abundance phyloseq table into a relative/compositional abundance phyloseq and a rarefied phyloseq object.
+For the next X chapters we will use one notebook. We will setup this notebook with libraries and `phyloseq` object we created in the last chapter.
 
-## Script setup
+After this, we will summarise the `phyloseq` object. We will investigate the read depth of samples and the number of ASVs in our dataset.
+
+## Setup
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/setup_2.png", auto_pdf = TRUE)
 ```
 
-Before starting analysis create and save a new script called "02-Preprocess.R" into your analysis directory.
+Before starting analysis create and save a new `R` notebook called __"02-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
 
-It is useful to add a title to the top of scripts. Add the below to your script:
-
-```{r, eval=FALSE}
-#Preprocessing data
-```
-
-Below this add a code section title for our script set-up.
+It is useful to add a title to the top of the notebook. 
+Create a __"Markdown"__ cell and add the following first level header:
 
 ```{r, eval=FALSE}
-#Set-up ####
+#Preprocessing data notebook
 ```
 
-Next add your command to set the working directory. Below is an example:
+The first section of our notebook will be used for setup.
+This will involve loading libraries and data we need. 
+
+For good documentation add the below second level heading to the first __"Markdown"__ cell. 
 
 ```{r, eval=FALSE}
-#Set working directory
-setwd("~/R/R_community_course/freshwater_data_analysis/")
+## Setup
 ```
 
-Additionally, I like to load all the libraries to be used in the script in this section. We will explain their uses later in this chapter.
+To decrease the level of a heading add another `#`.
 
-Add the below to your script:
+- `# `: 1st level header.
+- `## `: 2nd level header.
+- `### `: 3rd level header etc...
+
+I like to load all the libraries to be used in the notebook in this section. We will explain their uses later in this chapter.
+
+Add the below to a new __"Code"__ cell in your notebook:
 
 ```{r, eval=FALSE}
 #Libraries
@@ -740,14 +817,78 @@ Our last bit of set-up is to load in our abundance phyloseq object we created in
 load("phyloseq.RData")
 ```
 
+Ensure you have run the code in this cell.
 
+### Summarise header
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/header.png", auto_pdf = TRUE)
+```
+
+When you load in a dataset it is always useful to check it. 
+We will therefore use a new section to inspect the data.
+
+In a new __"Markdown"__ cell add the following 2nd level header.
+
+```{r, eval=FALSE}
+# Summarise the phyloseq object
+```
+
+### Summarise phyloseq
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
+```
+
+Create a second cell and add the following annotation and code. Then run the code.
+
+```{r, eval=FALSE}
+#Summary of phyloseq object
+microbiome::summarize_phyloseq(pseq)
+```
+
+We ran this code in the __"01-Import.ipynb"__. You can therefore check if our new output matched the output from that notebook. This should be the case since they are the same data.
+
+Due to the relative large amount of output to screen we'll put the next part into a new cell (third cell).
+
+### Reads per sample
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
+```
+
+In our third cell we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`). We can even make a quick histogram of read numbers per sample with the base `R` function `hist()`.
+
+Write and run the below code in a third cell.
+
+```{r, eval=FALSE}
 #Number of reads per sample
 reads_sample <- microbiome::readcount(pseq)
 reads_sample
+#Histogram
+hist(reads_samples, "Histogram of read depths")
+```
 
+This information is very useful. We will use it in the next chapter to determine what our minimum read depth should be.
+
+### ASVs per sample
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
+```
+
+The last feature we will look at before some preprocessing is the ASVs (Amplicon Feature Variants).
+
+A useful `phyloseq` command is `otu_table()`. This allows us to extract the ASV/OTU/feature table. With this we can then carry out some other commands like looking at the total number of ASVs.
+
+For demonstrative purposes write and run the following code in its own cell to display the ASV table.
+
+```{r, eval=FALSE}
 #Can extract ASV table (known as otu table in phyloseq)
 phyloseq::otu_table(pseq)
+```
 
+With this command we will extract the number of ASVs in the original abundance table. 
+We will then save this in a vector.
+We will add to this vector as we create our relative abundance and rarefied abundance `phyloseq` objects. 
+
+```{r, eval=FALSE}
 #Each row is an ASV and each column is the samples
 #Therefore we can get the number of ASVs in data
 #Let's make a new vector with this info so we can easily keep track
@@ -756,6 +897,183 @@ num_asvs_vec <- c(nrow(phyloseq::otu_table(pseq)))
 names(num_asvs_vec)[1] <- "abundance"
 #View current vector
 num_asvs_vec
+```
+
+## Summarise: recap
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
+```
+
+We now have an idea of some of the attributes of our dataset. We can use this knowledge to carry out some preprocessing.
+
+<!--chapter:end:08-Summarise_phyloseq.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Minimum read depth
+
+It is good to remove samples with a very low read depth.
+However, it is not trivial to determine what an appropriate read depth is.
+This value will vary from study to study.
+
+Normally, for 16S data, a depth of at least 20K per sample is suggested. However, this is the general consensus for human microbiome data. 
+
+## Considerations
+
+There are 3 main considerations to take into account for what is an appropriate depth for your dataset.
+
+- __The biodiversity of your samples.__
+  - If your sample is very biodiverse, such as the human gut microbiome, you will need a good depth (>20K per sample).
+  - If your sample is less biodiverse, such as many geological environments or skin, then you will not need as much read depth.
+  - Rarefaction curves are a good method to determine if your samples have enough depth. We will look at this in this chapter.
+- __The biomass of your samples.__
+  - Some environments are hard to extract DNA from.
+  - If this is the case for you, then people will hopefully accept that this is an unfortunate reality of life and you will use what you can.
+  - However, be careful of your conclusions, if you think your data doesn't have as much as it could do not make very definitive detailed claims.
+- __Read depth of sample groups.__
+  - It may be possible that a few samples have a much lower depth than the rest and so you may think to remove them.
+  - However, these may all come from the same sample group and so you have lost all information of one group.
+  - For instance, you may be comparing different geological surfaces and your rock samples have much lower read depths than the various soil samples.
+  - For comparisons including the lower depth sample group (e.g. rock samples) you will need to retrain the lower depth sample.
+
+That is a brief overview of that topic. If you are interested in more I suggest you look at papers where they have studied an environment similar to yours.
+
+## Minimum read depth section title
+
+In the next section of our `jupyter-notebook` we will investigate what the minimum read depth should be and remove sample below this.
+
+Create a new __"Markdown"__ cell and add the following 2nd level header.
+
+```{r, eval=FALSE}
+## Minimum read depth
+```
+
+## Read depth vector and histogram
+
+We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:
+
+```{r, echo = FALSE}
+opts_p <- c("__1-8__", answer="__10,000-18,000__", "__20,000+__")
+```
+- What is the approximate read depth range of our dataset? `r longmcq(opts_p)`
+
+This is a good first step but what if we want to know how the read depths vary between sample groups?
+
+## Sample depth boxplot
+
+We are going to use `ggplot2` to create a couple boxplots to show the sequencing depth ranges of the different sample groups (Site & Media).
+
+### Creating data frame for boxplots
+
+First, we need to create an object containing our sample names, Site & Media information, and the depth.
+We will use this object to produce our boxplots.
+Thankfully the metadata in our `phyloseq` object contains all this information except the depth.
+
+In a new cell write and run the below code. This will extract the sample data (metadata) to a new object and display the top 6 rows fo this new object.
+
+```{r, eval=FALSE}
+#Extract sample data as a separate R object
+abundance_metadf <- phyloseq::sample_data(pseq)
+#View top 6 rows of metadata data frame
+head(abundance_metadf)
+```
+
+The 2 new functions above are:
+
+- `phyloseq::sample_data()`: Extracts the sample data (metadata) data frame from a `phyloseq` object.
+- `head()`: Returns the first 6 parts of an R object by default.
+  - It can be used for a vector, matrix, table, data frame, or function.
+  - In the case of a data frame it returns the first 6 rows.
+
+We need to add the depth information to our new data frame. 
+We have extracted this previously into an object called `sample_depths`. 
+However, before adding it we want to check it has the same order of samples as the rows in `abundance_metadf`.
+
+Write and run the below script in the same cell. The code uses `head()` to view the first 6 elements of `sample_depths` and the row names of `abundance_metadf`. Then the function `idnetical()` is used to see if they are identical (`TRUE`) or not (`FALSE`).
+
+```{r, eval=FALSE}
+#Check if our vector of sample_depths has the same order as our metadata rows
+head(names(sample_depths))
+head(row.names(abundance_metadf))
+identical(names(sample_depths),row.names(abundance_metadf))
+```
+
+The order of samples is identical so we can add the depth information to `abundance_metadf`. Carry this out in the same cell with the code below.
+
+```{r, eval=FALSE}
+#Add sample depths to metadata data frame
+abundance_metadf[,"depth"] <- sample_depths
+#View top 6 rows of edited metadata dataframe
+head(abundance_metadf)
+```
+
+Great! We will next use this data frame to create 2 boxplots.
+
+### Depth boxplots
+
+We are going to create 2 boxplots with `ggplot2`.
+We won't go into too much detail on how the code works here, instead learning more later in this book.
+
+The code below creates a `ggplot2` boxplot. We carry this out with 2 functions:
+
+- `ggplot()`: This creates a `ggplot2` object, storing the information and aesthetics.
+  - The first option is the data we want to use for plotting (`abundance_metadf`).
+  - The second option is the aesthetics (`aes()`) to plot. In this case we want the depth column to be plotted on the y-axis (`y=depth`) and the site column to be plotted on the x-axis (`x=site`).
+- `+`: We need to have a `+` at the end of the `ggplot()` function to add the next component of the plot.
+- `geom_boxplot()`: This adds a layer to our `ggplot2` object. In this case it converts the `ggplot` object, which is just information, into a boxplot.
+
+Write and run the following code in a new cell:
+
+```{r, eval=FALSE}
+#Create ggplot2 boxplot of depth by size
+ggplot2::ggplot(abundance_metadf, aes=(y=depth, x=site)) +
+  ggplot2::geom_boxplot()
+```
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__LD (Lower Durance)__", "__MD (Middle Durance)__", "__UD (Upper Durance__")
+```
+- Which site has the highest median depth (middle line of boxplot)? `r longmcq(opts_p)`
+
+We will use the same code to plot the depth by media.
+You can copy and paste the code changing the x aesthetic to media (`x=media`).
+Carry this out in the same cell and run the code.
+
+```{r, eval=FALSE}
+#Create ggplot2 boxplot of depth by size
+ggplot2::ggplot(abundance_metadf, aes=(y=depth, x=media)) +
+  ggplot2::geom_boxplot()
+```
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__CVP__", "__ENV__", "__TSA__")
+```
+- Which media has the lowest median depth (middle line of boxplot)? `r longmcq(opts_p)`
+
+From the boxplots we can see there is no drastic difference between the depths of the different sample groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.
+
+For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
+
+## Rarefaction curve
+
+Our read depths appear a bit low. 
+However, this might be fine for our dataset since we are use surface water samples rather than human gut microbiome samples.
+Let's see how our samples look with a rarefaction curve.
 
 #Sample with too few samples?
 #In your analysis you may have a sample with too few reads
@@ -769,6 +1087,28 @@ microbiome::readcount(pseq_min11K)
 #We won't be using this as we are happy with our sample numbers
 #Let us therefore remove this sample subsetted variable
 rm(pseq_min11K)
+
+
+<!--chapter:end:09-Minimum_read_depth.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Relative abundance
 
 #Relative abundance ####
 #Convert abundance table to relative abundance (compositional) table
@@ -828,6 +1168,27 @@ num_asvs_vec["abundance"] - num_asvs_vec["relabund"]
 #Therefore we can save it for further use
 save(pseq_relabund, file = "phyloseq_relabund.RData")
 
+<!--chapter:end:10-Relative_abundance.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Rarefaction
+
 #Rarefy abundance table ####
 #i.e. convert abundance numbers so each sample has equal depth
 
@@ -867,192 +1228,5 @@ num_asvs_vec
 #Save phyloseq object
 save(pseq_relpseq_rarefyabund, file = "phyloseq_rarefied.RData")
 
-<!--chapter:end:07-Preprocess_data.Rmd-->
-
-```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
-```
-# Taxonomy
-
-<contents>
-
-<!--chapter:end:08-Taxonomy.Rmd-->
-
-```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
-```
-# Alpha
-
-<contents>
-
-<!--chapter:end:09-Alpha.Rmd-->
-
-```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
-```
-# Beta
-
-<contents>
-
-<!--chapter:end:10-Beta.Rmd-->
-
-```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
-```
-# Differential abundance analysis
-
-<contents>
-
-<!--chapter:end:11-Differential_abundance_analysis.Rmd-->
-
-```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
-```
-# (APPENDIX) Appendix {-}
-
-# Mamba installation and environment {#mamba_install}
-
-Mamba github: https://github.com/mamba-org/mamba
-
-Mamba installation: https://github.com/conda-forge/miniforge#mambaforge
-
-Mamba guide: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html
-
-To create the mamba environment `r_community` run the below commands in your bash. You will need to have installed `mamba` first.
-
-```{bash, eval=FALSE}
-#R community
-mamba create r_community
-mamba activate r_community
-mamba install -c bioconda bioconductor-microbiome
-mamba install -c r r-tidyverse
-mamba install -c conda-forge r-devtools
-#Update r-htmltools as loading devtools doesn’t work in R (from 0.5.2 -> 0.5.4)
-mamba install -c conda-forge r-htmltools=0.5.4
-#If using jupyter-notebook, need to install r kernel for it
-mamba install -c conda-forge r-irkernel
-```
-
-Activate the environment in bash.
-
-```{bash, eval=FALSE}
-mamba activate r_community
-```
-
-Activate your `mamba's` `R` and install `Qiime2R`.
-
-```{bash, eval=FALSE}
-R
-```
-
-```{r, eval=FALSE}
-devtools::install_github("jbisanz/qiime2R")
-```
-
-# Jupyter-notebook
-
-If you are running this on your own computer you can use `RStudio`.
-However, you can also use `Jupyter-notebook` if you are using an HPC or prefer it.
-
-If using bash you will need to create an environment with `Jupyter-notebook`.
-Ensure you are in the `(base)` mamba environment.
-
-```{bash, eval=FALSE}
-mamba create -n jupyter
-mamba activate jupyter
-mamba install -c anaconda jupyter
-mamba deactivate
-```
-
-To run `Jupyter-notebook` with your `r_community` environment you can run the following.
-
-```{bash, eval=FALSE}
-#Activate you R_community env
-mamba activate r_community
-#Run jupyter-notebook (may be a slightly different path)
-~/mamba/envs/jupyter/bin/jupyter-notebook
-```
-
-# ggplot2 {#ggplot2_appendix}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
-```
-
-Below are some useful resource if you would like to learn ggplot2.
-
-The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It contains a section called [Understanding ggplot2](https://r-graphics.org/chapter-ggplot2) in its appendix which is useful for learning some key terminologies and concepts.
-
-`ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](#http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/).
-
-<!--chapter:end:12-Appendix.Rmd-->
+<!--chapter:end:11-Rarefaction.Rmd-->
 

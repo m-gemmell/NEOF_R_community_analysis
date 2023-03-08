@@ -1,0 +1,144 @@
+# Summarise phyloseq {#sum_phyloseq_chap}
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/transform.png", auto_pdf = TRUE)
+```
+
+For the next X chapters we will use one notebook. We will setup this notebook with libraries and `phyloseq` object we created in the last chapter.
+
+After this, we will summarise the `phyloseq` object. We will investigate the read depth of samples and the number of ASVs in our dataset.
+
+## Setup
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/setup_2.png", auto_pdf = TRUE)
+```
+
+Before starting analysis create and save a new `R` notebook called __"02-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
+
+It is useful to add a title to the top of the notebook. 
+Create a __"Markdown"__ cell and add the following first level header:
+
+```{r, eval=FALSE}
+#Preprocessing data notebook
+```
+
+The first section of our notebook will be used for setup.
+This will involve loading libraries and data we need. 
+
+For good documentation add the below second level heading to the first __"Markdown"__ cell. 
+
+```{r, eval=FALSE}
+## Setup
+```
+
+To decrease the level of a heading add another `#`.
+
+- `# `: 1st level header.
+- `## `: 2nd level header.
+- `### `: 3rd level header etc...
+
+I like to load all the libraries to be used in the notebook in this section. We will explain their uses later in this chapter.
+
+Add the below to a new __"Code"__ cell in your notebook:
+
+```{r, eval=FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+library("vegan")
+```
+
+Our last bit of set-up is to load in our abundance phyloseq object we created in the previous chapter.
+
+```{r, eval=FALSE}
+#Load the phyloseq object
+load("phyloseq.RData")
+```
+
+Ensure you have run the code in this cell.
+
+### Summarise header
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/header.png", auto_pdf = TRUE)
+```
+
+When you load in a dataset it is always useful to check it. 
+We will therefore use a new section to inspect the data.
+
+In a new __"Markdown"__ cell add the following 2nd level header.
+
+```{r, eval=FALSE}
+# Summarise the phyloseq object
+```
+
+### Summarise phyloseq
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
+```
+
+Create a second cell and add the following annotation and code. Then run the code.
+
+```{r, eval=FALSE}
+#Summary of phyloseq object
+microbiome::summarize_phyloseq(pseq)
+```
+
+We ran this code in the __"01-Import.ipynb"__. You can therefore check if our new output matched the output from that notebook. This should be the case since they are the same data.
+
+Due to the relative large amount of output to screen we'll put the next part into a new cell (third cell).
+
+### Reads per sample
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
+```
+
+In our third cell we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`). We can even make a quick histogram of read numbers per sample with the base `R` function `hist()`.
+
+Write and run the below code in a third cell.
+
+```{r, eval=FALSE}
+#Number of reads per sample
+reads_sample <- microbiome::readcount(pseq)
+reads_sample
+#Histogram
+hist(reads_samples, "Histogram of read depths")
+```
+
+This information is very useful. We will use it in the next chapter to determine what our minimum read depth should be.
+
+### ASVs per sample
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
+```
+
+The last feature we will look at before some preprocessing is the ASVs (Amplicon Feature Variants).
+
+A useful `phyloseq` command is `otu_table()`. This allows us to extract the ASV/OTU/feature table. With this we can then carry out some other commands like looking at the total number of ASVs.
+
+For demonstrative purposes write and run the following code in its own cell to display the ASV table.
+
+```{r, eval=FALSE}
+#Can extract ASV table (known as otu table in phyloseq)
+phyloseq::otu_table(pseq)
+```
+
+With this command we will extract the number of ASVs in the original abundance table. 
+We will then save this in a vector.
+We will add to this vector as we create our relative abundance and rarefied abundance `phyloseq` objects. 
+
+```{r, eval=FALSE}
+#Each row is an ASV and each column is the samples
+#Therefore we can get the number of ASVs in data
+#Let's make a new vector with this info so we can easily keep track
+num_asvs_vec <- c(nrow(phyloseq::otu_table(pseq)))
+#Give the 1st element a relevant name
+names(num_asvs_vec)[1] <- "abundance"
+#View current vector
+num_asvs_vec
+```
+
+## Summarise: recap
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
+```
+
+We now have an idea of some of the attributes of our dataset. We can use this knowledge to carry out some preprocessing.

@@ -1,0 +1,17 @@
+# (PART\*) Data preparation {-}
+
+# Data prep intro
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
+```
+
+In the next 5 chapters (7-11) we will learn how to:
+
+- [Import our data.](#import_chap)
+- [Summarise our `phyloseq` object.](#sum_phyloseq_chap)
+- Transform our abundance `phyloseq` object into:
+  - A relative/compositional abundance `phyloseq` object
+  - A rarefied `phyloseq` object.
+
+We will also use this as a chance to reinforce how to use `jupyter-notebook` with clear instructions. 
+However, from chapters 12 onwards you will make decisions on how many __"Coding"__ and __"Markdown"__ cells you want.

@@ -11,6 +11,9 @@ knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
 In this tutorial we will be using 16S metabarcdoing datasets derived from surface water from the Durance River in the south-east of France. Two major comparisons were carried out in combination with each other.
 
 ### Sites
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/river.png", auto_pdf = TRUE)
+``` 
 
 Three different sites were chosen on the Durance River. These three sites were representative of an anthropisation (transformation of land by humans) gradient along a river stream. These sites were:
 
@@ -19,6 +22,9 @@ Three different sites were chosen on the Durance River. These three sites were r
 - __Lower Durance sampling site (LD)__: Lower part of agricultural land with intensive production of fruits, cereals, and vegetables.
 
 ### Culture media
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
+```
 
 Surface water was sampled and different culture media were used to produce bacterial lawns for each site. The media used were:
 
@@ -28,6 +34,9 @@ Surface water was sampled and different culture media were used to produce bacte
 - __CVP__ incubated at 28°C for 3 days.
 
 ### Summary & questions
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
+```
 
 Each sample and media combination was produced in replicates of three giving a total of 27 samples (3*4*3 = 36). The three replicates were cultured on three different plates with the same media. An ASV table, taxonomy table, and phylogenetic tree were produced with QIIME2 and DADA2.
 

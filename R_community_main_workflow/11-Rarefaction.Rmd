@@ -1,0 +1,40 @@
+# Rarefaction
+
+#Rarefy abundance table ####
+#i.e. convert abundance numbers so each sample has equal depth
+
+#Before rarefying a table it is good to make a rarefaction curve
+#This is to help us choose an appropriate rarefaction threshold
+
+#We will use the very useful package vegan
+#Ignore any warning message
+vegan::rarecurve(
+  x = as.data.frame(t(phyloseq::otu_table(pseq))), step = 50)
+
+#Let us improve this and save it into a file
+png(filename = "./rarefaction_plot.png", res = 300,
+    units = "mm", height = 200, width = 300)
+vegan::rarecurve(
+  x = as.data.frame(t(phyloseq::otu_table(pseq))), step = 50,
+  ylab="ASVs", lwd=1,label=F)
+#Add a vertical line of the smallest sample depth
+abline(v = min(reads_sample), col="red")
+dev.off()
+
+#With this we can see that the majorty of samples plateau at 
+#the minimum sampleing depth
+#Therefore we can use this as a rarefaction size
+pseq_rarefy <- 
+  phyloseq::rarefy_even_depth(
+    pseq, sample.size = min(reads_sample), rngseed = 1000)
+
+#Summarise and check sample counts which should each amount to 10433
+microbiome::summarize_phyloseq(pseq_rarefy)
+microbiome::readcount(pseq_rarefy)
+
+#Check ASVs
+num_asvs_vec["rarefied"] <- nrow(phyloseq::otu_table(pseq_rarefy))
+num_asvs_vec
+
+#Save phyloseq object
+save(pseq_relpseq_rarefyabund, file = "phyloseq_rarefied.RData")

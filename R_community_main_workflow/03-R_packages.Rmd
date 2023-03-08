@@ -71,6 +71,7 @@ library(ggplot2)
 ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, colour=Species)) +
   #Make the object a scatter plot 
   ggplot2::geom_point() +
+  #Add plot tile
   ggplot2::ggtitle("Iris Sepal length vs width") +
   #Set x and y axis label names
   ggplot2::labs(x = "Sepal length", y = "Sepal width")
