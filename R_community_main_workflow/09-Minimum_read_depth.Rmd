@@ -1,12 +1,25 @@
 # Minimum read depth
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/depth_diver.png", auto_pdf = TRUE)
+``` 
 
-It is good to remove samples with a very low read depth.
+It is good to remove samples with a very low read depth (number of sequencing reads).
 However, it is not trivial to determine what an appropriate read depth is.
 This value will vary from study to study.
-
 Normally, for 16S data, a depth of at least 20K per sample is suggested. However, this is the general consensus for human microbiome data. 
 
+In this chapter we will:
+
+- Cover a brief intro to considertions of what is an acceptable minimum depth for your dataset.
+- Reinvestigate our sample depths with a previously created histogram.
+- View the depth ranges of different sample groups (site & media) with box plots.
+- Create a rarefaction curve to assess if the depth of our samples have captured a good amount of biodiversity.
+- Demonstrate how to filter samples by depth.
+
 ## Considerations
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/consider.png", auto_pdf = TRUE)
+``` 
 
 There are 3 main considerations to take into account for what is an appropriate depth for your dataset.
 
@@ -27,6 +40,9 @@ There are 3 main considerations to take into account for what is an appropriate 
 That is a brief overview of that topic. If you are interested in more I suggest you look at papers where they have studied an environment similar to yours.
 
 ## Minimum read depth section title
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/header_l2.png", auto_pdf = TRUE)
+``` 
 
 In the next section of our `jupyter-notebook` we will investigate what the minimum read depth should be and remove sample below this.
 
@@ -37,6 +53,9 @@ Create a new __"Markdown"__ cell and add the following 2nd level header.
 ```
 
 ## Read depth vector and histogram
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
+```
 
 We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:
 
@@ -48,10 +67,16 @@ opts_p <- c("__1-8__", answer="__10,000-18,000__", "__20,000+__")
 This is a good first step but what if we want to know how the read depths vary between sample groups?
 
 ## Sample depth boxplot
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/boxplot.png", auto_pdf = TRUE)
+```
 
 We are going to use `ggplot2` to create a couple boxplots to show the sequencing depth ranges of the different sample groups (Site & Media).
 
 ### Creating data frame for boxplots
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/metadata.png", auto_pdf = TRUE)
+```
 
 First, we need to create an object containing our sample names, Site & Media information, and the depth.
 We will use this object to produce our boxplots.
@@ -98,6 +123,9 @@ head(abundance_metadf)
 Great! We will next use this data frame to create 2 boxplots.
 
 ### Depth boxplots
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/boxplots_groups.png", auto_pdf = TRUE)
+```
 
 We are going to create 2 boxplots with `ggplot2`.
 We won't go into too much detail on how the code works here, instead learning more later in this book.
@@ -143,10 +171,16 @@ From the boxplots we can see there is no drastic difference between the depths o
 For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
 
 ## Rarefaction curve
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
+```
 
-Our read depths appear a bit low. 
+Our read depths appear a bit low, each sample has <20K reads. 
 However, this might be fine for our dataset since we are use surface water samples rather than human gut microbiome samples.
 Let's see how our samples look with a rarefaction curve.
+
+
+
 
 #Sample with too few samples?
 #In your analysis you may have a sample with too few reads
