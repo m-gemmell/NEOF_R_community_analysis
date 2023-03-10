@@ -564,7 +564,7 @@ In the next 5 chapters (7-11) we will learn how to:
   - A rarefied `phyloseq` object.
 
 We will also use this as a chance to reinforce how to use `jupyter-notebook` with clear instructions. 
-However, from chapters 12 onwards you will make decisions on how many __"Coding"__ and __"Markdown"__ cells you want.
+However, from chapters 10 onwards you will make more decisions on how many __"Coding"__ and __"Markdown"__ cells you want.
 
 <!--chapter:end:06-Preprocess_part.Rmd-->
 
@@ -776,6 +776,7 @@ knitr::include_graphics(path = "figures/setup_2.png", auto_pdf = TRUE)
 ```
 
 Before starting analysis create and save a new `R` notebook called __"02-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
+We will use this notebook for this and the next chapter.
 
 It is useful to add a title to the top of the notebook. 
 Create a __"Markdown"__ cell and add the following first level header:
@@ -897,6 +898,17 @@ num_asvs_vec <- c(nrow(phyloseq::otu_table(pseq)))
 names(num_asvs_vec)[1] <- "abundance"
 #View current vector
 num_asvs_vec
+```
+
+Save this vector as a `.Rdata` object in a new cell.
+This will allow us to load it in future notebooks.
+Additionally, we can remove the object so it doesn't use RAM.
+
+```{r, eval=FALSE}
+#Save object as file
+save(num_asvs_vec, file= "num_asvs_vec.RData")
+#Remove object from environment
+rm(num_asvs_vec)
 ```
 
 ## Summarise: recap
@@ -1102,23 +1114,184 @@ For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of 
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ```
 
-Our read depths appear a bit low. 
-However, this might be fine for our dataset since we are use surface water samples rather than human gut microbiome samples.
+Our read depths appear a bit low, each sample has <20K reads. 
+However, this might be fine for our dataset since we are using surface water samples rather than human gut microbiome samples.
 Let's see how our samples look with a rarefaction curve.
 
-#Sample with too few samples?
-#In your analysis you may have a sample with too few reads
-#All our samples are fine for a tutorial case but let us say we only wanted to
-#keep samples with >11k reads
-#We could remove samples with the following code
+__Note__: This is a quick example and we will go into more detail in the [rarefaction chapter](#rarefaction_chap).
+
+Surprisingly, there is not a good method to produce a rarefaction curve with the `phyloseq` or `microbiome` packages. 
+We will therefore use the [`vegan`](https://vegandevs.github.io/vegan/) package. 
+`vegan` is an R package for community ecologists. 
+It has a variety of functions but it uses normal R data frames rather than `phyloseq` objects.
+We will therefore only use it for rarefaction purposes.
+
+### ASV abundance data frame
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
+```
+
+Before creating our rarefaction curve we will extract the ASV abundance table from the `phyloseq` object with `phyloseq`'s function `otu_table()`. 
+We need to transpose (`t()`) the table so it is in the correct orientation for the rarefaction function.
+Additionally, we ensure it is a data frame with the function `as.data.frame()`.
+
+Carry this out in a new cell.
+
+```{r, eval=FALSE}
+#Rarefaction curve
+#Extract ASV table as data frame
+asv_abund_df <- as.data.frame(t(phyloseq::otu_table(pseq)))
+```
+
+### vegan's rarecurve
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/vegan.png", auto_pdf = TRUE)
+```
+
+With this data frame we can create a rarefaction curve with `vegan`'s `rarecurve()` function.
+
+Add the following code to the same cell and run it.
+
+```{r, eval=FALSE}
+#Rarefaction curve
+vegan::rarecurve(
+  x = asv_abund_df, step = 50,
+  xlab = "Read depth",
+  ylab = "ASVs"
+)
+```
+
+In essence, we are hoping that the majority of samples have plateau'd.
+If the curves have flattened in relation to the y axis this indicates that most of the ASVs present in the sample have been captured.
+
+In this case the samples have plateau'd or have gentle slopes towards the end.
+With this we can be happy to continue and not remove samples by a minimum read depth.
+
+If we saw some samples with steep curves which had low depths we could carry out some more analysis with rarefaction.
+However, more rarefaction functions, analysis, and theories will be covered in the [rarefaction chapter](#rarefaction_chap).
+You could use some of these at this point to help you determine your minimum read depth for your own datasets.
+
+## Filtering by minimum read depth
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/water_filter.png", auto_pdf = TRUE)
+```
+
+What if you want to filter samples by a minimum read depth?
+
+In that case you can use the `subset_samples()` function from `phyloseq()`.
+We will use our previously created vector containing read depths (`sample_depths`) to remove sample with less than 11k reads.
+We have chosen this depth as an example to remove some samples.
+
+Write and run the below code in a new cell.
+It will create a new subsetted `phyloseq` object.
+
+```{r, eval=FALSE}
+#Subset and keep samples with at least 11k reads
 pseq_min11K <- phyloseq::subset_samples(pseq, reads_sample > 11000)
+```
+
+After removing samples it is also useful to remove ASVs with no abundance values.
+This can occur when ASVs are only present in the samples which have been removed.
+
+To remove these ASVs we can use two `phyloseq` functions:
+
+- __`taxa_sums()`__: Returns a vector showing sum of all taxa in the abundance table. 
+  - In our `phyloseq` object the ASVs are the taxa. 
+  - ASVs have long human unfriendly names that are unique to every single ASV possible.
+- __`prune_taxa()`__: This retains taxa/ASVs based on a provided vector.
+  - In this case we are creating a logical vector (`TRUE`/`FALSE`) where ASVs with 0 abundance are `FALSE` and ASVs with abundance > 0 are `TRUE`.
+
+We'll first write and run some commands with `taxa_sums()` to get some practice with it. Carry this out int he same cell as the `subset_samples()` command.
+
+```{r, eval=FALSE}
+#Abundance sums of the 1st six ASVs
+head(phyloseq::taxa_sums(pseq_min11K))
+#View number of ASVs in our data
+length(phyloseq::taxa_sums(pseq_min11K))
+```
+
+In the same cell add the following.
+This will filter out ASVs with no abundance.
+
+```{r, eval=FALSE}
+#Remove ASVs with no abundance
+pseq_min11k <- phyloseq::prune_taxa(
+  phyloseq_taxa_sums(pseq_min11k) > 0, pseq_min11k
+)
+```
+
+Finally, summarise the contents of the `phyloseq` object. 
+Add the following in the same cell and then run the code in the cell.
+
+```{r, eval=FALSE}
+#Summarise subsetted phyloseq
 microbiome::summarize_phyloseq(pseq_min11K)
 microbiome::readcount(pseq_min11K)
+pseq_min11k
+```
 
-#We won't be using this as we are happy with our sample numbers
-#Let us therefore remove this sample subsetted variable
+We can see that the data lost 26 ASVs (2551 - 2525).
+
+Try to write your own R code in a new cell to answer the following questions:
+
+```{r, echo = FALSE}
+opts_p <- c("__4__", answer="__613__", "__42507__")
+```
+- What is the difference of the minimum number of reads between `pseq_min11k` and `pseq`? r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__4__", "__613__", "__42507__")
+```
+- How many samples were removed due to the read depth filtering? r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__4__", "__613__", answer="__42507__")
+```
+- What is the difference of the minimum number of reads between `pseq_min11k` and `pseq`? r longmcq(opts_p)`
+
+`r hide("Tip")`
+Combining `microbiome::readcount()` with `min()`, `length()`, and `sum()` might help.
+`r unhide()`
+
+`r hide("Code solutions + bonus")`
+```{r, eval=FALSE}
+#Difference of minimum read numbers
+min(microbiome::readcount(pseq_min11k)) - min(microbiome::readcount(pseq))
+#Number of samples lost
+length(microbiome::readcount(pseq)) - length(microbiome::readcount(pseq_min11k))
+#Number of reads removed
+sum(microbiome::readcount(pseq)) - sum(microbiome::readcount(pseq_min11k))
+#Bonus
+#List the removed samples
+setdiff(phyloseq::sample_names(pseq)), phyloseq::sample_names(pseq_min11k))
+```
+`r unhide()`
+
+We won't actually use this subsetted file as we want to keep all the samples in this case.
+Additionally, since we didn't need remove any samples we don't need to remove any ASVs as they should all have a total abundance > 0.
+Therefore you can remove the `phyloseq` object in a new cell.
+
+```{r, eval=FALSE}
+#Remove subsetted phyloseq
 rm(pseq_min11K)
+```
 
+Once you are finished with this notebook you can save it then close and halt it.
+
+## Minmum read depth: Summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
+```
+
+We have assessed the read depth in this chapter and decided to not remove any samples. 
+This assessment included:
+
+- Viewing a histogram of sample read depths.
+- Creating boxplots to compare the sample read depths across sample groups (siet and media).
+- Producing a rarefaction depth to determine if any samples did not represent a good amount of the ASVs present in the environment.
+
+Additionally, we created a new `phyloseq` object where the samples were filtered by depth.
+Ultimately we did not keep the filtered `phyloseq` object.
 
 <!--chapter:end:09-Minimum_read_depth.Rmd-->
 
@@ -1140,6 +1313,35 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 })
 ```
 # Relative abundance
+
+In this chapter we are going to create a `phyloseq` with relative abundance values. We would use our read depth filtered data if we wanted to use it for other downstream analyses.
+But, as stated in the last chapter all our samples looked good so we will use our original abundance `phyloseq` object.
+
+Once we have created our relative abundance data we will remove rare ASVs.
+We will then check how many ASVs we lost and save the relative abundance `phyloseq` object.
+
+## Relative abundance: setup
+
+The first steps before analysis are:
+
+- Create a new notebook called "3-relative_abundance.ipynb".
+- Add a markdown cell with the first level header: `# Relative abundance`.
+- Add the below to a code cell to load in the `phyloseq` object and libraries.
+
+```{r, eval=FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+#Load phyloseq object
+load("phyloseq.RData")
+```
+
+From now on you will get less instructions on your notebook structure. 
+Please create your own coding and markdown cells where you think appropriate.
+
+## Relative abundance: transformation
+
+
 
 #Relative abundance ####
 #Convert abundance table to relative abundance (compositional) table
@@ -1218,7 +1420,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# Rarefaction
+# Rarefaction {#rarefaction_chap}
 
 #Rarefy abundance table ####
 #i.e. convert abundance numbers so each sample has equal depth

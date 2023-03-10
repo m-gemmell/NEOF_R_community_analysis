@@ -1,4 +1,4 @@
-# Rarefaction
+# Rarefaction {#rarefaction_chap}
 
 #Rarefy abundance table ####
 #i.e. convert abundance numbers so each sample has equal depth

@@ -14,4 +14,4 @@ In the next 5 chapters (7-11) we will learn how to:
   - A rarefied `phyloseq` object.
 
 We will also use this as a chance to reinforce how to use `jupyter-notebook` with clear instructions. 
-However, from chapters 12 onwards you will make decisions on how many __"Coding"__ and __"Markdown"__ cells you want.
+However, from chapters 10 onwards you will make more decisions on how many __"Coding"__ and __"Markdown"__ cells you want.

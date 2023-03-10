@@ -1,5 +1,34 @@
 # Relative abundance
 
+In this chapter we are going to create a `phyloseq` with relative abundance values. We would use our read depth filtered data if we wanted to use it for other downstream analyses.
+But, as stated in the last chapter all our samples looked good so we will use our original abundance `phyloseq` object.
+
+Once we have created our relative abundance data we will remove rare ASVs.
+We will then check how many ASVs we lost and save the relative abundance `phyloseq` object.
+
+## Relative abundance: setup
+
+The first steps before analysis are:
+
+- Create a new notebook called "3-relative_abundance.ipynb".
+- Add a markdown cell with the first level header: `# Relative abundance`.
+- Add the below to a code cell to load in the `phyloseq` object and libraries.
+
+```{r, eval=FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+#Load phyloseq object
+load("phyloseq.RData")
+```
+
+From now on you will get less instructions on your notebook structure. 
+Please create your own coding and markdown cells where you think appropriate.
+
+## Relative abundance: transformation
+
+
+
 #Relative abundance ####
 #Convert abundance table to relative abundance (compositional) table
 pseq_relabund <- microbiome::transform(pseq, "compositional")

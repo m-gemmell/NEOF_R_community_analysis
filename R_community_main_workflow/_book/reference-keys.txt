@@ -43,5 +43,11 @@ sample-depth-boxplot
 creating-data-frame-for-boxplots
 depth-boxplots
 rarefaction-curve
+asv-abundance-data-frame
+vegans-rarecurve
+filtering-by-minimum-read-depth
+minmum-read-depth-summary
 relative-abundance
-rarefaction
+relative-abundance-setup
+relative-abundance-transformation
+rarefaction_chap

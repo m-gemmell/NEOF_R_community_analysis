@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-09" />
+<meta name="date" content="2023-03-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -203,9 +203,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#creating-data-frame-for-boxplots"><i class="fa fa-check"></i><b>9.4.1</b> Creating data frame for boxplots</a></li>
 <li class="chapter" data-level="9.4.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#depth-boxplots"><i class="fa fa-check"></i><b>9.4.2</b> Depth boxplots</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#rarefaction-curve"><i class="fa fa-check"></i><b>9.5</b> Rarefaction curve</a></li>
+<li class="chapter" data-level="9.5" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#rarefaction-curve"><i class="fa fa-check"></i><b>9.5</b> Rarefaction curve</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#asv-abundance-data-frame"><i class="fa fa-check"></i><b>9.5.1</b> ASV abundance data frame</a></li>
+<li class="chapter" data-level="9.5.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#vegans-rarecurve"><i class="fa fa-check"></i><b>9.5.2</b> vegan's rarecurve</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html"><i class="fa fa-check"></i><b>10</b> Relative abundance</a></li>
+<li class="chapter" data-level="9.6" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#filtering-by-minimum-read-depth"><i class="fa fa-check"></i><b>9.6</b> Filtering by minimum read depth</a></li>
+<li class="chapter" data-level="9.7" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#minmum-read-depth-summary"><i class="fa fa-check"></i><b>9.7</b> Minmum read depth: Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html"><i class="fa fa-check"></i><b>10</b> Relative abundance</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-setup"><i class="fa fa-check"></i><b>10.1</b> Relative abundance: setup</a></li>
+<li class="chapter" data-level="10.2" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-transformation"><i class="fa fa-check"></i><b>10.2</b> Relative abundance: transformation</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html"><i class="fa fa-check"></i><b>11</b> Rarefaction</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -229,6 +239,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="relative-abundance" class="section level1 hasAnchor" number="10">
 <h1><span class="header-section-number">Chapter 10</span> Relative abundance<a href="10-Relative_abundance.html#relative-abundance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter we are going to create a <code>phyloseq</code> with relative abundance values. We would use our read depth filtered data if we wanted to use it for other downstream analyses.
+But, as stated in the last chapter all our samples looked good so we will use our original abundance <code>phyloseq</code> object.</p>
+<p>Once we have created our relative abundance data we will remove rare ASVs.
+We will then check how many ASVs we lost and save the relative abundance <code>phyloseq</code> object.</p>
+<div id="relative-abundance-setup" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Relative abundance: setup<a href="10-Relative_abundance.html#relative-abundance-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The first steps before analysis are:</p>
+<ul>
+<li>Create a new notebook called "3-relative_abundance.ipynb".</li>
+<li>Add a markdown cell with the first level header: <code># Relative abundance</code>.</li>
+<li>Add the below to a code cell to load in the <code>phyloseq</code> object and libraries.</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="10-Relative_abundance.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Libraries</span></span>
+<span id="cb39-2"><a href="10-Relative_abundance.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;phyloseq&quot;</span>)</span>
+<span id="cb39-3"><a href="10-Relative_abundance.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
+<span id="cb39-4"><a href="10-Relative_abundance.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Load phyloseq object</span></span>
+<span id="cb39-5"><a href="10-Relative_abundance.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
+<p>From now on you will get less instructions on your notebook structure.
+Please create your own coding and markdown cells where you think appropriate.</p>
+</div>
+<div id="relative-abundance-transformation" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Relative abundance: transformation<a href="10-Relative_abundance.html#relative-abundance-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>#Relative abundance ####
 #Convert abundance table to relative abundance (compositional) table
 pseq_relabund &lt;- microbiome::transform(pseq, "compositional")
@@ -277,6 +309,7 @@ num_asvs_vec["abundance"] - num_asvs_vec["relabund"]</p>
 #Therefore we can save it for further use
 save(pseq_relabund, file = "phyloseq_relabund.RData")</p>
 
+</div>
 </div>
 <script>
 

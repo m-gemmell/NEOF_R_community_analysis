@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-09" />
+<meta name="date" content="2023-03-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -203,9 +203,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#creating-data-frame-for-boxplots"><i class="fa fa-check"></i><b>9.4.1</b> Creating data frame for boxplots</a></li>
 <li class="chapter" data-level="9.4.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#depth-boxplots"><i class="fa fa-check"></i><b>9.4.2</b> Depth boxplots</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#rarefaction-curve"><i class="fa fa-check"></i><b>9.5</b> Rarefaction curve</a></li>
+<li class="chapter" data-level="9.5" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#rarefaction-curve"><i class="fa fa-check"></i><b>9.5</b> Rarefaction curve</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#asv-abundance-data-frame"><i class="fa fa-check"></i><b>9.5.1</b> ASV abundance data frame</a></li>
+<li class="chapter" data-level="9.5.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#vegans-rarecurve"><i class="fa fa-check"></i><b>9.5.2</b> vegan's rarecurve</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html"><i class="fa fa-check"></i><b>10</b> Relative abundance</a></li>
+<li class="chapter" data-level="9.6" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#filtering-by-minimum-read-depth"><i class="fa fa-check"></i><b>9.6</b> Filtering by minimum read depth</a></li>
+<li class="chapter" data-level="9.7" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#minmum-read-depth-summary"><i class="fa fa-check"></i><b>9.7</b> Minmum read depth: Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html"><i class="fa fa-check"></i><b>10</b> Relative abundance</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-setup"><i class="fa fa-check"></i><b>10.1</b> Relative abundance: setup</a></li>
+<li class="chapter" data-level="10.2" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-transformation"><i class="fa fa-check"></i><b>10.2</b> Relative abundance: transformation</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html"><i class="fa fa-check"></i><b>11</b> Rarefaction</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -227,8 +237,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rarefaction" class="section level1 hasAnchor" number="11">
-<h1><span class="header-section-number">Chapter 11</span> Rarefaction<a href="11-Rarefaction.html#rarefaction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="rarefaction_chap" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Rarefaction<a href="11-Rarefaction.html#rarefaction_chap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>#Rarefy abundance table ####
 #i.e. convert abundance numbers so each sample has equal depth</p>
 <p>#Before rarefying a table it is good to make a rarefaction curve
