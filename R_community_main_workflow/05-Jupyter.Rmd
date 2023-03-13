@@ -170,3 +170,11 @@ knitr::include_graphics(path = "figures/jupyter_notebook_refresh.png", auto_pdf 
 
 With that quick tutorial of `jupyter-notebook` we can start our community analysis ion the next chapter.
 
+## Video tutorial
+
+
+<div class="container">
+<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+

@@ -10,7 +10,7 @@ We will then check how many ASVs we lost and save the relative abundance `phylos
 
 The first steps before analysis are:
 
-- Create a new notebook called "3-relative_abundance.ipynb".
+- Create a new notebook called __"3-relative_abundance.ipynb"__.
 - Add a markdown cell with the first level header: `# Relative abundance`.
 - Add the below to a code cell to load in the `phyloseq` object and libraries.
 
@@ -27,62 +27,98 @@ Please create your own coding and markdown cells where you think appropriate.
 
 ## Relative abundance: transformation
 
+Now that we have the data loaded we can create a new `phyloseq` object by converting the abundance values to relative abundance.
 
+This is carried out with the `microbiome` function `transform()`. With it we transform the ASV abundance table within to a "compositional" table (relative abundance). 
 
-#Relative abundance ####
+Run the below command in an appropriate place in your notebook:
+
+```{r, eval=FALSE}
 #Convert abundance table to relative abundance (compositional) table
 pseq_relabund <- microbiome::transform(pseq, "compositional")
+```
+
+As always it is good to check the contents of the new ASV table.
+
+```{r, eval=FALSE}
 #Summarise and check sample counts which should each amount to 1
 microbiome::summarize_phyloseq(pseq_relabund)
 microbiome::readcount(pseq_relabund)
+```
 
-#Check the below logic
-#When using total abundance values it is useful to have 0 values, singletons, and doubletons
-#This is because some alpha diversity metrics require them
-#However it is useful to remove low relative abundance data in relative abundance data
-#This is so the rare ASVs do not overly affect certain types of analysis
+You will notice the read count for each sample is __1__. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, all the fractional relative abundance of ASVs in one sample total 1.
 
-#first remove ASV with relabund equal to 0
-#This can occur if samples were removed which had ASVs 
-#not present in the remaining samples
-pseq_relabund <-  filter_taxa(pseq_relabund, function(x) sum(x) > 0, TRUE)
+## Rare ASV removal
 
+When we are using total or rarefied abundance values we want to keep rare ASVs, singletons, and doubletons. These are important to keep so we can get detailed data. Additionally, some alpha diversity metrics require these values.
+
+`r hide("Singletons & Doubletons defintion")`
+
+- __Singleton__: A single, unique DNA sequence. I.e. an ASV with a total abundance of 1 across all samples.
+- __Doubleton__: A DNA sequence that only appears twice. I.e. an ASV with a total abundance of 2 across all samples.
+
+`r unhide()`
+
+However, when we are using relative abundance data it can be a good idea to remove rare features (ASVs). Relative abundance data is good to get a broader picture and therefore rare ASVs may add too much noise.
+
+We will therefore remove ASVs with low relative abundances. A recommended method is to remove ASVs with a mean relative abundance equal to or less than `1e-5` (0.00001).
+
+For this we will use `phyloseq::filter_taxa()`. This uses a function to keep ASVs with a mean relative abundance > 1e-5.
+
+```{r, eval=FALSE}
+#Remove rare ASVs, retain ASVs with mean > 1e-5
+pseq_relabund <- phyloseq::filter_taxa(
+  pseq_relabund, function(x) mean(x) > 1e-5, TRUE
+)
+```
+
+It is very important to make sure only a small amount of our relative abundance has been lost across our samples. Check this with the following commands.
+
+```{r, eval=FALSE}
 #Summarise and check sample counts which should each amount to around 1
 microbiome::summarize_phyloseq(pseq_relabund)
 microbiome::readcount(pseq_relabund)
+```
 
-#All the total relative abundances still equal 1
-#This is expected since no samples were removed
-#As this is the case there is no need to check if ASVs were removed
+```{r, echo = FALSE}
+opts_p <- c(answer="__0.979__", "__0.997__", "__1__")
+```
+  - What is the approximate minimum total relative abundance? `r longmcq(opts_p)`
 
-#We will now remove rare ASVs as these are not as useful in relative abundance data
-#compared to abundance data
-#There are many ways to do this
-#A common way, recommended by the phyloseq developer
-#Remove ASVs with a mean (across samples) less than 1e-5 (relabund)
-pseq_relabund <-  
-  phyloseq::filter_taxa(
-    pseq_relabund, function(x) mean(x) > 1e-5, TRUE)
+```{r, echo = FALSE}
+opts_p <- c("__0.978__", answer="__0.997__", "__1__")
+```
+  - What is the approximate average total relative abundance? `r longmcq(opts_p)`
 
-#Summarise and check sample counts which should each amount to around 1
-microbiome::summarize_phyloseq(pseq_relabund)
-microbiome::readcount(pseq_relabund)
+We have lost a very small amount of relative abundance with no sample having lost more than 0.04 (4%). Most of the samples have lost less than 0.01 (1%). For the purposes of our relatve abundance data this is fine.
 
-#Total relative abundance has decreased by a very small amount
-#This is what we are looking for, if too much is being removed >0.05
-#you will need to try to be gentler with the filtering
-#Such as trying 1e-6 rather than 1e-5
+If you were worried you had lost too much you could try to be less stringent and use a smaller value such as `1e-6`. If that is still to strict try `1e-7` etc.. If you do this ensure you load the abundance `phyloseq` object again so you are not filtering the already filtered data.
 
-#We should also check how many ASVs have been removed
+## Relative abundance: number of ASVs vector
+
+It is useful to keep track of how many ASVs are in our various `phyloseq` objects. Use the below commands to load in the vector we created in chapter 8. This contains the number of ASVs in our original data. We'll add the number of ASVs we have in our relative abundance table.
+
+```{r, eval=FALSE}
+#Load in ASV count vector
+load("num_asvs_vec.RData")
+#Add relative abundance ASV count
 num_asvs_vec["relabund"] <- nrow(phyloseq::otu_table(pseq_relabund))
 num_asvs_vec
+#Check how many ASVs lost
 num_asvs_vec["abundance"] - num_asvs_vec["relabund"]
+#Save vector as a new file
+save(num_asvs_vec, file="num_asvs_vec.v2.RData")
+#Remove object from environment
+rm(num_asvs_vec)
+```
 
-#We have lost a good amount of ASVs but these only equate to a very small
-#amount relabund. This is fine as we generally use relative abundance
-#when looking at the larger picture rather than at closer pictures
-#instead we can use a rarefied abundance table to look at the closer picture
+We saved the vector as a new file. This is in case we need to rerun the code in __"2-preprocess.ipynb"__. If we did that and the files had the same name we could overwrite the file and it may be confusing to know what happened to it. 
 
-#We are now happy with our relative abundance table
-#Therefore we can save it for further use
+## Relative abundance: save
+
+We have created our relative abundance table and we are happy with it. Therefore, we will save the `phyloseq` object.
+
+```{r, eval=FALSE}
+#Save relative abundance phyloseq
 save(pseq_relabund, file = "phyloseq_relabund.RData")
+```

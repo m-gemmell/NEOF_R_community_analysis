@@ -21,6 +21,7 @@ running-code
 saving-the-file
 title-cells-with-markdown
 close-the-notebook
+video-tutorial
 data-prep-intro
 import_chap
 import-notebook
@@ -50,4 +51,6 @@ minmum-read-depth-summary
 relative-abundance
 relative-abundance-setup
 relative-abundance-transformation
+rare-asv-removal
+relative-abundance-check
 rarefaction_chap
