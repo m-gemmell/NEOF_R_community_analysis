@@ -170,7 +170,7 @@ From the boxplots we can see there is no drastic difference between the depths o
 
 For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
 
-## Rarefaction curve
+## Rarefaction curve {#chap9rarefaction}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ```
@@ -221,6 +221,8 @@ vegan::rarecurve(
   ylab = "ASVs"
 )
 ```
+
+__Note__: You will get a warning saying `"most observed count data have counts1, but smalled count is 2"`. This can be ignored in this case.
 
 In essence, we are hoping that the majority of samples have plateau'd.
 If the curves have flattened in relation to the y axis this indicates that most of the ASVs present in the sample have been captured.

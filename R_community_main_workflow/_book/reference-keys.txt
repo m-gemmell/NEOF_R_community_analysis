@@ -43,7 +43,7 @@ read-depth-vector-and-histogram
 sample-depth-boxplot
 creating-data-frame-for-boxplots
 depth-boxplots
-rarefaction-curve
+chap9rarefaction
 asv-abundance-data-frame
 vegans-rarecurve
 filtering-by-minimum-read-depth
@@ -52,5 +52,14 @@ relative-abundance
 relative-abundance-setup
 relative-abundance-transformation
 rare-asv-removal
-relative-abundance-check
+relative-abundance-number-of-asvs-vector
+relative-abundance-save
+relative-abundance-recap
 rarefaction_chap
+rarefaction-setup
+rarefaction-curve
+analogy
+rarefaction-curve-simple-plot
+rarefaction-curve-better-plot
+rarefaction-curve-display-plot
+rarefaction-slope

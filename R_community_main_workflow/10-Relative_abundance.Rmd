@@ -122,3 +122,9 @@ We have created our relative abundance table and we are happy with it. Therefore
 #Save relative abundance phyloseq
 save(pseq_relabund, file = "phyloseq_relabund.RData")
 ```
+
+Once you have donw this you can save, then close and halt the notebook.
+
+## Relative abundance: recap
+
+We have created and saved our relative abundance `phyloseq` object for later use. IN addition, we removed rare ASVs since we will use this data to look at broad strokes such as taxonomc tables.

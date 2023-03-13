@@ -204,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#creating-data-frame-for-boxplots"><i class="fa fa-check"></i><b>9.4.1</b> Creating data frame for boxplots</a></li>
 <li class="chapter" data-level="9.4.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#depth-boxplots"><i class="fa fa-check"></i><b>9.4.2</b> Depth boxplots</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#rarefaction-curve"><i class="fa fa-check"></i><b>9.5</b> Rarefaction curve</a>
+<li class="chapter" data-level="9.5" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#chap9rarefaction"><i class="fa fa-check"></i><b>9.5</b> Rarefaction curve</a>
 <ul>
 <li class="chapter" data-level="9.5.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#asv-abundance-data-frame"><i class="fa fa-check"></i><b>9.5.1</b> ASV abundance data frame</a></li>
 <li class="chapter" data-level="9.5.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#vegans-rarecurve"><i class="fa fa-check"></i><b>9.5.2</b> vegan's rarecurve</a></li>
@@ -217,9 +217,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-setup"><i class="fa fa-check"></i><b>10.1</b> Relative abundance: setup</a></li>
 <li class="chapter" data-level="10.2" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-transformation"><i class="fa fa-check"></i><b>10.2</b> Relative abundance: transformation</a></li>
 <li class="chapter" data-level="10.3" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#rare-asv-removal"><i class="fa fa-check"></i><b>10.3</b> Rare ASV removal</a></li>
-<li class="chapter" data-level="10.4" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-check"><i class="fa fa-check"></i><b>10.4</b> Relative abundance: check</a></li>
+<li class="chapter" data-level="10.4" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-number-of-asvs-vector"><i class="fa fa-check"></i><b>10.4</b> Relative abundance: number of ASVs vector</a></li>
+<li class="chapter" data-level="10.5" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-save"><i class="fa fa-check"></i><b>10.5</b> Relative abundance: save</a></li>
+<li class="chapter" data-level="10.6" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-recap"><i class="fa fa-check"></i><b>10.6</b> Relative abundance: recap</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html"><i class="fa fa-check"></i><b>11</b> Rarefaction</a></li>
+<li class="chapter" data-level="11" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html"><i class="fa fa-check"></i><b>11</b> Rarefaction</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-setup"><i class="fa fa-check"></i><b>11.1</b> Rarefaction: setup</a></li>
+<li class="chapter" data-level="11.2" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve"><i class="fa fa-check"></i><b>11.2</b> Rarefaction curve</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#analogy"><i class="fa fa-check"></i><b>11.2.1</b> Analogy</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve-simple-plot"><i class="fa fa-check"></i><b>11.3</b> Rarefaction curve: simple plot</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve-better-plot"><i class="fa fa-check"></i><b>11.4</b> Rarefaction curve: better plot</a></li>
+<li class="chapter" data-level="11.5" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve-display-plot"><i class="fa fa-check"></i><b>11.5</b> Rarefaction curve: display plot</a></li>
+<li class="chapter" data-level="11.6" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-slope"><i class="fa fa-check"></i><b>11.6</b> Rarefaction slope</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -242,38 +255,196 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="rarefaction_chap" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Rarefaction<a href="11-Rarefaction.html#rarefaction_chap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>#Rarefy abundance table ####
-#i.e. convert abundance numbers so each sample has equal depth</p>
-<p>#Before rarefying a table it is good to make a rarefaction curve
-#This is to help us choose an appropriate rarefaction threshold</p>
-<p>#We will use the very useful package vegan
-#Ignore any warning message
-vegan::rarecurve(
-x = as.data.frame(t(phyloseq::otu_table(pseq))), step = 50)</p>
-<p>#Let us improve this and save it into a file
-png(filename = "./rarefaction_plot.png", res = 300,
-units = "mm", height = 200, width = 300)
-vegan::rarecurve(
-x = as.data.frame(t(phyloseq::otu_table(pseq))), step = 50,
-ylab="ASVs", lwd=1,label=F)
-#Add a vertical line of the smallest sample depth
-abline(v = min(reads_sample), col="red")
-dev.off()</p>
-<p>#With this we can see that the majorty of samples plateau at
-#the minimum sampleing depth
-#Therefore we can use this as a rarefaction size
-pseq_rarefy &lt;-
-phyloseq::rarefy_even_depth(
-pseq, sample.size = min(reads_sample), rngseed = 1000)</p>
+<p>We are going to create a rarefied abundance table in this chapter. This
+can be a controversial topic so please make your own decision if you
+want to do this or not in your own analysis.</p>
+<div id="rarefaction-setup" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Rarefaction: setup<a href="11-Rarefaction.html#rarefaction-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will use a new notebook called <strong>"4-rarefaction.ipynb"</strong>. Add the
+following to this new notebook to load the required libraries/packages
+and data.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="11-Rarefaction.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Libraries</span></span>
+<span id="cb46-2"><a href="11-Rarefaction.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;phyloseq&quot;</span>)</span>
+<span id="cb46-3"><a href="11-Rarefaction.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
+<span id="cb46-4"><a href="11-Rarefaction.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;vegan&quot;</span>)</span>
+<span id="cb46-5"><a href="11-Rarefaction.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;IRdisplay&quot;</span>)</span>
+<span id="cb46-6"><a href="11-Rarefaction.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Load phyloseq object</span></span>
+<span id="cb46-7"><a href="11-Rarefaction.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;phyloseq.RData&quot;</span>)</span>
+<span id="cb46-8"><a href="11-Rarefaction.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Load ASV count vector</span></span>
+<span id="cb46-9"><a href="11-Rarefaction.html#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;num_asvs_vec.v2.RData&quot;</span>)</span></code></pre></div>
+<p>Ensure you add markdown and code cells to this notebook to give yourself
+a good structure.</p>
+</div>
+<div id="rarefaction-curve" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Rarefaction curve<a href="11-Rarefaction.html#rarefaction-curve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/rarefaction.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Prior to rarefying our data we need to determine the depth we want to
+use. We can carry this out with a rarefaction curve.</p>
+<p>A rarefaction curve is produced by randomly sampling the sequences in a
+sample (without replacement). The rarefaction curve extracts and plots
+the first N sequences of each sample. N is equal to the step size which
+we will set as 50 (<code>step = 50</code>).</p>
+<p>From these sequences it will plot the number of total ASVs it has found
+against the depth it has currently sampled. Therefore, after 10 steps it
+will be at a depth of 500 on the x-axis (50 * 10) and it will show how
+many unique ASVs it has currently discovered from all 10 samplings.</p>
+<div id="analogy" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> Analogy<a href="11-Rarefaction.html#analogy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You are cataloguing the bird diversity (ASV diversity) in three forests/woods
+in Hampshire (3 samples of our abundance table). You record your
+findings over a week for each forest. Your record on the cumulative
+amount of unique species you find over the 3 separate weeks are in the
+table below:</p>
+<table>
+<caption>Cumulative bird species found in Hampshire forests/woods over a week</caption>
+<colgroup>
+<col width="20%" />
+<col width="24%" />
+<col width="27%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>New Forest (93900 acres)</th>
+<th>Telegraph woods (50 acres)</th>
+<th>Old Lords wood (4.67 acres)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>12</td>
+<td>7</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>21</td>
+<td>12</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>32</td>
+<td>16</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>40</td>
+<td>21</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>49</td>
+<td>23</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>60</td>
+<td>24</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>65</td>
+<td>25</td>
+<td>13</td>
+</tr>
+</tbody>
+</table>
+<p><img src="R-community-analysis_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p>In this case we can be fairly confident that seven days is enough to find all the birds we can in the Old Lords wood.
+I.e. the sampling depth is enough.
+Just like bird watching, it is very hard to find all the species present in a sample with metabarcoding or shotgun metagenomics.
+This can be caused by our barcodes not picking up all species, our sampling wasn't perfect, some species are very rare, or errors that DNA sequencing introduces.</p>
+<p>A week seems like a good amount for sampling the Telegraph woods but it is possible that some more species have not been recorded.</p>
+<p>Strikingly, a week does not appear to be enough time for the New Forest. The amount of new species decreased to 5 on day 7 but the curve has not plateau'd.</p>
+<p>This hopefully helps you understand why rarefaction curves are a useful measure of how well we have captured the diversity of samples at differnet depths.</p>
+</div>
+</div>
+<div id="rarefaction-curve-simple-plot" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Rarefaction curve: simple plot<a href="11-Rarefaction.html#rarefaction-curve-simple-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We'll use <code>vegan</code> to create our rarefaction curve like we did in
+<a href="09-Minimum_read_depth.html#chap9rarefaction">Chapter 9</a>.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="11-Rarefaction.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Extract ASV table as data frame</span></span>
+<span id="cb47-2"><a href="11-Rarefaction.html#cb47-2" aria-hidden="true" tabindex="-1"></a>asv_abund_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(pseq)))</span>
+<span id="cb47-3"><a href="11-Rarefaction.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Rarefaction curve</span></span>
+<span id="cb47-4"><a href="11-Rarefaction.html#cb47-4" aria-hidden="true" tabindex="-1"></a>vegan<span class="sc">::</span><span class="fu">rarecurve</span>(</span>
+<span id="cb47-5"><a href="11-Rarefaction.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> asv_abund_df, <span class="at">step =</span> <span class="dv">50</span>,</span>
+<span id="cb47-6"><a href="11-Rarefaction.html#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Read depth&quot;</span>,</span>
+<span id="cb47-7"><a href="11-Rarefaction.html#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;ASVs&quot;</span></span>
+<span id="cb47-8"><a href="11-Rarefaction.html#cb47-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="rarefaction-curve-better-plot" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Rarefaction curve: better plot<a href="11-Rarefaction.html#rarefaction-curve-better-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is a useful plot but we can make it bigger and better! We will do
+that with the following additions:</p>
+<ul>
+<li>Saving it as a <code>.png</code> file with the functions <code>png()</code> and
+<code>dev.off()</code>.</li>
+<li>Adding extra options to <code>vegan::rarecurve()</code>:
+<ul>
+<li><code>lwd</code>: Sets the line width of the plot.</li>
+<li><code>label</code>: Turn the sample labels on (<code>T</code>) or off (<code>F</code>).</li>
+<li><code>sample</code>: Draws a vertical line at the specified depth.
+Additionally, draws a horizontal line for each sample showing
+how many ASVs were discovered at the sampling depth.</li>
+</ul></li>
+<li>Adding a vertical line showing the minimum depth of the samples with
+<code>abline()</code>.</li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="11-Rarefaction.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Improved plot saved as file</span></span>
+<span id="cb48-2"><a href="11-Rarefaction.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;./rarefaction_plot.png&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>,</span>
+<span id="cb48-3"><a href="11-Rarefaction.html#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">200</span>, <span class="at">width =</span> <span class="dv">300</span>)</span>
+<span id="cb48-4"><a href="11-Rarefaction.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot</span></span>
+<span id="cb48-5"><a href="11-Rarefaction.html#cb48-5" aria-hidden="true" tabindex="-1"></a>vegan<span class="sc">::</span><span class="fu">rarecurve</span>(</span>
+<span id="cb48-6"><a href="11-Rarefaction.html#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> asv_abund_df, <span class="at">step =</span> <span class="dv">50</span>,</span>
+<span id="cb48-7"><a href="11-Rarefaction.html#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Read depth&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;ASVs&quot;</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">label =</span> F,</span>
+<span id="cb48-8"><a href="11-Rarefaction.html#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample =</span> <span class="fu">min</span>(microbiome<span class="sc">::</span><span class="fu">readcount</span>(pseq))</span>
+<span id="cb48-9"><a href="11-Rarefaction.html#cb48-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-10"><a href="11-Rarefaction.html#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+</div>
+<div id="rarefaction-curve-display-plot" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Rarefaction curve: display plot<a href="11-Rarefaction.html#rarefaction-curve-display-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have created and saved the plot as a <code>.png</code> but it is not being
+displayed. We can use the package
+<a href="https://github.com/IRkernel/IRdisplay"><code>IRdisplay</code></a> to display plots
+from files in <code>jupyter-notebook</code>. In this case the function
+<code>display_png()</code> is used.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="11-Rarefaction.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
+<span id="cb49-2"><a href="11-Rarefaction.html#cb49-2" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./rarefaction_plot.png&quot;</span>)</span></code></pre></div>
+</div>
+<div id="rarefaction-slope" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Rarefaction slope<a href="11-Rarefaction.html#rarefaction-slope" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>#Rarefy abundance table #### #i.e. convert abundance numbers so each
+sample has equal depth</p>
+<p>#Before rarefying a table it is good to make a rarefaction curve #This
+is to help us choose an appropriate rarefaction threshold</p>
+<p>#We will use the very useful package vegan #Ignore any warning message
+vegan::rarecurve( x = as.data.frame(t(phyloseq::otu_table(pseq))), step
+= 50)</p>
+<p>#Let us improve this and save it into a file png(filename =
+"./rarefaction_plot.png", res = 300, units = "mm", height = 200, width =
+300) vegan::rarecurve( x = as.data.frame(t(phyloseq::otu_table(pseq))),
+step = 50, ylab="ASVs", lwd=1,label=F) #Add a vertical line of the
+smallest sample depth abline(v = min(reads_sample), col="red") dev.off()</p>
+<p>#With this we can see that the majorty of samples plateau at #the
+minimum sampleing depth #Therefore we can use this as a rarefaction size
+pseq_rarefy &lt;- phyloseq::rarefy_even_depth( pseq, sample.size =
+min(reads_sample), rngseed = 1000)</p>
 <p>#Summarise and check sample counts which should each amount to 10433
 microbiome::summarize_phyloseq(pseq_rarefy)
 microbiome::readcount(pseq_rarefy)</p>
-<p>#Check ASVs
-num_asvs_vec["rarefied"] &lt;- nrow(phyloseq::otu_table(pseq_rarefy))
-num_asvs_vec</p>
-<p>#Save phyloseq object
-save(pseq_relpseq_rarefyabund, file = "phyloseq_rarefied.RData")</p>
+<p>#Check ASVs num_asvs_vec["rarefied"] &lt;-
+nrow(phyloseq::otu_table(pseq_rarefy)) num_asvs_vec</p>
+<p>#Save phyloseq object save(pseq_relpseq_rarefyabund, file =
+"phyloseq_rarefied.RData")</p>
 
+</div>
 </div>
 <script>
 

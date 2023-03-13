@@ -204,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#creating-data-frame-for-boxplots"><i class="fa fa-check"></i><b>9.4.1</b> Creating data frame for boxplots</a></li>
 <li class="chapter" data-level="9.4.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#depth-boxplots"><i class="fa fa-check"></i><b>9.4.2</b> Depth boxplots</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#rarefaction-curve"><i class="fa fa-check"></i><b>9.5</b> Rarefaction curve</a>
+<li class="chapter" data-level="9.5" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#chap9rarefaction"><i class="fa fa-check"></i><b>9.5</b> Rarefaction curve</a>
 <ul>
 <li class="chapter" data-level="9.5.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#asv-abundance-data-frame"><i class="fa fa-check"></i><b>9.5.1</b> ASV abundance data frame</a></li>
 <li class="chapter" data-level="9.5.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#vegans-rarecurve"><i class="fa fa-check"></i><b>9.5.2</b> vegan's rarecurve</a></li>
@@ -217,9 +217,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-setup"><i class="fa fa-check"></i><b>10.1</b> Relative abundance: setup</a></li>
 <li class="chapter" data-level="10.2" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-transformation"><i class="fa fa-check"></i><b>10.2</b> Relative abundance: transformation</a></li>
 <li class="chapter" data-level="10.3" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#rare-asv-removal"><i class="fa fa-check"></i><b>10.3</b> Rare ASV removal</a></li>
-<li class="chapter" data-level="10.4" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-check"><i class="fa fa-check"></i><b>10.4</b> Relative abundance: check</a></li>
+<li class="chapter" data-level="10.4" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-number-of-asvs-vector"><i class="fa fa-check"></i><b>10.4</b> Relative abundance: number of ASVs vector</a></li>
+<li class="chapter" data-level="10.5" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-save"><i class="fa fa-check"></i><b>10.5</b> Relative abundance: save</a></li>
+<li class="chapter" data-level="10.6" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-recap"><i class="fa fa-check"></i><b>10.6</b> Relative abundance: recap</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html"><i class="fa fa-check"></i><b>11</b> Rarefaction</a></li>
+<li class="chapter" data-level="11" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html"><i class="fa fa-check"></i><b>11</b> Rarefaction</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-setup"><i class="fa fa-check"></i><b>11.1</b> Rarefaction: setup</a></li>
+<li class="chapter" data-level="11.2" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve"><i class="fa fa-check"></i><b>11.2</b> Rarefaction curve</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#analogy"><i class="fa fa-check"></i><b>11.2.1</b> Analogy</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve-simple-plot"><i class="fa fa-check"></i><b>11.3</b> Rarefaction curve: simple plot</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve-better-plot"><i class="fa fa-check"></i><b>11.4</b> Rarefaction curve: better plot</a></li>
+<li class="chapter" data-level="11.5" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve-display-plot"><i class="fa fa-check"></i><b>11.5</b> Rarefaction curve: display plot</a></li>
+<li class="chapter" data-level="11.6" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-slope"><i class="fa fa-check"></i><b>11.6</b> Rarefaction slope</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -295,8 +308,8 @@ Normally, for 16S data, a depth of at least 20K per sample is suggested. However
 <p>We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:</p>
 <ul>
 <li>What is the approximate read depth range of our dataset?
-<div id="radio_ZRXAOWBEPJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZRXAOWBEPJ" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZRXAOWBEPJ" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZRXAOWBEPJ" value=""></input> <span><strong>20,000+</strong></span></label>
+<div id="radio_QPAUIJVBPY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QPAUIJVBPY" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QPAUIJVBPY" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QPAUIJVBPY" value=""></input> <span><strong>20,000+</strong></span></label>
 </div></li>
 </ul>
 <p>This is a good first step but what if we want to know how the read depths vary between sample groups?</p>
@@ -361,8 +374,8 @@ We won't go into too much detail on how the code works here, instead learning mo
 <span id="cb29-3"><a href="09-Minimum_read_depth.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <ul>
 <li>Which site has the highest median depth (middle line of boxplot)?
-<div id="radio_YLKJXBUUOQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YLKJXBUUOQ" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YLKJXBUUOQ" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YLKJXBUUOQ" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
+<div id="radio_WJMMBKCBAL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WJMMBKCBAL" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WJMMBKCBAL" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WJMMBKCBAL" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
 </div></li>
 </ul>
 <p>We will use the same code to plot the depth by media.
@@ -373,16 +386,16 @@ Carry this out in the same cell and run the code.</p>
 <span id="cb30-3"><a href="09-Minimum_read_depth.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <ul>
 <li>Which media has the lowest median depth (middle line of boxplot)?
-<div id="radio_BHBDPJZUHV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BHBDPJZUHV" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BHBDPJZUHV" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BHBDPJZUHV" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_GZAPOPKBTR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GZAPOPKBTR" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GZAPOPKBTR" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GZAPOPKBTR" value=""></input> <span><strong>TSA</strong></span></label>
 </div></li>
 </ul>
 <p>From the boxplots we can see there is no drastic difference between the depths of the different sample groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.</p>
 <p>For more resources on <code>ggplot2</code> please see the <a href="#ggplot2_appendix">appendix</a> of this book.</p>
 </div>
 </div>
-<div id="rarefaction-curve" class="section level2 hasAnchor" number="9.5">
-<h2><span class="header-section-number">9.5</span> Rarefaction curve<a href="09-Minimum_read_depth.html#rarefaction-curve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="chap9rarefaction" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Rarefaction curve<a href="09-Minimum_read_depth.html#chap9rarefaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/rarefaction.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Our read depths appear a bit low, each sample has &lt;20K reads.
 However, this might be fine for our dataset since we are using surface water samples rather than human gut microbiome samples.
@@ -415,6 +428,7 @@ Additionally, we ensure it is a data frame with the function <code>as.data.frame
 <span id="cb32-4"><a href="09-Minimum_read_depth.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Read depth&quot;</span>,</span>
 <span id="cb32-5"><a href="09-Minimum_read_depth.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;ASVs&quot;</span></span>
 <span id="cb32-6"><a href="09-Minimum_read_depth.html#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><strong>Note</strong>: You will get a warning saying <code>"most observed count data have counts1, but smalled count is 2"</code>. This can be ignored in this case.</p>
 <p>In essence, we are hoping that the majority of samples have plateau'd.
 If the curves have flattened in relation to the y axis this indicates that most of the ASVs present in the sample have been captured.</p>
 <p>In this case the samples have plateau'd or have gentle slopes towards the end.
