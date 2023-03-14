@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-13" />
+<meta name="date" content="2023-03-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -212,26 +212,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#filtering-by-minimum-read-depth"><i class="fa fa-check"></i><b>9.6</b> Filtering by minimum read depth</a></li>
 <li class="chapter" data-level="9.7" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#minmum-read-depth-summary"><i class="fa fa-check"></i><b>9.7</b> Minmum read depth: Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html"><i class="fa fa-check"></i><b>10</b> Relative abundance</a>
+<li class="part"><span><b>Taxonomy</b></span></li>
+<li class="chapter" data-level="10" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html"><i class="fa fa-check"></i><b>10</b> Genus relative abundance</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-setup"><i class="fa fa-check"></i><b>10.1</b> Relative abundance: setup</a></li>
-<li class="chapter" data-level="10.2" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-transformation"><i class="fa fa-check"></i><b>10.2</b> Relative abundance: transformation</a></li>
-<li class="chapter" data-level="10.3" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#rare-asv-removal"><i class="fa fa-check"></i><b>10.3</b> Rare ASV removal</a></li>
-<li class="chapter" data-level="10.4" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-number-of-asvs-vector"><i class="fa fa-check"></i><b>10.4</b> Relative abundance: number of ASVs vector</a></li>
-<li class="chapter" data-level="10.5" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-save"><i class="fa fa-check"></i><b>10.5</b> Relative abundance: save</a></li>
-<li class="chapter" data-level="10.6" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-recap"><i class="fa fa-check"></i><b>10.6</b> Relative abundance: recap</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html"><i class="fa fa-check"></i><b>11</b> Rarefaction</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-setup"><i class="fa fa-check"></i><b>11.1</b> Rarefaction: setup</a></li>
-<li class="chapter" data-level="11.2" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve"><i class="fa fa-check"></i><b>11.2</b> Rarefaction curve</a>
-<ul>
-<li class="chapter" data-level="11.2.1" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#analogy"><i class="fa fa-check"></i><b>11.2.1</b> Analogy</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve-simple-plot"><i class="fa fa-check"></i><b>11.3</b> Rarefaction curve: simple plot</a></li>
-<li class="chapter" data-level="11.4" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve-better-plot"><i class="fa fa-check"></i><b>11.4</b> Rarefaction curve: better plot</a></li>
-<li class="chapter" data-level="11.5" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-curve-display-plot"><i class="fa fa-check"></i><b>11.5</b> Rarefaction curve: display plot</a></li>
-<li class="chapter" data-level="11.6" data-path="11-Rarefaction.html"><a href="11-Rarefaction.html#rarefaction-slope"><i class="fa fa-check"></i><b>11.6</b> Rarefaction slope</a></li>
+<li class="chapter" data-level="10.1" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#genus-relative-abundance-setup"><i class="fa fa-check"></i><b>10.1</b> Genus relative abundance: setup</a></li>
+<li class="chapter" data-level="10.2" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-transformation"><i class="fa fa-check"></i><b>10.2</b> Relative abundance transformation</a></li>
+<li class="chapter" data-level="10.3" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#aggregate-taxa-to-genus"><i class="fa fa-check"></i><b>10.3</b> Aggregate taxa to genus</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -256,15 +242,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-prep-intro" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Data prep intro<a href="06-Preprocess_part.html#data-prep-intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/half_tablespoon.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>In the next 5 chapters (7-11) we will learn how to:</p>
+<p>In the next 3 chapters (7-9) we will learn how to:</p>
 <ul>
 <li><a href="07-Import.html#import_chap">Import our data.</a></li>
 <li><a href="08-Summarise_phyloseq.html#sum_phyloseq_chap">Summarise our <code>phyloseq</code> object.</a></li>
-<li>Transform our abundance <code>phyloseq</code> object into:
-<ul>
-<li>A relative/compositional abundance <code>phyloseq</code> object</li>
-<li>A rarefied <code>phyloseq</code> object.</li>
-</ul></li>
+<li><a href="09-Minimum_read_depth.html#mindepthchap">Determine the minimum read depth for samples to be used.</a></li>
 </ul>
 <p>We will also use this as a chance to reinforce how to use <code>jupyter-notebook</code> with clear instructions.
 However, from chapters 10 onwards you will make more decisions on how many <strong>"Coding"</strong> and <strong>"Markdown"</strong> cells you want.</p>

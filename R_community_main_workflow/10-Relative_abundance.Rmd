@@ -1,19 +1,22 @@
-# Relative abundance
+# (PART\*) Taxonomy {-}
 
-In this chapter we are going to create a `phyloseq` with relative abundance values. We would use our read depth filtered data if we wanted to use it for other downstream analyses.
+# Taxa relative abundance
+
+In this section we are going to create taxonomy bar charts.
+For this we are going to use relative abundance tables of different taxa levels; Genus, Family, & Phyla.
+
+In this chapter we are going to create a `phyloseq` object with relative abundance values of genera. 
+We would use our read depth filtered data if we wanted to use it for other downstream analyses.
 But, as stated in the last chapter all our samples looked good so we will use our original abundance `phyloseq` object.
 
-Once we have created our relative abundance data we will remove rare ASVs.
-We will then check how many ASVs we lost and save the relative abundance `phyloseq` object.
-
-## Relative abundance: setup
+## Taxa relative abundance: setup
 
 The first steps before analysis are:
 
-- Create a new notebook called __"3-relative_abundance.ipynb"__.
-- Add a markdown cell with the first level header: `# Relative abundance`.
+- Create a new notebook called __"3-taxonomy_barcharts"__.
+  - We will use this to create our phyloseq objects and taxonomy bar charts.
+- Add a markdown cell with the first level header: `# Taxonomy bar charts`.
 - Add the below to a code cell to load in the `phyloseq` object and libraries.
-
 ```{r, eval=FALSE}
 #Libraries
 library("phyloseq")
@@ -25,16 +28,16 @@ load("phyloseq.RData")
 From now on you will get less instructions on your notebook structure. 
 Please create your own coding and markdown cells where you think appropriate.
 
-## Relative abundance: transformation
+## Relative abundance transformation
 
-Now that we have the data loaded we can create a new `phyloseq` object by converting the abundance values to relative abundance.
+Now that we have the data loaded we can create a new `phyloseq` object by transforming the abundance values to relative abundances.
 
 This is carried out with the `microbiome` function `transform()`. With it we transform the ASV abundance table within to a "compositional" table (relative abundance). 
 
 Run the below command in an appropriate place in your notebook:
 
 ```{r, eval=FALSE}
-#Convert abundance table to relative abundance (compositional) table
+#Transform abundance table to a relative abundance (compositional) table
 pseq_relabund <- microbiome::transform(pseq, "compositional")
 ```
 
@@ -46,85 +49,38 @@ microbiome::summarize_phyloseq(pseq_relabund)
 microbiome::readcount(pseq_relabund)
 ```
 
-You will notice the read count for each sample is __1__. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, all the fractional relative abundance of ASVs in one sample total 1.
+You will notice the read count for each sample is __1__. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, all the fractional relative abundance values of ASVs in one sample total 1.
 
-## Rare ASV removal
+We will use this to produce all our different taxa tables.
 
-When we are using total or rarefied abundance values we want to keep rare ASVs, singletons, and doubletons. These are important to keep so we can get detailed data. Additionally, some alpha diversity metrics require these values.
+## Aggregate taxa
 
-`r hide("Singletons & Doubletons defintion")`
+To produce a taxa table we can use the `microbiome` function `aggregate_taxa()`.
 
-- __Singleton__: A single, unique DNA sequence. I.e. an ASV with a total abundance of 1 across all samples.
-- __Doubleton__: A DNA sequence that only appears twice. I.e. an ASV with a total abundance of 2 across all samples.
+Run the below command to produce a genus based `phyloseq` object.
 
-`r unhide()`
+__Reminder__: You may want a markdown cell to create a 2nd level header for this genus section.
 
-However, when we are using relative abundance data it can be a good idea to remove rare features (ASVs). Relative abundance data is good to get a broader picture and therefore rare ASVs may add too much noise.
+```{r, eval = FALSE}
+#Check head of tax_table
+#This will tell us the taxa level names on the column names
+head(tax_table(pseq_relabund))
+#Genus phyloseq
+genus_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Genus", verbose = FALSE)
+```
 
-We will therefore remove ASVs with low relative abundances. A recommended method is to remove ASVs with a mean relative abundance equal to or less than `1e-5` (0.00001).
-
-For this we will use `phyloseq::filter_taxa()`. This uses a function to keep ASVs with a mean relative abundance > 1e-5.
+Let's check our genus `phyloseq`.
 
 ```{r, eval=FALSE}
-#Remove rare ASVs, retain ASVs with mean > 1e-5
-pseq_relabund <- phyloseq::filter_taxa(
-  pseq_relabund, function(x) mean(x) > 1e-5, TRUE
-)
+#Head of genus relative abundance table
+head(phyloseq::otu_table(genus_pseq))
+#Number of genera
+paste0("Number of genera: ", nrow(phyloseq::otu_table(genus_pseq)))
+#Summarise
+microbiome::summarize_phyloseq(genus_pseq)
+microbiome::readcount(genus_pseq)
 ```
 
-It is very important to make sure only a small amount of our relative abundance has been lost across our samples. Check this with the following commands.
+## Taxa Relative abundance: summary
 
-```{r, eval=FALSE}
-#Summarise and check sample counts which should each amount to around 1
-microbiome::summarize_phyloseq(pseq_relabund)
-microbiome::readcount(pseq_relabund)
-```
-
-```{r, echo = FALSE}
-opts_p <- c(answer="__0.979__", "__0.997__", "__1__")
-```
-  - What is the approximate minimum total relative abundance? `r longmcq(opts_p)`
-
-```{r, echo = FALSE}
-opts_p <- c("__0.978__", answer="__0.997__", "__1__")
-```
-  - What is the approximate average total relative abundance? `r longmcq(opts_p)`
-
-We have lost a very small amount of relative abundance with no sample having lost more than 0.04 (4%). Most of the samples have lost less than 0.01 (1%). For the purposes of our relatve abundance data this is fine.
-
-If you were worried you had lost too much you could try to be less stringent and use a smaller value such as `1e-6`. If that is still to strict try `1e-7` etc.. If you do this ensure you load the abundance `phyloseq` object again so you are not filtering the already filtered data.
-
-## Relative abundance: number of ASVs vector
-
-It is useful to keep track of how many ASVs are in our various `phyloseq` objects. Use the below commands to load in the vector we created in chapter 8. This contains the number of ASVs in our original data. We'll add the number of ASVs we have in our relative abundance table.
-
-```{r, eval=FALSE}
-#Load in ASV count vector
-load("num_asvs_vec.RData")
-#Add relative abundance ASV count
-num_asvs_vec["relabund"] <- nrow(phyloseq::otu_table(pseq_relabund))
-num_asvs_vec
-#Check how many ASVs lost
-num_asvs_vec["abundance"] - num_asvs_vec["relabund"]
-#Save vector as a new file
-save(num_asvs_vec, file="num_asvs_vec.v2.RData")
-#Remove object from environment
-rm(num_asvs_vec)
-```
-
-We saved the vector as a new file. This is in case we need to rerun the code in __"2-preprocess.ipynb"__. If we did that and the files had the same name we could overwrite the file and it may be confusing to know what happened to it. 
-
-## Relative abundance: save
-
-We have created our relative abundance table and we are happy with it. Therefore, we will save the `phyloseq` object.
-
-```{r, eval=FALSE}
-#Save relative abundance phyloseq
-save(pseq_relabund, file = "phyloseq_relabund.RData")
-```
-
-Once you have donw this you can save, then close and halt the notebook.
-
-## Relative abundance: recap
-
-We have created and saved our relative abundance `phyloseq` object for later use. IN addition, we removed rare ASVs since we will use this data to look at broad strokes such as taxonomc tables.
+We have produced a `phyloseq` object containing a Genus relative abundance table. Next, we will create a taxonomy bar chart with this.

@@ -5,13 +5,11 @@
 knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
 ```
 
-In the next 5 chapters (7-11) we will learn how to:
+In the next 3 chapters (7-9) we will learn how to:
 
 - [Import our data.](#import_chap)
 - [Summarise our `phyloseq` object.](#sum_phyloseq_chap)
-- Transform our abundance `phyloseq` object into:
-  - A relative/compositional abundance `phyloseq` object
-  - A rarefied `phyloseq` object.
+- [Determine the minimum read depth for samples to be used.](#mindepthchap)
 
 We will also use this as a chance to reinforce how to use `jupyter-notebook` with clear instructions. 
 However, from chapters 10 onwards you will make more decisions on how many __"Coding"__ and __"Markdown"__ cells you want.

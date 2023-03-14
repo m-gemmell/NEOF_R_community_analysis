@@ -1,4 +1,4 @@
-# Minimum read depth
+# Minimum read depth {#mindepthchap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/depth_diver.png", auto_pdf = TRUE)
 ``` 

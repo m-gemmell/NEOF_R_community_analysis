@@ -94,7 +94,7 @@ Strikingly, a week does not appear to be enough time for the New Forest. The amo
 
 This hopefully helps you understand why rarefaction curves are a useful measure of how well we have captured the diversity of samples at differnet depths. 
 
-## Rarefaction curve: simple plot
+### Rarefaction curve: simple plot
 
 We'll use `vegan` to create our rarefaction curve like we did in
 [Chapter 9](#chap9rarefaction).
@@ -110,7 +110,7 @@ vegan::rarecurve(
 )
 ```
 
-## Rarefaction curve: better plot
+### Rarefaction curve: better plot
 
 It is a useful plot but we can make it bigger and better! We will do
 that with the following additions:
@@ -139,7 +139,7 @@ vegan::rarecurve(
 dev.off()
 ```
 
-## Rarefaction curve: display plot
+### Rarefaction curve: display plot
 
 We have created and saved the plot as a `.png` but it is not being
 displayed. We can use the package
@@ -152,35 +152,104 @@ from files in `jupyter-notebook`. In this case the function
 IRdisplay::display_png(file="./rarefaction_plot.png")
 ```
 
-## Rarefaction slope
+From this plot we can see that most of the samples have plateu'd quite nicely at the minimum depth.
+This indicates that this is a good sampling depth, i.e. depth to be chosen for rarefying the data.
+The grey horizontal lines help show how many more ASVs are found in a sample after the chosen sampling depth.
+This can be seen in the sample with the highest number of ASVs where 5-20 more ASVs are discovered with its final depth of ~16,000.
 
-#Rarefy abundance table \#### #i.e. convert abundance numbers so each
-sample has equal depth
+### Rarefaction slope
 
-#Before rarefying a table it is good to make a rarefaction curve #This
-is to help us choose an appropriate rarefaction threshold
+We can calculate the slope of each sample at our specified sampling depth.
+A slope of 0 shows a flat horizontal line (what we want).
+A slope of 1 shows a flat vertical line (not what we want).
 
-#We will use the very useful package vegan #Ignore any warning message
-vegan::rarecurve( x = as.data.frame(t(phyloseq::otu_table(pseq))), step
-= 50)
+To get the slope of each sample we will use `vegan::rareslope()`.
 
-#Let us improve this and save it into a file png(filename =
-"./rarefaction_plot.png", res = 300, units = "mm", height = 200, width =
-300) vegan::rarecurve( x = as.data.frame(t(phyloseq::otu_table(pseq))),
-step = 50, ylab="ASVs", lwd=1,label=F) #Add a vertical line of the
-smallest sample depth abline(v = min(reads_sample), col="red") dev.off()
+```{r, eval=FALSE}
+#Rarefaction slopes
+rarefaction_slopes <- vegan::rareslope(
+  x = asv_abund_df, sample = min(microbiome::readcount(pseq))
+)
+#View slopes from lowest to highest value
+sort(rarefaction_slopes)
+#Summary of slopes
+summary(rarefaction_slopes)
+#Histogram of slopes
+hist(rarefaction_slopes)
+```
 
-#With this we can see that the majorty of samples plateau at #the
-minimum sampleing depth #Therefore we can use this as a rarefaction size
-pseq_rarefy \<- phyloseq::rarefy_even_depth( pseq, sample.size =
-min(reads_sample), rngseed = 1000)
+With the calculated slopes attempt the following questions:
 
+```{r, echo = FALSE}
+opts_p <- c("__UD_ENV_rep2__", answer="__MD_ENV_rep3__", "__LD_CVP_rep1__")
+```
+1. Which sample has the largest slope value? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__UD_ENV_rep2__", "__MD_ENV_rep3__", answer="__LD_CVP_rep1__")
+```
+2. Which sample has the lowest slope value? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Environmental__", "__Media__")
+```
+3. Which samples have larger slope values; the environmental samples or media samples? `r longmcq(opts_p)`
+
+Overall the slopes values are low (<0.01).
+It is noticeable that the environmental samples have higher slopes than the media samples.
+Biologically, this makes sense as there is not bias being introduced by media.
+
+## Rarefy data
+
+The minimum sample depth appears to be a good choice for rarefying.
+It keeps all the samples and at this depth the samples have a very good coverage of the ASVs present in the data. In your own analyses you may need to balance the loss of samples with the loss of depth.
+
+With that decision we will rarefy our data to the minimum depth.
+
+```{r, eval=FALSE}
+#Rarefy to minimum depth
+pseq_rarefy <- phyloseq::rarefy_even_depth(
+  pseq, sample.size = min(reads_sample), rngseed = 1000
+  )
+```
+
+The options we provided to the function `rarefy_even_depth` were:
+
+- __`pseq`__: The `phyloseq` object to rarefy.
+- __`sample.size =`__: The sampling depth to rarefy to.
+- __`rngseed`__: This is the seed used for random subsampling.
+  - If you rarefy the data again with the same seed it will extract the same data.
+  - This is useful so you and others can replicate your work.
+  - Additionally, it means you will get the same output as me (the writer) so you can accurately compare your findings to mine.
+
+As always, it is useful to check our data.
+
+```{r, eval=FALSE}
 #Summarise and check sample counts which should each amount to 10433
 microbiome::summarize_phyloseq(pseq_rarefy)
 microbiome::readcount(pseq_rarefy)
+#ASV counts
+#Add relative abundance ASV count
+num_asvs_vec["rarefied"] <- nrow(phyloseq::otu_table(pseq_relabund))
+num_asvs_vec
+```
 
-#Check ASVs num_asvs_vec["rarefied"] \<-
-nrow(phyloseq::otu_table(pseq_rarefy)) num_asvs_vec
+Once you have viewed the outputs save your `phyloseq` object and ASC count vector.
 
-#Save phyloseq object save(pseq_relpseq_rarefyabund, file =
-"phyloseq_rarefied.RData")
+```{r, eval=FALSE}
+#Phyloseq save
+save(pseq_relpseq_rarefyabund, file ="phyloseq_rarefied.RData")
+#ASV count save
+save(num_asvs_vec, file="num_asvs_vec.v3.RData")
+```
+
+Now you can close and halt the notebook.
+
+## Rarefaction: summary
+
+In this chapter we:
+
+- Determined the sampling depth to rarefy to with rarefaction curves and slopes.
+- Rarefied our samples to the minimum read depth. This retained all our samples whilst using a good depth.
+
+We now have an abundance table, relative abundance table, and rarefied abundance table. We will use these to carry out some analyses.
