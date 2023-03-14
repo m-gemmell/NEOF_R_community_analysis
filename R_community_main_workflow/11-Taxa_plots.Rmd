@@ -1,0 +1,152 @@
+# Taxa plots
+
+Now that we have our Genus relative abundance `phyloseq` we can create a bar chart.
+
+## Simple bar chart
+
+To create a simple genus bar chart we can use the following code.
+
+```{r, eval=FALSE}
+#Simple bar chart
+phylum_bar <- microbiome::plot_composition(phylum_pseq)
+phylum_bar
+```
+
+We have created and saved a `ggplot` object called `phylum_bar`. 
+We then viewed it by calling the object.
+This is a good start but the plot is a bit hard to read.
+
+### Save ggplot as png
+
+It can be a good idea to save a `ggplot` object as a file with `ggsave()`.
+This allows you to select the size and resolution (`dpi`) of the image.
+
+```{r, eval=FALSE}
+#Save ggplot object as png file
+ggsave(filename = "./phylum_relabund_simple.png", plot = phylum_bar,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+```
+
+### Display png
+
+We can use the R package [`IRdisplay`](https://github.com/IRkernel/IRdisplay) to display plots from files in `jupyter-notebook`.
+
+Use the function `display_png()` to display our bar chart.
+
+```{r, eval=FALSE}
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./phylum_relabund_simple.png")
+```
+
+### Editing the plot
+
+Components can be added to `ggplot2` objects to edit the plot.
+They are added with the `+` symbol.
+
+Go to the cell where you created your plot and add components so it looks like the below:
+
+```{r, eval=FALSE}
+#Simple bar chart
+phylum_bar <- microbiome::plot_composition(phylum_pseq) +
+  xlab("Sample") + ylab("Relative abundance") +
+  ggtitle("Phylum relative abundance bar chart")
+```
+
+Now save and display the plot.
+
+## Taxa heatmap
+
+Our bar chart looks quite nice but for displaying all taxa present it may be better to use a heatmap.
+Use the below code to produce and visualise a heatmap.
+
+__Tip__: I encourage you to copy and paste your previous bar chart code to edit.
+
+```{r, eval=FALSE}
+#Produce heatmap ggplot
+phylum_heatmap <- microbiome::plot_composition(phylum_pseq, plot.type = "heatmap") +
+  xlab("Sample") + ylab("Relative abundance") +
+  ggtitle("Phylum relative abundance heatmap")
+#Save ggplot object as png file
+ggsave(filename = "./phylum_relabund_heatmap.png", plot = phylum_bar,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./phylum_relabund_heatmap.png")
+```
+
+With the heatmap it is much easier to tell what the relative abundances of different phyla are.
+
+```{r, echo = FALSE}
+opts_p <- c("__Chloroflexi__", "__Firmicutes__", answer="__Proteobacteria__")
+```
+- What is the most abundant phyla across the samples? `r longmcq(opts_p)`
+
+## Aggregate rare taxa
+
+From our bar chart and our heatmap we can see that there are a few high abundance phyla (Actinobacteria, Bacteroidetes, Firmicutes, & Proteobacteria) and many low abundance phyla.
+
+To make a better visualisation we will aggregate the rare phyla.
+This will give us less phyla to plot so we don't need to use so many colours.
+
+To carry this out we will use the `microbiome` function `aggregate_rare()`.
+The function has three main options:
+
+- __`level =`__: Taxa level to aggregate table.
+- __`detection =`__: Detection threshold (see below).
+- __`prevalence =`__: Prevalence threshold (see below).
+
+The function will aggregate taxa to our specified level. 
+Whilst doing this it will aggregate the rare taxa of that level to one group called "Other".
+Rare taxa are specified via the __detection__ and __prevalence__ thresholds.
+Any taxa with an abundance >= to the __detection__ threshold in a number of samples >= to the __prevalence__ threshold will be kept.
+The taxa which don't reach these thresholds will be classified as rare and aggregated into "Other".
+
+In the below example we are aggregating the rare taxa with our ASV relative abundance `phyloseq` object.
+Any phyla with a relative abundance >= to 0.01 (__detection__) in at least 5% (5/100) of the samples will not be classified as rare.
+
+More info on [Prevalence & detection](https://microbiome.github.io/OMA/quality-control.html#prevalence).
+
+__Note__: The __detection__ and __prevalence__ thresholds can be given as numbers (1, 2, 1000 etc.), or percentage values (5/100, 50/100, etc.).
+
+Aggregate the relative abundance table to phyla with the rare thresholds:
+
+```{r, eval = FALSE}
+#Aggregate rare phyla
+phylum_rareaggregate_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "phylum",
+  detection = 0.01, prevalence = 5/100
+)
+```
+
+We will plot this as a new taxonomy bar chart with some additions:
+
+```{r, eval = FALSE}
+#Plot
+#Add otu.sort to sort phyla by abundance (highest to lowest)
+phylum_bar <- microbiome::plot_composition(phylum_rareaggregate_pseq) +
+  xlab("Sample") + ylab("Relative abundance") +
+  ggtitle("Phylum relative abundance bar chart") +
+  #Change colours of Phylum to that of the "Paired" palette from colour brewer
+  scale_fill_brewer("Phylum", palette = "Paired")
+#Save ggplot object as png
+ggsave(filename = "./phylum_relabund_rareaggregate.png", plot = phylum_bar,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display plot
+IRdisplay::display_png(file="./phylum_relabund_rareaggregate.png")
+```
+
+`r hide("Colour brewer palettes")`
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+knitr::include_graphics(path = "figures/colour_brewer_palettes.png", auto_pdf = TRUE)
+```
+[Source](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
+`r unhide()`
+
+That is a very nice and clean bar chart.
+We can quite easily see that there are 7 main phyla.
+Additionally, it seems that the biggest difference between samples is due to the media used.
+
+## Plot by media
+
+
+
+

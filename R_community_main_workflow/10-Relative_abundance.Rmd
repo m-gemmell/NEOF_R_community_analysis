@@ -5,7 +5,7 @@
 In this section we are going to create taxonomy bar charts.
 For this we are going to use relative abundance tables of different taxa levels; Genus, Family, & Phyla.
 
-In this chapter we are going to create a `phyloseq` object with relative abundance values of genera. 
+In this chapter we are going to create a `phyloseq` object with relative abundance values of phyla 
 We would use our read depth filtered data if we wanted to use it for other downstream analyses.
 But, as stated in the last chapter all our samples looked good so we will use our original abundance `phyloseq` object.
 
@@ -21,6 +21,7 @@ The first steps before analysis are:
 #Libraries
 library("phyloseq")
 library("microbiome")
+library("IRdisplay")
 #Load phyloseq object
 load("phyloseq.RData")
 ```
@@ -57,30 +58,30 @@ We will use this to produce all our different taxa tables.
 
 To produce a taxa table we can use the `microbiome` function `aggregate_taxa()`.
 
-Run the below command to produce a genus based `phyloseq` object.
+Run the below command to produce a phylum based `phyloseq` object.
 
-__Reminder__: You may want a markdown cell to create a 2nd level header for this genus section.
+__Reminder__: You may want a markdown cell to create a 2nd level header for this phylum section.
 
 ```{r, eval = FALSE}
 #Check head of tax_table
 #This will tell us the taxa level names on the column names
 head(tax_table(pseq_relabund))
-#Genus phyloseq
-genus_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Genus", verbose = FALSE)
+#Phylum phyloseq
+phylum_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Phylum", verbose = FALSE)
 ```
 
-Let's check our genus `phyloseq`.
+Let's check our phyla `phyloseq`.
 
 ```{r, eval=FALSE}
-#Head of genus relative abundance table
-head(phyloseq::otu_table(genus_pseq))
-#Number of genera
-paste0("Number of genera: ", nrow(phyloseq::otu_table(genus_pseq)))
+#Head of phylum relative abundance table
+head(phyloseq::otu_table(phylum_pseq))
+#Number of phyla
+paste0("Number of phyla: ", nrow(phyloseq::otu_table(phylum_pseq)))
 #Summarise
-microbiome::summarize_phyloseq(genus_pseq)
-microbiome::readcount(genus_pseq)
+microbiome::summarize_phyloseq(phylum_pseq)
+microbiome::readcount(phylum_pseq)
 ```
 
 ## Taxa Relative abundance: summary
 
-We have produced a `phyloseq` object containing a Genus relative abundance table. Next, we will create a taxonomy bar chart with this.
+We have produced a `phyloseq` object containing a Phylum relative abundance table. Next, we will create a taxonomy bar chart with this.

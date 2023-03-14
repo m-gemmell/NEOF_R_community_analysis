@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Jupyter | R community analysis</title>
+  <title>Chapter 11 Taxa bar chart | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Jupyter | R community analysis" />
+  <meta property="og:title" content="Chapter 11 Taxa bar chart | R community analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community analysis workflow" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Jupyter | R community analysis" />
+  <meta name="twitter:title" content="Chapter 11 Taxa bar chart | R community analysis" />
   
   <meta name="twitter:description" content="NEOF book for the R community analysis workflow" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-<link rel="prev" href="04-Setup.html"/>
-<link rel="next" href="06-Preprocess_part.html"/>
+<link rel="prev" href="10-Relative_abundance.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -220,16 +220,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#aggregate-taxa"><i class="fa fa-check"></i><b>10.3</b> Aggregate taxa</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#taxa-relative-abundance-summary"><i class="fa fa-check"></i><b>10.4</b> Taxa Relative abundance: summary</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html"><i class="fa fa-check"></i><b>11</b> Taxa plots</a>
+<li class="chapter" data-level="11" data-path="11-Genus_bar_chart.html"><a href="11-Genus_bar_chart.html"><i class="fa fa-check"></i><b>11</b> Taxa bar chart</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#simple-bar-chart"><i class="fa fa-check"></i><b>11.1</b> Simple bar chart</a>
-<ul>
-<li class="chapter" data-level="11.1.1" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#save-ggplot-as-png"><i class="fa fa-check"></i><b>11.1.1</b> Save ggplot as png</a></li>
-<li class="chapter" data-level="11.1.2" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#display-png"><i class="fa fa-check"></i><b>11.1.2</b> Display png</a></li>
-<li class="chapter" data-level="11.1.3" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#editing-the-plot"><i class="fa fa-check"></i><b>11.1.3</b> Editing the plot</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#taxa-heatmap"><i class="fa fa-check"></i><b>11.2</b> Taxa heatmap</a></li>
-<li class="chapter" data-level="11.3" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#aggregate-rare-taxa"><i class="fa fa-check"></i><b>11.3</b> Aggregate rare taxa</a></li>
+<li class="chapter" data-level="11.1" data-path="11-Genus_bar_chart.html"><a href="11-Genus_bar_chart.html#genus-relative-abundance-setup"><i class="fa fa-check"></i><b>11.1</b> Genus relative abundance: setup</a></li>
+<li class="chapter" data-level="11.2" data-path="11-Genus_bar_chart.html"><a href="11-Genus_bar_chart.html#relative-abundance-transformation-1"><i class="fa fa-check"></i><b>11.2</b> Relative abundance transformation</a></li>
+<li class="chapter" data-level="11.3" data-path="11-Genus_bar_chart.html"><a href="11-Genus_bar_chart.html#aggregate-taxa-to-genus"><i class="fa fa-check"></i><b>11.3</b> Aggregate taxa to genus</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Genus_bar_chart.html"><a href="11-Genus_bar_chart.html#summary-genus-relative-abundance"><i class="fa fa-check"></i><b>11.4</b> Summary: Genus relative abundance</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -251,154 +247,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="jupyter" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Jupyter<a href="05-Jupyter.html#jupyter" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="figures/jupyter_logo.png" width="20%" style="display: block; margin: auto;" /></p>
-<p><a href="https://jupyter.org/"><code>Jupyter-notebook</code></a> is a nice browser based method to write, edit, and run code.
-It was initally created for Python coding, but has since branched out to many other languages, such as <code>R</code>.</p>
-<p>We are using it in this workshop for a variety of its properties:</p>
+<div id="taxa-bar-chart" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Taxa bar chart<a href="11-Genus_bar_chart.html#taxa-bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Now that we have our Genus relative abundance <code>phyloseq</code> we can create a bar chart.</p>
+<div id="genus-relative-abundance-setup" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Genus relative abundance: setup<a href="11-Genus_bar_chart.html#genus-relative-abundance-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The first steps before analysis are:</p>
 <ul>
-<li>It is popular and well maintained.</li>
-<li>It is lightweight. Other heavier weight programs, such as RStudio, would struggle in our HPC due to the graphical and CPU load.</li>
-<li>It is interactive and displays code output.</li>
-<li>It allows for easier annotation, editing, and debugging than the command line.</li>
-<li>It provides a graphical interface for hanging directories and choosing files.</li>
-</ul>
-<p>Before carrying out any analysis we will go through a quick tutorial of <code>jupyter-notebook</code>.</p>
-<div id="open-jupyter-notebook" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Open Jupyter-notebook<a href="05-Jupyter.html#open-jupyter-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The first step is to open <code>jupyter-notebook</code>.
-Run the below command in your <code>(r_community)</code> environment.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="05-Jupyter.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter-notebook</span></span></code></pre></div>
-<p>This will open <code>jupyter-notebook</code> in firefox. We won't need to access the linux terminal anymore. Leave it running <code>jupyter-notebook</code> and full screen your firefox so you should see something like below.</p>
-<p><img src="figures/jupyter_notebook_example_1.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="create-r-notebook" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Create R notebook<a href="05-Jupyter.html#create-r-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The next step is to create a R notebook.</p>
-<ol style="list-style-type: decimal">
-<li>Click on the <strong>"New"</strong> button towards the top right, right of the "Upload" button.</li>
-<li>From the dropdown click <strong>"R"</strong> below "Python 3 (ipykernel)".</li>
-</ol>
-<p>This will open up a new R notebook like below.</p>
-<p><img src="figures/jupyter_notebook_example_2.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="cells-and-code" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Cells and code<a href="05-Jupyter.html#cells-and-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Jupyter-notebook uses cells (the gray boxes) to separate code.
-This is very useful to compartmentalise our code.</p>
-<p>There will already be one cell. Within the cell, type in the below commands.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="05-Jupyter.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb8-2"><a href="05-Jupyter.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2-3</span></span></code></pre></div>
-<p>When pressing enter in cells it will create a new line.
-To run all commands in a cell press <code>CTRL + enter</code>.</p>
-<p>Run your current cell and you should see something like below.</p>
-<p><img src="figures/jupyter_notebook_example_3.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="create-new-cells" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Create new cells<a href="05-Jupyter.html#create-new-cells" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You can create new cells by 2 different means.</p>
+<li>Create a new notebook called <strong>"3-taxonomy_barcharts"</strong>.
 <ul>
-<li>Press the <code>+</code> button on the tool bar (between the floppy disk <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M380.93,57.37A32,32,0,0,0,358.3,48H94.22A46.21,46.21,0,0,0,48,94.22V417.78A46.21,46.21,0,0,0,94.22,464H417.78A46.36,46.36,0,0,0,464,417.78V153.7a32,32,0,0,0-9.37-22.63ZM256,416a64,64,0,1,1,64-64A63.92,63.92,0,0,1,256,416Zm48-224H112a16,16,0,0,1-16-16V112a16,16,0,0,1,16-16H304a16,16,0,0,1,16,16v64A16,16,0,0,1,304,192Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path></svg> and scissors <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M103.48,224a71.64,71.64,0,0,0,44.76-15.66l41.5,16.89,6.82-12.63a39.15,39.15,0,0,1,4.32-6.37l14.22-14.42-41.17-24.94A72,72,0,1,0,103.48,224Zm0-112a40,40,0,1,1-40,40A40,40,0,0,1,103.48,112Z"></path> <path d="M480,169l-5.52-12.58c-4.48-10.42-14.74-16-32.78-17.85-10.12-1-26.95-1.24-49.69,3.81-20,4.45-122.14,28.2-164.95,58.62C206.81,215.39,203,234.67,200,250.16c-2.78,14.14-5,25.31-18,35-15,11.14-27.27,16.38-33.58,18.6a71.74,71.74,0,1,0,24.79,38ZM255.48,256a16,16,0,1,1,16-16A16,16,0,0,1,255.48,256Zm-152,144a40,40,0,1,1,40-40A40,40,0,0,1,103.48,400Z"></path> <path d="M343.79,259.87l-83.74,48.18,27.63,13.08,3.62,1.74C310,331.92,359.74,356,410.53,359c3.89.23,7.47.34,10.78.34C442,359.31,453,354,459.75,350L480,336Z"></path></svg>). This will add a cell below your currently selected option.</li>
-<li>Click on the <strong><code>Insert</code></strong> button and use the dropdown to add a cell above or below your currently selected cell.</li>
-</ul>
-<p><strong>Tip:</strong> Hover over the toolbar icons to display a text based description of its function.</p>
-<p>With that knowledge add a second cell below the first cell.
-Add the following code to your second cell but do not run it.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="05-Jupyter.html#cb9-1" aria-hidden="true" tabindex="-1"></a>num_1 <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb9-2"><a href="05-Jupyter.html#cb9-2" aria-hidden="true" tabindex="-1"></a>num_2 <span class="ot">&lt;-</span> <span class="dv">10</span></span></code></pre></div>
-<p><strong>Tip:</strong> Notice there are green lines around your selected cell.</p>
-<p>Insert a third cell and add the following code to it. Do not run the code.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="05-Jupyter.html#cb10-1" aria-hidden="true" tabindex="-1"></a>num_1 <span class="sc">*</span> num_2</span></code></pre></div>
-</div>
-<div id="running-code" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Running code<a href="05-Jupyter.html#running-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Try to run the code in the third cell.
-There should be an error as we have not created the objects <code>num_1</code> &amp; <code>num_2</code>.
-We have only written the code for these objects but not run them.</p>
-<p>We can run all the code in a notebook starting from the first cell to the last cell.</p>
-<p>Two methods to run all cells are:</p>
-<ul>
-<li>Click on the <strong>"Cell"</strong> button.</li>
-<li>Click <strong>"Run All"</strong> from the drop-down options.</li>
-</ul>
-<p>You should then see something like the below in your notebook.</p>
-<p><img src="figures/jupyter_notebook_example_4.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>There is no output printed for cell 2 because we are assigning variables. However, now there is the correct output for Cell 3 as the variables were assigned before the command was run.</p>
-</div>
-<div id="saving-the-file" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Saving the file<a href="05-Jupyter.html#saving-the-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As with RStudio and other good coding interfaces we can save our notebook.</p>
-<p>First we should rename the file. Rename the notebook to <strong>"jupyter_tut"</strong>:</p>
-<ol style="list-style-type: decimal">
-<li>Click on the name of the notebook, currently called <strong>"Untitled"</strong>.</li>
-</ol>
-<ul>
-<li>This is at the very top of the notebook, right of the Jupyter logo.</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>A pop-up called <strong>"Rename Notebook"</strong> will appear. Change the Name to <strong>"jupyter_tut"</strong>.</li>
-<li>Click <strong>"Rename"</strong>.</li>
-</ol>
-<p>Now we can save the file. Two methods to save are:</p>
-<ul>
-<li>Click the floppy disk <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M380.93,57.37A32,32,0,0,0,358.3,48H94.22A46.21,46.21,0,0,0,48,94.22V417.78A46.21,46.21,0,0,0,94.22,464H417.78A46.36,46.36,0,0,0,464,417.78V153.7a32,32,0,0,0-9.37-22.63ZM256,416a64,64,0,1,1,64-64A63.92,63.92,0,0,1,256,416Zm48-224H112a16,16,0,0,1-16-16V112a16,16,0,0,1,16-16H304a16,16,0,0,1,16,16v64A16,16,0,0,1,304,192Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path></svg> on the toolbar.</li>
-<li>Click on the <strong>"File"</strong> button. Click <strong>"Save and Checkpoint"</strong> from the dropdown options.</li>
-</ul>
-</div>
-<div id="title-cells-with-markdown" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Title cells with markdown<a href="05-Jupyter.html#title-cells-with-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We will be using multiple notebooks in this workshop.
-However, we will also have multiple sections per notebook.
-It will therefore be useful to create header cells with markdown to create visual separation of the different sections.</p>
-<p>To add a header cell to the top of our notebook:</p>
-<ul>
-<li>Create a new cell at the top of the notebook.</li>
-<li>Click on the <strong>"Code"</strong> drop down and select <strong>"Markdown"</strong>.
-<ul>
-<li>The <strong>"Heading"</strong> option no longer works.</li>
+<li>We will use this to create our phyloseq objects and taxonomy bar charts.</li>
 </ul></li>
+<li>Add a markdown cell with the first level header: <code># Taxonomy bar charts</code>.</li>
+<li>Add the below to a code cell to load in the <code>phyloseq</code> object and libraries.</li>
 </ul>
-<p><img src="figures/jupyter_notebook_example_5.png" width="100%" style="display: block; margin: auto;" /></p>
-<ul>
-<li>Add the following to the <strong>"Markdown"</strong> cell to create a first level header.
-<ul>
-<li>Ensure you have a space between the <code>#</code> and header text ("Tutorial").</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="05-Jupyter.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tutorial</span></span></code></pre></div>
-<p>Great, we can now add nice headers in our notebooks. <strong>Save</strong> the notebook once more before carrying on to the next section.</p>
-<div class="webex-solution">
-<button>
-Markdown
-</button>
-<p>You won't need to know more about <code>Markdown</code> but if you are interested please see the <a href="https://www.markdownguide.org/basic-syntax/"><code>Markdown</code> guide</a>.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="11-Genus_bar_chart.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Libraries</span></span>
+<span id="cb44-2"><a href="11-Genus_bar_chart.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;phyloseq&quot;</span>)</span>
+<span id="cb44-3"><a href="11-Genus_bar_chart.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
+<span id="cb44-4"><a href="11-Genus_bar_chart.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Load phyloseq object</span></span>
+<span id="cb44-5"><a href="11-Genus_bar_chart.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
+<p>From now on you will get less instructions on your notebook structure.
+Please create your own coding and markdown cells where you think appropriate.</p>
 </div>
+<div id="relative-abundance-transformation-1" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Relative abundance transformation<a href="11-Genus_bar_chart.html#relative-abundance-transformation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we have the data loaded we can create a new <code>phyloseq</code> object by transforming the abundance values to relative abundances.</p>
+<p>This is carried out with the <code>microbiome</code> function <code>transform()</code>. With it we transform the ASV abundance table within to a "compositional" table (relative abundance).</p>
+<p>Run the below command in an appropriate place in your notebook:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="11-Genus_bar_chart.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Transform abundance table to a relative abundance (compositional) table</span></span>
+<span id="cb45-2"><a href="11-Genus_bar_chart.html#cb45-2" aria-hidden="true" tabindex="-1"></a>pseq_relabund <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">transform</span>(pseq, <span class="st">&quot;compositional&quot;</span>)</span></code></pre></div>
+<p>As always it is good to check the contents of the new ASV table.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="11-Genus_bar_chart.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summarise and check sample counts which should each amount to 1</span></span>
+<span id="cb46-2"><a href="11-Genus_bar_chart.html#cb46-2" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(pseq_relabund)</span>
+<span id="cb46-3"><a href="11-Genus_bar_chart.html#cb46-3" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">readcount</span>(pseq_relabund)</span></code></pre></div>
+<p>You will notice the read count for each sample is <strong>1</strong>. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, all the fractional relative abundance values of ASVs in one sample total 1.</p>
+<p>We will use this to produce all our different taxa tables.</p>
 </div>
-<div id="close-the-notebook" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Close the notebook<a href="05-Jupyter.html#close-the-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To close the notebook:</p>
-<ul>
-<li>Click on <strong>"File"</strong>.</li>
-<li>From the dropdown options click <strong>"Close and Halt"</strong>.</li>
-</ul>
-<p>When you are back in the file explorer page you may not yet set the new file you saved.
-If so, you will need to refresh the page with the Refresh button <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M320,146s24.36-12-64-12A160,160,0,1,0,416,294" style="fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"></path> <polyline points="256 58 336 138 256 218" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></polyline></svg> towards the top right.</p>
-<p><img src="figures/jupyter_notebook_refresh.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>With that quick tutorial of <code>jupyter-notebook</code> we can start our community analysis ion the next chapter.</p>
+<div id="aggregate-taxa-to-genus" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Aggregate taxa to genus<a href="11-Genus_bar_chart.html#aggregate-taxa-to-genus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To produce a taxa table we can use the <code>microbiome</code> function <code>aggregate_taxa()</code>.</p>
+<p>Run the below command to produce a genus based <code>phyloseq</code> object.</p>
+<p><strong>Reminder</strong>: You may want a markdown cell to create a 2nd level header for this genus section.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="11-Genus_bar_chart.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Check head of tax_table</span></span>
+<span id="cb47-2"><a href="11-Genus_bar_chart.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co">#This will tell us the taxa level names on the column names</span></span>
+<span id="cb47-3"><a href="11-Genus_bar_chart.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">tax_table</span>(pseq_relabund))</span>
+<span id="cb47-4"><a href="11-Genus_bar_chart.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Genus phyloseq</span></span>
+<span id="cb47-5"><a href="11-Genus_bar_chart.html#cb47-5" aria-hidden="true" tabindex="-1"></a>genus_pseq <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">aggregate_taxa</span>(pseq_relabund, <span class="st">&quot;Genus&quot;</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Let's check our genus <code>phyloseq</code>.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="11-Genus_bar_chart.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Head of genus relative abundance table</span></span>
+<span id="cb48-2"><a href="11-Genus_bar_chart.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(genus_pseq))</span>
+<span id="cb48-3"><a href="11-Genus_bar_chart.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of genera</span></span>
+<span id="cb48-4"><a href="11-Genus_bar_chart.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;Number of genera: &quot;</span>, <span class="fu">nrow</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(genus_pseq)))</span>
+<span id="cb48-5"><a href="11-Genus_bar_chart.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Summarise</span></span>
+<span id="cb48-6"><a href="11-Genus_bar_chart.html#cb48-6" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(genus_pseq)</span>
+<span id="cb48-7"><a href="11-Genus_bar_chart.html#cb48-7" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">readcount</span>(genus_pseq)</span></code></pre></div>
 </div>
-<div id="video-tutorial" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Video tutorial<a href="05-Jupyter.html#video-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="container">
-<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" frameborder="0" allowfullscreen class="video">
-</iframe>
-</div>
+<div id="summary-genus-relative-abundance" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Summary: Genus relative abundance<a href="11-Genus_bar_chart.html#summary-genus-relative-abundance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have produced a <code>phyloseq</code> object containing a Genus relative abundance table. Next, we will create a taxonomy bar chart with this.</p>
 
 </div>
 </div>
-
-
-
 <script>
 
 /* update total correct if #webex-total_correct exists */
@@ -575,8 +484,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="04-Setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="06-Preprocess_part.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="10-Relative_abundance.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

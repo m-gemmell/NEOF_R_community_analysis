@@ -213,11 +213,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#minmum-read-depth-summary"><i class="fa fa-check"></i><b>9.7</b> Minmum read depth: Summary</a></li>
 </ul></li>
 <li class="part"><span><b>Taxonomy</b></span></li>
-<li class="chapter" data-level="10" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html"><i class="fa fa-check"></i><b>10</b> Genus relative abundance</a>
+<li class="chapter" data-level="10" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html"><i class="fa fa-check"></i><b>10</b> Taxa relative abundance</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#genus-relative-abundance-setup"><i class="fa fa-check"></i><b>10.1</b> Genus relative abundance: setup</a></li>
+<li class="chapter" data-level="10.1" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#taxa-relative-abundance-setup"><i class="fa fa-check"></i><b>10.1</b> Taxa relative abundance: setup</a></li>
 <li class="chapter" data-level="10.2" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#relative-abundance-transformation"><i class="fa fa-check"></i><b>10.2</b> Relative abundance transformation</a></li>
-<li class="chapter" data-level="10.3" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#aggregate-taxa-to-genus"><i class="fa fa-check"></i><b>10.3</b> Aggregate taxa to genus</a></li>
+<li class="chapter" data-level="10.3" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#aggregate-taxa"><i class="fa fa-check"></i><b>10.3</b> Aggregate taxa</a></li>
+<li class="chapter" data-level="10.4" data-path="10-Relative_abundance.html"><a href="10-Relative_abundance.html#taxa-relative-abundance-summary"><i class="fa fa-check"></i><b>10.4</b> Taxa Relative abundance: summary</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html"><i class="fa fa-check"></i><b>11</b> Taxa plots</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#simple-bar-chart"><i class="fa fa-check"></i><b>11.1</b> Simple bar chart</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#save-ggplot-as-png"><i class="fa fa-check"></i><b>11.1.1</b> Save ggplot as png</a></li>
+<li class="chapter" data-level="11.1.2" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#display-png"><i class="fa fa-check"></i><b>11.1.2</b> Display png</a></li>
+<li class="chapter" data-level="11.1.3" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#editing-the-plot"><i class="fa fa-check"></i><b>11.1.3</b> Editing the plot</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#taxa-heatmap"><i class="fa fa-check"></i><b>11.2</b> Taxa heatmap</a></li>
+<li class="chapter" data-level="11.3" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#aggregate-rare-taxa"><i class="fa fa-check"></i><b>11.3</b> Aggregate rare taxa</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -294,8 +306,8 @@ Normally, for 16S data, a depth of at least 20K per sample is suggested. However
 <p>We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:</p>
 <ul>
 <li>What is the approximate read depth range of our dataset?
-<div id="radio_KCRHUMQXPQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KCRHUMQXPQ" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KCRHUMQXPQ" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KCRHUMQXPQ" value=""></input> <span><strong>20,000+</strong></span></label>
+<div id="radio_HXQAZJLKWL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HXQAZJLKWL" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HXQAZJLKWL" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HXQAZJLKWL" value=""></input> <span><strong>20,000+</strong></span></label>
 </div></li>
 </ul>
 <p>This is a good first step but what if we want to know how the read depths vary between sample groups?</p>
@@ -360,8 +372,8 @@ We won't go into too much detail on how the code works here, instead learning mo
 <span id="cb29-3"><a href="09-Minimum_read_depth.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <ul>
 <li>Which site has the highest median depth (middle line of boxplot)?
-<div id="radio_BQMLTCZAPR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BQMLTCZAPR" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BQMLTCZAPR" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BQMLTCZAPR" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
+<div id="radio_TRCROWWAMJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TRCROWWAMJ" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TRCROWWAMJ" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TRCROWWAMJ" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
 </div></li>
 </ul>
 <p>We will use the same code to plot the depth by media.
@@ -372,8 +384,8 @@ Carry this out in the same cell and run the code.</p>
 <span id="cb30-3"><a href="09-Minimum_read_depth.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <ul>
 <li>Which media has the lowest median depth (middle line of boxplot)?
-<div id="radio_XROBKMDPII" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XROBKMDPII" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XROBKMDPII" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XROBKMDPII" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_XEFAPLRKPT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XEFAPLRKPT" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XEFAPLRKPT" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XEFAPLRKPT" value=""></input> <span><strong>TSA</strong></span></label>
 </div></li>
 </ul>
 <p>From the boxplots we can see there is no drastic difference between the depths of the different sample groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.</p>

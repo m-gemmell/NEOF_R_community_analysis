@@ -1322,16 +1322,16 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 ```
 # (PART\*) Taxonomy {-}
 
-# Genus relative abundance
+# Taxa relative abundance
 
 In this section we are going to create taxonomy bar charts.
 For this we are going to use relative abundance tables of different taxa levels; Genus, Family, & Phyla.
 
-In this chapter we are going to create a `phyloseq` object with relative abundance values of genera. 
+In this chapter we are going to create a `phyloseq` object with relative abundance values of phyla 
 We would use our read depth filtered data if we wanted to use it for other downstream analyses.
 But, as stated in the last chapter all our samples looked good so we will use our original abundance `phyloseq` object.
 
-## Genus relative abundance: setup
+## Taxa relative abundance: setup
 
 The first steps before analysis are:
 
@@ -1343,6 +1343,7 @@ The first steps before analysis are:
 #Libraries
 library("phyloseq")
 library("microbiome")
+library("IRdisplay")
 #Load phyloseq object
 load("phyloseq.RData")
 ```
@@ -1352,14 +1353,14 @@ Please create your own coding and markdown cells where you think appropriate.
 
 ## Relative abundance transformation
 
-Now that we have the data loaded we can create a new `phyloseq` object by transforming the abundance values to relative abundance.
+Now that we have the data loaded we can create a new `phyloseq` object by transforming the abundance values to relative abundances.
 
 This is carried out with the `microbiome` function `transform()`. With it we transform the ASV abundance table within to a "compositional" table (relative abundance). 
 
 Run the below command in an appropriate place in your notebook:
 
 ```{r, eval=FALSE}
-#Convert abundance table to relative abundance (compositional) table
+#Transform abundance table to a relative abundance (compositional) table
 pseq_relabund <- microbiome::transform(pseq, "compositional")
 ```
 
@@ -1371,39 +1372,206 @@ microbiome::summarize_phyloseq(pseq_relabund)
 microbiome::readcount(pseq_relabund)
 ```
 
-You will notice the read count for each sample is __1__. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, all the fractional relative abundance of ASVs in one sample total 1.
+You will notice the read count for each sample is __1__. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, all the fractional relative abundance values of ASVs in one sample total 1.
 
 We will use this to produce all our different taxa tables.
 
-## Aggregate taxa to genus
+## Aggregate taxa
 
 To produce a taxa table we can use the `microbiome` function `aggregate_taxa()`.
 
-Run the below command to produce a genus based `phyloseq` object.
+Run the below command to produce a phylum based `phyloseq` object.
 
-__Reminder__: You may want a markdown cell to create a 2nd level header for this genus section.
+__Reminder__: You may want a markdown cell to create a 2nd level header for this phylum section.
 
 ```{r, eval = FALSE}
 #Check head of tax_table
 #This will tell us the taxa level names on the column names
 head(tax_table(pseq_relabund))
-#Genus phyloseq
-genus_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Genus", verbose = FALSE)
+#Phylum phyloseq
+phylum_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Phylum", verbose = FALSE)
 ```
 
-Let's check our genus `phyloseq`.
+Let's check our phyla `phyloseq`.
 
 ```{r, eval=FALSE}
-#Head of genus relative abundance table
-head(phyloseq::otu_table(genus_pseq))
-#Number of genera
-paste0("Number of genera: ", nrow(phyloseq::otu_table(genus_pseq)))
+#Head of phylum relative abundance table
+head(phyloseq::otu_table(phylum_pseq))
+#Number of phyla
+paste0("Number of phyla: ", nrow(phyloseq::otu_table(phylum_pseq)))
 #Summarise
-microbiome::summarize_phyloseq(genus_pseq)
-microbiome::readcount(genus_pseq)
+microbiome::summarize_phyloseq(phylum_pseq)
+microbiome::readcount(phylum_pseq)
 ```
 
+## Taxa Relative abundance: summary
 
+We have produced a `phyloseq` object containing a Phylum relative abundance table. Next, we will create a taxonomy bar chart with this.
 
 <!--chapter:end:10-Relative_abundance.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Taxa plots
+
+Now that we have our Genus relative abundance `phyloseq` we can create a bar chart.
+
+## Simple bar chart
+
+To create a simple genus bar chart we can use the following code.
+
+```{r, eval=FALSE}
+#Simple bar chart
+phylum_bar <- microbiome::plot_composition(phylum_pseq)
+phylum_bar
+```
+
+We have created and saved a `ggplot` object called `phylum_bar`. 
+We then viewed it by calling the object.
+This is a good start but the plot is a bit hard to read.
+
+### Save ggplot as png
+
+It can be a good idea to save a `ggplot` object as a file with `ggsave()`.
+This allows you to select the size and resolution (`dpi`) of the image.
+
+```{r, eval=FALSE}
+#Save ggplot object as png file
+ggsave(filename = "./phylum_relabund_simple.png", plot = phylum_bar,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+```
+
+### Display png
+
+We can use the R package [`IRdisplay`](https://github.com/IRkernel/IRdisplay) to display plots from files in `jupyter-notebook`.
+
+Use the function `display_png()` to display our bar chart.
+
+```{r, eval=FALSE}
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./phylum_relabund_simple.png")
+```
+
+### Editing the plot
+
+Components can be added to `ggplot2` objects to edit the plot.
+They are added with the `+` symbol.
+
+Go to the cell where you created your plot and add components so it looks like the below:
+
+```{r, eval=FALSE}
+#Simple bar chart
+phylum_bar <- microbiome::plot_composition(phylum_pseq) +
+  xlab("Sample") + ylab("Relative abundance") +
+  ggtitle("Phylum relative abundance bar chart")
+```
+
+Now save and display the plot.
+
+## Taxa heatmap
+
+Our bar chart looks quite nice but for displaying all taxa present it may be better to use a heatmap.
+Use the below code to produce and visualise a heatmap.
+
+__Tip__: I encourage you to copy and paste your previous bar chart code to edit.
+
+```{r, eval=FALSE}
+#Produce heatmap ggplot
+phylum_heatmap <- microbiome::plot_composition(phylum_pseq, plot.type = "heatmap") +
+  xlab("Sample") + ylab("Relative abundance") +
+  ggtitle("Phylum relative abundance heatmap")
+#Save ggplot object as png file
+ggsave(filename = "./phylum_relabund_heatmap.png", plot = phylum_bar,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./phylum_relabund_heatmap.png")
+```
+
+With the heatmap it is much easier to tell what the relative abundances of different phyla are.
+
+```{r, echo = FALSE}
+opts_p <- c("__Chloroflexi__", "__Firmicutes__", answer="__Proteobacteria__")
+```
+- What is the most abundant phyla across the samples? `r longmcq(opts_p)`
+
+## Aggregate rare taxa
+
+From our bar chart and our heatmap we can see that there are a few high abundance phyla (Actinobacteria, Bacteroidetes, Firmicutes, & Proteobacteria) and many low abundance phyla.
+
+To make a better visualisation we will aggregate the rare phyla.
+This will give us less phyla to plot so we don't need to use so many colours.
+
+To carry this out we will use the `microbiome` function `aggregate_rare()`.
+The function has three main options:
+
+- __`level =`__: Taxa level to aggregate table.
+- __`detection =`__: Detection threshold (see below).
+- __`prevalence =`__: Prevalence threshold (see below).
+
+The function will aggregate taxa to our specified level. 
+Whilst doing this it will aggregate the rare taxa of that level to one group called "Other".
+Rare taxa are specified via the __detection__ and __prevalence__ thresholds.
+Any taxa with an abundance >= to the __detection__ threshold in a number of samples >= to the __prevalence__ threshold will be kept.
+The taxa which don't reach these thresholds will be classified as rare and aggregated into "Other".
+
+In the below example we are aggregating the rare taxa with our ASV relative abundance `phyloseq` object.
+Any phyla with a relative abundance >= to 0.01 (__detection__) in at least 5% (5/100) of the samples will not be classified as rare.
+
+More info on [Prevalence & detection](https://microbiome.github.io/OMA/quality-control.html#prevalence).
+
+__Note__: The __detection__ and __prevalence__ thresholds can be given as numbers (1, 2, 1000 etc.), or percentage values (5/100, 50/100, etc.).
+
+Aggregate the relative abundance table to phyla with the rare thresholds:
+
+```{r, eval = FALSE}
+#Aggregate rare phyla
+phylum_rareaggregate_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "phylum",
+  detection = 0.01, prevalence = 5/100
+)
+```
+
+We will plot this as a new taxonomy bar chart with some additions:
+
+```{r, eval = FALSE}
+#Plot
+#Add otu.sort to sort phyla by abundance (highest to lowest)
+phylum_bar <- microbiome::plot_composition(phylum_rareaggregate_pseq) +
+  xlab("Sample") + ylab("Relative abundance") +
+  ggtitle("Phylum relative abundance bar chart") +
+  #Change colours of Phylum to that of the "Paired" palette from colour brewer
+  scale_fill_brewer("Phylum", palette = "Paired")
+#Save ggplot object as png
+ggsave(filename = "./phylum_relabund_rareaggregate.png", plot = phylum_bar,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display plot
+IRdisplay::display_png(file="./phylum_relabund_rareaggregate.png")
+```
+
+`r hide("Colour brewer palettes")`
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+knitr::include_graphics(path = "figures/colour_brewer_palettes.png", auto_pdf = TRUE)
+```
+[Source](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
+`r unhide()`
+
+
+
+
+<!--chapter:end:11-Taxa_plots.Rmd-->
 
