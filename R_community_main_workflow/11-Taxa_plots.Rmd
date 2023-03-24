@@ -84,7 +84,7 @@ __Tip__: I encourage you to copy and paste your previous bar chart code to edit.
 ```{r, eval=FALSE}
 #Produce heatmap ggplot
 phylum_heatmap <- microbiome::plot_composition(phylum_pseq, plot.type = "heatmap") +
-  xlab("Sample") + ylab("Relative abundance") +
+  xlab("Phylum") + ylab("Sample") +
   ggtitle("Phylum relative abundance heatmap")
 #Save ggplot object as png file
 ggsave(filename = "./phylum_relabund_heatmap.png", plot = phylum_bar,
@@ -100,7 +100,7 @@ opts_p <- c("__Chloroflexi__", "__Firmicutes__", answer="__Proteobacteria__")
 ```
 - What is the most abundant phyla across the samples? `r longmcq(opts_p)`
 
-## Aggregate rare taxa
+## Aggregate rare taxa{#aggregateraretaxa}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/origami_rhino.png", auto_pdf = TRUE)
 ``` 
