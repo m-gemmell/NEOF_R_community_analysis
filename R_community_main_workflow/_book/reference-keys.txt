@@ -59,7 +59,12 @@ save-ggplot-as-png
 display-png
 editing-the-plot
 taxa-heatmap
-aggregate-rare-taxa
+aggregateraretaxa
 plot-by-media
 plot-by-site-and-media
 taxa-plots-summary
+family-genus-plots
+family-taxa-plots
+aggregate-families
+family-heatmap
+family-rare-aggregation

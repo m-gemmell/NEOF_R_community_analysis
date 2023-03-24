@@ -76,6 +76,14 @@ Twelve is a good number as it is the total number of colours in the Paired palet
 You may need more in your own analysis so it is not a hard limit.
 
 Therefore, lets try out various thresholds and see how many families we get.
+To get a good idea where to start we can get a summary of the mean relative abundance values of the families.
+
+```{r, eval=FALSE}
+#Summary of row means (families) from the family otu table
+summary(rowMeans(phyloseq::otu_table(family_pseq)))
+```
+
+The median mean is 0.002128
 
 
 ```{r, eval = FALSE}

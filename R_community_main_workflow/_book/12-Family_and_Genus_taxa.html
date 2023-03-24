@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Taxa relative abundance | R community analysis</title>
+  <title>Chapter 12 Family &amp; Genus plots | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Taxa relative abundance | R community analysis" />
+  <meta property="og:title" content="Chapter 12 Family &amp; Genus plots | R community analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community analysis workflow" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Taxa relative abundance | R community analysis" />
+  <meta name="twitter:title" content="Chapter 12 Family &amp; Genus plots | R community analysis" />
   
   <meta name="twitter:description" content="NEOF book for the R community analysis workflow" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-<link rel="prev" href="09-Minimum_read_depth.html"/>
-<link rel="next" href="11-Taxa_plots.html"/>
+<link rel="prev" href="11-Taxa_plots.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -263,75 +263,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="taxa-relative-abundance" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chapter 10</span> Taxa relative abundance<a href="10-Relative_abundance.html#taxa-relative-abundance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="figures/taxa.png" width="20%" style="display: block; margin: auto;" /></p>
-<p>In this section we are going to create taxonomy bar charts.
-For this we are going to use relative abundance tables of different taxa levels; Genus, Family, &amp; Phyla.</p>
-<p>In this chapter we are going to create a <code>phyloseq</code> object with relative abundance values of phyla.
-We would use read depth filtered data if we wanted to use it for other downstream analyses.
-But, as stated in the last chapter all our samples had sufficient depth, so we will use our original abundance <code>phyloseq</code> object.</p>
-<div id="taxa-relative-abundance-setup" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> Taxa relative abundance: setup<a href="10-Relative_abundance.html#taxa-relative-abundance-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/packages.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>The first steps before analysis are:</p>
+<div id="family-genus-plots" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Family &amp; Genus plots<a href="12-Family_and_Genus_taxa.html#family-genus-plots" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figures/owl_eyes.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>In this chapter you will:</p>
 <ul>
-<li>Create a new notebook called <strong>"3-taxonomy_barcharts"</strong>.
-<ul>
-<li>We will use this to create our phyloseq objects and taxonomy bar charts.</li>
-</ul></li>
-<li>Add a markdown cell with the first level header: <code># Taxonomy bar charts</code>.</li>
-<li>Add the below to a code cell to load in the <code>phyloseq</code> object and libraries.</li>
+<li>Create Family plots by following example code.</li>
+<li>Be tasked to create Genus plots with little instruction.</li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="10-Relative_abundance.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Libraries</span></span>
-<span id="cb39-2"><a href="10-Relative_abundance.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;phyloseq&quot;</span>)</span>
-<span id="cb39-3"><a href="10-Relative_abundance.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
-<span id="cb39-4"><a href="10-Relative_abundance.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;IRdisplay&quot;</span>)</span>
-<span id="cb39-5"><a href="10-Relative_abundance.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Load phyloseq object</span></span>
-<span id="cb39-6"><a href="10-Relative_abundance.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
-<p>From now on you will get less instructions on your notebook structure.
-Please create your own coding and markdown cells where you think appropriate.</p>
+<p>I highly encourage you to copy previous code and edit it.
+It is a major time saver.
+However, it can be easy to over look some edits so it is good to double check your edited code to ensure you have changed the relevant options, and object &amp; file names.</p>
+<div id="family-taxa-plots" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Family taxa plots<a href="12-Family_and_Genus_taxa.html#family-taxa-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This part will show you a nice workflow for creating some family based taxa plots.
+Run this at the bottom of you "3-taxonomy_barchart.ipynb" notebook.</p>
+<div id="aggregate-families" class="section level3 hasAnchor" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> Aggregate families<a href="12-Family_and_Genus_taxa.html#aggregate-families" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First we will create a <code>phyloseq</code> object by aggregating the families from the relative abundance <code>phyloseq</code> object.
+Let us also then check the family <code>phyloseq</code> object.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="12-Family_and_Genus_taxa.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Family phyloseq</span></span>
+<span id="cb53-2"><a href="12-Family_and_Genus_taxa.html#cb53-2" aria-hidden="true" tabindex="-1"></a>family_pseq <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">aggregate_taxa</span>(pseq_relabund, <span class="st">&quot;Family&quot;</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb53-3"><a href="12-Family_and_Genus_taxa.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Head of phylum relative abundance table</span></span>
+<span id="cb53-4"><a href="12-Family_and_Genus_taxa.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(family_pseq))</span>
+<span id="cb53-5"><a href="12-Family_and_Genus_taxa.html#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of families</span></span>
+<span id="cb53-6"><a href="12-Family_and_Genus_taxa.html#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;Number of families: &quot;</span>, <span class="fu">nrow</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(family_pseq)))</span>
+<span id="cb53-7"><a href="12-Family_and_Genus_taxa.html#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Summarise</span></span>
+<span id="cb53-8"><a href="12-Family_and_Genus_taxa.html#cb53-8" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(family_pseq)</span>
+<span id="cb53-9"><a href="12-Family_and_Genus_taxa.html#cb53-9" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">readcount</span>(family_pseq)</span></code></pre></div>
+<p>We have 112 families. Quite a bit but hopefully they will all fit into a heatmap.</p>
 </div>
-<div id="relative-abundance-transformation" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> Relative abundance transformation<a href="10-Relative_abundance.html#relative-abundance-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/count_to_percent.png" width="40%" style="display: block; margin: auto;" /></p>
-<p>Now that we have the data loaded we can create a new <code>phyloseq</code> object by transforming the abundance values to relative abundances.</p>
-<p>This is carried out with the <code>microbiome</code> function <code>transform()</code>. With it we transform the ASV abundance table within to a "compositional" table (relative abundance).</p>
-<p>Run the below command in an appropriate place in your notebook:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="10-Relative_abundance.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Transform abundance table to a relative abundance (compositional) table</span></span>
-<span id="cb40-2"><a href="10-Relative_abundance.html#cb40-2" aria-hidden="true" tabindex="-1"></a>pseq_relabund <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">transform</span>(pseq, <span class="st">&quot;compositional&quot;</span>)</span></code></pre></div>
-<p>As always it is good to check the contents of the new ASV table.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="10-Relative_abundance.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summarise and check sample counts which should each amount to 1</span></span>
-<span id="cb41-2"><a href="10-Relative_abundance.html#cb41-2" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(pseq_relabund)</span>
-<span id="cb41-3"><a href="10-Relative_abundance.html#cb41-3" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">readcount</span>(pseq_relabund)</span></code></pre></div>
-<p>You will notice the read count for each sample is <strong>1</strong>. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, all the fractional relative abundance values of ASVs in one sample total 1.</p>
-<p>We will use this to produce all our different taxa tables.</p>
+<div id="family-heatmap" class="section level3 hasAnchor" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> Family heatmap<a href="12-Family_and_Genus_taxa.html#family-heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will create a heatmap as before with one added <code>ggplot2</code> component.
+As there are a lot of Families (112) and fewer samples (36) it will be easier to view if we have the families on the y-axis.
+By default <code>microbiome::plot_composition()</code> will plot the taxa/families on the x-axis.
+Thankfully we can use the <code>ggplot2()</code> function/component <code>coord_flip()</code> to flip/swap the x and y axes.
+Note that the <code>xlab()</code> and <code>ylab()</code> are specified the text before this flipping.
+E.g. <code>xlab()</code> is set to "Family" which will appear on the y axis because of the flip</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="12-Family_and_Genus_taxa.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Family heatmap</span></span>
+<span id="cb54-2"><a href="12-Family_and_Genus_taxa.html#cb54-2" aria-hidden="true" tabindex="-1"></a>family_heatmap <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(family_pseq, <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-3"><a href="12-Family_and_Genus_taxa.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Family&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Sample&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-4"><a href="12-Family_and_Genus_taxa.html#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Family relative abundance heatmap&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-5"><a href="12-Family_and_Genus_taxa.html#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Flip the x and y axes</span></span>
+<span id="cb54-6"><a href="12-Family_and_Genus_taxa.html#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb54-7"><a href="12-Family_and_Genus_taxa.html#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Save ggplot object as png file</span></span>
+<span id="cb54-8"><a href="12-Family_and_Genus_taxa.html#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./family_relabund_heatmap.png&quot;</span>, <span class="at">plot =</span> family_heatmap,</span>
+<span id="cb54-9"><a href="12-Family_and_Genus_taxa.html#cb54-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">200</span>, <span class="at">width =</span> <span class="dv">300</span>)</span>
+<span id="cb54-10"><a href="12-Family_and_Genus_taxa.html#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
+<span id="cb54-11"><a href="12-Family_and_Genus_taxa.html#cb54-11" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./phylum_relabund_heatmap.png&quot;</span>)</span></code></pre></div>
+<p>The plot is quite large.
+You can right click on the image and click "Open Image in New Tab" to view the whole image in a new tab firefox.</p>
+<p>With this heatmap we can see that the KBC and TSA samples have a high relative abundance of <em>Pseudomonadaceae</em> whilst the TSA samples have a high relative abundance of <em>Aeromonadaceae</em>.
+Additionally, we can see that a lot of families have relatively low relative abundances.</p>
+<p>Once you are finished looking at the plot you can close the tab containing the plot.
+Next we'll carry out our rare aggregation and produce some bar charts.</p>
 </div>
-<div id="aggregate-taxa" class="section level2 hasAnchor" number="10.3">
-<h2><span class="header-section-number">10.3</span> Aggregate taxa<a href="10-Relative_abundance.html#aggregate-taxa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/aggregate_taxa.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>To produce a taxa table we can use the <code>microbiome</code> function <code>aggregate_taxa()</code>.</p>
-<p>Run the below command to produce a phylum based <code>phyloseq</code> object.</p>
-<p><strong>Reminder</strong>: You may want a markdown cell to create a 2nd level header for this phylum section.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="10-Relative_abundance.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Check head of tax_table</span></span>
-<span id="cb42-2"><a href="10-Relative_abundance.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#This will tell us the taxa level names on the column names</span></span>
-<span id="cb42-3"><a href="10-Relative_abundance.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">tax_table</span>(pseq_relabund))</span>
-<span id="cb42-4"><a href="10-Relative_abundance.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Phylum phyloseq</span></span>
-<span id="cb42-5"><a href="10-Relative_abundance.html#cb42-5" aria-hidden="true" tabindex="-1"></a>phylum_pseq <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">aggregate_taxa</span>(pseq_relabund, <span class="st">&quot;Phylum&quot;</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p>Let's check our phyla <code>phyloseq</code>.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="10-Relative_abundance.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Head of phylum relative abundance table</span></span>
-<span id="cb43-2"><a href="10-Relative_abundance.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(phylum_pseq))</span>
-<span id="cb43-3"><a href="10-Relative_abundance.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of phyla</span></span>
-<span id="cb43-4"><a href="10-Relative_abundance.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;Number of phyla: &quot;</span>, <span class="fu">nrow</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(phylum_pseq)))</span>
-<span id="cb43-5"><a href="10-Relative_abundance.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Summarise</span></span>
-<span id="cb43-6"><a href="10-Relative_abundance.html#cb43-6" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(phylum_pseq)</span>
-<span id="cb43-7"><a href="10-Relative_abundance.html#cb43-7" aria-hidden="true" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">readcount</span>(phylum_pseq)</span></code></pre></div>
-</div>
-<div id="taxa-relative-abundance-summary" class="section level2 hasAnchor" number="10.4">
-<h2><span class="header-section-number">10.4</span> Taxa Relative abundance: summary<a href="10-Relative_abundance.html#taxa-relative-abundance-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/sum_blue.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>We have produced a <code>phyloseq</code> object containing a Phylum relative abundance table. Next, we will create a taxonomy bar chart with this.</p>
+<div id="family-rare-aggregation" class="section level3 hasAnchor" number="12.1.3">
+<h3><span class="header-section-number">12.1.3</span> Family rare aggregation<a href="12-Family_and_Genus_taxa.html#family-rare-aggregation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To aggregate our rare families we need to choose a suitable <a href="11-Taxa_plots.html#aggregateraretaxa">detection and prevalence threshold</a>.
+Generally, this is a process of trial and error trying to get a total of 12 taxa.
+Twelve is a good number as it is the total number of colours in the Paired palette from Colour brewer.
+You may need more in your own analysis so it is not a hard limit.</p>
+<p>Therefore, lets try out various thresholds and see how many families we get.
+To get a good idea where to start we can get a summary of the mean relative abundance values of the families.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="12-Family_and_Genus_taxa.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of row means (families) from the family otu table</span></span>
+<span id="cb55-2"><a href="12-Family_and_Genus_taxa.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">rowMeans</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(family_pseq)))</span></code></pre></div>
+<p>The median mean is 0.002128</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="12-Family_and_Genus_taxa.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Aggregate rare phyla</span></span>
+<span id="cb56-2"><a href="12-Family_and_Genus_taxa.html#cb56-2" aria-hidden="true" tabindex="-1"></a>phylum_rareaggregate_pseq <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">aggregate_rare</span>(</span>
+<span id="cb56-3"><a href="12-Family_and_Genus_taxa.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  pseq_relabund, <span class="at">level =</span> <span class="st">&quot;phylum&quot;</span>,</span>
+<span id="cb56-4"><a href="12-Family_and_Genus_taxa.html#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">detection =</span> <span class="fl">0.01</span>, <span class="at">prevalence =</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">100</span></span>
+<span id="cb56-5"><a href="12-Family_and_Genus_taxa.html#cb56-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 
+</div>
 </div>
 </div>
 <script>
@@ -510,8 +515,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="09-Minimum_read_depth.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="11-Taxa_plots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="11-Taxa_plots.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
