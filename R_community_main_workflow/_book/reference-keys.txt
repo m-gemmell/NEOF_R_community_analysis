@@ -30,7 +30,7 @@ import-summarise-phyloseq
 save-the-phyloseq-object
 import-recap
 sum_phyloseq_chap
-setup
+summarise-setup
 summarise-header
 summarise-phyloseq
 reads-per-sample
@@ -60,3 +60,6 @@ display-png
 editing-the-plot
 taxa-heatmap
 aggregate-rare-taxa
+plot-by-media
+plot-by-site-and-media
+taxa-plots-summary

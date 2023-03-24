@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-14" />
+<meta name="date" content="2023-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -185,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html"><i class="fa fa-check"></i><b>8</b> Summarise phyloseq</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#setup"><i class="fa fa-check"></i><b>8.1</b> Setup</a>
+<li class="chapter" data-level="8.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-setup"><i class="fa fa-check"></i><b>8.1</b> Summarise: setup</a>
 <ul>
 <li class="chapter" data-level="8.1.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-header"><i class="fa fa-check"></i><b>8.1.1</b> Summarise header</a></li>
 <li class="chapter" data-level="8.1.2" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-phyloseq"><i class="fa fa-check"></i><b>8.1.2</b> Summarise phyloseq</a></li>
@@ -230,6 +230,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#taxa-heatmap"><i class="fa fa-check"></i><b>11.2</b> Taxa heatmap</a></li>
 <li class="chapter" data-level="11.3" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#aggregate-rare-taxa"><i class="fa fa-check"></i><b>11.3</b> Aggregate rare taxa</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#plot-by-media"><i class="fa fa-check"></i><b>11.4</b> Plot by media</a></li>
+<li class="chapter" data-level="11.5" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#plot-by-site-and-media"><i class="fa fa-check"></i><b>11.5</b> Plot by site and media</a></li>
+<li class="chapter" data-level="11.6" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#taxa-plots-summary"><i class="fa fa-check"></i><b>11.6</b> Taxa plots: summary</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -253,9 +256,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="taxa-plots" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Taxa plots<a href="11-Taxa_plots.html#taxa-plots" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figures/owl_eyes.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Now that we have our Genus relative abundance <code>phyloseq</code> we can create a bar chart.</p>
 <div id="simple-bar-chart" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Simple bar chart<a href="11-Taxa_plots.html#simple-bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/bar_chart.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>To create a simple genus bar chart we can use the following code.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="11-Taxa_plots.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Simple bar chart</span></span>
 <span id="cb44-2"><a href="11-Taxa_plots.html#cb44-2" aria-hidden="true" tabindex="-1"></a>phylum_bar <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(phylum_pseq)</span>
@@ -265,6 +270,7 @@ We then viewed it by calling the object.
 This is a good start but the plot is a bit hard to read.</p>
 <div id="save-ggplot-as-png" class="section level3 hasAnchor" number="11.1.1">
 <h3><span class="header-section-number">11.1.1</span> Save ggplot as png<a href="11-Taxa_plots.html#save-ggplot-as-png" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/png_file.png" width="10%" style="display: block; margin: auto;" /></p>
 <p>It can be a good idea to save a <code>ggplot</code> object as a file with <code>ggsave()</code>.
 This allows you to select the size and resolution (<code>dpi</code>) of the image.</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="11-Taxa_plots.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Save ggplot object as png file</span></span>
@@ -273,6 +279,7 @@ This allows you to select the size and resolution (<code>dpi</code>) of the imag
 </div>
 <div id="display-png" class="section level3 hasAnchor" number="11.1.2">
 <h3><span class="header-section-number">11.1.2</span> Display png<a href="11-Taxa_plots.html#display-png" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/display_png.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>We can use the R package <a href="https://github.com/IRkernel/IRdisplay"><code>IRdisplay</code></a> to display plots from files in <code>jupyter-notebook</code>.</p>
 <p>Use the function <code>display_png()</code> to display our bar chart.</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="11-Taxa_plots.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
@@ -280,18 +287,22 @@ This allows you to select the size and resolution (<code>dpi</code>) of the imag
 </div>
 <div id="editing-the-plot" class="section level3 hasAnchor" number="11.1.3">
 <h3><span class="header-section-number">11.1.3</span> Editing the plot<a href="11-Taxa_plots.html#editing-the-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/plus_sign.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Components can be added to <code>ggplot2</code> objects to edit the plot.
 They are added with the <code>+</code> symbol.</p>
 <p>Go to the cell where you created your plot and add components so it looks like the below:</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="11-Taxa_plots.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Simple bar chart</span></span>
 <span id="cb47-2"><a href="11-Taxa_plots.html#cb47-2" aria-hidden="true" tabindex="-1"></a>phylum_bar <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(phylum_pseq) <span class="sc">+</span></span>
-<span id="cb47-3"><a href="11-Taxa_plots.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Sample&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Relative abundance&quot;</span>) <span class="sc">+</span></span>
-<span id="cb47-4"><a href="11-Taxa_plots.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Phylum relative abundance bar chart&quot;</span>)</span></code></pre></div>
+<span id="cb47-3"><a href="11-Taxa_plots.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Change/add the x and y labels</span></span>
+<span id="cb47-4"><a href="11-Taxa_plots.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Sample&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Relative abundance&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="11-Taxa_plots.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Add a title to the plot</span></span>
+<span id="cb47-6"><a href="11-Taxa_plots.html#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Phylum relative abundance bar chart&quot;</span>)</span></code></pre></div>
 <p>Now save and display the plot.</p>
 </div>
 </div>
 <div id="taxa-heatmap" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">11.2</span> Taxa heatmap<a href="11-Taxa_plots.html#taxa-heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/heatmap.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Our bar chart looks quite nice but for displaying all taxa present it may be better to use a heatmap.
 Use the below code to produce and visualise a heatmap.</p>
 <p><strong>Tip</strong>: I encourage you to copy and paste your previous bar chart code to edit.</p>
@@ -307,13 +318,14 @@ Use the below code to produce and visualise a heatmap.</p>
 <p>With the heatmap it is much easier to tell what the relative abundances of different phyla are.</p>
 <ul>
 <li>What is the most abundant phyla across the samples?
-<div id="radio_WNACZSZCXB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WNACZSZCXB" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WNACZSZCXB" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WNACZSZCXB" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
+<div id="radio_PJKLZMNTIY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PJKLZMNTIY" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PJKLZMNTIY" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PJKLZMNTIY" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
 </div></li>
 </ul>
 </div>
 <div id="aggregate-rare-taxa" class="section level2 hasAnchor" number="11.3">
 <h2><span class="header-section-number">11.3</span> Aggregate rare taxa<a href="11-Taxa_plots.html#aggregate-rare-taxa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/origami_rhino.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>From our bar chart and our heatmap we can see that there are a few high abundance phyla (Actinobacteria, Bacteroidetes, Firmicutes, &amp; Proteobacteria) and many low abundance phyla.</p>
 <p>To make a better visualisation we will aggregate the rare phyla.
 This will give us less phyla to plot so we don't need to use so many colours.</p>
@@ -342,16 +354,18 @@ Any phyla with a relative abundance &gt;= to 0.01 (<strong>detection</strong>) i
 <p>We will plot this as a new taxonomy bar chart with some additions:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="11-Taxa_plots.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot</span></span>
 <span id="cb50-2"><a href="11-Taxa_plots.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Add otu.sort to sort phyla by abundance (highest to lowest)</span></span>
-<span id="cb50-3"><a href="11-Taxa_plots.html#cb50-3" aria-hidden="true" tabindex="-1"></a>phylum_bar <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(phylum_rareaggregate_pseq) <span class="sc">+</span></span>
-<span id="cb50-4"><a href="11-Taxa_plots.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Sample&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Relative abundance&quot;</span>) <span class="sc">+</span></span>
-<span id="cb50-5"><a href="11-Taxa_plots.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Phylum relative abundance bar chart&quot;</span>) <span class="sc">+</span></span>
-<span id="cb50-6"><a href="11-Taxa_plots.html#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Change colours of Phylum to that of the &quot;Paired&quot; palette from colour brewer</span></span>
-<span id="cb50-7"><a href="11-Taxa_plots.html#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="st">&quot;Phylum&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Paired&quot;</span>)</span>
-<span id="cb50-8"><a href="11-Taxa_plots.html#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Save ggplot object as png</span></span>
-<span id="cb50-9"><a href="11-Taxa_plots.html#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./phylum_relabund_rareaggregate.png&quot;</span>, <span class="at">plot =</span> phylum_bar,</span>
-<span id="cb50-10"><a href="11-Taxa_plots.html#cb50-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">200</span>, <span class="at">width =</span> <span class="dv">300</span>)</span>
-<span id="cb50-11"><a href="11-Taxa_plots.html#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Display plot</span></span>
-<span id="cb50-12"><a href="11-Taxa_plots.html#cb50-12" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./phylum_relabund_rareaggregate.png&quot;</span>)</span></code></pre></div>
+<span id="cb50-3"><a href="11-Taxa_plots.html#cb50-3" aria-hidden="true" tabindex="-1"></a>phylum_bar <span class="ot">&lt;-</span> </span>
+<span id="cb50-4"><a href="11-Taxa_plots.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(phylum_rareaggregate_pseq, </span>
+<span id="cb50-5"><a href="11-Taxa_plots.html#cb50-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">otu.sort =</span><span class="st">&quot;abundance&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-6"><a href="11-Taxa_plots.html#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Sample&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Relative abundance&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-7"><a href="11-Taxa_plots.html#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Phylum relative abundance bar chart&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-8"><a href="11-Taxa_plots.html#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Change colours of Phylum to that of the &quot;Paired&quot; palette from colour brewer</span></span>
+<span id="cb50-9"><a href="11-Taxa_plots.html#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="st">&quot;Phylum&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Paired&quot;</span>)</span>
+<span id="cb50-10"><a href="11-Taxa_plots.html#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Save ggplot object as png</span></span>
+<span id="cb50-11"><a href="11-Taxa_plots.html#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./phylum_relabund_rareaggregate.png&quot;</span>, <span class="at">plot =</span> phylum_bar,</span>
+<span id="cb50-12"><a href="11-Taxa_plots.html#cb50-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">200</span>, <span class="at">width =</span> <span class="dv">300</span>)</span>
+<span id="cb50-13"><a href="11-Taxa_plots.html#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Display plot</span></span>
+<span id="cb50-14"><a href="11-Taxa_plots.html#cb50-14" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./phylum_relabund_rareaggregate.png&quot;</span>)</span></code></pre></div>
 <div class="webex-solution">
 <button>
 Colour brewer palettes
@@ -359,6 +373,80 @@ Colour brewer palettes
 <p><img src="figures/colour_brewer_palettes.png" width="80%" style="display: block; margin: auto;" />
 <a href="https://r-graph-gallery.com/38-rcolorbrewers-palettes.html">Source</a></p>
 </div>
+<p>That is a very nice and clean bar chart.
+We can quite easily see that there are 7 main phyla (excluding other).
+Additionally, it seems that the biggest difference between samples is due to the media used.</p>
+</div>
+<div id="plot-by-media" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Plot by media<a href="11-Taxa_plots.html#plot-by-media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/petri.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>One of the many great advantages of <code>ggplot2</code> is that you can create plots tailored to your metadata.
+As an example we will create another taxonomy bar chart but have one bar for each media site.</p>
+<p>We'll use a very similar code as the above bar chart but add the <code>microbiome::plot_composition</code> option <code>average_by =</code>.
+With this we will average the rare aggregated relative abundance values by the four different media.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="11-Taxa_plots.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot by media</span></span>
+<span id="cb51-2"><a href="11-Taxa_plots.html#cb51-2" aria-hidden="true" tabindex="-1"></a>phylum_media_bar <span class="ot">&lt;-</span> </span>
+<span id="cb51-3"><a href="11-Taxa_plots.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(phylum_rareaggregate_pseq, </span>
+<span id="cb51-4"><a href="11-Taxa_plots.html#cb51-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">otu.sort =</span><span class="st">&quot;abundance&quot;</span>,</span>
+<span id="cb51-5"><a href="11-Taxa_plots.html#cb51-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">average_by =</span> <span class="st">&quot;media&quot;</span>) <span class="sc">+</span></span>
+<span id="cb51-6"><a href="11-Taxa_plots.html#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Sample&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Relative abundance&quot;</span>) <span class="sc">+</span></span>
+<span id="cb51-7"><a href="11-Taxa_plots.html#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Phylum relative abundance bar chart by media&quot;</span>) <span class="sc">+</span></span>
+<span id="cb51-8"><a href="11-Taxa_plots.html#cb51-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="st">&quot;Phylum&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Paired&quot;</span>)</span>
+<span id="cb51-9"><a href="11-Taxa_plots.html#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Save ggplot object as png</span></span>
+<span id="cb51-10"><a href="11-Taxa_plots.html#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./phylum_relabund_media_rareaggregate.png&quot;</span>, <span class="at">plot =</span> phylum_media_bar,</span>
+<span id="cb51-11"><a href="11-Taxa_plots.html#cb51-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">200</span>, <span class="at">width =</span> <span class="dv">300</span>)</span>
+<span id="cb51-12"><a href="11-Taxa_plots.html#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Display plot</span></span>
+<span id="cb51-13"><a href="11-Taxa_plots.html#cb51-13" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./phylum_relabund_media_rareaggregate.png&quot;</span>)</span></code></pre></div>
+<p>Now we get a good picture of which medias have the highest and lowest phlya diversity.
+The Environmental samples (ENV) definitely have the highest diversity with clear presence of all phyla.</p>
+Which media has the highest relative abundance of <em>Protoebacteria</em> and the lowest phyla diversity (excluding ENV)?
+<div id="radio_BLVNLXDWWS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BLVNLXDWWS" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BLVNLXDWWS" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BLVNLXDWWS" value=""></input> <span><strong>TSA</strong></span></label>
+</div>
+Which media has the lowest relative abundance of <em>Protoebacteria</em> and the highest phyla diversity (excluding ENV)?
+<div id="radio_VOEAGURLQT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VOEAGURLQT" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VOEAGURLQT" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VOEAGURLQT" value="answer"></input> <span><strong>TSA</strong></span></label>
+</div>
+<p>Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.</p>
+</div>
+<div id="plot-by-site-and-media" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Plot by site and media<a href="11-Taxa_plots.html#plot-by-site-and-media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/site_and_media.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><strong>Task</strong>: In the <code>sample_data</code> there is a column called <code>site.media</code>.
+Use this column to create a phyla bar chart averaged by site and media.
+Please make a good effort at the task before look at the solution in the below box.</p>
+<div class="webex-solution">
+<button>
+Site and media bar chart solution
+</button>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="11-Taxa_plots.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot by site and media</span></span>
+<span id="cb52-2"><a href="11-Taxa_plots.html#cb52-2" aria-hidden="true" tabindex="-1"></a>phylum_site_media_bar <span class="ot">&lt;-</span> </span>
+<span id="cb52-3"><a href="11-Taxa_plots.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(phylum_rareaggregate_pseq, </span>
+<span id="cb52-4"><a href="11-Taxa_plots.html#cb52-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">otu.sort =</span><span class="st">&quot;abundance&quot;</span>,</span>
+<span id="cb52-5"><a href="11-Taxa_plots.html#cb52-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">average_by =</span> <span class="st">&quot;site.media&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-6"><a href="11-Taxa_plots.html#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Sample&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Relative abundance&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-7"><a href="11-Taxa_plots.html#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Phylum relative abundance bar chart by site &amp; media&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-8"><a href="11-Taxa_plots.html#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="st">&quot;Phylum&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Paired&quot;</span>)</span>
+<span id="cb52-9"><a href="11-Taxa_plots.html#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Save ggplot object as png</span></span>
+<span id="cb52-10"><a href="11-Taxa_plots.html#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./phylum_relabund_site_media_rareaggregate.png&quot;</span>, <span class="at">plot =</span> phylum_site_media_bar,</span>
+<span id="cb52-11"><a href="11-Taxa_plots.html#cb52-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">200</span>, <span class="at">width =</span> <span class="dv">300</span>)</span>
+<span id="cb52-12"><a href="11-Taxa_plots.html#cb52-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Display plot</span></span>
+<span id="cb52-13"><a href="11-Taxa_plots.html#cb52-13" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./phylum_relabund_site_media_rareaggregate.png&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="taxa-plots-summary" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Taxa plots: summary<a href="11-Taxa_plots.html#taxa-plots-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/sum_purple.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>In this chapter we have:</p>
+<ul>
+<li>Created taxa bar charts with <code>microbiome</code> and <code>ggplot2</code>.</li>
+<li>Saved <code>ggplot2</code> plots as <code>pngs</code> with <code>ggsave()</code>.</li>
+<li>Displayed <code>pngs</code> with <code>IRdisplay::display_png()</code>.</li>
+<li>Produced taxa heatmaps.</li>
+<li>Aggregated rare taxa based on detection and prevalence.</li>
+<li>Grouped bars in bar charts by metadata groups.</li>
+</ul>
+<p>We will reinforce this by producing Family and Genus based plots in the next chapter.</p>
 
 </div>
 </div>

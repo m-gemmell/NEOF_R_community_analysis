@@ -1,8 +1,14 @@
 # Taxa plots
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/owl_eyes.png", auto_pdf = TRUE)
+```
 
 Now that we have our Genus relative abundance `phyloseq` we can create a bar chart.
 
 ## Simple bar chart
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
+```
 
 To create a simple genus bar chart we can use the following code.
 
@@ -17,6 +23,9 @@ We then viewed it by calling the object.
 This is a good start but the plot is a bit hard to read.
 
 ### Save ggplot as png
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/png_file.png", auto_pdf = TRUE)
+``` 
 
 It can be a good idea to save a `ggplot` object as a file with `ggsave()`.
 This allows you to select the size and resolution (`dpi`) of the image.
@@ -28,6 +37,9 @@ ggsave(filename = "./phylum_relabund_simple.png", plot = phylum_bar,
 ```
 
 ### Display png
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
+``` 
 
 We can use the R package [`IRdisplay`](https://github.com/IRkernel/IRdisplay) to display plots from files in `jupyter-notebook`.
 
@@ -39,6 +51,9 @@ IRdisplay::display_png(file="./phylum_relabund_simple.png")
 ```
 
 ### Editing the plot
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/plus_sign.png", auto_pdf = TRUE)
+``` 
 
 Components can be added to `ggplot2` objects to edit the plot.
 They are added with the `+` symbol.
@@ -48,13 +63,18 @@ Go to the cell where you created your plot and add components so it looks like t
 ```{r, eval=FALSE}
 #Simple bar chart
 phylum_bar <- microbiome::plot_composition(phylum_pseq) +
+  #Change/add the x and y labels
   xlab("Sample") + ylab("Relative abundance") +
+  #Add a title to the plot
   ggtitle("Phylum relative abundance bar chart")
 ```
 
 Now save and display the plot.
 
 ## Taxa heatmap
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/heatmap.png", auto_pdf = TRUE)
+``` 
 
 Our bar chart looks quite nice but for displaying all taxa present it may be better to use a heatmap.
 Use the below code to produce and visualise a heatmap.
@@ -81,6 +101,9 @@ opts_p <- c("__Chloroflexi__", "__Firmicutes__", answer="__Proteobacteria__")
 - What is the most abundant phyla across the samples? `r longmcq(opts_p)`
 
 ## Aggregate rare taxa
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/origami_rhino.png", auto_pdf = TRUE)
+``` 
 
 From our bar chart and our heatmap we can see that there are a few high abundance phyla (Actinobacteria, Bacteroidetes, Firmicutes, & Proteobacteria) and many low abundance phyla.
 
@@ -122,7 +145,9 @@ We will plot this as a new taxonomy bar chart with some additions:
 ```{r, eval = FALSE}
 #Plot
 #Add otu.sort to sort phyla by abundance (highest to lowest)
-phylum_bar <- microbiome::plot_composition(phylum_rareaggregate_pseq) +
+phylum_bar <- 
+  microbiome::plot_composition(phylum_rareaggregate_pseq, 
+                               otu.sort ="abundance") +
   xlab("Sample") + ylab("Relative abundance") +
   ggtitle("Phylum relative abundance bar chart") +
   #Change colours of Phylum to that of the "Paired" palette from colour brewer
@@ -142,11 +167,93 @@ knitr::include_graphics(path = "figures/colour_brewer_palettes.png", auto_pdf = 
 `r unhide()`
 
 That is a very nice and clean bar chart.
-We can quite easily see that there are 7 main phyla.
+We can quite easily see that there are 7 main phyla (excluding other).
 Additionally, it seems that the biggest difference between samples is due to the media used.
 
 ## Plot by media
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
+``` 
 
+One of the many great advantages of `ggplot2` is that you can create plots tailored to your metadata.
+As an example we will create another taxonomy bar chart but have one bar for each media site.
+
+We'll use a very similar code as the above bar chart but add the `microbiome::plot_composition` option `average_by =`.
+With this we will average the rare aggregated relative abundance values by the four different media.
+
+```{r, eval=FALSE}
+#Plot by media
+phylum_media_bar <- 
+  microbiome::plot_composition(phylum_rareaggregate_pseq, 
+                               otu.sort ="abundance",
+                               average_by = "media") +
+  xlab("Sample") + ylab("Relative abundance") +
+  ggtitle("Phylum relative abundance bar chart by media") +
+  scale_fill_brewer("Phylum", palette = "Paired")
+#Save ggplot object as png
+ggsave(filename = "./phylum_relabund_media_rareaggregate.png", plot = phylum_media_bar,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display plot
+IRdisplay::display_png(file="./phylum_relabund_media_rareaggregate.png")
+```
+
+Now we get a good picture of which medias have the highest and lowest phlya diversity. 
+The Environmental samples (ENV) definitely have the highest diversity with clear presence of all phyla.
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__CVP__", "__KBC__", "__TSA__")
+```
+Which media has the highest relative abundance of _Protoebacteria_ and the lowest phyla diversity (excluding ENV)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__CVP__", "__KBC__", answer="__TSA__")
+```
+Which media has the lowest relative abundance of _Protoebacteria_ and the highest phyla diversity (excluding ENV)? `r longmcq(opts_p)`
+
+Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.
+
+## Plot by site and media
+```{r, fig.align = 'center',out.width= '35%', echo=FALSE }
+knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
+``` 
+
+__Task__: In the `sample_data` there is a column called `site.media`.
+Use this column to create a phyla bar chart averaged by site and media.
+Please make a good effort at the task before look at the solution in the below box.
+
+`r hide("Site and media bar chart solution")`
+```{r, eval=FALSE}
+#Plot by site and media
+phylum_site_media_bar <- 
+  microbiome::plot_composition(phylum_rareaggregate_pseq, 
+                               otu.sort ="abundance",
+                               average_by = "site.media") +
+  xlab("Sample") + ylab("Relative abundance") +
+  ggtitle("Phylum relative abundance bar chart by site & media") +
+  scale_fill_brewer("Phylum", palette = "Paired")
+#Save ggplot object as png
+ggsave(filename = "./phylum_relabund_site_media_rareaggregate.png", plot = phylum_site_media_bar,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display plot
+IRdisplay::display_png(file="./phylum_relabund_site_media_rareaggregate.png")
+```
+`r unhide()`
+
+## Taxa plots: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
+``` 
+
+In this chapter we have:
+
+- Created taxa bar charts with `microbiome` and `ggplot2`.
+- Saved `ggplot2` plots as `pngs` with `ggsave()`.
+- Displayed `pngs` with `IRdisplay::display_png()`.
+- Produced taxa heatmaps.
+- Aggregated rare taxa based on detection and prevalence.
+- Grouped bars in bar charts by metadata groups.
+
+We will reinforce this by producing Family and Genus based plots in the next chapter.
 
 
 

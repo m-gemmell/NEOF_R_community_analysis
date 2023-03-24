@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-14" />
+<meta name="date" content="2023-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -185,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html"><i class="fa fa-check"></i><b>8</b> Summarise phyloseq</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#setup"><i class="fa fa-check"></i><b>8.1</b> Setup</a>
+<li class="chapter" data-level="8.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-setup"><i class="fa fa-check"></i><b>8.1</b> Summarise: setup</a>
 <ul>
 <li class="chapter" data-level="8.1.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-header"><i class="fa fa-check"></i><b>8.1.1</b> Summarise header</a></li>
 <li class="chapter" data-level="8.1.2" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-phyloseq"><i class="fa fa-check"></i><b>8.1.2</b> Summarise phyloseq</a></li>
@@ -230,6 +230,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#taxa-heatmap"><i class="fa fa-check"></i><b>11.2</b> Taxa heatmap</a></li>
 <li class="chapter" data-level="11.3" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#aggregate-rare-taxa"><i class="fa fa-check"></i><b>11.3</b> Aggregate rare taxa</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#plot-by-media"><i class="fa fa-check"></i><b>11.4</b> Plot by media</a></li>
+<li class="chapter" data-level="11.5" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#plot-by-site-and-media"><i class="fa fa-check"></i><b>11.5</b> Plot by site and media</a></li>
+<li class="chapter" data-level="11.6" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#taxa-plots-summary"><i class="fa fa-check"></i><b>11.6</b> Taxa plots: summary</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -253,13 +256,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="taxa-relative-abundance" class="section level1 hasAnchor" number="10">
 <h1><span class="header-section-number">Chapter 10</span> Taxa relative abundance<a href="10-Relative_abundance.html#taxa-relative-abundance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figures/taxa.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>In this section we are going to create taxonomy bar charts.
 For this we are going to use relative abundance tables of different taxa levels; Genus, Family, &amp; Phyla.</p>
-<p>In this chapter we are going to create a <code>phyloseq</code> object with relative abundance values of phyla
-We would use our read depth filtered data if we wanted to use it for other downstream analyses.
-But, as stated in the last chapter all our samples looked good so we will use our original abundance <code>phyloseq</code> object.</p>
+<p>In this chapter we are going to create a <code>phyloseq</code> object with relative abundance values of phyla.
+We would use read depth filtered data if we wanted to use it for other downstream analyses.
+But, as stated in the last chapter all our samples had sufficient depth, so we will use our original abundance <code>phyloseq</code> object.</p>
 <div id="taxa-relative-abundance-setup" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Taxa relative abundance: setup<a href="10-Relative_abundance.html#taxa-relative-abundance-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/packages.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>The first steps before analysis are:</p>
 <ul>
 <li>Create a new notebook called <strong>"3-taxonomy_barcharts"</strong>.
@@ -280,6 +285,7 @@ Please create your own coding and markdown cells where you think appropriate.</p
 </div>
 <div id="relative-abundance-transformation" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Relative abundance transformation<a href="10-Relative_abundance.html#relative-abundance-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/count_to_percent.png" width="40%" style="display: block; margin: auto;" /></p>
 <p>Now that we have the data loaded we can create a new <code>phyloseq</code> object by transforming the abundance values to relative abundances.</p>
 <p>This is carried out with the <code>microbiome</code> function <code>transform()</code>. With it we transform the ASV abundance table within to a "compositional" table (relative abundance).</p>
 <p>Run the below command in an appropriate place in your notebook:</p>
@@ -294,6 +300,7 @@ Please create your own coding and markdown cells where you think appropriate.</p
 </div>
 <div id="aggregate-taxa" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Aggregate taxa<a href="10-Relative_abundance.html#aggregate-taxa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/aggregate_taxa.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>To produce a taxa table we can use the <code>microbiome</code> function <code>aggregate_taxa()</code>.</p>
 <p>Run the below command to produce a phylum based <code>phyloseq</code> object.</p>
 <p><strong>Reminder</strong>: You may want a markdown cell to create a 2nd level header for this phylum section.</p>
@@ -313,6 +320,7 @@ Please create your own coding and markdown cells where you think appropriate.</p
 </div>
 <div id="taxa-relative-abundance-summary" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Taxa Relative abundance: summary<a href="10-Relative_abundance.html#taxa-relative-abundance-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/sum_blue.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>We have produced a <code>phyloseq</code> object containing a Phylum relative abundance table. Next, we will create a taxonomy bar chart with this.</p>
 
 </div>

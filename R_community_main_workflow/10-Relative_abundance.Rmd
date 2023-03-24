@@ -1,15 +1,21 @@
 # (PART\*) Taxonomy {-}
 
 # Taxa relative abundance
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
+```
 
 In this section we are going to create taxonomy bar charts.
 For this we are going to use relative abundance tables of different taxa levels; Genus, Family, & Phyla.
 
-In this chapter we are going to create a `phyloseq` object with relative abundance values of phyla 
-We would use our read depth filtered data if we wanted to use it for other downstream analyses.
-But, as stated in the last chapter all our samples looked good so we will use our original abundance `phyloseq` object.
+In this chapter we are going to create a `phyloseq` object with relative abundance values of phyla. 
+We would use read depth filtered data if we wanted to use it for other downstream analyses.
+But, as stated in the last chapter all our samples had sufficient depth, so we will use our original abundance `phyloseq` object.
 
 ## Taxa relative abundance: setup
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/packages.png", auto_pdf = TRUE)
+```
 
 The first steps before analysis are:
 
@@ -30,6 +36,9 @@ From now on you will get less instructions on your notebook structure.
 Please create your own coding and markdown cells where you think appropriate.
 
 ## Relative abundance transformation
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/count_to_percent.png", auto_pdf = TRUE)
+```
 
 Now that we have the data loaded we can create a new `phyloseq` object by transforming the abundance values to relative abundances.
 
@@ -55,6 +64,9 @@ You will notice the read count for each sample is __1__. This abundance table co
 We will use this to produce all our different taxa tables.
 
 ## Aggregate taxa
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/aggregate_taxa.png", auto_pdf = TRUE)
+```
 
 To produce a taxa table we can use the `microbiome` function `aggregate_taxa()`.
 
@@ -83,5 +95,8 @@ microbiome::readcount(phylum_pseq)
 ```
 
 ## Taxa Relative abundance: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
+```
 
 We have produced a `phyloseq` object containing a Phylum relative abundance table. Next, we will create a taxonomy bar chart with this.

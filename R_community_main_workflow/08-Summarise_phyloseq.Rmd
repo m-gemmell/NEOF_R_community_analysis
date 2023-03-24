@@ -7,7 +7,7 @@ For the next X chapters we will use one notebook. We will setup this notebook wi
 
 After this, we will summarise the `phyloseq` object. We will investigate the read depth of samples and the number of ASVs in our dataset.
 
-## Setup
+## Summarise: setup
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/setup_2.png", auto_pdf = TRUE)
 ```

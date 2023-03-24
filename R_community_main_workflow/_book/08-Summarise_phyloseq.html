@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-14" />
+<meta name="date" content="2023-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -185,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html"><i class="fa fa-check"></i><b>8</b> Summarise phyloseq</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#setup"><i class="fa fa-check"></i><b>8.1</b> Setup</a>
+<li class="chapter" data-level="8.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-setup"><i class="fa fa-check"></i><b>8.1</b> Summarise: setup</a>
 <ul>
 <li class="chapter" data-level="8.1.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-header"><i class="fa fa-check"></i><b>8.1.1</b> Summarise header</a></li>
 <li class="chapter" data-level="8.1.2" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-phyloseq"><i class="fa fa-check"></i><b>8.1.2</b> Summarise phyloseq</a></li>
@@ -230,6 +230,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#taxa-heatmap"><i class="fa fa-check"></i><b>11.2</b> Taxa heatmap</a></li>
 <li class="chapter" data-level="11.3" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#aggregate-rare-taxa"><i class="fa fa-check"></i><b>11.3</b> Aggregate rare taxa</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#plot-by-media"><i class="fa fa-check"></i><b>11.4</b> Plot by media</a></li>
+<li class="chapter" data-level="11.5" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#plot-by-site-and-media"><i class="fa fa-check"></i><b>11.5</b> Plot by site and media</a></li>
+<li class="chapter" data-level="11.6" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#taxa-plots-summary"><i class="fa fa-check"></i><b>11.6</b> Taxa plots: summary</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -256,8 +259,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/transform.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>For the next X chapters we will use one notebook. We will setup this notebook with libraries and <code>phyloseq</code> object we created in the last chapter.</p>
 <p>After this, we will summarise the <code>phyloseq</code> object. We will investigate the read depth of samples and the number of ASVs in our dataset.</p>
-<div id="setup" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Setup<a href="08-Summarise_phyloseq.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summarise-setup" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Summarise: setup<a href="08-Summarise_phyloseq.html#summarise-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/setup_2.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Before starting analysis create and save a new <code>R</code> notebook called <strong>"02-Preprocess.ipynb"</strong> in the analysis directory (when renaming you don't need to include the suffix).
 We will use this notebook for this and the next chapter.</p>
