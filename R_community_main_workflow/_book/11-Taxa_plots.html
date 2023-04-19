@@ -248,6 +248,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.2.1" data-path="12-Family_and_Genus_taxa.html"><a href="12-Family_and_Genus_taxa.html#genus-taxa-plots-solutions"><i class="fa fa-check"></i><b>12.2.1</b> Genus taxa plots solutions</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>Diversity analysis</b></span></li>
+<li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis intro</a></li>
+<li class="chapter" data-level="14" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html"><i class="fa fa-check"></i><b>14</b> Rarefaction</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html#rarefaction-setup"><i class="fa fa-check"></i><b>14.1</b> Rarefaction: setup</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html#rarefaction-curve"><i class="fa fa-check"></i><b>14.2</b> Rarefaction curve</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html#bird-analogy"><i class="fa fa-check"></i><b>14.2.1</b> Bird analogy</a></li>
+<li class="chapter" data-level="14.2.2" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html#rarefaction-curve-simple-plot"><i class="fa fa-check"></i><b>14.2.2</b> Rarefaction curve: simple plot</a></li>
+<li class="chapter" data-level="14.2.3" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html#rarefaction-curve-better-plot"><i class="fa fa-check"></i><b>14.2.3</b> Rarefaction curve: better plot</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html#rarefaction-slope"><i class="fa fa-check"></i><b>14.3</b> Rarefaction slope</a></li>
+<li class="chapter" data-level="14.4" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html#rarefy-data"><i class="fa fa-check"></i><b>14.4</b> Rarefy data</a></li>
+<li class="chapter" data-level="14.5" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html#rarefaction-summary"><i class="fa fa-check"></i><b>14.5</b> Rarefaction: summary</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -332,8 +347,8 @@ Use the below code to produce and visualise a heatmap.</p>
 <p>With the heatmap it is much easier to tell what the relative abundances of different phyla are.</p>
 <ul>
 <li>What is the most abundant phyla across the samples?
-<div id="radio_GLTXHZXZQR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GLTXHZXZQR" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GLTXHZXZQR" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GLTXHZXZQR" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
+<div id="radio_OBKNDMSDEL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OBKNDMSDEL" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OBKNDMSDEL" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OBKNDMSDEL" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
 </div></li>
 </ul>
 </div>
@@ -414,12 +429,12 @@ With this we will average the rare aggregated relative abundance values by the f
 <p>Now we get a good picture of which medias have the highest and lowest phlya diversity.
 The Environmental samples (ENV) definitely have the highest diversity with clear presence of all phyla.</p>
 Which media has the highest relative abundance of <em>Protoebacteria</em> and the lowest phyla diversity (excluding ENV)?
-<div id="radio_NILUBHWVRS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NILUBHWVRS" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NILUBHWVRS" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NILUBHWVRS" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_WNKQUSCWSB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WNKQUSCWSB" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WNKQUSCWSB" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WNKQUSCWSB" value=""></input> <span><strong>TSA</strong></span></label>
 </div>
 Which media has the lowest relative abundance of <em>Protoebacteria</em> and the highest phyla diversity (excluding ENV)?
-<div id="radio_RTXKXIIAHN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RTXKXIIAHN" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RTXKXIIAHN" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RTXKXIIAHN" value="answer"></input> <span><strong>TSA</strong></span></label>
+<div id="radio_UXUFKZGNYL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UXUFKZGNYL" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UXUFKZGNYL" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UXUFKZGNYL" value="answer"></input> <span><strong>TSA</strong></span></label>
 </div>
 <p>Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.</p>
 </div>

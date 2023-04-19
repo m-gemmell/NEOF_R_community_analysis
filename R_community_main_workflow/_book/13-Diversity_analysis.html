@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Data prep intro | R community analysis</title>
+  <title>Chapter 13 Diversity analysis intro | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Data prep intro | R community analysis" />
+  <meta property="og:title" content="Chapter 13 Diversity analysis intro | R community analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community analysis workflow" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Data prep intro | R community analysis" />
+  <meta name="twitter:title" content="Chapter 13 Diversity analysis intro | R community analysis" />
   
   <meta name="twitter:description" content="NEOF book for the R community analysis workflow" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-<link rel="prev" href="05-Jupyter.html"/>
-<link rel="next" href="07-Import.html"/>
+<link rel="prev" href="12-Family_and_Genus_taxa.html"/>
+<link rel="next" href="14-Rarefaction.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -283,17 +283,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-prep-intro" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Data prep intro<a href="06-Preprocess_part.html#data-prep-intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="diversity-analysis-intro" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Diversity analysis intro<a href="13-Diversity_analysis.html#diversity-analysis-intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/half_tablespoon.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>In the next 3 chapters (7-9) we will learn how to:</p>
+<p>In the next X chapters we will carry out diversity analyses. This will include calculating and visualising diversity values plus carrying out the associated statistics.</p>
+<p>In the chapters we will carry out:</p>
 <ul>
-<li><a href="07-Import.html#import_chap">Import our data.</a></li>
-<li><a href="08-Summarise_phyloseq.html#sum_phyloseq_chap">Summarise our <code>phyloseq</code> object.</a></li>
-<li><a href="09-Minimum_read_depth.html#mindepthchap">Determine the minimum read depth for samples to be used.</a></li>
+<li>Rarefaction of our ASV table.</li>
+<li>Alpha diversity of the rarefied data.</li>
+<li>Beta diversity of the rarefied data.</li>
+<li>Biomarker detection.</li>
 </ul>
-<p>We will also use this as a chance to reinforce how to use <code>jupyter-notebook</code> with clear instructions.
-However, from chapters 10 onwards you will make more decisions on how many <strong>"Coding"</strong> and <strong>"Markdown"</strong> cells you want.</p>
+<p>During this we will attempt to answer our questions from <a href="02-Dataset_and_workflow.html#summary-questions">Chapter 2</a>:</p>
+<ul>
+<li>How does the bacterial communities change across the anthropisation gradient?</li>
+<li>Is there a difference in the replicates of one site and media combination. I.e. do any of the media produce inconsistent profiles.</li>
+<li>Is there more difference between the sites or the media used?</li>
+<li>Do any of the media produce a similar taxonomic profile to the environmental sample?</li>
+</ul>
 
 </div>
 <script>
@@ -472,8 +479,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="05-Jupyter.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="07-Import.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="12-Family_and_Genus_taxa.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="14-Rarefaction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

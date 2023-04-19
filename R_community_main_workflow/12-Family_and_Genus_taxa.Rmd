@@ -342,3 +342,5 @@ ggsave(filename = "./genus_relabund_rareaggregate.png", plot = family_bar,
 IRdisplay::display_png(file="./genus_relabund_rareaggregate.png")
 ```
 `r unhide()`
+
+Once you are happy you can __Close and Halt__ the notebook.
