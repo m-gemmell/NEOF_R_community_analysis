@@ -68,3 +68,6 @@ family-taxa-plots
 aggregate-families
 family-heatmap
 family-rare-aggregation
+family-bar-chart
+genus-taxa-plots
+genus-taxa-plots-solutions

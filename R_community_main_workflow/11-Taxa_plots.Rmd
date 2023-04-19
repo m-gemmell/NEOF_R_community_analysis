@@ -135,7 +135,7 @@ Aggregate the relative abundance table to phyla with the rare thresholds:
 ```{r, eval = FALSE}
 #Aggregate rare phyla
 phylum_rareaggregate_pseq <- microbiome::aggregate_rare(
-  pseq_relabund, level = "phylum",
+  pseq_relabund, level = "Phylum",
   detection = 0.01, prevalence = 5/100
 )
 ```
@@ -254,6 +254,3 @@ In this chapter we have:
 - Grouped bars in bar charts by metadata groups.
 
 We will reinforce this by producing Family and Genus based plots in the next chapter.
-
-
-
