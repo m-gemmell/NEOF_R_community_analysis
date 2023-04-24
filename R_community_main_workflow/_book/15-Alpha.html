@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
 <link rel="prev" href="14-Rarefaction.html"/>
-
+<link rel="next" href="16-Beta.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -280,6 +280,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.5" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-site-plots-and-statistics"><i class="fa fa-check"></i><b>15.5</b> Alpha: Site plots and statistics</a></li>
 <li class="chapter" data-level="15.6" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-summary"><i class="fa fa-check"></i><b>15.6</b> Alpha: summary</a></li>
 </ul></li>
+<li class="chapter" data-level="16" data-path="16-Beta.html"><a href="16-Beta.html"><i class="fa fa-check"></i><b>16</b> Beta</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="16-Beta.html"><a href="16-Beta.html#beta-setup"><i class="fa fa-check"></i><b>16.1</b> Beta: setup</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Beta.html"><a href="16-Beta.html#beta-ordination"><i class="fa fa-check"></i><b>16.2</b> Beta: ordination</a></li>
+<li class="chapter" data-level="16.3" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination"><i class="fa fa-check"></i><b>16.3</b> Beta: plot ordination</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-statistics"><i class="fa fa-check"></i><b>16.4</b> Beta: statistics</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -318,14 +325,15 @@ With these tools we will compare the metrics across the various metadata fields 
 <div id="alpha-setup" class="section level2 hasAnchor" number="15.1">
 <h2><span class="header-section-number">15.1</span> Alpha: setup<a href="15-Alpha.html#alpha-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/gear_setup.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>We will use a new notebook called <strong>"5-alpha_diveristy.ipynb"</strong>.
+<p>We will use a new notebook called <strong>"5-alpha_diversity.ipynb"</strong>.
 Add the following to the top of this new notebook to load the required libraries/packages and data.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="15-Alpha.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Libraries</span></span>
 <span id="cb74-2"><a href="15-Alpha.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;phyloseq&quot;</span>)</span>
 <span id="cb74-3"><a href="15-Alpha.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
 <span id="cb74-4"><a href="15-Alpha.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;IRdisplay&quot;</span>)</span>
-<span id="cb74-5"><a href="15-Alpha.html#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Load phyloseq object</span></span>
-<span id="cb74-6"><a href="15-Alpha.html#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;phyloseq_rarefied.RData&quot;</span>)</span></code></pre></div>
+<span id="cb74-5"><a href="15-Alpha.html#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggforce&quot;</span>)</span>
+<span id="cb74-6"><a href="15-Alpha.html#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Load phyloseq object</span></span>
+<span id="cb74-7"><a href="15-Alpha.html#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;phyloseq_rarefied.RData&quot;</span>)</span></code></pre></div>
 <p>Reminder to use markdown and code cells in the notebook.</p>
 </div>
 <div id="alpha-simple-plot" class="section level2 hasAnchor" number="15.2">
@@ -411,8 +419,8 @@ We'll do this using media as our groups from the <code>sample_data()</code> and 
 <p>You can ignore the warning messages in this case.</p>
 <p>Observe the results.</p>
 Are all the pairwise comparisons significant different (&lt;0.05)?
-<div id="radio_AFZAAEQPVX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AFZAAEQPVX" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AFZAAEQPVX" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_JGNNCJQKAQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JGNNCJQKAQ" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JGNNCJQKAQ" value=""></input> <span><strong>No</strong></span></label>
 </div>
 <p>The test has carried out P value adjustments using the Holm-Bonferroni method (<code>P value adjustment method: holm</code>) which is good.</p>
 <p>In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
@@ -529,6 +537,7 @@ We can fix this by adding the layer `ggplot2::labs(colour = "Media").</p>
 <span id="cb87-10"><a href="15-Alpha.html#cb87-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">150</span>, <span class="at">width =</span> <span class="dv">250</span>)</span>
 <span id="cb87-11"><a href="15-Alpha.html#cb87-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Display plot</span></span>
 <span id="cb87-12"><a href="15-Alpha.html#cb87-12" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./Alpha_diversity_site_boxplot.png&quot;</span>)</span></code></pre></div>
+<p>When you are happy you can close and halt the notebook.</p>
 </div>
 <div id="alpha-summary" class="section level2 hasAnchor" number="15.6">
 <h2><span class="header-section-number">15.6</span> Alpha: summary<a href="15-Alpha.html#alpha-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -715,8 +724,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="14-Rarefaction.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="14-Rarefaction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="16-Beta.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

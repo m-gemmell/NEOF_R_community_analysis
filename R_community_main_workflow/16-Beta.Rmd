@@ -1,0 +1,104 @@
+# Beta
+
+In this chapter we are going to carry out beta diversity analysis.
+This will include the production of ordination plots and statistical analysis.
+
+When carrying out beta diversity all samples are compared in a pairwise manner.
+Using various metrics a table of pairwise distances is created.
+These distance are dissimilarity measures with smaller values indicating higher similarity and larger values representing higher dissimilarity.
+
+With these dissimilarity measures we can produce scatter plots based (e.g. PCoA, & NMDS plots).
+Samples with low dissimilarity (i.e. similar samples) will be close to each other (cluster).
+Samples with high dissimilarity will be apart from each other.
+In a perfect example samples from the same group will form clusters that are distinct from the clusters of other groups.
+
+In this chapter we will:
+
+- Calculate beta diversity ordination metrics plot it as a scatter plot.
+- Determine if there is a statistical difference between beta diversity metrics of sample groups.
+
+## Beta: setup
+
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/gear_setup.png", auto_pdf = TRUE)
+```
+
+We will use a new notebook called **"6-beta_diversity.ipynb"**. 
+Add the following to the top of this new notebook to load the required libraries/packages and data.
+
+```{r, eval=FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+library("IRdisplay")
+#Load phyloseq object
+load("phyloseq_rarefied.RData")
+```
+
+## Beta: ordination
+
+In this section we will ordinate our data with the `phyloseq::ordinate()` function.
+We will ordinate using the [MDS method](https://en.wikipedia.org/wiki/Multidimensional_scaling) (AKA PCoA).
+We will be using the Weighted Unifrac metric as beta diversity dissimilarity scores.
+This uses the count data along with the phylogenetic distances to calculate pairwise dissimilarity.
+
+
+
+```{r , eval = FALSE}
+#Ordinate data
+ord.mds.wunifrac <- phyloseq::ordinate(pseq_rarefy, metho = "MDS", distance = "wunifrac")
+```
+
+To see the different methods and distances that can used please try `?phyloseq:ordinate` and `?distance` respectively.
+More information about the different distances please see the APPENDIX.
+
+ADD LINK TO APPENDIX
+
+## Beta: plot ordination
+
+Now that we have our ordination we can plot it.
+The below script uses `phyloseq::plot_ordination()` to plot our ordination.
+It needs the `phyloseq` object used for ordination (for the metadata) and the ordination data.
+We will add the options `color =` and `shape =` to colour the points by site and shape the points by media.
+
+```{r , eval = FALSE}
+#Plot ordination
+nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy, ord.mds.wunifrac,
+                                   color = "site", shape = "media")
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site.png", plot = nmds.wunifrac,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_site.png")
+```
+
+In this plot we can see that there are 3 main clusters:
+
+1. TSA
+2. ENV
+3. CVP & KBC
+
+A very important feature of ordination plots is the percentage values on the axes.
+These are the percentage variation explained values.
+These values show how much of the variation of the data is explained by each axis.
+We need these as we are converting high dimensional data (many pairwise comparisons) into a 2 dimensional plot.
+
+In our plot axis 1 has a very high percentage variation explained value of 72.5%.
+This indicates that most of the variation in our data is explained by the differences between the media samples (CVP, KBC, & TSA) and the ENV samples.
+This is because the ENV samples are far removed (large distances) from the media samples in terms of axis 1.
+
+On the other hand, axis.2 (15.8%) seems to be primarily showing the difference between the TSA samples and the other samples, and within the TSA samples.
+
+The higher the total variation explained value is the better are plot represents the beta diversity in our data.
+In this case the total is >88% which is very good.
+
+- __<30%__ is poor
+- __>30%__ is not very good
+- __>50%__ is good
+- __>70%__ is very good
+- __>90%__ is exceptional
+
+Additonally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).
+
+## Beta: statistics
+

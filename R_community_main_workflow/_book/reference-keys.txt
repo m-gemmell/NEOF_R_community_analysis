@@ -92,3 +92,8 @@ alpha-stats-task
 alpha-diversity-violin-plot
 alpha-site-plots-and-statistics
 alpha-summary
+beta
+beta-setup
+beta-ordination
+beta-plot-ordination
+beta-statistics
