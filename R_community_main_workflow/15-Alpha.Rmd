@@ -1,0 +1,112 @@
+# Alpha diversity
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/whale.png", auto_pdf = TRUE)
+```
+
+In this chapter we are going to produce alpha diversity plots and statistics with our rarefied data.
+Alpha diversity is carried out by producing a metric for each sample.
+These metrics are primarily interested in the evenness or diversity of a sample.
+
+Generally, these metrics are carried out on the ASV data to see the most fine grain differences between samples.
+However, you can also use different taxa levels which we will show later on.
+This can be useful if there is too much difference in the ASVs from sample to sample or you can only accurately classify sequences to a high level taxonomy (such as with `KRAKEN2` output).
+
+Once we have a value for each sample they can be used to compare samples and sample groups.
+Box plots are used for visualisation.
+Statistics are used to determine if there is a significant difference between groups.
+
+We'll start out by producing a basic box plot and statistics.
+Next we'll improve the plot with some extra R packages.
+With these tools we will compare the metrics across the various metadata fields we have.
+
+## Alpha: setup
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/library_1.png", auto_pdf = TRUE)
+```
+
+We will use a new notebook called **"5-alpha_diveristy.ipynb"**. 
+Add the following to the top of this new notebook to load the required libraries/packages and data.
+
+```{r, eval=FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+library("IRdisplay")
+#Load phyloseq object
+load("phyloseq_rarefied.RData")
+```
+
+Reminder to use markdown and code cells in the notebook.
+
+## Alpha: simple plot
+
+The first step is to calculate and plot the alpha diveristy metrics based on the ASV data.
+Thankfully, the command `phyloseq::plot_richness` will do both of these.
+Try it out.
+
+```{r, eval = FALSE}
+phyloseq::plot_richness(physeq = pseq_rarefy)
+```
+
+The resulting plot is pretty good but unreadable. 
+We can do 3 major things to make the contents easier to read.
+
+### Metric choice
+
+We can choose certain alpha diversity metrics to plot. 
+Currently it is showing 7 metrics (Observed, Chao1 etc.).
+I like to use:
+
+- __Observed__: This is the number of observed features (ASVs, Genera, etc) in each sample.
+- __Chao1__: This is an estimate number of the total number of features in each sample.
+- __Shannon__: A measure of diversity where a higher number means higher diversity. Shannon's index accounts for both abundance and evenness of the features present.
+
+We'll choose these metrics with the `measures = ` option.
+Either make a new code block with new code or you can edit and run the previous code you wrote.
+
+```{r , eval = FALSE}
+phyloseq::plot_richness(physeq = pseq_rarefy, measures = c("Observed","Chao1","Shannon")
+```
+
+To see which measures are available you can see the help page of `phyloseq::plot_richness`.
+
+```{r, eval=FALSE}
+?phyloseq::plot_richness
+```
+
+### Sample grouping & box plot
+
+The last plot looks a bit better.
+To actually make them box plots we'll change the x axis so they are based on media rather than individual samples.
+
+The `phyloseq::plot_richness` function produces a `ggplot2` object.
+To convert our dot plot into a box plot we can add the layer `geom_boxplt()` like with our [depth boxplots](#depth-boxplots).
+This will combine samples from one media into one IQR box.
+
+```{r , eval = FALSE}
+phyloseq::plot_richness(physeq = pseq_rarefy, 
+                        x = "media",
+                        measures = c("Observed","Chao1","Shannon") +
+            geom_boxplot()
+```
+
+### Save and display as png
+
+Like we have done a few times we can save the plot as a png and view it.
+
+
+```{r , eval = FALSE}
+# Produce ggplot object of boxplot
+alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+                        x = "media",
+                        measures = c("Observed","Chao1","Shannon") +
+                          geom_boxplot()
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Alpha_diversity_boxplot.png", plot = phylum_bar,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+```
+
+How do I choose a good height and width?
+This comes down to trial and error and experience.
+Additionally, the size requirements of figures for journals will play a big consideration as well.
+One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.
