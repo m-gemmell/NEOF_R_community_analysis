@@ -278,7 +278,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="15.4" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-diversity-violin-plot"><i class="fa fa-check"></i><b>15.4</b> Alpha diversity: violin plot</a></li>
 <li class="chapter" data-level="15.5" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-site-plots-and-statistics"><i class="fa fa-check"></i><b>15.5</b> Alpha: Site plots and statistics</a></li>
-<li class="chapter" data-level="15.6" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-recap"><i class="fa fa-check"></i><b>15.6</b> Alpha: recap</a></li>
+<li class="chapter" data-level="15.6" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-summary"><i class="fa fa-check"></i><b>15.6</b> Alpha: summary</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -302,7 +302,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="alpha_chap" class="section level1 hasAnchor" number="15">
 <h1><span class="header-section-number">Chapter 15</span> Alpha diversity<a href="15-Alpha.html#alpha_chap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="figures/whale.png" width="20%" style="display: block; margin: auto;" /></p>
+<p><img src="figures/alpha.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>In this chapter we are going to produce alpha diversity plots and statistics with our rarefied data.
 Alpha diversity is carried out by producing a metric for each sample.
 These metrics are primarily interested in the evenness or diversity of a sample.</p>
@@ -317,7 +317,7 @@ Next we'll improve the plot with some extra R packages.
 With these tools we will compare the metrics across the various metadata fields we have.</p>
 <div id="alpha-setup" class="section level2 hasAnchor" number="15.1">
 <h2><span class="header-section-number">15.1</span> Alpha: setup<a href="15-Alpha.html#alpha-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/library_1.png" width="15%" style="display: block; margin: auto;" /></p>
+<p><img src="figures/gear_setup.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>We will use a new notebook called <strong>"5-alpha_diveristy.ipynb"</strong>.
 Add the following to the top of this new notebook to load the required libraries/packages and data.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="15-Alpha.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Libraries</span></span>
@@ -330,6 +330,7 @@ Add the following to the top of this new notebook to load the required libraries
 </div>
 <div id="alpha-simple-plot" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">15.2</span> Alpha: simple plot<a href="15-Alpha.html#alpha-simple-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/simple_boxplot.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>The first step is to calculate and plot the alpha diveristy metrics based on the ASV data.
 Thankfully, the command <code>phyloseq::plot_richness()</code> will do both of these.
 Try it out.</p>
@@ -338,6 +339,7 @@ Try it out.</p>
 We can do 3 major things to make the contents easier to read.</p>
 <div id="metric-choice" class="section level3 hasAnchor" number="15.2.1">
 <h3><span class="header-section-number">15.2.1</span> Metric choice<a href="15-Alpha.html#metric-choice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/metric_square_1.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>We can choose certain alpha diversity metrics to plot.
 Currently it is showing 7 metrics (Observed, Chao1 etc.).
 I like to use:</p>
@@ -356,6 +358,7 @@ Either make a new code block with new code or you can edit and run the previous 
 </div>
 <div id="sample-grouping-box-plot" class="section level3 hasAnchor" number="15.2.2">
 <h3><span class="header-section-number">15.2.2</span> Sample grouping &amp; box plot<a href="15-Alpha.html#sample-grouping-box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/boxplots_groups.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>The last plot looks a bit better.
 To actually make them box plots we'll change the x axis so they are based on media rather than individual samples.</p>
 <p>The <code>phyloseq::plot_richness()</code> function produces a <code>ggplot2</code> object.
@@ -368,6 +371,7 @@ This will combine samples from one media into one IQR box.</p>
 </div>
 <div id="save-and-display-as-png" class="section level3 hasAnchor" number="15.2.3">
 <h3><span class="header-section-number">15.2.3</span> Save and display as png<a href="15-Alpha.html#save-and-display-as-png" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/display_png.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Like we have done a few times we can save the plot as a png and view it.</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="15-Alpha.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Produce ggplot object of boxplot</span></span>
 <span id="cb79-2"><a href="15-Alpha.html#cb79-2" aria-hidden="true" tabindex="-1"></a>alpha_boxplot <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">plot_richness</span>(<span class="at">physeq =</span> pseq_rarefy, </span>
@@ -388,6 +392,7 @@ One of the nice things with creating jupyter-notebooks or R markdowns with all y
 </div>
 <div id="alpha-stats" class="section level2 hasAnchor" number="15.3">
 <h2><span class="header-section-number">15.3</span> Alpha: stats<a href="15-Alpha.html#alpha-stats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/pear.png" width="10%" style="display: block; margin: auto;" /></p>
 <p>Along with the plot it is also good to carry otu statistics.
 This will allow us to statistically determine if the alpha diversity values between groups are statistically significant.</p>
 <p>Before carrying out statistics we will need a data frame with the alpha diveristy values for each sample.
@@ -406,14 +411,15 @@ We'll do this using media as our groups from the <code>sample_data()</code> and 
 <p>You can ignore the warning messages in this case.</p>
 <p>Observe the results.</p>
 Are all the pairwise comparisons significant different (&lt;0.05)?
-<div id="radio_RMDNNTDSQG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RMDNNTDSQG" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RMDNNTDSQG" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_AFZAAEQPVX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AFZAAEQPVX" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AFZAAEQPVX" value=""></input> <span><strong>No</strong></span></label>
 </div>
 <p>The test has carried out P value adjustments using the Holm-Bonferroni method (<code>P value adjustment method: holm</code>) which is good.</p>
 <p>In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
 The only group with a large variance is the ENV group with values going from &lt; 150 to &gt; 450.</p>
 <div id="alpha-stats-task" class="section level3 hasAnchor" number="15.3.1">
 <h3><span class="header-section-number">15.3.1</span> Alpha stats task<a href="15-Alpha.html#alpha-stats-task" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/exercises.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Carry out the same statistical analysis (media as the grouping) with the <code>Chao1</code> and <code>Shannon</code> metrics.</p>
 <div class="webex-solution">
 <button>
@@ -441,6 +447,7 @@ There is little to no overlap of the IQRs of KBC and TSA against ENV.</p>
 </div>
 <div id="alpha-diversity-violin-plot" class="section level2 hasAnchor" number="15.4">
 <h2><span class="header-section-number">15.4</span> Alpha diversity: violin plot<a href="15-Alpha.html#alpha-diversity-violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/violin.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Boxplots are quite nice but violin plots can be even nicer.
 They show the distribution of the data in the IQR better and in fact you can easily display each value.</p>
 <p>We can change our boxplot to a violin plot by changing <code>ggplot2:geom_boxplot()</code> to <code>ggplot2::geom_violin()</code>.</p>
@@ -475,6 +482,7 @@ Alpha is a common option used for many plots.</p>
 </div>
 <div id="alpha-site-plots-and-statistics" class="section level2 hasAnchor" number="15.5">
 <h2><span class="header-section-number">15.5</span> Alpha: Site plots and statistics<a href="15-Alpha.html#alpha-site-plots-and-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/river.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>With all the knowledge, skills, and code from this chapter carry out the following tasks:</p>
 <ul>
 <li>Produce a violin plot of Observed, Chao1, Shannon, and Inverse Simpson with the Site groups.</li>
@@ -522,8 +530,9 @@ We can fix this by adding the layer `ggplot2::labs(colour = "Media").</p>
 <span id="cb87-11"><a href="15-Alpha.html#cb87-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Display plot</span></span>
 <span id="cb87-12"><a href="15-Alpha.html#cb87-12" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./Alpha_diversity_site_boxplot.png&quot;</span>)</span></code></pre></div>
 </div>
-<div id="alpha-recap" class="section level2 hasAnchor" number="15.6">
-<h2><span class="header-section-number">15.6</span> Alpha: recap<a href="15-Alpha.html#alpha-recap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="alpha-summary" class="section level2 hasAnchor" number="15.6">
+<h2><span class="header-section-number">15.6</span> Alpha: summary<a href="15-Alpha.html#alpha-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/sum_blue.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>In this chapter we have created alpha diversity plots and run pairwise comparisons.
 The biggest difference between samples is caused by the media choice which overwrites differences we can see between sites.
 The environmental samples have much higher diversirty samples than the media samples but this is expected.</p>

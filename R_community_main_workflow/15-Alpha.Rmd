@@ -21,7 +21,7 @@ With these tools we will compare the metrics across the various metadata fields 
 
 ## Alpha: setup
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/library_1.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/gear_setup.png", auto_pdf = TRUE)
 ```
 
 We will use a new notebook called **"5-alpha_diveristy.ipynb"**. 
@@ -39,6 +39,9 @@ load("phyloseq_rarefied.RData")
 Reminder to use markdown and code cells in the notebook.
 
 ## Alpha: simple plot
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/simple_boxplot.png", auto_pdf = TRUE)
+```
 
 The first step is to calculate and plot the alpha diveristy metrics based on the ASV data.
 Thankfully, the command `phyloseq::plot_richness()` will do both of these.
@@ -52,6 +55,9 @@ The resulting plot is pretty good but unreadable.
 We can do 3 major things to make the contents easier to read.
 
 ### Metric choice
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/metric_square_1.png", auto_pdf = TRUE)
+```
 
 We can choose certain alpha diversity metrics to plot. 
 Currently it is showing 7 metrics (Observed, Chao1 etc.).
@@ -79,6 +85,9 @@ LINK NEEDS TO BE ADDED ABOVE WHEN APPENDIX MADE.
 ```
 
 ### Sample grouping & box plot
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/boxplots_groups.png", auto_pdf = TRUE)
+```
 
 The last plot looks a bit better.
 To actually make them box plots we'll change the x axis so they are based on media rather than individual samples.
@@ -95,6 +104,9 @@ phyloseq::plot_richness(physeq = pseq_rarefy,
 ```
 
 ### Save and display as png
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
+```
 
 Like we have done a few times we can save the plot as a png and view it.
 
@@ -118,6 +130,9 @@ Additionally, the size requirements of figures for journals will play a big cons
 One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.
 
 ## Alpha: stats
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/pear.png", auto_pdf = TRUE)
+```
 
 Along with the plot it is also good to carry otu statistics.
 This will allow us to statistically determine if the alpha diversity values between groups are statistically significant.
@@ -159,6 +174,9 @@ In this case the p-values are all identical as the values do not vary greatly bu
 The only group with a large variance is the ENV group with values going from < 150 to > 450.
 
 ### Alpha stats task
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/exercises.png", auto_pdf = TRUE)
+```
 
 Carry out the same statistical analysis (media as the grouping) with the `Chao1` and `Shannon` metrics.
 
@@ -187,6 +205,9 @@ We can therefore make these claims about the alpha diversity values of the group
 - Within each media grouping the samples have very similar numbers of ASVs present.
 
 ## Alpha diversity: violin plot
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/violin.png", auto_pdf = TRUE)
+```
 
 Boxplots are quite nice but violin plots can be even nicer.
 They show the distribution of the data in the IQR better and in fact you can easily display each value.
@@ -231,6 +252,9 @@ IRdisplay::display_png(file="./Alpha_diversity_media_boxplot.png")
 ```
 
 ## Alpha: Site plots and statistics
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/river.png", auto_pdf = TRUE)
+```
 
 With all the knowledge, skills, and code from this chapter carry out the following tasks:
 
@@ -286,7 +310,12 @@ ggsave(filename = "./Alpha_diversity_site_boxplot.png", plot = phylum_bar,
 IRdisplay::display_png(file="./Alpha_diversity_site_boxplot.png")
 ```
 
-## Alpha: recap
+When you are happy you can close and halt the notebook.
+
+## Alpha: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
+```
 
 In this chapter we have created alpha diversity plots and run pairwise comparisons.
 The biggest difference between samples is caused by the media choice which overwrites differences we can see between sites.

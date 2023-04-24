@@ -91,4 +91,4 @@ alpha-stats
 alpha-stats-task
 alpha-diversity-violin-plot
 alpha-site-plots-and-statistics
-alpha-recap
+alpha-summary
