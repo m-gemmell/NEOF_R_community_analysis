@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Minimum read depth | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Minimum read depth | R community analysis" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-04-19" />
+<meta name="date" content="2023-04-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -263,6 +263,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.4" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html#rarefy-data"><i class="fa fa-check"></i><b>14.4</b> Rarefy data</a></li>
 <li class="chapter" data-level="14.5" data-path="14-Rarefaction.html"><a href="14-Rarefaction.html#rarefaction-summary"><i class="fa fa-check"></i><b>14.5</b> Rarefaction: summary</a></li>
 </ul></li>
+<li class="chapter" data-level="15" data-path="15-Alpha.html"><a href="15-Alpha.html"><i class="fa fa-check"></i><b>15</b> Alpha diversity</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-setup"><i class="fa fa-check"></i><b>15.1</b> Alpha: setup</a></li>
+<li class="chapter" data-level="15.2" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-simple-plot"><i class="fa fa-check"></i><b>15.2</b> Alpha: simple plot</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="15-Alpha.html"><a href="15-Alpha.html#metric-choice"><i class="fa fa-check"></i><b>15.2.1</b> Metric choice</a></li>
+<li class="chapter" data-level="15.2.2" data-path="15-Alpha.html"><a href="15-Alpha.html#sample-grouping-box-plot"><i class="fa fa-check"></i><b>15.2.2</b> Sample grouping &amp; box plot</a></li>
+<li class="chapter" data-level="15.2.3" data-path="15-Alpha.html"><a href="15-Alpha.html#save-and-display-as-png"><i class="fa fa-check"></i><b>15.2.3</b> Save and display as png</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-stats"><i class="fa fa-check"></i><b>15.3</b> Alpha: stats</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-stats-task"><i class="fa fa-check"></i><b>15.3.1</b> Alpha stats task</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-diversity-violin-plot"><i class="fa fa-check"></i><b>15.4</b> Alpha diversity: violin plot</a></li>
+<li class="chapter" data-level="15.5" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-site-plots-and-statistics"><i class="fa fa-check"></i><b>15.5</b> Alpha: Site plots and statistics</a></li>
+<li class="chapter" data-level="15.6" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-recap"><i class="fa fa-check"></i><b>15.6</b> Alpha: recap</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -338,8 +355,8 @@ Normally, for 16S data, a depth of at least 20K per sample is suggested. However
 <p>We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:</p>
 <ul>
 <li>What is the approximate read depth range of our dataset?
-<div id="radio_RXHFRIEDFD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RXHFRIEDFD" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RXHFRIEDFD" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RXHFRIEDFD" value=""></input> <span><strong>20,000+</strong></span></label>
+<div id="radio_ICOBUVHNMM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ICOBUVHNMM" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ICOBUVHNMM" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ICOBUVHNMM" value=""></input> <span><strong>20,000+</strong></span></label>
 </div></li>
 </ul>
 <p>This is a good first step but what if we want to know how the read depths vary between sample groups?</p>
@@ -404,8 +421,8 @@ We won't go into too much detail on how the code works here, instead learning mo
 <span id="cb29-3"><a href="09-Minimum_read_depth.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <ul>
 <li>Which site has the highest median depth (middle line of boxplot)?
-<div id="radio_EJYUYIDJDW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EJYUYIDJDW" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EJYUYIDJDW" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EJYUYIDJDW" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
+<div id="radio_WSIWCCEUOQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WSIWCCEUOQ" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WSIWCCEUOQ" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WSIWCCEUOQ" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
 </div></li>
 </ul>
 <p>We will use the same code to plot the depth by media.
@@ -416,8 +433,8 @@ Carry this out in the same cell and run the code.</p>
 <span id="cb30-3"><a href="09-Minimum_read_depth.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <ul>
 <li>Which media has the lowest median depth (middle line of boxplot)?
-<div id="radio_MGVQGDHEQK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MGVQGDHEQK" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MGVQGDHEQK" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MGVQGDHEQK" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_TFDZIZMSQH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TFDZIZMSQH" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TFDZIZMSQH" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TFDZIZMSQH" value=""></input> <span><strong>TSA</strong></span></label>
 </div></li>
 </ul>
 <p>From the boxplots we can see there is no drastic difference between the depths of the different sample groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.</p>

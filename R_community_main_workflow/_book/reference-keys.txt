@@ -81,3 +81,14 @@ rarefaction-curve-better-plot
 rarefaction-slope
 rarefy-data
 rarefaction-summary
+alpha_chap
+alpha-setup
+alpha-simple-plot
+metric-choice
+sample-grouping-box-plot
+save-and-display-as-png
+alpha-stats
+alpha-stats-task
+alpha-diversity-violin-plot
+alpha-site-plots-and-statistics
+alpha-recap

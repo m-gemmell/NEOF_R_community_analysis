@@ -2,15 +2,15 @@
 
 # Diversity analysis intro
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ```
 
 In the next X chapters we will carry out diversity analyses. This will include calculating and visualising diversity values plus carrying out the associated statistics.
 
 In the chapters we will carry out:
 
-- Rarefaction of our ASV table.
-- Alpha diversity of the rarefied data.
+- [Rarefaction of our ASV table.](#rarefaction_chap)
+- [Alpha diversity of the rarefied data.](#alpha_chap)
 - Beta diversity of the rarefied data.
 - Biomarker detection.
 
