@@ -98,7 +98,161 @@ In this case the total is >88% which is very good.
 - __>70%__ is very good
 - __>90%__ is exceptional
 
-Additonally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).
+Additionally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).
 
 ## Beta: statistics
+
+For our beta diversity we will carry out PERMANOVA analysis for the media groupings.
+This will be carried out for all the samples and in a pairwise manner.
+
+PERMANOVA is a good test in this case to determine if there is a significance difference between the distances of groups.
+This allows us to determine if the clustering of groups is significant.
+More info on PERMANOVA can be found in the APPENDIX.
+
+### PERMANOVA
+
+We will carry out a PERMANOVA test on all the samples based on media.
+This will help us determine if there is any differences between groupings but not which grouping.
+Prior to PERMANOVA we need to create a matrix containing all the sample paired distance values.
+We will use the function `phyloseq::distance()`.
+
+```{r, eval=FALSE}
+#PERMANOVA
+#Produce distance matrix
+wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy, method="wunifrac")
+```
+
+With the distance matrix we can carry out a PERMANOVA test with [`vegan::adonis2()`](https://search.r-project.org/CRAN/refmans/vegan/html/adonis.html).
+This requires the metadata in the form of a data frame.
+In this case we can assess if there are any differences by media and by site (`media+site`).
+
+```{r, eval=FALSE}
+#Extract metadata data frame from phyloseq
+metadaf <- data.frame(phyloseq::sample_data(pseq_rarefy))
+#PERMANOVA/ADONIS of media
+wunifrac_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media+site, data = metadf, by = "margin")
+wunifrac_adonis
+```
+
+There is a lot of information in the resulting table.
+We are primarily interested in the P-value column (`Pr(>F)`).
+We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.016).
+
+### Pairwise PERMANOVA
+
+We will now see which media groups are significantly different to each other.
+We will do this with pairwise PERMANOVA tests.
+Unfortunately the `vegan` library does not have a function to do this so we will need to do some scripting.
+
+The first step is to get every combination of groupings with the `combn()` and `unique()` functions.
+
+```{r, eval=FALSE}
+#Pairwise comparisons
+#Get combinations of unique media values
+cbn <- combn(x = unique(metadf$media), m = 2)
+cbn
+#First combination
+cbn[,1]
+```
+
+With the first media combination (CVP & ENV) we can subset our `phyloseq` object so it only contains those samples.
+Additionally, we can extract the metadata from this subsetted `phyloseq` object.
+
+```{r, eval=FALSE}
+#Subset phyloseq so it only contains CVP & ENV samples (1st combination)
+pseq_rarefy_subset <- phyloseq::subset_samples(pseq_rarefy, media %in% cbn[,1])
+#Metadata data frame
+metadf_subset <- data.frame(phyloseq::sample_data(pseq_rarefy_subset))
+```
+
+With this info we can calculate the distances and then carry out the PERMANOVA.
+
+```{r, eval=FALSE}
+#Weighted unifrac distance calculation
+wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
+#PERMANOVA/ADONIS of media
+wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, data = metadf_subset, by = "margin")
+wunifrac_pairwise_adonis
+```
+
+We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
+However, it would be quite inefficient to type the above script for each combination.
+We will therefore create a script with a loop to automatically run the code for each combination.
+Additionally, we will create an empty data frame before the loop.
+This will be used to store the comparison info and the P-values.
+
+Create the below script in a new code block, reading the annotation to help understand how it works.
+
+```{r, eval=FALSE}
+#Pairwise comparison loop
+#Get combinations of unique media values
+cbn <- combn(x = unique(metadf$media), m = 2)
+#Create empty final data frame with 4 columns
+# and a number of rows equal to the the number of combinations
+pairwise_permanova_df <- as.data.frame(matrix(data = NA, nrow = ncol(cbn), ncol = 4))
+#Add column names
+colnames(pairwise_permanova_df) <- c("1","2","p","p.adj")
+
+#Loop trhough the combinations
+for(i in 1:ncol(cbn)){
+  #Subset to media phyloseq
+  #Ensure to change metadata group if using different grouping (media)
+  pseq_rarefy_subset <- phyloseq::subset_samples(pseq_rarefy, media %in% cbn[,i])
+  #Metadata data frame
+  metadf_subset <- data.frame(phyloseq::sample_data(pseq_rarefy_subset))
+  #Weighted unifrac distance calculation
+  wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
+  #PERMANOVA/ADONIS of media
+  #Ensure to change metadata group if using different grouping (media)
+  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, data = metadf_subset, by = "margin")
+  #Add the gorup names and p-value to the main data frame
+  pairwise_permanova_df[i,1:2] <- cbn[,i]
+  pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
+}
+#View data frame
+pairwise_permanova_df
+```
+
+All our media groupings are significantly different to each other (0.001).
+You may have noticed that the `p.adj` column is empty.
+We will add adjusted P-values to these columns.
+It is always important to use adjusted P-values when carrying out multiple significant tests such as with pairwise comparisons.
+We'll use the function `p.adjust()` to add Benjamin-Hochberg (`method = "BH"`) adjusted values values.
+
+```{r, eval=FALSE}
+#Add adjusted P-values
+pairwise_permanova_df$p.adj <- p.adjust(pairwise_permanova_df$p, method = "BH")
+#View data frame
+pairwise_permanova_df
+```
+
+Brilliant, the adjusted P-values are still significant, in fact they did not even change.
+This shows us that the different media grouping are significantly different.
+This makes sense from our taxonomy, alpha diversity, and beta diversity analysis.
+However, it is hard to see the separation of the CVP and KBC samples in the MDS plot.
+
+## Beta: Facet zoom
+
+The [`ggforce` library](https://ggforce.data-imaginist.com/index.html) is a very powerful library to edit `ggplot2` objects.
+One of its functions, `ggforce::facet_zoom()`, allows us to zoom into a specific part of a plot whilst also showing the main plot.
+We will use this to zoom into the CVP and KBC samples within the weighted unifrac MDS plot.
+
+```{r , eval = FALSE}
+#Ordinate data
+ord.mds.wunifrac <- phyloseq::ordinate(pseq_rarefy, metho = "MDS", distance = "wunifrac")
+#Plot ordination
+nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy, ord.mds.wunifrac,
+                                   color = "site", shape = "media") +
+                  #Zoom into CVP and KBC samples specified by the metadata category
+                  #Zoom.size = 1 so the zoom section is the same size as the main plot
+                  #Zoom.size = 2 would mean the zoom plot is 2 times the size of the original
+                  ggforce::facet_zoom( x = media = c("CVP","KBC"), zoom.size = 1)
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_zoom.png", plot = nmds.wunifrac,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 150)
+#Display plot
+IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_site_zoom.png")
+```
+
+### PERMANOVA task
 
