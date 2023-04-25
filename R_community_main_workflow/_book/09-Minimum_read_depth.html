@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-04-24" />
+<meta name="date" content="2023-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -285,7 +285,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.1" data-path="16-Beta.html"><a href="16-Beta.html#beta-setup"><i class="fa fa-check"></i><b>16.1</b> Beta: setup</a></li>
 <li class="chapter" data-level="16.2" data-path="16-Beta.html"><a href="16-Beta.html#beta-ordination"><i class="fa fa-check"></i><b>16.2</b> Beta: ordination</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination"><i class="fa fa-check"></i><b>16.3</b> Beta: plot ordination</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-statistics"><i class="fa fa-check"></i><b>16.4</b> Beta: statistics</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-statistics"><i class="fa fa-check"></i><b>16.4</b> Beta: statistics</a>
+<ul>
+<li class="chapter" data-level="16.4.1" data-path="16-Beta.html"><a href="16-Beta.html#permanova"><i class="fa fa-check"></i><b>16.4.1</b> PERMANOVA</a></li>
+<li class="chapter" data-level="16.4.2" data-path="16-Beta.html"><a href="16-Beta.html#pairwise-permanova"><i class="fa fa-check"></i><b>16.4.2</b> Pairwise PERMANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="16-Beta.html"><a href="16-Beta.html#beta-facet-zoom"><i class="fa fa-check"></i><b>16.5</b> Beta: Facet zoom</a></li>
+<li class="chapter" data-level="16.6" data-path="16-Beta.html"><a href="16-Beta.html#beta-subset-samples"><i class="fa fa-check"></i><b>16.6</b> Beta: subset samples</a></li>
+<li class="chapter" data-level="16.7" data-path="16-Beta.html"><a href="16-Beta.html#permanova-tasks"><i class="fa fa-check"></i><b>16.7</b> PERMANOVA tasks</a></li>
+<li class="chapter" data-level="16.8" data-path="16-Beta.html"><a href="16-Beta.html#beta-summary"><i class="fa fa-check"></i><b>16.8</b> Beta: Summary</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -362,8 +370,8 @@ Normally, for 16S data, a depth of at least 20K per sample is suggested. However
 <p>We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:</p>
 <ul>
 <li>What is the approximate read depth range of our dataset?
-<div id="radio_DTMUPYWMWH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DTMUPYWMWH" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DTMUPYWMWH" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DTMUPYWMWH" value=""></input> <span><strong>20,000+</strong></span></label>
+<div id="radio_WXIXYWSSWH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WXIXYWSSWH" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WXIXYWSSWH" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WXIXYWSSWH" value=""></input> <span><strong>20,000+</strong></span></label>
 </div></li>
 </ul>
 <p>This is a good first step but what if we want to know how the read depths vary between sample groups?</p>
@@ -428,8 +436,8 @@ We won't go into too much detail on how the code works here, instead learning mo
 <span id="cb29-3"><a href="09-Minimum_read_depth.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <ul>
 <li>Which site has the highest median depth (middle line of boxplot)?
-<div id="radio_QVAOAJAOPR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QVAOAJAOPR" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QVAOAJAOPR" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QVAOAJAOPR" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
+<div id="radio_XNHCVGZMYF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XNHCVGZMYF" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XNHCVGZMYF" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XNHCVGZMYF" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
 </div></li>
 </ul>
 <p>We will use the same code to plot the depth by media.
@@ -440,8 +448,8 @@ Carry this out in the same cell and run the code.</p>
 <span id="cb30-3"><a href="09-Minimum_read_depth.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <ul>
 <li>Which media has the lowest median depth (middle line of boxplot)?
-<div id="radio_OMYKMTVAZT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_OMYKMTVAZT" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OMYKMTVAZT" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OMYKMTVAZT" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_BEWRGHZXDJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BEWRGHZXDJ" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BEWRGHZXDJ" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BEWRGHZXDJ" value=""></input> <span><strong>TSA</strong></span></label>
 </div></li>
 </ul>
 <p>From the boxplots we can see there is no drastic difference between the depths of the different sample groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.</p>

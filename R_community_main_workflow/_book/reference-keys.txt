@@ -97,3 +97,9 @@ beta-setup
 beta-ordination
 beta-plot-ordination
 beta-statistics
+permanova
+pairwise-permanova
+beta-facet-zoom
+beta-subset-samples
+permanova-tasks
+beta-summary
