@@ -103,3 +103,11 @@ beta-facet-zoom
 beta-subset-samples
 permanova-tasks
 beta-summary
+differential-abundance-da-analysis
+da-setup
+da-preprocess
+da-ancom-bc-analysis
+ancombc2-options
+da-ancom-bc-results
+da-create-signifcant-lfc-long-data-frame
+da-create-signifcant-lfc-long-data-frame-1
