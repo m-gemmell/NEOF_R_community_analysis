@@ -1,4 +1,4 @@
-# Family & Genus plots
+# Family & Genus plots {#family_genus_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/plots.png", auto_pdf = TRUE)
 ```

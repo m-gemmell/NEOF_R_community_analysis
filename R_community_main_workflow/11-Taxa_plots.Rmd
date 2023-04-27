@@ -1,4 +1,4 @@
-# Taxa plots
+# Taxa plots {#chaptaxaplots}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/owl_eyes.png", auto_pdf = TRUE)
 ```

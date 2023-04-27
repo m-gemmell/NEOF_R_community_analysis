@@ -8,7 +8,7 @@ knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
 ``` 
 
-In this tutorial we will be using 16S metabarcdoing datasets derived from surface water from the Durance River in the south-east of France. Two major comparisons were carried out in combination with each other.
+In this tutorial we will be using a 16S metabarcoding dataset derived from surface water from the Durance River in the south-east of France. Two major comparisons were carried out in combination with each other.
 
 ### Sites
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -17,7 +17,7 @@ knitr::include_graphics(path = "figures/river.png", auto_pdf = TRUE)
 
 Three different sites were chosen on the Durance River. These three sites were representative of an anthropisation (transformation of land by humans) gradient along a river stream. These sites were:
 
-- __Upper Durance sampling site (UD)__: Bottom part of the alpine part of the river with little/no anthropisation.
+- __Upper Durance sampling site (UD)__: Alpine part of the river with little/no anthropisation.
 - __Middle Durance sampling site (MD)__: Upper part of agricultural land dominated by apple and pear production.
 - __Lower Durance sampling site (LD)__: Lower part of agricultural land with intensive production of fruits, cereals, and vegetables.
 
@@ -28,7 +28,7 @@ knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
 
 Surface water was sampled and different culture media were used to produce bacterial lawns for each site. The media used were:
 
-- __Environmental sample (ENV)__: No media used, frozen at -20°C will DNA extraction.
+- __Environmental sample (ENV)__: No media used, frozen at -20°C.
 - __TSA 10%__ incubated at 28°C for 2 days.
 - __KBC__ incubated at 28°C for 2 days.
 - __CVP__ incubated at 28°C for 3 days.
@@ -38,18 +38,18 @@ Surface water was sampled and different culture media were used to produce bacte
 knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
 ```
 
-Each sample and media combination was produced in replicates of three giving a total of 27 samples (3*4*3 = 36). The three replicates were cultured on three different plates with the same media. An ASV table, taxonomy table, and phylogenetic tree were produced with QIIME2 and DADA2.
+Each sample and media combination was produced in replicates of three giving a total of 27 samples (3 X 4 X 3 = 36). The three replicates were cultured on three different plates with the same media. An ASV table, taxonomy table, and phylogenetic tree were produced with QIIME2 and DADA2.
 
 With this data we can ask and investigate the following questions:
 
 - How does the bacterial communities change across the anthropisation gradient?
 - Is there a difference in the replicates of one site and media combination. I.e. do any of the media produce inconsistent profiles.
 - Is there more difference between the sites or the media used?
-- Do any of the media produce a similar taxonomic profile to the environmental sample?
-
+- Do the media samples differ from the ENV samples? If so, how?
 
 ## Workflow
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 ```
 
+__ADD in this section.__

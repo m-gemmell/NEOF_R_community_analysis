@@ -4,13 +4,14 @@ knitr::include_graphics(path = "figures/depth_diver.png", auto_pdf = TRUE)
 ``` 
 
 It is good to remove samples with a very low read depth (number of sequencing reads).
-However, it is not trivial to determine what an appropriate read depth is.
+But determining an appropriate minimum read depth is not trivial.
 This value will vary from study to study.
-Normally, for 16S data, a depth of at least 20K per sample is suggested. However, this is the general consensus for human microbiome data. 
+Normally, for 16S data, a depth of at least 20K per sample is suggested.
+This is the general consensus for __human microbiome__ data. 
 
 In this chapter we will:
 
-- Cover a brief intro to considertions of what is an acceptable minimum depth for your dataset.
+- Cover a brief intro to considerations of what is an acceptable minimum depth for your dataset.
 - Reinvestigate our sample depths with a previously created histogram.
 - View the depth ranges of different sample groups (site & media) with box plots.
 - Create a rarefaction curve to assess if the depth of our samples have captured a good amount of biodiversity.
@@ -21,7 +22,7 @@ In this chapter we will:
 knitr::include_graphics(path = "figures/consider.png", auto_pdf = TRUE)
 ``` 
 
-There are 3 main considerations to take into account for what is an appropriate depth for your dataset.
+There are 3 main considerations to take into account when choosing an appropriate depth for your dataset.
 
 - __The biodiversity of your samples.__
   - If your sample is very biodiverse, such as the human gut microbiome, you will need a good depth (>20K per sample).
@@ -30,12 +31,12 @@ There are 3 main considerations to take into account for what is an appropriate 
 - __The biomass of your samples.__
   - Some environments are hard to extract DNA from.
   - If this is the case for you, then people will hopefully accept that this is an unfortunate reality of life and you will use what you can.
-  - However, be careful of your conclusions, if you think your data doesn't have as much as it could do not make very definitive detailed claims.
+  - Bbe careful of your conclusions. If you think your dataset doesn't have as much data as it could, do not make very definitive detailed claims.
 - __Read depth of sample groups.__
-  - It may be possible that a few samples have a much lower depth than the rest and so you may think to remove them.
+  - It may be possible that a few samples have a much lower depth than the rest. IT may be a good idea to remove them.
   - However, these may all come from the same sample group and so you have lost all information of one group.
   - For instance, you may be comparing different geological surfaces and your rock samples have much lower read depths than the various soil samples.
-  - For comparisons including the lower depth sample group (e.g. rock samples) you will need to retrain the lower depth sample.
+  - For comparisons including the lower depth sample group (e.g. rock samples) you will need to retain the lower depth samples.
 
 That is a brief overview of that topic. If you are interested in more I suggest you look at papers where they have studied an environment similar to yours.
 
@@ -44,9 +45,9 @@ That is a brief overview of that topic. If you are interested in more I suggest 
 knitr::include_graphics(path = "figures/header_l2.png", auto_pdf = TRUE)
 ``` 
 
-In the next section of our `jupyter-notebook` we will investigate what the minimum read depth should be and remove sample below this.
+In the next section of our `jupyter-notebook` we will investigate what the minimum read depth should be and remove samples with a lower depth.
 
-Create a new __"Markdown"__ cell and add the following 2nd level header.
+Create a new __"Markdown"__ __cell__ and add the following 2nd level header.
 
 ```{r, eval=FALSE}
 ## Minimum read depth
@@ -73,16 +74,16 @@ knitr::include_graphics(path = "figures/boxplot.png", auto_pdf = TRUE)
 
 We are going to use `ggplot2` to create a couple boxplots to show the sequencing depth ranges of the different sample groups (Site & Media).
 
-### Creating data frame for boxplots
+### Creating a data frame for boxplots
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/metadata.png", auto_pdf = TRUE)
 ```
 
-First, we need to create an object containing our sample names, Site & Media information, and the depth.
+First, we need to create an object containing our sample names, site & media information, and the depth.
 We will use this object to produce our boxplots.
 Thankfully the metadata in our `phyloseq` object contains all this information except the depth.
 
-In a new cell write and run the below code. This will extract the sample data (metadata) to a new object and display the top 6 rows fo this new object.
+In a new __cell__ write and run the below code. This will extract the sample data (metadata) to a new object and display the top 6 rows fo this new object.
 
 ```{r, eval=FALSE}
 #Extract sample data as a separate R object
@@ -100,9 +101,9 @@ The 2 new functions above are:
 
 We need to add the depth information to our new data frame. 
 We have extracted this previously into an object called `sample_depths`. 
-However, before adding it we want to check it has the same order of samples as the rows in `abundance_metadf`.
+However, before adding it we want to check if it has the same order of samples as the rows in `abundance_metadf`.
 
-Write and run the below script in the same cell. The code uses `head()` to view the first 6 elements of `sample_depths` and the row names of `abundance_metadf`. Then the function `idnetical()` is used to see if they are identical (`TRUE`) or not (`FALSE`).
+Write and run the below script in the same __cell__. The code uses `head()` to view the first 6 elements of `sample_depths` and the row names of `abundance_metadf`. Then the function `identical()` is used to see if they are identical (`TRUE`) or not (`FALSE`).
 
 ```{r, eval=FALSE}
 #Check if our vector of sample_depths has the same order as our metadata rows
@@ -120,7 +121,7 @@ abundance_metadf[,"depth"] <- sample_depths
 head(abundance_metadf)
 ```
 
-Great! We will next use this data frame to create 2 boxplots.
+Great! We will use this data frame to create 2 boxplots.
 
 ### Depth boxplots
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -136,7 +137,7 @@ The code below creates a `ggplot2` boxplot. We carry this out with 2 functions:
   - The first option is the data we want to use for plotting (`abundance_metadf`).
   - The second option is the aesthetics (`aes()`) to plot. In this case we want the depth column to be plotted on the y-axis (`y=depth`) and the site column to be plotted on the x-axis (`x=site`).
 - `+`: We need to have a `+` at the end of the `ggplot()` function to add the next component of the plot.
-- `geom_boxplot()`: This adds a layer to our `ggplot2` object. In this case it converts the `ggplot` object, which is just information, into a boxplot.
+- `geom_boxplot()`: This adds a __layer__ to our `ggplot2` object. In this case it converts the `ggplot` object, which is just information, into a boxplot.
 
 Write and run the following code in a new cell:
 
@@ -166,7 +167,7 @@ opts_p <- c(answer="__CVP__", "__ENV__", "__TSA__")
 ```
 - Which media has the lowest median depth (middle line of boxplot)? `r longmcq(opts_p)`
 
-From the boxplots we can see there is no drastic difference between the depths of the different sample groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.
+From the boxplots we can see there is no drastic difference between the depths of the different media groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.
 
 For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
 
@@ -194,9 +195,9 @@ knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
 
 Before creating our rarefaction curve we will extract the ASV abundance table from the `phyloseq` object with `phyloseq`'s function `otu_table()`. 
 We need to transpose (`t()`) the table so it is in the correct orientation for the rarefaction function.
-Additionally, we ensure it is a data frame with the function `as.data.frame()`.
+Additionally, we will ensure it is a data frame with the function `as.data.frame()`.
 
-Carry this out in a new cell.
+Carry this out in a new __cell__.
 
 ```{r, eval=FALSE}
 #Rarefaction curve
@@ -222,15 +223,15 @@ vegan::rarecurve(
 )
 ```
 
-__Note__: You will get a warning saying `"most observed count data have counts1, but smalled count is 2"`. This can be ignored in this case.
+__Note__: You will get a warning saying `"most observed count data have counts 1, but smallest count is 2"`. This can be ignored in this case.
 
 In essence, we are hoping that the majority of samples have plateau'd.
 If the curves have flattened in relation to the y axis this indicates that most of the ASVs present in the sample have been captured.
 
-In this case the samples have plateau'd or have gentle slopes towards the end.
+Our samples have plateau'd or have gentle slopes towards the end.
 With this we can be happy to continue and not remove samples by a minimum read depth.
 
-If we saw some samples with steep curves which had low depths we could carry out some more analysis with rarefaction.
+If we saw some samples with steep curves and low depths we could carry out some more analysis with rarefaction.
 However, more rarefaction functions, analysis, and theories will be covered in the [rarefaction chapter](#rarefaction_chap).
 You could use some of these at this point to help you determine your minimum read depth for your own datasets.
 
@@ -241,7 +242,7 @@ knitr::include_graphics(path = "figures/water_filter.png", auto_pdf = TRUE)
 
 What if you want to filter samples by a minimum read depth?
 
-In that case you can use the `subset_samples()` function from `phyloseq()`.
+You can use the `subset_samples()` function from `phyloseq()`.
 We will use our previously created vector containing read depths (`sample_depths`) to remove sample with less than 11k reads.
 We have chosen this depth as an example to remove some samples.
 
@@ -249,7 +250,7 @@ Write and run the below code in a new cell.
 It will create a new subsetted `phyloseq` object.
 
 ```{r, eval=FALSE}
-#Subset and keep samples with at least 11k reads
+#Subset and keep samples with more than 11k reads
 pseq_min11K <- phyloseq::subset_samples(pseq, reads_sample > 11000)
 ```
 
@@ -262,9 +263,9 @@ To remove these ASVs we can use two `phyloseq` functions:
   - In our `phyloseq` object the ASVs are the taxa. 
   - ASVs have long human unfriendly names that are unique to every single ASV possible.
 - __`prune_taxa()`__: This retains taxa/ASVs based on a provided vector.
-  - In this case we are creating a logical vector (`TRUE`/`FALSE`) where ASVs with 0 abundance are `FALSE` and ASVs with abundance > 0 are `TRUE`.
+  - We are creating a logical vector (`TRUE`/`FALSE`) where ASVs with 0 abundance are `FALSE` and ASVs with abundance > 0 are `TRUE`.
 
-We'll first write and run some commands with `taxa_sums()` to get some practice with it. Carry this out int he same cell as the `subset_samples()` command.
+We'll first write and run some commands with `taxa_sums()` to get some practice with it. Carry this out in the same __cell__ as the `subset_samples()` command.
 
 ```{r, eval=FALSE}
 #Abundance sums of the 1st six ASVs
@@ -300,17 +301,17 @@ Try to write your own R code in a new cell to answer the following questions:
 ```{r, echo = FALSE}
 opts_p <- c("__4__", answer="__613__", "__42507__")
 ```
-- What is the difference of the minimum number of reads between `pseq_min11k` and `pseq`? r longmcq(opts_p)`
+- What is the difference of the minimum number of reads between `pseq_min11k` and `pseq`? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__4__", "__613__", "__42507__")
 ```
-- How many samples were removed due to the read depth filtering? r longmcq(opts_p)`
+- How many samples were removed due to the read depth filtering? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__4__", "__613__", answer="__42507__")
 ```
-- What is the difference of the minimum number of reads between `pseq_min11k` and `pseq`? r longmcq(opts_p)`
+- What is the difference of the minimum number of reads between `pseq_min11k` and `pseq`? `r longmcq(opts_p)`
 
 `r hide("Tip")`
 Combining `microbiome::readcount()` with `min()`, `length()`, and `sum()` might help.
@@ -331,8 +332,8 @@ setdiff(phyloseq::sample_names(pseq)), phyloseq::sample_names(pseq_min11k))
 `r unhide()`
 
 We won't actually use this subsetted file as we want to keep all the samples in this case.
-Additionally, since we didn't need remove any samples we don't need to remove any ASVs as they should all have a total abundance > 0.
-Therefore you can remove the `phyloseq` object in a new cell.
+Since we not removing any samples we don't need to remove any ASVs as they should all have a total abundance > 0.
+You can therfore remove the new `phyloseq` object in a new __cell__.
 
 ```{r, eval=FALSE}
 #Remove subsetted phyloseq
@@ -354,4 +355,4 @@ This assessment included:
 - Producing a rarefaction depth to determine if any samples did not represent a good amount of the ASVs present in the environment.
 
 Additionally, we created a new `phyloseq` object where the samples were filtered by depth.
-Ultimately we did not keep the filtered `phyloseq` object.
+Ultimately we did not keep the filtered `phyloseq` object but it is good to know how to do this for your future research.

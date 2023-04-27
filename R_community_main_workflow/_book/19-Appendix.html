@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Jupyter | R community analysis</title>
+  <title>A Mamba installs | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Jupyter | R community analysis" />
+  <meta property="og:title" content="A Mamba installs | R community analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community analysis workflow" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Jupyter | R community analysis" />
+  <meta name="twitter:title" content="A Mamba installs | R community analysis" />
   
   <meta name="twitter:description" content="NEOF book for the R community analysis workflow" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-<link rel="prev" href="04-Setup.html"/>
-<link rel="next" href="06-Preprocess_part.html"/>
+<link rel="prev" href="18-Summary.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -347,144 +347,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="jupyter" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Jupyter<a href="05-Jupyter.html#jupyter" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="figures/jupyter_logo.png" width="20%" style="display: block; margin: auto;" /></p>
-<p><a href="https://jupyter.org/"><code>Jupyter-notebook</code></a> is a nice browser based method to write, edit, and run code. It was initally created for Python coding, but has since branched out to many other languages, such as <code>R</code>.</p>
-<p>We are using it in this workshop for a variety of its properties:</p>
+<div id="mamba-installs" class="section level1 hasAnchor" number="19">
+<h1><span class="header-section-number">A</span> Mamba installs<a href="19-Appendix.html#mamba-installs" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="mamba_install" class="section level2 hasAnchor" number="19.1">
+<h2><span class="header-section-number">A.1</span> Mamba installation and environment<a href="19-Appendix.html#mamba_install" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mamba is a reimplementation of conda.
+It is a great tool for installing bioinformatic packages including R packages.</p>
+<p>Mamba github: <a href="https://github.com/mamba-org/mamba" class="uri">https://github.com/mamba-org/mamba</a></p>
+<p>Mamba installation: <a href="https://github.com/conda-forge/miniforge#mambaforge" class="uri">https://github.com/conda-forge/miniforge#mambaforge</a></p>
+<p>Mamba guide: <a href="https://mamba.readthedocs.io/en/latest/user_guide/mamba.html" class="uri">https://mamba.readthedocs.io/en/latest/user_guide/mamba.html</a></p>
+<p>To create the mamba environment <code>r_community</code> run the below commands in your bash. You will need to have installed <code>mamba</code> first.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb117-1"><a href="19-Appendix.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co">#R community</span></span>
+<span id="cb117-2"><a href="19-Appendix.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> create r_community</span>
+<span id="cb117-3"><a href="19-Appendix.html#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate r_community</span>
+<span id="cb117-4"><a href="19-Appendix.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> bioconda bioconductor-microbiome</span>
+<span id="cb117-5"><a href="19-Appendix.html#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> r r-tidyverse</span>
+<span id="cb117-6"><a href="19-Appendix.html#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> conda-forge r-devtools</span>
+<span id="cb117-7"><a href="19-Appendix.html#cb117-7" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> conda-forge r-ggforce</span>
+<span id="cb117-8"><a href="19-Appendix.html#cb117-8" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> bioconda bioconductor-ancombc</span>
+<span id="cb117-9"><a href="19-Appendix.html#cb117-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Update r-htmltools as loading devtools doesn’t work in R (from 0.5.2 -&gt; 0.5.4)</span></span>
+<span id="cb117-10"><a href="19-Appendix.html#cb117-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> conda-forge r-htmltools=0.5.4</span>
+<span id="cb117-11"><a href="19-Appendix.html#cb117-11" aria-hidden="true" tabindex="-1"></a><span class="co">#If using jupyter-notebook, need to install r kernel for it</span></span>
+<span id="cb117-12"><a href="19-Appendix.html#cb117-12" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> conda-forge r-irkernel</span></code></pre></div>
+<p>Activate the environment in bash.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb118-1"><a href="19-Appendix.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate r_community</span></code></pre></div>
+<p>Activate your <code>mamba's</code> <code>R</code> and install <code>Qiime2R</code>.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb119-1"><a href="19-Appendix.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span></span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="19-Appendix.html#cb120-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;jbisanz/qiime2R&quot;</span>)</span></code></pre></div>
+</div>
+<div id="jupyter_appendix" class="section level2 hasAnchor" number="19.2">
+<h2><span class="header-section-number">A.2</span> Jupyter-notebook<a href="19-Appendix.html#jupyter_appendix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you are running this on your own computer you can use <code>RStudio</code>.
+However, you can also use <a href="https://jupyter.org/"><code>Jupyter-notebook</code></a> if you are using an HPC or prefer it.</p>
+<p>If using bash you will need to create an environment with <code>Jupyter-notebook</code>.
+Ensure you are in the <code>(base)</code> mamba environment.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb121-1"><a href="19-Appendix.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> jupyter</span>
+<span id="cb121-2"><a href="19-Appendix.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate jupyter</span>
+<span id="cb121-3"><a href="19-Appendix.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda jupyter</span>
+<span id="cb121-4"><a href="19-Appendix.html#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> deactivate</span></code></pre></div>
+<p>To run <code>Jupyter-notebook</code> with your <code>r_community</code> environment you can run the following.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb122-1"><a href="19-Appendix.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Activate you R_community env</span></span>
+<span id="cb122-2"><a href="19-Appendix.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate r_community</span>
+<span id="cb122-3"><a href="19-Appendix.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Run jupyter-notebook (may be a slightly different path)</span></span>
+<span id="cb122-4"><a href="19-Appendix.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="ex">~/mamba/envs/jupyter/bin/jupyter-notebook</span></span></code></pre></div>
+</div>
+</div>
+<div id="r-packages-1" class="section level1 hasAnchor" number="20">
+<h1><span class="header-section-number">B</span> R packages<a href="19-Appendix.html#r-packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ggplot2_appendix" class="section level2 hasAnchor" number="20.1">
+<h2><span class="header-section-number">B.1</span> ggplot2<a href="19-Appendix.html#ggplot2_appendix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/ggplot2.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Below are some useful resource if you would like to learn ggplot2.</p>
+<p>The <a href="https://r-graphics.org/">R Graphics Cookbook</a> is a good place to start. It contains a section called <a href="https://r-graphics.org/chapter-ggplot2">Understanding ggplot2</a> in its appendix which is useful for learning some key terminologies and concepts.</p>
+<p><code>ggplot2</code> requires its input to be in long format. You will therefore need to know how to <a href="#http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">convert your wide data to long data</a>.</p>
+<p><a href="https://ggplot2.tidyverse.org/reference/#layers"><strong>ggplot2 function reference</strong></a>.</p>
+</div>
+<div id="phyloseq_appendix" class="section level2 hasAnchor" number="20.2">
+<h2><span class="header-section-number">B.2</span> Phyloseq<a href="19-Appendix.html#phyloseq_appendix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Below are vaiorus resources if youwould like to learn more about phyloseq and associated packages.</p>
 <ul>
-<li>It is popular and well maintained.</li>
-<li>It is lightweight. Other heavier weight programs, such as RStudio, would struggle in our HPC due to the graphical and CPU load.</li>
-<li>It is interactive and displays code output.</li>
-<li>It allows for easier annotation, editing, and debugging than the command line.</li>
-<li>It provides a graphical interface for changing directories and choosing files.</li>
+<li><a href="https://joey711.github.io/phyloseq/">Phyloseq</a>: The original <code>phyloseq</code>. The R object is still great but the included tutorials and some functions are a bit outdated.</li>
+<li><a href="https://microbiome.github.io/tutorials/">microbiome</a>: A supplemental package to <code>phyloseq</code>. It contains some much needed functions. The tutorials are much clearer than the <code>phyloseq</code> tutorials but still not always the clearest.</li>
+<li><a href="https://github.com/jbisanz/qiime2R">QIIME2R</a>: A very useful package to import QIIME2 artifacts into a <code>phyloseq</code> object.</li>
 </ul>
-<p>Before carrying out any analysis we will go through a quick tutorial of <code>jupyter-notebook</code>.</p>
-<div id="open-jupyter-notebook" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Open Jupyter-notebook<a href="05-Jupyter.html#open-jupyter-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The first step is to open <code>jupyter-notebook</code>. Run the below command in your <code>(r_community)</code> environment.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="05-Jupyter.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter-notebook</span></span></code></pre></div>
-<p>This will open <code>jupyter-notebook</code> in firefox. We won't need to access the linux terminal anymore. Leave the terminal running <code>jupyter-notebook</code> and full screen your <code>firefox</code> so you should see something like below.</p>
-<p><img src="figures/jupyter_notebook_example_1.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="create-r-notebook" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Create R notebook<a href="05-Jupyter.html#create-r-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The next step is to create a R notebook.</p>
-<ol style="list-style-type: decimal">
-<li>Click on the <strong>"New"</strong> button towards the top right, right of the "Upload" button.</li>
-<li>From the dropdown click <strong>"R"</strong> below "Python 3 (ipykernel)".</li>
-</ol>
-<p>This will open up a new R notebook like below.</p>
-<p><img src="figures/jupyter_notebook_example_2.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="cells-and-code" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Cells and code<a href="05-Jupyter.html#cells-and-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>Jupyter-notebook</code> uses <strong>cells</strong> (the gray boxes) to separate code. This is very useful to compartmentalise our code.</p>
-<p>There will already be one <strong>cell</strong>. Within the <strong>cell</strong>, type in the below commands.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="05-Jupyter.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb8-2"><a href="05-Jupyter.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2-3</span></span></code></pre></div>
-<p>When pressing enter in <strong>cells</strong> it will create a new line. To run all commands in a <strong>cell</strong> press <code>CTRL + enter</code>.</p>
-<p>Run your current <strong>cell</strong> and you should see something like below.</p>
-<p><img src="figures/jupyter_notebook_example_3.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="create-new-cells" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Create new cells<a href="05-Jupyter.html#create-new-cells" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You can create new <strong>cells</strong> by 2 different means.</p>
-<ul>
-<li>Press the <code>+</code> button on the tool bar (between the floppy disk <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M380.93,57.37A32,32,0,0,0,358.3,48H94.22A46.21,46.21,0,0,0,48,94.22V417.78A46.21,46.21,0,0,0,94.22,464H417.78A46.36,46.36,0,0,0,464,417.78V153.7a32,32,0,0,0-9.37-22.63ZM256,416a64,64,0,1,1,64-64A63.92,63.92,0,0,1,256,416Zm48-224H112a16,16,0,0,1-16-16V112a16,16,0,0,1,16-16H304a16,16,0,0,1,16,16v64A16,16,0,0,1,304,192Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path></svg> and scissors <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M103.48,224a71.64,71.64,0,0,0,44.76-15.66l41.5,16.89,6.82-12.63a39.15,39.15,0,0,1,4.32-6.37l14.22-14.42-41.17-24.94A72,72,0,1,0,103.48,224Zm0-112a40,40,0,1,1-40,40A40,40,0,0,1,103.48,112Z"></path> <path d="M480,169l-5.52-12.58c-4.48-10.42-14.74-16-32.78-17.85-10.12-1-26.95-1.24-49.69,3.81-20,4.45-122.14,28.2-164.95,58.62C206.81,215.39,203,234.67,200,250.16c-2.78,14.14-5,25.31-18,35-15,11.14-27.27,16.38-33.58,18.6a71.74,71.74,0,1,0,24.79,38ZM255.48,256a16,16,0,1,1,16-16A16,16,0,0,1,255.48,256Zm-152,144a40,40,0,1,1,40-40A40,40,0,0,1,103.48,400Z"></path> <path d="M343.79,259.87l-83.74,48.18,27.63,13.08,3.62,1.74C310,331.92,359.74,356,410.53,359c3.89.23,7.47.34,10.78.34C442,359.31,453,354,459.75,350L480,336Z"></path></svg>). This will add a <strong>cell</strong> below your currently selected <strong>cell</strong>.</li>
-<li>Click on the <strong><code>Insert</code></strong> button and use the dropdown to add a cell above or below your currently selected cell.</li>
-</ul>
-<p><strong>Tip:</strong> Hover over the toolbar icons to display a text based description of its function.</p>
-<p>With that knowledge add a second <strong>cell</strong> below the first <strong>cell</strong>. Add the following code to your second <strong>cell</strong> but do not run it.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="05-Jupyter.html#cb9-1" aria-hidden="true" tabindex="-1"></a>num_1 <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb9-2"><a href="05-Jupyter.html#cb9-2" aria-hidden="true" tabindex="-1"></a>num_2 <span class="ot">&lt;-</span> <span class="dv">10</span></span></code></pre></div>
-<p><strong>Tip:</strong> Notice there are green lines around your selected cell.</p>
-<p>Insert a third <strong>cell</strong> and add the following code to it. Do not run the code.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="05-Jupyter.html#cb10-1" aria-hidden="true" tabindex="-1"></a>num_1 <span class="sc">*</span> num_2</span></code></pre></div>
-</div>
-<div id="running-code" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Running code<a href="05-Jupyter.html#running-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Try to run the code in the third <strong>cell</strong>. There should be an error as we have not created the objects <code>num_1</code> &amp; <code>num_2</code>. We have only written the code for these objects but not run them.</p>
-<p>We can run all the code in a notebook starting from the first <strong>cell</strong> to the last <strong>cell</strong>.</p>
-<p>Two methods to run all <strong>cell</strong> are:</p>
-<ul>
-<li>Click on the <strong>"Cell"</strong> button.</li>
-<li>Click <strong>"Run All"</strong> from the drop-down options.</li>
-</ul>
-<p>You should then see something like the below in your notebook.</p>
-<p><img src="figures/jupyter_notebook_example_4.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>There is no output printed for <strong>cell</strong> 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in <strong>cell</strong> 2 before <strong>cell</strong> 3 was run.</p>
-</div>
-<div id="saving-the-file" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Saving the file<a href="05-Jupyter.html#saving-the-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/r_save.png" width="10%" style="display: block; margin: auto;" /></p>
-<p>As with RStudio and other good coding interfaces we can save our notebook.</p>
-<p>First we should rename the file. Rename the notebook to <strong>"jupyter_tut"</strong>:</p>
-<ol style="list-style-type: decimal">
-<li>Click on the name of the notebook, currently called <strong>"Untitled"</strong>.
-<ul>
-<li>This is at the very top of the notebook, right of the Jupyter logo.</li>
-</ul></li>
-<li>A pop-up called <strong>"Rename Notebook"</strong> will appear. Change the Name to <strong>"jupyter_tut"</strong>.</li>
-<li>Click <strong>"Rename"</strong>.</li>
-</ol>
-<p>Now we can save the file. Two methods to save are:</p>
-<ul>
-<li>Click the floppy disk <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M380.93,57.37A32,32,0,0,0,358.3,48H94.22A46.21,46.21,0,0,0,48,94.22V417.78A46.21,46.21,0,0,0,94.22,464H417.78A46.36,46.36,0,0,0,464,417.78V153.7a32,32,0,0,0-9.37-22.63ZM256,416a64,64,0,1,1,64-64A63.92,63.92,0,0,1,256,416Zm48-224H112a16,16,0,0,1-16-16V112a16,16,0,0,1,16-16H304a16,16,0,0,1,16,16v64A16,16,0,0,1,304,192Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path></svg> on the toolbar.</li>
-<li>Click on the <strong>"File"</strong> button. Click <strong>"Save and Checkpoint"</strong> from the dropdown options.</li>
-</ul>
-</div>
-<div id="title-cells-with-markdown" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Title cells with markdown<a href="05-Jupyter.html#title-cells-with-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We will be using multiple notebooks in this workshop. We will also have multiple sections per notebook. It will be useful to create header cells with markdown to create visual separation of the different sections.</p>
-<p>To add a header <strong>cell</strong> to the top of our notebook:</p>
-<ul>
-<li>Create a new <strong>cell</strong> at the top of the notebook.</li>
-<li>Click on the <strong>"Code"</strong> drop down and select <strong>"Markdown"</strong>.
-<ul>
-<li>The <strong>"Heading"</strong> option no longer works.</li>
-</ul></li>
-</ul>
-<p><img src="figures/jupyter_notebook_example_5.png" width="100%" style="display: block; margin: auto;" /></p>
-<ul>
-<li>Add the following to the <strong>"Markdown"</strong> cell to create a first level header.
-<ul>
-<li>Ensure you have a space between the <code>#</code> and header text ("Tutorial").</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="05-Jupyter.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tutorial</span></span></code></pre></div>
-<p>Great, we can now add nice headers in our notebooks. <strong>Save</strong> the notebook once more before carrying on to the next section.</p>
-<div class="webex-solution">
-<button>
-Markdown
-</button>
-<p>You won't need to know more about <code>Markdown</code> but if you are interested please see the <a href="https://www.markdownguide.org/basic-syntax/"><code>Markdown</code> guide</a>.</p>
-</div>
-</div>
-<div id="close-the-notebook" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Close the notebook<a href="05-Jupyter.html#close-the-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To close the notebook:</p>
-<ul>
-<li>Click on <strong>"File"</strong>.</li>
-<li>From the dropdown options click <strong>"Close and Halt"</strong>.</li>
-</ul>
-<p>When you are back in the file explorer page you may not yet set the new file you saved. If so, you will need to refresh the page with the Refresh button <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M320,146s24.36-12-64-12A160,160,0,1,0,416,294" style="fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"></path> <polyline points="256 58 336 138 256 218" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></polyline></svg> towards the top right.</p>
-<p><img src="figures/jupyter_notebook_refresh.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>With that quick tutorial of <code>jupyter-notebook</code> we can start our community analysis in the next chapter.</p>
-<p>For more info on <code>jupter-notebook</code> please see the <a href="19-Appendix.html#jupyter_appendix">appendix</a>.</p>
-</div>
-<div id="video-tutorial" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Video tutorial<a href="05-Jupyter.html#video-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="container">
-<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" frameborder="0" allowfullscreen class="video">
-</iframe>
-</div>
 
 </div>
 </div>
-
-
-
 <script>
 
 /* update total correct if #webex-total_correct exists */
@@ -661,8 +589,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="04-Setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="06-Preprocess_part.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="18-Summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

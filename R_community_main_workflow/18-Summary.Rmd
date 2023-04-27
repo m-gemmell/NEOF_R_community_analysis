@@ -1,0 +1,44 @@
+# (PART\*) Outro {-}
+
+# Summary
+
+You have learnt a lot during this course. This chapter will therefore summarise what you have done.
+
+## Dataset
+
+You were introduce to the 16S dataset in the intro.
+This consisted of samples from 3 parts of the Durance river (UD, MD, & LD).
+This is across a gradient of anthropisation.
+Unfortunately we were not able to glean to much information on the differences due to low power, only 3 replicates per ENV sample.
+
+The more interesting metadata grouping was that of the culture.
+We were interested if 3 different media (TSA, KBC, and CVP) had different profiled communities than the ENV samples.
+They were found to be very different compared to the ENV samples.
+Some differences between the media groupings were also found.
+Overall, any differences between the sites were hard to determine due to the large differences between media.
+
+To properly determine the differences across the anthropisation gradient it would be best to use a good amount of environmental samples.
+It may also help to sample more sites along the gradient.
+
+We discovered these findings through our analysis.
+
+## Data preparation
+
+Briefly we carried out the following steps to prepare our data:
+
+- [Chapter 7](#import_chap): Imported a `phyloseq` object with `qiime2R`.
+- [Chapter 8](#mindepthchap): Checked our data with summarisations.
+- [Chapter 9](##mindepthchap): Checked the minimum depth we should use and removed samples with lower depth.
+
+## Taxonomy
+
+We investigated the taxonomic composition of our samples.
+
+- [Chapter 10](#taxa_relabund_chap): Creation of taxonomic relative abundance tables.
+- [Chapter 11](#chaptaxaplots): Produced heat maps and bar plots of taxa relative abundances
+  - We also learnt how to aggregate rare taxa to produce fewer taxa groups for plotting.
+- [Chapter 12](#family_genus_chap): Produced family and genus based taxa plots.
+
+
+
+

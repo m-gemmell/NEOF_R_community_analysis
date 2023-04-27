@@ -1,6 +1,6 @@
 # (PART\*) Taxonomy {-}
 
-# Taxa relative abundance
+# Taxa relative abundance {#taxa_relabund_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
 ```

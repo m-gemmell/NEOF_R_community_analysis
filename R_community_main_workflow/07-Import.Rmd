@@ -3,7 +3,7 @@
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ```
 
-Before carrying out any analysis we first need to import our QIIME2 artifacts into a phyloseq object. Thankfully there is an R package called `qiime2R`
+Before carrying out any analysis we first need to import our QIIME2 artifacts into a `phyloseq` object. Thankfully there is an R package called `qiime2R`.
 
 ## Import: notebook
 
@@ -11,12 +11,14 @@ Before carrying out any analysis we first need to import our QIIME2 artifacts in
 knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
 ```
 
-Prior to any coding, we will create a new directory, our analysis directory, for this workshop and create a new notebook called __"01-Import.ipynb"__ in it. We will be creating a new notebook for each chapter and numbering them so we can easily see the order of scripts.
+Prior to any coding, we will create a new directory, our analysis directory.
+afterwards, reate a new notebook called __"01-Import.ipynb"__ in it. 
+We will be creating many notebooks, so we'll number them so we can easily see the order of scripts.
 
 First create a new directory.
 
 - In the notebook file explorer, click the __"New"__ button.
-- Select __"Folder"__
+- Select __"Folder"__.
 
 You will have an __"Untitled Folder"__. To rename it:
 
@@ -35,9 +37,9 @@ Next step is to create a new R notebook, rename it to __"01-Import"__, and save 
 knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
 ```
 
-[`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R phyloseq object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.
+[`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R `phyloseq` object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.
 
-The best way to import all your QIIME2 artifacts is with the `qza_to_phyloseq()` function. In your "01-Import.R" script, add the following and run the commands.
+The best way to import all your QIIME2 artifacts is with the `qiime2R::qza_to_phyloseq()` function. In your __"01-Import.ipynb"__ script, add the following and run the commands.
 
 __Tip__: You can tab complete and/or copy and paste file paths within the webVNC.
 
@@ -71,7 +73,7 @@ Now that we have imported the data we can extract some summary information from 
 
 First we will use the `microbiome` package with its `summarize_phyloseq()` function.
 
-Create a new cell and write and run the below in it.
+Create a new __cell__ and write + run the below in it.
 
 ```{r, eval=FALSE}
 #Cell 2
@@ -85,16 +87,16 @@ This gives us a plethora of information:
 
 -   The top line tells us if the data is compositional (relative abundance).
 -   We get the following list of values in a paragraph and via a list.
-    -   Min. number of reads: Number of reads in the sample with the lowest number of reads.
-    -   Max. number of reads: Number of reads in the sample with the largest number of reads.
-    -   Total number of reads: Sum of all reads across all samples.
-    -   Average number of reads: Sum of all reads / number of samples.
-    -   Median number of reads: Midpoint read abundance across samples.
-    -   Sparsity: See expandable box further down.
-    -   Any OTU sum to 1 or less?: States if there are any ASVs with a summed abundance of 1 or less across all the samples. 
-    -   Number of singletons: Number of ASVs with a sum of 1 or less across all samples.
-    -   Percent of OTUs that are singletons: Percentage of ASVs that only contain one read across all the samples.
-    -   Number of sample variables are: Number of sample variables/groupings in our metadata.
+    -   __Min. number of reads:__ Number of reads in the sample with the lowest number of reads.
+    -   __Max. number of reads:__ Number of reads in the sample with the largest number of reads.
+    -   __Total number of reads:__ Sum of all reads across all samples.
+    -   __Average number of reads:__ Sum of all reads / number of samples.
+    -   __Median number of reads:__ Midpoint read abundance across samples.
+    -   __Sparsity:__ See expandable box further down.
+    -   __Any OTU sum to 1 or less?:__ States if there are any ASVs with a summed abundance of 1 or less across all the samples. 
+    -   __Number of singletons:__ Number of ASVs with a sum of 1 across all samples.
+    -   __Percent of OTUs that are singletons:__ Percentage of ASVs that only contain one read across all the samples.
+    -   __Number of sample variables are:__ Number of sample variables/groupings in our metadata.
     -   The last line shows the names of the sample variables/groupings in our metadata.
 
 `r hide("Sparsity")`
@@ -118,7 +120,7 @@ Let's look at an example of an abundance table with a small amount of ASVs and S
 | ASV3 | 6       | 25      | 0       |
 | ASV4 | 51      | 2       | 0       |
 
-- This abundance table has 12 cells, 3 samples \* 4 ASVs. 
+- This abundance table has 12 cells (3 samples \* 4 ASVs). 
 - Of these cells, 4 have an abundance of zero. 
 - 4/12 = 0.3333, therefore its sparsity is 0.3333.
 
@@ -136,7 +138,7 @@ knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
 
 When using multiple notebooks/scripts for analysis it is useful to save the R objects that will be used in different notebooks/scripts. This can be carried out with the function `save()`.
 
-Write and run the following code in a third cell.
+Write and run the following code in a third __cell__.
 
 ```{r, eval=FALSE}
 #Cell 3
@@ -153,4 +155,4 @@ We have saved our final object of the notebook. Close and halt it.
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 
-We have imported our QIIME2 artifacts into one phyloseq object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.
+We have imported our QIIME2 artifacts into one `phyloseq` object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.

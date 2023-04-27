@@ -1,4 +1,7 @@
 # Differential abundance (DA) analysis
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/difference.png", auto_pdf = TRUE)
+``` 
 
 We are going to carry out differential abundance analysis with [ANCOM-BC (Analysis of compositions of microbiomes with bias correction)](https://www.nature.com/articles/s41467-020-17041-7).
 This is an improvement of the original ANCOM method but with added bias correction.
@@ -16,12 +19,15 @@ If a phyla is detected to have higher abundance in a media compared to the envir
 Additionally, we will be able to detect phyla that have been depleted in the media samples versus the environmental sample.
 
 ## DA: setup
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/packages_1.png", auto_pdf = TRUE)
+``` 
 
 We will use a new notebook called **"7-differential_abundance.ipynb"**. 
 Add the following to the top of this new notebook to load the required libraries/packages and data.
 
 ```{r, eval=FALSE}
-#Libraries
+#Packages
 library("phyloseq")
 library("microbiome")
 library("IRdisplay")
@@ -40,6 +46,9 @@ This is a statistically heavy method and I recommend you read the [ANCOM-BC pape
 As bioinformaticians we are more interested in the output rather than the method.
 
 ## DA: Preprocess
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/water_surface.png", auto_pdf = TRUE)
+``` 
 
 When carrying out ANCOM analysis you need to specify the reference group for the groupings you use.
 The reference group will be the 1st level of the factor.
@@ -71,6 +80,9 @@ levels(phyloseq::sample_data(pseq)$site)
 ```
 
 ## DA: ANCOM-BC analysis
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
+``` 
 
 Now that we have our data the way we would like it we can carry out.
 We'll use the function `ANCOMBC::ancombc2()` for our ANCOM-BC analysis.
@@ -92,6 +104,9 @@ save(ancom_class_out, file = "ANCOMBC2_class_analysis.RData")
 ```
 
 ### ANCOMBC2 options
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
+``` 
 
 The options we use in the function are:
 
@@ -104,6 +119,9 @@ There are many more options that have been left as the default.
 Please see the package [PDF](https://bioc.ism.ac.jp/packages/devel/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf) for more options and explanations.
 
 ## DA: ANCOM-BC results
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/output_file_blue.png", auto_pdf = TRUE)
+``` 
 
 There is a lot of information in `ancom_class_out`.
 Therefore, lets extract the results we want to look at and then remove the large object.
@@ -162,6 +180,9 @@ I believe this is because we don't have enough replicates for the sites within t
 However, there is a good amount of biomarkers for the three different medias compared to ENV.
 
 ## DA: Create signifcant LFC long data frame
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/portrait.png", auto_pdf = TRUE)
+``` 
 
 The results table is good but let's make a heatmap showing the LFCs (Log fold changes) of the significant biomarkers. First, we need to do some preprecessing.
 
@@ -243,7 +264,145 @@ res_ancom_class_media_sig_lfc_fig <- res_ancom_class_media_sig %>%
 head(res_ancom_class_media_sig_lfc_fig)
 ```
 
-## DA: Create signifcant LFC long data frame
+## DA: Biomarker LFC heatmap
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/tiles.png", auto_pdf = TRUE)
+``` 
 
-ANCOM-BC (https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC.html)
-ANCOM-BC github repo (https://github.com/FrederickHuangLin/ANCOMBC)
+We now have a long data frame with the significant LFC values. 
+We can use this to create a heatmap.
+
+There are some specific functions and packages for R that can produce heatmaps.
+These can include dendrograms on the y and x axes to show clustering.
+We are not interested in having all the bells and whistles so we will use the `ggplot2` layer `geom_tile()`.
+
+```{r, eval = FALSE}
+#LFC heatmap
+heatmap_media <- ggplot(res_ancom_class_media_sig_lfc_fig,
+                        aes(x = group, y = taxon, fill = value)) +
+                  #Produce ggplot as tile/heatmap style plot
+                  ggplot2::geom_tile(colour = "black") +
+                  #Add the LFC values as text in the cells
+                  ggplot2::geom_text(aes(group, taxon, label = value),
+                      colour = "black", size = 4) +
+                  #Remove the x and y labels (NULL) and add a title
+                  ggplot2:labs = NULL, y = NULL,
+                    title = "Log fold changes compared to ENV samples")
+#Save ggplot2 object with ggsave
+ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file="./ANCOMBC_class_media_ref_ENV.png")
+```
+
+It is a good start but the colour gradient is not very useful.
+We are going to use the layer `ggplot2::scale_fill_gradient2()` to customise this.
+First, we need to decide on the minimum and maximum values.
+Let's generate these with some code based on the minimum and maximum LFC values.
+We will use 0 as the midpoint so we can easily differentiate between higher and lower abundance biomarkers.
+
+```{r, eval = FALSE}
+#Get min and max log fold changes
+lo <- floor(min(res_ancom_class_media_sig_lfc_fig$value))
+up <- ceiling(max(res_ancom_class_media_sig_lfc_fig$value))
+mid <- 0
+```
+
+With these values we can now make our upgraded heatmap.
+
+```{r, eval = FALSE}
+#LFC heatmap
+heatmap_media <- ggplot(res_ancom_class_media_sig_lfc_fig,
+                        aes(x = group, y = taxon, fill = value)) +
+                  #Produce ggplot as tile/heatmap style plot
+                  ggplot2::geom_tile(colour = "black") +
+                  #Customise colour gradient
+                  ggplot2::scale_fill_gradient2(low = "blue", high = "red", mid = "white",
+                                                na.value = "white",
+                                                midpoint = mid, limit = c(lo,up)) +
+                  #Add the LFC values as text in the cells
+                  ggplot2::geom_text(aes(group, taxon, label = value),
+                      colour = "black", size = 4) +
+                  #Remove the x and y labels (NULL) and add a title
+                  ggplot2:labs = NULL, y = NULL,
+                    title = "Log fold changes compared to ENV samples")
+#Save ggplot2 object with ggsave
+ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file="./ANCOMBC_class_media_ref_ENV.png")
+```
+
+Great, now we can the biomarker with higher abundances in the ENV sample (blue) and higher abundances in the comparison media (red).
+Any 0 values are non-significant results we turned to 0 when we created the long data frame.
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+- Are there more biomarkers in higher abundance in ENV rather than the comparison media (i.e blue/negative results)? `r longmcq(opts_p)`
+```{r, echo = FALSE}
+opts_p <- c("__Phylum:Verrucomicrobia__", answer="__Class:Bacilli__", "__Class:Alphaproteobacteria__")
+```
+- Which biomarker has the highest positive values? `r longmcq(opts_p)`
+```{r, echo = FALSE}
+opts_p <- c("__Phylum:Verrucomicrobia__", "__Class:Bacilli__", answer="__Class:Alphaproteobacteria__")
+```
+ - Which biomarker has the lowest value? `r longmcq(opts_p)`
+
+From these results we can see that there are a lot of biomarkers with low abundances in the comparison media samples.
+There are only 2 biomarkers with higher abundance in the media samples.
+
+The LFC values between the different media are quite similar.
+There are some biomarkers that are only siginifcnat in 1 or 2 of the media though.
+It seems that CVP and KBC are more simialr to each that to TSA.
+This matches the clustering we found in the beta diversity.
+
+This seems to indicate that the media samples are not a good representation of the actual environmental community.
+They appear to select for a few bacterial classes and select against a lot of bacterial classes.
+
+## DA: matching bar plot
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
+``` 
+
+Using code from the [taxa plots chapter](#chaptaxaplots) we'll make a quick class based taxa plot.
+We will use the relative abundances for this.
+
+```{r, eval=FALSE}
+#Quick class based relative abundance heatmap
+#Convert abundance table to class relative abundance (compositional) table
+pseq_relabund <- microbiome::transform(pseq, "compositional")
+#Class phyloseq
+class_relabund_pseq <- microbiome::aggregate_taxa(class_relabund_pseq, "Class", verbose = FALSE)
+#Produce heatmap ggplot
+class_heatmap <- microbiome::plot_composition(class_relabund_pseq, plot.type = "heatmap") +
+  xlab("Class") + ylab("Sample") +
+  ggtitle("Class relative abundance heatmap")
+#Save ggplot object as png file
+ggsave(filename = "./class_relabund_heatmap.png", plot = class_heatmap,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 200)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./class_relabund_heatmap.png")
+```
+
+With this plot we can clearly see that there are many classess with abundances in the ENV samples that have very little in the media samples.
+Most the the relative abundances of the media samples consist of Gammaproteobacteria.
+The TSA and KBC samples also have a high abundance of Bacilli.
+Overall, this is a nice visual confirmation of our ANCOM results.
+
+## DA: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
+``` 
+
+We have used ANCOMBC to detect biomarkers in the media samples compared to the ENV samples.
+This showed most biomarkers were caused by depletion of many classes and selection of a few classes by the media.
+
+You could carry out more analysis in your future research in various ways:
+
+- Carry out biomarker detection at different taxonomy levels such as genus.
+  - We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there wasn't too many results to look at.
+- There are many other types of tests and considerations to keep in mind. Check out the [ANCOMBC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC.html), it is very in depth.
+  - There is also a handy FAQ on the [ANCOMBC github page](https://github.com/FrederickHuangLin/ANCOMBC).
+
+That is the last of the analysis. In the final chapter we will review the steps we carried out and the answers to the various questions we have about the dataset.
