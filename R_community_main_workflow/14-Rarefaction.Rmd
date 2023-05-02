@@ -94,7 +94,7 @@ This can be caused by our barcodes not picking up all species, our sampling wasn
 
 A week seems like a good amount for sampling the Telegraph woods (Blue) but it is possible that some more species have not been recorded. 
 
-Strikingly, a week does not appear to be enough time for the New Forest (red). The amount of new species decreased to 5 on day 7 but the curve has not yet plateau'd.
+Strikingly, a week does not appear to be enough time for the New Forest (red). The amount of new species decreased to 5 on day 7 but the curve has not yet plateaued.
 
 This hopefully helps you understand why rarefaction curves are a useful measure of how well we have captured the diversity of samples at different depths. 
 
@@ -240,13 +240,6 @@ microbiome::summarize_phyloseq(pseq_rarefy)
 microbiome::readcount(pseq_rarefy)
 #ASV counts
 #Add relative abundance ASV count
-num_asvs_vec["rarefied"] <- nrow(phyloseq::otu_table(pseq_rarefy))
-num_asvs_vec
-```
-
-```{r, eval=FALSE}
-#ASV counts
-#Add relative abundance ASV count, read in at start of notebook
 num_asvs_vec["rarefied"] <- nrow(phyloseq::otu_table(pseq_rarefy))
 num_asvs_vec
 ```

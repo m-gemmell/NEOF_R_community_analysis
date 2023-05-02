@@ -92,7 +92,7 @@ Try to run the code in the third **cell**. There should be an error as we have n
 
 We can run all the code in a notebook starting from the first **cell** to the last **cell**.
 
-Two methods to run all **cell** are:
+To run all **cells** from the start:
 
 -   Click on the **"Cell"** button.
 -   Click **"Run All"** from the drop-down options.

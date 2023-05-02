@@ -5,14 +5,14 @@
 knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ```
 
-In the next X chapters we will carry out diversity analyses. This will include calculating and visualising diversity values plus carrying out the associated statistics.
+In the next 4 chapters we will carry out diversity analyses. This will include calculating and visualising diversity values plus carrying out the associated statistics.
 
 In the chapters we will carry out:
 
 - [Rarefaction of our ASV table.](#rarefaction_chap)
 - [Alpha diversity of the rarefied data.](#alpha_chap)
-- Beta diversity of the rarefied data.
-- Biomarker detection.
+- [Beta diversity of the rarefied data.](#beta_chap)
+- [Biomarker detection.](#DA_chap)
 
 During this we will attempt to answer our questions from [Chapter 2](#summary-questions):
 

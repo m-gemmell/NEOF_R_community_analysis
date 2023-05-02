@@ -52,7 +52,7 @@ Try it out.
 phyloseq::plot_richness(physeq = pseq_rarefy)
 ```
 
-The resulting plot is pretty good but unreadable. 
+The resulting plot is pretty good but is difficult to read. 
 We can do 3 major things to make the contents easier to read.
 
 ### Metric choice
@@ -100,7 +100,7 @@ This will combine samples from one media into one IQR box.
 ```{r , eval = FALSE}
 phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon") +
+                        measures = c("Observed","Chao1","Shannon")) +
             ggplot2::geom_boxplot()
 ```
 
@@ -118,7 +118,7 @@ alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy,
                         measures = c("Observed","Chao1","Shannon") +
                           ggplot2::geom_boxplot()
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Alpha_diversity_media_boxplot.png", plot = phylum_bar,
+ggsave(filename = "./Alpha_diversity_media_boxplot.png", plot = alpha_boxplot,
        device = "png", dpi = 300, units = "mm", height = 150, width = 250)
 #Display plot
 IRdisplay::display_png(file="./Alpha_diversity_media_boxplot.png")
@@ -126,7 +126,7 @@ IRdisplay::display_png(file="./Alpha_diversity_media_boxplot.png")
 
 How do I choose a good height and width?
 This comes down to trial and error and experience.
-You want something with a good aspect ration for the plot and you want all the text to be clear.
+You want something with a good aspect ratio for the plot and you want all the text to be clear.
 Additionally, the size requirements of figures for journals will play a big consideration as well.
 One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.
 
@@ -135,8 +135,8 @@ One of the nice things with creating jupyter-notebooks or R markdowns with all y
 knitr::include_graphics(path = "figures/pear.png", auto_pdf = TRUE)
 ```
 
-Along with the plot it is also good to carry otu statistics.
-This will allow us to statistically determine if the alpha diversity values between groups are statistically significant.
+Along with the plot it is also good to carry out statistical tests.
+This will allow us to statistically determine if the alpha diversity values between groups are significantly different.
 
 Before carrying out statistics we will need a data frame with the alpha diveristy values for each sample.
 This can be carried out with the function`phyloseq::estimate_richness()`.
@@ -152,7 +152,7 @@ Additionally, we also have the standard error for some of the metrics (e.g. `se.
 
 With this information we can carry out a pairwise comparison using Wilcoxon rank sum test (the same way as QIIME2).
 Base R comes with the function `pairwsie.wilcox.test()` to carry this out.
-We'll do this using media as our groups from the `sample_data()` and the Observed metric from the 
+We'll do this using media as our groups from the `sample_data()` and the Observed metric from the alpha_df.
 
 ```{r, eval=FALSE}
 #Paired wilcoxon test
@@ -222,15 +222,15 @@ __Tip:__ Remember to change the name of your png file in the `ggsave()` and `IRd
 
 ```{r , eval = FALSE}
 # Produce ggplot object of violin plot
-alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
                         measures = c("Observed","Chao1","Shannon") +
-                          ggplot2::geom_boxplot()
+                          ggplot2::geom_violin()
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Alpha_diversity_media_boxplot.png", plot = phylum_bar,
+ggsave(filename = "./Alpha_diversity_media_violinplot.png", plot = alpha_violinplot,
        device = "png", dpi = 300, units = "mm", height = 150, width = 250)
 #Display plot
-IRdisplay::display_png(file="./Alpha_diversity_media_boxplot.png")
+IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
 ```
 
 We can also add semi transparent dots representing the values for each sample.
@@ -240,16 +240,16 @@ Alpha is a common option used for many plots.
 
 ```{r , eval = FALSE}
 # Produce ggplot object of violin plot
-alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
                         measures = c("Observed","Chao1","Shannon") +
-                          ggplot2::geom_boxplot() +
+                          ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5)
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Alpha_diversity_media_boxplot.png", plot = phylum_bar,
+ggsave(filename = "./Alpha_diversity_media_violinplot.png", plot = alpha_violinplot,
        device = "png", dpi = 300, units = "mm", height = 150, width = 250)
 #Display plot
-IRdisplay::display_png(file="./Alpha_diversity_media_boxplot.png")
+IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
 ```
 
 ## Alpha: Site plots and statistics
@@ -271,10 +271,10 @@ alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy,
                           ggplot2::geom_boxplot() +
                           ggforce::geom_sina(alpha=0.5)
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Alpha_diversity_site_boxplot.png", plot = phylum_bar,
+ggsave(filename = "./Alpha_diversity_site_violinplot.png", plot = phylum_bar,
        device = "png", dpi = 300, units = "mm", height = 150, width = 250)
 #Display plot
-IRdisplay::display_png(file="./Alpha_diversity_site_boxplot.png")
+IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
 ```
 
 ```{r, eval=FALSE}
@@ -298,17 +298,17 @@ We can fix this by adding the layer `ggplot2::labs(colour = "Media").
 
 ```{r , eval = FALSE}
 # Produce ggplot object of violin plot
-alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "site",
                         measures = c("Observed","Chao1","Shannon") +
-                          ggplot2::geom_boxplot() +
+                          ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5, aes(colour=media)) +
                           ggplot2::labs(colour = "Media")
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Alpha_diversity_site_boxplot.png", plot = phylum_bar,
+ggsave(filename = "./Alpha_diversity_site_violinplot.png", plot = alpha_violinplot,
        device = "png", dpi = 300, units = "mm", height = 150, width = 250)
 #Display plot
-IRdisplay::display_png(file="./Alpha_diversity_site_boxplot.png")
+IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
 ```
 
 When you are happy you can close and halt the notebook.

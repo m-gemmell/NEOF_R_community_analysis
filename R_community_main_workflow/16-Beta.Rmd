@@ -1,4 +1,4 @@
-# Beta
+# Beta {#beta_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/beta.png", auto_pdf = TRUE)
 ```

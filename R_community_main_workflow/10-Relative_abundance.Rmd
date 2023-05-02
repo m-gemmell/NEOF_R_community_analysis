@@ -77,7 +77,7 @@ __Reminder__: You may want a markdown cell to create a 2nd level header for this
 ```{r, eval = FALSE}
 #Check head of tax_table
 #This will tell us the taxa level names on the column names
-head(tax_table(pseq_relabund))
+head(phyloseq::tax_table(pseq_relabund))
 #Phylum phyloseq
 phylum_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Phylum", verbose = FALSE)
 ```

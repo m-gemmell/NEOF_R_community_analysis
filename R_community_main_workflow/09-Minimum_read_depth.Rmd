@@ -31,9 +31,9 @@ There are 3 main considerations to take into account when choosing an appropriat
 - __The biomass of your samples.__
   - Some environments are hard to extract DNA from.
   - If this is the case for you, then people will hopefully accept that this is an unfortunate reality of life and you will use what you can.
-  - Bbe careful of your conclusions. If you think your dataset doesn't have as much data as it could, do not make very definitive detailed claims.
+  - Be careful of your conclusions. If you think your dataset doesn't have as much data as it could, do not make very definitive detailed claims.
 - __Read depth of sample groups.__
-  - It may be possible that a few samples have a much lower depth than the rest. IT may be a good idea to remove them.
+  - It may be possible that a few samples have a much lower depth than the rest. It may be a good idea to remove them.
   - However, these may all come from the same sample group and so you have lost all information of one group.
   - For instance, you may be comparing different geological surfaces and your rock samples have much lower read depths than the various soil samples.
   - For comparisons including the lower depth sample group (e.g. rock samples) you will need to retain the lower depth samples.
@@ -158,7 +158,7 @@ Carry this out in the same cell and run the code.
 
 ```{r, eval=FALSE}
 #Create ggplot2 boxplot of depth by size
-ggplot2::ggplot(abundance_metadf, aes=(y=depth, x=media)) +
+ggplot2::ggplot(abundance_metadf, aes(y=depth, x=media)) +
   ggplot2::geom_boxplot()
 ```
 
@@ -251,7 +251,7 @@ It will create a new subsetted `phyloseq` object.
 
 ```{r, eval=FALSE}
 #Subset and keep samples with more than 11k reads
-pseq_min11K <- phyloseq::subset_samples(pseq, reads_sample > 11000)
+pseq_min11K <- phyloseq::subset_samples(pseq, sample_depths > 11000)
 ```
 
 After removing samples it is also useful to remove ASVs with no abundance values.
@@ -280,7 +280,7 @@ This will filter out ASVs with no abundance.
 ```{r, eval=FALSE}
 #Remove ASVs with no abundance
 pseq_min11k <- phyloseq::prune_taxa(
-  phyloseq_taxa_sums(pseq_min11k) > 0, pseq_min11k
+  phyloseq::taxa_sums(pseq_min11k) > 0, pseq_min11k
 )
 ```
 
@@ -327,7 +327,7 @@ length(microbiome::readcount(pseq)) - length(microbiome::readcount(pseq_min11k))
 sum(microbiome::readcount(pseq)) - sum(microbiome::readcount(pseq_min11k))
 #Bonus
 #List the removed samples
-setdiff(phyloseq::sample_names(pseq)), phyloseq::sample_names(pseq_min11k))
+setdiff(phyloseq::sample_names(pseq), phyloseq::sample_names(pseq_min11k))
 ```
 `r unhide()`
 

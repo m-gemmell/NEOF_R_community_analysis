@@ -67,7 +67,7 @@ family_heatmap <- microbiome::plot_composition(family_pseq, plot.type = "heatmap
 ggsave(filename = "./family_relabund_heatmap.png", plot = family_heatmap,
        device = "png", dpi = 300, units = "mm", height = 200, width = 300)
 #Display the plot in jupyter notebook
-IRdisplay::display_png(file="./phylum_relabund_heatmap.png")
+IRdisplay::display_png(file="./family_relabund_heatmap.png")
 ```
 
 The plot is quite large.
@@ -76,7 +76,7 @@ You can right click on the image and click "Open Image in New Tab" to view the w
 With this heatmap we can see that the KBC and TSA samples have a high relative abundance of _Pseudomonadaceae_ whilst the TSA samples have a high relative abundance of _Aeromonadaceae_.
 Additionally, we can see that a lot of families have relatively low relative abundances.
 
-Once you are finished looking at the plot the tab containing the plot.
+Once you are finished looking at the plot, close the tab containing the plot.
 This will help to keep the used resources low on the cluster.
 Next we'll carry out our rare aggregation and produce some bar charts.
 
@@ -200,7 +200,7 @@ ggsave(filename = "./family_relabund_rareaggregate.png", plot = family_bar,
 IRdisplay::display_png(file="./family_relabund_rareaggregate.png")
 ```
 
-Brilliant, we are no finished with the Family taxa plots. Onto something harder.
+Brilliant, we are now finished with the Family taxa plots. Onto something harder.
 
 ## Genus taxa plots
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -302,7 +302,7 @@ test_pseq <- microbiome::aggregate_rare(
 )
 paste0("Detection = ", d, ", Prevalence = ", p,
        ", Number of genera = ", nrow(phyloseq::otu_table(test_pseq)))
-#1
+#5
 d <- 0.006
 p <- 20/100
 test_pseq <- microbiome::aggregate_rare(
@@ -336,7 +336,7 @@ genus_bar <-
   #Change colours of genera to that of the "Paired" palette from colour brewer
   scale_fill_brewer("Genus", palette = "Paired")
 #Save ggplot object as png
-ggsave(filename = "./genus_relabund_rareaggregate.png", plot = family_bar,
+ggsave(filename = "./genus_relabund_rareaggregate.png", plot = genus_bar,
        device = "png", dpi = 300, units = "mm", height = 200, width = 300)
 #Display the plot in jupyter notebook
 IRdisplay::display_png(file="./genus_relabund_rareaggregate.png")

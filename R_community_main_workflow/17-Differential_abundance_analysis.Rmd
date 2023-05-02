@@ -1,4 +1,4 @@
-# Differential abundance (DA) analysis
+# Differential abundance (DA) analysis {#DA_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/difference.png", auto_pdf = TRUE)
 ``` 
