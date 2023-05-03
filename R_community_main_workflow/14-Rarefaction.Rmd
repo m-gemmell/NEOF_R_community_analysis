@@ -110,11 +110,18 @@ We'll use `vegan` to create our rarefaction curve like we did in
 #Extract ASV table as data frame
 asv_abund_df <- as.data.frame(t(phyloseq::otu_table(pseq)))
 #Rarefaction curve
+#Save as png file
+png(filename = "./rarefaction_plot.png", res = 300,
+    units = "mm", height = 200, width = 300)
+#Produce plot
 vegan::rarecurve(
   x = asv_abund_df, step = 50,
   xlab = "Read depth",
   ylab = "ASVs"
 )
+dev.off()
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./rarefaction_plot.png")
 ```
 
 ### Rarefaction curve: better plot
@@ -122,14 +129,12 @@ vegan::rarecurve(
 knitr::include_graphics(path = "figures/palette_brush.png", auto_pdf = TRUE)
 ```
 
-It is a useful plot but we can make it bigger and better! We will do
-that with the following additions:
+It is a useful plot but we can make it better! 
+We will do that with the following addition:
 
--   Saving it as a `.png` file with the functions `png()` and
-    `dev.off()`.
 -   Adding extra options to `vegan::rarecurve()`:
     -   `lwd`: Sets the line width of the plot.
-    -   `label`: Turn the sample labels on (`T`) or off (`F`).
+    -   `label`: Turn the sample labels on (`T`) or off (`F`). We will turn them off as it is hard to read them all.
     -   `sample`: Draws a vertical line at the specified depth.
         Additionally, draws a horizontal line for each sample showing
         how many ASVs were discovered at the sampling depth.
@@ -179,7 +184,14 @@ sort(rarefaction_slopes)
 #Summary of slopes
 summary(rarefaction_slopes)
 #Histogram of slopes
+#Save as png
+png(filename = "./rarefaction_slopes_histogram.png", res = 300,
+    units = "mm", height = 100, width = 200)
+#Plot
 hist(rarefaction_slopes)
+dev.off()
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./rarefaction_slopes_histogram.png")
 ```
 
 With the calculated slopes attempt the following questions:

@@ -43,6 +43,7 @@ I like to load all the packages to be used in the notebook in this section. We w
 library("phyloseq")
 library("microbiome")
 library("vegan")
+library("IRdisplay")
 ```
 
 Our last bit of set-up is to load in our abundance `phyloseq` object we created in the previous chapter.
@@ -89,14 +90,38 @@ Due to the relative large amount of output to screen we'll put the next part int
 knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
 ```
 
-In our new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`). We can even make a quick histogram of read numbers per sample with the base `R` function `hist()`.
+In our new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`).
 
 ```{r, eval=FALSE}
 #Number of reads per sample
 sample_depths <- microbiome::readcount(pseq)
 sample_depths
+```
+
+With this info we can make a histogram of read numbers per sample with the base `R` function `hist()`.
+We will save this as a `.png` file with the functions `png()` and `dev.off()`.
+
+```{r, eval=FALSE}
 #Histogram
+#Save as png
+png(filename = "./sample_depth_histogram.png", res = 300,
+    units = "mm", height = 100, width = 200)
 hist(sample_depths, main = "Histogram of read depths")
+dev.off()
+```
+
+### Display png
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
+``` 
+
+We can use the R package [`IRdisplay`](https://github.com/IRkernel/IRdisplay) to display plots from files in `jupyter-notebook`.
+
+Use the function `display_png()` to display our histogram.
+
+```{r, eval=FALSE}
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./sample_depth_histogram.png")
 ```
 
 This information is very useful. We will use it in the next chapter to determine what our minimum read depth should be.

@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-04-27" />
+<meta name="date" content="2023-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -190,7 +190,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1.1" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-header"><i class="fa fa-check"></i><b>8.1.1</b> Summarise header</a></li>
 <li class="chapter" data-level="8.1.2" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-phyloseq"><i class="fa fa-check"></i><b>8.1.2</b> Summarise phyloseq</a></li>
 <li class="chapter" data-level="8.1.3" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#reads-per-sample"><i class="fa fa-check"></i><b>8.1.3</b> Reads per sample</a></li>
-<li class="chapter" data-level="8.1.4" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#asvs-per-sample"><i class="fa fa-check"></i><b>8.1.4</b> ASVs per sample</a></li>
+<li class="chapter" data-level="8.1.4" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#display-png"><i class="fa fa-check"></i><b>8.1.4</b> Display png</a></li>
+<li class="chapter" data-level="8.1.5" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#asvs-per-sample"><i class="fa fa-check"></i><b>8.1.5</b> ASVs per sample</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="08-Summarise_phyloseq.html"><a href="08-Summarise_phyloseq.html#summarise-recap"><i class="fa fa-check"></i><b>8.2</b> Summarise: recap</a></li>
 </ul></li>
@@ -202,7 +203,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#sample-depth-boxplot"><i class="fa fa-check"></i><b>9.4</b> Sample depth boxplot</a>
 <ul>
 <li class="chapter" data-level="9.4.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#creating-a-data-frame-for-boxplots"><i class="fa fa-check"></i><b>9.4.1</b> Creating a data frame for boxplots</a></li>
-<li class="chapter" data-level="9.4.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#depth-boxplots"><i class="fa fa-check"></i><b>9.4.2</b> Depth boxplots</a></li>
+<li class="chapter" data-level="9.4.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#ggplot2-boxplot"><i class="fa fa-check"></i><b>9.4.2</b> ggplot2 boxplot</a></li>
+<li class="chapter" data-level="9.4.3" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#save-ggplot-as-png"><i class="fa fa-check"></i><b>9.4.3</b> Save ggplot as png</a></li>
+<li class="chapter" data-level="9.4.4" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#media-by-depth-boxplot"><i class="fa fa-check"></i><b>9.4.4</b> Media by depth boxplot</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#chap9rarefaction"><i class="fa fa-check"></i><b>9.5</b> Rarefaction curve</a>
 <ul>
@@ -224,9 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#simple-bar-chart"><i class="fa fa-check"></i><b>11.1</b> Simple bar chart</a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#save-ggplot-as-png"><i class="fa fa-check"></i><b>11.1.1</b> Save ggplot as png</a></li>
-<li class="chapter" data-level="11.1.2" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#display-png"><i class="fa fa-check"></i><b>11.1.2</b> Display png</a></li>
-<li class="chapter" data-level="11.1.3" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#editing-the-plot"><i class="fa fa-check"></i><b>11.1.3</b> Editing the plot</a></li>
+<li class="chapter" data-level="11.1.1" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#editing-the-plot"><i class="fa fa-check"></i><b>11.1.1</b> Editing the plot</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#taxa-heatmap"><i class="fa fa-check"></i><b>11.2</b> Taxa heatmap</a></li>
 <li class="chapter" data-level="11.3" data-path="11-Taxa_plots.html"><a href="11-Taxa_plots.html#aggregateraretaxa"><i class="fa fa-check"></i><b>11.3</b> Aggregate rare taxa</a></li>
@@ -270,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.2.1" data-path="15-Alpha.html"><a href="15-Alpha.html#metric-choice"><i class="fa fa-check"></i><b>15.2.1</b> Metric choice</a></li>
 <li class="chapter" data-level="15.2.2" data-path="15-Alpha.html"><a href="15-Alpha.html#sample-grouping-box-plot"><i class="fa fa-check"></i><b>15.2.2</b> Sample grouping &amp; box plot</a></li>
-<li class="chapter" data-level="15.2.3" data-path="15-Alpha.html"><a href="15-Alpha.html#save-and-display-as-png"><i class="fa fa-check"></i><b>15.2.3</b> Save and display as png</a></li>
+<li class="chapter" data-level="15.2.3" data-path="15-Alpha.html"><a href="15-Alpha.html#png-height-and-width-choice"><i class="fa fa-check"></i><b>15.2.3</b> PNG height and width choice</a></li>
 </ul></li>
 <li class="chapter" data-level="15.3" data-path="15-Alpha.html"><a href="15-Alpha.html#alpha-stats"><i class="fa fa-check"></i><b>15.3</b> Alpha: stats</a>
 <ul>
@@ -327,6 +328,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B.1" data-path="19-Appendix.html"><a href="19-Appendix.html#ggplot2_appendix"><i class="fa fa-check"></i><b>B.1</b> ggplot2</a></li>
 <li class="chapter" data-level="B.2" data-path="19-Appendix.html"><a href="19-Appendix.html#phyloseq_appendix"><i class="fa fa-check"></i><b>B.2</b> Phyloseq</a></li>
 </ul></li>
+<li class="chapter" data-level="C" data-path="19-Appendix.html"><a href="19-Appendix.html#diversity-metrics"><i class="fa fa-check"></i><b>C</b> Diversity metrics</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="19-Appendix.html"><a href="19-Appendix.html#alpha_appendix"><i class="fa fa-check"></i><b>C.1</b> Alpha diversity</a>
+<ul>
+<li class="chapter" data-level="C.1.1" data-path="19-Appendix.html"><a href="19-Appendix.html#obvs"><i class="fa fa-check"></i><b>C.1.1</b> Observed features</a></li>
+<li class="chapter" data-level="C.1.2" data-path="19-Appendix.html"><a href="19-Appendix.html#chao"><i class="fa fa-check"></i><b>C.1.2</b> Chao</a></li>
+<li class="chapter" data-level="C.1.3" data-path="19-Appendix.html"><a href="19-Appendix.html#evenness"><i class="fa fa-check"></i><b>C.1.3</b> Evenness</a></li>
+<li class="chapter" data-level="C.1.4" data-path="19-Appendix.html"><a href="19-Appendix.html#faith"><i class="fa fa-check"></i><b>C.1.4</b> Faith's PD (phylogenetic diversity)</a></li>
+<li class="chapter" data-level="C.1.5" data-path="19-Appendix.html"><a href="19-Appendix.html#simpson"><i class="fa fa-check"></i><b>C.1.5</b> Simpson</a></li>
+<li class="chapter" data-level="C.1.6" data-path="19-Appendix.html"><a href="19-Appendix.html#simpsone"><i class="fa fa-check"></i><b>C.1.6</b> Simpson evenness measure (simpson_e)</a></li>
+<li class="chapter" data-level="C.1.7" data-path="19-Appendix.html"><a href="19-Appendix.html#shannon"><i class="fa fa-check"></i><b>C.1.7</b> Shannon</a></li>
+</ul></li>
+<li class="chapter" data-level="C.2" data-path="19-Appendix.html"><a href="19-Appendix.html#beta_appendix"><i class="fa fa-check"></i><b>C.2</b> Beta diversity</a>
+<ul>
+<li class="chapter" data-level="C.2.1" data-path="19-Appendix.html"><a href="19-Appendix.html#unifrac_explanation"><i class="fa fa-check"></i><b>C.2.1</b> Weighted and unweighted UniFrac distances</a></li>
+<li class="chapter" data-level="C.2.2" data-path="19-Appendix.html"><a href="19-Appendix.html#bray_explanation"><i class="fa fa-check"></i><b>C.2.2</b> Bray-Curtis</a></li>
+</ul></li>
+<li class="chapter" data-level="C.3" data-path="19-Appendix.html"><a href="19-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>C.3</b> Diversity Resources</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -373,7 +393,8 @@ This will involve loading packages and data we need.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="08-Summarise_phyloseq.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Packages</span></span>
 <span id="cb17-2"><a href="08-Summarise_phyloseq.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;phyloseq&quot;</span>)</span>
 <span id="cb17-3"><a href="08-Summarise_phyloseq.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
-<span id="cb17-4"><a href="08-Summarise_phyloseq.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;vegan&quot;</span>)</span></code></pre></div>
+<span id="cb17-4"><a href="08-Summarise_phyloseq.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;vegan&quot;</span>)</span>
+<span id="cb17-5"><a href="08-Summarise_phyloseq.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;IRdisplay&quot;</span>)</span></code></pre></div>
 <p>Our last bit of set-up is to load in our abundance <code>phyloseq</code> object we created in the previous chapter.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="08-Summarise_phyloseq.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the phyloseq object</span></span>
 <span id="cb18-2"><a href="08-Summarise_phyloseq.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
@@ -398,39 +419,53 @@ We will therefore use a new section to inspect the data.</p>
 <div id="reads-per-sample" class="section level3 hasAnchor" number="8.1.3">
 <h3><span class="header-section-number">8.1.3</span> Reads per sample<a href="08-Summarise_phyloseq.html#reads-per-sample" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="figures/histogram.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>In our new <strong>cell</strong> we will use the command <code>microbiome::readcount()</code> to store and display the number of reads in each sample within our <code>phyloseq</code> object (<code>pseq</code>). We can even make a quick histogram of read numbers per sample with the base <code>R</code> function <code>hist()</code>.</p>
+<p>In our new <strong>cell</strong> we will use the command <code>microbiome::readcount()</code> to store and display the number of reads in each sample within our <code>phyloseq</code> object (<code>pseq</code>).</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="08-Summarise_phyloseq.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of reads per sample</span></span>
-<span id="cb21-2"><a href="08-Summarise_phyloseq.html#cb21-2" aria-hidden="true" tabindex="-1"></a>reads_sample <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">readcount</span>(pseq)</span>
-<span id="cb21-3"><a href="08-Summarise_phyloseq.html#cb21-3" aria-hidden="true" tabindex="-1"></a>reads_sample</span>
-<span id="cb21-4"><a href="08-Summarise_phyloseq.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Histogram</span></span>
-<span id="cb21-5"><a href="08-Summarise_phyloseq.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(reads_samples, <span class="st">&quot;Histogram of read depths&quot;</span>)</span></code></pre></div>
+<span id="cb21-2"><a href="08-Summarise_phyloseq.html#cb21-2" aria-hidden="true" tabindex="-1"></a>sample_depths <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">readcount</span>(pseq)</span>
+<span id="cb21-3"><a href="08-Summarise_phyloseq.html#cb21-3" aria-hidden="true" tabindex="-1"></a>sample_depths</span></code></pre></div>
+<p>With this info we can make a histogram of read numbers per sample with the base <code>R</code> function <code>hist()</code>.
+We will save this as a <code>.png</code> file with the functions <code>png()</code> and <code>dev.off()</code>.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="08-Summarise_phyloseq.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Histogram</span></span>
+<span id="cb22-2"><a href="08-Summarise_phyloseq.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Save as png</span></span>
+<span id="cb22-3"><a href="08-Summarise_phyloseq.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;./sample_depth_histogram.png&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>,</span>
+<span id="cb22-4"><a href="08-Summarise_phyloseq.html#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">100</span>, <span class="at">width =</span> <span class="dv">200</span>)</span>
+<span id="cb22-5"><a href="08-Summarise_phyloseq.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample_depths, <span class="at">main =</span> <span class="st">&quot;Histogram of read depths&quot;</span>)</span>
+<span id="cb22-6"><a href="08-Summarise_phyloseq.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+</div>
+<div id="display-png" class="section level3 hasAnchor" number="8.1.4">
+<h3><span class="header-section-number">8.1.4</span> Display png<a href="08-Summarise_phyloseq.html#display-png" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/display_png.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>We can use the R package <a href="https://github.com/IRkernel/IRdisplay"><code>IRdisplay</code></a> to display plots from files in <code>jupyter-notebook</code>.</p>
+<p>Use the function <code>display_png()</code> to display our histogram.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="08-Summarise_phyloseq.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
+<span id="cb23-2"><a href="08-Summarise_phyloseq.html#cb23-2" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./sample_depth_histogram.png&quot;</span>)</span></code></pre></div>
 <p>This information is very useful. We will use it in the next chapter to determine what our minimum read depth should be.</p>
 </div>
-<div id="asvs-per-sample" class="section level3 hasAnchor" number="8.1.4">
-<h3><span class="header-section-number">8.1.4</span> ASVs per sample<a href="08-Summarise_phyloseq.html#asvs-per-sample" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="asvs-per-sample" class="section level3 hasAnchor" number="8.1.5">
+<h3><span class="header-section-number">8.1.5</span> ASVs per sample<a href="08-Summarise_phyloseq.html#asvs-per-sample" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="figures/nice_table.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>The last infomration we will look at before some preprocessing are the ASVs (Amplicon Sequnces Variants).</p>
+<p>The last information we will look at before some preprocessing are the ASVs (Amplicon Sequnces Variants).</p>
 <p>A useful <code>phyloseq</code> command is <code>otu_table()</code>. This allows us to extract the ASV/OTU/feature table. With this we can then carry out some other commands.</p>
 <p>For demonstrative purposes write and run the following code in its own <strong>cell</strong> to display the ASV table.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="08-Summarise_phyloseq.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Can extract ASV table (known as otu table in phyloseq)</span></span>
-<span id="cb22-2"><a href="08-Summarise_phyloseq.html#cb22-2" aria-hidden="true" tabindex="-1"></a>phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(pseq)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="08-Summarise_phyloseq.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Can extract ASV table (known as otu table in phyloseq)</span></span>
+<span id="cb24-2"><a href="08-Summarise_phyloseq.html#cb24-2" aria-hidden="true" tabindex="-1"></a>phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(pseq)</span></code></pre></div>
 <p>With this function we will extract the number of ASVs in the original abundance table.
 We will then save this in a vector.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="08-Summarise_phyloseq.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Each row is an ASV and each column is the samples</span></span>
-<span id="cb23-2"><a href="08-Summarise_phyloseq.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Therefore we can get the number of ASVs in the data by the number of rows</span></span>
-<span id="cb23-3"><a href="08-Summarise_phyloseq.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s make a new vector with this info so we can easily keep track</span></span>
-<span id="cb23-4"><a href="08-Summarise_phyloseq.html#cb23-4" aria-hidden="true" tabindex="-1"></a>num_asvs_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">nrow</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(pseq)))</span>
-<span id="cb23-5"><a href="08-Summarise_phyloseq.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Give the 1st element a relevant name</span></span>
-<span id="cb23-6"><a href="08-Summarise_phyloseq.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(num_asvs_vec)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;abundance&quot;</span></span>
-<span id="cb23-7"><a href="08-Summarise_phyloseq.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">#View current vector</span></span>
-<span id="cb23-8"><a href="08-Summarise_phyloseq.html#cb23-8" aria-hidden="true" tabindex="-1"></a>num_asvs_vec</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="08-Summarise_phyloseq.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Each row is an ASV and each column is a sample</span></span>
+<span id="cb25-2"><a href="08-Summarise_phyloseq.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Therefore we can get the number of ASVs in the data by counting the number of rows</span></span>
+<span id="cb25-3"><a href="08-Summarise_phyloseq.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s make a new vector with this info so we can easily keep track</span></span>
+<span id="cb25-4"><a href="08-Summarise_phyloseq.html#cb25-4" aria-hidden="true" tabindex="-1"></a>num_asvs_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">nrow</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(pseq)))</span>
+<span id="cb25-5"><a href="08-Summarise_phyloseq.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Give the 1st element a relevant name</span></span>
+<span id="cb25-6"><a href="08-Summarise_phyloseq.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(num_asvs_vec)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;abundance&quot;</span></span>
+<span id="cb25-7"><a href="08-Summarise_phyloseq.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#View current vector</span></span>
+<span id="cb25-8"><a href="08-Summarise_phyloseq.html#cb25-8" aria-hidden="true" tabindex="-1"></a>num_asvs_vec</span></code></pre></div>
 <p>Save this vector as a <code>.Rdata</code> object in a new <strong>cell</strong>.
 This will allow us to load it in future notebooks.
 We can remove the object so it doesn't use RAM.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="08-Summarise_phyloseq.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Save object as file</span></span>
-<span id="cb24-2"><a href="08-Summarise_phyloseq.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(num_asvs_vec, <span class="at">file=</span> <span class="st">&quot;num_asvs_vec.RData&quot;</span>)</span>
-<span id="cb24-3"><a href="08-Summarise_phyloseq.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove object from environment</span></span>
-<span id="cb24-4"><a href="08-Summarise_phyloseq.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(num_asvs_vec)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="08-Summarise_phyloseq.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Save object as file</span></span>
+<span id="cb26-2"><a href="08-Summarise_phyloseq.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(num_asvs_vec, <span class="at">file=</span> <span class="st">&quot;num_asvs_vec.RData&quot;</span>)</span>
+<span id="cb26-3"><a href="08-Summarise_phyloseq.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove object from environment</span></span>
+<span id="cb26-4"><a href="08-Summarise_phyloseq.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(num_asvs_vec)</span></code></pre></div>
 </div>
 </div>
 <div id="summarise-recap" class="section level2 hasAnchor" number="8.2">

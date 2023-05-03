@@ -123,7 +123,7 @@ head(abundance_metadf)
 
 Great! We will use this data frame to create 2 boxplots.
 
-### Depth boxplots
+### ggplot2 boxplot
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/boxplots_groups.png", auto_pdf = TRUE)
 ```
@@ -143,8 +143,27 @@ Write and run the following code in a new cell:
 
 ```{r, eval=FALSE}
 #Create ggplot2 boxplot of depth by size
-ggplot2::ggplot(abundance_metadf, aes=(y=depth, x=site)) +
+boxplot <- ggplot2::ggplot(abundance_metadf, aes=(y=depth, x=site)) +
   ggplot2::geom_boxplot()
+```
+
+We have a saved `ggplot2` object but now wee need to save and display it.
+
+### Save ggplot as png
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/png_file.png", auto_pdf = TRUE)
+``` 
+
+You can save a `ggplot` object as an image file with `ggsave()`.
+This allows you to select the size and resolution (`dpi`) of the image.
+This can then be displayed with `IRdisplay::display_png()`.
+
+```{r, eval=FALSE}
+#Save ggplot object as png file
+ggsave(filename = "./boxplot_x_site_y_depth.png", plot = boxplot,
+       device = "png", dpi = 300, units = "mm", height = 100, width = 150)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./boxplot_x_site_y_depth.png")
 ```
 
 ```{r, echo = FALSE}
@@ -152,14 +171,24 @@ opts_p <- c(answer="__LD (Lower Durance)__", "__MD (Middle Durance)__", "__UD (U
 ```
 - Which site has the highest median depth (middle line of boxplot)? `r longmcq(opts_p)`
 
+### Media by depth boxplot
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
+```
+
 We will use the same code to plot the depth by media.
-You can copy and paste the code changing the x aesthetic to media (`x=media`).
+You can copy and paste the code changing all hte instances of __site__ to __media__.
 Carry this out in the same cell and run the code.
 
 ```{r, eval=FALSE}
 #Create ggplot2 boxplot of depth by size
 ggplot2::ggplot(abundance_metadf, aes(y=depth, x=media)) +
   ggplot2::geom_boxplot()
+#Save ggplot object as png file
+ggsave(filename = "./boxplot_x_media_y_depth.png", plot = boxplot,
+       device = "png", dpi = 300, units = "mm", height = 100, width = 150)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./boxplot_x_media_y_depth.png")
 ```
 
 ```{r, echo = FALSE}
@@ -216,11 +245,18 @@ Add the following code to the same cell and run it.
 
 ```{r, eval=FALSE}
 #Rarefaction curve
+#Save as png
+png(filename = "rarefaction.png", res = 300,
+    units = "mm", height = 200, width = 200)
+#plot
 vegan::rarecurve(
   x = asv_abund_df, step = 50,
   xlab = "Read depth",
   ylab = "ASVs"
 )
+dev.off()
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./rarefaction.png")
 ```
 
 __Note__: You will get a warning saying `"most observed count data have counts 1, but smallest count is 2"`. This can be ignored in this case.

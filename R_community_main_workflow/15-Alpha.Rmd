@@ -44,12 +44,18 @@ Reminder to use markdown and code cells in the notebook.
 knitr::include_graphics(path = "figures/simple_boxplot.png", auto_pdf = TRUE)
 ```
 
-The first step is to calculate and plot the alpha diveristy metrics based on the ASV data.
+The first step is to calculate and plot the alpha diversity metrics based on the ASV data.
 Thankfully, the command `phyloseq::plot_richness()` will do both of these.
 Try it out.
 
 ```{r, eval = FALSE}
-phyloseq::plot_richness(physeq = pseq_rarefy)
+#Simple alpha plot
+alpha_plot <- phyloseq::plot_richness(physeq = pseq_rarefy)
+#Save ggplot object as png file
+ggsave(filename = "./alpha_div.png", plot = alpha_plot,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./alpha_div.png")
 ```
 
 The resulting plot is pretty good but is difficult to read. 
@@ -72,18 +78,22 @@ We'll choose these metrics with the `measures = ` option.
 Either make a new code block with new code or you can edit and run the previous code you wrote.
 
 ```{r , eval = FALSE}
-phyloseq::plot_richness(physeq = pseq_rarefy, measures = c("Observed","Chao1","Shannon")
+#Simple alpha plot
+alpha_plot <- phyloseq::plot_richness(physeq = pseq_rarefy, measures = c("Observed","Chao1","Shannon")
+#Save ggplot object as png file
+ggsave(filename = "./alpha_div.png", plot = alpha_plot,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./alpha_div.png")
 ```
 
 To see which measures are available you can see the help page of `phyloseq::plot_richness()`.
 
-For a list and full description of the metrics please see the APPENDIX
-
-LINK NEEDS TO BE ADDED ABOVE WHEN APPENDIX MADE.
-
 ```{r, eval=FALSE}
 ?phyloseq::plot_richness
 ```
+
+For a list and full description of some of the metrics please see the [APPENDIX](#alpha_appendix).
 
 ### Sample grouping & box plot
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -98,18 +108,25 @@ To convert our dot plot into a box plot we can add the layer `geom_boxplt()` lik
 This will combine samples from one media into one IQR box.
 
 ```{r , eval = FALSE}
+#Box plot
 phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
                         measures = c("Observed","Chao1","Shannon")) +
             ggplot2::geom_boxplot()
+#Save ggplot object as png file
+ggsave(filename = "./alpha_div.png", plot = alpha_plot,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./alpha_div.png")
 ```
 
-### Save and display as png
+### PNG height and width choice
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
 ```
 
-Like we have done a few times we can save the plot as a png and view it.
+Choosing a good height and width size can make plots easier to read.
+We'll try 150 (height) and 250 (width).
 
 ```{r , eval = FALSE}
 # Produce ggplot object of boxplot
@@ -173,6 +190,8 @@ The test has carried out P value adjustments using the Holm-Bonferroni method (`
 
 In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
 The only group with a large variance is the ENV group with values going from < 150 to > 450.
+
+For more info on Wilcoxon test [Wikipedia](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test) is a good start.
 
 ### Alpha stats task
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
