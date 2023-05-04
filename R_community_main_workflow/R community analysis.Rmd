@@ -2846,7 +2846,7 @@ In a perfect example samples from the same group will form clusters that are dis
 
 In this chapter we will:
 
-- Calculate beta diversity ordination metrics plot it as a scatter plot.
+- Calculate beta diversity ordination metrics and plot them as a scatter plot.
 - Determine if there is a statistical difference between beta diversity metrics of sample groups.
 
 ## Beta: setup
@@ -2892,7 +2892,7 @@ knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
 ```
 
 Now that we have our ordination we can plot it.
-The below script uses `phyloseq::plot_ordination()` to plot our ordination.
+The script below uses `phyloseq::plot_ordination()` to plot our ordination.
 It needs the `phyloseq` object used for ordination (for the metadata) and the ordination data.
 We will add the options `color =` and `shape =` to colour the points by site and shape the points by media.
 
@@ -2969,7 +2969,7 @@ In this case we can assess if there are any differences by media and by site (`m
 
 ```{r, eval=FALSE}
 #Extract metadata data frame from phyloseq
-metadaf <- data.frame(phyloseq::sample_data(pseq_rarefy))
+metadf <- data.frame(phyloseq::sample_data(pseq_rarefy))
 #PERMANOVA/ADONIS of media and site
 wunifrac_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media+site, data = metadf, by = "margin")
 wunifrac_adonis
@@ -2977,7 +2977,7 @@ wunifrac_adonis
 
 There is a lot of information in the resulting table.
 We are primarily interested in the P-value column (`Pr(>F)`).
-We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.016).
+We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.009).
 
 ### Pairwise PERMANOVA
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -3096,7 +3096,7 @@ nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy, ord.mds.wunifrac,
                   #Zoom into CVP and KBC samples specified by the metadata category
                   #Zoom.size = 1 so the zoom section is the same size as the main plot
                   #Zoom.size = 2 would mean the zoom plot is 2 times the size of the original
-                  ggforce::facet_zoom( x = media = c("CVP","KBC"), zoom.size = 1)
+                  ggforce::facet_zoom( xy = media == c("CVP","KBC"), zoom.size = 1)
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_zoom.png", plot = nmds.wunifrac,
        device = "png", dpi = 300, units = "mm", height = 150, width = 150)
