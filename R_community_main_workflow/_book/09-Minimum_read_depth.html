@@ -340,6 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="B.1" data-path="19-Appendix.html"><a href="19-Appendix.html#ggplot2_appendix"><i class="fa fa-check"></i><b>B.1</b> ggplot2</a></li>
 <li class="chapter" data-level="B.2" data-path="19-Appendix.html"><a href="19-Appendix.html#phyloseq_appendix"><i class="fa fa-check"></i><b>B.2</b> Phyloseq</a></li>
+<li class="chapter" data-level="B.3" data-path="19-Appendix.html"><a href="19-Appendix.html#importing-into-phyloseq"><i class="fa fa-check"></i><b>B.3</b> Importing into phyloseq</a></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="19-Appendix.html"><a href="19-Appendix.html#diversity-metrics"><i class="fa fa-check"></i><b>C</b> Diversity metrics</a>
 <ul>
@@ -436,8 +437,8 @@ This is the general consensus for <strong>human microbiome</strong> data.</p>
 <p>We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:</p>
 <ul>
 <li>What is the approximate read depth range of our dataset?
-<div id="radio_CFZOYBLFSP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CFZOYBLFSP" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CFZOYBLFSP" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CFZOYBLFSP" value=""></input> <span><strong>20,000+</strong></span></label>
+<div id="radio_LWZSCURIDP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LWZSCURIDP" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LWZSCURIDP" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LWZSCURIDP" value=""></input> <span><strong>20,000+</strong></span></label>
 </div></li>
 </ul>
 <p>This is a good first step but what if we want to know how the read depths vary between sample groups?</p>
@@ -515,8 +516,8 @@ This can then be displayed with <code>IRdisplay::display_png()</code>.</p>
 <span id="cb32-5"><a href="09-Minimum_read_depth.html#cb32-5" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./boxplot_x_site_y_depth.png&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Which site has the highest median depth (middle line of boxplot)?
-<div id="radio_RDPVDHUWLC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RDPVDHUWLC" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RDPVDHUWLC" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RDPVDHUWLC" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
+<div id="radio_FRQQVGPAVV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FRQQVGPAVV" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FRQQVGPAVV" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FRQQVGPAVV" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
 </div></li>
 </ul>
 </div>
@@ -536,8 +537,8 @@ Carry this out in the same cell and run the code.</p>
 <span id="cb33-8"><a href="09-Minimum_read_depth.html#cb33-8" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./boxplot_x_media_y_depth.png&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Which media has the lowest median depth (middle line of boxplot)?
-<div id="radio_QGNIEUYPBD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QGNIEUYPBD" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QGNIEUYPBD" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QGNIEUYPBD" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_GXQBYYVWAI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GXQBYYVWAI" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GXQBYYVWAI" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GXQBYYVWAI" value=""></input> <span><strong>TSA</strong></span></label>
 </div></li>
 </ul>
 <p>From the boxplots we can see there is no drastic difference between the depths of the different media groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.</p>
@@ -641,16 +642,16 @@ Add the following in the same cell and then run the code in the cell.</p>
 <p>Try to write your own R code in a new cell to answer the following questions:</p>
 <ul>
 <li>What is the difference of the minimum number of reads between <code>pseq_min11k</code> and <code>pseq</code>?
-<div id="radio_TOCQDIWIDS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TOCQDIWIDS" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TOCQDIWIDS" value="answer"></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TOCQDIWIDS" value=""></input> <span><strong>42507</strong></span></label>
+<div id="radio_ZNPQUXVBKM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZNPQUXVBKM" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZNPQUXVBKM" value="answer"></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZNPQUXVBKM" value=""></input> <span><strong>42507</strong></span></label>
 </div></li>
 <li>How many samples were removed due to the read depth filtering?
-<div id="radio_ATAFHUYKBE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ATAFHUYKBE" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ATAFHUYKBE" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ATAFHUYKBE" value=""></input> <span><strong>42507</strong></span></label>
+<div id="radio_HZEBCZXSJG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HZEBCZXSJG" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HZEBCZXSJG" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HZEBCZXSJG" value=""></input> <span><strong>42507</strong></span></label>
 </div></li>
 <li>What is the difference of the minimum number of reads between <code>pseq_min11k</code> and <code>pseq</code>?
-<div id="radio_GPCHGSHSAO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GPCHGSHSAO" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GPCHGSHSAO" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GPCHGSHSAO" value="answer"></input> <span><strong>42507</strong></span></label>
+<div id="radio_YRZMNHTYFR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YRZMNHTYFR" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YRZMNHTYFR" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YRZMNHTYFR" value="answer"></input> <span><strong>42507</strong></span></label>
 </div></li>
 </ul>
 <div class="webex-solution">
