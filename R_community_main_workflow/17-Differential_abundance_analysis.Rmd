@@ -84,7 +84,7 @@ levels(phyloseq::sample_data(pseq)$site)
 knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
 ``` 
 
-Now that we have our data the way we would like it we can carry out.
+Now that we have our data the way we would like it we can carry out the ANCOM analysis.
 We'll use the function `ANCOMBC::ancombc2()` for our ANCOM-BC analysis.
 
 __Note:__ This command will take a few minutes to run.
@@ -128,11 +128,11 @@ Therefore, lets extract the results we want to look at and then remove the large
 
 ```{r, eval=FALSE}
 #Output of analysis compared to reference groups
-rec_ancom_class <- ancom_class_out£res
+res_ancom_class <- ancom_class_out$res
 #Remove large object
 rm(ancom_class_out)
 #Check top rows of results
-head(rec_ancom_class)
+head(res_ancom_class)
 ```
 
 These reuslts only contain taxon where a significant result was found in at least one comparison.
@@ -141,23 +141,23 @@ There are a lot of columns (37) in our result data frame.
 Apart from taxon they are split by the comparison group.
 These contain the following information:
 
-- __taxon__: The taxa groups found to be a biomarker in at least one comparison.
-- __lfc_*__: This contains the log (natural log) fold changes with respect to the reference group.
+- taxon: The taxa groups found to be a biomarker in at least one comparison.
+- lfc_*: This contains the log (natural log) fold changes with respect to the reference group.
   - For example The values for lfc_mediaCVP would equal LFC(CVP - ENV).
   - A positive value means the abundances are higher in the comparison group (CVP) and lower in the ref (ENV).
   - A negative value means the abundances are lower in the comparison group (CVP) and higher in the ref (ENV).
   - The intercept value is the grand mean and is likely not of interest.
-- __se_*__: The standard error for the LFC values.
-- __W_*__: The W statistic. The higher this value the more significant the feature is differentially abundant between groups.
-- __p_*__: The P-value.
-- __q_*__: The Q-value. This is the adjusted P-value.
-- __diff*__: This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value < 0.05.
+- se_*: The standard error for the LFC values.
+- W_*: The W statistic. The higher this value the more significant the feature is differentially abundant between groups.
+- p_*: The P-value.
+- q_*: The Q-value. This is the adjusted P-value.
+- diff*: This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value < 0.05.
 
 It is quite a large table so let's save it as a tsv (tab separated value) file.
 
 ```{r, eval=FALSE}
 #Save as file
-write.table(x = rec_ancom_class, file = "ANCOMBC2_class_results.tsv",
+write.table(x = res_ancom_class, file = "ANCOMBC2_class_results.tsv",
             quote = FALSE, row.names = FALSE)
 ```
 
