@@ -100,7 +100,7 @@ Unfortunately we are not able to detect any differences between sites due to pow
 knitr::include_graphics(path = "figures/difference.png", auto_pdf = TRUE)
 ``` 
 
-After diversity analysis we carried out differential abundance analysis in [chpater 17](#DA_chap).
+After diversity analysis we carried out differential abundance analysis in [chapter 17](#DA_chap).
 This was carried out with ANCOM whilst taking into account both the media and site information.
 
 We found many bacterial classes with lower abundances in the media samples compared to the ENV samples.
@@ -124,7 +124,7 @@ knitr::include_graphics(path = "figures/farm.png", auto_pdf = TRUE)
 How does the bacterial communities change across the anthropisation gradient?
 
 Due to the vast difference caused by the media we were not able to determine this.
-You could try to remove all bu the ENV samples to determine this. 
+You could try to remove all but the ENV samples to determine this. 
 However, you would not have much power with only 9 samples (3 sites by 3 replicates).
 
 ### Replicate differences

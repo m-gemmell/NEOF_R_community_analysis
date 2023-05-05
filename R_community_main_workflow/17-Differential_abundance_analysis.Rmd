@@ -354,7 +354,7 @@ There are only 2 biomarkers with higher abundance in the media samples.
 
 The LFC values between the different media are quite similar.
 There are some biomarkers that are only siginifcnat in 1 or 2 of the media though.
-It seems that CVP and KBC are more simialr to each that to TSA.
+It seems that CVP and KBC are more simialr to each other than to TSA.
 This matches the clustering we found in the beta diversity.
 
 This seems to indicate that the media samples are not a good representation of the actual environmental community.
@@ -373,7 +373,7 @@ We will use the relative abundances for this.
 #Convert abundance table to class relative abundance (compositional) table
 pseq_relabund <- microbiome::transform(pseq, "compositional")
 #Class phyloseq
-class_relabund_pseq <- microbiome::aggregate_taxa(class_relabund_pseq, "Class", verbose = FALSE)
+class_relabund_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Class", verbose = FALSE)
 #Produce heatmap ggplot
 class_heatmap <- microbiome::plot_composition(class_relabund_pseq, plot.type = "heatmap") +
   xlab("Class") + ylab("Sample") +
