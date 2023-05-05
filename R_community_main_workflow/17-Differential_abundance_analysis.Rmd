@@ -196,7 +196,7 @@ media_colnames_pos <- grep("media", colnames(res_ancom_class))
 media_colnames <- colnames(res_ancom_class)[c(1,media_colnames_pos)]
 media_colnames
 #Create new df with only taxon and media columns
-res_ancom_class_media <- media_colnames[,media_colnames]
+res_ancom_class_media <- res_ancom_class[,media_colnames]
 head(res_ancom_class_media)
 ```
 

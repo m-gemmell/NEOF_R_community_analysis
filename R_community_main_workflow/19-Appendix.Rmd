@@ -96,7 +96,7 @@ The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It 
 knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
 ```
 
-Below are various resources if youwould like to learn more about phyloseq and associated packages.
+Below are various resources if you would like to learn more about phyloseq and associated packages.
 
 - [Phyloseq](https://joey711.github.io/phyloseq/): The original `phyloseq`. The R object is still great but the included tutorials and some functions are a bit outdated.
 - [microbiome](https://microbiome.github.io/tutorials/): A supplemental package to `phyloseq`. It contains some much needed functions. The tutorials are much clearer than the `phyloseq` tutorials but still not always the clearest.

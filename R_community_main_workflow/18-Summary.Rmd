@@ -33,7 +33,7 @@ knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
 Briefly we carried out the following steps to prepare our data:
 
 - [Chapter 7](#import_chap): Imported a `phyloseq` object with `qiime2R`.
-- [Chapter 8](#mindepthchap): Checked our data with summarisations.
+- [Chapter 8](#sum_phyloseq_chap): Checked our data with summarisations.
 - [Chapter 9](##mindepthchap): Checked the minimum depth we should use and removed samples with lower depth.
 
 ## Taxonomy

@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-05-03" />
+<meta name="date" content="2023-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -446,7 +446,7 @@ We'll therefore change the order with the <code>factor()</code> function and <co
 <div id="da-ancom-bc-analysis" class="section level2 hasAnchor" number="17.3">
 <h2><span class="header-section-number">17.3</span> DA: ANCOM-BC analysis<a href="17-Differential_abundance_analysis.html#da-ancom-bc-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/play_blue.png" width="10%" style="display: block; margin: auto;" /></p>
-<p>Now that we have our data the way we would like it we can carry out.
+<p>Now that we have our data the way we would like it we can carry out the ANCOM analysis.
 We'll use the function <code>ANCOMBC::ancombc2()</code> for our ANCOM-BC analysis.</p>
 <p><strong>Note:</strong> This command will take a few minutes to run.</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="17-Differential_abundance_analysis.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Run ANCOMBC</span></span>
@@ -476,34 +476,34 @@ Please see the package <a href="https://bioc.ism.ac.jp/packages/devel/bioc/manua
 <p>There is a lot of information in <code>ancom_class_out</code>.
 Therefore, lets extract the results we want to look at and then remove the large object.</p>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="17-Differential_abundance_analysis.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Output of analysis compared to reference groups</span></span>
-<span id="cb107-2"><a href="17-Differential_abundance_analysis.html#cb107-2" aria-hidden="true" tabindex="-1"></a>rec_ancom_class <span class="ot">&lt;-</span> ancom_class_out£res</span>
+<span id="cb107-2"><a href="17-Differential_abundance_analysis.html#cb107-2" aria-hidden="true" tabindex="-1"></a>res_ancom_class <span class="ot">&lt;-</span> ancom_class_out<span class="sc">$</span>res</span>
 <span id="cb107-3"><a href="17-Differential_abundance_analysis.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove large object</span></span>
 <span id="cb107-4"><a href="17-Differential_abundance_analysis.html#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(ancom_class_out)</span>
 <span id="cb107-5"><a href="17-Differential_abundance_analysis.html#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Check top rows of results</span></span>
-<span id="cb107-6"><a href="17-Differential_abundance_analysis.html#cb107-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rec_ancom_class)</span></code></pre></div>
+<span id="cb107-6"><a href="17-Differential_abundance_analysis.html#cb107-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res_ancom_class)</span></code></pre></div>
 <p>These reuslts only contain taxon where a significant result was found in at least one comparison.
 This is based on the adjusted p-values (&lt;0.05).
 There are a lot of columns (37) in our result data frame.
 Apart from taxon they are split by the comparison group.
 These contain the following information:</p>
 <ul>
-<li><strong>taxon</strong>: The taxa groups found to be a biomarker in at least one comparison.</li>
-<li>__lfc_*__: This contains the log (natural log) fold changes with respect to the reference group.
+<li>taxon: The taxa groups found to be a biomarker in at least one comparison.</li>
+<li>lfc_*: This contains the log (natural log) fold changes with respect to the reference group.
 <ul>
 <li>For example The values for lfc_mediaCVP would equal LFC(CVP - ENV).</li>
 <li>A positive value means the abundances are higher in the comparison group (CVP) and lower in the ref (ENV).</li>
 <li>A negative value means the abundances are lower in the comparison group (CVP) and higher in the ref (ENV).</li>
 <li>The intercept value is the grand mean and is likely not of interest.</li>
 </ul></li>
-<li>__se_*__: The standard error for the LFC values.</li>
-<li>__W_*__: The W statistic. The higher this value the more significant the feature is differentially abundant between groups.</li>
-<li>__p_*__: The P-value.</li>
-<li>__q_*__: The Q-value. This is the adjusted P-value.</li>
-<li>__diff*__: This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value &lt; 0.05.</li>
+<li>se_*: The standard error for the LFC values.</li>
+<li>W_*: The W statistic. The higher this value the more significant the feature is differentially abundant between groups.</li>
+<li>p_*: The P-value.</li>
+<li>q_*: The Q-value. This is the adjusted P-value.</li>
+<li>diff*: This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value &lt; 0.05.</li>
 </ul>
 <p>It is quite a large table so let's save it as a tsv (tab separated value) file.</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="17-Differential_abundance_analysis.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Save as file</span></span>
-<span id="cb108-2"><a href="17-Differential_abundance_analysis.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="at">x =</span> rec_ancom_class, <span class="at">file =</span> <span class="st">&quot;ANCOMBC2_class_results.tsv&quot;</span>,</span>
+<span id="cb108-2"><a href="17-Differential_abundance_analysis.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="at">x =</span> res_ancom_class, <span class="at">file =</span> <span class="st">&quot;ANCOMBC2_class_results.tsv&quot;</span>,</span>
 <span id="cb108-3"><a href="17-Differential_abundance_analysis.html#cb108-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>This is good to open in excel but we don't have something like that on our cluster.
 Therefore, we will use the package <code>DT</code> to create an interactive table with the function <code>datatable()</code>.
@@ -530,7 +530,7 @@ However, there is a good amount of biomarkers for the three different medias com
 <span id="cb110-5"><a href="17-Differential_abundance_analysis.html#cb110-5" aria-hidden="true" tabindex="-1"></a>media_colnames <span class="ot">&lt;-</span> <span class="fu">colnames</span>(res_ancom_class)[<span class="fu">c</span>(<span class="dv">1</span>,media_colnames_pos)]</span>
 <span id="cb110-6"><a href="17-Differential_abundance_analysis.html#cb110-6" aria-hidden="true" tabindex="-1"></a>media_colnames</span>
 <span id="cb110-7"><a href="17-Differential_abundance_analysis.html#cb110-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Create new df with only taxon and media columns</span></span>
-<span id="cb110-8"><a href="17-Differential_abundance_analysis.html#cb110-8" aria-hidden="true" tabindex="-1"></a>res_ancom_class_media <span class="ot">&lt;-</span> media_colnames[,media_colnames]</span>
+<span id="cb110-8"><a href="17-Differential_abundance_analysis.html#cb110-8" aria-hidden="true" tabindex="-1"></a>res_ancom_class_media <span class="ot">&lt;-</span> res_ancom_class[,media_colnames]</span>
 <span id="cb110-9"><a href="17-Differential_abundance_analysis.html#cb110-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res_ancom_class_media)</span></code></pre></div>
 <p>Because we had comparisons with more that 1 grouping (media &amp; site) we might have rows with no significnat results.
 We will therefore remove these rows.</p>
@@ -646,16 +646,16 @@ We will use 0 as the midpoint so we can easily differentiate between higher and 
 Any 0 values are non-significant results we turned to 0 when we created the long data frame.</p>
 <ul>
 <li>Are there more biomarkers in higher abundance in ENV rather than the comparison media (i.e blue/negative results)?
-<div id="radio_DTZTEXPRMB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DTZTEXPRMB" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DTZTEXPRMB" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_KZKNJRLVBC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KZKNJRLVBC" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KZKNJRLVBC" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Which biomarker has the highest positive values?
-<div id="radio_XXPQVRPKBB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XXPQVRPKBB" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XXPQVRPKBB" value="answer"></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XXPQVRPKBB" value=""></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
+<div id="radio_ZNMZJWOYUN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZNMZJWOYUN" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZNMZJWOYUN" value="answer"></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZNMZJWOYUN" value=""></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
 </div></li>
 <li>Which biomarker has the lowest value?
-<div id="radio_DSOMXRCJMS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DSOMXRCJMS" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DSOMXRCJMS" value=""></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DSOMXRCJMS" value="answer"></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
+<div id="radio_LCNMUIYJQM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LCNMUIYJQM" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LCNMUIYJQM" value=""></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LCNMUIYJQM" value="answer"></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
 </div></li>
 </ul>
 <p>From these results we can see that there are a lot of biomarkers with low abundances in the comparison media samples.

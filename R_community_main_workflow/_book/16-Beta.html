@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-05-03" />
+<meta name="date" content="2023-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -394,7 +394,7 @@ Samples with high dissimilarity will be apart from each other.
 In a perfect example samples from the same group will form clusters that are distinct from the clusters of other groups.</p>
 <p>In this chapter we will:</p>
 <ul>
-<li>Calculate beta diversity ordination metrics plot it as a scatter plot.</li>
+<li>Calculate beta diversity ordination metrics and plot them as a scatter plot.</li>
 <li>Determine if there is a statistical difference between beta diversity metrics of sample groups.</li>
 </ul>
 <div id="beta-setup" class="section level2 hasAnchor" number="16.1">
@@ -427,7 +427,7 @@ More information about the different distances please see the <a href="19-Append
 <h2><span class="header-section-number">16.3</span> Beta: plot ordination<a href="16-Beta.html#beta-plot-ordination" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/Scatterplot_2.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Now that we have our ordination we can plot it.
-The below script uses <code>phyloseq::plot_ordination()</code> to plot our ordination.
+The script below uses <code>phyloseq::plot_ordination()</code> to plot our ordination.
 It needs the <code>phyloseq</code> object used for ordination (for the metadata) and the ordination data.
 We will add the options <code>color =</code> and <code>shape =</code> to colour the points by site and shape the points by media.</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="16-Beta.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot ordination</span></span>
@@ -485,13 +485,13 @@ We will use the function <code>phyloseq::distance()</code>.</p>
 This requires the metadata in the form of a data frame.
 In this case we can assess if there are any differences by media and by site (<code>media+site</code>).</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="16-Beta.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Extract metadata data frame from phyloseq</span></span>
-<span id="cb92-2"><a href="16-Beta.html#cb92-2" aria-hidden="true" tabindex="-1"></a>metadaf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq_rarefy))</span>
+<span id="cb92-2"><a href="16-Beta.html#cb92-2" aria-hidden="true" tabindex="-1"></a>metadf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq_rarefy))</span>
 <span id="cb92-3"><a href="16-Beta.html#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co">#PERMANOVA/ADONIS of media and site</span></span>
 <span id="cb92-4"><a href="16-Beta.html#cb92-4" aria-hidden="true" tabindex="-1"></a>wunifrac_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat <span class="sc">~</span> media<span class="sc">+</span>site, <span class="at">data =</span> metadf, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
 <span id="cb92-5"><a href="16-Beta.html#cb92-5" aria-hidden="true" tabindex="-1"></a>wunifrac_adonis</span></code></pre></div>
 <p>There is a lot of information in the resulting table.
 We are primarily interested in the P-value column (<code>Pr(&gt;F)</code>).
-We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.016).</p>
+We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.009).</p>
 </div>
 <div id="pairwise-permanova" class="section level3 hasAnchor" number="16.4.2">
 <h3><span class="header-section-number">16.4.2</span> Pairwise PERMANOVA<a href="16-Beta.html#pairwise-permanova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -583,7 +583,7 @@ We will use this to zoom into the CVP and KBC samples within the weighted unifra
 <span id="cb98-6"><a href="16-Beta.html#cb98-6" aria-hidden="true" tabindex="-1"></a>                  <span class="co">#Zoom into CVP and KBC samples specified by the metadata category</span></span>
 <span id="cb98-7"><a href="16-Beta.html#cb98-7" aria-hidden="true" tabindex="-1"></a>                  <span class="co">#Zoom.size = 1 so the zoom section is the same size as the main plot</span></span>
 <span id="cb98-8"><a href="16-Beta.html#cb98-8" aria-hidden="true" tabindex="-1"></a>                  <span class="co">#Zoom.size = 2 would mean the zoom plot is 2 times the size of the original</span></span>
-<span id="cb98-9"><a href="16-Beta.html#cb98-9" aria-hidden="true" tabindex="-1"></a>                  ggforce<span class="sc">::</span><span class="fu">facet_zoom</span>( <span class="at">x =</span> <span class="at">media =</span> <span class="fu">c</span>(<span class="st">&quot;CVP&quot;</span>,<span class="st">&quot;KBC&quot;</span>), <span class="at">zoom.size =</span> <span class="dv">1</span>)</span>
+<span id="cb98-9"><a href="16-Beta.html#cb98-9" aria-hidden="true" tabindex="-1"></a>                  ggforce<span class="sc">::</span><span class="fu">facet_zoom</span>( <span class="at">xy =</span> media <span class="sc">==</span> <span class="fu">c</span>(<span class="st">&quot;CVP&quot;</span>,<span class="st">&quot;KBC&quot;</span>), <span class="at">zoom.size =</span> <span class="dv">1</span>)</span>
 <span id="cb98-10"><a href="16-Beta.html#cb98-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Save ggplot2 object with ggsave</span></span>
 <span id="cb98-11"><a href="16-Beta.html#cb98-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./Beta_diversity_mds_wunifrac_media_site_zoom.png&quot;</span>, <span class="at">plot =</span> nmds.wunifrac,</span>
 <span id="cb98-12"><a href="16-Beta.html#cb98-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">150</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
