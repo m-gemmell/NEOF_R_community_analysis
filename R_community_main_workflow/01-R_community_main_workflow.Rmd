@@ -36,7 +36,7 @@ A lot of different analyses and visualisations can be carried out with community
 
 The workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. Supplementary materials will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.
  
-The sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
+The sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. Thi book contains theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
 
 At the end of the course learners will be able to:
 

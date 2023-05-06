@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Dataset &amp; workflow | 02-Dataset_and_workflow.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Dataset &amp; workflow | 02-Dataset_and_workflow.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Dataset &amp; workflow | 02-Dataset_and_workflow.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="www/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/neof_small_logo.png"></a></li>
+<li><a>R community analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path=""><a href="#dataset-workflow"><i class="fa fa-check"></i><b>1</b> Dataset &amp; workflow</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#dataset"><i class="fa fa-check"></i><b>1.1</b> Dataset</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path=""><a href="#sites"><i class="fa fa-check"></i><b>1.1.1</b> Sites</a></li>
+<li class="chapter" data-level="1.1.2" data-path=""><a href="#culture-media"><i class="fa fa-check"></i><b>1.1.2</b> Culture media</a></li>
+<li class="chapter" data-level="1.1.3" data-path=""><a href="#sum_and_qs"><i class="fa fa-check"></i><b>1.1.3</b> Summary &amp; questions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#workflow"><i class="fa fa-check"></i><b>1.2</b> Workflow</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="dataset-workflow" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Dataset &amp; workflow<a href="#dataset-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figures/data.png" width="15%" style="display: block; margin: auto;" /></p>
+<div id="dataset" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Dataset<a href="#dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/freshwater_france.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>In this tutorial we will be using a 16S metabarcoding dataset derived from surface water from the Durance River in the south-east of France.
+Two major comparisons were carried out in combination with each other.</p>
+<p><a href="https://www.mdpi.com/2076-2607/8/8/1129">Link to paper</a></p>
+<div id="sites" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Sites<a href="#sites" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/river.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Three different sites were chosen on the Durance River. These three sites were representative of an anthropisation (transformation of land by humans) gradient along a river stream. These sites were:</p>
+<ul>
+<li><strong>Upper Durance sampling site (UD)</strong>: Alpine part of the river with little/no anthropisation.</li>
+<li><strong>Middle Durance sampling site (MD)</strong>: Upper part of agricultural land dominated by apple and pear production.</li>
+<li><strong>Lower Durance sampling site (LD)</strong>: Lower part of agricultural land with intensive production of fruits, cereals, and vegetables.</li>
+</ul>
+</div>
+<div id="culture-media" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Culture media<a href="#culture-media" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/petri.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Surface water was sampled and different culture media were used to produce bacterial lawns for each site. The media used were:</p>
+<ul>
+<li><strong>Environmental sample (ENV)</strong>: No media used, frozen at -20°C.</li>
+<li><strong>TSA 10%</strong> incubated at 28°C for 2 days.</li>
+<li><strong>KBC</strong> incubated at 28°C for 2 days.</li>
+<li><strong>CVP</strong> incubated at 28°C for 3 days.</li>
+</ul>
+</div>
+<div id="sum_and_qs" class="section level3 hasAnchor" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Summary &amp; questions<a href="#sum_and_qs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/sum_red.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Each sample and media combination was produced in replicates of three giving a total of 36 samples (3 X 4 X 3 = 36). The three replicates were cultured on three different plates with the same media. An ASV table, taxonomy table, and phylogenetic tree were produced with QIIME2 and DADA2.</p>
+<p>With this data we can ask and investigate the following questions:</p>
+<ul>
+<li>How do the bacterial communities change across the anthropisation gradient?</li>
+<li>Is there a difference in the replicates of one site and media combination? I.e. do any of the media produce inconsistent profiles?</li>
+<li>Is there more difference between the sites or the media used?</li>
+<li>Do the media samples differ from the ENV samples? If so, how?</li>
+</ul>
+</div>
+</div>
+<div id="workflow" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Workflow<a href="#workflow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/workflow.png" width="15%" style="display: block; margin: auto;" /></p>
+<ol style="list-style-type: decimal">
+<li><a href="#import_chap">Import</a>: Import QIIME2 artifacts into a <code>phyloseq</code> object with <code>qiime2R</code>.</li>
+<li><a href="#sum_phyloseq_chap">Summarisations</a>: Check our <code>phyloseq</code> object with summarisations.</li>
+<li><a href="#mindepthchap">Minimum depth</a>: Determine the minimum depth we should use and remove samples with lower depth.</li>
+<li><a href="#taxa_relabund_chap">Taxanomic relative abundance</a>: Create taxonomic relative abundance tables.</li>
+<li><a href="#chaptaxaplots">Taxa plots</a>: Produce heat maps and bar plots of taxa relative abundances.</li>
+<li><a href="#family_genus_chap">Family and genus</a>: Using the last step to produce family and genus based taxa plots.</li>
+<li><a href="#rarefaction_chap">Rarefaction</a>: Carry out sample depth normalisation with rarefactions. This will be used for alpha and beta diversity analysis.</li>
+<li><a href="#alpha_chap">Alpha diversity</a>: Carry out alpha diversity analysis through plots and statistics.</li>
+<li><a href="#beta_chap">Beta diversity</a>: Carry out beta diversity analysis through plots and statistics.</li>
+<li><a href="#DA_chap">Differenital abundance anlaysis</a>: Detect biomarkers compared to a reference group with ANCOM.</li>
+</ol>
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
