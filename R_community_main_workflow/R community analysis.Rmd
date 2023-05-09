@@ -53,7 +53,7 @@ A lot of different analyses and visualisations can be carried out with community
 
 The workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. Supplementary materials will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.
  
-The sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
+The sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. Thi book contains theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
 
 At the end of the course learners will be able to:
 
@@ -132,11 +132,11 @@ Surface water was sampled and different culture media were used to produce bacte
 knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
 ```
 
-Each sample and media combination was produced in replicates of three giving a total of 27 samples (3 X 4 X 3 = 36). The three replicates were cultured on three different plates with the same media. An ASV table, taxonomy table, and phylogenetic tree were produced with QIIME2 and DADA2.
+Each sample and media combination was produced in replicates of three giving a total of 36 samples (3 X 4 X 3 = 36). The three replicates were cultured on three different plates with the same media. An ASV table, taxonomy table, and phylogenetic tree were produced with QIIME2 and DADA2.
 
 With this data we can ask and investigate the following questions:
 
-- How does the bacterial communities change across the anthropisation gradient?
+- How do the bacterial communities change across the anthropisation gradient?
 - Is there a difference in the replicates of one site and media combination? I.e. do any of the media produce inconsistent profiles?
 - Is there more difference between the sites or the media used?
 - Do the media samples differ from the ENV samples? If so, how?
@@ -148,7 +148,7 @@ knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 
 1. [Import](#import_chap): Import QIIME2 artifacts into a `phyloseq` object with `qiime2R`.
 2. [Summarisations](#sum_phyloseq_chap): Check our `phyloseq` object with summarisations.
-3. [Minimum depth](##mindepthchap): Determine the minimum depth we should use and remove samples with lower depth.
+3. [Minimum depth](#mindepthchap): Determine the minimum depth we should use and remove samples with lower depth.
 4. [Taxanomic relative abundance](#taxa_relabund_chap): Create taxonomic relative abundance tables.
 5. [Taxa plots](#chaptaxaplots): Produce heat maps and bar plots of taxa relative abundances.
 6. [Family and genus](#family_genus_chap): Using the last step to produce family and genus based taxa plots.
