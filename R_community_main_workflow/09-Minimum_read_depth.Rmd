@@ -143,7 +143,7 @@ Write and run the following code in a new cell:
 
 ```{r, eval=FALSE}
 #Create ggplot2 boxplot of depth by size
-boxplot <- ggplot2::ggplot(abundance_metadf, aes=(y=depth, x=site)) +
+boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=site)) +
   ggplot2::geom_boxplot()
 ```
 
