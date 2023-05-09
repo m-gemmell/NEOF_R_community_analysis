@@ -147,7 +147,7 @@ boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=site)) +
   ggplot2::geom_boxplot()
 ```
 
-We have a saved `ggplot2` object but now wee need to save and display it.
+We have a saved `ggplot2` object but now we need to save and display it.
 
 ### Save ggplot as png
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -177,7 +177,7 @@ knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
 ```
 
 We will use the same code to plot the depth by media.
-You can copy and paste the code changing all hte instances of __site__ to __media__.
+You can copy and paste the code changing all the instances of __site__ to __media__.
 Carry this out in the same cell and run the code.
 
 ```{r, eval=FALSE}
@@ -261,7 +261,7 @@ IRdisplay::display_png(file="./rarefaction.png")
 
 __Note__: You will get a warning saying `"most observed count data have counts 1, but smallest count is 2"`. This can be ignored in this case.
 
-In essence, we are hoping that the majority of samples have plateau'd.
+In essence, we are hoping that the majority of samples have plateaued.
 If the curves have flattened in relation to the y axis this indicates that most of the ASVs present in the sample have been captured.
 
 Our samples have plateau'd or have gentle slopes towards the end.
