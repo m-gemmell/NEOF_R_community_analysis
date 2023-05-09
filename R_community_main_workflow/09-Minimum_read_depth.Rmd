@@ -315,8 +315,8 @@ This will filter out ASVs with no abundance.
 
 ```{r, eval=FALSE}
 #Remove ASVs with no abundance
-pseq_min11k <- phyloseq::prune_taxa(
-  phyloseq::taxa_sums(pseq_min11k) > 0, pseq_min11k
+pseq_min11K <- phyloseq::prune_taxa(
+  phyloseq::taxa_sums(pseq_min11K) > 0, pseq_min11K
 )
 ```
 
@@ -327,7 +327,7 @@ Add the following in the same cell and then run the code in the cell.
 #Summarise subsetted phyloseq
 microbiome::summarize_phyloseq(pseq_min11K)
 microbiome::readcount(pseq_min11K)
-pseq_min11k
+pseq_min11K
 ```
 
 We can see that the data lost 26 ASVs (2551 - 2525).
@@ -337,7 +337,7 @@ Try to write your own R code in a new cell to answer the following questions:
 ```{r, echo = FALSE}
 opts_p <- c("__4__", answer="__613__", "__42507__")
 ```
-- What is the difference of the minimum number of reads between `pseq_min11k` and `pseq`? `r longmcq(opts_p)`
+- What is the difference of the minimum number of reads between `pseq_min11K` and `pseq`? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__4__", "__613__", "__42507__")
@@ -356,14 +356,14 @@ Combining `microbiome::readcount()` with `min()`, `length()`, and `sum()` might 
 `r hide("Code solutions + bonus")`
 ```{r, eval=FALSE}
 #Difference of minimum read numbers
-min(microbiome::readcount(pseq_min11k)) - min(microbiome::readcount(pseq))
+min(microbiome::readcount(pseq_min11K)) - min(microbiome::readcount(pseq))
 #Number of samples lost
-length(microbiome::readcount(pseq)) - length(microbiome::readcount(pseq_min11k))
+length(microbiome::readcount(pseq)) - length(microbiome::readcount(pseq_min11K))
 #Number of reads removed
-sum(microbiome::readcount(pseq)) - sum(microbiome::readcount(pseq_min11k))
+sum(microbiome::readcount(pseq)) - sum(microbiome::readcount(pseq_min11K))
 #Bonus
 #List the removed samples
-setdiff(phyloseq::sample_names(pseq), phyloseq::sample_names(pseq_min11k))
+setdiff(phyloseq::sample_names(pseq), phyloseq::sample_names(pseq_min11K))
 ```
 `r unhide()`
 
