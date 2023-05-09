@@ -823,8 +823,8 @@ This is the general consensus for <strong>human microbiome</strong> data.</p>
 <p>We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:</p>
 <ul>
 <li>What is the approximate read depth range of our dataset?
-<div id="radio_IRORRNJHPE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IRORRNJHPE" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IRORRNJHPE" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IRORRNJHPE" value=""></input> <span><strong>20,000+</strong></span></label>
+<div id="radio_PHRPAMRZFI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PHRPAMRZFI" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PHRPAMRZFI" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PHRPAMRZFI" value=""></input> <span><strong>20,000+</strong></span></label>
 </div></li>
 </ul>
 <p>This is a good first step but what if we want to know how the read depths vary between sample groups?</p>
@@ -885,7 +885,7 @@ We won’t go into too much detail on how the code works here, instead learning 
 </ul>
 <p>Write and run the following code in a new cell:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create ggplot2 boxplot of depth by size</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>boxplot <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(abundance_metadf, <span class="at">aes=</span>(<span class="at">y=</span>depth, <span class="at">x=</span>site)) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>boxplot <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(abundance_metadf, <span class="fu">aes</span>(<span class="at">y=</span>depth, <span class="at">x=</span>site)) <span class="sc">+</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p>We have a saved <code>ggplot2</code> object but now wee need to save and display it.</p>
 </div>
@@ -902,8 +902,8 @@ This can then be displayed with <code>IRdisplay::display_png()</code>.</p>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./boxplot_x_site_y_depth.png&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Which site has the highest median depth (middle line of boxplot)?
-<div id="radio_KAEIOYEDEX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KAEIOYEDEX" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KAEIOYEDEX" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KAEIOYEDEX" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
+<div id="radio_QIJHPPDNIQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QIJHPPDNIQ" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QIJHPPDNIQ" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QIJHPPDNIQ" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
 </div></li>
 </ul>
 </div>
@@ -923,8 +923,8 @@ Carry this out in the same cell and run the code.</p>
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./boxplot_x_media_y_depth.png&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Which media has the lowest median depth (middle line of boxplot)?
-<div id="radio_TBPYDWDFHU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TBPYDWDFHU" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TBPYDWDFHU" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TBPYDWDFHU" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_RFOFXXDOEH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RFOFXXDOEH" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RFOFXXDOEH" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RFOFXXDOEH" value=""></input> <span><strong>TSA</strong></span></label>
 </div></li>
 </ul>
 <p>From the boxplots we can see there is no drastic difference between the depths of the different media groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.</p>
@@ -1028,16 +1028,16 @@ Add the following in the same cell and then run the code in the cell.</p>
 <p>Try to write your own R code in a new cell to answer the following questions:</p>
 <ul>
 <li>What is the difference of the minimum number of reads between <code>pseq_min11k</code> and <code>pseq</code>?
-<div id="radio_HUDRENAZTS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HUDRENAZTS" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HUDRENAZTS" value="answer"></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HUDRENAZTS" value=""></input> <span><strong>42507</strong></span></label>
+<div id="radio_WDTSOQJULZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WDTSOQJULZ" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WDTSOQJULZ" value="answer"></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WDTSOQJULZ" value=""></input> <span><strong>42507</strong></span></label>
 </div></li>
 <li>How many samples were removed due to the read depth filtering?
-<div id="radio_MELTMALEQJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MELTMALEQJ" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MELTMALEQJ" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MELTMALEQJ" value=""></input> <span><strong>42507</strong></span></label>
+<div id="radio_WUNCRTWIXQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WUNCRTWIXQ" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WUNCRTWIXQ" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WUNCRTWIXQ" value=""></input> <span><strong>42507</strong></span></label>
 </div></li>
 <li>What is the difference of the minimum number of reads between <code>pseq_min11k</code> and <code>pseq</code>?
-<div id="radio_KGBIDWVJSL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KGBIDWVJSL" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KGBIDWVJSL" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KGBIDWVJSL" value="answer"></input> <span><strong>42507</strong></span></label>
+<div id="radio_UWEZFURBXL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UWEZFURBXL" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UWEZFURBXL" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UWEZFURBXL" value="answer"></input> <span><strong>42507</strong></span></label>
 </div></li>
 </ul>
 <div class="webex-solution">
@@ -1205,8 +1205,8 @@ Use the below code to produce and visualise a heatmap.</p>
 <p>With the heatmap it is much easier to tell what the relative abundances of different phyla are.</p>
 <ul>
 <li>What is the most abundant phyla across the samples?
-<div id="radio_ZUPANJTQNN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZUPANJTQNN" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZUPANJTQNN" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZUPANJTQNN" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
+<div id="radio_KMLBSHQIGF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KMLBSHQIGF" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KMLBSHQIGF" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KMLBSHQIGF" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
 </div></li>
 </ul>
 </div>
@@ -1287,12 +1287,12 @@ With this we will average the rare aggregated relative abundance values by the f
 <p>Now we get a good picture of which medias have the highest and lowest phlya diversity.
 The Environmental samples (ENV) definitely have the highest diversity with clear presence of all phyla.</p>
 Which media has the highest relative abundance of <em>Protoebacteria</em> and the lowest phyla diversity (excluding ENV)?
-<div id="radio_UTPUMMPSRR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UTPUMMPSRR" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UTPUMMPSRR" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UTPUMMPSRR" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_UERCMOWWJV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UERCMOWWJV" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UERCMOWWJV" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UERCMOWWJV" value=""></input> <span><strong>TSA</strong></span></label>
 </div>
 Which media has the lowest relative abundance of <em>Protoebacteria</em> and the highest phyla diversity (excluding ENV)?
-<div id="radio_NYRTQWZQAU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NYRTQWZQAU" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NYRTQWZQAU" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NYRTQWZQAU" value="answer"></input> <span><strong>TSA</strong></span></label>
+<div id="radio_FMVGICNROK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FMVGICNROK" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FMVGICNROK" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FMVGICNROK" value="answer"></input> <span><strong>TSA</strong></span></label>
 </div>
 <p>Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.</p>
 </div>
@@ -1858,16 +1858,16 @@ A slope of 1 shows a flat vertical line (not what we want).</p>
 <p>With the calculated slopes attempt the following questions:</p>
 <ol style="list-style-type: decimal">
 <li>Which sample has the largest slope value?
-<div id="radio_LIAJNCRPGO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LIAJNCRPGO" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LIAJNCRPGO" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LIAJNCRPGO" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_HKJAVSHYXC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HKJAVSHYXC" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HKJAVSHYXC" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HKJAVSHYXC" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which sample has the lowest slope value?
-<div id="radio_JQFVMJTCMK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JQFVMJTCMK" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JQFVMJTCMK" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JQFVMJTCMK" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_DDOHKYYLXO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DDOHKYYLXO" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DDOHKYYLXO" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DDOHKYYLXO" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which samples have larger slope values; the environmental samples or media samples?
-<div id="radio_XYYWWQKEVF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XYYWWQKEVF" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XYYWWQKEVF" value=""></input> <span><strong>Media</strong></span></label>
+<div id="radio_UNCFCKWMHB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UNCFCKWMHB" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UNCFCKWMHB" value=""></input> <span><strong>Media</strong></span></label>
 </div></li>
 </ol>
 <p>Overall the slopes values are low (&lt;0.01).
@@ -2057,8 +2057,8 @@ We’ll do this using media as our groups from the <code>sample_data()</code> an
 <p>You can ignore the warning messages in this case.</p>
 <p>Observe the results.</p>
 Are all the pairwise comparisons significant different (&lt;0.05)?
-<div id="radio_UHTEKHDWAR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UHTEKHDWAR" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UHTEKHDWAR" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_UFOIWDEURQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UFOIWDEURQ" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UFOIWDEURQ" value=""></input> <span><strong>No</strong></span></label>
 </div>
 <p>The test has carried out P value adjustments using the Holm-Bonferroni method (<code>P value adjustment method: holm</code>) which is good.</p>
 <p>In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
@@ -2811,16 +2811,16 @@ We will use 0 as the midpoint so we can easily differentiate between higher and 
 Any 0 values are non-significant results we turned to 0 when we created the long data frame.</p>
 <ul>
 <li>Are there more biomarkers in higher abundance in ENV rather than the comparison media (i.e blue/negative results)?
-<div id="radio_FNGNBATQNL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FNGNBATQNL" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FNGNBATQNL" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_ROWXEWKYSH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ROWXEWKYSH" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ROWXEWKYSH" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Which biomarker has the highest positive values?
-<div id="radio_AFCSVYNUMJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AFCSVYNUMJ" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AFCSVYNUMJ" value="answer"></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AFCSVYNUMJ" value=""></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
+<div id="radio_JJIRUEPOBA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JJIRUEPOBA" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJIRUEPOBA" value="answer"></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJIRUEPOBA" value=""></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
 </div></li>
 <li>Which biomarker has the lowest value?
-<div id="radio_BUWFXSQLWZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BUWFXSQLWZ" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BUWFXSQLWZ" value=""></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BUWFXSQLWZ" value="answer"></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
+<div id="radio_XXPGCXWLFK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XXPGCXWLFK" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XXPGCXWLFK" value=""></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XXPGCXWLFK" value="answer"></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
 </div></li>
 </ul>
 <p>From these results we can see that there are a lot of biomarkers with low abundances in the comparison media samples.
