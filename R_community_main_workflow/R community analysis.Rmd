@@ -1577,7 +1577,7 @@ phylum_heatmap <- microbiome::plot_composition(phylum_pseq, plot.type = "heatmap
   xlab("Phylum") + ylab("Sample") +
   ggtitle("Phylum relative abundance heatmap")
 #Save ggplot object as png file
-ggsave(filename = "./phylum_relabund_heatmap.png", plot = phylum_bar,
+ggsave(filename = "./phylum_relabund_heatmap.png", plot = phylum_heatmap,
        device = "png", dpi = 300, units = "mm", height = 200, width = 300)
 #Display the plot in jupyter notebook
 IRdisplay::display_png(file="./phylum_relabund_heatmap.png")
@@ -1709,7 +1709,7 @@ knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
 
 __Task__: In the `sample_data` there is a column called `site.media`.
 Use this column to create a phyla bar chart averaged by site and media.
-Please make a good effort at the task before look at the solution in the below box.
+Please make a good effort at the task before looking at the solution in the below box.
 
 `r hide("Site and media bar chart solution")`
 ```{r, eval=FALSE}
