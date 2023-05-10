@@ -68,7 +68,7 @@ Note:
 - The file locations will not match
 - Copy the link and paste it to your browser's address bar.
 
-[__Download files__](https://neof-workshops.github.io/R_community_whqkt8/resources/data_R_community_data.zip)
+[__Download files__](https://neof-workshops.github.io/R_community_whqkt8/resources/data/R_community_data.zip)
 
 ## Bookdown html
 
