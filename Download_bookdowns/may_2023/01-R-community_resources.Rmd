@@ -1,0 +1,81 @@
+--- 
+title: "Community analysis in R resources"
+author: "Matthew R. Gemmell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+favicon: figures/NEOF_favicon.png
+description: NEOF book for the Community analysis in R resources
+cover-image: "figures/NEOF.png"
+---
+
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
+``` 
+
+# Videos, slides, & files
+
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
+``` 
+
+## Intro and Data importing & preprocessing
+
+<div class="container">
+<iframe src="https://www.youtube.com/embed/zcNteKN5bk8" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+[__Slides__](https://docs.google.com/presentation/d/16p9xJs0TsUx5w7mLLtrY1tCFS_6NuYuCNwO1NmFN1lI/edit?usp=share_link)
+
+## Preprocessing & taxonomy
+
+<div class="container">
+<iframe src="https://www.youtube.com/embed/CPaTT36EwCc" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+[__Slides__](https://docs.google.com/presentation/d/1Qms140vQcxiMG2iL03GKCQG4Nd-01QrhfjyY8iCjfrM/edit?usp=share_link)
+
+## Rarefaction and diversity analysis
+
+<div class="container">
+<iframe src="https://www.youtube.com/embed/lSi6FwePSAc" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+[__Slides__](https://docs.google.com/presentation/d/1SLtkfXU3SXmnHEf544KMGRJdsIMgSP43b01kQtKoNpo/edit?usp=share_link)
+
+## Differential abundance analysis
+
+<div class="container">
+<iframe src="https://www.youtube.com/embed/lSi6FwePSAc" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+[__Slides__](https://docs.google.com/presentation/d/1CUprELX4tOl_62S6hTM_fZbXPYcB8YO_ETPZ6EhU4pc/edit?usp=share_link)
+
+## Workshop files
+
+The below compressed directory is provided so you may attempt the workshop materials on a computer/cluster available to you.
+
+Note:
+
+- The file locations will not match
+- Copy the link and paste it to your browser's address bar.
+
+[__Download files__](https://neof-workshops.github.io/R_community_whqkt8/resources/data_R_community_data.zip)
+
+## Bookdown html
+
+Links to the online version of the Bookdowns.
+
+- [__Main__](https://neof-workshops.github.io/R_community_whqkt8/Course/)
+
+You can download the html files of the bookdown below. Ensure you unzip the directory before use.
+
+- [__Download main zipped bookdown__](https://neof-workshops.github.io/R_community_whqkt8/resources/Bookdown/R_community_main.zip)
