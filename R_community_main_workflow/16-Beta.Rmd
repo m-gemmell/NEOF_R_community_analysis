@@ -148,7 +148,7 @@ wunifrac_adonis
 
 There is a lot of information in the resulting table.
 We are primarily interested in the P-value column (`Pr(>F)`).
-We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.009).
+We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.006).
 
 ### Pairwise PERMANOVA
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -280,7 +280,7 @@ We can also see that the samples seem to slightly cluster by the site, especiall
 
 There are many other things you can do with `ggplot2` objects, too many to teach in this workshop.
 How you want your plots will be highly dependant on your own data.
-There are various resources in the APPEDNDIX to look at.
+There are various resources in the [APPEDNDIX](#ggplot2_appendix) to look at.
 
 ## Beta: subset samples
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }

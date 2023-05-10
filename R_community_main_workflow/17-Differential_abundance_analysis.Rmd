@@ -286,7 +286,7 @@ heatmap_media <- ggplot(res_ancom_class_media_sig_lfc_fig,
                   ggplot2::geom_text(aes(group, taxon, label = value),
                       colour = "black", size = 4) +
                   #Remove the x and y labels (NULL) and add a title
-                  ggplot2:labs = NULL, y = NULL,
+                  ggplot2::labs(x = NULL, y = NULL,
                     title = "Log fold changes compared to ENV samples")
 #Save ggplot2 object with ggsave
 ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
@@ -324,7 +324,7 @@ heatmap_media <- ggplot(res_ancom_class_media_sig_lfc_fig,
                   ggplot2::geom_text(aes(group, taxon, label = value),
                       colour = "black", size = 4) +
                   #Remove the x and y labels (NULL) and add a title
-                  ggplot2:labs = NULL, y = NULL,
+                  ggplot2::labs(x = NULL, y = NULL,
                     title = "Log fold changes compared to ENV samples")
 #Save ggplot2 object with ggsave
 ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
@@ -333,7 +333,7 @@ ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
 IRdisplay::display_png(file="./ANCOMBC_class_media_ref_ENV.png")
 ```
 
-Great, now we can the biomarker with higher abundances in the ENV sample (blue) and higher abundances in the comparison media (red).
+Great, now we can see the biomarker with higher abundances in the ENV sample (blue) and higher abundances in the comparison media (red).
 Any 0 values are non-significant results we turned to 0 when we created the long data frame.
 
 ```{r, echo = FALSE}

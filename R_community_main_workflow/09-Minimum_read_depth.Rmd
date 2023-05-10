@@ -67,7 +67,7 @@ opts_p <- c("__1-8__", answer="__10,000-18,000__", "__20,000+__")
 
 This is a good first step but what if we want to know how the read depths vary between sample groups?
 
-## Sample depth boxplot
+## Sample depth boxplot {#depth-boxplots}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/boxplot.png", auto_pdf = TRUE)
 ```

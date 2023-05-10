@@ -89,8 +89,8 @@ No difference was found when comparing the sites.
 The beta diversity analysis found significant difference between all the media groupings.
 Clustering of the media groups was also clearly visible in the MDS plots.
 
-Interestingly the CVP and KBC samples had relatively tight cluster that were quite near each other.
-The TSA and ENV samples had very loose cluster indicating large differences within the group.
+Interestingly the CVP and KBC samples had relatively tight clusters that were quite near each other.
+The TSA and ENV samples had very loose clusters indicating large differences within the group.
 There is also some presence of clustering by site within each media group which appears to cause the main differences within the groups.
 
 Unfortunately we are not able to detect any differences between sites due to power and the biggest differences cause by media.
