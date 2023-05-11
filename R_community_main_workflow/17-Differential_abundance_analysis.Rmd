@@ -244,9 +244,9 @@ res_ancom_class_media_sig_lfc_fig <- res_ancom_class_media_sig %>%
   #no: Set LFC to 0
   dplyr::mutate(lfc_mediaCVP = ifelse(test = diff_mediaCVP == TRUE,
                                       yes = lfc_mediaCVP, no = 0),
-                lfc_mediaKBC = ifelse(test = lfc_mediaKBC == TRUE,
+                lfc_mediaKBC = ifelse(test = diff_mediaKBC == TRUE,
                                       yes = lfc_mediaKBC, no = 0),
-                lfc_mediaTSA = ifelse(test = lfc_mediaTSA == TRUE,
+                lfc_mediaTSA = ifelse(test = diff_mediaTSA == TRUE,
                                       yes = lfc_mediaTSA, no = 0)) %>%
   #Only retain taxon and log fold changes columns
   #Additionally, change column names and round LFC values to 2 decimal places
