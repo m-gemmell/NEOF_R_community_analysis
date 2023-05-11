@@ -1162,7 +1162,7 @@ Carry this out in the same cell and run the code.
 
 ```{r, eval=FALSE}
 #Create ggplot2 boxplot of depth by size
-ggplot2::ggplot(abundance_metadf, aes(y=depth, x=media)) +
+boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=media)) +
   ggplot2::geom_boxplot()
 #Save ggplot object as png file
 ggsave(filename = "./boxplot_x_media_y_depth.png", plot = boxplot,
