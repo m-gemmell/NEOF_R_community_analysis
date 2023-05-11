@@ -44,7 +44,7 @@ frameborder="0" allowfullscreen class="video"></iframe>
 ## Rarefaction and diversity analysis
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/lSi6FwePSAc" 
+<iframe src="https://www.youtube.com/embed/pW58l3h7NvA" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
@@ -53,11 +53,17 @@ frameborder="0" allowfullscreen class="video"></iframe>
 ## Differential abundance analysis
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/lSi6FwePSAc" 
+<iframe src="https://www.youtube.com/embed/IN275_Yvo_g" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
 [__Slides__](https://docs.google.com/presentation/d/1CUprELX4tOl_62S6hTM_fZbXPYcB8YO_ETPZ6EhU4pc/edit?usp=share_link)
+
+## NEOF visitor facilty
+
+[Download the video](https://drive.google.com/file/d/1S7Qb8bLwIFH1ff98o_zPsiPnUTZ8NVur/view?usp=share_link)
+
+More info: [website](https://neof.org.uk/training/)
 
 ## Workshop files
 
