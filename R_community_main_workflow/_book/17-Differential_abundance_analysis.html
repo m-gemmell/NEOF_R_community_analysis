@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-05-09" />
+<meta name="date" content="2023-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#considerations"><i class="fa fa-check"></i><b>9.1</b> Considerations</a></li>
 <li class="chapter" data-level="9.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#minimum-read-depth-section-title"><i class="fa fa-check"></i><b>9.2</b> Minimum read depth section title</a></li>
 <li class="chapter" data-level="9.3" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#read-depth-vector-and-histogram"><i class="fa fa-check"></i><b>9.3</b> Read depth vector and histogram</a></li>
-<li class="chapter" data-level="9.4" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#sample-depth-boxplot"><i class="fa fa-check"></i><b>9.4</b> Sample depth boxplot</a>
+<li class="chapter" data-level="9.4" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#depth-boxplots"><i class="fa fa-check"></i><b>9.4</b> Sample depth boxplot</a>
 <ul>
 <li class="chapter" data-level="9.4.1" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#creating-a-data-frame-for-boxplots"><i class="fa fa-check"></i><b>9.4.1</b> Creating a data frame for boxplots</a></li>
 <li class="chapter" data-level="9.4.2" data-path="09-Minimum_read_depth.html"><a href="09-Minimum_read_depth.html#ggplot2-boxplot"><i class="fa fa-check"></i><b>9.4.2</b> ggplot2 boxplot</a></li>
@@ -570,9 +570,9 @@ As long as you can edit it to work with your own future code.</p>
 <span id="cb115-6"><a href="17-Differential_abundance_analysis.html#cb115-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#no: Set LFC to 0</span></span>
 <span id="cb115-7"><a href="17-Differential_abundance_analysis.html#cb115-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">lfc_mediaCVP =</span> <span class="fu">ifelse</span>(<span class="at">test =</span> diff_mediaCVP <span class="sc">==</span> <span class="cn">TRUE</span>,</span>
 <span id="cb115-8"><a href="17-Differential_abundance_analysis.html#cb115-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">yes =</span> lfc_mediaCVP, <span class="at">no =</span> <span class="dv">0</span>),</span>
-<span id="cb115-9"><a href="17-Differential_abundance_analysis.html#cb115-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">lfc_mediaKBC =</span> <span class="fu">ifelse</span>(<span class="at">test =</span> lfc_mediaKBC <span class="sc">==</span> <span class="cn">TRUE</span>,</span>
+<span id="cb115-9"><a href="17-Differential_abundance_analysis.html#cb115-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">lfc_mediaKBC =</span> <span class="fu">ifelse</span>(<span class="at">test =</span> diff_mediaKBC <span class="sc">==</span> <span class="cn">TRUE</span>,</span>
 <span id="cb115-10"><a href="17-Differential_abundance_analysis.html#cb115-10" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">yes =</span> lfc_mediaKBC, <span class="at">no =</span> <span class="dv">0</span>),</span>
-<span id="cb115-11"><a href="17-Differential_abundance_analysis.html#cb115-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">lfc_mediaTSA =</span> <span class="fu">ifelse</span>(<span class="at">test =</span> lfc_mediaTSA <span class="sc">==</span> <span class="cn">TRUE</span>,</span>
+<span id="cb115-11"><a href="17-Differential_abundance_analysis.html#cb115-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">lfc_mediaTSA =</span> <span class="fu">ifelse</span>(<span class="at">test =</span> diff_mediaTSA <span class="sc">==</span> <span class="cn">TRUE</span>,</span>
 <span id="cb115-12"><a href="17-Differential_abundance_analysis.html#cb115-12" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">yes =</span> lfc_mediaTSA, <span class="at">no =</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb115-13"><a href="17-Differential_abundance_analysis.html#cb115-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Only retain taxon and log fold changes columns</span></span>
 <span id="cb115-14"><a href="17-Differential_abundance_analysis.html#cb115-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Additionally, change column names and round LFC values to 2 decimal places</span></span>
@@ -606,8 +606,8 @@ We are not interested in having all the bells and whistles so we will use the <c
 <span id="cb116-7"><a href="17-Differential_abundance_analysis.html#cb116-7" aria-hidden="true" tabindex="-1"></a>                  ggplot2<span class="sc">::</span><span class="fu">geom_text</span>(<span class="fu">aes</span>(group, taxon, <span class="at">label =</span> value),</span>
 <span id="cb116-8"><a href="17-Differential_abundance_analysis.html#cb116-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
 <span id="cb116-9"><a href="17-Differential_abundance_analysis.html#cb116-9" aria-hidden="true" tabindex="-1"></a>                  <span class="co">#Remove the x and y labels (NULL) and add a title</span></span>
-<span id="cb116-10"><a href="17-Differential_abundance_analysis.html#cb116-10" aria-hidden="true" tabindex="-1"></a>                  ggplot2<span class="sc">:</span>labs <span class="ot">=</span> <span class="cn">NULL</span>, y <span class="ot">=</span> <span class="cn">NULL</span>,</span>
-<span id="cb116-11"><a href="17-Differential_abundance_analysis.html#cb116-11" aria-hidden="true" tabindex="-1"></a>                    title <span class="ot">=</span> <span class="st">&quot;Log fold changes compared to ENV samples&quot;</span><span class="er">)</span></span>
+<span id="cb116-10"><a href="17-Differential_abundance_analysis.html#cb116-10" aria-hidden="true" tabindex="-1"></a>                  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb116-11"><a href="17-Differential_abundance_analysis.html#cb116-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">title =</span> <span class="st">&quot;Log fold changes compared to ENV samples&quot;</span>)</span>
 <span id="cb116-12"><a href="17-Differential_abundance_analysis.html#cb116-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Save ggplot2 object with ggsave</span></span>
 <span id="cb116-13"><a href="17-Differential_abundance_analysis.html#cb116-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./ANCOMBC_class_media_ref_ENV.png&quot;</span>, <span class="at">plot =</span> heatmap_media,</span>
 <span id="cb116-14"><a href="17-Differential_abundance_analysis.html#cb116-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">125</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
@@ -636,27 +636,27 @@ We will use 0 as the midpoint so we can easily differentiate between higher and 
 <span id="cb118-11"><a href="17-Differential_abundance_analysis.html#cb118-11" aria-hidden="true" tabindex="-1"></a>                  ggplot2<span class="sc">::</span><span class="fu">geom_text</span>(<span class="fu">aes</span>(group, taxon, <span class="at">label =</span> value),</span>
 <span id="cb118-12"><a href="17-Differential_abundance_analysis.html#cb118-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
 <span id="cb118-13"><a href="17-Differential_abundance_analysis.html#cb118-13" aria-hidden="true" tabindex="-1"></a>                  <span class="co">#Remove the x and y labels (NULL) and add a title</span></span>
-<span id="cb118-14"><a href="17-Differential_abundance_analysis.html#cb118-14" aria-hidden="true" tabindex="-1"></a>                  ggplot2<span class="sc">:</span>labs <span class="ot">=</span> <span class="cn">NULL</span>, y <span class="ot">=</span> <span class="cn">NULL</span>,</span>
-<span id="cb118-15"><a href="17-Differential_abundance_analysis.html#cb118-15" aria-hidden="true" tabindex="-1"></a>                    title <span class="ot">=</span> <span class="st">&quot;Log fold changes compared to ENV samples&quot;</span><span class="er">)</span></span>
+<span id="cb118-14"><a href="17-Differential_abundance_analysis.html#cb118-14" aria-hidden="true" tabindex="-1"></a>                  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb118-15"><a href="17-Differential_abundance_analysis.html#cb118-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">title =</span> <span class="st">&quot;Log fold changes compared to ENV samples&quot;</span>)</span>
 <span id="cb118-16"><a href="17-Differential_abundance_analysis.html#cb118-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Save ggplot2 object with ggsave</span></span>
 <span id="cb118-17"><a href="17-Differential_abundance_analysis.html#cb118-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./ANCOMBC_class_media_ref_ENV.png&quot;</span>, <span class="at">plot =</span> heatmap_media,</span>
 <span id="cb118-18"><a href="17-Differential_abundance_analysis.html#cb118-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">125</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
 <span id="cb118-19"><a href="17-Differential_abundance_analysis.html#cb118-19" aria-hidden="true" tabindex="-1"></a><span class="co">#Display plot</span></span>
 <span id="cb118-20"><a href="17-Differential_abundance_analysis.html#cb118-20" aria-hidden="true" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./ANCOMBC_class_media_ref_ENV.png&quot;</span>)</span></code></pre></div>
-<p>Great, now we can the biomarker with higher abundances in the ENV sample (blue) and higher abundances in the comparison media (red).
+<p>Great, now we can see the biomarker with higher abundances in the ENV sample (blue) and higher abundances in the comparison media (red).
 Any 0 values are non-significant results we turned to 0 when we created the long data frame.</p>
 <ul>
 <li>Are there more biomarkers in higher abundance in ENV rather than the comparison media (i.e blue/negative results)?
-<div id="radio_KWGSTEWXQJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KWGSTEWXQJ" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KWGSTEWXQJ" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_CYNUGRAUYQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CYNUGRAUYQ" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CYNUGRAUYQ" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Which biomarker has the highest positive values?
-<div id="radio_WKXDBQBEMX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WKXDBQBEMX" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WKXDBQBEMX" value="answer"></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WKXDBQBEMX" value=""></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
+<div id="radio_AVSOWQSZDU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AVSOWQSZDU" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AVSOWQSZDU" value="answer"></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AVSOWQSZDU" value=""></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
 </div></li>
 <li>Which biomarker has the lowest value?
-<div id="radio_GFMRDTZJMP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GFMRDTZJMP" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GFMRDTZJMP" value=""></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GFMRDTZJMP" value="answer"></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
+<div id="radio_MKNVXSOCLM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MKNVXSOCLM" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MKNVXSOCLM" value=""></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MKNVXSOCLM" value="answer"></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
 </div></li>
 </ul>
 <p>From these results we can see that there are a lot of biomarkers with low abundances in the comparison media samples.

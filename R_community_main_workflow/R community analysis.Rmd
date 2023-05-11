@@ -1047,7 +1047,7 @@ opts_p <- c("__1-8__", answer="__10,000-18,000__", "__20,000+__")
 
 This is a good first step but what if we want to know how the read depths vary between sample groups?
 
-## Sample depth boxplot
+## Sample depth boxplot {#depth-boxplots}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/boxplot.png", auto_pdf = TRUE)
 ```
@@ -2146,7 +2146,7 @@ In the chapters we will carry out:
 - [Beta diversity of the rarefied data.](#beta_chap)
 - [Biomarker detection.](#DA_chap)
 
-During this we will attempt to answer our questions from [Chapter 2](#summary-questions):
+During this we will attempt to answer our questions from [Chapter 2](#sum_and_qs):
 
 - How does the bacterial communities change across the anthropisation gradient?
 - Is there a difference in the replicates of one site and media combination. I.e. do any of the media produce inconsistent profiles.
@@ -2556,7 +2556,7 @@ Either make a new code block with new code or you can edit and run the previous 
 
 ```{r , eval = FALSE}
 #Simple alpha plot
-alpha_plot <- phyloseq::plot_richness(physeq = pseq_rarefy, measures = c("Observed","Chao1","Shannon")
+alpha_plot <- phyloseq::plot_richness(physeq = pseq_rarefy, measures = c("Observed","Chao1","Shannon"))
 #Save ggplot object as png file
 ggsave(filename = "./alpha_div.png", plot = alpha_plot,
        device = "png", dpi = 300, units = "mm", height = 200, width = 300)
@@ -2609,7 +2609,7 @@ We'll try 150 (height) and 250 (width).
 # Produce ggplot object of boxplot
 alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon") +
+                        measures = c("Observed","Chao1","Shannon")) +
                           ggplot2::geom_boxplot()
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Alpha_diversity_media_boxplot.png", plot = alpha_boxplot,
@@ -2720,7 +2720,7 @@ __Tip:__ Remember to change the name of your png file in the `ggsave()` and `IRd
 # Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon") +
+                        measures = c("Observed","Chao1","Shannon")) +
                           ggplot2::geom_violin()
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Alpha_diversity_media_violinplot.png", plot = alpha_violinplot,
@@ -2738,7 +2738,7 @@ Alpha is a common option used for many plots.
 # Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon") +
+                        measures = c("Observed","Chao1","Shannon")) +
                           ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5)
 #Save ggplot2 object with ggsave
@@ -2763,11 +2763,11 @@ With all the knowledge, skills, and code from this chapter carry out the followi
 # Produce ggplot object of violin plot
 alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "site",
-                        measures = c("Observed","Chao1","Shannon") +
+                        measures = c("Observed","Chao1","Shannon")) +
                           ggplot2::geom_boxplot() +
                           ggforce::geom_sina(alpha=0.5)
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Alpha_diversity_site_violinplot.png", plot = phylum_bar,
+ggsave(filename = "./Alpha_diversity_site_violinplot.png", plot = alpha_boxplot,
        device = "png", dpi = 300, units = "mm", height = 150, width = 250)
 #Display plot
 IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
@@ -2796,7 +2796,7 @@ We can fix this by adding the layer `ggplot2::labs(colour = "Media").
 # Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "site",
-                        measures = c("Observed","Chao1","Shannon") +
+                        measures = c("Observed","Chao1","Shannon")) +
                           ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5, aes(colour=media)) +
                           ggplot2::labs(colour = "Media")
@@ -2816,7 +2816,7 @@ knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 
 In this chapter we have created alpha diversity plots and run pairwise comparisons.
 The biggest difference between samples is caused by the media choice which overwrites differences we can see between sites.
-The environmental samples have much higher diversirty samples than the media samples but this is expected.
+The environmental samples have much higher diversity samples than the media samples but this is expected.
 
 
 
@@ -2989,7 +2989,7 @@ wunifrac_adonis
 
 There is a lot of information in the resulting table.
 We are primarily interested in the P-value column (`Pr(>F)`).
-We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.009).
+We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.006).
 
 ### Pairwise PERMANOVA
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -3121,7 +3121,7 @@ We can also see that the samples seem to slightly cluster by the site, especiall
 
 There are many other things you can do with `ggplot2` objects, too many to teach in this workshop.
 How you want your plots will be highly dependant on your own data.
-There are various resources in the APPEDNDIX to look at.
+There are various resources in the [APPEDNDIX](#ggplot2_appendix) to look at.
 
 ## Beta: subset samples
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -3537,9 +3537,9 @@ res_ancom_class_media_sig_lfc_fig <- res_ancom_class_media_sig %>%
   #no: Set LFC to 0
   dplyr::mutate(lfc_mediaCVP = ifelse(test = diff_mediaCVP == TRUE,
                                       yes = lfc_mediaCVP, no = 0),
-                lfc_mediaKBC = ifelse(test = lfc_mediaKBC == TRUE,
+                lfc_mediaKBC = ifelse(test = diff_mediaKBC == TRUE,
                                       yes = lfc_mediaKBC, no = 0),
-                lfc_mediaTSA = ifelse(test = lfc_mediaTSA == TRUE,
+                lfc_mediaTSA = ifelse(test = diff_mediaTSA == TRUE,
                                       yes = lfc_mediaTSA, no = 0)) %>%
   #Only retain taxon and log fold changes columns
   #Additionally, change column names and round LFC values to 2 decimal places
@@ -3579,7 +3579,7 @@ heatmap_media <- ggplot(res_ancom_class_media_sig_lfc_fig,
                   ggplot2::geom_text(aes(group, taxon, label = value),
                       colour = "black", size = 4) +
                   #Remove the x and y labels (NULL) and add a title
-                  ggplot2:labs = NULL, y = NULL,
+                  ggplot2::labs(x = NULL, y = NULL,
                     title = "Log fold changes compared to ENV samples")
 #Save ggplot2 object with ggsave
 ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
@@ -3617,7 +3617,7 @@ heatmap_media <- ggplot(res_ancom_class_media_sig_lfc_fig,
                   ggplot2::geom_text(aes(group, taxon, label = value),
                       colour = "black", size = 4) +
                   #Remove the x and y labels (NULL) and add a title
-                  ggplot2:labs = NULL, y = NULL,
+                  ggplot2::labs(x = NULL, y = NULL,
                     title = "Log fold changes compared to ENV samples")
 #Save ggplot2 object with ggsave
 ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
@@ -3626,7 +3626,7 @@ ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
 IRdisplay::display_png(file="./ANCOMBC_class_media_ref_ENV.png")
 ```
 
-Great, now we can the biomarker with higher abundances in the ENV sample (blue) and higher abundances in the comparison media (red).
+Great, now we can see the biomarker with higher abundances in the ENV sample (blue) and higher abundances in the comparison media (red).
 Any 0 values are non-significant results we turned to 0 when we created the long data frame.
 
 ```{r, echo = FALSE}
@@ -3810,8 +3810,8 @@ No difference was found when comparing the sites.
 The beta diversity analysis found significant difference between all the media groupings.
 Clustering of the media groups was also clearly visible in the MDS plots.
 
-Interestingly the CVP and KBC samples had relatively tight cluster that were quite near each other.
-The TSA and ENV samples had very loose cluster indicating large differences within the group.
+Interestingly the CVP and KBC samples had relatively tight clusters that were quite near each other.
+The TSA and ENV samples had very loose clusters indicating large differences within the group.
 There is also some presence of clustering by site within each media group which appears to cause the main differences within the groups.
 
 Unfortunately we are not able to detect any differences between sites due to power and the biggest differences cause by media.
