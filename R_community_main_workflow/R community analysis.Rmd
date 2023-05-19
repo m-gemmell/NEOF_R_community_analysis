@@ -3942,7 +3942,7 @@ To create the mamba environment `r_community` run the below commands in your bas
 
 ```{bash, eval=FALSE}
 #R community
-mamba create r_community
+mamba create -n r_community
 mamba activate r_community
 mamba install -c bioconda bioconductor-microbiome
 mamba install -c r r-tidyverse
