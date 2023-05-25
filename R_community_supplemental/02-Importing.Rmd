@@ -18,7 +18,37 @@ This section will show you how to import the `bracken` output.
 Note to writer: Looks like I need to create a bracken file with the kraken2 report style to convert into a biom file.
 I don't have this in my shotgun metagenomics workshop so this is a future task whilst updateing the shotgun metagenomics workshop to nsc200s.
 
-INfo here: https://github.com/jenniferlu717/Bracken#step-3-run-bracken-for-abundance-estimation-1
+Info here: https://github.com/jenniferlu717/Bracken#step-3-run-bracken-for-abundance-estimation-1
 
 Use [`kraken-biom`](https://github.com/smdabdoub/kraken-biom)
+
+
+Notes for matthew
+
+Have created brakcen report files
+/pub14/tea/nsc206/NEFO/Shotgun_metagenomics_data/all_sra/taxonomy_analysis
+
+#INstall kraken-biom
+# pip install in r_community (has its own pip)
+
+#Copy data
+cp /pub14/tea/nsc206/NEOF/R_community/bracken_reports/* .
+
+#Convert to biom file
+kraken-biom *breport2 -o KW.biom 
+
+#Create table to check
+kraken-biom *breport2 --fmt tsv -o KW.biom 
+
+#Now to read into R with a jupyter-notebook
+
+
+#Need to create taxnomy table from taxids
+#Going to try with insect R package (https://github.com/shaunpwilkinson/insect)
+
+Installed in R with install.packages("insect") in r_community 
+
+Download taxonomy data base (needed for below function) https://search.r-project.org/CRAN/refmans/insect/html/taxonomy.html
+Get lineage info from taxonomy database https://search.r-project.org/CRAN/refmans/insect/html/get_lineage.html
+
 
