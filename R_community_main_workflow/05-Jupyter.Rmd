@@ -26,6 +26,26 @@ jupyter-notebook
 
 This will open `jupyter-notebook` in firefox. We won't need to access the linux terminal anymore. Leave the terminal running `jupyter-notebook` and full screen your `firefox` so you should see something like below.
 
+`r hide("Can't see the whole webVNC window?")`
+You may need to zoom out with your browser so you can see the full webVNC window.
+
+- __Chrome__: Click on the __three dots in vertical line__ (
+```{r, echo=FALSE}
+icons::ionicons("ellipsis-vertical")
+``` 
+) on the top left for a dropdown menu which includes zoom options.
+- __Edge__: Click on the __three horizontal lines__ (
+```{r, echo=FALSE}
+icons::ionicons("ellipsis-horizontal")
+``` 
+) on the top left for a dropdown menu which includes zoom options.
+- __Firefox__: Click on the __three dots in horizontal line__ (
+```{r, echo=FALSE}
+icons::fontawesome("bars")
+```
+) on the top left for a dropdown menu which includes zoom options.
+`r unhide()`
+
 ```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
 knitr::include_graphics(path = "figures/jupyter_notebook_example_1.png", auto_pdf = TRUE)
 ```
