@@ -83,7 +83,7 @@ First, we need to create an object containing our sample names, site & media inf
 We will use this object to produce our boxplots.
 Thankfully the metadata in our `phyloseq` object contains all this information except the depth.
 
-In a new __cell__ write and run the below code. This will extract the sample data (metadata) to a new object and display the top 6 rows fo this new object.
+In a new __cell__ write and run the below code. This will extract the sample data (metadata) to a new object and display the top 6 rows of this new object.
 
 ```{r, eval=FALSE}
 #Extract sample data as a separate R object
@@ -142,12 +142,12 @@ The code below creates a `ggplot2` boxplot. We carry this out with 2 functions:
 Write and run the following code in a new cell:
 
 ```{r, eval=FALSE}
-#Create ggplot2 boxplot of depth by size
+#Create ggplot2 boxplot of depth by site
 boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=site)) +
   ggplot2::geom_boxplot()
 ```
 
-We have a saved `ggplot2` object but now we need to save and display it.
+We have a saved `ggplot2` object but now we need to save it as a image file and display it.
 
 ### Save ggplot as png
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -181,7 +181,7 @@ You can copy and paste the code changing all the instances of __site__ to __medi
 Carry this out in the same cell and run the code.
 
 ```{r, eval=FALSE}
-#Create ggplot2 boxplot of depth by size
+#Create ggplot2 boxplot of depth by media
 boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=media)) +
   ggplot2::geom_boxplot()
 #Save ggplot object as png file
@@ -230,7 +230,7 @@ Carry this out in a new __cell__.
 
 ```{r, eval=FALSE}
 #Rarefaction curve
-#Extract ASV table as data frame
+#Extract ASV table as transposed data frame
 asv_abund_df <- as.data.frame(t(phyloseq::otu_table(pseq)))
 ```
 
@@ -244,7 +244,6 @@ With this data frame we can create a rarefaction curve with `vegan`'s `rarecurve
 Add the following code to the same cell and run it.
 
 ```{r, eval=FALSE}
-#Rarefaction curve
 #Save as png
 png(filename = "rarefaction.png", res = 300,
     units = "mm", height = 200, width = 200)
@@ -327,6 +326,7 @@ Add the following in the same cell and then run the code in the cell.
 #Summarise subsetted phyloseq
 microbiome::summarize_phyloseq(pseq_min11K)
 microbiome::readcount(pseq_min11K)
+length(phyloseq::taxa_sums(pseq_min11K))
 pseq_min11K
 ```
 
@@ -368,8 +368,8 @@ setdiff(phyloseq::sample_names(pseq), phyloseq::sample_names(pseq_min11K))
 `r unhide()`
 
 We won't actually use this subsetted file as we want to keep all the samples in this case.
-Since we not removing any samples we don't need to remove any ASVs as they should all have a total abundance > 0.
-You can therfore remove the new `phyloseq` object in a new __cell__.
+Since we are not removing any samples we don't need to remove any ASVs as they should all have a total abundance > 0.
+You can therefore remove the new `phyloseq` object in a new __cell__.
 
 ```{r, eval=FALSE}
 #Remove subsetted phyloseq
@@ -387,7 +387,7 @@ We have assessed the read depth in this chapter and decided to not remove any sa
 This assessment included:
 
 - Viewing a histogram of sample read depths.
-- Creating boxplots to compare the sample read depths across sample groups (siet and media).
+- Creating boxplots to compare the sample read depths across sample groups (site and media).
 - Producing a rarefaction depth to determine if any samples did not represent a good amount of the ASVs present in the environment.
 
 Additionally, we created a new `phyloseq` object where the samples were filtered by depth.

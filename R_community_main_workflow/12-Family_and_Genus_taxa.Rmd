@@ -32,7 +32,7 @@ Let us also then check the family `phyloseq` object.
 ```{r, eval = FALSE}
 #Family phyloseq
 family_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Family", verbose = FALSE)
-#Head of phylum relative abundance table
+#Head of family relative abundance table
 head(phyloseq::otu_table(family_pseq))
 #Number of families
 paste0("Number of families: ", nrow(phyloseq::otu_table(family_pseq)))
@@ -165,7 +165,7 @@ A Detection threshold of 0.02 and a prevalence threshold of 20/100 gives us 12 f
 We'll now create a new `phyloseq` object using this info in a new cell.
 
 ```{r, eval = FALSE}
-#Aggregate families phyla
+#Aggregate families
 family_rareaggregate_pseq <- microbiome::aggregate_rare(
   pseq_relabund, level = "Family",
   detection = 0.02, prevalence = 20/100
@@ -236,7 +236,7 @@ genus_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Genus", verbose = FALSE
 #Head of genus relative abundance table
 head(phyloseq::otu_table(genus_pseq))
 #Number of genera
-paste0("Number of families: ", nrow(phyloseq::otu_table(genus_pseq)))
+paste0("Number of genera: ", nrow(phyloseq::otu_table(genus_pseq)))
 #Summarise
 microbiome::summarize_phyloseq(genus_pseq)
 microbiome::readcount(genus_pseq)
@@ -316,7 +316,7 @@ paste0("Detection = ", d, ", Prevalence = ", p,
 rm(test_pseq)
 ```
 ```{r, eval = FALSE}
-#Aggregate genus phyla
+#Aggregate genus
 genus_rareaggregate_pseq <- microbiome::aggregate_rare(
   pseq_relabund, level = "Genus",
   detection = 0.006, prevalence = 20/100
@@ -343,4 +343,4 @@ IRdisplay::display_png(file="./genus_relabund_rareaggregate.png")
 ```
 `r unhide()`
 
-Once you are happy you can __Close and Halt__ the notebook.
+Once you are happy you can Save then __Close and Halt__ the notebook.

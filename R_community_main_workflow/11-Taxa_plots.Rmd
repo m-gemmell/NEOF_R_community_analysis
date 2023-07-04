@@ -3,14 +3,14 @@
 knitr::include_graphics(path = "figures/owl_eyes.png", auto_pdf = TRUE)
 ```
 
-Now that we have our Genus relative abundance `phyloseq` we can create a bar chart.
+Now that we have our Phylum relative abundance `phyloseq` we can create a bar chart.
 
 ## Simple bar chart
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
 ```
 
-To create, save, and view a simple genus bar chart we can use the following code.
+To create, save, and view a simple phylum bar chart we can use the following code.
 
 ```{r, eval=FALSE}
 #Simple bar chart
@@ -100,7 +100,7 @@ The taxa which don't reach these thresholds will be classified as rare and aggre
 In the below example we are aggregating the rare taxa with our ASV relative abundance `phyloseq` object.
 Any phyla with a relative abundance >= to 0.01 (__detection__) in at least 5% (5/100) of the samples will not be classified as rare.
 
-More info on [Prevalence & detection](https://microbiome.github.io/OMA/quality-control.html#prevalence).
+More info on [prevalence & detection](https://microbiome.github.io/OMA/quality-control.html#prevalence).
 
 __Note__: The __detection__ and __prevalence__ thresholds can be given as numbers (1, 2, 1000 etc.), or percentage values (5/100, 50/100, etc.).
 
@@ -141,7 +141,7 @@ knitr::include_graphics(path = "figures/colour_brewer_palettes.png", auto_pdf = 
 `r unhide()`
 
 That is a very nice and clean bar chart.
-We can quite easily see that there are 7 main phyla (excluding other).
+We can quite easily see that there are 7 main phyla (excluding "Other").
 Additionally, it seems that the biggest difference between samples is due to the media used.
 
 ## Plot by media

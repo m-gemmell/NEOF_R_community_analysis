@@ -42,7 +42,7 @@ knitr::include_graphics(path = "figures/count_to_percent.png", auto_pdf = TRUE)
 
 Now that we have the data loaded we can create a new `phyloseq` object by transforming the abundance values to relative abundances.
 
-This is carried out with the `microbiome` function `transform()`. With it we transform the ASV abundance table within to a "compositional" table (relative abundance). 
+This is carried out with the `microbiome` function `transform()`. With it we transform the ASV abundance table within the `phyloseq` object to a "compositional" table (relative abundance). 
 
 Run the below command in an appropriate place in your notebook:
 
@@ -59,7 +59,7 @@ microbiome::summarize_phyloseq(pseq_relabund)
 microbiome::readcount(pseq_relabund)
 ```
 
-You will notice the read count for each sample is __1__. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, all the fractional relative abundance values of ASVs in one sample total 1.
+You will notice the read count for each sample is __1__. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, the sum of fractional relative abundance values of the ASVs in one sample will equal 1.
 
 We will use this to produce all our different taxa tables.
 
