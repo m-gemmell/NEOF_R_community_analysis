@@ -1083,7 +1083,7 @@ First, we need to create an object containing our sample names, site & media inf
 We will use this object to produce our boxplots.
 Thankfully the metadata in our `phyloseq` object contains all this information except the depth.
 
-In a new __cell__ write and run the below code. This will extract the sample data (metadata) to a new object and display the top 6 rows fo this new object.
+In a new __cell__ write and run the below code. This will extract the sample data (metadata) to a new object and display the top 6 rows of this new object.
 
 ```{r, eval=FALSE}
 #Extract sample data as a separate R object
@@ -1142,12 +1142,12 @@ The code below creates a `ggplot2` boxplot. We carry this out with 2 functions:
 Write and run the following code in a new cell:
 
 ```{r, eval=FALSE}
-#Create ggplot2 boxplot of depth by size
+#Create ggplot2 boxplot of depth by site
 boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=site)) +
   ggplot2::geom_boxplot()
 ```
 
-We have a saved `ggplot2` object but now we need to save and display it.
+We have a saved `ggplot2` object but now we need to save it as a image file and display it.
 
 ### Save ggplot as png
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -1181,7 +1181,7 @@ You can copy and paste the code changing all the instances of __site__ to __medi
 Carry this out in the same cell and run the code.
 
 ```{r, eval=FALSE}
-#Create ggplot2 boxplot of depth by size
+#Create ggplot2 boxplot of depth by media
 boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=media)) +
   ggplot2::geom_boxplot()
 #Save ggplot object as png file
@@ -1230,7 +1230,7 @@ Carry this out in a new __cell__.
 
 ```{r, eval=FALSE}
 #Rarefaction curve
-#Extract ASV table as data frame
+#Extract ASV table as transposed data frame
 asv_abund_df <- as.data.frame(t(phyloseq::otu_table(pseq)))
 ```
 
@@ -1244,7 +1244,6 @@ With this data frame we can create a rarefaction curve with `vegan`'s `rarecurve
 Add the following code to the same cell and run it.
 
 ```{r, eval=FALSE}
-#Rarefaction curve
 #Save as png
 png(filename = "rarefaction.png", res = 300,
     units = "mm", height = 200, width = 200)
@@ -1327,6 +1326,7 @@ Add the following in the same cell and then run the code in the cell.
 #Summarise subsetted phyloseq
 microbiome::summarize_phyloseq(pseq_min11K)
 microbiome::readcount(pseq_min11K)
+length(phyloseq::taxa_sums(pseq_min11K))
 pseq_min11K
 ```
 
@@ -1368,8 +1368,8 @@ setdiff(phyloseq::sample_names(pseq), phyloseq::sample_names(pseq_min11K))
 `r unhide()`
 
 We won't actually use this subsetted file as we want to keep all the samples in this case.
-Since we not removing any samples we don't need to remove any ASVs as they should all have a total abundance > 0.
-You can therfore remove the new `phyloseq` object in a new __cell__.
+Since we are not removing any samples we don't need to remove any ASVs as they should all have a total abundance > 0.
+You can therefore remove the new `phyloseq` object in a new __cell__.
 
 ```{r, eval=FALSE}
 #Remove subsetted phyloseq
@@ -1387,7 +1387,7 @@ We have assessed the read depth in this chapter and decided to not remove any sa
 This assessment included:
 
 - Viewing a histogram of sample read depths.
-- Creating boxplots to compare the sample read depths across sample groups (siet and media).
+- Creating boxplots to compare the sample read depths across sample groups (site and media).
 - Producing a rarefaction depth to determine if any samples did not represent a good amount of the ASVs present in the environment.
 
 Additionally, we created a new `phyloseq` object where the samples were filtered by depth.
@@ -1456,7 +1456,7 @@ knitr::include_graphics(path = "figures/count_to_percent.png", auto_pdf = TRUE)
 
 Now that we have the data loaded we can create a new `phyloseq` object by transforming the abundance values to relative abundances.
 
-This is carried out with the `microbiome` function `transform()`. With it we transform the ASV abundance table within to a "compositional" table (relative abundance). 
+This is carried out with the `microbiome` function `transform()`. With it we transform the ASV abundance table within the `phyloseq` object to a "compositional" table (relative abundance). 
 
 Run the below command in an appropriate place in your notebook:
 
@@ -1473,7 +1473,7 @@ microbiome::summarize_phyloseq(pseq_relabund)
 microbiome::readcount(pseq_relabund)
 ```
 
-You will notice the read count for each sample is __1__. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, all the fractional relative abundance values of ASVs in one sample total 1.
+You will notice the read count for each sample is __1__. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, the sum of fractional relative abundance values of the ASVs in one sample will equal 1.
 
 We will use this to produce all our different taxa tables.
 
@@ -1539,14 +1539,14 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 knitr::include_graphics(path = "figures/owl_eyes.png", auto_pdf = TRUE)
 ```
 
-Now that we have our Genus relative abundance `phyloseq` we can create a bar chart.
+Now that we have our Phylum relative abundance `phyloseq` we can create a bar chart.
 
 ## Simple bar chart
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
 ```
 
-To create, save, and view a simple genus bar chart we can use the following code.
+To create, save, and view a simple phylum bar chart we can use the following code.
 
 ```{r, eval=FALSE}
 #Simple bar chart
@@ -1636,7 +1636,7 @@ The taxa which don't reach these thresholds will be classified as rare and aggre
 In the below example we are aggregating the rare taxa with our ASV relative abundance `phyloseq` object.
 Any phyla with a relative abundance >= to 0.01 (__detection__) in at least 5% (5/100) of the samples will not be classified as rare.
 
-More info on [Prevalence & detection](https://microbiome.github.io/OMA/quality-control.html#prevalence).
+More info on [prevalence & detection](https://microbiome.github.io/OMA/quality-control.html#prevalence).
 
 __Note__: The __detection__ and __prevalence__ thresholds can be given as numbers (1, 2, 1000 etc.), or percentage values (5/100, 50/100, etc.).
 
@@ -1677,7 +1677,7 @@ knitr::include_graphics(path = "figures/colour_brewer_palettes.png", auto_pdf = 
 `r unhide()`
 
 That is a very nice and clean bar chart.
-We can quite easily see that there are 7 main phyla (excluding other).
+We can quite easily see that there are 7 main phyla (excluding "Other").
 Additionally, it seems that the biggest difference between samples is due to the media used.
 
 ## Plot by media
@@ -1818,7 +1818,7 @@ Let us also then check the family `phyloseq` object.
 ```{r, eval = FALSE}
 #Family phyloseq
 family_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Family", verbose = FALSE)
-#Head of phylum relative abundance table
+#Head of family relative abundance table
 head(phyloseq::otu_table(family_pseq))
 #Number of families
 paste0("Number of families: ", nrow(phyloseq::otu_table(family_pseq)))
@@ -1951,7 +1951,7 @@ A Detection threshold of 0.02 and a prevalence threshold of 20/100 gives us 12 f
 We'll now create a new `phyloseq` object using this info in a new cell.
 
 ```{r, eval = FALSE}
-#Aggregate families phyla
+#Aggregate families
 family_rareaggregate_pseq <- microbiome::aggregate_rare(
   pseq_relabund, level = "Family",
   detection = 0.02, prevalence = 20/100
@@ -2022,7 +2022,7 @@ genus_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Genus", verbose = FALSE
 #Head of genus relative abundance table
 head(phyloseq::otu_table(genus_pseq))
 #Number of genera
-paste0("Number of families: ", nrow(phyloseq::otu_table(genus_pseq)))
+paste0("Number of genera: ", nrow(phyloseq::otu_table(genus_pseq)))
 #Summarise
 microbiome::summarize_phyloseq(genus_pseq)
 microbiome::readcount(genus_pseq)
@@ -2102,7 +2102,7 @@ paste0("Detection = ", d, ", Prevalence = ", p,
 rm(test_pseq)
 ```
 ```{r, eval = FALSE}
-#Aggregate genus phyla
+#Aggregate genus
 genus_rareaggregate_pseq <- microbiome::aggregate_rare(
   pseq_relabund, level = "Genus",
   detection = 0.006, prevalence = 20/100
@@ -2129,7 +2129,7 @@ IRdisplay::display_png(file="./genus_relabund_rareaggregate.png")
 ```
 `r unhide()`
 
-Once you are happy you can __Close and Halt__ the notebook.
+Once you are happy you can Save then __Close and Halt__ the notebook.
 
 <!--chapter:end:12-Family_and_Genus_taxa.Rmd-->
 
@@ -2869,9 +2869,9 @@ This will include the production of ordination plots and statistical analysis.
 
 When carrying out beta diversity all samples are compared in a pairwise manner.
 Using various metrics a table of pairwise distances is created.
-These distance are dissimilarity measures with smaller values indicating higher similarity and larger values representing higher dissimilarity.
+These distances are dissimilarity measures with smaller values indicating higher similarity and larger values representing higher dissimilarity.
 
-With these dissimilarity measures we can produce scatter plots based (e.g. PCoA, & NMDS plots).
+With these dissimilarity measures we can produce scatter plots based visualisations (e.g. PCoA, & NMDS plots).
 Samples with low dissimilarity (i.e. similar samples) will be close to each other (cluster).
 Samples with high dissimilarity will be apart from each other.
 In a perfect example samples from the same group will form clusters that are distinct from the clusters of other groups.
@@ -2906,8 +2906,8 @@ knitr::include_graphics(path = "figures/ordinate.png", auto_pdf = TRUE)
 ```
 
 In this section we will ordinate our data with the `phyloseq::ordinate()` function.
-We will ordinate using the [MDS method](https://en.wikipedia.org/wiki/Multidimensional_scaling) (AKA PCoA).
-We will be using the Weighted Unifrac metric as beta diversity dissimilarity scores.
+We'll use the [MDS method](https://en.wikipedia.org/wiki/Multidimensional_scaling) (AKA PCoA).
+This will be done with the Weighted Unifrac metric as the beta diversity dissimilarity scores.
 This uses the count data along with the phylogenetic distances to calculate pairwise dissimilarity.
 
 ```{r , eval = FALSE}
@@ -2915,8 +2915,8 @@ This uses the count data along with the phylogenetic distances to calculate pair
 ord.mds.wunifrac <- phyloseq::ordinate(pseq_rarefy, method = "MDS", distance = "wunifrac")
 ```
 
-To see the different methods and distances that can used please try `?phyloseq:ordinate` and `phyloseq::distanceMethodList` respectively.
-More information about the different distances please see the [APPENDIX](#beta_appendix).
+To see the different methods and distances that can be used please try `?phyloseq:ordinate` and `phyloseq::distanceMethodList` respectively.
+For more information about the different distances please see the [APPENDIX](#beta_appendix).
 
 ## Beta: plot ordination
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -2925,7 +2925,7 @@ knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
 
 Now that we have our ordination we can plot it.
 The script below uses `phyloseq::plot_ordination()` to plot our ordination.
-It needs the `phyloseq` object used for ordination (for the metadata) and the ordination data.
+It needs the `phyloseq` object used to create the ordination (for the metadata) and the ordination data itself.
 We will add the options `color =` and `shape =` to colour the points by site and shape the points by media.
 
 ```{r , eval = FALSE}
@@ -2946,7 +2946,7 @@ In this plot we can see that there are 3 main clusters:
 3. CVP & KBC
 
 A very important feature of ordination plots is the percentage values on the axes.
-These are the percentage variation explained values.
+These are the __percentage variation explained__ values.
 These values show how much of the variation of the data is explained by each axis.
 We need these as we are converting high dimensional data (many pairwise comparisons) into a 2 dimensional plot.
 
@@ -2956,7 +2956,7 @@ This is because the ENV samples are far removed (large distances) from the media
 
 On the other hand, axis.2 (15.8%) seems to be primarily showing the difference between the TSA samples and the other samples, and within the TSA samples.
 
-The higher the total variation explained value is the better are plot represents the beta diversity in our data.
+The higher the total variation explained value is, the better our plot represents the beta diversity in our data.
 In this case the total is >88% which is very good.
 
 - __<30%__ is poor
@@ -2977,7 +2977,8 @@ This will be carried out for all the samples and in a pairwise manner.
 
 PERMANOVA is a good test in this case to determine if there is a significance difference between the distances of groups.
 This allows us to determine if the clustering of groups is significant.
-More info on PERMANOVA [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.
+
+For more info on PERMANOVA, [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.
 
 ### PERMANOVA
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -2985,7 +2986,7 @@ knitr::include_graphics(path = "figures/permanova.png", auto_pdf = TRUE)
 ```
 
 We will carry out a PERMANOVA test on all the samples based on media.
-This will help us determine if there is any differences between groupings but not which grouping.
+This will help us determine if there are any differences between groupings but not which groupings.
 Prior to PERMANOVA we need to create a matrix containing all the sample paired distance values.
 We will use the function `phyloseq::distance()`.
 
@@ -3009,7 +3010,7 @@ wunifrac_adonis
 
 There is a lot of information in the resulting table.
 We are primarily interested in the P-value column (`Pr(>F)`).
-We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.006).
+We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.018).
 
 ### Pairwise PERMANOVA
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -3031,6 +3032,10 @@ cbn
 cbn[,1]
 ```
 
+#### Pairwise PERMANOVA on one combination
+
+For demonstration purposes we will first carry out the pairwise PERMANOVA on the 1st grouping combination.
+
 With the first media combination (CVP & ENV) we can subset our `phyloseq` object so it only contains those samples.
 Additionally, we can extract the metadata from this subsetted `phyloseq` object.
 
@@ -3039,6 +3044,7 @@ Additionally, we can extract the metadata from this subsetted `phyloseq` object.
 pseq_rarefy_subset <- phyloseq::subset_samples(pseq_rarefy, media %in% cbn[,1])
 #Metadata data frame
 metadf_subset <- data.frame(phyloseq::sample_data(pseq_rarefy_subset))
+metadf_subset
 ```
 
 With this info we can calculate the distances and then carry out the PERMANOVA.
@@ -3052,7 +3058,10 @@ wunifrac_pairwise_adonis
 ```
 
 We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
-However, it would be quite inefficient to type the above script for each combination.
+
+#### Pairwise PERMANOVA on all combinations
+
+It would be quite inefficient to type the above script for each combination.
 We will therefore create a script with a loop to automatically run the code for each combination.
 Additionally, we will create an empty data frame before the loop.
 This will be used to store the comparison info and the P-values.
@@ -3069,7 +3078,7 @@ pairwise_permanova_df <- as.data.frame(matrix(data = NA, nrow = ncol(cbn), ncol 
 #Add column names
 colnames(pairwise_permanova_df) <- c("1","2","p","p.adj")
 
-#Loop trhough the combinations
+#Loop through the combinations
 for(i in 1:ncol(cbn)){
   #Subset to media phyloseq
   #Ensure to change metadata group if using different grouping (media)
@@ -3081,7 +3090,7 @@ for(i in 1:ncol(cbn)){
   #PERMANOVA/ADONIS of media
   #Ensure to change metadata group if using different grouping (media)
   wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, data = metadf_subset, by = "margin")
-  #Add the gorup names and p-value to the main data frame
+  #Add the group names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
   pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
 }
@@ -3106,8 +3115,8 @@ write.table(x = pairwise_permanova_df, file = "pairwise_permanova_media_wunifrac
 ```
 
 Brilliant, the adjusted P-values are still significant, in fact they did not even change.
-This shows us that the different media grouping are significantly different.
-This makes sense from our taxonomy, alpha diversity, and beta diversity analysis.
+This shows us that the different media groupings are significantly different.
+This makes sense from our taxonomy, alpha diversity, and beta diversity analyses.
 However, it is hard to see the separation of the CVP and KBC samples in the MDS plot.
 
 ## Beta: Facet zoom
@@ -3131,7 +3140,7 @@ nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy, ord.mds.wunifrac,
                   ggforce::facet_zoom( xy = media == c("CVP","KBC"), zoom.size = 1)
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_zoom.png", plot = nmds.wunifrac,
-       device = "png", dpi = 300, units = "mm", height = 150, width = 150)
+       device = "png", dpi = 300, units = "mm", height = 100, width = 200)
 #Display plot
 IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_site_zoom.png")
 ```
@@ -3160,6 +3169,8 @@ ord.mds.wunifrac <- phyloseq::ordinate(pseq_rarefy_no_env, method = "MDS", dista
 #Plot ordination
 nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy_no_env, ord.mds.wunifrac,
                                    color = "site", shape = "media") +
+                  #Choose a range of the x axis to zoom into
+                  #This was chosen after viewing the plot without the zoom
                   ggforce::facet_zoom( xlim = c(-0.055,-0.03), zoom.size = 1)
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_no_env.png", plot = nmds.wunifrac,
@@ -3175,7 +3186,7 @@ This axis separates the media groups with TSA being the most different.
 We can clearly see separation of the sites within the media groups.
 There are a couple outliers within the CVP samples.
 
-Thankfully our pairwise PERMANOVA results are still valid as they use the distances which did not change compared to the ordination values which did change.
+Thankfully our pairwise PERMANOVA results are still valid as they use the __distances__ which did not change compared to the __ordination values__ which did change.
 
 ## PERMANOVA tasks
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -3264,7 +3275,7 @@ pairwise_permanova_df
 `r unhide()`
 
 We are getting very high adjusted P-values for these comparisons.
-There is most likely not enough power for this analysis as there are only 3 replicates for each group.
+Most likely there is not enough power for this analysis as there are only 3 replicates for each grouping.
 
 ## Beta: Summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -3276,12 +3287,13 @@ There are many other things you could do such as:
 
 - Carry out beta diversity with taxa aggregated `phyloseq` objects.
 - Use different distance measures (`phyloseq::distanceMethodList`).
-  - We had a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac").
-  - If you do not have this you can use non-phylogenetic aware `betadiver` distances such as "jaccard" or "bray".
+  - We have a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac").
+  - If you do not have this you will have to use non-phylogenetic aware `betadiver` distances such as "jaccard" or "bray".
 - Use different different ordination methods (`?phyloseq:ordinate`).
-  - Different methods will produce different" percentage of variation explained" values. If your plot has low values try another method to see if you can get higher values.
+  - Different methods will produce different __percentage of variation explained__ values. If your plot has low values try another method to see if you can get higher values.
+  - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values. This is perfectly acceptable and encouraged by many.
   
-With our analysis we found out:
+With our analyses we found out:
 
 - The samples significantly cluster by media with ENV being the most different followed by TSA.
 - It appears that the samples cluster by site within each media group, however this is not backed up by statistics.
@@ -3327,9 +3339,9 @@ However, it may also detect organisms that are able to survive in the environmen
 
 This will be shown in our data.
 Organisms in higher abundance in the media samples compared to the environmental samples are most likely caused by selection pressures the media introduces.
-To keep our data manageable in a workshop we will look at the phyla abundances.
-If a phyla is detected to have higher abundance in a media compared to the environmental sample, we can say the phyla is a biomarker of the media compared to the environmental sample.
-Additionally, we will be able to detect phyla that have been depleted in the media samples versus the environmental sample.
+To keep our data manageable in a workshop we will look at the class abundances.
+If a class is detected to have higher abundance in media compared to the environmental group, we can say the class is a biomarker of the media compared to the environmental sample.
+Additionally, we will be able to detect class that have been depleted in the media samples versus the environmental sample.
 
 ## DA: setup
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -3424,9 +3436,9 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 The options we use in the function are:
 
 - `data = `: The data to be analysed. This can be provided in various types of objects including the `phyloseq` object.
-- `fix_formula = `: The groupings within your data. It is importnat to add all groupings that may have an influence on the microbial abundances.
+- `fix_formula = `: The groupings within your data. It is important to add all groupings that may have an influence on the microbial abundances.
 - `p_adj_method =`: The p adjustment value to use.
-- `tax_level =`: Te taxonomic level of interest.
+- `tax_level =`: The taxonomic level of interest.
 
 There are many more options that have been left as the default.
 Please see the package [PDF](https://bioc.ism.ac.jp/packages/devel/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf) for more options and explanations.
@@ -3448,23 +3460,23 @@ rm(ancom_class_out)
 head(res_ancom_class)
 ```
 
-These reuslts only contain taxon where a significant result was found in at least one comparison.
+These results only contain taxon where a significant result was found in at least one comparison.
 This is based on the adjusted p-values (<0.05).
 There are a lot of columns (37) in our result data frame.
-Apart from taxon they are split by the comparison group.
+Apart from the "taxon" column they are split by the comparison groups.
 These contain the following information:
 
-- taxon: The taxa groups found to be a biomarker in at least one comparison.
-- lfc_*: This contains the log (natural log) fold changes with respect to the reference group.
+- __taxon__: The taxa groups found to be a biomarker in at least one comparison.
+- __lfc_*__: This contains the log (natural log) fold changes with respect to the reference group.
   - For example The values for lfc_mediaCVP would equal LFC(CVP - ENV).
   - A positive value means the abundances are higher in the comparison group (CVP) and lower in the ref (ENV).
   - A negative value means the abundances are lower in the comparison group (CVP) and higher in the ref (ENV).
   - The intercept value is the grand mean and is likely not of interest.
-- se_*: The standard error for the LFC values.
-- W_*: The W statistic. The higher this value the more significant the feature is differentially abundant between groups.
-- p_*: The P-value.
-- q_*: The Q-value. This is the adjusted P-value.
-- diff*: This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value < 0.05.
+- __se_*__: The standard error for the LFC values.
+- __W_*__: The W statistic. The higher this value the more significant the feature is differentially abundant between groups.
+- __p_*__: The P-value.
+- __q_*__: The Q-value. This is the adjusted P-value.
+- __diff*__: This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value < 0.05.
 
 It is quite a large table so let's save it as a tsv (tab separated value) file.
 
@@ -3488,7 +3500,7 @@ htmlwidgets::saveWidget(m, "ANCOM_class_results.html", selfcontained = FALSE)
 Go to the jupyter-notebook file explorer tab and click on the html file to open it in a new tab.
 This gives a relatively nice way to view all the results.
 
-One very clear pattern is that there are no biomarkers found for MD and LD.
+One very clear pattern is that there are no biomarkers found for the site comparisons (MD and LD).
 I believe this is because we don't have enough replicates for the sites within the media samples and the differences between the medias are so large.
 However, there is a good amount of biomarkers for the three different medias compared to ENV.
 
@@ -3522,8 +3534,8 @@ If you would like to learn more about these packages please see the [R for Data 
 
 ```{r, eval = FALSE}
 #Remove any taxon where there are no TRUE values
-#I.e. no significant difference found for the media samples
-#Number of biomarkers
+#I.e. no significant differences found for the media samples
+#Number of biomarkers prior to removal
 nrow(res_ancom_class_media)
 #Extract rows that contain at least one TRUE value
 res_ancom_class_media_sig <- res_ancom_class_media %>% dplyr::filter_all(
@@ -3533,6 +3545,8 @@ res_ancom_class_media_sig <- res_ancom_class_media %>% dplyr::filter_all(
 nrow(res_ancom_class_media_sig)
 head(res_ancom_class_media_sig)
 ```
+
+This has removed one biomarker which is great.
 
 Next we need to do a variety of preprocessing steps.
 This will create an edited long data frame.
@@ -3608,7 +3622,7 @@ ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
 IRdisplay::display_png(file="./ANCOMBC_class_media_ref_ENV.png")
 ```
 
-It is a good start but the colour gradient is not very useful.
+It is a good start but the colour of the tiles is not useful.
 We are going to use the layer `ggplot2::scale_fill_gradient2()` to customise this.
 First, we need to decide on the minimum and maximum values.
 Let's generate these with some code based on the minimum and maximum LFC values.
@@ -3666,8 +3680,8 @@ From these results we can see that there are a lot of biomarkers with low abunda
 There are only 2 biomarkers with higher abundance in the media samples.
 
 The LFC values between the different media are quite similar.
-There are some biomarkers that are only siginifcnat in 1 or 2 of the media though.
-It seems that CVP and KBC are more simialr to each other than to TSA.
+There are some biomarkers that are only significant in 1 or 2 of the media though.
+It seems that CVP and KBC are more similar to each other than to TSA.
 This matches the clustering we found in the beta diversity.
 
 This seems to indicate that the media samples are not a good representation of the actual environmental community.
@@ -3743,20 +3757,20 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 
 # Summary
 
-You have learnt a lot during this course. This chapter will therefore summarise what you have done.
+You have learnt a lot during this course. This chapter will summarise what you have done.
 
 ## Dataset
 ```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
 knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
 ``` 
 
-You were introduce to the 16S dataset in the intro.
+You were introduced to the 16S dataset in the intro.
 This consisted of samples from 3 parts of the Durance river (UD, MD, & LD).
 This is across a gradient of anthropisation.
-Unfortunately we were not able to glean to much information on the differences due to low power, only 3 replicates per ENV sample.
+Unfortunately, we were not able to glean much information on the differences due to low power, only 3 replicates per ENV sample.
 
 The more interesting metadata grouping was that of the culture.
-We were interested if 3 different media (TSA, KBC, and CVP) had different profiled communities than the ENV samples.
+We were interested to find out if 3 different media (TSA, KBC, and CVP) had different profiled communities than the ENV samples.
 They were found to be very different compared to the ENV samples.
 Some differences between the media groupings were also found.
 Overall, any differences between the sites were hard to determine due to the large differences between media.
@@ -3801,7 +3815,8 @@ knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ```
 
 Prior to alpha & beta diversity analysis we carried out rarefaction to normalise the depths between samples in [Chapter 14](#rarefaction_chap).
-This is a controversial technique, we carry it out due to the logic and the fact the QIIME2 developers recommend it.
+This is a controversial technique.
+We carry it out due to the logic and the fact the QIIME2 developers recommend it.
 Please make you own decision.
 
 Two of the leading papers are:
@@ -3827,14 +3842,14 @@ Although the ENV samples had higher Shannon scores (diversity), the values were 
 
 No difference was found when comparing the sites.
 
-The beta diversity analysis found significant difference between all the media groupings.
+The beta diversity analysis found significant differences between all the media groupings.
 Clustering of the media groups was also clearly visible in the MDS plots.
 
 Interestingly the CVP and KBC samples had relatively tight clusters that were quite near each other.
 The TSA and ENV samples had very loose clusters indicating large differences within the group.
 There is also some presence of clustering by site within each media group which appears to cause the main differences within the groups.
 
-Unfortunately we are not able to detect any differences between sites due to power and the biggest differences cause by media.
+Unfortunately we are not able to detect any differences between sites due to power and the large differences caused by media.
 
 ### Differential abundance anlaysis
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -3889,7 +3904,7 @@ knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
 
 Is there more difference between the sites or the media used?
 
-It appears that there is more difference cause by the media than the site.
+It appears that more difference is caused by the medias than the sites.
 If you only look at the ENV samples there is a big difference between the sites.
 This could be investigated further by checking for [homogeneity](https://microbiome.github.io/tutorials/PERMANOVA.html).
 
