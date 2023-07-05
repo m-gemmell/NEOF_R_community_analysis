@@ -14,9 +14,9 @@ However, it may also detect organisms that are able to survive in the environmen
 
 This will be shown in our data.
 Organisms in higher abundance in the media samples compared to the environmental samples are most likely caused by selection pressures the media introduces.
-To keep our data manageable in a workshop we will look at the phyla abundances.
-If a phyla is detected to have higher abundance in a media compared to the environmental sample, we can say the phyla is a biomarker of the media compared to the environmental sample.
-Additionally, we will be able to detect phyla that have been depleted in the media samples versus the environmental sample.
+To keep our data manageable in a workshop we will look at the class abundances.
+If a class is detected to have higher abundance in media compared to the environmental group, we can say the class is a biomarker of the media compared to the environmental sample.
+Additionally, we will be able to detect class that have been depleted in the media samples versus the environmental sample.
 
 ## DA: setup
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -111,9 +111,9 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 The options we use in the function are:
 
 - `data = `: The data to be analysed. This can be provided in various types of objects including the `phyloseq` object.
-- `fix_formula = `: The groupings within your data. It is importnat to add all groupings that may have an influence on the microbial abundances.
+- `fix_formula = `: The groupings within your data. It is important to add all groupings that may have an influence on the microbial abundances.
 - `p_adj_method =`: The p adjustment value to use.
-- `tax_level =`: Te taxonomic level of interest.
+- `tax_level =`: The taxonomic level of interest.
 
 There are many more options that have been left as the default.
 Please see the package [PDF](https://bioc.ism.ac.jp/packages/devel/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf) for more options and explanations.
@@ -135,23 +135,23 @@ rm(ancom_class_out)
 head(res_ancom_class)
 ```
 
-These reuslts only contain taxon where a significant result was found in at least one comparison.
+These results only contain taxon where a significant result was found in at least one comparison.
 This is based on the adjusted p-values (<0.05).
 There are a lot of columns (37) in our result data frame.
-Apart from taxon they are split by the comparison group.
+Apart from the "taxon" column they are split by the comparison groups.
 These contain the following information:
 
-- taxon: The taxa groups found to be a biomarker in at least one comparison.
-- lfc_*: This contains the log (natural log) fold changes with respect to the reference group.
+- __taxon__: The taxa groups found to be a biomarker in at least one comparison.
+- __lfc_*__: This contains the log (natural log) fold changes with respect to the reference group.
   - For example The values for lfc_mediaCVP would equal LFC(CVP - ENV).
   - A positive value means the abundances are higher in the comparison group (CVP) and lower in the ref (ENV).
   - A negative value means the abundances are lower in the comparison group (CVP) and higher in the ref (ENV).
   - The intercept value is the grand mean and is likely not of interest.
-- se_*: The standard error for the LFC values.
-- W_*: The W statistic. The higher this value the more significant the feature is differentially abundant between groups.
-- p_*: The P-value.
-- q_*: The Q-value. This is the adjusted P-value.
-- diff*: This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value < 0.05.
+- __se_*__: The standard error for the LFC values.
+- __W_*__: The W statistic. The higher this value the more significant the feature is differentially abundant between groups.
+- __p_*__: The P-value.
+- __q_*__: The Q-value. This is the adjusted P-value.
+- __diff*__: This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value < 0.05.
 
 It is quite a large table so let's save it as a tsv (tab separated value) file.
 
@@ -175,7 +175,7 @@ htmlwidgets::saveWidget(m, "ANCOM_class_results.html", selfcontained = FALSE)
 Go to the jupyter-notebook file explorer tab and click on the html file to open it in a new tab.
 This gives a relatively nice way to view all the results.
 
-One very clear pattern is that there are no biomarkers found for MD and LD.
+One very clear pattern is that there are no biomarkers found for the site comparisons (MD and LD).
 I believe this is because we don't have enough replicates for the sites within the media samples and the differences between the medias are so large.
 However, there is a good amount of biomarkers for the three different medias compared to ENV.
 
@@ -209,8 +209,8 @@ If you would like to learn more about these packages please see the [R for Data 
 
 ```{r, eval = FALSE}
 #Remove any taxon where there are no TRUE values
-#I.e. no significant difference found for the media samples
-#Number of biomarkers
+#I.e. no significant differences found for the media samples
+#Number of biomarkers prior to removal
 nrow(res_ancom_class_media)
 #Extract rows that contain at least one TRUE value
 res_ancom_class_media_sig <- res_ancom_class_media %>% dplyr::filter_all(
@@ -220,6 +220,8 @@ res_ancom_class_media_sig <- res_ancom_class_media %>% dplyr::filter_all(
 nrow(res_ancom_class_media_sig)
 head(res_ancom_class_media_sig)
 ```
+
+This has removed one biomarker which is great.
 
 Next we need to do a variety of preprocessing steps.
 This will create an edited long data frame.
@@ -295,7 +297,7 @@ ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
 IRdisplay::display_png(file="./ANCOMBC_class_media_ref_ENV.png")
 ```
 
-It is a good start but the colour gradient is not very useful.
+It is a good start but the colour of the tiles is not useful.
 We are going to use the layer `ggplot2::scale_fill_gradient2()` to customise this.
 First, we need to decide on the minimum and maximum values.
 Let's generate these with some code based on the minimum and maximum LFC values.
@@ -353,8 +355,8 @@ From these results we can see that there are a lot of biomarkers with low abunda
 There are only 2 biomarkers with higher abundance in the media samples.
 
 The LFC values between the different media are quite similar.
-There are some biomarkers that are only siginifcnat in 1 or 2 of the media though.
-It seems that CVP and KBC are more simialr to each other than to TSA.
+There are some biomarkers that are only significant in 1 or 2 of the media though.
+It seems that CVP and KBC are more similar to each other than to TSA.
 This matches the clustering we found in the beta diversity.
 
 This seems to indicate that the media samples are not a good representation of the actual environmental community.

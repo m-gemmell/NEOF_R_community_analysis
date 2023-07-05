@@ -2,20 +2,20 @@
 
 # Summary
 
-You have learnt a lot during this course. This chapter will therefore summarise what you have done.
+You have learnt a lot during this course. This chapter will summarise what you have done.
 
 ## Dataset
 ```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
 knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
 ``` 
 
-You were introduce to the 16S dataset in the intro.
+You were introduced to the 16S dataset in the intro.
 This consisted of samples from 3 parts of the Durance river (UD, MD, & LD).
 This is across a gradient of anthropisation.
-Unfortunately we were not able to glean to much information on the differences due to low power, only 3 replicates per ENV sample.
+Unfortunately, we were not able to glean much information on the differences due to low power, only 3 replicates per ENV sample.
 
 The more interesting metadata grouping was that of the culture.
-We were interested if 3 different media (TSA, KBC, and CVP) had different profiled communities than the ENV samples.
+We were interested to find out if 3 different media (TSA, KBC, and CVP) had different profiled communities than the ENV samples.
 They were found to be very different compared to the ENV samples.
 Some differences between the media groupings were also found.
 Overall, any differences between the sites were hard to determine due to the large differences between media.
@@ -60,7 +60,8 @@ knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ```
 
 Prior to alpha & beta diversity analysis we carried out rarefaction to normalise the depths between samples in [Chapter 14](#rarefaction_chap).
-This is a controversial technique, we carry it out due to the logic and the fact the QIIME2 developers recommend it.
+This is a controversial technique.
+We carry it out due to the logic and the fact the QIIME2 developers recommend it.
 Please make you own decision.
 
 Two of the leading papers are:
@@ -86,14 +87,14 @@ Although the ENV samples had higher Shannon scores (diversity), the values were 
 
 No difference was found when comparing the sites.
 
-The beta diversity analysis found significant difference between all the media groupings.
+The beta diversity analysis found significant differences between all the media groupings.
 Clustering of the media groups was also clearly visible in the MDS plots.
 
 Interestingly the CVP and KBC samples had relatively tight clusters that were quite near each other.
 The TSA and ENV samples had very loose clusters indicating large differences within the group.
 There is also some presence of clustering by site within each media group which appears to cause the main differences within the groups.
 
-Unfortunately we are not able to detect any differences between sites due to power and the biggest differences cause by media.
+Unfortunately we are not able to detect any differences between sites due to power and the large differences caused by media.
 
 ### Differential abundance anlaysis
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -148,7 +149,7 @@ knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
 
 Is there more difference between the sites or the media used?
 
-It appears that there is more difference cause by the media than the site.
+It appears that more difference is caused by the medias than the sites.
 If you only look at the ENV samples there is a big difference between the sites.
 This could be investigated further by checking for [homogeneity](https://microbiome.github.io/tutorials/PERMANOVA.html).
 

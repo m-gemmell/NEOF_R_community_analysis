@@ -8,9 +8,9 @@ This will include the production of ordination plots and statistical analysis.
 
 When carrying out beta diversity all samples are compared in a pairwise manner.
 Using various metrics a table of pairwise distances is created.
-These distance are dissimilarity measures with smaller values indicating higher similarity and larger values representing higher dissimilarity.
+These distances are dissimilarity measures with smaller values indicating higher similarity and larger values representing higher dissimilarity.
 
-With these dissimilarity measures we can produce scatter plots based (e.g. PCoA, & NMDS plots).
+With these dissimilarity measures we can produce scatter plots based visualisations (e.g. PCoA, & NMDS plots).
 Samples with low dissimilarity (i.e. similar samples) will be close to each other (cluster).
 Samples with high dissimilarity will be apart from each other.
 In a perfect example samples from the same group will form clusters that are distinct from the clusters of other groups.
@@ -45,8 +45,8 @@ knitr::include_graphics(path = "figures/ordinate.png", auto_pdf = TRUE)
 ```
 
 In this section we will ordinate our data with the `phyloseq::ordinate()` function.
-We will ordinate using the [MDS method](https://en.wikipedia.org/wiki/Multidimensional_scaling) (AKA PCoA).
-We will be using the Weighted Unifrac metric as beta diversity dissimilarity scores.
+We'll use the [MDS method](https://en.wikipedia.org/wiki/Multidimensional_scaling) (AKA PCoA).
+This will be done with the Weighted Unifrac metric as the beta diversity dissimilarity scores.
 This uses the count data along with the phylogenetic distances to calculate pairwise dissimilarity.
 
 ```{r , eval = FALSE}
@@ -54,8 +54,8 @@ This uses the count data along with the phylogenetic distances to calculate pair
 ord.mds.wunifrac <- phyloseq::ordinate(pseq_rarefy, method = "MDS", distance = "wunifrac")
 ```
 
-To see the different methods and distances that can used please try `?phyloseq:ordinate` and `phyloseq::distanceMethodList` respectively.
-More information about the different distances please see the [APPENDIX](#beta_appendix).
+To see the different methods and distances that can be used please try `?phyloseq:ordinate` and `phyloseq::distanceMethodList` respectively.
+For more information about the different distances please see the [APPENDIX](#beta_appendix).
 
 ## Beta: plot ordination
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -64,7 +64,7 @@ knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
 
 Now that we have our ordination we can plot it.
 The script below uses `phyloseq::plot_ordination()` to plot our ordination.
-It needs the `phyloseq` object used for ordination (for the metadata) and the ordination data.
+It needs the `phyloseq` object used to create the ordination (for the metadata) and the ordination data itself.
 We will add the options `color =` and `shape =` to colour the points by site and shape the points by media.
 
 ```{r , eval = FALSE}
@@ -85,7 +85,7 @@ In this plot we can see that there are 3 main clusters:
 3. CVP & KBC
 
 A very important feature of ordination plots is the percentage values on the axes.
-These are the percentage variation explained values.
+These are the __percentage variation explained__ values.
 These values show how much of the variation of the data is explained by each axis.
 We need these as we are converting high dimensional data (many pairwise comparisons) into a 2 dimensional plot.
 
@@ -95,7 +95,7 @@ This is because the ENV samples are far removed (large distances) from the media
 
 On the other hand, axis.2 (15.8%) seems to be primarily showing the difference between the TSA samples and the other samples, and within the TSA samples.
 
-The higher the total variation explained value is the better are plot represents the beta diversity in our data.
+The higher the total variation explained value is, the better our plot represents the beta diversity in our data.
 In this case the total is >88% which is very good.
 
 - __<30%__ is poor
@@ -116,7 +116,8 @@ This will be carried out for all the samples and in a pairwise manner.
 
 PERMANOVA is a good test in this case to determine if there is a significance difference between the distances of groups.
 This allows us to determine if the clustering of groups is significant.
-More info on PERMANOVA [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.
+
+For more info on PERMANOVA, [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.
 
 ### PERMANOVA
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -124,7 +125,7 @@ knitr::include_graphics(path = "figures/permanova.png", auto_pdf = TRUE)
 ```
 
 We will carry out a PERMANOVA test on all the samples based on media.
-This will help us determine if there is any differences between groupings but not which grouping.
+This will help us determine if there are any differences between groupings but not which groupings.
 Prior to PERMANOVA we need to create a matrix containing all the sample paired distance values.
 We will use the function `phyloseq::distance()`.
 
@@ -148,7 +149,7 @@ wunifrac_adonis
 
 There is a lot of information in the resulting table.
 We are primarily interested in the P-value column (`Pr(>F)`).
-We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.006).
+We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.018).
 
 ### Pairwise PERMANOVA
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -170,6 +171,10 @@ cbn
 cbn[,1]
 ```
 
+#### Pairwise PERMANOVA on one combination
+
+For demonstration purposes we will first carry out the pairwise PERMANOVA on the 1st grouping combination.
+
 With the first media combination (CVP & ENV) we can subset our `phyloseq` object so it only contains those samples.
 Additionally, we can extract the metadata from this subsetted `phyloseq` object.
 
@@ -178,6 +183,7 @@ Additionally, we can extract the metadata from this subsetted `phyloseq` object.
 pseq_rarefy_subset <- phyloseq::subset_samples(pseq_rarefy, media %in% cbn[,1])
 #Metadata data frame
 metadf_subset <- data.frame(phyloseq::sample_data(pseq_rarefy_subset))
+metadf_subset
 ```
 
 With this info we can calculate the distances and then carry out the PERMANOVA.
@@ -191,7 +197,10 @@ wunifrac_pairwise_adonis
 ```
 
 We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
-However, it would be quite inefficient to type the above script for each combination.
+
+#### Pairwise PERMANOVA on all combinations
+
+It would be quite inefficient to type the above script for each combination.
 We will therefore create a script with a loop to automatically run the code for each combination.
 Additionally, we will create an empty data frame before the loop.
 This will be used to store the comparison info and the P-values.
@@ -208,7 +217,7 @@ pairwise_permanova_df <- as.data.frame(matrix(data = NA, nrow = ncol(cbn), ncol 
 #Add column names
 colnames(pairwise_permanova_df) <- c("1","2","p","p.adj")
 
-#Loop trhough the combinations
+#Loop through the combinations
 for(i in 1:ncol(cbn)){
   #Subset to media phyloseq
   #Ensure to change metadata group if using different grouping (media)
@@ -220,7 +229,7 @@ for(i in 1:ncol(cbn)){
   #PERMANOVA/ADONIS of media
   #Ensure to change metadata group if using different grouping (media)
   wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, data = metadf_subset, by = "margin")
-  #Add the gorup names and p-value to the main data frame
+  #Add the group names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
   pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
 }
@@ -245,8 +254,8 @@ write.table(x = pairwise_permanova_df, file = "pairwise_permanova_media_wunifrac
 ```
 
 Brilliant, the adjusted P-values are still significant, in fact they did not even change.
-This shows us that the different media grouping are significantly different.
-This makes sense from our taxonomy, alpha diversity, and beta diversity analysis.
+This shows us that the different media groupings are significantly different.
+This makes sense from our taxonomy, alpha diversity, and beta diversity analyses.
 However, it is hard to see the separation of the CVP and KBC samples in the MDS plot.
 
 ## Beta: Facet zoom
@@ -270,7 +279,7 @@ nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy, ord.mds.wunifrac,
                   ggforce::facet_zoom( xy = media == c("CVP","KBC"), zoom.size = 1)
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_zoom.png", plot = nmds.wunifrac,
-       device = "png", dpi = 300, units = "mm", height = 150, width = 150)
+       device = "png", dpi = 300, units = "mm", height = 100, width = 200)
 #Display plot
 IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_site_zoom.png")
 ```
@@ -299,6 +308,8 @@ ord.mds.wunifrac <- phyloseq::ordinate(pseq_rarefy_no_env, method = "MDS", dista
 #Plot ordination
 nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy_no_env, ord.mds.wunifrac,
                                    color = "site", shape = "media") +
+                  #Choose a range of the x axis to zoom into
+                  #This was chosen after viewing the plot without the zoom
                   ggforce::facet_zoom( xlim = c(-0.055,-0.03), zoom.size = 1)
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_no_env.png", plot = nmds.wunifrac,
@@ -314,7 +325,7 @@ This axis separates the media groups with TSA being the most different.
 We can clearly see separation of the sites within the media groups.
 There are a couple outliers within the CVP samples.
 
-Thankfully our pairwise PERMANOVA results are still valid as they use the distances which did not change compared to the ordination values which did change.
+Thankfully our pairwise PERMANOVA results are still valid as they use the __distances__ which did not change compared to the __ordination values__ which did change.
 
 ## PERMANOVA tasks
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -403,7 +414,7 @@ pairwise_permanova_df
 `r unhide()`
 
 We are getting very high adjusted P-values for these comparisons.
-There is most likely not enough power for this analysis as there are only 3 replicates for each group.
+Most likely there is not enough power for this analysis as there are only 3 replicates for each grouping.
 
 ## Beta: Summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -415,12 +426,13 @@ There are many other things you could do such as:
 
 - Carry out beta diversity with taxa aggregated `phyloseq` objects.
 - Use different distance measures (`phyloseq::distanceMethodList`).
-  - We had a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac").
-  - If you do not have this you can use non-phylogenetic aware `betadiver` distances such as "jaccard" or "bray".
+  - We have a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac").
+  - If you do not have this you will have to use non-phylogenetic aware `betadiver` distances such as "jaccard" or "bray".
 - Use different different ordination methods (`?phyloseq:ordinate`).
-  - Different methods will produce different" percentage of variation explained" values. If your plot has low values try another method to see if you can get higher values.
+  - Different methods will produce different __percentage of variation explained__ values. If your plot has low values try another method to see if you can get higher values.
+  - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values. This is perfectly acceptable and encouraged by many.
   
-With our analysis we found out:
+With our analyses we found out:
 
 - The samples significantly cluster by media with ENV being the most different followed by TSA.
 - It appears that the samples cluster by site within each media group, however this is not backed up by statistics.
