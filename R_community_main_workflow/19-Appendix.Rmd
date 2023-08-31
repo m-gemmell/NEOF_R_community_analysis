@@ -24,8 +24,7 @@ mamba create -n r_community
 mamba activate r_community
 mamba install -c bioconda bioconductor-microbiome
 mamba install -c r r-tidyverse
-mamba install -c conda-forge r-devtools
-mamba install -c conda-forge r-ggforce
+mamba install -c conda-forge r-devtools r-ggforce r-plotly pandoc
 mamba install -c bioconda bioconductor-ancombc
 #Update r-htmltools as loading devtools doesn’t work in R (from 0.5.2 -> 0.5.4)
 mamba install -c conda-forge r-htmltools=0.5.4

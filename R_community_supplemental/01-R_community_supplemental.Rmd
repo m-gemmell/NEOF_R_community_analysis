@@ -38,4 +38,6 @@ The contents include:
 - Importing other types of data in a `phyloseq` object.
 - Using plotly to convert `ggplot2` plots into interactive HTML based plots.
 
+Ensure you are using the `r_community` `mamba` environment either with `. usercommunity` (workshop) or on your own installation ([creation instructions](https://neof-workshops.github.io/R_community_whqkt8/Course/19-Appendix.html)).
+
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

@@ -1,3 +1,81 @@
+--- 
+title: "R community analysis supplemental"
+author: "Matthew R. Gemmell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+favicon: figures/NEOF_favicon.png
+description: NEOF book for the R community analysis supplemental
+cover-image: "figures/NEOF.png"
+---
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'webexercises'
+), 'packages.bib')
+```
+
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
+``` 
+
+# (PART\*) Intro {-}
+
+# Introduction
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
+``` 
+
+This book contains some supplemental materials for the R community workshop.
+The contents include:
+
+- Importing other types of data in a `phyloseq` object.
+- Using plotly to convert `ggplot2` plots into interactive HTML based plots.
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+<!--chapter:end:01-R_community_supplemental.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
 # Importing
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
@@ -140,4 +218,47 @@ Of course it can be useful to look at multiple levels of taxonomy.
 If you have plain text files you can read them into R and then phyloseq-ize them.
 The phyloseq website has a nice tutorial on how to carry this out: https://joey711.github.io/phyloseq/import-data.
 
+
+
+<!--chapter:end:02-Importing.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# R plotly
+
+[Plotly](https://plotly.com/graphing-libraries/) is a graphing library that allows you to create interactive charts and maps.
+These are in the form of html files.
+
+You can even embed these in online books like the below chart.
+Try hovering over points to get more information on them.
+
+```{r, eval=TRUE, warning=FALSE}
+library("ggplot2")
+library("plotly")
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+scatter_plot <- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, 
+                 shape = species),
+             size = 2) +
+  scale_color_manual(values = c("darkorange","darkorchid","cyan4")) 
+ggplotly(scatter_plot)
+```
+
+<!--chapter:end:03-Plotly.Rmd-->
 

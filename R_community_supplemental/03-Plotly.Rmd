@@ -1,99 +1,90 @@
-# R Packages
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/R.png", auto_pdf = TRUE)
-```  
+# R plotly
 
-During this workshop we will use various R packages with their own intricacies. Before going into analysis we'll introduce you to some of these important concepts.
+[Plotly](https://plotly.com/graphing-libraries/) is a graphing library that allows you to create interactive charts and maps.
+These are in the form of html files.
 
-## R packages/libraries
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/r_package.png", auto_pdf = TRUE)
+This works with `python`, `R`, `ggplot2`, and other languages.
+You can create plots with [`plotly's`](https://plotly.com/r/) own library in `R`.
+However, we'll demonstrate how to plotly plots with [`ggplot2`](https://plotly.com/ggplot2/).
+
+You can even embed these in online books like the below chart.
+Try hovering over points to get more information on them.
+
+```{r, eval=TRUE, warning=FALSE}
+library("ggplot2")
+library("plotly")
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+scatter_plot <- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, 
+                 shape = species),
+             size = 2) +
+  scale_color_manual(values = c("darkorange","darkorchid","cyan4")) 
+ggplotly(scatter_plot)
 ```
 
-R packages/libraries contain additional functions, data and code for analysing, manipulating and plotting different types of data. Many common packages will be installed as default when you install R. Other more specialised packages, such as the `ggplot2` package, must be installed by the user.
+## Jupyter notebook
 
-Packages found on The Comprehensive R Archive Network (CRAN), R’s central software repository, can be installed using the following command.
+As always we'll start off by creating a new `R` notebook and loading in the required libraries.
 
-```{r eval=FALSE}
-install.packages("package_name")
+Create a new notebook called "plotly_tut", the location does not matter.
+
+The libraries required are:
+
+```{r, eval=FALSE}
+#Libraries
+library("ggplot2")
+library("plotly")
+library("IRdisplay")
+library("htmlwidgets")
 ```
 
-Every time you reload R you will need to load the packages you require if they are not installed in R by default. To do this type:
+## Penguin data
 
-```{r eval=FALSE}
-library("package_name")
+We are going to use the same penguin data as the first plot in this chapter.
+More info in the penguin data can be found on this [website](https://allisonhorst.github.io/palmerpenguins/).
+
+First we need to load it into `R` as a __data frame__.
+
+```{r, eval=FALSE}
+#Read in penguin data
+penguin_df <- read.csv("/pub14/tea/nsc206/NEOF/R_community/penguin.tsv",
+                       check.names=FALSE, stringAsFactors = TRUE, sep = "\t")
+#Check df
+head(penguin_df)
 ```
 
-I generally have a list of `library()` functions at the top of my R scripts (`.R` files) for all the packages I use in the script.
+## ggplot2
 
-Throughout this course you will get a lot of practice installing and loading various packages.
+After having your data the next step is to create your `ggplot2` object.
+We'll make a box plot of Species and sex of Penguin (x-axis) versus the Flipper length (y-axis).
+We'll save this as an object, save it as a png with `ggsave()`, and display it with `IRdisplay::display_png()`.
+This is what we carried out in the main book.
 
-`r hide("R package or R Library?")`
-R packages are a collection of R functions, data, and compiled code. You can install these into a directory on your computer.
-
-An R library is a directory containing a R package.
-
-Because of this, the terms R package and R library may be used synonymously. We will use the term package in this workshop.
-`r unhide()`
-
-As we will be using a lot of packages we shall use double colons (`::`) to specify which package each function belongs to, unless the function is from base R. For example if we use the function `summarize_phyloseq()` from the package `microbiome` we would type the function like below:
-
-__Note__: Do not run the below command.
-
-```{r eval=FALSE}
-microbiome::summarize_phyloseq()
+```{r, eval=FALSE}
+#ggplot2 boxplot
+gg_boxplot <- ggplot(data= penguin_df, aes(x = species, y = flipper_length_mm, fill = sex)) +
+  geom_boxplot()
+#Save as png
+ggsave(filename = "penguin_boxplot.png", plot gg_boxplot,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 200)
+#Display png
+IRdisplay::display_png(file = "penguin_boxplot.png")
 ```
 
-This convention has 2 benefits:
+## plotly
 
-- We can easily tell which R package each function comes from.
-  - This is useful for your future coding where you may copy some, but not all, commands from one script to another. You will therefore know which packages you will need to load.
-  - If you need some more documentation about a function you will know what package to look up.
-  - Writing your methods will be a lot easier.
-- Different packages may have functions with the same name. Specifying the package will ensure you are using the correct function.
+Let's create that plot again but using `plotly`.
+Additionally, we save the `plotly` plot to an html file with `htmlwidgets::saveWidget()`.
+We can then view the plot with `
 
-## The grammar of graphics
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
-``` 
-
-During this course we will be using the grammar of graphics coding approach. This approach is implemented by the R package `ggplot2` to create visualisations such as bar charts, box plots, ordination plots etc. In turn `ggplot2` is used by a host of other packages, some of which we will be using. Although `ggplot2` is R code, its structure is very different and it takes effort to learn. Thankfully, `ggplot2` is very powerful and flexible, and it produces very professional and clean plots.
-
-We will use the `iris` dataset (inbuilt into R) to show an example of `ggplot2` code and its visualisation output. You don't need to run the below code.
-
-__Note__: If you would like to see the contents of the `iris` dataset you can run the command `View(iris)` in your R instance later.
-
-```{r}
-#Load library
-library(ggplot2)
-
-#Create new ggplot2 object using iris dataset
-ggplot2::ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, colour=Species)) +
-  #Make the object a scatter plot 
-  ggplot2::geom_point() +
-  #Add plot tile
-  ggplot2::ggtitle("Iris Sepal length vs width") +
-  #Set x and y axis label names
-  ggplot2::labs(x = "Sepal length", y = "Sepal width")
+```{r, eval=FALSE}
+#ggplot2 boxplot
+gg_boxplot <- ggplot(data= penguin_df, aes(x = species, y = flipper_length_mm, fill = sex)) +
+  geom_boxplot()
+#Save as png
+ggsave(filename = "penguin_boxplot.png", plot gg_boxplot,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 200)
+#Display png
+IRdisplay::display_png(file = "penguin_boxplot.png")
 ```
-
-We will not learn `ggplot2` specifically during this course. However, the structure of creating an object will be used. In the above case the initial object was built with `ggplot`. Subsequently additions and edits were carried out with `+` and various other functions.
-
-An important concept of the grammar of graphics is aesthetics. Aesthetics are the parts of a graphic/plot. In the above command we set the aesthetics with the function `aes()` within the `ggplot()` function. The X aesthetic (i.e. what values are assigned to the x axis) was set as the Sepal length values from the column `Sepal.Length` of the dataframe `iris`. In turn the Y axis values are set to the Sepal width and the colouring of the points are set to the Species.
-
-That was a quick introduction to the grammar of graphics. We will be using this to create visualisations with a `phyloseq` object using various R packages specifically designed for community abundance data within `phyloseq` objects.
-
-For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
-
-## phyloseq
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
-``` 
-
-In this book we will be working with [`phyloseq`](https://joey711.github.io/phyloseq/) objects to preprocess  our dataset, create visualisations, and carry out statistical analyses. This is a very popular object type for community abundance datasets as it contains the abundance table, metadata, and taxonomy table in one object, optionally containing the phylogenetic tree and reference sequences if wanted/required.
-
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
-knitr::include_graphics(path = "figures/phyloseq_input.png", auto_pdf = TRUE)
-``` 
-
-For more info on `phyloseq` and associated packages please see the [appendix](#phyloseq_appendix).
