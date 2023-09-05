@@ -1,6 +1,6 @@
 # (PART\*) Data preparation {-}
 
-# Data prep intro
+# Data prep intro {#preprocess_section}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
 ```

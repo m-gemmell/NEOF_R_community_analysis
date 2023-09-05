@@ -1,4 +1,4 @@
-# Set-up
+# Set-up {#setupchap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/start.png", auto_pdf = TRUE)
 ```

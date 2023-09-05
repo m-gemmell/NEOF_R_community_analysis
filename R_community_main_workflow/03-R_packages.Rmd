@@ -1,4 +1,4 @@
-# R Packages
+# R Packages {#rpackchap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/R.png", auto_pdf = TRUE)
 ```  

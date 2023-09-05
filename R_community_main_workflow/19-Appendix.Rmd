@@ -1,6 +1,6 @@
 # (APPENDIX) Appendix {-}
 
-# Mamba installs
+# Mamba installs {#mambainstalls}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```

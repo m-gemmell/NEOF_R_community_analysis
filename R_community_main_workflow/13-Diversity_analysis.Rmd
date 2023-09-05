@@ -1,6 +1,6 @@
 # (PART\*) Diversity analysis {-}
 
-# Diversity analysis intro
+# Diversity analysis intro {#divsection}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ```

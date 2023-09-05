@@ -36,7 +36,7 @@ A lot of different analyses and visualisations can be carried out with community
 
 The workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. Supplementary materials will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.
  
-The sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. Thi book contains theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
+The sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. This book contains theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
 
 At the end of the course learners will be able to:
 
@@ -49,6 +49,65 @@ At the end of the course learners will be able to:
 - Run statistical analysis.
 - Convert static plots into interactive html plots with plotly within R.
 
+## Table of contents {-}
 
+```{r, echo=FALSE, align="centre"}
+#Create 2 column dataframe
+column_1 <- c(
+  #1 intro
+  '[**Intro**](#datasetandworkflowchap)', 
+ '[![](figures/data.png){height="150"}](#datasetandworkflowchap)',
+ #3 Setup
+    '[**Set-up**](#setupchap)', 
+ '[![](figures/start.png){height="150"}](#setupchap)',
+ #5 Data prep
+   '[**Data preparation**](#preprocess_section)', 
+ '[![](figures/half_tablespoon.png){height="150"}](#preprocess_section)',
+ #7 Taxa relabund
+   '[**Taxonomy relative abundance**](#taxa_relabund_chap)', 
+ '[![](figures/taxa.png){height="150"}](#taxa_relabund_chap)',
+ #9 Rarefaction
+ '[**Rarefaction**](#rarefaction_chap)', 
+ '[![](figures/whale.png){height="150"}](#rarefaction_chap)',
+ #11 Beta
+  '[**Beta diversity**](#beta_chap)', 
+ '[![](figures/beta.png){height="150"}](#beta_chap)',
+ #13 Summary
+   '[**Summary**](#sumchap)', 
+ '[![](figures/recap.png){height="150"}](#sumchap)'
+)
+column_2 <- c(
+  #2: R packages
+  '[**R packages**](#rpackchap)', 
+ '[![](figures/R.png){height="150"}](#rpackchap)',
+ #4 Jupyter
+   '[**Jupyter**](#jupyterchap)', 
+ '[![](figures/jupyter_logo.png){height="150"}](#jupyterchap)',
+ #6 Min reads
+   '[**Minimum read depth**](#mindepthchap)', 
+ '[![](figures/depth_diver.png){height="150"}](#mindepthchap)',
+ #8 taxa plots
+ '[**Taxa plots**](#chaptaxaplots)', 
+ '[![](figures/bar_chart.png){height="150"}](#chaptaxaplots)',
+ #10 ALpha
+ '[**Alpha diversity**](#alpha_chap)', 
+ '[![](figures/alpha.png){height="150"}](#alpha_chap)',
+ #12 DA
+  '[**Differential abundance**](#DA_chap)', 
+ '[![](figures/difference.png){height="150"}](#DA_chap)',
+   #14 appendix
+    '[**Appendix**](#mambainstalls)', 
+ '[![](figures/mamba_logo.png){height="150"}](#mambainstalls)'
+)
+table_df <- data.frame(column_1, column_2)
+#Kable and kableextra libraries
+library(knitr)
+library(kableExtra)
+#Create table
+#ALign both column in centre (align = "cc")
+table_df %>%
+  kbl(align= "cc", col.names = NULL) %>%
+  kable_styling(position = "center")
+```
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

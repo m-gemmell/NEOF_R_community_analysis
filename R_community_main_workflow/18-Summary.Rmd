@@ -1,6 +1,6 @@
 # (PART\*) Outro {-}
 
-# Summary
+# Summary {#sumchap}
 
 You have learnt a lot during this course. This chapter will summarise what you have done.
 
