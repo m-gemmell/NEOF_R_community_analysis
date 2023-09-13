@@ -63,7 +63,6 @@ At the top of the notebook create a cell to load the libaries we'll need.
 #Libraries
 library("phyloseq")
 library("microbiome")
-library("insect")
 ```
 
 #### Import biom into phyloseq {-}
