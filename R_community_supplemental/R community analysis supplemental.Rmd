@@ -38,6 +38,14 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
+```{r, echo=FALSE}
+#Change colour, border, and text of code chunks
+#Check style.css for .Rchunk
+#https://stackoverflow.com/questions/65627531/change-r-chunk-background-color-in-bookdown-gitbook
+#https://bookdown.org/yihui/rmarkdown-cookbook/chunk-styling.html
+knitr::opts_chunk$set(class.source="Rchunk") 
+```
+
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ``` 
@@ -46,14 +54,38 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 
 # Introduction
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/r_comm_supplement.png", auto_pdf = TRUE)
 ``` 
 
 This book contains some supplemental materials for the R community workshop.
-The contents include:
 
-- Importing other types of data in a `phyloseq` object.
-- Using plotly to convert `ggplot2` plots into interactive HTML based plots.
+Ensure you are using the `r_community` `mamba` environment either with `. usercommunity` (workshop) or on your own installation ([creation instructions](https://neof-workshops.github.io/R_community_whqkt8/Course/19-Appendix.html)).
+
+## Table of contents {-}
+
+```{r, echo=FALSE, align="centre"}
+#Create 2 column dataframe
+column_1 <- c(
+  #1 Importng
+  '[**Import other data types into `phyloseq`**](#importchap)', 
+ '[![](figures/data.png){height="150"}](#importchap)'
+)
+column_2 <- c(
+  #2: R packages
+  '[**Plotly to create interactive html plots**](#plotly_chap)', 
+ '[![](figures/html.png){height="150"}](#plotly_chap)'
+)
+table_df <- data.frame(column_1, column_2)
+#Kable and kableextra libraries
+library(knitr)
+library(kableExtra)
+#Create table
+#ALign both column in centre (align = "cc")
+table_df %>%
+  kbl(align= "cc", col.names = NULL) %>%
+  kable_styling(position = "center")
+```
+
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
@@ -76,7 +108,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# Importing
+# Importing {#importchap}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 ``` 
@@ -84,11 +116,17 @@ knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 Apart from `QIIME2` artifact files, other file types from other programs cann be imported into a `phyloseq` object.
 
 ## Bracken
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/bracken.png", auto_pdf = TRUE)
+``` 
 
 A common way to carry out shotgun metagenomics taxonomic abundance profiling is with `Kraken2` and `Bracken`.
 This section will show you how to import the `bracken` output.
 
 ### Bracken: setup
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/setup_3.png", auto_pdf = TRUE)
+``` 
 
 First we need the `Bracken` output in the `Kraken2` report output file format.
 We can copy over the output made during the NEOF Shotgun metagenomics workshop.
@@ -108,15 +146,18 @@ cp /pub14/tea/nsc206/NEOF/R_community/bracken_reports/KW_metadata.tsv .
 ```
 
 ### Bracken: Convert to biom
+```{r, fig.align = 'center',out.width= '8%', echo=FALSE }
+knitr::include_graphics(path = "figures/biom_tie.png", auto_pdf = TRUE)
+```
 
 Unfortunately we can't use the `bracken` report files.
-Instead we need to convert them to one collated biom file with `kraken-biom`.
+Instead we need to convert them to a single collated biom file with `kraken-biom`.
 
 ```{bash, eval=FALSE}
 kraken-biom *breport2 -o KW.biom 
 ```
 
-Biom files are not human readable.
+[__Biom__](https://biom-format.org/) files are not human readable.
 Therefore to check the file is correct we can create a tsv (tab seperated value) file to inspect.
 
 ```{bash, eval=FALSE}
@@ -130,6 +171,9 @@ If your file has a header starting with "#OTU ID" and the sample names, followed
 You'll also have the taxonomy lineage as the last column because we added in `--header-key taxonomy`.
 
 ### Jupyter notebook
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook.png", auto_pdf = TRUE)
+```
 
 Now we are ready to carry out some R analysis.
 
@@ -141,10 +185,12 @@ At the top of the notebook create a cell to load the libaries we'll need.
 #Libraries
 library("phyloseq")
 library("microbiome")
-library("insect")
 ```
 
 #### Import biom into phyloseq {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
+```
 
 The first step is to import the biom file.
 
@@ -154,6 +200,9 @@ pseq <- phyloseq::import_biom("/KW.biom")
 ```
 
 #### Import sample data {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/samples.png", auto_pdf = TRUE)
+```
 
 Next we need to import the samples data.
 We have a tab delimited file we will read into R as a __data frame__.
@@ -177,6 +226,9 @@ microbiome::summarize_phyloseq(pseq)
 ```
 
 #### Taxonomy {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
+```
 
 Let's check out the taxonomy
 
@@ -214,6 +266,9 @@ Know your data, look at the literature, and make an informed decision.
 Of course it can be useful to look at multiple levels of taxonomy.
 
 ## Plain text files
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/plain_text.png", auto_pdf = TRUE)
+```
 
 If you have plain text files you can read them into R and then phyloseq-ize them.
 The phyloseq website has a nice tutorial on how to carry this out: https://joey711.github.io/phyloseq/import-data.
@@ -239,15 +294,22 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# R plotly
+# R plotly {#plotly_chap}
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/plotly_icon.png", auto_pdf = TRUE)
+```
 
 [Plotly](https://plotly.com/graphing-libraries/) is a graphing library that allows you to create interactive charts and maps.
 These are in the form of html files.
 
+This works with `python`, `R`, `ggplot2`, and other languages.
+You can create plots with [`plotly's`](https://plotly.com/r/) own library in `R`.
+However, we'll demonstrate how to plotly plots with [`ggplot2`](https://plotly.com/ggplot2/).
+
 You can even embed these in online books like the below chart.
 Try hovering over points to get more information on them.
 
-```{r, eval=TRUE, warning=FALSE}
+```{r, eval=FALSE, warning=FALSE, out.width="70%"}
 library("ggplot2")
 library("plotly")
 library(palmerpenguins)
@@ -259,6 +321,120 @@ scatter_plot <- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass
   scale_color_manual(values = c("darkorange","darkorchid","cyan4")) 
 ggplotly(scatter_plot)
 ```
+
+<center>
+```{r, eval=TRUE, echo=FALSE, warning=FALSE, out.width="70%"}
+library("ggplot2")
+library("plotly")
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+scatter_plot <- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, 
+                 shape = species),
+             size = 2) +
+  scale_color_manual(values = c("darkorange","darkorchid","cyan4")) 
+ggplotly(scatter_plot)
+```
+</center>
+
+Additionally, try out the other controls.
+
+## Jupyter notebook
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook.png", auto_pdf = TRUE)
+```
+
+As always we'll start off by creating a new `R` notebook and loading in the required libraries.
+
+Create a new notebook called "plotly_tut", the location does not matter.
+
+The libraries required are:
+
+```{r, eval=FALSE}
+#Libraries
+library("ggplot2")
+library("plotly")
+library("IRdisplay")
+library("htmlwidgets")
+```
+
+## Penguin data
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/penguin_iceberg.png", auto_pdf = TRUE)
+```
+
+We are going to use the same penguin data as the first plot in this chapter.
+More info in the penguin data can be found on this [website](https://allisonhorst.github.io/palmerpenguins/).
+
+First we need to load it into `R` as a __data frame__.
+
+```{r, eval=FALSE}
+#Read in penguin data
+penguin_df <- read.csv("/pub14/tea/nsc206/NEOF/R_community/penguin.tsv",
+                       check.names=FALSE, stringAsFactors = TRUE, sep = "\t")
+#Check df
+head(penguin_df)
+```
+
+## PNG with ggplot2
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/png_file.png", auto_pdf = TRUE)
+```
+
+After having your data the next step is to create your `ggplot2` object.
+We'll make a box plot of Species and sex of Penguin (x-axis) versus the Flipper length (y-axis).
+We'll facet the plot by species and use sex as the x axis.
+We'll save this as an object, save it as a png with `ggsave()`, and display it with `IRdisplay::display_png()`.
+This is what we carried out in the main book.
+
+```{r, eval=FALSE}
+#ggplot2 boxplot
+gg_boxplot <- ggplot(data= penguin_df, aes(x = sex, y = flipper_length_mm, fill = sex)) +
+  geom_boxplot() +
+  facet_grid(.~species)
+#Save as png
+ggsave(filename = "penguin_boxplot.png", plot gg_boxplot,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 200)
+#Display png
+IRdisplay::display_png(file = "penguin_boxplot.png")
+```
+
+## HTML with plotly
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/html.png", auto_pdf = TRUE)
+```
+
+Let's create that plot again but using `plotly`.
+Additionally, we save the `plotly` plot to an html file with `htmlwidgets::saveWidget()`.
+We can then view the plot with `
+
+```{r, eval=FALSE}
+#ggplot2 boxplot
+gg_boxplot <- ggplot(data= penguin_df, aes(x = sex, y = flipper_length_mm, fill = sex)) +
+  geom_boxplot() +
+  facet_grid(.~species)
+#Create plotly object from ggplot2 object
+plotly_boxplot <- plotly::ggplotly(gg_boxplot)
+#Save plotly object as html
+htmlwidgets::saveWidget(widget = plotly_boxplot,
+                        file = "penguin_boxplot.html",
+                        selfcontained=TRUE)
+#Display plotly object
+plotly::embed_notebook(plotly_boxplot)
+```
+
+You can also open "penguin_boxplot.html" via the jupyter navigation page to view it.
+
+## Recap
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
+```
+
+Plotly is a nice way to make interactive plots. 
+These can be embedded in `jupyter-notebooks` or html reports made with programs like [`R Markdown`](https://rmarkdown.rstudio.com/).
+They are very useful to interrogate data but they will not be as useful for make static plots for visualisation.
+
+If you have the time and inclination please try making some plotly htmls with the plots you created in the main book for this course.
 
 <!--chapter:end:03-Plotly.Rmd-->
 

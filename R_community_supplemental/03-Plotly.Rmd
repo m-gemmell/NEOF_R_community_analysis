@@ -1,4 +1,7 @@
-# R plotly
+# R plotly {#plotly_chap}
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/plotly_icon.png", auto_pdf = TRUE)
+```
 
 [Plotly](https://plotly.com/graphing-libraries/) is a graphing library that allows you to create interactive charts and maps.
 These are in the form of html files.
@@ -10,7 +13,7 @@ However, we'll demonstrate how to plotly plots with [`ggplot2`](https://plotly.c
 You can even embed these in online books like the below chart.
 Try hovering over points to get more information on them.
 
-```{r, eval=TRUE, warning=FALSE}
+```{r, eval=FALSE, warning=FALSE, out.width="70%"}
 library("ggplot2")
 library("plotly")
 library(palmerpenguins)
@@ -23,7 +26,27 @@ scatter_plot <- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass
 ggplotly(scatter_plot)
 ```
 
+<center>
+```{r, eval=TRUE, echo=FALSE, warning=FALSE, out.width="70%"}
+library("ggplot2")
+library("plotly")
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+scatter_plot <- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, 
+                 shape = species),
+             size = 2) +
+  scale_color_manual(values = c("darkorange","darkorchid","cyan4")) 
+ggplotly(scatter_plot)
+```
+</center>
+
+Additionally, try out the other controls.
+
 ## Jupyter notebook
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook.png", auto_pdf = TRUE)
+```
 
 As always we'll start off by creating a new `R` notebook and loading in the required libraries.
 
@@ -40,6 +63,9 @@ library("htmlwidgets")
 ```
 
 ## Penguin data
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/penguin_iceberg.png", auto_pdf = TRUE)
+```
 
 We are going to use the same penguin data as the first plot in this chapter.
 More info in the penguin data can be found on this [website](https://allisonhorst.github.io/palmerpenguins/).
@@ -54,7 +80,10 @@ penguin_df <- read.csv("/pub14/tea/nsc206/NEOF/R_community/penguin.tsv",
 head(penguin_df)
 ```
 
-## ggplot2
+## PNG with ggplot2
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/png_file.png", auto_pdf = TRUE)
+```
 
 After having your data the next step is to create your `ggplot2` object.
 We'll make a box plot of Species and sex of Penguin (x-axis) versus the Flipper length (y-axis).
@@ -74,13 +103,14 @@ ggsave(filename = "penguin_boxplot.png", plot gg_boxplot,
 IRdisplay::display_png(file = "penguin_boxplot.png")
 ```
 
-## plotly
+## HTML with plotly
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/html.png", auto_pdf = TRUE)
+```
 
 Let's create that plot again but using `plotly`.
 Additionally, we save the `plotly` plot to an html file with `htmlwidgets::saveWidget()`.
 We can then view the plot with `
-
-###NEED TO CHANGE BELOW CODE
 
 ```{r, eval=FALSE}
 #ggplot2 boxplot
@@ -98,3 +128,14 @@ plotly::embed_notebook(plotly_boxplot)
 ```
 
 You can also open "penguin_boxplot.html" via the jupyter navigation page to view it.
+
+## Recap
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
+```
+
+Plotly is a nice way to make interactive plots. 
+These can be embedded in `jupyter-notebooks` or html reports made with programs like [`R Markdown`](https://rmarkdown.rstudio.com/).
+They are very useful to interrogate data but they will not be as useful for make static plots for visualisation.
+
+If you have the time and inclination please try making some plotly htmls with the plots you created in the main book for this course.

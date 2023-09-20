@@ -1,4 +1,4 @@
-# Importing
+# Importing {#importchap}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 ``` 
@@ -6,11 +6,17 @@ knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 Apart from `QIIME2` artifact files, other file types from other programs cann be imported into a `phyloseq` object.
 
 ## Bracken
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/bracken.png", auto_pdf = TRUE)
+``` 
 
 A common way to carry out shotgun metagenomics taxonomic abundance profiling is with `Kraken2` and `Bracken`.
 This section will show you how to import the `bracken` output.
 
 ### Bracken: setup
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/setup_3.png", auto_pdf = TRUE)
+``` 
 
 First we need the `Bracken` output in the `Kraken2` report output file format.
 We can copy over the output made during the NEOF Shotgun metagenomics workshop.
@@ -30,15 +36,18 @@ cp /pub14/tea/nsc206/NEOF/R_community/bracken_reports/KW_metadata.tsv .
 ```
 
 ### Bracken: Convert to biom
+```{r, fig.align = 'center',out.width= '8%', echo=FALSE }
+knitr::include_graphics(path = "figures/biom_tie.png", auto_pdf = TRUE)
+```
 
 Unfortunately we can't use the `bracken` report files.
-Instead we need to convert them to one collated biom file with `kraken-biom`.
+Instead we need to convert them to a single collated biom file with `kraken-biom`.
 
 ```{bash, eval=FALSE}
 kraken-biom *breport2 -o KW.biom 
 ```
 
-Biom files are not human readable.
+[__Biom__](https://biom-format.org/) files are not human readable.
 Therefore to check the file is correct we can create a tsv (tab seperated value) file to inspect.
 
 ```{bash, eval=FALSE}
@@ -52,6 +61,9 @@ If your file has a header starting with "#OTU ID" and the sample names, followed
 You'll also have the taxonomy lineage as the last column because we added in `--header-key taxonomy`.
 
 ### Jupyter notebook
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/jupyter_notebook.png", auto_pdf = TRUE)
+```
 
 Now we are ready to carry out some R analysis.
 
@@ -66,6 +78,9 @@ library("microbiome")
 ```
 
 #### Import biom into phyloseq {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
+```
 
 The first step is to import the biom file.
 
@@ -75,6 +90,9 @@ pseq <- phyloseq::import_biom("/KW.biom")
 ```
 
 #### Import sample data {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/samples.png", auto_pdf = TRUE)
+```
 
 Next we need to import the samples data.
 We have a tab delimited file we will read into R as a __data frame__.
@@ -98,6 +116,9 @@ microbiome::summarize_phyloseq(pseq)
 ```
 
 #### Taxonomy {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
+```
 
 Let's check out the taxonomy
 
@@ -135,6 +156,9 @@ Know your data, look at the literature, and make an informed decision.
 Of course it can be useful to look at multiple levels of taxonomy.
 
 ## Plain text files
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/plain_text.png", auto_pdf = TRUE)
+```
 
 If you have plain text files you can read them into R and then phyloseq-ize them.
 The phyloseq website has a nice tutorial on how to carry this out: https://joey711.github.io/phyloseq/import-data.

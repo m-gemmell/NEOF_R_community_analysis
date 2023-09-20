@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-31" />
+<meta name="date" content="2023-09-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,10 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.2/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -150,7 +154,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="part"><span><b>Intro</b></span></li>
-<li class="chapter" data-level="1" data-path="01-R_community_supplemental.html"><a href="01-R_community_supplemental.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="01-R_community_supplemental.html"><a href="01-R_community_supplemental.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="01-R_community_supplemental.html"><a href="01-R_community_supplemental.html#table-of-contents"><i class="fa fa-check"></i>Table of contents</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="02-Importing.html"><a href="02-Importing.html"><i class="fa fa-check"></i><b>2</b> Importing</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="02-Importing.html"><a href="02-Importing.html#bracken"><i class="fa fa-check"></i><b>2.1</b> Bracken</a>
@@ -161,7 +168,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="02-Importing.html"><a href="02-Importing.html#plain-text-files"><i class="fa fa-check"></i><b>2.2</b> Plain text files</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="03-Plotly.html"><a href="03-Plotly.html"><i class="fa fa-check"></i><b>3</b> R plotly</a></li>
+<li class="chapter" data-level="3" data-path="03-Plotly.html"><a href="03-Plotly.html"><i class="fa fa-check"></i><b>3</b> R plotly</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-Plotly.html"><a href="03-Plotly.html#jupyter-notebook-1"><i class="fa fa-check"></i><b>3.1</b> Jupyter notebook</a></li>
+<li class="chapter" data-level="3.2" data-path="03-Plotly.html"><a href="03-Plotly.html#penguin-data"><i class="fa fa-check"></i><b>3.2</b> Penguin data</a></li>
+<li class="chapter" data-level="3.3" data-path="03-Plotly.html"><a href="03-Plotly.html#png-with-ggplot2"><i class="fa fa-check"></i><b>3.3</b> PNG with ggplot2</a></li>
+<li class="chapter" data-level="3.4" data-path="03-Plotly.html"><a href="03-Plotly.html#html-with-plotly"><i class="fa fa-check"></i><b>3.4</b> HTML with plotly</a></li>
+<li class="chapter" data-level="3.5" data-path="03-Plotly.html"><a href="03-Plotly.html#recap"><i class="fa fa-check"></i><b>3.5</b> Recap</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -185,7 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">R community analysis supplemental</h1>
 <p class="author"><em>Matthew R. Gemmell</em></p>
-<p class="date"><em>2023-08-31</em></p>
+<p class="date"><em>2023-09-20</em></p>
 </div>
 <p><img src="figures/NEOF.png" width="30%" style="display: block; margin: auto;" /></p>
 
@@ -193,15 +207,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="01-R_community_supplemental.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="figures/R_community.png" width="20%" style="display: block; margin: auto;" /></p>
-<p>This book contains some supplemental materials for the R community workshop.
-The contents include:</p>
-<ul>
-<li>Importing other types of data in a <code>phyloseq</code> object.</li>
-<li>Using plotly to convert <code>ggplot2</code> plots into interactive HTML based plots.</li>
-</ul>
+<p><img src="figures/r_comm_supplement.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>This book contains some supplemental materials for the R community workshop.</p>
+<p>Ensure you are using the <code>r_community</code> <code>mamba</code> environment either with <code>. usercommunity</code> (workshop) or on your own installation (<a href="https://neof-workshops.github.io/R_community_whqkt8/Course/19-Appendix.html">creation instructions</a>).</p>
+<div id="table-of-contents" class="section level2 unnumbered hasAnchor">
+<h2>Table of contents<a href="01-R_community_supplemental.html#table-of-contents" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:center;">
+<a href="02-Importing.html#importchap"><strong>Import other data types into <code>phyloseq</code></strong></a>
+</td>
+<td style="text-align:center;">
+<a href="03-Plotly.html#plotly_chap"><strong>Plotly to create interactive html plots</strong></a>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<a href="02-Importing.html#importchap"><img src="figures/data.png" height="150" /></a>
+</td>
+<td style="text-align:center;">
+<a href="03-Plotly.html#plotly_chap"><img src="figures/html.png" height="150" /></a>
+</td>
+</tr>
+</tbody>
+</table>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 
+</div>
 </div>
 <script>
 

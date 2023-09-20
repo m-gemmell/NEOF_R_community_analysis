@@ -21,6 +21,14 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
+```{r, echo=FALSE}
+#Change colour, border, and text of code chunks
+#Check style.css for .Rchunk
+#https://stackoverflow.com/questions/65627531/change-r-chunk-background-color-in-bookdown-gitbook
+#https://bookdown.org/yihui/rmarkdown-cookbook/chunk-styling.html
+knitr::opts_chunk$set(class.source="Rchunk") 
+```
+
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ``` 
@@ -29,15 +37,37 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 
 # Introduction
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/r_comm_supplement.png", auto_pdf = TRUE)
 ``` 
 
 This book contains some supplemental materials for the R community workshop.
-The contents include:
-
-- Importing other types of data in a `phyloseq` object.
-- Using plotly to convert `ggplot2` plots into interactive HTML based plots.
 
 Ensure you are using the `r_community` `mamba` environment either with `. usercommunity` (workshop) or on your own installation ([creation instructions](https://neof-workshops.github.io/R_community_whqkt8/Course/19-Appendix.html)).
+
+## Table of contents {-}
+
+```{r, echo=FALSE, align="centre"}
+#Create 2 column dataframe
+column_1 <- c(
+  #1 Importng
+  '[**Import other data types into `phyloseq`**](#importchap)', 
+ '[![](figures/data.png){height="150"}](#importchap)'
+)
+column_2 <- c(
+  #2: R packages
+  '[**Plotly to create interactive html plots**](#plotly_chap)', 
+ '[![](figures/html.png){height="150"}](#plotly_chap)'
+)
+table_df <- data.frame(column_1, column_2)
+#Kable and kableextra libraries
+library(knitr)
+library(kableExtra)
+#Create table
+#ALign both column in centre (align = "cc")
+table_df %>%
+  kbl(align= "cc", col.names = NULL) %>%
+  kable_styling(position = "center")
+```
+
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
