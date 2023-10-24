@@ -7,14 +7,15 @@ knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 
 ## Mamba installation and environment {#mamba_install}
 
-Mamba is a reimplementation of conda.
-It is a great tool for installing bioinformatic packages including R packages.
+Mamba is a reimplementation of conda. It is a great tool for installing bioinformatic packages including R packages.
 
-Mamba github: https://github.com/mamba-org/mamba
+Mamba github: <https://github.com/mamba-org/mamba>
 
-Mamba installation: https://github.com/conda-forge/miniforge#mambaforge
+The best way to use Mamba is to install Miniforge. It has both Conda and Mamba commands.
 
-Mamba guide: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html
+Miniforge installation: <https://github.com/conda-forge/miniforge>
+
+Mamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>
 
 To create the mamba environment `r_community` run the below commands in your bash. You will need to have installed `mamba` first.
 
