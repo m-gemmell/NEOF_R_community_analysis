@@ -49,6 +49,8 @@ At the end of the course learners will be able to:
 - Run statistical analysis.
 - Convert static plots into interactive html plots with plotly within R.
 
+There are [supplemental](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/) materials including importing other types of data into phyloseq, and the use of R plotly to produce interactive HTML based plots.
+
 ## Table of contents {-}
 
 ```{r, echo=FALSE, align="centre"}
