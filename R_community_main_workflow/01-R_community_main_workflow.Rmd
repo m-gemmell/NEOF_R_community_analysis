@@ -13,6 +13,14 @@ description: NEOF book for the R community analysis workflow
 cover-image: "figures/NEOF.png"
 ---
 
+```{r, echo=FALSE}
+#Change colour, border, and text of code chunks
+#Check style.css for .Rchunk
+#https://stackoverflow.com/questions/65627531/change-r-chunk-background-color-in-bookdown-gitbook
+#https://bookdown.org/yihui/rmarkdown-cookbook/chunk-styling.html
+knitr::opts_chunk$set(class.source="Rchunk") 
+```
+
 ```{r cite-packages, include = FALSE}
 # automatically create a bib database for R packages
 # add any packages you want to cite here

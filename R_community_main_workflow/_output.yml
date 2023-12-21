@@ -27,4 +27,4 @@ bookdown::epub_book: default
 bookdown::html_book:
   split_by: none
   css: style.css
-  toc: false
+  toc: no

@@ -13,21 +13,15 @@ description: NEOF book for the R community analysis workflow
 cover-image: "figures/NEOF.png"
 ---
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
+library(webexercises)
+```
 
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+```{r, echo=FALSE}
+#Change colour, border, and text of code chunks
+#Check style.css for .Rchunk
+#https://stackoverflow.com/questions/65627531/change-r-chunk-background-color-in-bookdown-gitbook
+#https://bookdown.org/yihui/rmarkdown-cookbook/chunk-styling.html
+knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
 ```{r cite-packages, include = FALSE}
@@ -134,21 +128,7 @@ table_df %>%
 <!--chapter:end:01-R_community_main_workflow.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Dataset & workflow {#datasetandworkflowchap}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -221,21 +201,7 @@ knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 <!--chapter:end:02-Dataset_and_workflow.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # R Packages {#rpackchap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -340,21 +306,7 @@ For more info on `phyloseq` and associated packages please see the [appendix](#p
 <!--chapter:end:03-R_packages.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Set-up {#setupchap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -417,21 +369,7 @@ For more about mamba and how to create your own `r_community` environment please
 <!--chapter:end:04-Setup.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Jupyter {#jupyterchap}
 
@@ -635,21 +573,7 @@ For more info on `jupter-notebook` please see the [appendix](#jupyter_appendix).
 <!--chapter:end:05-Jupyter.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (PART\*) Data preparation {-}
 
@@ -670,21 +594,7 @@ However, from chapters 10 onwards you will make more decisions on how many __"Co
 <!--chapter:end:06-Preprocess_part.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Import {#import_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -848,21 +758,7 @@ We have imported our QIIME2 artifacts into one `phyloseq` object so we can analy
 <!--chapter:end:07-Import.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Summarise phyloseq {#sum_phyloseq_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1043,21 +939,7 @@ We now have an idea of some of the attributes of our dataset. This includes the 
 <!--chapter:end:08-Summarise_phyloseq.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Minimum read depth {#mindepthchap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1457,21 +1339,7 @@ Ultimately we did not keep the filtered `phyloseq` object but it is good to know
 <!--chapter:end:09-Minimum_read_depth.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (PART\*) Taxonomy {-}
 
@@ -1579,21 +1447,7 @@ We have produced a `phyloseq` object containing a Phylum relative abundance tabl
 <!--chapter:end:10-Relative_abundance.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Taxa plots {#chaptaxaplots}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1829,21 +1683,7 @@ We will reinforce this by producing Family and Genus based plots in the next cha
 <!--chapter:end:11-Taxa_plots.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Family & Genus plots {#family_genus_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -2195,21 +2035,7 @@ Once you are happy you can Save then __Close and Halt__ the notebook.
 <!--chapter:end:12-Family_and_Genus_taxa.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (PART\*) Diversity analysis {-}
 
@@ -2237,21 +2063,7 @@ During this we will attempt to answer our questions from [Chapter 2](#sum_and_qs
 <!--chapter:end:13-Diversity_analysis.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Rarefaction {#rarefaction_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -2540,21 +2352,7 @@ We now have an abundance table, relative abundance table, and rarefied abundance
 <!--chapter:end:14-Rarefaction.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Alpha diversity {#alpha_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -2904,21 +2702,7 @@ The environmental samples have much higher diversity samples than the media samp
 <!--chapter:end:15-Alpha.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Beta {#beta_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -3368,21 +3152,7 @@ Let's try to figure out which taxa are affected in which ways.
 <!--chapter:end:16-Beta.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Differential abundance (DA) analysis {#DA_chap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -3798,21 +3568,7 @@ That is the last of the analysis. In the final chapter we will review the steps 
 <!--chapter:end:17-Differential_abundance_analysis.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (PART\*) Outro {-}
 
@@ -4000,21 +3756,7 @@ Great work and thanks for reading.
 <!--chapter:end:18-Summary.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (APPENDIX) Appendix {-}
 
