@@ -70,11 +70,11 @@ We'll therefore change the order with the `factor()` function and `levels = ` op
 
 ```{r, eval = FALSE}
 #Ensure ENV is our reference level for media
-sample_data(pseq)$media <- factor(sample_data(pseq)$media,
+phyloseq::sample_data(pseq)$media <- factor(phyloseq::sample_data(pseq)$media,
                                   levels = c("ENV", "CVP", "KBC", "TSA"))
 levels(phyloseq::sample_data(pseq)$media)
 #Ensure UD is our reference level for site
-sample_data(pseq)$site <- factor(sample_data(pseq)$site,
+phyloseq::sample_data(pseq)$site <- factor(phyloseq::sample_data(pseq)$site,
                                   levels = c("UD", "MD", "LD"))
 levels(phyloseq::sample_data(pseq)$site)
 ```
@@ -190,7 +190,7 @@ Remove columns unrelated to the media comparisons.
 
 ```{r, eval = FALSE}
 #Extract the taxon column and the media columns from the results
-#get positions of columns which contain "media"
+#Get positions of columns which contain "media"
 media_colnames_pos <- grep("media", colnames(res_ancom_class))
 #Taxon column and media column names
 media_colnames <- colnames(res_ancom_class)[c(1,media_colnames_pos)]

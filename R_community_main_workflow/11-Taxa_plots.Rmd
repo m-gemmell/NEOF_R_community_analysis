@@ -202,7 +202,7 @@ phylum_site_media_bar <-
   microbiome::plot_composition(phylum_rareaggregate_pseq, 
                                otu.sort ="abundance",
                                average_by = "site.media") +
-  xlab("Sample") + ylab("Relative abundance") +
+  xlab("Site & Media") + ylab("Relative abundance") +
   ggtitle("Phylum relative abundance bar chart by site & media") +
   scale_fill_brewer("Phylum", palette = "Paired")
 #Save ggplot object as png

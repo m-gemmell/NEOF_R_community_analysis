@@ -90,7 +90,7 @@ Due to the relative large amount of output to screen we'll put the next part int
 knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
 ```
 
-In our new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`).
+In a new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`).
 
 ```{r, eval=FALSE}
 #Number of reads per sample
@@ -143,7 +143,7 @@ phyloseq::otu_table(pseq)
 ```
 
 With this function we will extract the number of ASVs in the original abundance table. 
-We will then save this in a vector.
+We will then save this in a vector using a new __cell__.
 
 ```{r, eval=FALSE}
 #Each row is an ASV and each column is a sample

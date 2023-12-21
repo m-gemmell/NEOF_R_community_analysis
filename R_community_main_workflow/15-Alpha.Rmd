@@ -115,7 +115,7 @@ phyloseq::plot_richness(physeq = pseq_rarefy,
             ggplot2::geom_boxplot()
 #Save ggplot object as png file
 ggsave(filename = "./alpha_div.png", plot = alpha_plot,
-       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+       device = "png", dpi = 300, units = "mm", height = 200, width = 200)
 #Display the plot in jupyter notebook
 IRdisplay::display_png(file="./alpha_div.png")
 ```
@@ -129,7 +129,7 @@ Choosing a good height and width size can make plots easier to read.
 We'll try 150 (height) and 250 (width).
 
 ```{r , eval = FALSE}
-# Produce ggplot object of boxplot
+#Produce ggplot object of boxplot
 alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
                         measures = c("Observed","Chao1","Shannon")) +
@@ -240,7 +240,7 @@ Edit and run the code so it looks like the below.
 __Tip:__ Remember to change the name of your png file in the `ggsave()` and `IRdisplay::display_png()` functions.
 
 ```{r , eval = FALSE}
-# Produce ggplot object of violin plot
+#Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
                         measures = c("Observed","Chao1","Shannon")) +
@@ -258,7 +258,7 @@ This has the option `alpha=0.5` where alpha resents the transparency of the dots
 Alpha is a common option used for many plots.
 
 ```{r , eval = FALSE}
-# Produce ggplot object of violin plot
+#Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
                         measures = c("Observed","Chao1","Shannon")) +
@@ -283,14 +283,14 @@ With all the knowledge, skills, and code from this chapter carry out the followi
 
 `r hide("Alpha sites solution")`
 ```{r , eval = FALSE}
-# Produce ggplot object of violin plot
-alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+#Produce ggplot object of violin plot
+alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "site",
                         measures = c("Observed","Chao1","Shannon")) +
-                          ggplot2::geom_boxplot() +
+                          ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5)
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Alpha_diversity_site_violinplot.png", plot = alpha_boxplot,
+ggsave(filename = "./Alpha_diversity_site_violinplot.png", plot = alpha_violinplot,
        device = "png", dpi = 300, units = "mm", height = 150, width = 250)
 #Display plot
 IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")

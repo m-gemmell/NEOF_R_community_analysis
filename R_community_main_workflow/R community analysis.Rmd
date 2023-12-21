@@ -852,7 +852,7 @@ Due to the relative large amount of output to screen we'll put the next part int
 knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
 ```
 
-In our new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`).
+In a new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`).
 
 ```{r, eval=FALSE}
 #Number of reads per sample
@@ -905,7 +905,7 @@ phyloseq::otu_table(pseq)
 ```
 
 With this function we will extract the number of ASVs in the original abundance table. 
-We will then save this in a vector.
+We will then save this in a vector using a new __cell__.
 
 ```{r, eval=FALSE}
 #Each row is an ASV and each column is a sample
@@ -1653,7 +1653,7 @@ phylum_site_media_bar <-
   microbiome::plot_composition(phylum_rareaggregate_pseq, 
                                otu.sort ="abundance",
                                average_by = "site.media") +
-  xlab("Sample") + ylab("Relative abundance") +
+  xlab("Site & Media") + ylab("Relative abundance") +
   ggtitle("Phylum relative abundance bar chart by site & media") +
   scale_fill_brewer("Phylum", palette = "Paired")
 #Save ggplot object as png
@@ -1752,7 +1752,7 @@ family_heatmap <- microbiome::plot_composition(family_pseq, plot.type = "heatmap
   coord_flip()
 #Save ggplot object as png file
 ggsave(filename = "./family_relabund_heatmap.png", plot = family_heatmap,
-       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+       device = "png", dpi = 300, units = "mm", height = 350, width = 200)
 #Display the plot in jupyter notebook
 IRdisplay::display_png(file="./family_relabund_heatmap.png")
 ```
@@ -2471,7 +2471,7 @@ phyloseq::plot_richness(physeq = pseq_rarefy,
             ggplot2::geom_boxplot()
 #Save ggplot object as png file
 ggsave(filename = "./alpha_div.png", plot = alpha_plot,
-       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+       device = "png", dpi = 300, units = "mm", height = 200, width = 200)
 #Display the plot in jupyter notebook
 IRdisplay::display_png(file="./alpha_div.png")
 ```
@@ -2485,7 +2485,7 @@ Choosing a good height and width size can make plots easier to read.
 We'll try 150 (height) and 250 (width).
 
 ```{r , eval = FALSE}
-# Produce ggplot object of boxplot
+#Produce ggplot object of boxplot
 alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
                         measures = c("Observed","Chao1","Shannon")) +
@@ -2596,7 +2596,7 @@ Edit and run the code so it looks like the below.
 __Tip:__ Remember to change the name of your png file in the `ggsave()` and `IRdisplay::display_png()` functions.
 
 ```{r , eval = FALSE}
-# Produce ggplot object of violin plot
+#Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
                         measures = c("Observed","Chao1","Shannon")) +
@@ -2614,7 +2614,7 @@ This has the option `alpha=0.5` where alpha resents the transparency of the dots
 Alpha is a common option used for many plots.
 
 ```{r , eval = FALSE}
-# Produce ggplot object of violin plot
+#Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
                         measures = c("Observed","Chao1","Shannon")) +
@@ -2639,14 +2639,14 @@ With all the knowledge, skills, and code from this chapter carry out the followi
 
 `r hide("Alpha sites solution")`
 ```{r , eval = FALSE}
-# Produce ggplot object of violin plot
-alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+#Produce ggplot object of violin plot
+alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "site",
                         measures = c("Observed","Chao1","Shannon")) +
-                          ggplot2::geom_boxplot() +
+                          ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5)
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Alpha_diversity_site_violinplot.png", plot = alpha_boxplot,
+ggsave(filename = "./Alpha_diversity_site_violinplot.png", plot = alpha_violinplot,
        device = "png", dpi = 300, units = "mm", height = 150, width = 250)
 #Display plot
 IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
@@ -2934,7 +2934,8 @@ for(i in 1:ncol(cbn)){
   wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
   #PERMANOVA/ADONIS of media
   #Ensure to change metadata group if using different grouping (media)
-  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, data = metadf_subset, by = "margin")
+  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, 
+                                             data = metadf_subset, by = "margin")
   #Add the group names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
   pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
@@ -3014,9 +3015,9 @@ ord.mds.wunifrac <- phyloseq::ordinate(pseq_rarefy_no_env, method = "MDS", dista
 #Plot ordination
 nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy_no_env, ord.mds.wunifrac,
                                    color = "site", shape = "media") +
-                  #Choose a range of the x axis to zoom into
-                  #This was chosen after viewing the plot without the zoom
-                  ggforce::facet_zoom( xlim = c(-0.055,-0.03), zoom.size = 1)
+                  #Choose a ranges for the x axis and y axis to zoom into
+                  #Thiese were chosen after viewing the plot without the zoom
+                  ggforce::facet_zoom( xlim = c(-0.055,-0.03), ylim = c(-0.01,0.005) zoom.size = 1)
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_no_env.png", plot = nmds.wunifrac,
        device = "png", dpi = 300, units = "mm", height = 150, width = 150)
@@ -3063,7 +3064,8 @@ for(i in 1:ncol(cbn)){
   wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
   #PERMANOVA/ADONIS of site
   #Ensure to change metadata group if using different grouping (site)
-  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ site, data = metadf_subset, by = "margin")
+  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ site, 
+                                             data = metadf_subset, by = "margin")
   #Add the gorup names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
   pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
@@ -3104,7 +3106,8 @@ for(i in 1:ncol(cbn)){
   wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
   #PERMANOVA/ADONIS of site & media
   #Ensure to change metadata group if using different grouping (site & media)
-  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ site.media, data = metadf_subset, by = "margin")
+  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ site.media, 
+                                             data = metadf_subset, by = "margin")
   #Add the gorup names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
   pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
@@ -3226,11 +3229,11 @@ We'll therefore change the order with the `factor()` function and `levels = ` op
 
 ```{r, eval = FALSE}
 #Ensure ENV is our reference level for media
-sample_data(pseq)$media <- factor(sample_data(pseq)$media,
+phyloseq::sample_data(pseq)$media <- factor(phyloseq::sample_data(pseq)$media,
                                   levels = c("ENV", "CVP", "KBC", "TSA"))
 levels(phyloseq::sample_data(pseq)$media)
 #Ensure UD is our reference level for site
-sample_data(pseq)$site <- factor(sample_data(pseq)$site,
+phyloseq::sample_data(pseq)$site <- factor(phyloseq::sample_data(pseq)$site,
                                   levels = c("UD", "MD", "LD"))
 levels(phyloseq::sample_data(pseq)$site)
 ```
@@ -3346,7 +3349,7 @@ Remove columns unrelated to the media comparisons.
 
 ```{r, eval = FALSE}
 #Extract the taxon column and the media columns from the results
-#get positions of columns which contain "media"
+#Get positions of columns which contain "media"
 media_colnames_pos <- grep("media", colnames(res_ancom_class))
 #Taxon column and media column names
 media_colnames <- colnames(res_ancom_class)[c(1,media_colnames_pos)]

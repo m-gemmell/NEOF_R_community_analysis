@@ -228,7 +228,8 @@ for(i in 1:ncol(cbn)){
   wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
   #PERMANOVA/ADONIS of media
   #Ensure to change metadata group if using different grouping (media)
-  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, data = metadf_subset, by = "margin")
+  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, 
+                                             data = metadf_subset, by = "margin")
   #Add the group names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
   pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
@@ -308,9 +309,9 @@ ord.mds.wunifrac <- phyloseq::ordinate(pseq_rarefy_no_env, method = "MDS", dista
 #Plot ordination
 nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy_no_env, ord.mds.wunifrac,
                                    color = "site", shape = "media") +
-                  #Choose a range of the x axis to zoom into
-                  #This was chosen after viewing the plot without the zoom
-                  ggforce::facet_zoom( xlim = c(-0.055,-0.03), zoom.size = 1)
+                  #Choose a ranges for the x axis and y axis to zoom into
+                  #Thiese were chosen after viewing the plot without the zoom
+                  ggforce::facet_zoom( xlim = c(-0.055,-0.03), ylim = c(-0.01,0.005) zoom.size = 1)
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_no_env.png", plot = nmds.wunifrac,
        device = "png", dpi = 300, units = "mm", height = 150, width = 150)
@@ -357,7 +358,8 @@ for(i in 1:ncol(cbn)){
   wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
   #PERMANOVA/ADONIS of site
   #Ensure to change metadata group if using different grouping (site)
-  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ site, data = metadf_subset, by = "margin")
+  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ site, 
+                                             data = metadf_subset, by = "margin")
   #Add the gorup names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
   pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
@@ -398,7 +400,8 @@ for(i in 1:ncol(cbn)){
   wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
   #PERMANOVA/ADONIS of site & media
   #Ensure to change metadata group if using different grouping (site & media)
-  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ site.media, data = metadf_subset, by = "margin")
+  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ site.media, 
+                                             data = metadf_subset, by = "margin")
   #Add the gorup names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
   pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]

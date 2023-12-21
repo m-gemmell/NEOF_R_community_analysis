@@ -65,7 +65,7 @@ family_heatmap <- microbiome::plot_composition(family_pseq, plot.type = "heatmap
   coord_flip()
 #Save ggplot object as png file
 ggsave(filename = "./family_relabund_heatmap.png", plot = family_heatmap,
-       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+       device = "png", dpi = 300, units = "mm", height = 350, width = 200)
 #Display the plot in jupyter notebook
 IRdisplay::display_png(file="./family_relabund_heatmap.png")
 ```
