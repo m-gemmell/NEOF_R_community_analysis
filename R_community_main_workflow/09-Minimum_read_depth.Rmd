@@ -142,6 +142,9 @@ The code below creates a `ggplot2` boxplot. We carry this out with 2 functions:
 Write and run the following code in a new cell:
 
 ```{r, eval=FALSE}
+#Load the ggplot2 library
+library(ggplot2)
+
 #Create ggplot2 boxplot of depth by site
 boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=site)) +
   ggplot2::geom_boxplot()
