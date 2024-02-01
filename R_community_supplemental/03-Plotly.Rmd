@@ -1,7 +1,5 @@
 # R plotly {#plotly_chap}
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
-knitr::include_graphics(path = "figures/plotly_icon.png", auto_pdf = TRUE)
-```
+<center>![](figures/plotly_icon.png){style="border-radius: 5px; width: 40%; border: 5px solid #333333"}</center>
 
 [Plotly](https://plotly.com/graphing-libraries/) is a graphing library that allows you to create interactive charts and maps.
 These are in the form of html files.

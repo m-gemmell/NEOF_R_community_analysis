@@ -29,9 +29,7 @@ knitr::write_bib(c(
 knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/NEOF.png){style="border-radius: 15px; width: 30%; border: 5px solid #333333"}</center>
 
 # (PART\*) Intro {-}
 
