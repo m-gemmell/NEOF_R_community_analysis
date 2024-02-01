@@ -5,9 +5,7 @@
 You have learnt a lot during this course. This chapter will summarise what you have done.
 
 ## Dataset
-```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
-knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 50%; border: 5px solid #333333"}</center>
 
 You were introduced to the 16S dataset in the intro.
 This consisted of samples from 3 parts of the Durance river (UD, MD, & LD).

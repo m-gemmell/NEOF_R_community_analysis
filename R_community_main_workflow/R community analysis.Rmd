@@ -32,9 +32,7 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/NEOF.png){style="border-radius: 15px; width: 30%; border: 5px solid #333333"}</center>
 
 # (PART\*) Intro {-}
 
@@ -136,9 +134,7 @@ knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 ``` 
 
 ## Dataset
-```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
-knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 50%; border: 5px solid #333333"}</center>
 
 In this tutorial we will be using a 16S metabarcoding dataset derived from surface water from the Durance River in the south-east of France.
 Two major comparisons were carried out in combination with each other.
@@ -268,7 +264,7 @@ We will use the `iris` dataset (inbuilt into R) to show an example of `ggplot2` 
 
 __Note__: If you would like to see the contents of the `iris` dataset you can run the command `View(iris)` in your R instance later.
 
-```{r}
+```{r, fig.align='center', f}
 #Load library
 library(ggplot2)
 
@@ -297,9 +293,7 @@ knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
 
 In this book we will be working with [`phyloseq`](https://joey711.github.io/phyloseq/) objects to preprocess  our dataset, create visualisations, and carry out statistical analyses. This is a very popular object type for community abundance datasets as it contains the abundance table, metadata, and taxonomy table in one object, optionally containing the phylogenetic tree and reference sequences if wanted/required.
 
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
-knitr::include_graphics(path = "figures/phyloseq_input.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/phyloseq_input.png){style="border-radius: 15px; width: 80%; border: 5px solid #333333"}</center>
 
 For more info on `phyloseq` and associated packages please see the [appendix](#phyloseq_appendix).
 
@@ -338,9 +332,7 @@ The following link is a guide to install Mint Linux:
 https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
 ## Mamba
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>![](figures/mamba_logo.png){style="border-radius: 15px; width: 20%; border: 5px solid #333333"}</center>
 
 This workshop requires a lot of packages. 
 These all can be difficult to install with R. 
@@ -1085,6 +1077,9 @@ The code below creates a `ggplot2` boxplot. We carry this out with 2 functions:
 Write and run the following code in a new cell:
 
 ```{r, eval=FALSE}
+#Load the ggplot2 library
+library(ggplot2)
+
 #Create ggplot2 boxplot of depth by site
 boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=site)) +
   ggplot2::geom_boxplot()
@@ -3580,9 +3575,7 @@ library(webexercises)
 You have learnt a lot during this course. This chapter will summarise what you have done.
 
 ## Dataset
-```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
-knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 50%; border: 5px solid #333333"}</center>
 
 You were introduced to the 16S dataset in the intro.
 This consisted of samples from 3 parts of the Durance river (UD, MD, & LD).
@@ -3764,9 +3757,7 @@ library(webexercises)
 # (APPENDIX) Appendix {-}
 
 # Mamba installs {#mambainstalls}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>![](figures/mamba_logo.png){style="border-radius: 15px; width: 20%; border: 5px solid #333333"}</center>
 
 ## Mamba installation and environment {#mamba_install}
 
@@ -3923,9 +3914,7 @@ Faith's PD represents the minimum total branch length that covers all taxa withi
 
 A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.
 
-```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
-knitr::include_graphics(path = "figures/faith_pd.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/faith_pd.png){style="border-radius: 15px; width: 60%; border: 5px solid #333333"}</center>
 
 ### Simpson {#simpson}
 

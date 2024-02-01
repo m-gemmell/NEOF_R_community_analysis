@@ -63,7 +63,7 @@ We will use the `iris` dataset (inbuilt into R) to show an example of `ggplot2` 
 
 __Note__: If you would like to see the contents of the `iris` dataset you can run the command `View(iris)` in your R instance later.
 
-```{r}
+```{r, fig.align='center', f}
 #Load library
 library(ggplot2)
 
@@ -92,8 +92,6 @@ knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
 
 In this book we will be working with [`phyloseq`](https://joey711.github.io/phyloseq/) objects to preprocess  our dataset, create visualisations, and carry out statistical analyses. This is a very popular object type for community abundance datasets as it contains the abundance table, metadata, and taxonomy table in one object, optionally containing the phylogenetic tree and reference sequences if wanted/required.
 
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
-knitr::include_graphics(path = "figures/phyloseq_input.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/phyloseq_input.png){style="border-radius: 15px; width: 80%; border: 5px solid #333333"}</center>
 
 For more info on `phyloseq` and associated packages please see the [appendix](#phyloseq_appendix).

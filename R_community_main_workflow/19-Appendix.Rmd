@@ -1,9 +1,7 @@
 # (APPENDIX) Appendix {-}
 
 # Mamba installs {#mambainstalls}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>![](figures/mamba_logo.png){style="border-radius: 15px; width: 20%; border: 5px solid #333333"}</center>
 
 ## Mamba installation and environment {#mamba_install}
 
@@ -160,9 +158,7 @@ Faith's PD represents the minimum total branch length that covers all taxa withi
 
 A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.
 
-```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
-knitr::include_graphics(path = "figures/faith_pd.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/faith_pd.png){style="border-radius: 15px; width: 60%; border: 5px solid #333333"}</center>
 
 ### Simpson {#simpson}
 

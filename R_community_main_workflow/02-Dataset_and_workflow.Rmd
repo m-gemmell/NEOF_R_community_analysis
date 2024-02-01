@@ -4,9 +4,7 @@ knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 ``` 
 
 ## Dataset
-```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
-knitr::include_graphics(path = "figures/freshwater_france.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 50%; border: 5px solid #333333"}</center>
 
 In this tutorial we will be using a 16S metabarcoding dataset derived from surface water from the Durance River in the south-east of France.
 Two major comparisons were carried out in combination with each other.

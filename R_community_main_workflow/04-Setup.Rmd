@@ -28,9 +28,7 @@ The following link is a guide to install Mint Linux:
 https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
 ## Mamba
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>![](figures/mamba_logo.png){style="border-radius: 15px; width: 20%; border: 5px solid #333333"}</center>
 
 This workshop requires a lot of packages. 
 These all can be difficult to install with R. 
