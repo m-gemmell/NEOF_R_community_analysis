@@ -29,12 +29,12 @@ knitr::write_bib(c(
 knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
-<center>![](figures/NEOF.png){style="border-radius: 15px; width: 30%; border: 5px solid #333333"}</center>
+<center>![](figures/NEOF.png){style="border-radius: 15px; width: 300px; border: 5px solid #333333"}</center>
 
 # (PART\*) Intro {-}
 
 # Introduction
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/r_comm_supplement.png", auto_pdf = TRUE)
 ``` 
 

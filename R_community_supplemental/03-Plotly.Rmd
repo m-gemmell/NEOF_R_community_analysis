@@ -1,5 +1,5 @@
 # R plotly {#plotly_chap}
-<center>![](figures/plotly_icon.png){style="border-radius: 5px; width: 40%; border: 5px solid #333333"}</center>
+<center>![](figures/plotly_icon.png){style="border-radius: 5px; width: 400px; border: 5px solid #333333"}</center>
 
 [Plotly](https://plotly.com/graphing-libraries/) is a graphing library that allows you to create interactive charts and maps.
 These are in the form of html files.
@@ -11,7 +11,7 @@ However, we'll demonstrate how to plotly plots with [`ggplot2`](https://plotly.c
 You can even embed these in online books like the below chart.
 Try hovering over points to get more information on them.
 
-```{r, eval=FALSE, warning=FALSE, out.width="70%"}
+```{r, eval=FALSE, warning=FALSE, out.width="700px"}
 library("ggplot2")
 library("plotly")
 library(palmerpenguins)
@@ -25,7 +25,7 @@ ggplotly(scatter_plot)
 ```
 
 <center>
-```{r, eval=TRUE, echo=FALSE, warning=FALSE, out.width="70%"}
+```{r, eval=TRUE, echo=FALSE, warning=FALSE, out.width="100%"}
 library("ggplot2")
 library("plotly")
 library(palmerpenguins)
@@ -42,7 +42,7 @@ ggplotly(scatter_plot)
 Additionally, try out the other controls.
 
 ## Jupyter notebook
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/jupyter_notebook.png", auto_pdf = TRUE)
 ```
 
@@ -61,7 +61,7 @@ library("htmlwidgets")
 ```
 
 ## Penguin data
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/penguin_iceberg.png", auto_pdf = TRUE)
 ```
 
@@ -79,7 +79,7 @@ head(penguin_df)
 ```
 
 ## PNG with ggplot2
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/png_file.png", auto_pdf = TRUE)
 ```
 
@@ -102,7 +102,7 @@ IRdisplay::display_png(file = "penguin_boxplot.png")
 ```
 
 ## HTML with plotly
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/html.png", auto_pdf = TRUE)
 ```
 
@@ -128,7 +128,7 @@ plotly::embed_notebook(plotly_boxplot)
 You can also open "penguin_boxplot.html" via the jupyter navigation page to view it.
 
 ## Recap
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 

@@ -1,12 +1,12 @@
 # Importing {#importchap}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 ``` 
 
 Apart from `QIIME2` artifact files, other file types from other programs cann be imported into a `phyloseq` object.
 
 ## Bracken
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/bracken.png", auto_pdf = TRUE)
 ``` 
 
@@ -14,7 +14,7 @@ A common way to carry out shotgun metagenomics taxonomic abundance profiling is 
 This section will show you how to import the `bracken` output.
 
 ### Bracken: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/setup_3.png", auto_pdf = TRUE)
 ``` 
 
@@ -36,7 +36,7 @@ cp /pub14/tea/nsc206/NEOF/R_community/bracken_reports/KW_metadata.tsv .
 ```
 
 ### Bracken: Convert to biom
-```{r, fig.align = 'center',out.width= '8%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '80px', echo=FALSE }
 knitr::include_graphics(path = "figures/biom_tie.png", auto_pdf = TRUE)
 ```
 
@@ -61,7 +61,7 @@ If your file has a header starting with "#OTU ID" and the sample names, followed
 You'll also have the taxonomy lineage as the last column because we added in `--header-key taxonomy`.
 
 ### Jupyter notebook
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/jupyter_notebook.png", auto_pdf = TRUE)
 ```
 
@@ -78,7 +78,7 @@ library("microbiome")
 ```
 
 #### Import biom into phyloseq {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
 ```
 
@@ -90,7 +90,7 @@ pseq <- phyloseq::import_biom("/KW.biom")
 ```
 
 #### Import sample data {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/samples.png", auto_pdf = TRUE)
 ```
 
@@ -116,7 +116,7 @@ microbiome::summarize_phyloseq(pseq)
 ```
 
 #### Taxonomy {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
 ```
 
@@ -156,7 +156,7 @@ Know your data, look at the literature, and make an informed decision.
 Of course it can be useful to look at multiple levels of taxonomy.
 
 ## Plain text files
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/plain_text.png", auto_pdf = TRUE)
 ```
 
