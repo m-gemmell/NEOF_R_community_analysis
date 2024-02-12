@@ -32,12 +32,12 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
-<center>![](figures/NEOF.png){style="border-radius: 15px; width: 30%; border: 5px solid #333333"}</center>
+<center>![](figures/NEOF.png){style="border-radius: 15px; width: 300px; border: 5px solid #333333"}</center>
 
 # (PART\*) Intro {-}
 
 # Introduction
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
 ``` 
 
@@ -129,12 +129,12 @@ table_df %>%
 library(webexercises)
 ```
 # Dataset & workflow {#datasetandworkflowchap}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 ``` 
 
 ## Dataset
-<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 50%; border: 5px solid #333333"}</center>
+<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
 
 In this tutorial we will be using a 16S metabarcoding dataset derived from surface water from the Durance River in the south-east of France.
 Two major comparisons were carried out in combination with each other.
@@ -142,7 +142,7 @@ Two major comparisons were carried out in combination with each other.
 [Link to paper](https://www.mdpi.com/2076-2607/8/8/1129)
 
 ### Sites
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/river.png", auto_pdf = TRUE)
 ``` 
 
@@ -153,7 +153,7 @@ Three different sites were chosen on the Durance River. These three sites were r
 - __Lower Durance sampling site (LD)__: Lower part of agricultural land with intensive production of fruits, cereals, and vegetables.
 
 ### Culture media
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
 ```
 
@@ -165,7 +165,7 @@ Surface water was sampled and different culture media were used to produce bacte
 - __CVP__ incubated at 28°C for 3 days.
 
 ### Summary & questions {#sum_and_qs}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
 ```
 
@@ -179,7 +179,7 @@ With this data we can ask and investigate the following questions:
 - Do the media samples differ from the ENV samples? If so, how?
 
 ## Workflow
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 ```
 
@@ -200,14 +200,14 @@ knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 library(webexercises)
 ```
 # R Packages {#rpackchap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/R.png", auto_pdf = TRUE)
 ```  
 
 During this workshop we will use various R packages with their own intricacies. Before going into analysis we'll introduce you to some of these important concepts.
 
 ## R packages/libraries
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/r_package.png", auto_pdf = TRUE)
 ```
 
@@ -254,7 +254,7 @@ This convention has 2 benefits:
 - Different packages may have functions with the same name. Specifying the package will ensure you are using the correct function.
 
 ## The grammar of graphics
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
 ``` 
 
@@ -287,13 +287,13 @@ That was a quick introduction to the grammar of graphics. We will be using this 
 For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
 
 ## phyloseq
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
 ``` 
 
 In this book we will be working with [`phyloseq`](https://joey711.github.io/phyloseq/) objects to preprocess  our dataset, create visualisations, and carry out statistical analyses. This is a very popular object type for community abundance datasets as it contains the abundance table, metadata, and taxonomy table in one object, optionally containing the phylogenetic tree and reference sequences if wanted/required.
 
-<center>![](figures/phyloseq_input.png){style="border-radius: 15px; width: 80%; border: 5px solid #333333"}</center>
+<center>![](figures/phyloseq_input.png){style="border-radius: 15px; width: 800px; border: 5px solid #333333"}</center>
 
 For more info on `phyloseq` and associated packages please see the [appendix](#phyloseq_appendix).
 
@@ -303,7 +303,7 @@ For more info on `phyloseq` and associated packages please see the [appendix](#p
 library(webexercises)
 ```
 # Set-up {#setupchap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/start.png", auto_pdf = TRUE)
 ```
 
@@ -317,7 +317,7 @@ You will now be in a logged-in Linux VNC desktop.
 You will see something as below (there may be only one terminal which is fine). 
 If you do not see something similar please ask for assistance.
 
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '800px', echo=FALSE }
 knitr::include_graphics(path = "figures/nsc200_logon.png", auto_pdf = TRUE)
 ```
 
@@ -332,7 +332,7 @@ The following link is a guide to install Mint Linux:
 https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
 ## Mamba
-<center>![](figures/mamba_logo.png){style="border-radius: 15px; width: 20%; border: 5px solid #333333"}</center>
+<center>![](figures/mamba_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333"}</center>
 
 This workshop requires a lot of packages. 
 These all can be difficult to install with R. 
@@ -365,9 +365,8 @@ library(webexercises)
 ```
 # Jupyter {#jupyterchap}
 
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_logo.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333; background-color: white"}</center>
+
 
 [`Jupyter-notebook`](https://jupyter.org/) is a nice browser based method to write, edit, and run code. It was initally created for Python coding, but has since branched out to many other languages, such as `R`.
 
@@ -411,9 +410,7 @@ icons::fontawesome("bars")
 ) on the top left for a dropdown menu which includes zoom options.
 `r unhide()`
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_example_1.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 ## Create R notebook
 
@@ -424,9 +421,7 @@ The next step is to create a R notebook.
 
 This will open up a new R notebook like below.
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_example_2.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 ## Cells and code
 
@@ -443,9 +438,7 @@ When pressing enter in **cells** it will create a new line. To run all commands 
 
 Run your current **cell** and you should see something like below.
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_example_3.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 ## Create new cells
 
@@ -484,15 +477,13 @@ To run all **cells** from the start:
 
 You should then see something like the below in your notebook.
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_example_4.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 There is no output printed for __cell__ 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in **cell** 2 before **cell** 3 was run.
 
 ## Saving the file
 
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
 ```
 
@@ -520,9 +511,7 @@ To add a header __cell__ to the top of our notebook:
 -   Click on the **"Code"** drop down and select **"Markdown"**.
     -   The **"Heading"** option no longer works.
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_example_5.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_example_5.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 -   Add the following to the **"Markdown"** cell to create a first level header.
     -   Ensure you have a space between the `#` and header text ("Tutorial").
@@ -546,9 +535,7 @@ To close the notebook:
 
 When you are back in the file explorer page you may not yet set the new file you saved. If so, you will need to refresh the page with the Refresh button `r icons::ionicons("refresh")` towards the top right.
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_refresh.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 With that quick tutorial of `jupyter-notebook` we can start our community analysis in the next chapter.
 
@@ -570,7 +557,7 @@ library(webexercises)
 # (PART\*) Data preparation {-}
 
 # Data prep intro {#preprocess_section}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
 ```
 
@@ -589,7 +576,7 @@ However, from chapters 10 onwards you will make more decisions on how many __"Co
 library(webexercises)
 ```
 # Import {#import_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ```
 
@@ -597,7 +584,7 @@ Before carrying out any analysis we first need to import our QIIME2 artifacts in
 
 ## Import: notebook
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
 ```
 
@@ -623,7 +610,7 @@ Next step is to create a new R notebook, rename it to __"01-Import"__, and save 
 
 ## qiime2R
 
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '400px', echo=FALSE }
 knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
 ```
 
@@ -655,7 +642,7 @@ This command creates a phyloseq object named `pseq`. It contains:
 -   The sample metadata (`metadata = "media_metadata.txt"`)
 
 ## Import: Summarise phyloseq
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
 ```
 
@@ -722,7 +709,7 @@ Sparsity can be any value from 0-1. The higher the value the more sparse it is, 
 If you would like to see how the function calculates its values you can view the [source code online](https://rdrr.io/github/microbiome/microbiome/src/R/summarize_phyloseq.R).
 
 ## Save the phyloseq object
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
 ```
 
@@ -741,7 +728,7 @@ This saves our object `pseq` into the file `phyloseq.RData`. The suffix `.RData`
 We have saved our final object of the notebook. Close and halt it.
 
 ## Import: recap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 
@@ -753,7 +740,7 @@ We have imported our QIIME2 artifacts into one `phyloseq` object so we can analy
 library(webexercises)
 ```
 # Summarise phyloseq {#sum_phyloseq_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/transform.png", auto_pdf = TRUE)
 ```
 
@@ -762,7 +749,7 @@ For the next 2 chapters we will use one notebook. We will setup this notebook wi
 After this, we will summarise the `phyloseq` object. We will investigate the read depth of samples and the number of ASVs in our dataset.
 
 ## Summarise: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/setup_2.png", auto_pdf = TRUE)
 ```
 
@@ -810,7 +797,7 @@ load("phyloseq.RData")
 Ensure you have run the code in this cell.
 
 ### Summarise header
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/header.png", auto_pdf = TRUE)
 ```
 
@@ -824,7 +811,7 @@ In a new __"Markdown"__ cell add the following 2nd level header.
 ```
 
 ### Summarise phyloseq
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
 ```
 
@@ -840,7 +827,7 @@ We ran this code in the __"01-Import.ipynb"__. You can therefore check if our ne
 Due to the relative large amount of output to screen we'll put the next part into a new __cell__.
 
 ### Reads per sample
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
 ```
 
@@ -865,7 +852,7 @@ dev.off()
 ```
 
 ### Display png
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
 ``` 
 
@@ -881,7 +868,7 @@ IRdisplay::display_png(file="./sample_depth_histogram.png")
 This information is very useful. We will use it in the next chapter to determine what our minimum read depth should be.
 
 ### ASVs per sample
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
 ```
 
@@ -922,7 +909,7 @@ rm(num_asvs_vec)
 ```
 
 ## Summarise: recap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 
@@ -934,7 +921,7 @@ We now have an idea of some of the attributes of our dataset. This includes the 
 library(webexercises)
 ```
 # Minimum read depth {#mindepthchap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/depth_diver.png", auto_pdf = TRUE)
 ``` 
 
@@ -953,7 +940,7 @@ In this chapter we will:
 - Demonstrate how to filter samples by depth.
 
 ## Considerations
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/consider.png", auto_pdf = TRUE)
 ``` 
 
@@ -976,7 +963,7 @@ There are 3 main considerations to take into account when choosing an appropriat
 That is a brief overview of that topic. If you are interested in more I suggest you look at papers where they have studied an environment similar to yours.
 
 ## Minimum read depth section title
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/header_l2.png", auto_pdf = TRUE)
 ``` 
 
@@ -989,7 +976,7 @@ Create a new __"Markdown"__ __cell__ and add the following 2nd level header.
 ```
 
 ## Read depth vector and histogram
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
 ```
 
@@ -1003,14 +990,14 @@ opts_p <- c("__1-8__", answer="__10,000-18,000__", "__20,000+__")
 This is a good first step but what if we want to know how the read depths vary between sample groups?
 
 ## Sample depth boxplot {#depth-boxplots}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/boxplot.png", auto_pdf = TRUE)
 ```
 
 We are going to use `ggplot2` to create a couple boxplots to show the sequencing depth ranges of the different sample groups (Site & Media).
 
 ### Creating a data frame for boxplots
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/metadata.png", auto_pdf = TRUE)
 ```
 
@@ -1059,7 +1046,7 @@ head(abundance_metadf)
 Great! We will use this data frame to create 2 boxplots.
 
 ### ggplot2 boxplot
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/boxplots_groups.png", auto_pdf = TRUE)
 ```
 
@@ -1088,7 +1075,7 @@ boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=site)) +
 We have a saved `ggplot2` object but now we need to save it as a image file and display it.
 
 ### Save ggplot as png
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/png_file.png", auto_pdf = TRUE)
 ``` 
 
@@ -1110,7 +1097,7 @@ opts_p <- c(answer="__LD (Lower Durance)__", "__MD (Middle Durance)__", "__UD (U
 - Which site has the highest median depth (middle line of boxplot)? `r longmcq(opts_p)`
 
 ### Media by depth boxplot
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
 ```
 
@@ -1139,7 +1126,7 @@ From the boxplots we can see there is no drastic difference between the depths o
 For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
 
 ## Rarefaction curve {#chap9rarefaction}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ```
 
@@ -1156,7 +1143,7 @@ It has a variety of functions but it uses normal R data frames rather than `phyl
 We will therefore only use it for rarefaction purposes.
 
 ### ASV abundance data frame
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
 ```
 
@@ -1173,7 +1160,7 @@ asv_abund_df <- as.data.frame(t(phyloseq::otu_table(pseq)))
 ```
 
 ### vegan's rarecurve
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/vegan.png", auto_pdf = TRUE)
 ```
 
@@ -1209,7 +1196,7 @@ However, more rarefaction functions, analysis, and theories will be covered in t
 You could use some of these at this point to help you determine your minimum read depth for your own datasets.
 
 ## Filtering by minimum read depth
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/water_filter.png", auto_pdf = TRUE)
 ```
 
@@ -1317,7 +1304,7 @@ rm(pseq_min11K)
 Once you are finished with this notebook you can save it then close and halt it.
 
 ## Minmum read depth: Summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1339,7 +1326,7 @@ library(webexercises)
 # (PART\*) Taxonomy {-}
 
 # Taxa relative abundance {#taxa_relabund_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
 ```
 
@@ -1351,7 +1338,7 @@ We would use read depth filtered data if we wanted to use it for other downstrea
 But, as stated in the last chapter all our samples had sufficient depth, so we will use our original abundance `phyloseq` object.
 
 ## Taxa relative abundance: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/packages.png", auto_pdf = TRUE)
 ```
 
@@ -1374,7 +1361,7 @@ From now on you will get less instructions on your notebook structure.
 Please create your own coding and markdown cells where you think appropriate.
 
 ## Relative abundance transformation
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '400px', echo=FALSE }
 knitr::include_graphics(path = "figures/count_to_percent.png", auto_pdf = TRUE)
 ```
 
@@ -1402,7 +1389,7 @@ You will notice the read count for each sample is __1__. This abundance table co
 We will use this to produce all our different taxa tables.
 
 ## Aggregate taxa
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/aggregate_taxa.png", auto_pdf = TRUE)
 ```
 
@@ -1433,7 +1420,7 @@ microbiome::readcount(phylum_pseq)
 ```
 
 ## Taxa Relative abundance: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1445,14 +1432,14 @@ We have produced a `phyloseq` object containing a Phylum relative abundance tabl
 library(webexercises)
 ```
 # Taxa plots {#chaptaxaplots}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/owl_eyes.png", auto_pdf = TRUE)
 ```
 
 Now that we have our Phylum relative abundance `phyloseq` we can create a bar chart.
 
 ## Simple bar chart
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
 ```
 
@@ -1471,7 +1458,7 @@ IRdisplay::display_png(file="./phylum_relabund_simple.png")
 This is a good start but we can improve it.
 
 ### Editing the plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/plus_sign.png", auto_pdf = TRUE)
 ``` 
 
@@ -1492,7 +1479,7 @@ phylum_bar <- microbiome::plot_composition(phylum_pseq) +
 Now save and display the plot.
 
 ## Taxa heatmap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/heatmap.png", auto_pdf = TRUE)
 ``` 
 
@@ -1521,7 +1508,7 @@ opts_p <- c("__Chloroflexi__", "__Firmicutes__", answer="__Proteobacteria__")
 - What is the most abundant phyla across the samples? `r longmcq(opts_p)`
 
 ## Aggregate rare taxa{#aggregateraretaxa}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/origami_rhino.png", auto_pdf = TRUE)
 ``` 
 
@@ -1560,6 +1547,16 @@ phylum_rareaggregate_pseq <- microbiome::aggregate_rare(
 )
 ```
 
+Check the taxa pre and post aggregation plus the taxa groups removed by aggregation.
+
+```{r, eval = FALSE}
+#Taxa pre and post aggregation
+microbiome::taxa(pseq_relabund)
+microbiome::taxa(phylum_rareaggregate_pseq)
+#Taxa groups lost via aggregation
+setdiff(microbiome::taxa(pseq_relabund), microbiome::taxa(phylum_rareaggregate_pseq))
+```
+
 We will plot this as a new taxonomy bar chart with some additions:
 
 ```{r, eval = FALSE}
@@ -1580,7 +1577,7 @@ IRdisplay::display_png(file="./phylum_relabund_rareaggregate.png")
 ```
 
 `r hide("Colour brewer palettes")`
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '800px', echo=FALSE }
 knitr::include_graphics(path = "figures/colour_brewer_palettes.png", auto_pdf = TRUE)
 ```
 [Source](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
@@ -1591,7 +1588,7 @@ We can quite easily see that there are 7 main phyla (excluding "Other").
 Additionally, it seems that the biggest difference between samples is due to the media used.
 
 ## Plot by media
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
 ``` 
 
@@ -1633,7 +1630,7 @@ Which media has the lowest relative abundance of _Protoebacteria_ and the highes
 Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.
 
 ## Plot by site and media
-```{r, fig.align = 'center',out.width= '35%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '350px', echo=FALSE }
 knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
 ``` 
 
@@ -1660,7 +1657,7 @@ IRdisplay::display_png(file="./phylum_relabund_site_media_rareaggregate.png")
 `r unhide()`
 
 ## Taxa plots: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
 ``` 
 
@@ -1681,7 +1678,7 @@ We will reinforce this by producing Family and Genus based plots in the next cha
 library(webexercises)
 ```
 # Family & Genus plots {#family_genus_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/plots.png", auto_pdf = TRUE)
 ```
 
@@ -1696,7 +1693,7 @@ However, it can be easy to overlook some edits.
 It is a good idea to double check your edited code to ensure you have changed the relevant options, and object & file names.
 
 ## Family taxa plots
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/family.png", auto_pdf = TRUE)
 ```
 
@@ -1704,7 +1701,7 @@ This part will show you a nice workflow for creating some family based taxa plot
 Run this at the bottom of your "3-taxonomy_barchart.ipynb" notebook.
 
 ### Aggregate families
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/aggregate_taxa.png", auto_pdf = TRUE)
 ```
 
@@ -1726,7 +1723,7 @@ microbiome::readcount(family_pseq)
 We have 112 families. Quite a bit but hopefully they will all fit into a heatmap.
 
 ### Family heatmap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/heat_topology.png", auto_pdf = TRUE)
 ```
 
@@ -1763,7 +1760,7 @@ This will help to keep the used resources low on the cluster.
 Next we'll carry out our rare aggregation and produce some bar charts.
 
 ### Family rare aggregation
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/elephant_origami.png", auto_pdf = TRUE)
 ```
 
@@ -1859,7 +1856,7 @@ It takes a lot of trial and practice and I find the thresholds to not be very in
 One piece of advise is to only change one threshold at a time during your trial and errors.
 
 ### Family bar chart
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/chocolate_bar.png", auto_pdf = TRUE)
 ```
 
@@ -1885,7 +1882,7 @@ IRdisplay::display_png(file="./family_relabund_rareaggregate.png")
 Brilliant, we are now finished with the Family taxa plots. Onto something harder.
 
 ## Genus taxa plots
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/ginger.png", auto_pdf = TRUE)
 ```
 
@@ -1902,7 +1899,7 @@ Again, I encourage you to copy, paste, and edit previous code.
 You will most likely need to change names of objects and also change various options.
 
 ### Genus taxa plots solutions
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/ginger_solutions.png", auto_pdf = TRUE)
 ```
 
@@ -2035,7 +2032,7 @@ library(webexercises)
 # (PART\*) Diversity analysis {-}
 
 # Diversity analysis intro {#divsection}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ```
 
@@ -2061,7 +2058,7 @@ During this we will attempt to answer our questions from [Chapter 2](#sum_and_qs
 library(webexercises)
 ```
 # Rarefaction {#rarefaction_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/whale.png", auto_pdf = TRUE)
 ```
 
@@ -2070,7 +2067,7 @@ This can be a controversial topic.
 Please make your own decision if you want to do this or not in your own analysis.
 
 ## Rarefaction: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/library_1.png", auto_pdf = TRUE)
 ```
 
@@ -2093,7 +2090,7 @@ Ensure you add markdown and code cells to this notebook to give yourself
 a good structure.
 
 ## Rarefaction curve
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ```
 
@@ -2113,7 +2110,7 @@ will be at a depth of 500 on the x-axis (50 \* 10) and it will show how
 many unique ASVs it has currently discovered from all 10 samplings.
 
 ### Bird analogy
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/ibyster.png", auto_pdf = TRUE)
 ```
 
@@ -2161,7 +2158,7 @@ Strikingly, a week does not appear to be enough time for the New Forest (red). T
 This hopefully helps you understand why rarefaction curves are a useful measure of how well we have captured the diversity of samples at different depths. 
 
 ### Rarefaction curve: simple plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/crayon.png", auto_pdf = TRUE)
 ```
 
@@ -2187,7 +2184,7 @@ IRdisplay::display_png(file="./rarefaction_plot.png")
 ```
 
 ### Rarefaction curve: better plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/palette_brush.png", auto_pdf = TRUE)
 ```
 
@@ -2226,7 +2223,7 @@ The grey horizontal lines help show how many more ASVs are found in a sample aft
 This can be seen in the sample with the highest number of ASVs where 5-20 more ASVs are discovered with its final depth of ~16,000.
 
 ## Rarefaction slope
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/hill_landscape.png", auto_pdf = TRUE)
 ```
 
@@ -2278,7 +2275,7 @@ It is noticeable that the environmental samples have higher slopes than the medi
 Biologically, this makes sense as there is no bias being introduced by media.
 
 ## Rarefy data
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/pangolin.png", auto_pdf = TRUE)
 ```
 
@@ -2333,7 +2330,7 @@ save(num_asvs_vec, file="num_asvs_vec.v2.RData")
 Now you can close and halt the notebook.
 
 ## Rarefaction: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_orange.png", auto_pdf = TRUE)
 ```
 
@@ -2350,7 +2347,7 @@ We now have an abundance table, relative abundance table, and rarefied abundance
 library(webexercises)
 ```
 # Alpha diversity {#alpha_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
 ```
 
@@ -2371,7 +2368,7 @@ Next we'll improve the plot with some extra R packages.
 With these tools we will compare the metrics across the various metadata fields we have.
 
 ## Alpha: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/gear_setup.png", auto_pdf = TRUE)
 ```
 
@@ -2391,7 +2388,7 @@ load("phyloseq_rarefied.RData")
 Reminder to use markdown and code cells in the notebook.
 
 ## Alpha: simple plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/simple_boxplot.png", auto_pdf = TRUE)
 ```
 
@@ -2413,7 +2410,7 @@ The resulting plot is pretty good but is difficult to read.
 We can do 3 major things to make the contents easier to read.
 
 ### Metric choice
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/metric_square_1.png", auto_pdf = TRUE)
 ```
 
@@ -2447,7 +2444,7 @@ To see which measures are available you can see the help page of `phyloseq::plot
 For a list and full description of some of the metrics please see the [APPENDIX](#alpha_appendix).
 
 ### Sample grouping & box plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/boxplots_groups.png", auto_pdf = TRUE)
 ```
 
@@ -2472,7 +2469,7 @@ IRdisplay::display_png(file="./alpha_div.png")
 ```
 
 ### PNG height and width choice
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
 ```
 
@@ -2499,7 +2496,7 @@ Additionally, the size requirements of figures for journals will play a big cons
 One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.
 
 ## Alpha: stats
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/pear.png", auto_pdf = TRUE)
 ```
 
@@ -2545,7 +2542,7 @@ The only group with a large variance is the ENV group with values going from < 1
 For more info on Wilcoxon test [Wikipedia](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test) is a good start.
 
 ### Alpha stats task
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/exercises.png", auto_pdf = TRUE)
 ```
 
@@ -2576,7 +2573,7 @@ We can therefore make these claims about the alpha diversity values of the group
 - Within each media grouping the samples have very similar numbers of ASVs present.
 
 ## Alpha diversity: violin plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/violin.png", auto_pdf = TRUE)
 ```
 
@@ -2623,7 +2620,7 @@ IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
 ```
 
 ## Alpha: Site plots and statistics
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/river.png", auto_pdf = TRUE)
 ```
 
@@ -2684,7 +2681,7 @@ IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
 When you are happy you can close and halt the notebook.
 
 ## Alpha: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ```
 
@@ -2700,7 +2697,7 @@ The environmental samples have much higher diversity samples than the media samp
 library(webexercises)
 ```
 # Beta {#beta_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/beta.png", auto_pdf = TRUE)
 ```
 
@@ -2722,7 +2719,7 @@ In this chapter we will:
 - Determine if there is a statistical difference between beta diversity metrics of sample groups.
 
 ## Beta: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/books.png", auto_pdf = TRUE)
 ```
 
@@ -2741,7 +2738,7 @@ load("phyloseq_rarefied.RData")
 ```
 
 ## Beta: ordination
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/ordinate.png", auto_pdf = TRUE)
 ```
 
@@ -2759,7 +2756,7 @@ To see the different methods and distances that can be used please try `?phylose
 For more information about the different distances please see the [APPENDIX](#beta_appendix).
 
 ## Beta: plot ordination
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
 ```
 
@@ -2807,8 +2804,28 @@ In this case the total is >88% which is very good.
 
 Additionally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).
 
+## Beta: plot ordination with ellipse
+
+We can crate an ordination plot with ellipse, circular shapes showing clustering of groups.
+The statistics of the ellipses and visualisation can be carried out with the function `ggplot2::stat_ellipse()`.
+The primary purpose is to see if clusters overlap each other or are separate.
+
+```{r , eval = FALSE}
+#Plot ordination with ellipse
+#Use one metadata category, media, so the stats can be calculated
+nmds.wunifrac.media <- phyloseq::plot_ordination(pseq_rarefy, ord.mds.wunifrac,
+                                   color = "media")
+#Add ellipse stats
+nmds.wunifrac.media.ellipse <- nmds.wunifrac.media + ggplot2::stat_ellipse()
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_mds_wunifrac_media_ellipse.png", plot = nmds.wunifrac.media.ellipse,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_ellipse.png")
+```
+
 ## Beta: statistics
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/cluster_colours.png", auto_pdf = TRUE)
 ```
 
@@ -2821,7 +2838,7 @@ This allows us to determine if the clustering of groups is significant.
 For more info on PERMANOVA, [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.
 
 ### PERMANOVA
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/permanova.png", auto_pdf = TRUE)
 ```
 
@@ -2853,7 +2870,7 @@ We are primarily interested in the P-value column (`Pr(>F)`).
 We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.018).
 
 ### Pairwise PERMANOVA
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/pear.png", auto_pdf = TRUE)
 ```
 
@@ -2961,7 +2978,7 @@ This makes sense from our taxonomy, alpha diversity, and beta diversity analyses
 However, it is hard to see the separation of the CVP and KBC samples in the MDS plot.
 
 ## Beta: Facet zoom
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/telescope.png", auto_pdf = TRUE)
 ```
 
@@ -2994,7 +3011,7 @@ How you want your plots will be highly dependant on your own data.
 There are various resources in the [APPEDNDIX](#ggplot2_appendix) to look at.
 
 ## Beta: subset samples
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/R_subset.png", auto_pdf = TRUE)
 ```
 
@@ -3012,7 +3029,7 @@ nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy_no_env, ord.mds.wunifrac,
                                    color = "site", shape = "media") +
                   #Choose a ranges for the x axis and y axis to zoom into
                   #Thiese were chosen after viewing the plot without the zoom
-                  ggforce::facet_zoom( xlim = c(-0.055,-0.03), ylim = c(-0.01,0.005) zoom.size = 1)
+                  ggforce::facet_zoom( xlim = c(-0.055,-0.03), ylim = c(-0.01,0.005), zoom.size = 1)
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_no_env.png", plot = nmds.wunifrac,
        device = "png", dpi = 300, units = "mm", height = 150, width = 150)
@@ -3030,7 +3047,7 @@ There are a couple outliers within the CVP samples.
 Thankfully our pairwise PERMANOVA results are still valid as they use the __distances__ which did not change compared to the __ordination values__ which did change.
 
 ## PERMANOVA tasks
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/kettle_bell.png", auto_pdf = TRUE)
 ```
 
@@ -3121,7 +3138,7 @@ We are getting very high adjusted P-values for these comparisons.
 Most likely there is not enough power for this analysis as there are only 3 replicates for each grouping.
 
 ## Beta: Summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_orange.png", auto_pdf = TRUE)
 ```
 
@@ -3153,7 +3170,7 @@ Let's try to figure out which taxa are affected in which ways.
 library(webexercises)
 ```
 # Differential abundance (DA) analysis {#DA_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/difference.png", auto_pdf = TRUE)
 ``` 
 
@@ -3173,7 +3190,7 @@ If a class is detected to have higher abundance in media compared to the environ
 Additionally, we will be able to detect class that have been depleted in the media samples versus the environmental sample.
 
 ## DA: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/packages_1.png", auto_pdf = TRUE)
 ``` 
 
@@ -3200,7 +3217,7 @@ This is a statistically heavy method and I recommend you read the [ANCOM-BC pape
 As bioinformaticians we are more interested in the output rather than the method.
 
 ## DA: Preprocess
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/water_surface.png", auto_pdf = TRUE)
 ``` 
 
@@ -3234,7 +3251,7 @@ levels(phyloseq::sample_data(pseq)$site)
 ```
 
 ## DA: ANCOM-BC analysis
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
 ``` 
 
@@ -3258,7 +3275,7 @@ save(ancom_class_out, file = "ANCOMBC2_class_analysis.RData")
 ```
 
 ### ANCOMBC2 options
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ``` 
 
@@ -3273,7 +3290,7 @@ There are many more options that have been left as the default.
 Please see the package [PDF](https://bioc.ism.ac.jp/packages/devel/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf) for more options and explanations.
 
 ## DA: ANCOM-BC results
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/output_file_blue.png", auto_pdf = TRUE)
 ``` 
 
@@ -3334,7 +3351,7 @@ I believe this is because we don't have enough replicates for the sites within t
 However, there is a good amount of biomarkers for the three different medias compared to ENV.
 
 ## DA: Create signifcant LFC long data frame
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/portrait.png", auto_pdf = TRUE)
 ``` 
 
@@ -3421,7 +3438,7 @@ head(res_ancom_class_media_sig_lfc_fig)
 ```
 
 ## DA: Biomarker LFC heatmap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/tiles.png", auto_pdf = TRUE)
 ``` 
 
@@ -3517,7 +3534,7 @@ This seems to indicate that the media samples are not a good representation of t
 They appear to select for a few bacterial classes and select against a lot of bacterial classes.
 
 ## DA: matching bar plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
 ``` 
 
@@ -3547,7 +3564,7 @@ The TSA and KBC samples also have a high abundance of Bacilli.
 Overall, this is a nice visual confirmation of our ANCOM results.
 
 ## DA: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ``` 
 
@@ -3575,7 +3592,7 @@ library(webexercises)
 You have learnt a lot during this course. This chapter will summarise what you have done.
 
 ## Dataset
-<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 50%; border: 5px solid #333333"}</center>
+<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
 
 You were introduced to the 16S dataset in the intro.
 This consisted of samples from 3 parts of the Durance river (UD, MD, & LD).
@@ -3594,7 +3611,7 @@ It may also help to sample more sites along the gradient.
 We discovered these findings through our analysis.
 
 ## Data preparation
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
 ```
 
@@ -3605,7 +3622,7 @@ Briefly we carried out the following steps to prepare our data:
 - [Chapter 9](##mindepthchap): Checked the minimum depth we should use and removed samples with lower depth.
 
 ## Taxonomy
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
 ```
 
@@ -3623,7 +3640,7 @@ The media samples were mostly composed of Proteobacteria & Firmicutes.
 Due to the difference of media we cannot see any clear differences between the sites.
 
 ## Diversity analysis
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ```
 
@@ -3638,7 +3655,7 @@ Two of the leading papers are:
 - [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data (Hong et al, 2022)](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959).
 
 ### Alpha & beta
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
 ```
 
@@ -3665,7 +3682,7 @@ There is also some presence of clustering by site within each media group which 
 Unfortunately we are not able to detect any differences between sites due to power and the large differences caused by media.
 
 ### Differential abundance anlaysis
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/difference.png", auto_pdf = TRUE)
 ``` 
 
@@ -3678,7 +3695,7 @@ This indicates the media are selecting for only a few classes and many bacteria 
 This biologically makes sense but also corroborates what we have seen in our other analyses.
 
 ## Findings
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/compass.png", auto_pdf = TRUE)
 ``` 
 
@@ -3686,7 +3703,7 @@ In [chapter 2](#sum_and_qs) we asked some questions about our dataset.
 Let's try to answer them.
 
 ### Anthropisation gradient
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/farm.png", auto_pdf = TRUE)
 ``` 
 
@@ -3697,7 +3714,7 @@ You could try to remove all but the ENV samples to determine this.
 However, you would not have much power with only 9 samples (3 sites by 3 replicates).
 
 ### Replicate differences
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/replicate_difference.png", auto_pdf = TRUE)
 ```
 
@@ -3711,7 +3728,7 @@ In fact the KBC and CVP seem to "normalise" the community profiles.
 This is again hard to determine due to small numbers of replicates.
 
 ### Site or media
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '250px', echo=FALSE }
 knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
 ```
 
@@ -3722,7 +3739,7 @@ If you only look at the ENV samples there is a big difference between the sites.
 This could be investigated further by checking for [homogeneity](https://microbiome.github.io/tutorials/PERMANOVA.html).
 
 ### Media versus ENV samples
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
 ```
 
@@ -3737,7 +3754,7 @@ Compared to the ENV samples the media samples:
 - There appear to be less differences between the sites within the CVP & KBC samples.
 
 ## Conclusion
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 
@@ -3799,7 +3816,7 @@ devtools::install_github("jbisanz/qiime2R")
 ```
 
 ## Jupyter-notebook {#jupyter_appendix}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/jupyter_logo.png", auto_pdf = TRUE)
 ```
 
@@ -3826,12 +3843,12 @@ mamba activate r_community
 ```
 
 # R packages
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/r_package.png", auto_pdf = TRUE)
 ```
 
 ## ggplot2 {#ggplot2_appendix}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
 ```
 
@@ -3844,7 +3861,7 @@ The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It 
 [__ggplot2 function reference__](https://ggplot2.tidyverse.org/reference/#layers).
 
 ## Phyloseq {#phyloseq_appendix}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
 ```
 
@@ -3854,7 +3871,7 @@ Below are various resources if you would like to learn more about phyloseq and a
 - [microbiome](https://microbiome.github.io/tutorials/): A supplemental package to `phyloseq`. It contains some much needed functions. The tutorials are much clearer than the `phyloseq` tutorials but still not always the clearest.
 
 ## Importing into phyloseq
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ``` 
 
@@ -3866,13 +3883,13 @@ knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
   - The [biom format](https://biom-format.org/) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
 
 # Diversity metrics
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
 ``` 
 
 ## Alpha diversity {#alpha_appendix}
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
 ``` 
 
@@ -3969,7 +3986,7 @@ $$
 
 ## Beta diversity {#beta_appendix}
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/beta.png", auto_pdf = TRUE)
 ``` 
 

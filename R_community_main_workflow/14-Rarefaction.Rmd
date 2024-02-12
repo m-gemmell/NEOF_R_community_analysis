@@ -1,5 +1,5 @@
 # Rarefaction {#rarefaction_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/whale.png", auto_pdf = TRUE)
 ```
 
@@ -8,7 +8,7 @@ This can be a controversial topic.
 Please make your own decision if you want to do this or not in your own analysis.
 
 ## Rarefaction: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/library_1.png", auto_pdf = TRUE)
 ```
 
@@ -31,7 +31,7 @@ Ensure you add markdown and code cells to this notebook to give yourself
 a good structure.
 
 ## Rarefaction curve
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ```
 
@@ -51,7 +51,7 @@ will be at a depth of 500 on the x-axis (50 \* 10) and it will show how
 many unique ASVs it has currently discovered from all 10 samplings.
 
 ### Bird analogy
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/ibyster.png", auto_pdf = TRUE)
 ```
 
@@ -99,7 +99,7 @@ Strikingly, a week does not appear to be enough time for the New Forest (red). T
 This hopefully helps you understand why rarefaction curves are a useful measure of how well we have captured the diversity of samples at different depths. 
 
 ### Rarefaction curve: simple plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/crayon.png", auto_pdf = TRUE)
 ```
 
@@ -125,7 +125,7 @@ IRdisplay::display_png(file="./rarefaction_plot.png")
 ```
 
 ### Rarefaction curve: better plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/palette_brush.png", auto_pdf = TRUE)
 ```
 
@@ -164,7 +164,7 @@ The grey horizontal lines help show how many more ASVs are found in a sample aft
 This can be seen in the sample with the highest number of ASVs where 5-20 more ASVs are discovered with its final depth of ~16,000.
 
 ## Rarefaction slope
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/hill_landscape.png", auto_pdf = TRUE)
 ```
 
@@ -216,7 +216,7 @@ It is noticeable that the environmental samples have higher slopes than the medi
 Biologically, this makes sense as there is no bias being introduced by media.
 
 ## Rarefy data
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/pangolin.png", auto_pdf = TRUE)
 ```
 
@@ -271,7 +271,7 @@ save(num_asvs_vec, file="num_asvs_vec.v2.RData")
 Now you can close and halt the notebook.
 
 ## Rarefaction: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_orange.png", auto_pdf = TRUE)
 ```
 

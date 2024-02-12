@@ -1,12 +1,12 @@
 # Taxa plots {#chaptaxaplots}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/owl_eyes.png", auto_pdf = TRUE)
 ```
 
 Now that we have our Phylum relative abundance `phyloseq` we can create a bar chart.
 
 ## Simple bar chart
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
 ```
 
@@ -25,7 +25,7 @@ IRdisplay::display_png(file="./phylum_relabund_simple.png")
 This is a good start but we can improve it.
 
 ### Editing the plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/plus_sign.png", auto_pdf = TRUE)
 ``` 
 
@@ -46,7 +46,7 @@ phylum_bar <- microbiome::plot_composition(phylum_pseq) +
 Now save and display the plot.
 
 ## Taxa heatmap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/heatmap.png", auto_pdf = TRUE)
 ``` 
 
@@ -75,7 +75,7 @@ opts_p <- c("__Chloroflexi__", "__Firmicutes__", answer="__Proteobacteria__")
 - What is the most abundant phyla across the samples? `r longmcq(opts_p)`
 
 ## Aggregate rare taxa{#aggregateraretaxa}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/origami_rhino.png", auto_pdf = TRUE)
 ``` 
 
@@ -114,6 +114,16 @@ phylum_rareaggregate_pseq <- microbiome::aggregate_rare(
 )
 ```
 
+Check the taxa pre and post aggregation plus the taxa groups removed by aggregation.
+
+```{r, eval = FALSE}
+#Taxa pre and post aggregation
+microbiome::taxa(pseq_relabund)
+microbiome::taxa(phylum_rareaggregate_pseq)
+#Taxa groups lost via aggregation
+setdiff(microbiome::taxa(pseq_relabund), microbiome::taxa(phylum_rareaggregate_pseq))
+```
+
 We will plot this as a new taxonomy bar chart with some additions:
 
 ```{r, eval = FALSE}
@@ -134,7 +144,7 @@ IRdisplay::display_png(file="./phylum_relabund_rareaggregate.png")
 ```
 
 `r hide("Colour brewer palettes")`
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '800px', echo=FALSE }
 knitr::include_graphics(path = "figures/colour_brewer_palettes.png", auto_pdf = TRUE)
 ```
 [Source](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
@@ -145,7 +155,7 @@ We can quite easily see that there are 7 main phyla (excluding "Other").
 Additionally, it seems that the biggest difference between samples is due to the media used.
 
 ## Plot by media
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
 ``` 
 
@@ -187,7 +197,7 @@ Which media has the lowest relative abundance of _Protoebacteria_ and the highes
 Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.
 
 ## Plot by site and media
-```{r, fig.align = 'center',out.width= '35%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '350px', echo=FALSE }
 knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
 ``` 
 
@@ -214,7 +224,7 @@ IRdisplay::display_png(file="./phylum_relabund_site_media_rareaggregate.png")
 `r unhide()`
 
 ## Taxa plots: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
 ``` 
 

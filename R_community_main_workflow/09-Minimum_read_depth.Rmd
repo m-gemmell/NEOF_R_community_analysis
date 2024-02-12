@@ -1,5 +1,5 @@
 # Minimum read depth {#mindepthchap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/depth_diver.png", auto_pdf = TRUE)
 ``` 
 
@@ -18,7 +18,7 @@ In this chapter we will:
 - Demonstrate how to filter samples by depth.
 
 ## Considerations
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/consider.png", auto_pdf = TRUE)
 ``` 
 
@@ -41,7 +41,7 @@ There are 3 main considerations to take into account when choosing an appropriat
 That is a brief overview of that topic. If you are interested in more I suggest you look at papers where they have studied an environment similar to yours.
 
 ## Minimum read depth section title
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/header_l2.png", auto_pdf = TRUE)
 ``` 
 
@@ -54,7 +54,7 @@ Create a new __"Markdown"__ __cell__ and add the following 2nd level header.
 ```
 
 ## Read depth vector and histogram
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
 ```
 
@@ -68,14 +68,14 @@ opts_p <- c("__1-8__", answer="__10,000-18,000__", "__20,000+__")
 This is a good first step but what if we want to know how the read depths vary between sample groups?
 
 ## Sample depth boxplot {#depth-boxplots}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/boxplot.png", auto_pdf = TRUE)
 ```
 
 We are going to use `ggplot2` to create a couple boxplots to show the sequencing depth ranges of the different sample groups (Site & Media).
 
 ### Creating a data frame for boxplots
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/metadata.png", auto_pdf = TRUE)
 ```
 
@@ -124,7 +124,7 @@ head(abundance_metadf)
 Great! We will use this data frame to create 2 boxplots.
 
 ### ggplot2 boxplot
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/boxplots_groups.png", auto_pdf = TRUE)
 ```
 
@@ -153,7 +153,7 @@ boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=site)) +
 We have a saved `ggplot2` object but now we need to save it as a image file and display it.
 
 ### Save ggplot as png
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/png_file.png", auto_pdf = TRUE)
 ``` 
 
@@ -175,7 +175,7 @@ opts_p <- c(answer="__LD (Lower Durance)__", "__MD (Middle Durance)__", "__UD (U
 - Which site has the highest median depth (middle line of boxplot)? `r longmcq(opts_p)`
 
 ### Media by depth boxplot
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
 ```
 
@@ -204,7 +204,7 @@ From the boxplots we can see there is no drastic difference between the depths o
 For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
 
 ## Rarefaction curve {#chap9rarefaction}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ```
 
@@ -221,7 +221,7 @@ It has a variety of functions but it uses normal R data frames rather than `phyl
 We will therefore only use it for rarefaction purposes.
 
 ### ASV abundance data frame
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
 ```
 
@@ -238,7 +238,7 @@ asv_abund_df <- as.data.frame(t(phyloseq::otu_table(pseq)))
 ```
 
 ### vegan's rarecurve
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/vegan.png", auto_pdf = TRUE)
 ```
 
@@ -274,7 +274,7 @@ However, more rarefaction functions, analysis, and theories will be covered in t
 You could use some of these at this point to help you determine your minimum read depth for your own datasets.
 
 ## Filtering by minimum read depth
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/water_filter.png", auto_pdf = TRUE)
 ```
 
@@ -382,7 +382,7 @@ rm(pseq_min11K)
 Once you are finished with this notebook you can save it then close and halt it.
 
 ## Minmum read depth: Summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ```
 

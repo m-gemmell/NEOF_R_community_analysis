@@ -1,7 +1,7 @@
 # (PART\*) Taxonomy {-}
 
 # Taxa relative abundance {#taxa_relabund_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
 ```
 
@@ -13,7 +13,7 @@ We would use read depth filtered data if we wanted to use it for other downstrea
 But, as stated in the last chapter all our samples had sufficient depth, so we will use our original abundance `phyloseq` object.
 
 ## Taxa relative abundance: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/packages.png", auto_pdf = TRUE)
 ```
 
@@ -36,7 +36,7 @@ From now on you will get less instructions on your notebook structure.
 Please create your own coding and markdown cells where you think appropriate.
 
 ## Relative abundance transformation
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '400px', echo=FALSE }
 knitr::include_graphics(path = "figures/count_to_percent.png", auto_pdf = TRUE)
 ```
 
@@ -64,7 +64,7 @@ You will notice the read count for each sample is __1__. This abundance table co
 We will use this to produce all our different taxa tables.
 
 ## Aggregate taxa
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/aggregate_taxa.png", auto_pdf = TRUE)
 ```
 
@@ -95,7 +95,7 @@ microbiome::readcount(phylum_pseq)
 ```
 
 ## Taxa Relative abundance: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ```
 

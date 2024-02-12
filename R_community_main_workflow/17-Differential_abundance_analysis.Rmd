@@ -1,5 +1,5 @@
 # Differential abundance (DA) analysis {#DA_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/difference.png", auto_pdf = TRUE)
 ``` 
 
@@ -19,7 +19,7 @@ If a class is detected to have higher abundance in media compared to the environ
 Additionally, we will be able to detect class that have been depleted in the media samples versus the environmental sample.
 
 ## DA: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/packages_1.png", auto_pdf = TRUE)
 ``` 
 
@@ -46,7 +46,7 @@ This is a statistically heavy method and I recommend you read the [ANCOM-BC pape
 As bioinformaticians we are more interested in the output rather than the method.
 
 ## DA: Preprocess
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/water_surface.png", auto_pdf = TRUE)
 ``` 
 
@@ -80,7 +80,7 @@ levels(phyloseq::sample_data(pseq)$site)
 ```
 
 ## DA: ANCOM-BC analysis
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
 ``` 
 
@@ -104,7 +104,7 @@ save(ancom_class_out, file = "ANCOMBC2_class_analysis.RData")
 ```
 
 ### ANCOMBC2 options
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ``` 
 
@@ -119,7 +119,7 @@ There are many more options that have been left as the default.
 Please see the package [PDF](https://bioc.ism.ac.jp/packages/devel/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf) for more options and explanations.
 
 ## DA: ANCOM-BC results
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/output_file_blue.png", auto_pdf = TRUE)
 ``` 
 
@@ -180,7 +180,7 @@ I believe this is because we don't have enough replicates for the sites within t
 However, there is a good amount of biomarkers for the three different medias compared to ENV.
 
 ## DA: Create signifcant LFC long data frame
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/portrait.png", auto_pdf = TRUE)
 ``` 
 
@@ -267,7 +267,7 @@ head(res_ancom_class_media_sig_lfc_fig)
 ```
 
 ## DA: Biomarker LFC heatmap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/tiles.png", auto_pdf = TRUE)
 ``` 
 
@@ -363,7 +363,7 @@ This seems to indicate that the media samples are not a good representation of t
 They appear to select for a few bacterial classes and select against a lot of bacterial classes.
 
 ## DA: matching bar plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
 ``` 
 
@@ -393,7 +393,7 @@ The TSA and KBC samples also have a high abundance of Bacilli.
 Overall, this is a nice visual confirmation of our ANCOM results.
 
 ## DA: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ``` 
 

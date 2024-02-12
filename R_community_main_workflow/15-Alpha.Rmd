@@ -1,5 +1,5 @@
 # Alpha diversity {#alpha_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
 ```
 
@@ -20,7 +20,7 @@ Next we'll improve the plot with some extra R packages.
 With these tools we will compare the metrics across the various metadata fields we have.
 
 ## Alpha: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/gear_setup.png", auto_pdf = TRUE)
 ```
 
@@ -40,7 +40,7 @@ load("phyloseq_rarefied.RData")
 Reminder to use markdown and code cells in the notebook.
 
 ## Alpha: simple plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/simple_boxplot.png", auto_pdf = TRUE)
 ```
 
@@ -62,7 +62,7 @@ The resulting plot is pretty good but is difficult to read.
 We can do 3 major things to make the contents easier to read.
 
 ### Metric choice
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/metric_square_1.png", auto_pdf = TRUE)
 ```
 
@@ -96,7 +96,7 @@ To see which measures are available you can see the help page of `phyloseq::plot
 For a list and full description of some of the metrics please see the [APPENDIX](#alpha_appendix).
 
 ### Sample grouping & box plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/boxplots_groups.png", auto_pdf = TRUE)
 ```
 
@@ -121,7 +121,7 @@ IRdisplay::display_png(file="./alpha_div.png")
 ```
 
 ### PNG height and width choice
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
 ```
 
@@ -148,7 +148,7 @@ Additionally, the size requirements of figures for journals will play a big cons
 One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.
 
 ## Alpha: stats
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/pear.png", auto_pdf = TRUE)
 ```
 
@@ -194,7 +194,7 @@ The only group with a large variance is the ENV group with values going from < 1
 For more info on Wilcoxon test [Wikipedia](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test) is a good start.
 
 ### Alpha stats task
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/exercises.png", auto_pdf = TRUE)
 ```
 
@@ -225,7 +225,7 @@ We can therefore make these claims about the alpha diversity values of the group
 - Within each media grouping the samples have very similar numbers of ASVs present.
 
 ## Alpha diversity: violin plot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/violin.png", auto_pdf = TRUE)
 ```
 
@@ -272,7 +272,7 @@ IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
 ```
 
 ## Alpha: Site plots and statistics
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/river.png", auto_pdf = TRUE)
 ```
 
@@ -333,7 +333,7 @@ IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
 When you are happy you can close and halt the notebook.
 
 ## Alpha: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ```
 

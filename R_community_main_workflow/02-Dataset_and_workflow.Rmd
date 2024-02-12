@@ -1,10 +1,10 @@
 # Dataset & workflow {#datasetandworkflowchap}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 ``` 
 
 ## Dataset
-<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 50%; border: 5px solid #333333"}</center>
+<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
 
 In this tutorial we will be using a 16S metabarcoding dataset derived from surface water from the Durance River in the south-east of France.
 Two major comparisons were carried out in combination with each other.
@@ -12,7 +12,7 @@ Two major comparisons were carried out in combination with each other.
 [Link to paper](https://www.mdpi.com/2076-2607/8/8/1129)
 
 ### Sites
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/river.png", auto_pdf = TRUE)
 ``` 
 
@@ -23,7 +23,7 @@ Three different sites were chosen on the Durance River. These three sites were r
 - __Lower Durance sampling site (LD)__: Lower part of agricultural land with intensive production of fruits, cereals, and vegetables.
 
 ### Culture media
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
 ```
 
@@ -35,7 +35,7 @@ Surface water was sampled and different culture media were used to produce bacte
 - __CVP__ incubated at 28°C for 3 days.
 
 ### Summary & questions {#sum_and_qs}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
 ```
 
@@ -49,7 +49,7 @@ With this data we can ask and investigate the following questions:
 - Do the media samples differ from the ENV samples? If so, how?
 
 ## Workflow
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 ```
 

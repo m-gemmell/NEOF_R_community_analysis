@@ -1,5 +1,5 @@
 # Summarise phyloseq {#sum_phyloseq_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/transform.png", auto_pdf = TRUE)
 ```
 
@@ -8,7 +8,7 @@ For the next 2 chapters we will use one notebook. We will setup this notebook wi
 After this, we will summarise the `phyloseq` object. We will investigate the read depth of samples and the number of ASVs in our dataset.
 
 ## Summarise: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/setup_2.png", auto_pdf = TRUE)
 ```
 
@@ -56,7 +56,7 @@ load("phyloseq.RData")
 Ensure you have run the code in this cell.
 
 ### Summarise header
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/header.png", auto_pdf = TRUE)
 ```
 
@@ -70,7 +70,7 @@ In a new __"Markdown"__ cell add the following 2nd level header.
 ```
 
 ### Summarise phyloseq
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
 ```
 
@@ -86,7 +86,7 @@ We ran this code in the __"01-Import.ipynb"__. You can therefore check if our ne
 Due to the relative large amount of output to screen we'll put the next part into a new __cell__.
 
 ### Reads per sample
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
 ```
 
@@ -111,7 +111,7 @@ dev.off()
 ```
 
 ### Display png
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
 ``` 
 
@@ -127,7 +127,7 @@ IRdisplay::display_png(file="./sample_depth_histogram.png")
 This information is very useful. We will use it in the next chapter to determine what our minimum read depth should be.
 
 ### ASVs per sample
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
 ```
 
@@ -168,7 +168,7 @@ rm(num_asvs_vec)
 ```
 
 ## Summarise: recap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 

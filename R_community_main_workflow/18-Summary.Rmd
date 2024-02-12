@@ -5,7 +5,7 @@
 You have learnt a lot during this course. This chapter will summarise what you have done.
 
 ## Dataset
-<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 50%; border: 5px solid #333333"}</center>
+<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
 
 You were introduced to the 16S dataset in the intro.
 This consisted of samples from 3 parts of the Durance river (UD, MD, & LD).
@@ -24,7 +24,7 @@ It may also help to sample more sites along the gradient.
 We discovered these findings through our analysis.
 
 ## Data preparation
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
 ```
 
@@ -35,7 +35,7 @@ Briefly we carried out the following steps to prepare our data:
 - [Chapter 9](##mindepthchap): Checked the minimum depth we should use and removed samples with lower depth.
 
 ## Taxonomy
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
 ```
 
@@ -53,7 +53,7 @@ The media samples were mostly composed of Proteobacteria & Firmicutes.
 Due to the difference of media we cannot see any clear differences between the sites.
 
 ## Diversity analysis
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ```
 
@@ -68,7 +68,7 @@ Two of the leading papers are:
 - [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data (Hong et al, 2022)](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959).
 
 ### Alpha & beta
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
 ```
 
@@ -95,7 +95,7 @@ There is also some presence of clustering by site within each media group which 
 Unfortunately we are not able to detect any differences between sites due to power and the large differences caused by media.
 
 ### Differential abundance anlaysis
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/difference.png", auto_pdf = TRUE)
 ``` 
 
@@ -108,7 +108,7 @@ This indicates the media are selecting for only a few classes and many bacteria 
 This biologically makes sense but also corroborates what we have seen in our other analyses.
 
 ## Findings
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/compass.png", auto_pdf = TRUE)
 ``` 
 
@@ -116,7 +116,7 @@ In [chapter 2](#sum_and_qs) we asked some questions about our dataset.
 Let's try to answer them.
 
 ### Anthropisation gradient
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/farm.png", auto_pdf = TRUE)
 ``` 
 
@@ -127,7 +127,7 @@ You could try to remove all but the ENV samples to determine this.
 However, you would not have much power with only 9 samples (3 sites by 3 replicates).
 
 ### Replicate differences
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/replicate_difference.png", auto_pdf = TRUE)
 ```
 
@@ -141,7 +141,7 @@ In fact the KBC and CVP seem to "normalise" the community profiles.
 This is again hard to determine due to small numbers of replicates.
 
 ### Site or media
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '250px', echo=FALSE }
 knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
 ```
 
@@ -152,7 +152,7 @@ If you only look at the ENV samples there is a big difference between the sites.
 This could be investigated further by checking for [homogeneity](https://microbiome.github.io/tutorials/PERMANOVA.html).
 
 ### Media versus ENV samples
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
 ```
 
@@ -167,7 +167,7 @@ Compared to the ENV samples the media samples:
 - There appear to be less differences between the sites within the CVP & KBC samples.
 
 ## Conclusion
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 

@@ -1,5 +1,5 @@
 # Import {#import_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ```
 
@@ -7,7 +7,7 @@ Before carrying out any analysis we first need to import our QIIME2 artifacts in
 
 ## Import: notebook
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
 ```
 
@@ -33,7 +33,7 @@ Next step is to create a new R notebook, rename it to __"01-Import"__, and save 
 
 ## qiime2R
 
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '400px', echo=FALSE }
 knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
 ```
 
@@ -65,7 +65,7 @@ This command creates a phyloseq object named `pseq`. It contains:
 -   The sample metadata (`metadata = "media_metadata.txt"`)
 
 ## Import: Summarise phyloseq
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
 ```
 
@@ -132,7 +132,7 @@ Sparsity can be any value from 0-1. The higher the value the more sparse it is, 
 If you would like to see how the function calculates its values you can view the [source code online](https://rdrr.io/github/microbiome/microbiome/src/R/summarize_phyloseq.R).
 
 ## Save the phyloseq object
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
 ```
 
@@ -151,7 +151,7 @@ This saves our object `pseq` into the file `phyloseq.RData`. The suffix `.RData`
 We have saved our final object of the notebook. Close and halt it.
 
 ## Import: recap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
 ```
 

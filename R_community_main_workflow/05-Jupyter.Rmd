@@ -1,8 +1,7 @@
 # Jupyter {#jupyterchap}
 
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_logo.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333; background-color: white"}</center>
+
 
 [`Jupyter-notebook`](https://jupyter.org/) is a nice browser based method to write, edit, and run code. It was initally created for Python coding, but has since branched out to many other languages, such as `R`.
 
@@ -46,9 +45,7 @@ icons::fontawesome("bars")
 ) on the top left for a dropdown menu which includes zoom options.
 `r unhide()`
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_example_1.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 ## Create R notebook
 
@@ -59,9 +56,7 @@ The next step is to create a R notebook.
 
 This will open up a new R notebook like below.
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_example_2.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 ## Cells and code
 
@@ -78,9 +73,7 @@ When pressing enter in **cells** it will create a new line. To run all commands 
 
 Run your current **cell** and you should see something like below.
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_example_3.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 ## Create new cells
 
@@ -119,15 +112,13 @@ To run all **cells** from the start:
 
 You should then see something like the below in your notebook.
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_example_4.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 There is no output printed for __cell__ 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in **cell** 2 before **cell** 3 was run.
 
 ## Saving the file
 
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
 ```
 
@@ -155,9 +146,7 @@ To add a header __cell__ to the top of our notebook:
 -   Click on the **"Code"** drop down and select **"Markdown"**.
     -   The **"Heading"** option no longer works.
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_example_5.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_example_5.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 -   Add the following to the **"Markdown"** cell to create a first level header.
     -   Ensure you have a space between the `#` and header text ("Tutorial").
@@ -181,9 +170,7 @@ To close the notebook:
 
 When you are back in the file explorer page you may not yet set the new file you saved. If so, you will need to refresh the page with the Refresh button `r icons::ionicons("refresh")` towards the top right.
 
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook_refresh.png", auto_pdf = TRUE)
-```
+<center>![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
 
 With that quick tutorial of `jupyter-notebook` we can start our community analysis in the next chapter.
 

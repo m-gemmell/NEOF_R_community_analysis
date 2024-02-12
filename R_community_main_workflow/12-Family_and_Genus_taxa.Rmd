@@ -1,5 +1,5 @@
 # Family & Genus plots {#family_genus_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/plots.png", auto_pdf = TRUE)
 ```
 
@@ -14,7 +14,7 @@ However, it can be easy to overlook some edits.
 It is a good idea to double check your edited code to ensure you have changed the relevant options, and object & file names.
 
 ## Family taxa plots
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/family.png", auto_pdf = TRUE)
 ```
 
@@ -22,7 +22,7 @@ This part will show you a nice workflow for creating some family based taxa plot
 Run this at the bottom of your "3-taxonomy_barchart.ipynb" notebook.
 
 ### Aggregate families
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/aggregate_taxa.png", auto_pdf = TRUE)
 ```
 
@@ -44,7 +44,7 @@ microbiome::readcount(family_pseq)
 We have 112 families. Quite a bit but hopefully they will all fit into a heatmap.
 
 ### Family heatmap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/heat_topology.png", auto_pdf = TRUE)
 ```
 
@@ -81,7 +81,7 @@ This will help to keep the used resources low on the cluster.
 Next we'll carry out our rare aggregation and produce some bar charts.
 
 ### Family rare aggregation
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/elephant_origami.png", auto_pdf = TRUE)
 ```
 
@@ -177,7 +177,7 @@ It takes a lot of trial and practice and I find the thresholds to not be very in
 One piece of advise is to only change one threshold at a time during your trial and errors.
 
 ### Family bar chart
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/chocolate_bar.png", auto_pdf = TRUE)
 ```
 
@@ -203,7 +203,7 @@ IRdisplay::display_png(file="./family_relabund_rareaggregate.png")
 Brilliant, we are now finished with the Family taxa plots. Onto something harder.
 
 ## Genus taxa plots
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/ginger.png", auto_pdf = TRUE)
 ```
 
@@ -220,7 +220,7 @@ Again, I encourage you to copy, paste, and edit previous code.
 You will most likely need to change names of objects and also change various options.
 
 ### Genus taxa plots solutions
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/ginger_solutions.png", auto_pdf = TRUE)
 ```
 

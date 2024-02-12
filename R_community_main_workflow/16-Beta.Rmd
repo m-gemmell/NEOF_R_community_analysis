@@ -1,5 +1,5 @@
 # Beta {#beta_chap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/beta.png", auto_pdf = TRUE)
 ```
 
@@ -21,7 +21,7 @@ In this chapter we will:
 - Determine if there is a statistical difference between beta diversity metrics of sample groups.
 
 ## Beta: setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/books.png", auto_pdf = TRUE)
 ```
 
@@ -40,7 +40,7 @@ load("phyloseq_rarefied.RData")
 ```
 
 ## Beta: ordination
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/ordinate.png", auto_pdf = TRUE)
 ```
 
@@ -58,7 +58,7 @@ To see the different methods and distances that can be used please try `?phylose
 For more information about the different distances please see the [APPENDIX](#beta_appendix).
 
 ## Beta: plot ordination
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
 ```
 
@@ -106,8 +106,28 @@ In this case the total is >88% which is very good.
 
 Additionally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).
 
+## Beta: plot ordination with ellipse
+
+We can crate an ordination plot with ellipse, circular shapes showing clustering of groups.
+The statistics of the ellipses and visualisation can be carried out with the function `ggplot2::stat_ellipse()`.
+The primary purpose is to see if clusters overlap each other or are separate.
+
+```{r , eval = FALSE}
+#Plot ordination with ellipse
+#Use one metadata category, media, so the stats can be calculated
+nmds.wunifrac.media <- phyloseq::plot_ordination(pseq_rarefy, ord.mds.wunifrac,
+                                   color = "media")
+#Add ellipse stats
+nmds.wunifrac.media.ellipse <- nmds.wunifrac.media + ggplot2::stat_ellipse()
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_mds_wunifrac_media_ellipse.png", plot = nmds.wunifrac.media.ellipse,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_ellipse.png")
+```
+
 ## Beta: statistics
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/cluster_colours.png", auto_pdf = TRUE)
 ```
 
@@ -120,7 +140,7 @@ This allows us to determine if the clustering of groups is significant.
 For more info on PERMANOVA, [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.
 
 ### PERMANOVA
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/permanova.png", auto_pdf = TRUE)
 ```
 
@@ -152,7 +172,7 @@ We are primarily interested in the P-value column (`Pr(>F)`).
 We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.018).
 
 ### Pairwise PERMANOVA
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/pear.png", auto_pdf = TRUE)
 ```
 
@@ -260,7 +280,7 @@ This makes sense from our taxonomy, alpha diversity, and beta diversity analyses
 However, it is hard to see the separation of the CVP and KBC samples in the MDS plot.
 
 ## Beta: Facet zoom
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/telescope.png", auto_pdf = TRUE)
 ```
 
@@ -293,7 +313,7 @@ How you want your plots will be highly dependant on your own data.
 There are various resources in the [APPEDNDIX](#ggplot2_appendix) to look at.
 
 ## Beta: subset samples
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/R_subset.png", auto_pdf = TRUE)
 ```
 
@@ -311,7 +331,7 @@ nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy_no_env, ord.mds.wunifrac,
                                    color = "site", shape = "media") +
                   #Choose a ranges for the x axis and y axis to zoom into
                   #Thiese were chosen after viewing the plot without the zoom
-                  ggforce::facet_zoom( xlim = c(-0.055,-0.03), ylim = c(-0.01,0.005) zoom.size = 1)
+                  ggforce::facet_zoom( xlim = c(-0.055,-0.03), ylim = c(-0.01,0.005), zoom.size = 1)
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_no_env.png", plot = nmds.wunifrac,
        device = "png", dpi = 300, units = "mm", height = 150, width = 150)
@@ -329,7 +349,7 @@ There are a couple outliers within the CVP samples.
 Thankfully our pairwise PERMANOVA results are still valid as they use the __distances__ which did not change compared to the __ordination values__ which did change.
 
 ## PERMANOVA tasks
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/kettle_bell.png", auto_pdf = TRUE)
 ```
 
@@ -420,7 +440,7 @@ We are getting very high adjusted P-values for these comparisons.
 Most likely there is not enough power for this analysis as there are only 3 replicates for each grouping.
 
 ## Beta: Summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_orange.png", auto_pdf = TRUE)
 ```
 

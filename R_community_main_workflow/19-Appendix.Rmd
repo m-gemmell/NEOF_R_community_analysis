@@ -43,7 +43,7 @@ devtools::install_github("jbisanz/qiime2R")
 ```
 
 ## Jupyter-notebook {#jupyter_appendix}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/jupyter_logo.png", auto_pdf = TRUE)
 ```
 
@@ -70,12 +70,12 @@ mamba activate r_community
 ```
 
 # R packages
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/r_package.png", auto_pdf = TRUE)
 ```
 
 ## ggplot2 {#ggplot2_appendix}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
 ```
 
@@ -88,7 +88,7 @@ The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It 
 [__ggplot2 function reference__](https://ggplot2.tidyverse.org/reference/#layers).
 
 ## Phyloseq {#phyloseq_appendix}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
 ```
 
@@ -98,7 +98,7 @@ Below are various resources if you would like to learn more about phyloseq and a
 - [microbiome](https://microbiome.github.io/tutorials/): A supplemental package to `phyloseq`. It contains some much needed functions. The tutorials are much clearer than the `phyloseq` tutorials but still not always the clearest.
 
 ## Importing into phyloseq
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ``` 
 
@@ -110,13 +110,13 @@ knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
   - The [biom format](https://biom-format.org/) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
 
 # Diversity metrics
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
 ``` 
 
 ## Alpha diversity {#alpha_appendix}
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
 ``` 
 
@@ -213,7 +213,7 @@ $$
 
 ## Beta diversity {#beta_appendix}
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/beta.png", auto_pdf = TRUE)
 ``` 
 
