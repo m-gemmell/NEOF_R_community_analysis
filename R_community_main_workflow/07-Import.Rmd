@@ -1,19 +1,18 @@
 # Import {#import_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/import.png){style="width:200px"}
+</center>
 
 Before carrying out any analysis we first need to import our QIIME2 artifacts into a `phyloseq` object. Thankfully there is an R package called `qiime2R`.
 
 ## Import: notebook
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/r_script.png){style="width:200px"}
+</center>
 
 Prior to any coding, we will create a new directory, our analysis directory.
-afterwards, reate a new notebook called __"01-Import.ipynb"__ in it. 
-We will be creating many notebooks, so we'll number them so we can easily see the order of scripts.
+Next, we'll create a new notebook called __"01-Import.ipynb"__ in it. 
+We will be creating many notebooks and numbering them so we can easily see the order of scripts.
 
 First create a new directory.
 
@@ -32,10 +31,9 @@ Click on your __"R_community_workshop"__ folder to move into it.
 Next step is to create a new R notebook, rename it to __"01-Import"__, and save it.
 
 ## qiime2R
-
-```{r, fig.align = 'center',out.width= '400px', echo=FALSE }
-knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/qiime2r.png){style="width:400px"}
+</center>
 
 [`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R `phyloseq` object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.
 
@@ -65,9 +63,9 @@ This command creates a phyloseq object named `pseq`. It contains:
 -   The sample metadata (`metadata = "media_metadata.txt"`)
 
 ## Import: Summarise phyloseq
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/list_blue.png){style="width:200px"}
+</center>
 
 Now that we have imported the data we can extract some summary information from it.
 
@@ -132,9 +130,9 @@ Sparsity can be any value from 0-1. The higher the value the more sparse it is, 
 If you would like to see how the function calculates its values you can view the [source code online](https://rdrr.io/github/microbiome/microbiome/src/R/summarize_phyloseq.R).
 
 ## Save the phyloseq object
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/r_save.png){style="width:200px"}
+</center>
 
 When using multiple notebooks/scripts for analysis it is useful to save the R objects that will be used in different notebooks/scripts. This can be carried out with the function `save()`.
 
@@ -151,8 +149,8 @@ This saves our object `pseq` into the file `phyloseq.RData`. The suffix `.RData`
 We have saved our final object of the notebook. Close and halt it.
 
 ## Import: recap
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We have imported our QIIME2 artifacts into one `phyloseq` object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.

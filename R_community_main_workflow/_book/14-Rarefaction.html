@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Rarefaction | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Rarefaction | R community analysis" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-02-12" />
+<meta name="date" content="2024-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -182,7 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6" data-path="05-Jupyter.html"><a href="05-Jupyter.html#saving-the-file"><i class="fa fa-check"></i><b>5.6</b> Saving the file</a></li>
 <li class="chapter" data-level="5.7" data-path="05-Jupyter.html"><a href="05-Jupyter.html#title-cells-with-markdown"><i class="fa fa-check"></i><b>5.7</b> Title cells with markdown</a></li>
 <li class="chapter" data-level="5.8" data-path="05-Jupyter.html"><a href="05-Jupyter.html#close-the-notebook"><i class="fa fa-check"></i><b>5.8</b> Close the notebook</a></li>
-<li class="chapter" data-level="5.9" data-path="05-Jupyter.html"><a href="05-Jupyter.html#video-tutorial"><i class="fa fa-check"></i><b>5.9</b> Video tutorial</a></li>
+<li class="chapter" data-level="5.9" data-path="05-Jupyter.html"><a href="05-Jupyter.html#jup_vid_tut"><i class="fa fa-check"></i><b>5.9</b> Video tutorial</a></li>
 </ul></li>
 <li class="part"><span><b>Data preparation</b></span></li>
 <li class="chapter" data-level="6" data-path="06-Preprocess_part.html"><a href="06-Preprocess_part.html"><i class="fa fa-check"></i><b>6</b> Data prep intro</a></li>
@@ -501,7 +501,7 @@ table below:</p>
 </tbody>
 </table>
 <p>This can then be plotted in a rarefaction plot like below.</p>
-<p><img src="R-community-analysis_files/figure-html/unnamed-chunk-165-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="R-community-analysis_files/figure-html/unnamed-chunk-106-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In this case we can be fairly confident that seven days is enough to find all the birds we can in the Old Lords wood (green).
 I.e. the sampling depth is enough.
 Just like bird watching, it is very hard to find all the species present in a sample with metabarcoding or shotgun metagenomics.
@@ -594,16 +594,16 @@ A slope of 1 shows a flat vertical line (not what we want).</p>
 <p>With the calculated slopes attempt the following questions:</p>
 <ol style="list-style-type: decimal">
 <li>Which sample has the largest slope value?
-<div id="radio_ZASBAEDEUR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZASBAEDEUR" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZASBAEDEUR" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZASBAEDEUR" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_GLDDJHESSA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GLDDJHESSA" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GLDDJHESSA" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GLDDJHESSA" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which sample has the lowest slope value?
-<div id="radio_TPSTYGYZQP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TPSTYGYZQP" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TPSTYGYZQP" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TPSTYGYZQP" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_MOMYPFJYEX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MOMYPFJYEX" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MOMYPFJYEX" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MOMYPFJYEX" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which samples have larger slope values; the environmental samples or media samples?
-<div id="radio_NBIALRJYRA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NBIALRJYRA" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NBIALRJYRA" value=""></input> <span><strong>Media</strong></span></label>
+<div id="radio_UIDBJRPFBH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UIDBJRPFBH" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UIDBJRPFBH" value=""></input> <span><strong>Media</strong></span></label>
 </div></li>
 </ol>
 <p>Overall the slopes values are low (&lt;0.01).

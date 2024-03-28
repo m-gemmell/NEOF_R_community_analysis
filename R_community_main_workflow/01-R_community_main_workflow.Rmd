@@ -29,18 +29,21 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
-<center>![](figures/NEOF.png){style="border-radius: 15px; width: 300px; border: 5px solid #333333"}</center>
+<center>
+![](figures/NEOF.png){style="border-radius: 15px; width: 300px"}
+</center>
 
 # (PART\*) Intro {-}
 
 # Introduction
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/R_community.png){style="width:200px"}
+</center>
+
 
 A lot of different analyses and visualisations can be carried out with community data. This includes taxonomy and functional abundance tables from 16S rRNA and Shotgun metagenomics analysis. This workshop will teach you how to use R with the `phyloseq` R object; a specialised object containing an abundance, taxonomy, and metadata table. 
 
-The workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. Supplementary materials will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.
+The workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. [Supplementary materials](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/) will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.
  
 The sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. This book contains theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
 
@@ -53,7 +56,6 @@ At the end of the course learners will be able to:
 - Carry out alpha & beta diversity, and biomarker detection with the phyloseq object.
 - Produce and customise publication quality plots.
 - Run statistical analysis.
-- Convert static plots into interactive html plots with plotly within R.
 
 There are [supplemental](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/) materials including importing other types of data into phyloseq, and the use of R plotly to produce interactive HTML based plots.
 
@@ -82,7 +84,7 @@ column_1 <- c(
  '[![](figures/beta.png){height="150"}](#beta_chap)',
  #13 Summary
    '[**Summary**](#sumchap)', 
- '[![](figures/recap.png){height="150"}](#sumchap)'
+ '[![](figures/recap.png){style="height:150px; border-radius:15px; background:white"}](#sumchap)'
 )
 column_2 <- c(
   #2: R packages
@@ -90,7 +92,7 @@ column_2 <- c(
  '[![](figures/R.png){height="150"}](#rpackchap)',
  #4 Jupyter
    '[**Jupyter**](#jupyterchap)', 
- '[![](figures/jupyter_logo.png){height="150"}](#jupyterchap)',
+ '[![](figures/jupyter_logo.png){style="height:150px; border-radius:15px; background:white"}](#jupyterchap)',
  #6 Min reads
    '[**Minimum read depth**](#mindepthchap)', 
  '[![](figures/depth_diver.png){height="150"}](#mindepthchap)',
@@ -105,7 +107,7 @@ column_2 <- c(
  '[![](figures/difference.png){height="150"}](#DA_chap)',
    #14 appendix
     '[**Appendix**](#mambainstalls)', 
- '[![](figures/mamba_logo.png){height="150"}](#mambainstalls)'
+ '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; background:null"}](#mambainstalls)'
 )
 table_df <- data.frame(column_1, column_2)
 #Kable and kableextra libraries

@@ -1,9 +1,9 @@
 # (PART\*) Data preparation {-}
 
 # Data prep intro {#preprocess_section}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/half_tablespoon.png){style="width:200px"}
+</center>
 
 In the next 3 chapters (7-9) we will learn how to:
 

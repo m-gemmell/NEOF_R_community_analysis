@@ -1,7 +1,7 @@
 # Set-up {#setupchap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/start.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/start.png){style="width:200px"}
+</center>
 
 Prior to any analysis we need to setup our environment in the webVNC.
 
@@ -13,9 +13,9 @@ You will now be in a logged-in Linux VNC desktop.
 You will see something as below (there may be only one terminal which is fine). 
 If you do not see something similar please ask for assistance.
 
-```{r, fig.align = 'center',out.width= '800px', echo=FALSE }
-knitr::include_graphics(path = "figures/nsc200_logon.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/logon_pic.png){style="width:800px"}
+</center>
 
 If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. 
 You will most likely need to use your browser's tool bar to accomplish this. 
@@ -28,7 +28,9 @@ The following link is a guide to install Mint Linux:
 https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
 ## Mamba
-<center>![](figures/mamba_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333"}</center>
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
+</center>
 
 This workshop requires a lot of packages. 
 These all can be difficult to install with R. 

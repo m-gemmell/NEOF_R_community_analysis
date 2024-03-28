@@ -1,6 +1,8 @@
 # Jupyter {#jupyterchap}
 
-<center>![](figures/jupyter_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333; background-color: white"}</center>
+<center>
+![](figures/jupyter_logo.png){style="border-radius: 15px; width: 200px; background-color: white"}
+</center>
 
 
 [`Jupyter-notebook`](https://jupyter.org/) is a nice browser based method to write, edit, and run code. It was initally created for Python coding, but has since branched out to many other languages, such as `R`.
@@ -14,6 +16,8 @@ We are using it in this workshop for a variety of its properties:
 -   It provides a graphical interface for changing directories and choosing files.
 
 Before carrying out any analysis we will go through a quick tutorial of `jupyter-notebook`.
+
+__Note:__ There is a [video tutorial](#jup_vid_tut) of this chapter at the bottom of this page if you prefer to watch it.
 
 ## Open Jupyter-notebook
 
@@ -45,18 +49,22 @@ icons::fontawesome("bars")
 ) on the top left for a dropdown menu which includes zoom options.
 `r unhide()`
 
-<center>![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+</center>
 
 ## Create R notebook
 
-The next step is to create a R notebook.
+The next step is to create an R notebook.
 
 1.  Click on the **"New"** button towards the top right, right of the "Upload" button.
 2.  From the dropdown click **"R"** below "Python 3 (ipykernel)".
 
 This will open up a new R notebook like below.
 
-<center>![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+</center>
 
 ## Cells and code
 
@@ -73,13 +81,23 @@ When pressing enter in **cells** it will create a new line. To run all commands 
 
 Run your current **cell** and you should see something like below.
 
-<center>![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+</center>
 
 ## Create new cells
 
 You can create new **cells** by 2 different means.
 
--   Press the `+` button on the tool bar (between the floppy disk `r icons::ionicons("save-outline")` and scissors `r icons::ionicons("cut")`). This will add a **cell** below your currently selected **cell**.
+-   Press the `+` button on the tool bar (between the floppy disk
+```{r, echo=FALSE}
+icons::icon_style(icons::ionicons("save-outline"), background="white")
+``` 
+and scissors
+```{r, echo=FALSE}
+icons::icon_style(icons::ionicons("cut"), background="white")
+``` 
+). This will add a **cell** below your currently selected **cell**.
 -   Click on the **`Insert`** button and use the dropdown to add a cell above or below your currently selected cell.
 
 **Tip:** Hover over the toolbar icons to display a text based description of its function.
@@ -112,15 +130,16 @@ To run all **cells** from the start:
 
 You should then see something like the below in your notebook.
 
-<center>![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+</center>
 
 There is no output printed for __cell__ 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in **cell** 2 before **cell** 3 was run.
 
 ## Saving the file
-
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/r_save.png){style="width:100px"}
+</center>
 
 As with RStudio and other good coding interfaces we can save our notebook.
 
@@ -133,7 +152,11 @@ First we should rename the file. Rename the notebook to **"jupyter_tut"**:
 
 Now we can save the file. Two methods to save are:
 
--   Click the floppy disk `r icons::ionicons("save-outline")` on the toolbar.
+-   Click the floppy disk 
+```{r, echo=FALSE}
+icons::icon_style(icons::ionicons("save-outline"), background="white")
+``` 
+on the toolbar.
 -   Click on the **"File"** button. Click **"Save and Checkpoint"** from the dropdown options.
 
 ## Title cells with markdown
@@ -168,18 +191,22 @@ To close the notebook:
 -   Click on **"File"**.
 -   From the dropdown options click **"Close and Halt"**.
 
-When you are back in the file explorer page you may not yet set the new file you saved. If so, you will need to refresh the page with the Refresh button `r icons::ionicons("refresh")` towards the top right.
+When you are back in the file explorer page you may not yet see the new file you saved. If so, you will need to refresh the page with the Refresh button 
+```{r, echo=FALSE}
+icons::icon_style(icons::ionicons("refresh"), background="white")
+``` 
+towards the top right.
 
-<center>![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+</center>
 
 With that quick tutorial of `jupyter-notebook` we can start our community analysis in the next chapter.
 
 For more info on `jupter-notebook` please see the [appendix](#jupyter_appendix).
 
-## Video tutorial
-
-::: container
-<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" frameborder="0" allowfullscreen class="video">
-
-</iframe>
-:::
+## Video tutorial {#jup_vid_tut}
+<div class="container">
+<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>

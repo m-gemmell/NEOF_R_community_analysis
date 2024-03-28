@@ -1,14 +1,14 @@
 # R Packages {#rpackchap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/R.png", auto_pdf = TRUE)
-```  
+<center>
+![](figures/R.png){style="width:200px"}
+</center>
 
 During this workshop we will use various R packages with their own intricacies. Before going into analysis we'll introduce you to some of these important concepts.
 
 ## R packages/libraries
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/r_package.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/r_package.png){style="width:200px"}
+</center>
 
 R packages/libraries contain additional functions, data and code for analysing, manipulating and plotting different types of data. Many common packages will be installed as default when you install R. Other more specialised packages, such as the `ggplot2` package, must be installed by the user.
 
@@ -53,9 +53,9 @@ This convention has 2 benefits:
 - Different packages may have functions with the same name. Specifying the package will ensure you are using the correct function.
 
 ## The grammar of graphics
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/ggplot2.png){style="width:200px"}
+</center>
 
 During this course we will be using the grammar of graphics coding approach. This approach is implemented by the R package `ggplot2` to create visualisations such as bar charts, box plots, ordination plots etc. In turn `ggplot2` is used by a host of other packages, some of which we will be using. Although `ggplot2` is R code, its structure is very different and it takes effort to learn. Thankfully, `ggplot2` is very powerful and flexible, and it produces very professional and clean plots.
 
@@ -86,12 +86,14 @@ That was a quick introduction to the grammar of graphics. We will be using this 
 For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
 
 ## phyloseq
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/phyloseq_logo.png){style="width:200px"}
+</center>
 
 In this book we will be working with [`phyloseq`](https://joey711.github.io/phyloseq/) objects to preprocess  our dataset, create visualisations, and carry out statistical analyses. This is a very popular object type for community abundance datasets as it contains the abundance table, metadata, and taxonomy table in one object, optionally containing the phylogenetic tree and reference sequences if wanted/required.
 
-<center>![](figures/phyloseq_input.png){style="border-radius: 15px; width: 800px; border: 5px solid #333333"}</center>
+<center>
+![](figures/phyloseq_input.png){style="border-radius: 15px; width: 800px; border: 5px solid #333333"}
+</center>
 
 For more info on `phyloseq` and associated packages please see the [appendix](#phyloseq_appendix).

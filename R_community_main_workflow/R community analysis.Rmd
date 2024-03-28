@@ -32,18 +32,21 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
-<center>![](figures/NEOF.png){style="border-radius: 15px; width: 300px; border: 5px solid #333333"}</center>
+<center>
+![](figures/NEOF.png){style="border-radius: 15px; width: 300px"}
+</center>
 
 # (PART\*) Intro {-}
 
 # Introduction
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/R_community.png){style="width:200px"}
+</center>
+
 
 A lot of different analyses and visualisations can be carried out with community data. This includes taxonomy and functional abundance tables from 16S rRNA and Shotgun metagenomics analysis. This workshop will teach you how to use R with the `phyloseq` R object; a specialised object containing an abundance, taxonomy, and metadata table. 
 
-The workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. Supplementary materials will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.
+The workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. [Supplementary materials](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/) will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.
  
 The sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. This book contains theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
 
@@ -56,7 +59,6 @@ At the end of the course learners will be able to:
 - Carry out alpha & beta diversity, and biomarker detection with the phyloseq object.
 - Produce and customise publication quality plots.
 - Run statistical analysis.
-- Convert static plots into interactive html plots with plotly within R.
 
 There are [supplemental](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/) materials including importing other types of data into phyloseq, and the use of R plotly to produce interactive HTML based plots.
 
@@ -85,7 +87,7 @@ column_1 <- c(
  '[![](figures/beta.png){height="150"}](#beta_chap)',
  #13 Summary
    '[**Summary**](#sumchap)', 
- '[![](figures/recap.png){height="150"}](#sumchap)'
+ '[![](figures/recap.png){style="height:150px; border-radius:15px; background:white"}](#sumchap)'
 )
 column_2 <- c(
   #2: R packages
@@ -93,7 +95,7 @@ column_2 <- c(
  '[![](figures/R.png){height="150"}](#rpackchap)',
  #4 Jupyter
    '[**Jupyter**](#jupyterchap)', 
- '[![](figures/jupyter_logo.png){height="150"}](#jupyterchap)',
+ '[![](figures/jupyter_logo.png){style="height:150px; border-radius:15px; background:white"}](#jupyterchap)',
  #6 Min reads
    '[**Minimum read depth**](#mindepthchap)', 
  '[![](figures/depth_diver.png){height="150"}](#mindepthchap)',
@@ -108,7 +110,7 @@ column_2 <- c(
  '[![](figures/difference.png){height="150"}](#DA_chap)',
    #14 appendix
     '[**Appendix**](#mambainstalls)', 
- '[![](figures/mamba_logo.png){height="150"}](#mambainstalls)'
+ '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; background:null"}](#mambainstalls)'
 )
 table_df <- data.frame(column_1, column_2)
 #Kable and kableextra libraries
@@ -129,12 +131,14 @@ table_df %>%
 library(webexercises)
 ```
 # Dataset & workflow {#datasetandworkflowchap}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/data.png){style="width:200px"}
+</center>
 
 ## Dataset
-<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
+<center>
+![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}
+</center>
 
 In this tutorial we will be using a 16S metabarcoding dataset derived from surface water from the Durance River in the south-east of France.
 Two major comparisons were carried out in combination with each other.
@@ -142,9 +146,9 @@ Two major comparisons were carried out in combination with each other.
 [Link to paper](https://www.mdpi.com/2076-2607/8/8/1129)
 
 ### Sites
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/river.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/river.png){style="width:200px"}
+</center>
 
 Three different sites were chosen on the Durance River. These three sites were representative of an anthropisation (transformation of land by humans) gradient along a river stream. These sites were:
 
@@ -153,9 +157,9 @@ Three different sites were chosen on the Durance River. These three sites were r
 - __Lower Durance sampling site (LD)__: Lower part of agricultural land with intensive production of fruits, cereals, and vegetables.
 
 ### Culture media
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/petri.png){style="width:200px"}
+</center>
 
 Surface water was sampled and different culture media were used to produce bacterial lawns for each site. The media used were:
 
@@ -165,9 +169,9 @@ Surface water was sampled and different culture media were used to produce bacte
 - __CVP__ incubated at 28°C for 3 days.
 
 ### Summary & questions {#sum_and_qs}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_red.png){style="width:200px"}
+</center>
 
 Each sample and media combination was produced in replicates of three giving a total of 36 samples (3 X 4 X 3 = 36). The three replicates were cultured on three different plates with the same media. An ASV table, taxonomy table, and phylogenetic tree were produced with QIIME2 and DADA2.
 
@@ -179,9 +183,9 @@ With this data we can ask and investigate the following questions:
 - Do the media samples differ from the ENV samples? If so, how?
 
 ## Workflow
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/workflow.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 1. [Import](#import_chap): Import QIIME2 artifacts into a `phyloseq` object with `qiime2R`.
 2. [Summarisations](#sum_phyloseq_chap): Check our `phyloseq` object with summarisations.
@@ -200,16 +204,16 @@ knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 library(webexercises)
 ```
 # R Packages {#rpackchap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/R.png", auto_pdf = TRUE)
-```  
+<center>
+![](figures/R.png){style="width:200px"}
+</center>
 
 During this workshop we will use various R packages with their own intricacies. Before going into analysis we'll introduce you to some of these important concepts.
 
 ## R packages/libraries
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/r_package.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/r_package.png){style="width:200px"}
+</center>
 
 R packages/libraries contain additional functions, data and code for analysing, manipulating and plotting different types of data. Many common packages will be installed as default when you install R. Other more specialised packages, such as the `ggplot2` package, must be installed by the user.
 
@@ -254,9 +258,9 @@ This convention has 2 benefits:
 - Different packages may have functions with the same name. Specifying the package will ensure you are using the correct function.
 
 ## The grammar of graphics
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/ggplot2.png){style="width:200px"}
+</center>
 
 During this course we will be using the grammar of graphics coding approach. This approach is implemented by the R package `ggplot2` to create visualisations such as bar charts, box plots, ordination plots etc. In turn `ggplot2` is used by a host of other packages, some of which we will be using. Although `ggplot2` is R code, its structure is very different and it takes effort to learn. Thankfully, `ggplot2` is very powerful and flexible, and it produces very professional and clean plots.
 
@@ -287,13 +291,15 @@ That was a quick introduction to the grammar of graphics. We will be using this 
 For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
 
 ## phyloseq
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/phyloseq_logo.png){style="width:200px"}
+</center>
 
 In this book we will be working with [`phyloseq`](https://joey711.github.io/phyloseq/) objects to preprocess  our dataset, create visualisations, and carry out statistical analyses. This is a very popular object type for community abundance datasets as it contains the abundance table, metadata, and taxonomy table in one object, optionally containing the phylogenetic tree and reference sequences if wanted/required.
 
-<center>![](figures/phyloseq_input.png){style="border-radius: 15px; width: 800px; border: 5px solid #333333"}</center>
+<center>
+![](figures/phyloseq_input.png){style="border-radius: 15px; width: 800px; border: 5px solid #333333"}
+</center>
 
 For more info on `phyloseq` and associated packages please see the [appendix](#phyloseq_appendix).
 
@@ -303,9 +309,9 @@ For more info on `phyloseq` and associated packages please see the [appendix](#p
 library(webexercises)
 ```
 # Set-up {#setupchap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/start.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/start.png){style="width:200px"}
+</center>
 
 Prior to any analysis we need to setup our environment in the webVNC.
 
@@ -317,9 +323,9 @@ You will now be in a logged-in Linux VNC desktop.
 You will see something as below (there may be only one terminal which is fine). 
 If you do not see something similar please ask for assistance.
 
-```{r, fig.align = 'center',out.width= '800px', echo=FALSE }
-knitr::include_graphics(path = "figures/nsc200_logon.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/logon_pic.png){style="width:800px"}
+</center>
 
 If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. 
 You will most likely need to use your browser's tool bar to accomplish this. 
@@ -332,7 +338,9 @@ The following link is a guide to install Mint Linux:
 https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
 ## Mamba
-<center>![](figures/mamba_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333"}</center>
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
+</center>
 
 This workshop requires a lot of packages. 
 These all can be difficult to install with R. 
@@ -365,7 +373,9 @@ library(webexercises)
 ```
 # Jupyter {#jupyterchap}
 
-<center>![](figures/jupyter_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333; background-color: white"}</center>
+<center>
+![](figures/jupyter_logo.png){style="border-radius: 15px; width: 200px; background-color: white"}
+</center>
 
 
 [`Jupyter-notebook`](https://jupyter.org/) is a nice browser based method to write, edit, and run code. It was initally created for Python coding, but has since branched out to many other languages, such as `R`.
@@ -379,6 +389,8 @@ We are using it in this workshop for a variety of its properties:
 -   It provides a graphical interface for changing directories and choosing files.
 
 Before carrying out any analysis we will go through a quick tutorial of `jupyter-notebook`.
+
+__Note:__ There is a [video tutorial](#jup_vid_tut) of this chapter at the bottom of this page if you prefer to watch it.
 
 ## Open Jupyter-notebook
 
@@ -410,18 +422,22 @@ icons::fontawesome("bars")
 ) on the top left for a dropdown menu which includes zoom options.
 `r unhide()`
 
-<center>![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+</center>
 
 ## Create R notebook
 
-The next step is to create a R notebook.
+The next step is to create an R notebook.
 
 1.  Click on the **"New"** button towards the top right, right of the "Upload" button.
 2.  From the dropdown click **"R"** below "Python 3 (ipykernel)".
 
 This will open up a new R notebook like below.
 
-<center>![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+</center>
 
 ## Cells and code
 
@@ -438,13 +454,23 @@ When pressing enter in **cells** it will create a new line. To run all commands 
 
 Run your current **cell** and you should see something like below.
 
-<center>![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+</center>
 
 ## Create new cells
 
 You can create new **cells** by 2 different means.
 
--   Press the `+` button on the tool bar (between the floppy disk `r icons::ionicons("save-outline")` and scissors `r icons::ionicons("cut")`). This will add a **cell** below your currently selected **cell**.
+-   Press the `+` button on the tool bar (between the floppy disk
+```{r, echo=FALSE}
+icons::icon_style(icons::ionicons("save-outline"), background="white")
+``` 
+and scissors
+```{r, echo=FALSE}
+icons::icon_style(icons::ionicons("cut"), background="white")
+``` 
+). This will add a **cell** below your currently selected **cell**.
 -   Click on the **`Insert`** button and use the dropdown to add a cell above or below your currently selected cell.
 
 **Tip:** Hover over the toolbar icons to display a text based description of its function.
@@ -477,15 +503,16 @@ To run all **cells** from the start:
 
 You should then see something like the below in your notebook.
 
-<center>![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+</center>
 
 There is no output printed for __cell__ 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in **cell** 2 before **cell** 3 was run.
 
 ## Saving the file
-
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/r_save.png){style="width:100px"}
+</center>
 
 As with RStudio and other good coding interfaces we can save our notebook.
 
@@ -498,7 +525,11 @@ First we should rename the file. Rename the notebook to **"jupyter_tut"**:
 
 Now we can save the file. Two methods to save are:
 
--   Click the floppy disk `r icons::ionicons("save-outline")` on the toolbar.
+-   Click the floppy disk 
+```{r, echo=FALSE}
+icons::icon_style(icons::ionicons("save-outline"), background="white")
+``` 
+on the toolbar.
 -   Click on the **"File"** button. Click **"Save and Checkpoint"** from the dropdown options.
 
 ## Title cells with markdown
@@ -533,21 +564,25 @@ To close the notebook:
 -   Click on **"File"**.
 -   From the dropdown options click **"Close and Halt"**.
 
-When you are back in the file explorer page you may not yet set the new file you saved. If so, you will need to refresh the page with the Refresh button `r icons::ionicons("refresh")` towards the top right.
+When you are back in the file explorer page you may not yet see the new file you saved. If so, you will need to refresh the page with the Refresh button 
+```{r, echo=FALSE}
+icons::icon_style(icons::ionicons("refresh"), background="white")
+``` 
+towards the top right.
 
-<center>![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+</center>
 
 With that quick tutorial of `jupyter-notebook` we can start our community analysis in the next chapter.
 
 For more info on `jupter-notebook` please see the [appendix](#jupyter_appendix).
 
-## Video tutorial
-
-::: container
-<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" frameborder="0" allowfullscreen class="video">
-
-</iframe>
-:::
+## Video tutorial {#jup_vid_tut}
+<div class="container">
+<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
 
 <!--chapter:end:05-Jupyter.Rmd-->
 
@@ -557,9 +592,9 @@ library(webexercises)
 # (PART\*) Data preparation {-}
 
 # Data prep intro {#preprocess_section}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/half_tablespoon.png){style="width:200px"}
+</center>
 
 In the next 3 chapters (7-9) we will learn how to:
 
@@ -576,21 +611,20 @@ However, from chapters 10 onwards you will make more decisions on how many __"Co
 library(webexercises)
 ```
 # Import {#import_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/import.png){style="width:200px"}
+</center>
 
 Before carrying out any analysis we first need to import our QIIME2 artifacts into a `phyloseq` object. Thankfully there is an R package called `qiime2R`.
 
 ## Import: notebook
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/r_script.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/r_script.png){style="width:200px"}
+</center>
 
 Prior to any coding, we will create a new directory, our analysis directory.
-afterwards, reate a new notebook called __"01-Import.ipynb"__ in it. 
-We will be creating many notebooks, so we'll number them so we can easily see the order of scripts.
+Next, we'll create a new notebook called __"01-Import.ipynb"__ in it. 
+We will be creating many notebooks and numbering them so we can easily see the order of scripts.
 
 First create a new directory.
 
@@ -609,10 +643,9 @@ Click on your __"R_community_workshop"__ folder to move into it.
 Next step is to create a new R notebook, rename it to __"01-Import"__, and save it.
 
 ## qiime2R
-
-```{r, fig.align = 'center',out.width= '400px', echo=FALSE }
-knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/qiime2r.png){style="width:400px"}
+</center>
 
 [`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R `phyloseq` object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.
 
@@ -642,9 +675,9 @@ This command creates a phyloseq object named `pseq`. It contains:
 -   The sample metadata (`metadata = "media_metadata.txt"`)
 
 ## Import: Summarise phyloseq
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/list_blue.png){style="width:200px"}
+</center>
 
 Now that we have imported the data we can extract some summary information from it.
 
@@ -709,9 +742,9 @@ Sparsity can be any value from 0-1. The higher the value the more sparse it is, 
 If you would like to see how the function calculates its values you can view the [source code online](https://rdrr.io/github/microbiome/microbiome/src/R/summarize_phyloseq.R).
 
 ## Save the phyloseq object
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/r_save.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/r_save.png){style="width:200px"}
+</center>
 
 When using multiple notebooks/scripts for analysis it is useful to save the R objects that will be used in different notebooks/scripts. This can be carried out with the function `save()`.
 
@@ -728,9 +761,9 @@ This saves our object `pseq` into the file `phyloseq.RData`. The suffix `.RData`
 We have saved our final object of the notebook. Close and halt it.
 
 ## Import: recap
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We have imported our QIIME2 artifacts into one `phyloseq` object so we can analyse the data in R. This object has been saved into a ".RData" file which we will load in the next chapter.
 
@@ -740,18 +773,18 @@ We have imported our QIIME2 artifacts into one `phyloseq` object so we can analy
 library(webexercises)
 ```
 # Summarise phyloseq {#sum_phyloseq_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/transform.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/transform.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 For the next 2 chapters we will use one notebook. We will setup this notebook with packages and the `phyloseq` object we created in the last chapter.
 
 After this, we will summarise the `phyloseq` object. We will investigate the read depth of samples and the number of ASVs in our dataset.
 
 ## Summarise: setup
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/setup_2.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/setup_2.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 Before starting analysis create and save a new `R` notebook called __"02-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
 
@@ -797,9 +830,9 @@ load("phyloseq.RData")
 Ensure you have run the code in this cell.
 
 ### Summarise header
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/header.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/header.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 When you load in a dataset it is always useful to check it. 
 We will therefore use a new section to inspect the data.
@@ -811,9 +844,9 @@ In a new __"Markdown"__ cell add the following 2nd level header.
 ```
 
 ### Summarise phyloseq
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/list_blue.png){style="width:200px"}
+</center>
 
 Create a new code __cell__ and add the following annotation and code. Then run the code.
 
@@ -827,9 +860,9 @@ We ran this code in the __"01-Import.ipynb"__. You can therefore check if our ne
 Due to the relative large amount of output to screen we'll put the next part into a new __cell__.
 
 ### Reads per sample
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/histogram.png){style="width:200px"}
+</center>
 
 In a new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`).
 
@@ -852,9 +885,9 @@ dev.off()
 ```
 
 ### Display png
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/display_png.png){style="width:200px"}
+</center>
 
 We can use the R package [`IRdisplay`](https://github.com/IRkernel/IRdisplay) to display plots from files in `jupyter-notebook`.
 
@@ -868,9 +901,9 @@ IRdisplay::display_png(file="./sample_depth_histogram.png")
 This information is very useful. We will use it in the next chapter to determine what our minimum read depth should be.
 
 ### ASVs per sample
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/nice_table.png){style="width:200px"}
+</center>
 
 The last information we will look at before some preprocessing are the ASVs (Amplicon Sequnces Variants).
 
@@ -909,9 +942,9 @@ rm(num_asvs_vec)
 ```
 
 ## Summarise: recap
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We now have an idea of some of the attributes of our dataset. This includes the number of reads and ASVs. We can use this knowledge to carry out some preprocessing.
 
@@ -921,9 +954,9 @@ We now have an idea of some of the attributes of our dataset. This includes the 
 library(webexercises)
 ```
 # Minimum read depth {#mindepthchap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/depth_diver.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/depth_diver.png){style="width:200px"}
+</center>
 
 It is good to remove samples with a very low read depth (number of sequencing reads).
 But determining an appropriate minimum read depth is not trivial.
@@ -940,9 +973,9 @@ In this chapter we will:
 - Demonstrate how to filter samples by depth.
 
 ## Considerations
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/consider.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/consider.png){style="width:200px; border-radius:5px; background:white"}
+</center>
 
 There are 3 main considerations to take into account when choosing an appropriate depth for your dataset.
 
@@ -956,16 +989,16 @@ There are 3 main considerations to take into account when choosing an appropriat
   - Be careful of your conclusions. If you think your dataset doesn't have as much data as it could, do not make very definitive detailed claims.
 - __Read depth of sample groups.__
   - It may be possible that a few samples have a much lower depth than the rest. It may be a good idea to remove them.
-  - However, these may all come from the same sample group and so you have lost all information of one group.
+  - However, these may all come from the same sample group and so you will lose all information of one group.
   - For instance, you may be comparing different geological surfaces and your rock samples have much lower read depths than the various soil samples.
   - For comparisons including the lower depth sample group (e.g. rock samples) you will need to retain the lower depth samples.
 
 That is a brief overview of that topic. If you are interested in more I suggest you look at papers where they have studied an environment similar to yours.
 
 ## Minimum read depth section title
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/header_l2.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/header_l2.png){style="width:200px; border-radius:5px; border: 5px solid white; background:white"}
+</center>
 
 In the next section of our `jupyter-notebook` we will investigate what the minimum read depth should be and remove samples with a lower depth.
 
@@ -976,9 +1009,9 @@ Create a new __"Markdown"__ __cell__ and add the following 2nd level header.
 ```
 
 ## Read depth vector and histogram
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/histogram.png){style="width:200px"}
+</center>
 
 We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:
 
@@ -990,16 +1023,16 @@ opts_p <- c("__1-8__", answer="__10,000-18,000__", "__20,000+__")
 This is a good first step but what if we want to know how the read depths vary between sample groups?
 
 ## Sample depth boxplot {#depth-boxplots}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/boxplot.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/boxplot.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We are going to use `ggplot2` to create a couple boxplots to show the sequencing depth ranges of the different sample groups (Site & Media).
 
 ### Creating a data frame for boxplots
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/metadata.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/metadata.png){style="width:200px"}
+</center>
 
 First, we need to create an object containing our sample names, site & media information, and the depth.
 We will use this object to produce our boxplots.
@@ -1046,9 +1079,9 @@ head(abundance_metadf)
 Great! We will use this data frame to create 2 boxplots.
 
 ### ggplot2 boxplot
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/boxplots_groups.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/boxplots_groups.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We are going to create 2 boxplots with `ggplot2`.
 We won't go into too much detail on how the code works here, instead learning more later in this book.
@@ -1072,12 +1105,12 @@ boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=site)) +
   ggplot2::geom_boxplot()
 ```
 
-We have a saved `ggplot2` object but now we need to save it as a image file and display it.
+We have a saved `ggplot2` object but now we need to save it as an image file and display it.
 
 ### Save ggplot as png
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/png_file.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/png_file.png){style="width:200px"}
+</center>
 
 You can save a `ggplot` object as an image file with `ggsave()`.
 This allows you to select the size and resolution (`dpi`) of the image.
@@ -1097,9 +1130,9 @@ opts_p <- c(answer="__LD (Lower Durance)__", "__MD (Middle Durance)__", "__UD (U
 - Which site has the highest median depth (middle line of boxplot)? `r longmcq(opts_p)`
 
 ### Media by depth boxplot
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/petri.png){style="width:200px"}
+</center>
 
 We will use the same code to plot the depth by media.
 You can copy and paste the code changing all the instances of __site__ to __media__.
@@ -1126,9 +1159,9 @@ From the boxplots we can see there is no drastic difference between the depths o
 For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
 
 ## Rarefaction curve {#chap9rarefaction}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/rarefaction.png){style="width:200px"}
+</center>
 
 Our read depths appear a bit low, each sample has <20K reads. 
 However, this might be fine for our dataset since we are using surface water samples rather than human gut microbiome samples.
@@ -1143,9 +1176,9 @@ It has a variety of functions but it uses normal R data frames rather than `phyl
 We will therefore only use it for rarefaction purposes.
 
 ### ASV abundance data frame
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/nice_table.png){style="width:200px"}
+</center>
 
 Before creating our rarefaction curve we will extract the ASV abundance table from the `phyloseq` object with `phyloseq`'s function `otu_table()`. 
 We need to transpose (`t()`) the table so it is in the correct orientation for the rarefaction function.
@@ -1160,9 +1193,9 @@ asv_abund_df <- as.data.frame(t(phyloseq::otu_table(pseq)))
 ```
 
 ### vegan's rarecurve
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/vegan.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/vegan.png){style="width:200px"}
+</center>
 
 With this data frame we can create a rarefaction curve with `vegan`'s `rarecurve()` function.
 
@@ -1188,7 +1221,7 @@ __Note__: You will get a warning saying `"most observed count data have counts 1
 In essence, we are hoping that the majority of samples have plateaued.
 If the curves have flattened in relation to the y axis this indicates that most of the ASVs present in the sample have been captured.
 
-Our samples have plateau'd or have gentle slopes towards the end.
+Our samples have plateaued or have gentle slopes towards the end.
 With this we can be happy to continue and not remove samples by a minimum read depth.
 
 If we saw some samples with steep curves and low depths we could carry out some more analysis with rarefaction.
@@ -1196,14 +1229,14 @@ However, more rarefaction functions, analysis, and theories will be covered in t
 You could use some of these at this point to help you determine your minimum read depth for your own datasets.
 
 ## Filtering by minimum read depth
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/water_filter.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/water_filter.png){style="width:200px"}
+</center>
 
 What if you want to filter samples by a minimum read depth?
 
 You can use the `subset_samples()` function from `phyloseq()`.
-We will use our previously created vector containing read depths (`sample_depths`) to remove sample with less than 11k reads.
+We will use our previously created vector containing read depths (`sample_depths`) to remove sample with less than or equal to 11k reads.
 We have chosen this depth as an example to remove some samples.
 
 Write and run the below code in a new cell.
@@ -1304,9 +1337,9 @@ rm(pseq_min11K)
 Once you are finished with this notebook you can save it then close and halt it.
 
 ## Minmum read depth: Summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_blue.png){style="width:200px"}
+</center>
 
 We have assessed the read depth in this chapter and decided to not remove any samples. 
 This assessment included:
@@ -1326,9 +1359,9 @@ library(webexercises)
 # (PART\*) Taxonomy {-}
 
 # Taxa relative abundance {#taxa_relabund_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/taxa.png){style="width:200px"}
+</center>
 
 In this section we are going to create taxonomy bar charts.
 For this we are going to use relative abundance tables of different taxa levels; Genus, Family, & Phyla.
@@ -1338,9 +1371,9 @@ We would use read depth filtered data if we wanted to use it for other downstrea
 But, as stated in the last chapter all our samples had sufficient depth, so we will use our original abundance `phyloseq` object.
 
 ## Taxa relative abundance: setup
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/packages.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/packages.png){style="width:200px"}
+</center>
 
 The first steps before analysis are:
 
@@ -1361,9 +1394,9 @@ From now on you will get less instructions on your notebook structure.
 Please create your own coding and markdown cells where you think appropriate.
 
 ## Relative abundance transformation
-```{r, fig.align = 'center',out.width= '400px', echo=FALSE }
-knitr::include_graphics(path = "figures/count_to_percent.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/count_to_percent.png){style="width:400px; border-radius:15px; background:white"}
+</center>
 
 Now that we have the data loaded we can create a new `phyloseq` object by transforming the abundance values to relative abundances.
 
@@ -1389,9 +1422,9 @@ You will notice the read count for each sample is __1__. This abundance table co
 We will use this to produce all our different taxa tables.
 
 ## Aggregate taxa
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/aggregate_taxa.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/aggregate_taxa.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 To produce a taxa table we can use the `microbiome` function `aggregate_taxa()`.
 
@@ -1420,9 +1453,9 @@ microbiome::readcount(phylum_pseq)
 ```
 
 ## Taxa Relative abundance: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_blue.png){style="width:200px"}
+</center>
 
 We have produced a `phyloseq` object containing a Phylum relative abundance table. Next, we will create a taxonomy bar chart with this.
 
@@ -1432,16 +1465,16 @@ We have produced a `phyloseq` object containing a Phylum relative abundance tabl
 library(webexercises)
 ```
 # Taxa plots {#chaptaxaplots}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/owl_eyes.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/owl_eyes.png){style="width:200px"}
+</center>
 
 Now that we have our Phylum relative abundance `phyloseq` we can create a bar chart.
 
 ## Simple bar chart
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/bar_chart.png){style="width:200px"}
+</center>
 
 To create, save, and view a simple phylum bar chart we can use the following code.
 
@@ -1458,9 +1491,9 @@ IRdisplay::display_png(file="./phylum_relabund_simple.png")
 This is a good start but we can improve it.
 
 ### Editing the plot
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/plus_sign.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/plus_sign.png){style="width:200px"}
+</center>
 
 Components can be added to `ggplot2` objects to edit the plot.
 They are added with the `+` symbol.
@@ -1479,9 +1512,9 @@ phylum_bar <- microbiome::plot_composition(phylum_pseq) +
 Now save and display the plot.
 
 ## Taxa heatmap
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/heatmap.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/heatmap.png){style="width:200px"}
+</center>
 
 Our bar chart looks quite nice but for displaying all taxa present it may be better to use a heatmap.
 Use the below code to produce and visualise a heatmap.
@@ -1508,9 +1541,9 @@ opts_p <- c("__Chloroflexi__", "__Firmicutes__", answer="__Proteobacteria__")
 - What is the most abundant phyla across the samples? `r longmcq(opts_p)`
 
 ## Aggregate rare taxa{#aggregateraretaxa}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/origami_rhino.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/origami_rhino.png){style="width:200px"}
+</center>
 
 From our bar chart and our heatmap we can see that there are a few high abundance phyla (Actinobacteria, Bacteroidetes, Firmicutes, & Proteobacteria) and many low abundance phyla.
 
@@ -1532,8 +1565,6 @@ The taxa which don't reach these thresholds will be classified as rare and aggre
 
 In the below example we are aggregating the rare taxa with our ASV relative abundance `phyloseq` object.
 Any phyla with a relative abundance >= to 0.01 (__detection__) in at least 5% (5/100) of the samples will not be classified as rare.
-
-More info on [prevalence & detection](https://microbiome.github.io/OMA/quality-control.html#prevalence).
 
 __Note__: The __detection__ and __prevalence__ thresholds can be given as numbers (1, 2, 1000 etc.), or percentage values (5/100, 50/100, etc.).
 
@@ -1588,9 +1619,9 @@ We can quite easily see that there are 7 main phyla (excluding "Other").
 Additionally, it seems that the biggest difference between samples is due to the media used.
 
 ## Plot by media
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/petri.png){style="width:200px"}
+</center>
 
 One of the many great advantages of `ggplot2` is that you can create plots tailored to your metadata.
 As an example we will create another taxonomy bar chart but have one bar for each media site.
@@ -1630,9 +1661,9 @@ Which media has the lowest relative abundance of _Protoebacteria_ and the highes
 Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.
 
 ## Plot by site and media
-```{r, fig.align = 'center',out.width= '350px', echo=FALSE }
-knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/site_and_media.png){style="width:400px"}
+</center>
 
 __Task__: In the `sample_data` there is a column called `site.media`.
 Use this column to create a phyla bar chart averaged by site and media.
@@ -1657,9 +1688,9 @@ IRdisplay::display_png(file="./phylum_relabund_site_media_rareaggregate.png")
 `r unhide()`
 
 ## Taxa plots: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/sum_purple.png){style="width:200px"}
+</center>
 
 In this chapter we have:
 
@@ -1678,9 +1709,9 @@ We will reinforce this by producing Family and Genus based plots in the next cha
 library(webexercises)
 ```
 # Family & Genus plots {#family_genus_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/plots.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/plots.png){style="width:200px"}
+</center>
 
 In this chapter you will:
 
@@ -1693,17 +1724,17 @@ However, it can be easy to overlook some edits.
 It is a good idea to double check your edited code to ensure you have changed the relevant options, and object & file names.
 
 ## Family taxa plots
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/family.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/family.png){style="width:200px"}
+</center>
 
 This part will show you a nice workflow for creating some family based taxa plots.
 Run this at the bottom of your "3-taxonomy_barchart.ipynb" notebook.
 
 ### Aggregate families
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/aggregate_taxa.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/aggregate_taxa.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 First we will create a `phyloseq` object by aggregating the families from the relative abundance `phyloseq` object.
 Let us also then check the family `phyloseq` object.
@@ -1723,9 +1754,9 @@ microbiome::readcount(family_pseq)
 We have 112 families. Quite a bit but hopefully they will all fit into a heatmap.
 
 ### Family heatmap
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/heat_topology.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/heat_topology.png){style="width:200px"}
+</center>
 
 We will create a heatmap as before with one added `ggplot2` component.
 As there are a lot of Families (112) and fewer samples (36) it will be easier to view if we have the families on the y-axis.
@@ -1760,9 +1791,9 @@ This will help to keep the used resources low on the cluster.
 Next we'll carry out our rare aggregation and produce some bar charts.
 
 ### Family rare aggregation
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/elephant_origami.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/elephant_origami.png){style="width:200px"}
+</center>
 
 To aggregate our rare families we need to choose a suitable [detection and prevalence threshold](#aggregateraretaxa).
 Generally, this is a process of trial and error trying to get a total of 12 taxa.
@@ -1856,9 +1887,9 @@ It takes a lot of trial and practice and I find the thresholds to not be very in
 One piece of advise is to only change one threshold at a time during your trial and errors.
 
 ### Family bar chart
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/chocolate_bar.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/chocolate_bar.png){style="width:200px"}
+</center>
 
 With our family rare aggregated `phyloseq` object we'll create a bar chart.
 
@@ -1882,9 +1913,9 @@ IRdisplay::display_png(file="./family_relabund_rareaggregate.png")
 Brilliant, we are now finished with the Family taxa plots. Onto something harder.
 
 ## Genus taxa plots
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/ginger.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/ginger.png){style="width:200px"}
+</center>
 
 In this section you are running your own analysis for the Genus information in the "3-taxonomy_barchart.ipynb" notebook.
 Carry out the following tasks with the relative abundance `phyloseq` object (`pseq_relabund`):
@@ -1899,9 +1930,9 @@ Again, I encourage you to copy, paste, and edit previous code.
 You will most likely need to change names of objects and also change various options.
 
 ### Genus taxa plots solutions
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/ginger_solutions.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/ginger_solutions.png){style="width:200px"}
+</center>
 
 Please give the task a good try before looking at the solutions in the expandable boxes.
 However, if you are really stuck or want to compare your code to mine please have a look.

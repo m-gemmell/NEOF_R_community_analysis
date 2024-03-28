@@ -1,7 +1,7 @@
 # Family & Genus plots {#family_genus_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/plots.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/plots.png){style="width:200px"}
+</center>
 
 In this chapter you will:
 
@@ -14,20 +14,20 @@ However, it can be easy to overlook some edits.
 It is a good idea to double check your edited code to ensure you have changed the relevant options, and object & file names.
 
 ## Family taxa plots
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/family.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/family.png){style="width:200px"}
+</center>
 
 This part will show you a nice workflow for creating some family based taxa plots.
 Run this at the bottom of your "3-taxonomy_barchart.ipynb" notebook.
 
 ### Aggregate families
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/aggregate_taxa.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/aggregate_taxa.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 First we will create a `phyloseq` object by aggregating the families from the relative abundance `phyloseq` object.
-Let us also then check the family `phyloseq` object.
+We'll also check the family `phyloseq` object.
 
 ```{r, eval = FALSE}
 #Family phyloseq
@@ -44,16 +44,16 @@ microbiome::readcount(family_pseq)
 We have 112 families. Quite a bit but hopefully they will all fit into a heatmap.
 
 ### Family heatmap
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/heat_topology.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/heat_topology.png){style="width:200px"}
+</center>
 
 We will create a heatmap as before with one added `ggplot2` component.
 As there are a lot of Families (112) and fewer samples (36) it will be easier to view if we have the families on the y-axis.
 By default `microbiome::plot_composition()` will plot the taxa/families on the x-axis.
 Thankfully we can use the `ggplot2()` function/component `coord_flip()` to flip/swap the x and y axes.
 
-__Note__: The `xlab()` and `ylab()` are specified the before this flipping.
+__Note__: The `xlab()` and `ylab()` are specified before this flipping.
 E.g. `xlab()` is set to "Family" which will appear on the y axis because of the flip.
 
 ```{r, eval=FALSE}
@@ -81,9 +81,9 @@ This will help to keep the used resources low on the cluster.
 Next we'll carry out our rare aggregation and produce some bar charts.
 
 ### Family rare aggregation
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/elephant_origami.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/elephant_origami.png){style="width:200px"}
+</center>
 
 To aggregate our rare families we need to choose a suitable [detection and prevalence threshold](#aggregateraretaxa).
 Generally, this is a process of trial and error trying to get a total of 12 taxa.
@@ -99,7 +99,7 @@ summary(rowMeans(phyloseq::otu_table(family_pseq)))
 ```
 
 We have a lot of families so we will want to remove a good amount of them.
-For our first attempt at rare aggregation we will use a value near the 3rd Quartile (0.0021601).
+For our first attempt at rare aggregation we will use a detection value near the 3rd Quartile (0.0021601).
 This will hopefully remove at least 3/4 of the families.
 
 We'll set up the code a bit differently so we can easily copy and paste it to try out various other values of detection and threshold.
@@ -173,13 +173,13 @@ family_rareaggregate_pseq <- microbiome::aggregate_rare(
 ```
 
 Choosing a good detection and prevalence threshold is quite difficult.
-It takes a lot of trial and practice and I find the thresholds to not be very intuitive to understand.
+It takes a lot of trial and error, and I find the thresholds to not be very intuitive to understand.
 One piece of advise is to only change one threshold at a time during your trial and errors.
 
 ### Family bar chart
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/chocolate_bar.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/chocolate_bar.png){style="width:200px"}
+</center>
 
 With our family rare aggregated `phyloseq` object we'll create a bar chart.
 
@@ -203,9 +203,9 @@ IRdisplay::display_png(file="./family_relabund_rareaggregate.png")
 Brilliant, we are now finished with the Family taxa plots. Onto something harder.
 
 ## Genus taxa plots
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/ginger.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/ginger.png){style="width:200px"}
+</center>
 
 In this section you are running your own analysis for the Genus information in the "3-taxonomy_barchart.ipynb" notebook.
 Carry out the following tasks with the relative abundance `phyloseq` object (`pseq_relabund`):
@@ -220,9 +220,9 @@ Again, I encourage you to copy, paste, and edit previous code.
 You will most likely need to change names of objects and also change various options.
 
 ### Genus taxa plots solutions
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/ginger_solutions.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/ginger_solutions.png){style="width:200px"}
+</center>
 
 Please give the task a good try before looking at the solutions in the expandable boxes.
 However, if you are really stuck or want to compare your code to mine please have a look.

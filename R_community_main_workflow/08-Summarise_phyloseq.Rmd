@@ -1,16 +1,16 @@
 # Summarise phyloseq {#sum_phyloseq_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/transform.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/transform.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 For the next 2 chapters we will use one notebook. We will setup this notebook with packages and the `phyloseq` object we created in the last chapter.
 
 After this, we will summarise the `phyloseq` object. We will investigate the read depth of samples and the number of ASVs in our dataset.
 
 ## Summarise: setup
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/setup_2.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/setup_2.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 Before starting analysis create and save a new `R` notebook called __"02-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
 
@@ -56,9 +56,9 @@ load("phyloseq.RData")
 Ensure you have run the code in this cell.
 
 ### Summarise header
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/header.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/header.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 When you load in a dataset it is always useful to check it. 
 We will therefore use a new section to inspect the data.
@@ -70,9 +70,9 @@ In a new __"Markdown"__ cell add the following 2nd level header.
 ```
 
 ### Summarise phyloseq
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/list_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/list_blue.png){style="width:200px"}
+</center>
 
 Create a new code __cell__ and add the following annotation and code. Then run the code.
 
@@ -86,9 +86,9 @@ We ran this code in the __"01-Import.ipynb"__. You can therefore check if our ne
 Due to the relative large amount of output to screen we'll put the next part into a new __cell__.
 
 ### Reads per sample
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/histogram.png){style="width:200px"}
+</center>
 
 In a new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`).
 
@@ -111,9 +111,9 @@ dev.off()
 ```
 
 ### Display png
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/display_png.png){style="width:200px"}
+</center>
 
 We can use the R package [`IRdisplay`](https://github.com/IRkernel/IRdisplay) to display plots from files in `jupyter-notebook`.
 
@@ -127,9 +127,9 @@ IRdisplay::display_png(file="./sample_depth_histogram.png")
 This information is very useful. We will use it in the next chapter to determine what our minimum read depth should be.
 
 ### ASVs per sample
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/nice_table.png){style="width:200px"}
+</center>
 
 The last information we will look at before some preprocessing are the ASVs (Amplicon Sequnces Variants).
 
@@ -168,8 +168,8 @@ rm(num_asvs_vec)
 ```
 
 ## Summarise: recap
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We now have an idea of some of the attributes of our dataset. This includes the number of reads and ASVs. We can use this knowledge to carry out some preprocessing.

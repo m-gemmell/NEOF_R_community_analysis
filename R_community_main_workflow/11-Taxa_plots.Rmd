@@ -1,14 +1,14 @@
 # Taxa plots {#chaptaxaplots}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/owl_eyes.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/owl_eyes.png){style="width:200px"}
+</center>
 
 Now that we have our Phylum relative abundance `phyloseq` we can create a bar chart.
 
 ## Simple bar chart
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/bar_chart.png){style="width:200px"}
+</center>
 
 To create, save, and view a simple phylum bar chart we can use the following code.
 
@@ -25,9 +25,9 @@ IRdisplay::display_png(file="./phylum_relabund_simple.png")
 This is a good start but we can improve it.
 
 ### Editing the plot
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/plus_sign.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/plus_sign.png){style="width:200px"}
+</center>
 
 Components can be added to `ggplot2` objects to edit the plot.
 They are added with the `+` symbol.
@@ -46,9 +46,9 @@ phylum_bar <- microbiome::plot_composition(phylum_pseq) +
 Now save and display the plot.
 
 ## Taxa heatmap
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/heatmap.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/heatmap.png){style="width:200px"}
+</center>
 
 Our bar chart looks quite nice but for displaying all taxa present it may be better to use a heatmap.
 Use the below code to produce and visualise a heatmap.
@@ -75,9 +75,9 @@ opts_p <- c("__Chloroflexi__", "__Firmicutes__", answer="__Proteobacteria__")
 - What is the most abundant phyla across the samples? `r longmcq(opts_p)`
 
 ## Aggregate rare taxa{#aggregateraretaxa}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/origami_rhino.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/origami_rhino.png){style="width:200px"}
+</center>
 
 From our bar chart and our heatmap we can see that there are a few high abundance phyla (Actinobacteria, Bacteroidetes, Firmicutes, & Proteobacteria) and many low abundance phyla.
 
@@ -99,8 +99,6 @@ The taxa which don't reach these thresholds will be classified as rare and aggre
 
 In the below example we are aggregating the rare taxa with our ASV relative abundance `phyloseq` object.
 Any phyla with a relative abundance >= to 0.01 (__detection__) in at least 5% (5/100) of the samples will not be classified as rare.
-
-More info on [prevalence & detection](https://microbiome.github.io/OMA/quality-control.html#prevalence).
 
 __Note__: The __detection__ and __prevalence__ thresholds can be given as numbers (1, 2, 1000 etc.), or percentage values (5/100, 50/100, etc.).
 
@@ -155,9 +153,9 @@ We can quite easily see that there are 7 main phyla (excluding "Other").
 Additionally, it seems that the biggest difference between samples is due to the media used.
 
 ## Plot by media
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/petri.png){style="width:200px"}
+</center>
 
 One of the many great advantages of `ggplot2` is that you can create plots tailored to your metadata.
 As an example we will create another taxonomy bar chart but have one bar for each media site.
@@ -197,9 +195,9 @@ Which media has the lowest relative abundance of _Protoebacteria_ and the highes
 Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.
 
 ## Plot by site and media
-```{r, fig.align = 'center',out.width= '350px', echo=FALSE }
-knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/site_and_media.png){style="width:400px"}
+</center>
 
 __Task__: In the `sample_data` there is a column called `site.media`.
 Use this column to create a phyla bar chart averaged by site and media.
@@ -224,9 +222,9 @@ IRdisplay::display_png(file="./phylum_relabund_site_media_rareaggregate.png")
 `r unhide()`
 
 ## Taxa plots: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/sum_purple.png){style="width:200px"}
+</center>
 
 In this chapter we have:
 

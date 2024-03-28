@@ -1,7 +1,7 @@
 # Minimum read depth {#mindepthchap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/depth_diver.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/depth_diver.png){style="width:200px"}
+</center>
 
 It is good to remove samples with a very low read depth (number of sequencing reads).
 But determining an appropriate minimum read depth is not trivial.
@@ -18,9 +18,9 @@ In this chapter we will:
 - Demonstrate how to filter samples by depth.
 
 ## Considerations
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/consider.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/consider.png){style="width:200px; border-radius:5px; background:white"}
+</center>
 
 There are 3 main considerations to take into account when choosing an appropriate depth for your dataset.
 
@@ -34,16 +34,16 @@ There are 3 main considerations to take into account when choosing an appropriat
   - Be careful of your conclusions. If you think your dataset doesn't have as much data as it could, do not make very definitive detailed claims.
 - __Read depth of sample groups.__
   - It may be possible that a few samples have a much lower depth than the rest. It may be a good idea to remove them.
-  - However, these may all come from the same sample group and so you have lost all information of one group.
+  - However, these may all come from the same sample group and so you will lose all information of one group.
   - For instance, you may be comparing different geological surfaces and your rock samples have much lower read depths than the various soil samples.
   - For comparisons including the lower depth sample group (e.g. rock samples) you will need to retain the lower depth samples.
 
 That is a brief overview of that topic. If you are interested in more I suggest you look at papers where they have studied an environment similar to yours.
 
 ## Minimum read depth section title
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/header_l2.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/header_l2.png){style="width:200px; border-radius:5px; border: 5px solid white; background:white"}
+</center>
 
 In the next section of our `jupyter-notebook` we will investigate what the minimum read depth should be and remove samples with a lower depth.
 
@@ -54,9 +54,9 @@ Create a new __"Markdown"__ __cell__ and add the following 2nd level header.
 ```
 
 ## Read depth vector and histogram
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/histogram.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/histogram.png){style="width:200px"}
+</center>
 
 We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:
 
@@ -68,16 +68,16 @@ opts_p <- c("__1-8__", answer="__10,000-18,000__", "__20,000+__")
 This is a good first step but what if we want to know how the read depths vary between sample groups?
 
 ## Sample depth boxplot {#depth-boxplots}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/boxplot.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/boxplot.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We are going to use `ggplot2` to create a couple boxplots to show the sequencing depth ranges of the different sample groups (Site & Media).
 
 ### Creating a data frame for boxplots
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/metadata.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/metadata.png){style="width:200px"}
+</center>
 
 First, we need to create an object containing our sample names, site & media information, and the depth.
 We will use this object to produce our boxplots.
@@ -124,9 +124,9 @@ head(abundance_metadf)
 Great! We will use this data frame to create 2 boxplots.
 
 ### ggplot2 boxplot
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/boxplots_groups.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/boxplots_groups.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We are going to create 2 boxplots with `ggplot2`.
 We won't go into too much detail on how the code works here, instead learning more later in this book.
@@ -150,12 +150,12 @@ boxplot <- ggplot2::ggplot(abundance_metadf, aes(y=depth, x=site)) +
   ggplot2::geom_boxplot()
 ```
 
-We have a saved `ggplot2` object but now we need to save it as a image file and display it.
+We have a saved `ggplot2` object but now we need to save it as an image file and display it.
 
 ### Save ggplot as png
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/png_file.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/png_file.png){style="width:200px"}
+</center>
 
 You can save a `ggplot` object as an image file with `ggsave()`.
 This allows you to select the size and resolution (`dpi`) of the image.
@@ -175,9 +175,9 @@ opts_p <- c(answer="__LD (Lower Durance)__", "__MD (Middle Durance)__", "__UD (U
 - Which site has the highest median depth (middle line of boxplot)? `r longmcq(opts_p)`
 
 ### Media by depth boxplot
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/petri.png){style="width:200px"}
+</center>
 
 We will use the same code to plot the depth by media.
 You can copy and paste the code changing all the instances of __site__ to __media__.
@@ -204,9 +204,9 @@ From the boxplots we can see there is no drastic difference between the depths o
 For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of this book.
 
 ## Rarefaction curve {#chap9rarefaction}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/rarefaction.png){style="width:200px"}
+</center>
 
 Our read depths appear a bit low, each sample has <20K reads. 
 However, this might be fine for our dataset since we are using surface water samples rather than human gut microbiome samples.
@@ -221,9 +221,9 @@ It has a variety of functions but it uses normal R data frames rather than `phyl
 We will therefore only use it for rarefaction purposes.
 
 ### ASV abundance data frame
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/nice_table.png){style="width:200px"}
+</center>
 
 Before creating our rarefaction curve we will extract the ASV abundance table from the `phyloseq` object with `phyloseq`'s function `otu_table()`. 
 We need to transpose (`t()`) the table so it is in the correct orientation for the rarefaction function.
@@ -238,9 +238,9 @@ asv_abund_df <- as.data.frame(t(phyloseq::otu_table(pseq)))
 ```
 
 ### vegan's rarecurve
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/vegan.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/vegan.png){style="width:200px"}
+</center>
 
 With this data frame we can create a rarefaction curve with `vegan`'s `rarecurve()` function.
 
@@ -266,7 +266,7 @@ __Note__: You will get a warning saying `"most observed count data have counts 1
 In essence, we are hoping that the majority of samples have plateaued.
 If the curves have flattened in relation to the y axis this indicates that most of the ASVs present in the sample have been captured.
 
-Our samples have plateau'd or have gentle slopes towards the end.
+Our samples have plateaued or have gentle slopes towards the end.
 With this we can be happy to continue and not remove samples by a minimum read depth.
 
 If we saw some samples with steep curves and low depths we could carry out some more analysis with rarefaction.
@@ -274,14 +274,14 @@ However, more rarefaction functions, analysis, and theories will be covered in t
 You could use some of these at this point to help you determine your minimum read depth for your own datasets.
 
 ## Filtering by minimum read depth
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/water_filter.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/water_filter.png){style="width:200px"}
+</center>
 
 What if you want to filter samples by a minimum read depth?
 
 You can use the `subset_samples()` function from `phyloseq()`.
-We will use our previously created vector containing read depths (`sample_depths`) to remove sample with less than 11k reads.
+We will use our previously created vector containing read depths (`sample_depths`) to remove sample with less than or equal to 11k reads.
 We have chosen this depth as an example to remove some samples.
 
 Write and run the below code in a new cell.
@@ -382,9 +382,9 @@ rm(pseq_min11K)
 Once you are finished with this notebook you can save it then close and halt it.
 
 ## Minmum read depth: Summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_blue.png){style="width:200px"}
+</center>
 
 We have assessed the read depth in this chapter and decided to not remove any samples. 
 This assessment included:
