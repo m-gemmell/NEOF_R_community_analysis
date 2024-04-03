@@ -1,7 +1,7 @@
 # Beta {#beta_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/beta.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/beta.png){style="width:200px"}
+</center>
 
 In this chapter we are going to carry out beta diversity analysis.
 This will include the production of ordination plots and statistical analysis.
@@ -21,9 +21,9 @@ In this chapter we will:
 - Determine if there is a statistical difference between beta diversity metrics of sample groups.
 
 ## Beta: setup
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/books.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/books.png){style="width:200px"}
+</center>
 
 We will use a new notebook called **"6-beta_diversity.ipynb"**. 
 Add the following to the top of this new notebook to load the required libraries/packages and data.
@@ -40,9 +40,9 @@ load("phyloseq_rarefied.RData")
 ```
 
 ## Beta: ordination
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/ordinate.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/ordinate.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 In this section we will ordinate our data with the `phyloseq::ordinate()` function.
 We'll use the [MDS method](https://en.wikipedia.org/wiki/Multidimensional_scaling) (AKA PCoA).
@@ -58,9 +58,9 @@ To see the different methods and distances that can be used please try `?phylose
 For more information about the different distances please see the [APPENDIX](#beta_appendix).
 
 ## Beta: plot ordination
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/Scatterplot_2.png){style="width:200px; border-radius:5px; background:white"}
+</center>
 
 Now that we have our ordination we can plot it.
 The script below uses `phyloseq::plot_ordination()` to plot our ordination.
@@ -107,6 +107,9 @@ In this case the total is >88% which is very good.
 Additionally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).
 
 ## Beta: plot ordination with ellipse
+<center>
+![](figures/elippses_plot.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We can crate an ordination plot with ellipse, circular shapes showing clustering of groups.
 The statistics of the ellipses and visualisation can be carried out with the function `ggplot2::stat_ellipse()`.
@@ -127,9 +130,9 @@ IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_ellipse.png")
 ```
 
 ## Beta: statistics
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster_colours.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/cluster_colours.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 For our beta diversity we will carry out PERMANOVA analysis for the media groupings.
 This will be carried out for all the samples and in a pairwise manner.
@@ -140,9 +143,9 @@ This allows us to determine if the clustering of groups is significant.
 For more info on PERMANOVA, [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.
 
 ### PERMANOVA
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/permanova.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/permanova.png){style="width:200px"}
+</center>
 
 We will carry out a PERMANOVA test on all the samples based on media.
 This will help us determine if there are any differences between groupings but not which groupings.
@@ -172,9 +175,9 @@ We are primarily interested in the P-value column (`Pr(>F)`).
 We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.018).
 
 ### Pairwise PERMANOVA
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/pear.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/pear.png){style="width:100px"}
+</center>
 
 We will now see which media groups are significantly different to each other.
 We will do this with pairwise PERMANOVA tests.
@@ -192,6 +195,9 @@ cbn[,1]
 ```
 
 #### Pairwise PERMANOVA on one combination
+<center>
+![](figures/combination_lock.png){style="width:100px"}
+</center>
 
 For demonstration purposes we will first carry out the pairwise PERMANOVA on the 1st grouping combination.
 
@@ -219,6 +225,9 @@ wunifrac_pairwise_adonis
 We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
 
 #### Pairwise PERMANOVA on all combinations
+<center>
+![](figures/combination_lock_2.png){style="width:200px"}
+</center>
 
 It would be quite inefficient to type the above script for each combination.
 We will therefore create a script with a loop to automatically run the code for each combination.
@@ -280,9 +289,9 @@ This makes sense from our taxonomy, alpha diversity, and beta diversity analyses
 However, it is hard to see the separation of the CVP and KBC samples in the MDS plot.
 
 ## Beta: Facet zoom
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/telescope.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/telescope.png){style="width:200px"}
+</center>
 
 The [`ggforce` library](https://ggforce.data-imaginist.com/index.html) is a very powerful library to edit `ggplot2` objects.
 One of its functions, `ggforce::facet_zoom()`, allows us to zoom into a specific part of a plot whilst also showing the main plot.
@@ -313,9 +322,9 @@ How you want your plots will be highly dependant on your own data.
 There are various resources in the [APPEDNDIX](#ggplot2_appendix) to look at.
 
 ## Beta: subset samples
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/R_subset.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/R_subset.png){style="width:200px"}
+</center>
 
 Another plot we can quickly make is to subset the `phyloseq` object to remove the ENV samples.
 The ENV samples are causing the biggest difference between the samples.
@@ -349,9 +358,9 @@ There are a couple outliers within the CVP samples.
 Thankfully our pairwise PERMANOVA results are still valid as they use the __distances__ which did not change compared to the __ordination values__ which did change.
 
 ## PERMANOVA tasks
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/kettle_bell.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/kettle_bell.png){style="width:200px"}
+</center>
 
 For this task carry out pairwise PERMANOVA for the site metadata category.
 I highly encourage you to copy, paste, and edit previous code you have created.
@@ -440,9 +449,9 @@ We are getting very high adjusted P-values for these comparisons.
 Most likely there is not enough power for this analysis as there are only 3 replicates for each grouping.
 
 ## Beta: Summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_orange.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_orange.png){style="width:200px"}
+</center>
 
 We have produced Beta diversity plots and the statistics for weighted unifrac distances.
 There are many other things you could do such as:

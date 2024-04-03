@@ -1737,7 +1737,7 @@ Run this at the bottom of your "3-taxonomy_barchart.ipynb" notebook.
 </center>
 
 First we will create a `phyloseq` object by aggregating the families from the relative abundance `phyloseq` object.
-Let us also then check the family `phyloseq` object.
+We'll also check the family `phyloseq` object.
 
 ```{r, eval = FALSE}
 #Family phyloseq
@@ -1763,7 +1763,7 @@ As there are a lot of Families (112) and fewer samples (36) it will be easier to
 By default `microbiome::plot_composition()` will plot the taxa/families on the x-axis.
 Thankfully we can use the `ggplot2()` function/component `coord_flip()` to flip/swap the x and y axes.
 
-__Note__: The `xlab()` and `ylab()` are specified the before this flipping.
+__Note__: The `xlab()` and `ylab()` are specified before this flipping.
 E.g. `xlab()` is set to "Family" which will appear on the y axis because of the flip.
 
 ```{r, eval=FALSE}
@@ -1809,7 +1809,7 @@ summary(rowMeans(phyloseq::otu_table(family_pseq)))
 ```
 
 We have a lot of families so we will want to remove a good amount of them.
-For our first attempt at rare aggregation we will use a value near the 3rd Quartile (0.0021601).
+For our first attempt at rare aggregation we will use a detection value near the 3rd Quartile (0.0021601).
 This will hopefully remove at least 3/4 of the families.
 
 We'll set up the code a bit differently so we can easily copy and paste it to try out various other values of detection and threshold.
@@ -1883,7 +1883,7 @@ family_rareaggregate_pseq <- microbiome::aggregate_rare(
 ```
 
 Choosing a good detection and prevalence threshold is quite difficult.
-It takes a lot of trial and practice and I find the thresholds to not be very intuitive to understand.
+It takes a lot of trial and error, and I find the thresholds to not be very intuitive to understand.
 One piece of advise is to only change one threshold at a time during your trial and errors.
 
 ### Family bar chart
@@ -2063,9 +2063,9 @@ library(webexercises)
 # (PART\*) Diversity analysis {-}
 
 # Diversity analysis intro {#divsection}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/diversity.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 In the next 4 chapters we will carry out diversity analyses. This will include calculating and visualising diversity values plus carrying out the associated statistics.
 
@@ -2089,18 +2089,18 @@ During this we will attempt to answer our questions from [Chapter 2](#sum_and_qs
 library(webexercises)
 ```
 # Rarefaction {#rarefaction_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/whale.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/whale.png){style="width:200px"}
+</center>
 
 We are going to create a rarefied abundance table in this chapter. 
 This can be a controversial topic.
 Please make your own decision if you want to do this or not in your own analysis.
 
 ## Rarefaction: setup
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/library_1.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/library_1.png){style="width:200px"}
+</center>
 
 We will use a new notebook called **"4-rarefaction.ipynb"**. 
 Add the following to the top of this new notebook to load the required libraries/packages and data.
@@ -2121,9 +2121,9 @@ Ensure you add markdown and code cells to this notebook to give yourself
 a good structure.
 
 ## Rarefaction curve
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/rarefaction.png){style="width:200px"}
+</center>
 
 Prior to rarefying our data we need to determine the depth we want to
 use. We can carry this out with a rarefaction curve.
@@ -2141,15 +2141,13 @@ will be at a depth of 500 on the x-axis (50 \* 10) and it will show how
 many unique ASVs it has currently discovered from all 10 samplings.
 
 ### Bird analogy
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/ibyster.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/ibyster.png){style="width:200px"}
+</center>
 
-You are cataloguing the bird diversity (ASV diversity) in three forests/woods
-in Hampshire (3 samples of our abundance table). You record your
-findings over a week for each forest. Your record on the cumulative
-amount of unique species you find over the 3 separate weeks are in the
-table below:
+You are cataloguing the bird diversity (ASV diversity) in three forests/woods in Hampshire (3 samples of our abundance table). 
+You record your findings over a week for each forest. 
+Your record on the cumulative amount of unique species you find over the 3 separate weeks are in the table below:
 
 | Day | New Forest (93900 acres) | Telegraph woods (50 acres) | Old Lords wood (4.67 acres) |
 |---------------|------------------|--------------------|--------------------|
@@ -2189,9 +2187,9 @@ Strikingly, a week does not appear to be enough time for the New Forest (red). T
 This hopefully helps you understand why rarefaction curves are a useful measure of how well we have captured the diversity of samples at different depths. 
 
 ### Rarefaction curve: simple plot
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/crayon.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/crayon.png){style="width:200px"}
+</center>
 
 We'll use `vegan` to create our rarefaction curve like we did in
 [Chapter 9](#chap9rarefaction).
@@ -2215,9 +2213,9 @@ IRdisplay::display_png(file="./rarefaction_plot.png")
 ```
 
 ### Rarefaction curve: better plot
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/palette_brush.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/palette_brush.png){style="width:200px"}
+</center>
 
 It is a useful plot but we can make it better! 
 We will do that with the following addition:
@@ -2231,7 +2229,7 @@ We will do that with the following addition:
 
 We will initially use our minimum sample depth as our rarefaction/sampling depth.
 This is a good idea if it seems like a good amount as it will allow us to keep all our samples after rarefaction.
-Any samples with a lower depth than are final rarefaction size will be removed.
+Any samples with a lower depth than our final rarefaction size will be removed.
 
 ```{r, eval=FALSE}
 #Improved plot saved as file
@@ -2248,15 +2246,15 @@ dev.off()
 IRdisplay::display_png(file="./rarefaction_plot.png")
 ```
 
-From this plot we can see that most of the samples have plateu'd quite nicely at the minimum depth.
+From this plot we can see that most of the samples have plateaued quite nicely at the minimum depth.
 This indicates that this is a good sampling depth, i.e. depth to be chosen for rarefying the data.
 The grey horizontal lines help show how many more ASVs are found in a sample after the chosen sampling depth.
 This can be seen in the sample with the highest number of ASVs where 5-20 more ASVs are discovered with its final depth of ~16,000.
 
 ## Rarefaction slope
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/hill_landscape.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/hill_landscape.png){style="width:200px"}
+</center>
 
 We can calculate the slope of each sample at our specified sampling depth.
 A slope of 0 shows a flat horizontal line (what we want).
@@ -2306,9 +2304,9 @@ It is noticeable that the environmental samples have higher slopes than the medi
 Biologically, this makes sense as there is no bias being introduced by media.
 
 ## Rarefy data
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/pangolin.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/pangolin.png){style="width:200px"}
+</center>
 
 The minimum sample depth appears to be a good choice for rarefying.
 It keeps all the samples and at this depth the samples have a very good coverage of the ASVs present in the data.
@@ -2361,9 +2359,9 @@ save(num_asvs_vec, file="num_asvs_vec.v2.RData")
 Now you can close and halt the notebook.
 
 ## Rarefaction: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_orange.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_orange.png){style="width:200px"}
+</center>
 
 In this chapter we:
 
@@ -2378,9 +2376,9 @@ We now have an abundance table, relative abundance table, and rarefied abundance
 library(webexercises)
 ```
 # Alpha diversity {#alpha_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/alpha.png){style="width:200px"}
+</center>
 
 In this chapter we are going to produce alpha diversity plots and statistics with our rarefied data.
 Alpha diversity is carried out by producing a metric for each sample.
@@ -2399,9 +2397,9 @@ Next we'll improve the plot with some extra R packages.
 With these tools we will compare the metrics across the various metadata fields we have.
 
 ## Alpha: setup
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/gear_setup.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/gear_setup.png){style="width:200px"}
+</center>
 
 We will use a new notebook called **"5-alpha_diversity.ipynb"**. 
 Add the following to the top of this new notebook to load the required libraries/packages and data.
@@ -2419,9 +2417,9 @@ load("phyloseq_rarefied.RData")
 Reminder to use markdown and code cells in the notebook.
 
 ## Alpha: simple plot
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/simple_boxplot.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/simple_boxplot.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 The first step is to calculate and plot the alpha diversity metrics based on the ASV data.
 Thankfully, the command `phyloseq::plot_richness()` will do both of these.
@@ -2441,9 +2439,9 @@ The resulting plot is pretty good but is difficult to read.
 We can do 3 major things to make the contents easier to read.
 
 ### Metric choice
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/metric_square_1.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/metric_square_1.png){style="width:200px"}
+</center>
 
 We can choose certain alpha diversity metrics to plot. 
 Currently it is showing 7 metrics (Observed, Chao1 etc.).
@@ -2475,9 +2473,9 @@ To see which measures are available you can see the help page of `phyloseq::plot
 For a list and full description of some of the metrics please see the [APPENDIX](#alpha_appendix).
 
 ### Sample grouping & box plot
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/boxplots_groups.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/boxplots_groups.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 The last plot looks a bit better.
 To actually make them box plots we'll change the x axis so they are based on media rather than individual samples.
@@ -2500,9 +2498,9 @@ IRdisplay::display_png(file="./alpha_div.png")
 ```
 
 ### PNG height and width choice
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/display_png.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/display_png.png){style="width:200px"}
+</center>
 
 Choosing a good height and width size can make plots easier to read.
 We'll try 150 (height) and 250 (width).
@@ -2527,9 +2525,9 @@ Additionally, the size requirements of figures for journals will play a big cons
 One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.
 
 ## Alpha: stats
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/pear.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/pear.png){style="width:100px"}
+</center>
 
 Along with the plot it is also good to carry out statistical tests.
 This will allow us to statistically determine if the alpha diversity values between groups are significantly different.
@@ -2573,9 +2571,9 @@ The only group with a large variance is the ENV group with values going from < 1
 For more info on Wilcoxon test [Wikipedia](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test) is a good start.
 
 ### Alpha stats task
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/exercises.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/exercises.png){style="width:200px"}
+</center>
 
 Carry out the same statistical analysis (media as the grouping) with the `Chao1` and `Shannon` metrics.
 
@@ -2604,12 +2602,12 @@ We can therefore make these claims about the alpha diversity values of the group
 - Within each media grouping the samples have very similar numbers of ASVs present.
 
 ## Alpha diversity: violin plot
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/violin.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/violin.png){style="width:200px"}
+</center>
 
 Boxplots are quite nice but violin plots can be even nicer.
-They show the distribution of the data in the IQR better and in fact you can easily display each value.
+They show the distribution of the data in the IQR better and you can display each value.
 
 We can change our boxplot to a violin plot by changing `ggplot2:geom_boxplot()` to `ggplot2::geom_violin()`.
 
@@ -2633,7 +2631,7 @@ IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
 
 We can also add semi transparent dots representing the values for each sample.
 To do this, add the `ggplot2` layer `ggforce::geom_sina()`.
-This has the option `alpha=0.5` where alpha resents the transparency of the dots and 0.5 represents 50% transparency.
+This has the option `alpha=0.5` where alpha represents the transparency of the dots and 0.5 represents 50% transparency.
 Alpha is a common option used for many plots.
 
 ```{r , eval = FALSE}
@@ -2651,14 +2649,14 @@ IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
 ```
 
 ## Alpha: Site plots and statistics
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/river.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/river.png){style="width:200px"}
+</center>
 
 With all the knowledge, skills, and code from this chapter carry out the following tasks:
 
-- Produce a violin plot of Observed, Chao1, Shannon, and Inverse Simpson with the Site groups.
-- Carry out paired Wilcoxon test for Observed, Chao1, Shannon, and Inverse Simpson with the Site groups.
+- Produce a violin plot of Observed, Chao1, and Shannon with the Site groups.
+- Carry out paired Wilcoxon test for Observed, Chao1, and Shannon with the Site groups.
 
 `r hide("Alpha sites solution")`
 ```{r , eval = FALSE}
@@ -2692,7 +2690,7 @@ To view this we can add the option `aes(colour=media)` to `ggforce_sina()`.
 This will colour the points by media.
 
 If we only do this it will give us a legend with the title "colour".
-We can fix this by adding the layer `ggplot2::labs(colour = "Media").
+We can fix this by adding the layer `ggplot2::labs(colour = "Media")`.
 
 ```{r , eval = FALSE}
 # Produce ggplot object of violin plot
@@ -2712,9 +2710,9 @@ IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
 When you are happy you can close and halt the notebook.
 
 ## Alpha: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_blue.png){style="width:200px"}
+</center>
 
 In this chapter we have created alpha diversity plots and run pairwise comparisons.
 The biggest difference between samples is caused by the media choice which overwrites differences we can see between sites.
@@ -2728,9 +2726,9 @@ The environmental samples have much higher diversity samples than the media samp
 library(webexercises)
 ```
 # Beta {#beta_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/beta.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/beta.png){style="width:200px"}
+</center>
 
 In this chapter we are going to carry out beta diversity analysis.
 This will include the production of ordination plots and statistical analysis.
@@ -2750,9 +2748,9 @@ In this chapter we will:
 - Determine if there is a statistical difference between beta diversity metrics of sample groups.
 
 ## Beta: setup
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/books.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/books.png){style="width:200px"}
+</center>
 
 We will use a new notebook called **"6-beta_diversity.ipynb"**. 
 Add the following to the top of this new notebook to load the required libraries/packages and data.
@@ -2769,9 +2767,9 @@ load("phyloseq_rarefied.RData")
 ```
 
 ## Beta: ordination
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/ordinate.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/ordinate.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 In this section we will ordinate our data with the `phyloseq::ordinate()` function.
 We'll use the [MDS method](https://en.wikipedia.org/wiki/Multidimensional_scaling) (AKA PCoA).
@@ -2787,9 +2785,9 @@ To see the different methods and distances that can be used please try `?phylose
 For more information about the different distances please see the [APPENDIX](#beta_appendix).
 
 ## Beta: plot ordination
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/Scatterplot_2.png){style="width:200px; border-radius:5px; background:white"}
+</center>
 
 Now that we have our ordination we can plot it.
 The script below uses `phyloseq::plot_ordination()` to plot our ordination.
@@ -2836,6 +2834,9 @@ In this case the total is >88% which is very good.
 Additionally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).
 
 ## Beta: plot ordination with ellipse
+<center>
+![](figures/elippses_plot.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We can crate an ordination plot with ellipse, circular shapes showing clustering of groups.
 The statistics of the ellipses and visualisation can be carried out with the function `ggplot2::stat_ellipse()`.
@@ -2856,9 +2857,9 @@ IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_ellipse.png")
 ```
 
 ## Beta: statistics
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster_colours.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/cluster_colours.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 For our beta diversity we will carry out PERMANOVA analysis for the media groupings.
 This will be carried out for all the samples and in a pairwise manner.
@@ -2869,9 +2870,9 @@ This allows us to determine if the clustering of groups is significant.
 For more info on PERMANOVA, [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.
 
 ### PERMANOVA
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/permanova.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/permanova.png){style="width:200px"}
+</center>
 
 We will carry out a PERMANOVA test on all the samples based on media.
 This will help us determine if there are any differences between groupings but not which groupings.
@@ -2901,9 +2902,9 @@ We are primarily interested in the P-value column (`Pr(>F)`).
 We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.018).
 
 ### Pairwise PERMANOVA
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/pear.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/pear.png){style="width:100px"}
+</center>
 
 We will now see which media groups are significantly different to each other.
 We will do this with pairwise PERMANOVA tests.
@@ -2921,6 +2922,9 @@ cbn[,1]
 ```
 
 #### Pairwise PERMANOVA on one combination
+<center>
+![](figures/combination_lock.png){style="width:100px"}
+</center>
 
 For demonstration purposes we will first carry out the pairwise PERMANOVA on the 1st grouping combination.
 
@@ -2948,6 +2952,9 @@ wunifrac_pairwise_adonis
 We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
 
 #### Pairwise PERMANOVA on all combinations
+<center>
+![](figures/combination_lock_2.png){style="width:200px"}
+</center>
 
 It would be quite inefficient to type the above script for each combination.
 We will therefore create a script with a loop to automatically run the code for each combination.
@@ -3009,9 +3016,9 @@ This makes sense from our taxonomy, alpha diversity, and beta diversity analyses
 However, it is hard to see the separation of the CVP and KBC samples in the MDS plot.
 
 ## Beta: Facet zoom
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/telescope.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/telescope.png){style="width:200px"}
+</center>
 
 The [`ggforce` library](https://ggforce.data-imaginist.com/index.html) is a very powerful library to edit `ggplot2` objects.
 One of its functions, `ggforce::facet_zoom()`, allows us to zoom into a specific part of a plot whilst also showing the main plot.
@@ -3042,9 +3049,9 @@ How you want your plots will be highly dependant on your own data.
 There are various resources in the [APPEDNDIX](#ggplot2_appendix) to look at.
 
 ## Beta: subset samples
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/R_subset.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/R_subset.png){style="width:200px"}
+</center>
 
 Another plot we can quickly make is to subset the `phyloseq` object to remove the ENV samples.
 The ENV samples are causing the biggest difference between the samples.
@@ -3078,9 +3085,9 @@ There are a couple outliers within the CVP samples.
 Thankfully our pairwise PERMANOVA results are still valid as they use the __distances__ which did not change compared to the __ordination values__ which did change.
 
 ## PERMANOVA tasks
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/kettle_bell.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/kettle_bell.png){style="width:200px"}
+</center>
 
 For this task carry out pairwise PERMANOVA for the site metadata category.
 I highly encourage you to copy, paste, and edit previous code you have created.
@@ -3169,9 +3176,9 @@ We are getting very high adjusted P-values for these comparisons.
 Most likely there is not enough power for this analysis as there are only 3 replicates for each grouping.
 
 ## Beta: Summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_orange.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_orange.png){style="width:200px"}
+</center>
 
 We have produced Beta diversity plots and the statistics for weighted unifrac distances.
 There are many other things you could do such as:
@@ -3201,9 +3208,9 @@ Let's try to figure out which taxa are affected in which ways.
 library(webexercises)
 ```
 # Differential abundance (DA) analysis {#DA_chap}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/difference.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/difference.png){style="width:200px"}
+</center>
 
 We are going to carry out differential abundance analysis with [ANCOM-BC (Analysis of compositions of microbiomes with bias correction)](https://www.nature.com/articles/s41467-020-17041-7).
 This is an improvement of the original ANCOM method but with added bias correction.
@@ -3211,19 +3218,19 @@ This bias correction aims to account for the bias caused by the difference in sa
 
 Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that have different abundances between groups.
 This can be used to detect organisms in high abundance in diseased states versus healthy states.
-This helps determine what are the disease causing organisms.
+This helps to determine the disease causing organisms.
 However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.
 
 This will be shown in our data.
 Organisms in higher abundance in the media samples compared to the environmental samples are most likely caused by selection pressures the media introduces.
 To keep our data manageable in a workshop we will look at the class abundances.
 If a class is detected to have higher abundance in media compared to the environmental group, we can say the class is a biomarker of the media compared to the environmental sample.
-Additionally, we will be able to detect class that have been depleted in the media samples versus the environmental sample.
+Additionally, we will be able to detect classes that have been depleted in the media samples versus the environmental sample.
 
 ## DA: setup
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/packages_1.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/packages_1.png){style="width:200px"}
+</center>
 
 We will use a new notebook called **"7-differential_abundance.ipynb"**. 
 Add the following to the top of this new notebook to load the required libraries/packages and data.
@@ -3248,9 +3255,9 @@ This is a statistically heavy method and I recommend you read the [ANCOM-BC pape
 As bioinformaticians we are more interested in the output rather than the method.
 
 ## DA: Preprocess
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/water_surface.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/water_surface.png){style="width:200px"}
+</center>
 
 When carrying out ANCOM analysis you need to specify the reference group for the groupings you use.
 The reference group will be the 1st level of the factor.
@@ -3282,9 +3289,9 @@ levels(phyloseq::sample_data(pseq)$site)
 ```
 
 ## DA: ANCOM-BC analysis
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/play_blue.png){style="width:200px"}
+</center>
 
 Now that we have our data the way we would like it we can carry out the ANCOM analysis.
 We'll use the function `ANCOMBC::ancombc2()` for our ANCOM-BC analysis.
@@ -3306,9 +3313,9 @@ save(ancom_class_out, file = "ANCOMBC2_class_analysis.RData")
 ```
 
 ### ANCOMBC2 options
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/parameter_blue.png){style="width:200px"}
+</center>
 
 The options we use in the function are:
 
@@ -3321,9 +3328,9 @@ There are many more options that have been left as the default.
 Please see the package [PDF](https://bioc.ism.ac.jp/packages/devel/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf) for more options and explanations.
 
 ## DA: ANCOM-BC results
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_blue.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/output_file_blue.png){style="width:200px"}
+</center>
 
 There is a lot of information in `ancom_class_out`.
 Therefore, lets extract the results we want to look at and then remove the large object.
@@ -3382,9 +3389,9 @@ I believe this is because we don't have enough replicates for the sites within t
 However, there is a good amount of biomarkers for the three different medias compared to ENV.
 
 ## DA: Create signifcant LFC long data frame
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/portrait.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/portrait.png){style="width:200px"}
+</center>
 
 The results table is good but let's make a heatmap showing the LFCs (Log fold changes) of the significant biomarkers. First, we need to do some preprecessing.
 
@@ -3402,7 +3409,7 @@ res_ancom_class_media <- res_ancom_class[,media_colnames]
 head(res_ancom_class_media)
 ```
 
-Because we had comparisons with more that 1 grouping (media & site) we might have rows with no significnat results.
+Because we had comparisons with more that 1 grouping (media & site) we might have rows with no significant results.
 We will therefore remove these rows.
 
 __Note:__ The next 2 code sections use the packages `dplyr` & `tidyr` along with piping `%>%`.
@@ -3442,7 +3449,7 @@ As long as you can edit it to work with your own future code.
 ```{r, eval = FALSE}
 #Create edited long df to plot significant log fold changes on heatmap
 res_ancom_class_media_sig_lfc_fig <- res_ancom_class_media_sig %>%
-  #Change log change values to 0 if diff is false
+  #Change log fold change values to 0 if diff is false
   #test: Is diff TRUE?
   #yes: Set LFC to original value (e.g. lfc_mediaCVP)
   #no: Set LFC to 0
@@ -3452,7 +3459,7 @@ res_ancom_class_media_sig_lfc_fig <- res_ancom_class_media_sig %>%
                                       yes = lfc_mediaKBC, no = 0),
                 lfc_mediaTSA = ifelse(test = diff_mediaTSA == TRUE,
                                       yes = lfc_mediaTSA, no = 0)) %>%
-  #Only retain taxon and log fold changes columns
+  #Only retain taxon and log fold change columns
   #Additionally, change column names and round LFC values to 2 decimal places
   dplyr::transmute(taxon,
                    CVP = round(lfc_mediaCVP,2),
@@ -3469,9 +3476,9 @@ head(res_ancom_class_media_sig_lfc_fig)
 ```
 
 ## DA: Biomarker LFC heatmap
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/tiles.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/tiles.png){style="width:200px"}
+</center>
 
 We now have a long data frame with the significant LFC values. 
 We can use this to create a heatmap.
@@ -3565,9 +3572,9 @@ This seems to indicate that the media samples are not a good representation of t
 They appear to select for a few bacterial classes and select against a lot of bacterial classes.
 
 ## DA: matching bar plot
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/bar_chart.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/bar_chart.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 Using code from the [taxa plots chapter](#chaptaxaplots) we'll make a quick class based taxa plot.
 We will use the relative abundances for this.
@@ -3590,14 +3597,14 @@ IRdisplay::display_png(file="./class_relabund_heatmap.png")
 ```
 
 With this plot we can clearly see that there are many classess with abundances in the ENV samples that have very little in the media samples.
-Most the the relative abundances of the media samples consist of Gammaproteobacteria.
+Most of the relative abundances of the media samples consist of Gammaproteobacteria.
 The TSA and KBC samples also have a high abundance of Bacilli.
 Overall, this is a nice visual confirmation of our ANCOM results.
 
 ## DA: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/sum_blue.png){style="width:200px"}
+</center>
 
 We have used ANCOMBC to detect biomarkers in the media samples compared to the ENV samples.
 This showed most biomarkers were caused by depletion of many classes and selection of a few classes by the media.
@@ -3623,7 +3630,9 @@ library(webexercises)
 You have learnt a lot during this course. This chapter will summarise what you have done.
 
 ## Dataset
-<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
+<center>
+![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
+</center>
 
 You were introduced to the 16S dataset in the intro.
 This consisted of samples from 3 parts of the Durance river (UD, MD, & LD).
@@ -3642,25 +3651,25 @@ It may also help to sample more sites along the gradient.
 We discovered these findings through our analysis.
 
 ## Data preparation
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/half_tablespoon.png){style="width:200px"}
+</center>
 
 Briefly we carried out the following steps to prepare our data:
 
 - [Chapter 7](#import_chap): Imported a `phyloseq` object with `qiime2R`.
 - [Chapter 8](#sum_phyloseq_chap): Checked our data with summarisations.
-- [Chapter 9](##mindepthchap): Checked the minimum depth we should use and removed samples with lower depth.
+- [Chapter 9](#mindepthchap): Checked the minimum depth we should use and removed samples with lower depth.
 
 ## Taxonomy
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/taxa.png){style="width:200px"}
+</center>
 
 We investigated the taxonomic composition of our samples.
 
 - [Chapter 10](#taxa_relabund_chap): Creation of taxonomic relative abundance tables.
-- [Chapter 11](#chaptaxaplots): Produced heat maps and bar plots of taxa relative abundances
+- [Chapter 11](#chaptaxaplots): Produced heat maps and bar plots of taxa relative abundances.
   - We also learnt how to aggregate rare taxa to produce fewer taxa groups for plotting.
 - [Chapter 12](#family_genus_chap): Produced family and genus based taxa plots.
 
@@ -3671,9 +3680,9 @@ The media samples were mostly composed of Proteobacteria & Firmicutes.
 Due to the difference of media we cannot see any clear differences between the sites.
 
 ## Diversity analysis
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/diversity.png){style="width:200px"}
+</center>
 
 Prior to alpha & beta diversity analysis we carried out rarefaction to normalise the depths between samples in [Chapter 14](#rarefaction_chap).
 This is a controversial technique.
@@ -3686,9 +3695,9 @@ Two of the leading papers are:
 - [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data (Hong et al, 2022)](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959).
 
 ### Alpha & beta
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/alpha.png){style="width:200px"}
+</center>
 
 With our rarefied table we carried out diversity analysis.
 
@@ -3713,9 +3722,9 @@ There is also some presence of clustering by site within each media group which 
 Unfortunately we are not able to detect any differences between sites due to power and the large differences caused by media.
 
 ### Differential abundance anlaysis
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/difference.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/difference.png){style="width:200px"}
+</center>
 
 After diversity analysis we carried out differential abundance analysis in [chapter 17](#DA_chap).
 This was carried out with ANCOM whilst taking into account both the media and site information.
@@ -3726,17 +3735,18 @@ This indicates the media are selecting for only a few classes and many bacteria 
 This biologically makes sense but also corroborates what we have seen in our other analyses.
 
 ## Findings
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/compass.png", auto_pdf = TRUE)
-``` 
+
+<center>
+![](figures/compass.png){style="width:200px"}
+</center>
 
 In [chapter 2](#sum_and_qs) we asked some questions about our dataset.
 Let's try to answer them.
 
 ### Anthropisation gradient
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/farm.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/farm.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 How does the bacterial communities change across the anthropisation gradient?
 
@@ -3745,9 +3755,9 @@ You could try to remove all but the ENV samples to determine this.
 However, you would not have much power with only 9 samples (3 sites by 3 replicates).
 
 ### Replicate differences
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/replicate_difference.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/replicate_difference.png){style="width:200px"}
+</center>
 
 Is there a difference in the replicates of one site and media combination? I.e. do any of the media produce inconsistent profiles?
 
@@ -3759,9 +3769,9 @@ In fact the KBC and CVP seem to "normalise" the community profiles.
 This is again hard to determine due to small numbers of replicates.
 
 ### Site or media
-```{r, fig.align = 'center',out.width= '250px', echo=FALSE }
-knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/site_and_media.png){style="width:300px"}
+</center>
 
 Is there more difference between the sites or the media used?
 
@@ -3770,9 +3780,9 @@ If you only look at the ENV samples there is a big difference between the sites.
 This could be investigated further by checking for [homogeneity](https://microbiome.github.io/tutorials/PERMANOVA.html).
 
 ### Media versus ENV samples
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/petri.png){style="width:200px"}
+</center>
 
 Do the media samples differ from the ENV samples? If so, how?
 
@@ -3785,9 +3795,9 @@ Compared to the ENV samples the media samples:
 - There appear to be less differences between the sites within the CVP & KBC samples.
 
 ## Conclusion
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We have successfully analysed our data with `phyloseq` and various other R packages.
 The main difference found was between the ENV samples and the media samples.
@@ -3805,7 +3815,9 @@ library(webexercises)
 # (APPENDIX) Appendix {-}
 
 # Mamba installs {#mambainstalls}
-<center>![](figures/mamba_logo.png){style="border-radius: 15px; width: 20%; border: 5px solid #333333"}</center>
+<center>
+![](figures/mamba_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333"}
+</center>
 
 ## Mamba installation and environment {#mamba_install}
 
@@ -3847,9 +3859,9 @@ devtools::install_github("jbisanz/qiime2R")
 ```
 
 ## Jupyter-notebook {#jupyter_appendix}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/jupyter_logo.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 If you are running this on your own computer you can use `RStudio`.
 However, you can also use [`Jupyter-notebook`](https://jupyter.org/) if you are using an HPC or prefer it.
@@ -3874,14 +3886,14 @@ mamba activate r_community
 ```
 
 # R packages
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/r_package.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/r_package.png){style="width:200px"}
+</center>
 
 ## ggplot2 {#ggplot2_appendix}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/ggplot2.png){style="width:200px"}
+</center>
 
 Below are some useful resource if you would like to learn ggplot2.
 
@@ -3892,9 +3904,9 @@ The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It 
 [__ggplot2 function reference__](https://ggplot2.tidyverse.org/reference/#layers).
 
 ## Phyloseq {#phyloseq_appendix}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/phyloseq_logo.png){style="width:200px"}
+</center>
 
 Below are various resources if you would like to learn more about phyloseq and associated packages.
 
@@ -3902,9 +3914,9 @@ Below are various resources if you would like to learn more about phyloseq and a
 - [microbiome](https://microbiome.github.io/tutorials/): A supplemental package to `phyloseq`. It contains some much needed functions. The tutorials are much clearer than the `phyloseq` tutorials but still not always the clearest.
 
 ## Importing into phyloseq
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/import.png){style="width:200px"}
+</center>
 
 - [QIIME2R](https://github.com/jbisanz/qiime2R): A very useful package to import QIIME2 artifacts into a `phyloseq` object.
 - [Phyloseqize R data](https://joey711.github.io/phyloseq/import-data.html): A tutorial on how to import data frames into a `phyloseq` object.
@@ -3914,15 +3926,14 @@ knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
   - The [biom format](https://biom-format.org/) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
 
 # Diversity metrics
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/metric_square.png){style="width:200px"}
+</center>
 
 ## Alpha diversity {#alpha_appendix}
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/alpha.png){style="width:200px"}
+</center>
 
 Alpha diversity measures assess the diversity of each sample separately. Generally a higher value of these indexes/measures indicates higher diversity/evenness. 
 
@@ -4016,10 +4027,9 @@ $$
 - N = Total feature abundance of sample
 
 ## Beta diversity {#beta_appendix}
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/beta.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/beta.png){style="width:200px"}
+</center>
 
 Beta diversity compares 2 samples at a time. This is measured in terms of dissimilarity:
 

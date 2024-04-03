@@ -5,7 +5,9 @@
 You have learnt a lot during this course. This chapter will summarise what you have done.
 
 ## Dataset
-<center>![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
+<center>
+![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
+</center>
 
 You were introduced to the 16S dataset in the intro.
 This consisted of samples from 3 parts of the Durance river (UD, MD, & LD).
@@ -24,25 +26,25 @@ It may also help to sample more sites along the gradient.
 We discovered these findings through our analysis.
 
 ## Data preparation
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/half_tablespoon.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/half_tablespoon.png){style="width:200px"}
+</center>
 
 Briefly we carried out the following steps to prepare our data:
 
 - [Chapter 7](#import_chap): Imported a `phyloseq` object with `qiime2R`.
 - [Chapter 8](#sum_phyloseq_chap): Checked our data with summarisations.
-- [Chapter 9](##mindepthchap): Checked the minimum depth we should use and removed samples with lower depth.
+- [Chapter 9](#mindepthchap): Checked the minimum depth we should use and removed samples with lower depth.
 
 ## Taxonomy
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/taxa.png){style="width:200px"}
+</center>
 
 We investigated the taxonomic composition of our samples.
 
 - [Chapter 10](#taxa_relabund_chap): Creation of taxonomic relative abundance tables.
-- [Chapter 11](#chaptaxaplots): Produced heat maps and bar plots of taxa relative abundances
+- [Chapter 11](#chaptaxaplots): Produced heat maps and bar plots of taxa relative abundances.
   - We also learnt how to aggregate rare taxa to produce fewer taxa groups for plotting.
 - [Chapter 12](#family_genus_chap): Produced family and genus based taxa plots.
 
@@ -53,9 +55,9 @@ The media samples were mostly composed of Proteobacteria & Firmicutes.
 Due to the difference of media we cannot see any clear differences between the sites.
 
 ## Diversity analysis
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/diversity.png){style="width:200px"}
+</center>
 
 Prior to alpha & beta diversity analysis we carried out rarefaction to normalise the depths between samples in [Chapter 14](#rarefaction_chap).
 This is a controversial technique.
@@ -68,9 +70,9 @@ Two of the leading papers are:
 - [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data (Hong et al, 2022)](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959).
 
 ### Alpha & beta
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/alpha.png){style="width:200px"}
+</center>
 
 With our rarefied table we carried out diversity analysis.
 
@@ -95,9 +97,9 @@ There is also some presence of clustering by site within each media group which 
 Unfortunately we are not able to detect any differences between sites due to power and the large differences caused by media.
 
 ### Differential abundance anlaysis
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/difference.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/difference.png){style="width:200px"}
+</center>
 
 After diversity analysis we carried out differential abundance analysis in [chapter 17](#DA_chap).
 This was carried out with ANCOM whilst taking into account both the media and site information.
@@ -108,17 +110,18 @@ This indicates the media are selecting for only a few classes and many bacteria 
 This biologically makes sense but also corroborates what we have seen in our other analyses.
 
 ## Findings
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/compass.png", auto_pdf = TRUE)
-``` 
+
+<center>
+![](figures/compass.png){style="width:200px"}
+</center>
 
 In [chapter 2](#sum_and_qs) we asked some questions about our dataset.
 Let's try to answer them.
 
 ### Anthropisation gradient
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/farm.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/farm.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 How does the bacterial communities change across the anthropisation gradient?
 
@@ -127,9 +130,9 @@ You could try to remove all but the ENV samples to determine this.
 However, you would not have much power with only 9 samples (3 sites by 3 replicates).
 
 ### Replicate differences
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/replicate_difference.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/replicate_difference.png){style="width:200px"}
+</center>
 
 Is there a difference in the replicates of one site and media combination? I.e. do any of the media produce inconsistent profiles?
 
@@ -141,9 +144,9 @@ In fact the KBC and CVP seem to "normalise" the community profiles.
 This is again hard to determine due to small numbers of replicates.
 
 ### Site or media
-```{r, fig.align = 'center',out.width= '250px', echo=FALSE }
-knitr::include_graphics(path = "figures/site_and_media.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/site_and_media.png){style="width:300px"}
+</center>
 
 Is there more difference between the sites or the media used?
 
@@ -152,9 +155,9 @@ If you only look at the ENV samples there is a big difference between the sites.
 This could be investigated further by checking for [homogeneity](https://microbiome.github.io/tutorials/PERMANOVA.html).
 
 ### Media versus ENV samples
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/petri.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/petri.png){style="width:200px"}
+</center>
 
 Do the media samples differ from the ENV samples? If so, how?
 
@@ -167,9 +170,9 @@ Compared to the ENV samples the media samples:
 - There appear to be less differences between the sites within the CVP & KBC samples.
 
 ## Conclusion
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 We have successfully analysed our data with `phyloseq` and various other R packages.
 The main difference found was between the ENV samples and the media samples.

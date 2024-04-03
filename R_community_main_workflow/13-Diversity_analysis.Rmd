@@ -1,9 +1,9 @@
 # (PART\*) Diversity analysis {-}
 
 # Diversity analysis intro {#divsection}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/diversity.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 In the next 4 chapters we will carry out diversity analyses. This will include calculating and visualising diversity values plus carrying out the associated statistics.
 

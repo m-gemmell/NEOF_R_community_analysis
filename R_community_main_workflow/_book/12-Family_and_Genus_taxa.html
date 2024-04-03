@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-03-28" />
+<meta name="date" content="2024-04-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -420,7 +420,7 @@ Run this at the bottom of your "3-taxonomy_barchart.ipynb" notebook.</p>
 <img src="figures/aggregate_taxa.png" style="width:200px; border-radius:15px; background:white" />
 </center>
 <p>First we will create a <code>phyloseq</code> object by aggregating the families from the relative abundance <code>phyloseq</code> object.
-Let us also then check the family <code>phyloseq</code> object.</p>
+We'll also check the family <code>phyloseq</code> object.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb55-1"><a href="12-Family_and_Genus_taxa.html#cb55-1" tabindex="-1"></a><span class="co">#Family phyloseq</span></span>
 <span id="cb55-2"><a href="12-Family_and_Genus_taxa.html#cb55-2" tabindex="-1"></a>family_pseq <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">aggregate_taxa</span>(pseq_relabund, <span class="st">&quot;Family&quot;</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb55-3"><a href="12-Family_and_Genus_taxa.html#cb55-3" tabindex="-1"></a><span class="co">#Head of family relative abundance table</span></span>
@@ -441,7 +441,7 @@ Let us also then check the family <code>phyloseq</code> object.</p>
 As there are a lot of Families (112) and fewer samples (36) it will be easier to view if we have the families on the y-axis.
 By default <code>microbiome::plot_composition()</code> will plot the taxa/families on the x-axis.
 Thankfully we can use the <code>ggplot2()</code> function/component <code>coord_flip()</code> to flip/swap the x and y axes.</p>
-<p><strong>Note</strong>: The <code>xlab()</code> and <code>ylab()</code> are specified the before this flipping.
+<p><strong>Note</strong>: The <code>xlab()</code> and <code>ylab()</code> are specified before this flipping.
 E.g. <code>xlab()</code> is set to "Family" which will appear on the y axis because of the flip.</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb56-1"><a href="12-Family_and_Genus_taxa.html#cb56-1" tabindex="-1"></a><span class="co">#Family heatmap</span></span>
 <span id="cb56-2"><a href="12-Family_and_Genus_taxa.html#cb56-2" tabindex="-1"></a>family_heatmap <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(family_pseq, <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>) <span class="sc">+</span></span>
@@ -476,7 +476,7 @@ To get a good idea where to start we can get a summary of the mean relative abun
 <div class="sourceCode" id="cb57"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb57-1"><a href="12-Family_and_Genus_taxa.html#cb57-1" tabindex="-1"></a><span class="co">#Summary of row means (families) from the family otu table</span></span>
 <span id="cb57-2"><a href="12-Family_and_Genus_taxa.html#cb57-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">rowMeans</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(family_pseq)))</span></code></pre></div>
 <p>We have a lot of families so we will want to remove a good amount of them.
-For our first attempt at rare aggregation we will use a value near the 3rd Quartile (0.0021601).
+For our first attempt at rare aggregation we will use a detection value near the 3rd Quartile (0.0021601).
 This will hopefully remove at least 3/4 of the families.</p>
 <p>We'll set up the code a bit differently so we can easily copy and paste it to try out various other values of detection and threshold.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb58-1"><a href="12-Family_and_Genus_taxa.html#cb58-1" tabindex="-1"></a><span class="co">#Tests</span></span>
@@ -537,7 +537,7 @@ We'll now create a new <code>phyloseq</code> object using this info in a new cel
 <span id="cb60-4"><a href="12-Family_and_Genus_taxa.html#cb60-4" tabindex="-1"></a>  <span class="at">detection =</span> <span class="fl">0.02</span>, <span class="at">prevalence =</span> <span class="dv">20</span><span class="sc">/</span><span class="dv">100</span></span>
 <span id="cb60-5"><a href="12-Family_and_Genus_taxa.html#cb60-5" tabindex="-1"></a>)</span></code></pre></div>
 <p>Choosing a good detection and prevalence threshold is quite difficult.
-It takes a lot of trial and practice and I find the thresholds to not be very intuitive to understand.
+It takes a lot of trial and error, and I find the thresholds to not be very intuitive to understand.
 One piece of advise is to only change one threshold at a time during your trial and errors.</p>
 </div>
 <div id="family-bar-chart" class="section level3 hasAnchor" number="12.1.4">

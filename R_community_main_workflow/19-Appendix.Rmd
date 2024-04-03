@@ -1,7 +1,9 @@
 # (APPENDIX) Appendix {-}
 
 # Mamba installs {#mambainstalls}
-<center>![](figures/mamba_logo.png){style="border-radius: 15px; width: 20%; border: 5px solid #333333"}</center>
+<center>
+![](figures/mamba_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333"}
+</center>
 
 ## Mamba installation and environment {#mamba_install}
 
@@ -43,9 +45,9 @@ devtools::install_github("jbisanz/qiime2R")
 ```
 
 ## Jupyter-notebook {#jupyter_appendix}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/jupyter_logo.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 If you are running this on your own computer you can use `RStudio`.
 However, you can also use [`Jupyter-notebook`](https://jupyter.org/) if you are using an HPC or prefer it.
@@ -70,14 +72,14 @@ mamba activate r_community
 ```
 
 # R packages
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/r_package.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/r_package.png){style="width:200px"}
+</center>
 
 ## ggplot2 {#ggplot2_appendix}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/ggplot2.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/ggplot2.png){style="width:200px"}
+</center>
 
 Below are some useful resource if you would like to learn ggplot2.
 
@@ -88,9 +90,9 @@ The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It 
 [__ggplot2 function reference__](https://ggplot2.tidyverse.org/reference/#layers).
 
 ## Phyloseq {#phyloseq_appendix}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/phyloseq_logo.png){style="width:200px"}
+</center>
 
 Below are various resources if you would like to learn more about phyloseq and associated packages.
 
@@ -98,9 +100,9 @@ Below are various resources if you would like to learn more about phyloseq and a
 - [microbiome](https://microbiome.github.io/tutorials/): A supplemental package to `phyloseq`. It contains some much needed functions. The tutorials are much clearer than the `phyloseq` tutorials but still not always the clearest.
 
 ## Importing into phyloseq
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/import.png){style="width:200px"}
+</center>
 
 - [QIIME2R](https://github.com/jbisanz/qiime2R): A very useful package to import QIIME2 artifacts into a `phyloseq` object.
 - [Phyloseqize R data](https://joey711.github.io/phyloseq/import-data.html): A tutorial on how to import data frames into a `phyloseq` object.
@@ -110,15 +112,14 @@ knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
   - The [biom format](https://biom-format.org/) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
 
 # Diversity metrics
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/metric_square.png){style="width:200px"}
+</center>
 
 ## Alpha diversity {#alpha_appendix}
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/alpha.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/alpha.png){style="width:200px"}
+</center>
 
 Alpha diversity measures assess the diversity of each sample separately. Generally a higher value of these indexes/measures indicates higher diversity/evenness. 
 
@@ -212,10 +213,9 @@ $$
 - N = Total feature abundance of sample
 
 ## Beta diversity {#beta_appendix}
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/beta.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/beta.png){style="width:200px"}
+</center>
 
 Beta diversity compares 2 samples at a time. This is measured in terms of dissimilarity:
 
