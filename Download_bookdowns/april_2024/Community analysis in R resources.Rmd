@@ -16,12 +16,14 @@ cover-image: "figures/NEOF.png"
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ``` 
+<center>
+![](figures/NEOF.png){style="width:200px; border-radius: 15px"}
+</center>
 
 # Videos, slides, & files
-
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/R_community.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/R_community.png){style="width:200px"}
+</center>
 
 ## Intro and Data importing & preprocessing
 
@@ -59,12 +61,6 @@ frameborder="0" allowfullscreen class="video"></iframe>
 
 [__Slides__](https://docs.google.com/presentation/d/1CUprELX4tOl_62S6hTM_fZbXPYcB8YO_ETPZ6EhU4pc/edit?usp=share_link)
 
-## NEOF visitor facilty
-
-[Download the video](https://drive.google.com/file/d/1S7Qb8bLwIFH1ff98o_zPsiPnUTZ8NVur/view?usp=share_link)
-
-More info: [website](https://neof.org.uk/training/)
-
 ## Workshop files
 
 The below compressed directory is provided so you may attempt the workshop materials on a computer/cluster available to you.
@@ -74,17 +70,25 @@ Note:
 - The file locations will not match
 - Copy the link and paste it to your browser's address bar.
 
-[__Download files__](https://neof-workshops.github.io/R_community_whqkt8/resources/data/R_community_data.zip)
+[__Download compressed files__](https://neof-workshops.github.io/R_community_whqkt8/resources/data/R_community_data.zip)
+
+## Jupyter notebooks
+
+The below compressed directory contains folders of the completed jupyter notebooks and the input and output files. This is for your own interest.
+
+[__Download compressed folders__](https://neof-workshops.github.io/R_community_whqkt8/resources/data/R_community_jupyter_notebooks.zip)
 
 ## Bookdown html
 
 Links to the online version of the Bookdowns.
 
 - [__Main__](https://neof-workshops.github.io/R_community_whqkt8/Course/)
+- [__Supplemental__](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/)
 
 You can download the html files of the bookdown below. Ensure you unzip the directory before use.
 
 - [__Download main zipped bookdown__](https://neof-workshops.github.io/R_community_whqkt8/resources/Bookdown/R_community_main.zip)
+- [__Download supplemental zipped bookdown__](https://neof-workshops.github.io/R_community_whqkt8/resources/Bookdown/R_community_supplemental.zip)
 
 <!--chapter:end:01-R-community_resources.Rmd-->
 

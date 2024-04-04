@@ -83,7 +83,7 @@ The below compressed directory contains folders of the completed jupyter noteboo
 Links to the online version of the Bookdowns.
 
 - [__Main__](https://neof-workshops.github.io/R_community_whqkt8/Course/)
-- [__SUpplemental__](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/)
+- [__Supplemental__](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/)
 
 You can download the html files of the bookdown below. Ensure you unzip the directory before use.
 
