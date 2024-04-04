@@ -164,7 +164,7 @@ Therefore to check the file is correct we can create a tsv (tab seperated value)
 
 ```{bash, eval=FALSE}
 #Create tsv file
-biom convert -i KW.biom -o KW.tsv --header-key taxonomy--to-tsv
+biom convert -i KW.biom -o KW.tsv --header-key taxonomy --to-tsv
 #inspect tsv file
 less KW.tsv
 ```
@@ -198,7 +198,7 @@ The first step is to import the biom file.
 
 ```{r, eval=FALSE}
 #Read in bracken biom file
-pseq <- phyloseq::import_biom("/KW.biom")
+pseq <- phyloseq::import_biom("./KW.biom")
 ```
 
 #### Import sample data {-}
@@ -217,13 +217,13 @@ metadf <- read.csv("KW_metadata.tsv", sep="\t", check.names = FALSE, row.names=1
 #Check metadf
 head(metadf)
 #Assign sample data
-phyloseq::sample_data(pseq <- metadf)
+phyloseq::sample_data(pseq) <- metadf
 ```
 
 We can then summarise our `phyloseq` object to make sure it seems ok.
 
 ```{r, eval=FALSE}
-#Summarize
+#Summarise
 microbiome::summarize_phyloseq(pseq)
 ```
 
@@ -391,11 +391,11 @@ This is what we carried out in the main book.
 
 ```{r, eval=FALSE}
 #ggplot2 boxplot
-gg_boxplot <- ggplot(data= penguin_df, aes(x = sex, y = flipper_length_mm, fill = sex)) +
+gg_boxplot <- ggplot(data = penguin_df, aes(x = sex, y = flipper_length_mm, fill = sex)) +
   geom_boxplot() +
   facet_grid(.~species)
 #Save as png
-ggsave(filename = "penguin_boxplot.png", plot gg_boxplot,
+ggsave(filename = "penguin_boxplot.png", plot = gg_boxplot,
        device = "png", dpi = 300, units = "mm", height = 200, width = 200)
 #Display png
 IRdisplay::display_png(file = "penguin_boxplot.png")

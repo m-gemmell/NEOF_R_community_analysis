@@ -3848,6 +3848,12 @@ Activate the environment in bash.
 mamba activate r_community
 ```
 
+Use `pip` to install `kraken-biom`
+
+```{bash. eval=FALSE}
+pip install kraken-biom
+```
+
 Activate your `mamba's` `R` and install `Qiime2R`.
 
 ```{bash, eval=FALSE}

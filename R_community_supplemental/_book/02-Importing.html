@@ -235,7 +235,7 @@ Instead we need to convert them to a single collated biom file with <code>kraken
 <p><a href="https://biom-format.org/"><strong>Biom</strong></a> files are not human readable.
 Therefore to check the file is correct we can create a tsv (tab seperated value) file to inspect.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb4-1"><a href="02-Importing.html#cb4-1" tabindex="-1"></a><span class="co">#Create tsv file</span></span>
-<span id="cb4-2"><a href="02-Importing.html#cb4-2" tabindex="-1"></a><span class="ex">biom</span> convert <span class="at">-i</span> KW.biom <span class="at">-o</span> KW.tsv <span class="at">--header-key</span> taxonomy--to-tsv</span>
+<span id="cb4-2"><a href="02-Importing.html#cb4-2" tabindex="-1"></a><span class="ex">biom</span> convert <span class="at">-i</span> KW.biom <span class="at">-o</span> KW.tsv <span class="at">--header-key</span> taxonomy <span class="at">--to-tsv</span></span>
 <span id="cb4-3"><a href="02-Importing.html#cb4-3" tabindex="-1"></a><span class="co">#inspect tsv file</span></span>
 <span id="cb4-4"><a href="02-Importing.html#cb4-4" tabindex="-1"></a><span class="fu">less</span> KW.tsv</span></code></pre></div>
 <p>If your file has a header starting with "#OTU ID" and the sample names, followed by rows of OTUs with abundance numbers it should be good.
@@ -259,7 +259,7 @@ You'll also have the taxonomy lineage as the last column because we added in <co
 </center>
 <p>The first step is to import the biom file.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb6-1"><a href="02-Importing.html#cb6-1" tabindex="-1"></a><span class="co">#Read in bracken biom file</span></span>
-<span id="cb6-2"><a href="02-Importing.html#cb6-2" tabindex="-1"></a>pseq <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">import_biom</span>(<span class="st">&quot;/KW.biom&quot;</span>)</span></code></pre></div>
+<span id="cb6-2"><a href="02-Importing.html#cb6-2" tabindex="-1"></a>pseq <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">import_biom</span>(<span class="st">&quot;./KW.biom&quot;</span>)</span></code></pre></div>
 </div>
 <div id="import-sample-data" class="section level4 unnumbered hasAnchor">
 <h4>Import sample data<a href="02-Importing.html#import-sample-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -275,9 +275,9 @@ As long as the row names contain the same sample names, like in the biom file, i
 <span id="cb7-3"><a href="02-Importing.html#cb7-3" tabindex="-1"></a><span class="co">#Check metadf</span></span>
 <span id="cb7-4"><a href="02-Importing.html#cb7-4" tabindex="-1"></a><span class="fu">head</span>(metadf)</span>
 <span id="cb7-5"><a href="02-Importing.html#cb7-5" tabindex="-1"></a><span class="co">#Assign sample data</span></span>
-<span id="cb7-6"><a href="02-Importing.html#cb7-6" tabindex="-1"></a>phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq <span class="ot">&lt;-</span> metadf)</span></code></pre></div>
+<span id="cb7-6"><a href="02-Importing.html#cb7-6" tabindex="-1"></a>phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq) <span class="ot">&lt;-</span> metadf</span></code></pre></div>
 <p>We can then summarise our <code>phyloseq</code> object to make sure it seems ok.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb8-1"><a href="02-Importing.html#cb8-1" tabindex="-1"></a><span class="co">#Summarize</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb8-1"><a href="02-Importing.html#cb8-1" tabindex="-1"></a><span class="co">#Summarise</span></span>
 <span id="cb8-2"><a href="02-Importing.html#cb8-2" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">summarize_phyloseq</span>(pseq)</span></code></pre></div>
 </div>
 <div id="taxonomy" class="section level4 unnumbered hasAnchor">

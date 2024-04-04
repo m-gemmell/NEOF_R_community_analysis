@@ -54,7 +54,7 @@ Therefore to check the file is correct we can create a tsv (tab seperated value)
 
 ```{bash, eval=FALSE}
 #Create tsv file
-biom convert -i KW.biom -o KW.tsv --header-key taxonomy--to-tsv
+biom convert -i KW.biom -o KW.tsv --header-key taxonomy --to-tsv
 #inspect tsv file
 less KW.tsv
 ```
@@ -88,7 +88,7 @@ The first step is to import the biom file.
 
 ```{r, eval=FALSE}
 #Read in bracken biom file
-pseq <- phyloseq::import_biom("/KW.biom")
+pseq <- phyloseq::import_biom("./KW.biom")
 ```
 
 #### Import sample data {-}
@@ -107,13 +107,13 @@ metadf <- read.csv("KW_metadata.tsv", sep="\t", check.names = FALSE, row.names=1
 #Check metadf
 head(metadf)
 #Assign sample data
-phyloseq::sample_data(pseq <- metadf)
+phyloseq::sample_data(pseq) <- metadf
 ```
 
 We can then summarise our `phyloseq` object to make sure it seems ok.
 
 ```{r, eval=FALSE}
-#Summarize
+#Summarise
 microbiome::summarize_phyloseq(pseq)
 ```
 
