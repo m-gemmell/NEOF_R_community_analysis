@@ -1,12 +1,14 @@
 # R plotly {#plotly_chap}
-<center>![](figures/plotly_icon.png){style="border-radius: 5px; width: 400px; border: 5px solid #333333"}</center>
+<center>
+![](figures/plotly_icon.png){style="border-radius: 15px; width: 400px; border: 5px solid white; background:white"}
+</center>
 
 [Plotly](https://plotly.com/graphing-libraries/) is a graphing library that allows you to create interactive charts and maps.
 These are in the form of html files.
 
 This works with `python`, `R`, `ggplot2`, and other languages.
 You can create plots with [`plotly's`](https://plotly.com/r/) own library in `R`.
-However, we'll demonstrate how to plotly plots with [`ggplot2`](https://plotly.com/ggplot2/).
+However, we'll demonstrate how to plotlyify plots with [`ggplot2`](https://plotly.com/ggplot2/).
 
 You can even embed these in online books like the below chart.
 Try hovering over points to get more information on them.
@@ -25,7 +27,7 @@ ggplotly(scatter_plot)
 ```
 
 <center>
-```{r, eval=TRUE, echo=FALSE, warning=FALSE, out.width="100%"}
+```{r, eval=TRUE, echo=FALSE, warning=FALSE, out.width="100%", }
 library("ggplot2")
 library("plotly")
 library(palmerpenguins)
@@ -42,9 +44,9 @@ ggplotly(scatter_plot)
 Additionally, try out the other controls.
 
 ## Jupyter notebook
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/jupyter_notebook.png){style="width:200px"}
+</center>
 
 As always we'll start off by creating a new `R` notebook and loading in the required libraries.
 
@@ -61,9 +63,9 @@ library("htmlwidgets")
 ```
 
 ## Penguin data
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/penguin_iceberg.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/penguin_iceberg.png){style="width:200px"}
+</center>
 
 We are going to use the same penguin data as the first plot in this chapter.
 More info in the penguin data can be found on this [website](https://allisonhorst.github.io/palmerpenguins/).
@@ -79,9 +81,9 @@ head(penguin_df)
 ```
 
 ## PNG with ggplot2
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/png_file.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/png_file.png){style="width:200px"}
+</center>
 
 After having your data the next step is to create your `ggplot2` object.
 We'll make a box plot of Species and sex of Penguin (x-axis) versus the Flipper length (y-axis).
@@ -102,13 +104,13 @@ IRdisplay::display_png(file = "penguin_boxplot.png")
 ```
 
 ## HTML with plotly
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/html.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/html.png){style="width:200px"}
+</center>
 
 Let's create that plot again but using `plotly`.
-Additionally, we save the `plotly` plot to an html file with `htmlwidgets::saveWidget()`.
-We can then view the plot with `
+Additionally, we'll save the `plotly` plot to an html file with `htmlwidgets::saveWidget()`.
+We can then view the plot with `plotly::embed_notebook()`
 
 ```{r, eval=FALSE}
 #ggplot2 boxplot
@@ -128,12 +130,12 @@ plotly::embed_notebook(plotly_boxplot)
 You can also open "penguin_boxplot.html" via the jupyter navigation page to view it.
 
 ## Recap
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; background:white"}
+</center>
 
 Plotly is a nice way to make interactive plots. 
 These can be embedded in `jupyter-notebooks` or html reports made with programs like [`R Markdown`](https://rmarkdown.rstudio.com/).
-They are very useful to interrogate data but they will not be as useful for make static plots for visualisation.
+They are very useful to interrogate data but they will not be as useful for making static plots for visualisation.
 
 If you have the time and inclination please try making some plotly htmls with the plots you created in the main book for this course.

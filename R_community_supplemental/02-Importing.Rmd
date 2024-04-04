@@ -1,22 +1,24 @@
 # Importing {#importchap}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/data.png){style="width:200px"}
+</center>
 
-Apart from `QIIME2` artifact files, other file types from other programs cann be imported into a `phyloseq` object.
+Apart from `QIIME2` artifact files, other file types from other programs can be imported into a `phyloseq` object.
 
 ## Bracken
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/bracken.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/bracken.png){style="width:200px"}
+</center>
 
 A common way to carry out shotgun metagenomics taxonomic abundance profiling is with `Kraken2` and `Bracken`.
 This section will show you how to import the `bracken` output.
 
+Carry out the below steps in bash in your home directory (`cd ~`).
+
 ### Bracken: setup
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/setup_3.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/setup_3.png){style="width:200px"}
+</center>
 
 First we need the `Bracken` output in the `Kraken2` report output file format.
 We can copy over the output made during the NEOF Shotgun metagenomics workshop.
@@ -36,9 +38,9 @@ cp /pub14/tea/nsc206/NEOF/R_community/bracken_reports/KW_metadata.tsv .
 ```
 
 ### Bracken: Convert to biom
-```{r, fig.align = 'center',out.width= '80px', echo=FALSE }
-knitr::include_graphics(path = "figures/biom_tie.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/biom_tie.png){style="width:100px"}
+</center>
 
 Unfortunately we can't use the `bracken` report files.
 Instead we need to convert them to a single collated biom file with `kraken-biom`.
@@ -61,9 +63,9 @@ If your file has a header starting with "#OTU ID" and the sample names, followed
 You'll also have the taxonomy lineage as the last column because we added in `--header-key taxonomy`.
 
 ### Jupyter notebook
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/jupyter_notebook.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/jupyter_notebook.png){style="width:200px"}
+</center>
 
 Now we are ready to carry out some R analysis.
 
@@ -71,16 +73,16 @@ Open up `jupyter-notebook` and create a new `R` notebook called "Bracken_phylose
 
 At the top of the notebook create a cell to load the libaries we'll need.
 
-```{bash, eval=FALSE}
+```{r, eval=FALSE}
 #Libraries
 library("phyloseq")
 library("microbiome")
 ```
 
 #### Import biom into phyloseq {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/phyloseq_logo.png){style="width:100px"}
+</center>
 
 The first step is to import the biom file.
 
@@ -90,16 +92,16 @@ pseq <- phyloseq::import_biom("/KW.biom")
 ```
 
 #### Import sample data {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/samples.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/samples.png){style="width:100px"}
+</center>
 
 Next we need to import the samples data.
 We have a tab delimited file we will read into R as a __data frame__.
-The we can assign the sample data of `pseq` to the __data frame__.
-As long as the row names contain the same sample names as in the biom file it should work correctly.
+Then we can assign the sample data of `pseq` to the __data frame__.
+As long as the row names contain the same sample names, like in the biom file, it should work correctly.
 
-```{R, eval=FALSE}
+```{r, eval=FALSE}
 #Read in metadata
 metadf <- read.csv("KW_metadata.tsv", sep="\t", check.names = FALSE, row.names=1)
 #Check metadf
@@ -110,19 +112,19 @@ phyloseq::sample_data(pseq <- metadf)
 
 We can then summarise our `phyloseq` object to make sure it seems ok.
 
-```{R, eval=FALSE}
+```{r, eval=FALSE}
 #Summarize
 microbiome::summarize_phyloseq(pseq)
 ```
 
 #### Taxonomy {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/taxa.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/taxa.png){style="width:100px"}
+</center>
 
 Let's check out the taxonomy
 
-```{R, eval=FALSE}
+```{r, eval=FALSE}
 #Check taxonomy
 head(phyloseq::tax_table(pseq))
 ```
@@ -130,7 +132,7 @@ head(phyloseq::tax_table(pseq))
 It looks good but we'll carry out 2 tasks.
 
 First we'll change the taxonomy headers from Rank1... to Kingdom....
-We know we can do this sue to the prefix of the taxonomies ("k__", "p__"...)
+We know we can do this due to the prefix of the taxonomies ("k__", "p__"...)
 
 ```{r, eval=FALSE}
 #Change tax column names
@@ -143,22 +145,22 @@ We are going to aggregate the `phyloseq` object from taxids to genus.
 Shotgun metagenomics is not always the best tool at differentiating between species so genus classifications will be more reliable.
 
 ```{r, eval=FALSE}
-#Aggregate to species
+#Aggregate to genus
 genus_pseq <- microbiome::aggregate_taxa(pseq, "Genus", verbose = FALSE)
 #Summarise
 microbiome::summarize_phyloseq(genus_pseq)
 #Check number of genera
-paste0("Genera: ", nrwo(phyloseq::otu_table(genus_pseq)))
+paste0("Genera: ", nrow(phyloseq::otu_table(genus_pseq)))
 ```
 
-In your own analysis you may even want to use family or order to aggregate to, or to keep using species.
+In your own analysis you may even want to use family or order to aggregate to, or to keep using genus
 Know your data, look at the literature, and make an informed decision.
 Of course it can be useful to look at multiple levels of taxonomy.
 
 ## Plain text files
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/plain_text.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/plain_text.png){style="width:100px"}
+</center>
 
 If you have plain text files you can read them into R and then phyloseq-ize them.
 The phyloseq website has a nice tutorial on how to carry this out: https://joey711.github.io/phyloseq/import-data.
