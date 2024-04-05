@@ -68,7 +68,7 @@ This will open up a new R notebook like below.
 
 ## Cells and code
 
-`Jupyter-notebook` uses **cells** (the gray boxes) to separate code. This is very useful to compartmentalise our code.
+`Jupyter-notebook` uses **cells** (the grey boxes) to separate code. This is very useful to compartmentalise our code.
 
 There will already be one **cell**. Within the **cell**, type in the below commands.
 
@@ -143,11 +143,11 @@ There is no output printed for __cell__ 2 because we are assigning variables. Ho
 
 As with RStudio and other good coding interfaces we can save our notebook.
 
-First we should rename the file. Rename the notebook to **"jupyter_tut"**:
+First we should rename the file. Rename the notebook to **"jupyter_tut.ipynb"**:
 
 1.  Click on the name of the notebook, currently called **"Untitled"**.
     -   This is at the very top of the notebook, right of the Jupyter logo.
-2.  A pop-up called **"Rename Notebook"** will appear. Change the Name to **"jupyter_tut"**.
+2.  A pop-up called **"Rename Notebook"** will appear. Change the Name to **"jupyter_tut.ipynb"**.
 3.  Click **"Rename"**.
 
 Now we can save the file. Two methods to save are:

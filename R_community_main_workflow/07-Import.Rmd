@@ -11,7 +11,7 @@ Before carrying out any analysis we first need to import our QIIME2 artifacts in
 </center>
 
 Prior to any coding, we will create a new directory, our analysis directory.
-Next, we'll create a new notebook called __"01-Import.ipynb"__ in it. 
+Next, we'll create a new notebook called __"1-Import.ipynb"__ in it. 
 We will be creating many notebooks and numbering them so we can easily see the order of scripts.
 
 First create a new directory.
@@ -28,7 +28,7 @@ You will have an __"Untitled Folder"__. To rename it:
 
 Click on your __"R_community_workshop"__ folder to move into it.
 
-Next step is to create a new R notebook, rename it to __"01-Import"__, and save it.
+Next step is to create a new R notebook, rename it to __"1-Import.ipynb"__, and save it.
 
 ## qiime2R
 <center>
@@ -37,7 +37,7 @@ Next step is to create a new R notebook, rename it to __"01-Import"__, and save 
 
 [`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R `phyloseq` object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.
 
-The best way to import all your QIIME2 artifacts is with the `qiime2R::qza_to_phyloseq()` function. In your __"01-Import.ipynb"__ script, add the following and run the commands.
+The best way to import all your QIIME2 artifacts is with the `qiime2R::qza_to_phyloseq()` function. In your __"1-Import.ipynb"__ script, add the following and run the commands.
 
 __Tip__: You can tab complete and/or copy and paste file paths within the webVNC.
 

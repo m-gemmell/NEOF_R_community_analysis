@@ -441,7 +441,7 @@ This will open up a new R notebook like below.
 
 ## Cells and code
 
-`Jupyter-notebook` uses **cells** (the gray boxes) to separate code. This is very useful to compartmentalise our code.
+`Jupyter-notebook` uses **cells** (the grey boxes) to separate code. This is very useful to compartmentalise our code.
 
 There will already be one **cell**. Within the **cell**, type in the below commands.
 
@@ -516,11 +516,11 @@ There is no output printed for __cell__ 2 because we are assigning variables. Ho
 
 As with RStudio and other good coding interfaces we can save our notebook.
 
-First we should rename the file. Rename the notebook to **"jupyter_tut"**:
+First we should rename the file. Rename the notebook to **"jupyter_tut.ipynb"**:
 
 1.  Click on the name of the notebook, currently called **"Untitled"**.
     -   This is at the very top of the notebook, right of the Jupyter logo.
-2.  A pop-up called **"Rename Notebook"** will appear. Change the Name to **"jupyter_tut"**.
+2.  A pop-up called **"Rename Notebook"** will appear. Change the Name to **"jupyter_tut.ipynb"**.
 3.  Click **"Rename"**.
 
 Now we can save the file. Two methods to save are:
@@ -623,7 +623,7 @@ Before carrying out any analysis we first need to import our QIIME2 artifacts in
 </center>
 
 Prior to any coding, we will create a new directory, our analysis directory.
-Next, we'll create a new notebook called __"01-Import.ipynb"__ in it. 
+Next, we'll create a new notebook called __"1-Import.ipynb"__ in it. 
 We will be creating many notebooks and numbering them so we can easily see the order of scripts.
 
 First create a new directory.
@@ -640,7 +640,7 @@ You will have an __"Untitled Folder"__. To rename it:
 
 Click on your __"R_community_workshop"__ folder to move into it.
 
-Next step is to create a new R notebook, rename it to __"01-Import"__, and save it.
+Next step is to create a new R notebook, rename it to __"1-Import.ipynb"__, and save it.
 
 ## qiime2R
 <center>
@@ -649,7 +649,7 @@ Next step is to create a new R notebook, rename it to __"01-Import"__, and save 
 
 [`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R `phyloseq` object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.
 
-The best way to import all your QIIME2 artifacts is with the `qiime2R::qza_to_phyloseq()` function. In your __"01-Import.ipynb"__ script, add the following and run the commands.
+The best way to import all your QIIME2 artifacts is with the `qiime2R::qza_to_phyloseq()` function. In your __"1-Import.ipynb"__ script, add the following and run the commands.
 
 __Tip__: You can tab complete and/or copy and paste file paths within the webVNC.
 
@@ -786,7 +786,7 @@ After this, we will summarise the `phyloseq` object. We will investigate the rea
 ![](figures/setup_2.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
-Before starting analysis create and save a new `R` notebook called __"02-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
+Before starting analysis create and save a new `R` notebook called __"2-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
 
 It is useful to add a title to the top of the notebook. 
 Create a __"Markdown"__ __cell__ and add the following first level header:
@@ -969,7 +969,7 @@ In this chapter we will:
 - Cover a brief intro to considerations of what is an acceptable minimum depth for your dataset.
 - Reinvestigate our sample depths with a previously created histogram.
 - View the depth ranges of different sample groups (site & media) with box plots.
-- Create a rarefaction curve to assess if the depth of our samples have captured a good amount of biodiversity.
+- Create a rarefaction curve to assess if the depth of our samples has captured a good amount of biodiversity.
 - Demonstrate how to filter samples by depth.
 
 ## Considerations
@@ -1377,7 +1377,7 @@ But, as stated in the last chapter all our samples had sufficient depth, so we w
 
 The first steps before analysis are:
 
-- Create a new notebook called __"3-taxonomy_barcharts"__.
+- Create a new notebook called __"3-taxonomy_barcharts.ipynb"__.
   - We will use this to create our phyloseq objects and taxonomy bar charts.
 - Add a markdown cell with the first level header: `# Taxonomy bar charts`.
 - Add the below to a code cell to load in the `phyloseq` object and libraries.
@@ -1635,7 +1635,7 @@ phylum_media_bar <-
   microbiome::plot_composition(phylum_rareaggregate_pseq, 
                                otu.sort ="abundance",
                                average_by = "media") +
-  xlab("Sample") + ylab("Relative abundance") +
+  xlab("Media") + ylab("Relative abundance") +
   ggtitle("Phylum relative abundance bar chart by media") +
   scale_fill_brewer("Phylum", palette = "Paired")
 #Save ggplot object as png
@@ -2297,7 +2297,7 @@ opts_p <- c("__UD_ENV_rep2__", "__MD_ENV_rep3__", answer="__LD_CVP_rep1__")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Environmental__", "__Media__")
 ```
-3. Which samples have larger slope values; the environmental samples or media samples? `r longmcq(opts_p)`
+3. Which samples have larger slope values, the environmental samples or media samples? `r longmcq(opts_p)`
 
 Overall the slopes values are low (<0.01).
 It is noticeable that the environmental samples have higher slopes than the media samples.
@@ -2481,7 +2481,7 @@ The last plot looks a bit better.
 To actually make them box plots we'll change the x axis so they are based on media rather than individual samples.
 
 The `phyloseq::plot_richness()` function produces a `ggplot2` object.
-To convert our dot plot into a box plot we can add the layer `geom_boxplt()` like with our [depth boxplots](#depth-boxplots).
+To convert our dot plot into a box plot we can add the layer `geom_boxplot()` like with our [depth boxplots](#depth-boxplots).
 This will combine samples from one media into one IQR box.
 
 ```{r , eval = FALSE}
@@ -2598,7 +2598,7 @@ We can therefore make these claims about the alpha diversity values of the group
 
 - ENV has the highest number of observed ASVs and the highest diversity.
 - ENV appears to have a wider range of diversities across its samples.
-- The medias have much lower numbers of ASVs and diveristy compared to ENV.
+- The different culture media have much lower numbers of ASVs and diversity compared to ENV.
 - Within each media grouping the samples have very similar numbers of ASVs present.
 
 ## Alpha diversity: violin plot
@@ -2864,7 +2864,7 @@ IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_ellipse.png")
 For our beta diversity we will carry out PERMANOVA analysis for the media groupings.
 This will be carried out for all the samples and in a pairwise manner.
 
-PERMANOVA is a good test in this case to determine if there is a significance difference between the distances of groups.
+PERMANOVA is a good test in this case to determine if there is a significant difference between the distances of groups.
 This allows us to determine if the clustering of groups is significant.
 
 For more info on PERMANOVA, [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.
@@ -3571,12 +3571,12 @@ This matches the clustering we found in the beta diversity.
 This seems to indicate that the media samples are not a good representation of the actual environmental community.
 They appear to select for a few bacterial classes and select against a lot of bacterial classes.
 
-## DA: matching bar plot
+## DA: Taxonomy heatmap
 <center>
-![](figures/bar_chart.png){style="width:200px; border-radius:15px; background:white"}
+![](figures/heatmap_2.png){style="width:200px; border-radius:5px; background:white"}
 </center>
 
-Using code from the [taxa plots chapter](#chaptaxaplots) we'll make a quick class based taxa plot.
+Using code from the [taxa plots chapter](#chaptaxaplots) we'll make a quick class based heatmap.
 We will use the relative abundances for this.
 
 ```{r, eval=FALSE}
@@ -3775,7 +3775,7 @@ This is again hard to determine due to small numbers of replicates.
 
 Is there more difference between the sites or the media used?
 
-It appears that more difference is caused by the medias than the sites.
+It appears that more difference is caused by the different culture media than the sites.
 If you only look at the ENV samples there is a big difference between the sites.
 This could be investigated further by checking for [homogeneity](https://microbiome.github.io/tutorials/PERMANOVA.html).
 

@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-04-04" />
+<meta name="date" content="2024-04-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -319,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.4" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-results"><i class="fa fa-check"></i><b>17.4</b> DA: ANCOM-BC results</a></li>
 <li class="chapter" data-level="17.5" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-create-signifcant-lfc-long-data-frame"><i class="fa fa-check"></i><b>17.5</b> DA: Create signifcant LFC long data frame</a></li>
 <li class="chapter" data-level="17.6" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-biomarker-lfc-heatmap"><i class="fa fa-check"></i><b>17.6</b> DA: Biomarker LFC heatmap</a></li>
-<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-matching-bar-plot"><i class="fa fa-check"></i><b>17.7</b> DA: matching bar plot</a></li>
+<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-taxonomy-heatmap"><i class="fa fa-check"></i><b>17.7</b> DA: Taxonomy heatmap</a></li>
 <li class="chapter" data-level="17.8" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-summary"><i class="fa fa-check"></i><b>17.8</b> DA: summary</a></li>
 </ul></li>
 <li class="part"><span><b>Outro</b></span></li>
@@ -676,16 +676,16 @@ We will use 0 as the midpoint so we can easily differentiate between higher and 
 Any 0 values are non-significant results we turned to 0 when we created the long data frame.</p>
 <ul>
 <li>Are there more biomarkers in higher abundance in ENV rather than the comparison media (i.e blue/negative results)?
-<div id="radio_VYEOWEYGZH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VYEOWEYGZH" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VYEOWEYGZH" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_AGWPNSXHKK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AGWPNSXHKK" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AGWPNSXHKK" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Which biomarker has the highest positive values?
-<div id="radio_JPERAAOLAP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JPERAAOLAP" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JPERAAOLAP" value="answer"></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JPERAAOLAP" value=""></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
+<div id="radio_KMBEODIDUF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KMBEODIDUF" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KMBEODIDUF" value="answer"></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KMBEODIDUF" value=""></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
 </div></li>
 <li>Which biomarker has the lowest value?
-<div id="radio_SUZHMLORTY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SUZHMLORTY" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SUZHMLORTY" value=""></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SUZHMLORTY" value="answer"></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
+<div id="radio_BQZQWOVJWG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BQZQWOVJWG" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BQZQWOVJWG" value=""></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BQZQWOVJWG" value="answer"></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
 </div></li>
 </ul>
 <p>From these results we can see that there are a lot of biomarkers with low abundances in the comparison media samples.
@@ -697,12 +697,12 @@ This matches the clustering we found in the beta diversity.</p>
 <p>This seems to indicate that the media samples are not a good representation of the actual environmental community.
 They appear to select for a few bacterial classes and select against a lot of bacterial classes.</p>
 </div>
-<div id="da-matching-bar-plot" class="section level2 hasAnchor" number="17.7">
-<h2><span class="header-section-number">17.7</span> DA: matching bar plot<a href="17-Differential_abundance_analysis.html#da-matching-bar-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="da-taxonomy-heatmap" class="section level2 hasAnchor" number="17.7">
+<h2><span class="header-section-number">17.7</span> DA: Taxonomy heatmap<a href="17-Differential_abundance_analysis.html#da-taxonomy-heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/bar_chart.png" style="width:200px; border-radius:15px; background:white" />
+<img src="figures/heatmap_2.png" style="width:200px; border-radius:5px; background:white" />
 </center>
-<p>Using code from the <a href="11-Taxa_plots.html#chaptaxaplots">taxa plots chapter</a> we'll make a quick class based taxa plot.
+<p>Using code from the <a href="11-Taxa_plots.html#chaptaxaplots">taxa plots chapter</a> we'll make a quick class based heatmap.
 We will use the relative abundances for this.</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb118-1"><a href="17-Differential_abundance_analysis.html#cb118-1" tabindex="-1"></a><span class="co">#Quick class based relative abundance heatmap</span></span>
 <span id="cb118-2"><a href="17-Differential_abundance_analysis.html#cb118-2" tabindex="-1"></a><span class="co">#Convert abundance table to class relative abundance (compositional) table</span></span>

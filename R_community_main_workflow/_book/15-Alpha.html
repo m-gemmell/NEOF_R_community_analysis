@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-04-04" />
+<meta name="date" content="2024-04-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -319,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.4" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-results"><i class="fa fa-check"></i><b>17.4</b> DA: ANCOM-BC results</a></li>
 <li class="chapter" data-level="17.5" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-create-signifcant-lfc-long-data-frame"><i class="fa fa-check"></i><b>17.5</b> DA: Create signifcant LFC long data frame</a></li>
 <li class="chapter" data-level="17.6" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-biomarker-lfc-heatmap"><i class="fa fa-check"></i><b>17.6</b> DA: Biomarker LFC heatmap</a></li>
-<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-matching-bar-plot"><i class="fa fa-check"></i><b>17.7</b> DA: matching bar plot</a></li>
+<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-taxonomy-heatmap"><i class="fa fa-check"></i><b>17.7</b> DA: Taxonomy heatmap</a></li>
 <li class="chapter" data-level="17.8" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-summary"><i class="fa fa-check"></i><b>17.8</b> DA: summary</a></li>
 </ul></li>
 <li class="part"><span><b>Outro</b></span></li>
@@ -477,7 +477,7 @@ Either make a new code block with new code or you can edit and run the previous 
 <p>The last plot looks a bit better.
 To actually make them box plots we'll change the x axis so they are based on media rather than individual samples.</p>
 <p>The <code>phyloseq::plot_richness()</code> function produces a <code>ggplot2</code> object.
-To convert our dot plot into a box plot we can add the layer <code>geom_boxplt()</code> like with our <a href="09-Minimum_read_depth.html#depth-boxplots">depth boxplots</a>.
+To convert our dot plot into a box plot we can add the layer <code>geom_boxplot()</code> like with our <a href="09-Minimum_read_depth.html#depth-boxplots">depth boxplots</a>.
 This will combine samples from one media into one IQR box.</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb79-1"><a href="15-Alpha.html#cb79-1" tabindex="-1"></a><span class="co">#Box plot</span></span>
 <span id="cb79-2"><a href="15-Alpha.html#cb79-2" tabindex="-1"></a>phyloseq<span class="sc">::</span><span class="fu">plot_richness</span>(<span class="at">physeq =</span> pseq_rarefy, </span>
@@ -537,8 +537,8 @@ We'll do this using media as our groups from the <code>sample_data()</code> and 
 <p>You can ignore the warning messages in this case.</p>
 <p>Observe the results.</p>
 Are all the pairwise comparisons significant different (&lt;0.05)?
-<div id="radio_KQBQLVBOJX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KQBQLVBOJX" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KQBQLVBOJX" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_VFKQGHZKOT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VFKQGHZKOT" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VFKQGHZKOT" value=""></input> <span><strong>No</strong></span></label>
 </div>
 <p>The test has carried out P value adjustments using the Holm-Bonferroni method (<code>P value adjustment method: holm</code>) which is good.</p>
 <p>In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
@@ -569,7 +569,7 @@ There is little to no overlap of the IQRs of KBC and TSA against ENV.</p>
 <ul>
 <li>ENV has the highest number of observed ASVs and the highest diversity.</li>
 <li>ENV appears to have a wider range of diversities across its samples.</li>
-<li>The medias have much lower numbers of ASVs and diveristy compared to ENV.</li>
+<li>The different culture media have much lower numbers of ASVs and diversity compared to ENV.</li>
 <li>Within each media grouping the samples have very similar numbers of ASVs present.</li>
 </ul>
 </div>

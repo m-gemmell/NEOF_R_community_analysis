@@ -12,7 +12,7 @@ After this, we will summarise the `phyloseq` object. We will investigate the rea
 ![](figures/setup_2.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
-Before starting analysis create and save a new `R` notebook called __"02-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
+Before starting analysis create and save a new `R` notebook called __"2-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
 
 It is useful to add a title to the top of the notebook. 
 Create a __"Markdown"__ __cell__ and add the following first level header:

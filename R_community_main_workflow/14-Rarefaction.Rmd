@@ -207,7 +207,7 @@ opts_p <- c("__UD_ENV_rep2__", "__MD_ENV_rep3__", answer="__LD_CVP_rep1__")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Environmental__", "__Media__")
 ```
-3. Which samples have larger slope values; the environmental samples or media samples? `r longmcq(opts_p)`
+3. Which samples have larger slope values, the environmental samples or media samples? `r longmcq(opts_p)`
 
 Overall the slopes values are low (<0.01).
 It is noticeable that the environmental samples have higher slopes than the media samples.

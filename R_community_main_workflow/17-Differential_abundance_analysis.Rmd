@@ -362,12 +362,12 @@ This matches the clustering we found in the beta diversity.
 This seems to indicate that the media samples are not a good representation of the actual environmental community.
 They appear to select for a few bacterial classes and select against a lot of bacterial classes.
 
-## DA: matching bar plot
+## DA: Taxonomy heatmap
 <center>
-![](figures/bar_chart.png){style="width:200px; border-radius:15px; background:white"}
+![](figures/heatmap_2.png){style="width:200px; border-radius:5px; background:white"}
 </center>
 
-Using code from the [taxa plots chapter](#chaptaxaplots) we'll make a quick class based taxa plot.
+Using code from the [taxa plots chapter](#chaptaxaplots) we'll make a quick class based heatmap.
 We will use the relative abundances for this.
 
 ```{r, eval=FALSE}

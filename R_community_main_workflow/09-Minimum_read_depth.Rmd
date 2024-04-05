@@ -14,7 +14,7 @@ In this chapter we will:
 - Cover a brief intro to considerations of what is an acceptable minimum depth for your dataset.
 - Reinvestigate our sample depths with a previously created histogram.
 - View the depth ranges of different sample groups (site & media) with box plots.
-- Create a rarefaction curve to assess if the depth of our samples have captured a good amount of biodiversity.
+- Create a rarefaction curve to assess if the depth of our samples has captured a good amount of biodiversity.
 - Demonstrate how to filter samples by depth.
 
 ## Considerations

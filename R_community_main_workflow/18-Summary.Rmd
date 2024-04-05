@@ -150,7 +150,7 @@ This is again hard to determine due to small numbers of replicates.
 
 Is there more difference between the sites or the media used?
 
-It appears that more difference is caused by the medias than the sites.
+It appears that more difference is caused by the different culture media than the sites.
 If you only look at the ENV samples there is a big difference between the sites.
 This could be investigated further by checking for [homogeneity](https://microbiome.github.io/tutorials/PERMANOVA.html).
 

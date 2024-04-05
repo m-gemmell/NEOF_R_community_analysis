@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-04-04" />
+<meta name="date" content="2024-04-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -319,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.4" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-results"><i class="fa fa-check"></i><b>17.4</b> DA: ANCOM-BC results</a></li>
 <li class="chapter" data-level="17.5" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-create-signifcant-lfc-long-data-frame"><i class="fa fa-check"></i><b>17.5</b> DA: Create signifcant LFC long data frame</a></li>
 <li class="chapter" data-level="17.6" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-biomarker-lfc-heatmap"><i class="fa fa-check"></i><b>17.6</b> DA: Biomarker LFC heatmap</a></li>
-<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-matching-bar-plot"><i class="fa fa-check"></i><b>17.7</b> DA: matching bar plot</a></li>
+<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-taxonomy-heatmap"><i class="fa fa-check"></i><b>17.7</b> DA: Taxonomy heatmap</a></li>
 <li class="chapter" data-level="17.8" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-summary"><i class="fa fa-check"></i><b>17.8</b> DA: summary</a></li>
 </ul></li>
 <li class="part"><span><b>Outro</b></span></li>
@@ -450,8 +450,8 @@ Use the below code to produce and visualise a heatmap.</p>
 <p>With the heatmap it is much easier to tell what the relative abundances of different phyla are.</p>
 <ul>
 <li>What is the most abundant phyla across the samples?
-<div id="radio_QWYEYDOZSH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QWYEYDOZSH" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QWYEYDOZSH" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QWYEYDOZSH" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
+<div id="radio_LKHDALPHAF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LKHDALPHAF" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LKHDALPHAF" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LKHDALPHAF" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
 </div></li>
 </ul>
 </div>
@@ -530,7 +530,7 @@ With this we will average the rare aggregated relative abundance values by the f
 <span id="cb53-3"><a href="11-Taxa_plots.html#cb53-3" tabindex="-1"></a>  microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(phylum_rareaggregate_pseq, </span>
 <span id="cb53-4"><a href="11-Taxa_plots.html#cb53-4" tabindex="-1"></a>                               <span class="at">otu.sort =</span><span class="st">&quot;abundance&quot;</span>,</span>
 <span id="cb53-5"><a href="11-Taxa_plots.html#cb53-5" tabindex="-1"></a>                               <span class="at">average_by =</span> <span class="st">&quot;media&quot;</span>) <span class="sc">+</span></span>
-<span id="cb53-6"><a href="11-Taxa_plots.html#cb53-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Sample&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Relative abundance&quot;</span>) <span class="sc">+</span></span>
+<span id="cb53-6"><a href="11-Taxa_plots.html#cb53-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Media&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Relative abundance&quot;</span>) <span class="sc">+</span></span>
 <span id="cb53-7"><a href="11-Taxa_plots.html#cb53-7" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Phylum relative abundance bar chart by media&quot;</span>) <span class="sc">+</span></span>
 <span id="cb53-8"><a href="11-Taxa_plots.html#cb53-8" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="st">&quot;Phylum&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Paired&quot;</span>)</span>
 <span id="cb53-9"><a href="11-Taxa_plots.html#cb53-9" tabindex="-1"></a><span class="co">#Save ggplot object as png</span></span>
@@ -541,12 +541,12 @@ With this we will average the rare aggregated relative abundance values by the f
 <p>Now we get a good picture of which medias have the highest and lowest phlya diversity.
 The Environmental samples (ENV) definitely have the highest diversity with clear presence of all phyla.</p>
 Which media has the highest relative abundance of <em>Protoebacteria</em> and the lowest phyla diversity (excluding ENV)?
-<div id="radio_VXXFJBFXNH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VXXFJBFXNH" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VXXFJBFXNH" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VXXFJBFXNH" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_BQBWJAAUXF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BQBWJAAUXF" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BQBWJAAUXF" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BQBWJAAUXF" value=""></input> <span><strong>TSA</strong></span></label>
 </div>
 Which media has the lowest relative abundance of <em>Protoebacteria</em> and the highest phyla diversity (excluding ENV)?
-<div id="radio_JJRGSTMTDM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JJRGSTMTDM" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJRGSTMTDM" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJRGSTMTDM" value="answer"></input> <span><strong>TSA</strong></span></label>
+<div id="radio_VOLETYUZWA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VOLETYUZWA" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VOLETYUZWA" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VOLETYUZWA" value="answer"></input> <span><strong>TSA</strong></span></label>
 </div>
 <p>Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.</p>
 </div>

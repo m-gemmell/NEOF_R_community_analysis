@@ -137,7 +137,7 @@ IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_ellipse.png")
 For our beta diversity we will carry out PERMANOVA analysis for the media groupings.
 This will be carried out for all the samples and in a pairwise manner.
 
-PERMANOVA is a good test in this case to determine if there is a significance difference between the distances of groups.
+PERMANOVA is a good test in this case to determine if there is a significant difference between the distances of groups.
 This allows us to determine if the clustering of groups is significant.
 
 For more info on PERMANOVA, [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.

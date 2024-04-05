@@ -19,7 +19,7 @@ But, as stated in the last chapter all our samples had sufficient depth, so we w
 
 The first steps before analysis are:
 
-- Create a new notebook called __"3-taxonomy_barcharts"__.
+- Create a new notebook called __"3-taxonomy_barcharts.ipynb"__.
   - We will use this to create our phyloseq objects and taxonomy bar charts.
 - Add a markdown cell with the first level header: `# Taxonomy bar charts`.
 - Add the below to a code cell to load in the `phyloseq` object and libraries.

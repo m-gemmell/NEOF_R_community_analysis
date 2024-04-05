@@ -104,7 +104,7 @@ The last plot looks a bit better.
 To actually make them box plots we'll change the x axis so they are based on media rather than individual samples.
 
 The `phyloseq::plot_richness()` function produces a `ggplot2` object.
-To convert our dot plot into a box plot we can add the layer `geom_boxplt()` like with our [depth boxplots](#depth-boxplots).
+To convert our dot plot into a box plot we can add the layer `geom_boxplot()` like with our [depth boxplots](#depth-boxplots).
 This will combine samples from one media into one IQR box.
 
 ```{r , eval = FALSE}
@@ -221,7 +221,7 @@ We can therefore make these claims about the alpha diversity values of the group
 
 - ENV has the highest number of observed ASVs and the highest diversity.
 - ENV appears to have a wider range of diversities across its samples.
-- The medias have much lower numbers of ASVs and diveristy compared to ENV.
+- The different culture media have much lower numbers of ASVs and diversity compared to ENV.
 - Within each media grouping the samples have very similar numbers of ASVs present.
 
 ## Alpha diversity: violin plot
