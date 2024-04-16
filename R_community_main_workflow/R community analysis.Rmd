@@ -1582,10 +1582,10 @@ Check the taxa pre and post aggregation plus the taxa groups removed by aggregat
 
 ```{r, eval = FALSE}
 #Taxa pre and post aggregation
-microbiome::taxa(pseq_relabund)
+microbiome::taxa(phylum_pseq)
 microbiome::taxa(phylum_rareaggregate_pseq)
 #Taxa groups lost via aggregation
-setdiff(microbiome::taxa(pseq_relabund), microbiome::taxa(phylum_rareaggregate_pseq))
+setdiff(microbiome::taxa(phylum_pseq), microbiome::taxa(phylum_rareaggregate_pseq))
 ```
 
 We will plot this as a new taxonomy bar chart with some additions:
