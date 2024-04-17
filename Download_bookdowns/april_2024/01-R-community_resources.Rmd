@@ -28,7 +28,7 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ## Intro and Data importing & preprocessing
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/zcNteKN5bk8" 
+<iframe src="https://www.youtube.com/embed/-doCU4vsIps" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
@@ -37,7 +37,7 @@ frameborder="0" allowfullscreen class="video"></iframe>
 ## Preprocessing & taxonomy
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/CPaTT36EwCc" 
+<iframe src="https://www.youtube.com/embed/6tLMBMELCzE" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
