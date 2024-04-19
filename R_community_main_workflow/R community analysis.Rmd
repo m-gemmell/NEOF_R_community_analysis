@@ -3850,7 +3850,7 @@ mamba activate r_community
 
 Use `pip` to install `kraken-biom`
 
-```{bash. eval=FALSE}
+```{bash, eval=FALSE}
 pip install kraken-biom
 ```
 
@@ -3861,6 +3861,7 @@ R
 ```
 
 ```{r, eval=FALSE}
+library("devtools")
 devtools::install_github("jbisanz/qiime2R")
 ```
 

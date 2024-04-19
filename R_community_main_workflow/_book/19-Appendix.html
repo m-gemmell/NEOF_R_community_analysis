@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-04-16" />
+<meta name="date" content="2024-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -415,10 +415,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Activate the environment in bash.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb123-1"><a href="19-Appendix.html#cb123-1" tabindex="-1"></a><span class="ex">mamba</span> activate r_community</span></code></pre></div>
 <p>Use <code>pip</code> to install <code>kraken-biom</code></p>
-<p><code>{bash. eval=FALSE} pip install kraken-biom</code></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb124-1"><a href="19-Appendix.html#cb124-1" tabindex="-1"></a><span class="ex">pip</span> install kraken-biom</span></code></pre></div>
 <p>Activate your <code>mamba's</code> <code>R</code> and install <code>Qiime2R</code>.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb124-1"><a href="19-Appendix.html#cb124-1" tabindex="-1"></a><span class="ex">R</span></span></code></pre></div>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb125-1"><a href="19-Appendix.html#cb125-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;jbisanz/qiime2R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb125-1"><a href="19-Appendix.html#cb125-1" tabindex="-1"></a><span class="ex">R</span></span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb126-1"><a href="19-Appendix.html#cb126-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb126-2"><a href="19-Appendix.html#cb126-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;jbisanz/qiime2R&quot;</span>)</span></code></pre></div>
 </div>
 <div id="jupyter_appendix" class="section level2 hasAnchor" number="19.2">
 <h2><span class="header-section-number">A.2</span> Jupyter-notebook<a href="19-Appendix.html#jupyter_appendix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -429,15 +430,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 However, you can also use <a href="https://jupyter.org/"><code>Jupyter-notebook</code></a> if you are using an HPC or prefer it.</p>
 <p>If using bash you will need to create an environment with <code>Jupyter-notebook</code>.
 Ensure you are in the <code>(base)</code> mamba environment.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb126-1"><a href="19-Appendix.html#cb126-1" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> jupyter</span>
-<span id="cb126-2"><a href="19-Appendix.html#cb126-2" tabindex="-1"></a><span class="ex">mamba</span> activate jupyter</span>
-<span id="cb126-3"><a href="19-Appendix.html#cb126-3" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda jupyter</span>
-<span id="cb126-4"><a href="19-Appendix.html#cb126-4" tabindex="-1"></a><span class="ex">mamba</span> deactivate</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb127-1"><a href="19-Appendix.html#cb127-1" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> jupyter</span>
+<span id="cb127-2"><a href="19-Appendix.html#cb127-2" tabindex="-1"></a><span class="ex">mamba</span> activate jupyter</span>
+<span id="cb127-3"><a href="19-Appendix.html#cb127-3" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda jupyter</span>
+<span id="cb127-4"><a href="19-Appendix.html#cb127-4" tabindex="-1"></a><span class="ex">mamba</span> deactivate</span></code></pre></div>
 <p>To run <code>Jupyter-notebook</code> with your <code>r_community</code> environment you can run the following.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb127-1"><a href="19-Appendix.html#cb127-1" tabindex="-1"></a><span class="co">#Activate you R_community env</span></span>
-<span id="cb127-2"><a href="19-Appendix.html#cb127-2" tabindex="-1"></a><span class="ex">mamba</span> activate r_community</span>
-<span id="cb127-3"><a href="19-Appendix.html#cb127-3" tabindex="-1"></a><span class="co">#Run jupyter-notebook (may be a slightly different path)</span></span>
-<span id="cb127-4"><a href="19-Appendix.html#cb127-4" tabindex="-1"></a><span class="ex">~/mamba/envs/jupyter/bin/jupyter-notebook</span></span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb128-1"><a href="19-Appendix.html#cb128-1" tabindex="-1"></a><span class="co">#Activate you R_community env</span></span>
+<span id="cb128-2"><a href="19-Appendix.html#cb128-2" tabindex="-1"></a><span class="ex">mamba</span> activate r_community</span>
+<span id="cb128-3"><a href="19-Appendix.html#cb128-3" tabindex="-1"></a><span class="co">#Run jupyter-notebook (may be a slightly different path)</span></span>
+<span id="cb128-4"><a href="19-Appendix.html#cb128-4" tabindex="-1"></a><span class="ex">~/mamba/envs/jupyter/bin/jupyter-notebook</span></span></code></pre></div>
 </div>
 </div>
 <div id="r-packages" class="section level1 hasAnchor" number="20">
