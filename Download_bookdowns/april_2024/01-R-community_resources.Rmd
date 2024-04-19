@@ -46,7 +46,7 @@ frameborder="0" allowfullscreen class="video"></iframe>
 ## Rarefaction and diversity analysis
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/pW58l3h7NvA" 
+<iframe src="https://www.youtube.com/embed/W6qai9wo1Ng" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
@@ -55,7 +55,7 @@ frameborder="0" allowfullscreen class="video"></iframe>
 ## Differential abundance analysis
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/IN275_Yvo_g" 
+<iframe src="https://www.youtube.com/embed/knH1SF4Ax-Q" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
