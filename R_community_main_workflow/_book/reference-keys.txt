@@ -102,7 +102,6 @@ beta-statistics
 permanova
 pairwise-permanova
 pairwise-permanova-on-one-combination
-pairwise-permanova-on-all-combinations
 beta-facet-zoom
 beta-subset-samples
 permanova-tasks

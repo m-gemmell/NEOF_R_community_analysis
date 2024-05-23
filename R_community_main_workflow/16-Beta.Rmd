@@ -142,7 +142,7 @@ This allows us to determine if the clustering of groups is significant.
 
 For more info on PERMANOVA, [Wikipedia](https://en.wikipedia.org/wiki/Permutational_analysis_of_variance#:~:text=Permutational%20multivariate%20analysis%20of%20variance,are%20equivalent%20for%20all%20groups.) is a good start.
 
-### PERMANOVA
+### PERMANOVA {#permanova}
 <center>
 ![](figures/permanova.png){style="width:200px"}
 </center>
@@ -210,20 +210,25 @@ pseq_rarefy_subset <- phyloseq::subset_samples(pseq_rarefy, media %in% cbn[,1])
 #Metadata data frame
 metadf_subset <- data.frame(phyloseq::sample_data(pseq_rarefy_subset))
 metadf_subset
+#Extract the samples names from subsetted metadata
+samples_subset <- row.names(metadf_subset)
+samples_subset
 ```
 
-With this info we can calculate the distances and then carry out the PERMANOVA.
+With this info we can subset our distance matrix (calculated at the start of the [PERMANOVA section](#permanova)). We subset it so we only have columns and rows belonging to calculate the distances and then carry out the pairwise PERMANOVA.
 
 ```{r, eval=FALSE}
-#Weighted unifrac distance calculation
-wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
-#PERMANOVA/ADONIS of media
-wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, data = metadf_subset, by = "margin")
+#Subset distance matrix so it only contains row and column combinations of the
+#CVP and ENV samples (1st combination)
+wunifrac_dist_mat_subset <- wunifrac_dist_mat[samples_subset,samples_subset]
+#Carry out permanova/adonis with the subset data
+#This is 1 of the pairwise PERMANOVA tests
+wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, 
+                                           data = metadf_subset, by = "margin")
 wunifrac_pairwise_adonis
 ```
 
 We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
-
 #### Pairwise PERMANOVA on all combinations
 <center>
 ![](figures/combination_lock_2.png){style="width:200px"}
@@ -248,16 +253,18 @@ colnames(pairwise_permanova_df) <- c("1","2","p","p.adj")
 
 #Loop through the combinations
 for(i in 1:ncol(cbn)){
-  #Subset to media phyloseq
+  #Subset phyloseq and extract metadata
   #Ensure to change metadata group if using different grouping (media)
   pseq_rarefy_subset <- phyloseq::subset_samples(pseq_rarefy, media %in% cbn[,i])
   #Metadata data frame
   metadf_subset <- data.frame(phyloseq::sample_data(pseq_rarefy_subset))
-  #Weighted unifrac distance calculation
-  wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
+  #Extract sample names
+  samples_subset <- row.names(metadf_subset)
+  #Subset distance matrix
+  wunifrac_dist_mat_subset <- wunifrac_dist_mat[samples_subset,samples_subset]
   #PERMANOVA/ADONIS of media
   #Ensure to change metadata group if using different grouping (media)
-  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, 
+  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat_subset ~ media, 
                                              data = metadf_subset, by = "margin")
   #Add the group names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
@@ -271,7 +278,7 @@ All our media groupings are significantly different to each other (0.001).
 You may have noticed that the `p.adj` column is empty.
 We will add adjusted P-values to these columns.
 It is always important to use adjusted P-values when carrying out multiple significant tests such as with pairwise comparisons.
-We'll use the function `p.adjust()` to add Benjamin-Hochberg (`method = "BH"`) adjusted values values.
+We'll use the function `p.adjust()` to add Benjamin-Hochberg (`method = "BH"`) adjusted values.
 
 ```{r, eval=FALSE}
 #Add adjusted P-values
@@ -376,20 +383,22 @@ pairwise_permanova_df <- as.data.frame(matrix(data = NA, nrow = ncol(cbn), ncol 
 #Add column names
 colnames(pairwise_permanova_df) <- c("1","2","p","p.adj")
 
-#Loop trhough the combinations
+#Loop through the combinations
 for(i in 1:ncol(cbn)){
-  #Subset to site phyloseq
+  #Subset phyloseq and extract metadata
   #Ensure to change metadata group if using different grouping (site)
   pseq_rarefy_subset <- phyloseq::subset_samples(pseq_rarefy, site %in% cbn[,i])
   #Metadata data frame
   metadf_subset <- data.frame(phyloseq::sample_data(pseq_rarefy_subset))
-  #Weighted unifrac distance calculation
-  wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
+  #Extract sample names
+  samples_subset <- row.names(metadf_subset)
+  #Subset distance matrix
+  wunifrac_dist_mat_subset <- wunifrac_dist_mat[samples_subset,samples_subset]
   #PERMANOVA/ADONIS of site
   #Ensure to change metadata group if using different grouping (site)
-  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ site, 
+  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat_subset ~ site, 
                                              data = metadf_subset, by = "margin")
-  #Add the gorup names and p-value to the main data frame
+  #Add the group names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
   pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
 }
@@ -418,20 +427,22 @@ pairwise_permanova_df <- as.data.frame(matrix(data = NA, nrow = ncol(cbn), ncol 
 #Add column names
 colnames(pairwise_permanova_df) <- c("1","2","p","p.adj")
 
-#Loop trhough the combinations
+#Loop through the combinations
 for(i in 1:ncol(cbn)){
-  #Subset to site & media phyloseq
+  #Subset phyloseq and extract metadata
   #Ensure to change metadata group if using different grouping (site & media)
   pseq_rarefy_subset <- phyloseq::subset_samples(pseq_rarefy, site.media %in% cbn[,i])
   #Metadata data frame
   metadf_subset <- data.frame(phyloseq::sample_data(pseq_rarefy_subset))
-  #Weighted unifrac distance calculation
-  wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy_subset, method="wunifrac")
-  #PERMANOVA/ADONIS of site & media
+  #Extract sample names
+  samples_subset <- row.names(metadf_subset)
+  #Subset distance matrix
+  wunifrac_dist_mat_subset <- wunifrac_dist_mat[samples_subset,samples_subset]
+  #PERMANOVA/ADONIS of site
   #Ensure to change metadata group if using different grouping (site & media)
-  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ site.media, 
+  wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat_subset ~ site.media, 
                                              data = metadf_subset, by = "margin")
-  #Add the gorup names and p-value to the main data frame
+  #Add the group names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
   pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
 }

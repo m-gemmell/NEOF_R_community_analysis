@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-04-19" />
+<meta name="date" content="2024-05-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -565,17 +565,21 @@ Additionally, we can extract the metadata from this subsetted <code>phyloseq</co
 <span id="cb99-2"><a href="16-Beta.html#cb99-2" tabindex="-1"></a>pseq_rarefy_subset <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">subset_samples</span>(pseq_rarefy, media <span class="sc">%in%</span> cbn[,<span class="dv">1</span>])</span>
 <span id="cb99-3"><a href="16-Beta.html#cb99-3" tabindex="-1"></a><span class="co">#Metadata data frame</span></span>
 <span id="cb99-4"><a href="16-Beta.html#cb99-4" tabindex="-1"></a>metadf_subset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq_rarefy_subset))</span>
-<span id="cb99-5"><a href="16-Beta.html#cb99-5" tabindex="-1"></a>metadf_subset</span></code></pre></div>
-<p>With this info we can calculate the distances and then carry out the PERMANOVA.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb100-1"><a href="16-Beta.html#cb100-1" tabindex="-1"></a><span class="co">#Weighted unifrac distance calculation</span></span>
-<span id="cb100-2"><a href="16-Beta.html#cb100-2" tabindex="-1"></a>wunifrac_dist_mat <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">distance</span>(pseq_rarefy_subset, <span class="at">method=</span><span class="st">&quot;wunifrac&quot;</span>)</span>
-<span id="cb100-3"><a href="16-Beta.html#cb100-3" tabindex="-1"></a><span class="co">#PERMANOVA/ADONIS of media</span></span>
-<span id="cb100-4"><a href="16-Beta.html#cb100-4" tabindex="-1"></a>wunifrac_pairwise_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat <span class="sc">~</span> media, <span class="at">data =</span> metadf_subset, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
-<span id="cb100-5"><a href="16-Beta.html#cb100-5" tabindex="-1"></a>wunifrac_pairwise_adonis</span></code></pre></div>
-<p>We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).</p>
-</div>
-<div id="pairwise-permanova-on-all-combinations" class="section level4 hasAnchor" number="16.5.2.2">
-<h4><span class="header-section-number">16.5.2.2</span> Pairwise PERMANOVA on all combinations<a href="16-Beta.html#pairwise-permanova-on-all-combinations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<span id="cb99-5"><a href="16-Beta.html#cb99-5" tabindex="-1"></a>metadf_subset</span>
+<span id="cb99-6"><a href="16-Beta.html#cb99-6" tabindex="-1"></a><span class="co">#Extract the samples names from subsetted metadata</span></span>
+<span id="cb99-7"><a href="16-Beta.html#cb99-7" tabindex="-1"></a>samples_subset <span class="ot">&lt;-</span> <span class="fu">row.names</span>(metadf_subset)</span>
+<span id="cb99-8"><a href="16-Beta.html#cb99-8" tabindex="-1"></a>samples_subset</span></code></pre></div>
+<p>With this info we can subset our distance matrix (calculated at the start of the <a href="16-Beta.html#permanova">PERMANOVA section</a>). We subset it so we only have columns and rows belonging to calculate the distances and then carry out the pairwise PERMANOVA.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb100-1"><a href="16-Beta.html#cb100-1" tabindex="-1"></a><span class="co">#Subset distance matrix so it only contains row and column combinations of the</span></span>
+<span id="cb100-2"><a href="16-Beta.html#cb100-2" tabindex="-1"></a><span class="co">#CVP and ENV samples (1st combination)</span></span>
+<span id="cb100-3"><a href="16-Beta.html#cb100-3" tabindex="-1"></a>wunifrac_dist_mat_subset <span class="ot">&lt;-</span> wunifrac_dist_mat[samples_subset,samples_subset]</span>
+<span id="cb100-4"><a href="16-Beta.html#cb100-4" tabindex="-1"></a><span class="co">#Carry out permanova/adonis with the subset data</span></span>
+<span id="cb100-5"><a href="16-Beta.html#cb100-5" tabindex="-1"></a><span class="co">#This is 1 of the pairwise PERMANOVA tests</span></span>
+<span id="cb100-6"><a href="16-Beta.html#cb100-6" tabindex="-1"></a>wunifrac_pairwise_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat <span class="sc">~</span> media, </span>
+<span id="cb100-7"><a href="16-Beta.html#cb100-7" tabindex="-1"></a>                                           <span class="at">data =</span> metadf_subset, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
+<span id="cb100-8"><a href="16-Beta.html#cb100-8" tabindex="-1"></a>wunifrac_pairwise_adonis</span></code></pre></div>
+We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
+#### Pairwise PERMANOVA on all combinations
 <center>
 <img src="figures/combination_lock_2.png" style="width:200px" />
 </center>
@@ -595,28 +599,30 @@ This will be used to store the comparison info and the P-values.</p>
 <span id="cb101-9"><a href="16-Beta.html#cb101-9" tabindex="-1"></a></span>
 <span id="cb101-10"><a href="16-Beta.html#cb101-10" tabindex="-1"></a><span class="co">#Loop through the combinations</span></span>
 <span id="cb101-11"><a href="16-Beta.html#cb101-11" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(cbn)){</span>
-<span id="cb101-12"><a href="16-Beta.html#cb101-12" tabindex="-1"></a>  <span class="co">#Subset to media phyloseq</span></span>
+<span id="cb101-12"><a href="16-Beta.html#cb101-12" tabindex="-1"></a>  <span class="co">#Subset phyloseq and extract metadata</span></span>
 <span id="cb101-13"><a href="16-Beta.html#cb101-13" tabindex="-1"></a>  <span class="co">#Ensure to change metadata group if using different grouping (media)</span></span>
 <span id="cb101-14"><a href="16-Beta.html#cb101-14" tabindex="-1"></a>  pseq_rarefy_subset <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">subset_samples</span>(pseq_rarefy, media <span class="sc">%in%</span> cbn[,i])</span>
 <span id="cb101-15"><a href="16-Beta.html#cb101-15" tabindex="-1"></a>  <span class="co">#Metadata data frame</span></span>
 <span id="cb101-16"><a href="16-Beta.html#cb101-16" tabindex="-1"></a>  metadf_subset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq_rarefy_subset))</span>
-<span id="cb101-17"><a href="16-Beta.html#cb101-17" tabindex="-1"></a>  <span class="co">#Weighted unifrac distance calculation</span></span>
-<span id="cb101-18"><a href="16-Beta.html#cb101-18" tabindex="-1"></a>  wunifrac_dist_mat <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">distance</span>(pseq_rarefy_subset, <span class="at">method=</span><span class="st">&quot;wunifrac&quot;</span>)</span>
-<span id="cb101-19"><a href="16-Beta.html#cb101-19" tabindex="-1"></a>  <span class="co">#PERMANOVA/ADONIS of media</span></span>
-<span id="cb101-20"><a href="16-Beta.html#cb101-20" tabindex="-1"></a>  <span class="co">#Ensure to change metadata group if using different grouping (media)</span></span>
-<span id="cb101-21"><a href="16-Beta.html#cb101-21" tabindex="-1"></a>  wunifrac_pairwise_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat <span class="sc">~</span> media, </span>
-<span id="cb101-22"><a href="16-Beta.html#cb101-22" tabindex="-1"></a>                                             <span class="at">data =</span> metadf_subset, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
-<span id="cb101-23"><a href="16-Beta.html#cb101-23" tabindex="-1"></a>  <span class="co">#Add the group names and p-value to the main data frame</span></span>
-<span id="cb101-24"><a href="16-Beta.html#cb101-24" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> cbn[,i]</span>
-<span id="cb101-25"><a href="16-Beta.html#cb101-25" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">3</span>] <span class="ot">&lt;-</span> wunifrac_pairwise_adonis[<span class="dv">1</span>,<span class="st">&quot;Pr(&gt;F)&quot;</span>]</span>
-<span id="cb101-26"><a href="16-Beta.html#cb101-26" tabindex="-1"></a>}</span>
-<span id="cb101-27"><a href="16-Beta.html#cb101-27" tabindex="-1"></a><span class="co">#View data frame</span></span>
-<span id="cb101-28"><a href="16-Beta.html#cb101-28" tabindex="-1"></a>pairwise_permanova_df</span></code></pre></div>
+<span id="cb101-17"><a href="16-Beta.html#cb101-17" tabindex="-1"></a>  <span class="co">#Extract sample names</span></span>
+<span id="cb101-18"><a href="16-Beta.html#cb101-18" tabindex="-1"></a>  samples_subset <span class="ot">&lt;-</span> <span class="fu">row.names</span>(metadf_subset)</span>
+<span id="cb101-19"><a href="16-Beta.html#cb101-19" tabindex="-1"></a>  <span class="co">#Subset distance matrix</span></span>
+<span id="cb101-20"><a href="16-Beta.html#cb101-20" tabindex="-1"></a>  wunifrac_dist_mat_subset <span class="ot">&lt;-</span> wunifrac_dist_mat[samples_subset,samples_subset]</span>
+<span id="cb101-21"><a href="16-Beta.html#cb101-21" tabindex="-1"></a>  <span class="co">#PERMANOVA/ADONIS of media</span></span>
+<span id="cb101-22"><a href="16-Beta.html#cb101-22" tabindex="-1"></a>  <span class="co">#Ensure to change metadata group if using different grouping (media)</span></span>
+<span id="cb101-23"><a href="16-Beta.html#cb101-23" tabindex="-1"></a>  wunifrac_pairwise_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat_subset <span class="sc">~</span> media, </span>
+<span id="cb101-24"><a href="16-Beta.html#cb101-24" tabindex="-1"></a>                                             <span class="at">data =</span> metadf_subset, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
+<span id="cb101-25"><a href="16-Beta.html#cb101-25" tabindex="-1"></a>  <span class="co">#Add the group names and p-value to the main data frame</span></span>
+<span id="cb101-26"><a href="16-Beta.html#cb101-26" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> cbn[,i]</span>
+<span id="cb101-27"><a href="16-Beta.html#cb101-27" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">3</span>] <span class="ot">&lt;-</span> wunifrac_pairwise_adonis[<span class="dv">1</span>,<span class="st">&quot;Pr(&gt;F)&quot;</span>]</span>
+<span id="cb101-28"><a href="16-Beta.html#cb101-28" tabindex="-1"></a>}</span>
+<span id="cb101-29"><a href="16-Beta.html#cb101-29" tabindex="-1"></a><span class="co">#View data frame</span></span>
+<span id="cb101-30"><a href="16-Beta.html#cb101-30" tabindex="-1"></a>pairwise_permanova_df</span></code></pre></div>
 <p>All our media groupings are significantly different to each other (0.001).
 You may have noticed that the <code>p.adj</code> column is empty.
 We will add adjusted P-values to these columns.
 It is always important to use adjusted P-values when carrying out multiple significant tests such as with pairwise comparisons.
-We'll use the function <code>p.adjust()</code> to add Benjamin-Hochberg (<code>method = "BH"</code>) adjusted values values.</p>
+We'll use the function <code>p.adjust()</code> to add Benjamin-Hochberg (<code>method = "BH"</code>) adjusted values.</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb102-1"><a href="16-Beta.html#cb102-1" tabindex="-1"></a><span class="co">#Add adjusted P-values</span></span>
 <span id="cb102-2"><a href="16-Beta.html#cb102-2" tabindex="-1"></a>pairwise_permanova_df<span class="sc">$</span>p.adj <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(pairwise_permanova_df<span class="sc">$</span>p, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>)</span>
 <span id="cb102-3"><a href="16-Beta.html#cb102-3" tabindex="-1"></a><span class="co">#View data frame</span></span>
@@ -709,30 +715,32 @@ Site PERMANOVA solution
 <span id="cb105-7"><a href="16-Beta.html#cb105-7" tabindex="-1"></a><span class="co">#Add column names</span></span>
 <span id="cb105-8"><a href="16-Beta.html#cb105-8" tabindex="-1"></a><span class="fu">colnames</span>(pairwise_permanova_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;2&quot;</span>,<span class="st">&quot;p&quot;</span>,<span class="st">&quot;p.adj&quot;</span>)</span>
 <span id="cb105-9"><a href="16-Beta.html#cb105-9" tabindex="-1"></a></span>
-<span id="cb105-10"><a href="16-Beta.html#cb105-10" tabindex="-1"></a><span class="co">#Loop trhough the combinations</span></span>
+<span id="cb105-10"><a href="16-Beta.html#cb105-10" tabindex="-1"></a><span class="co">#Loop through the combinations</span></span>
 <span id="cb105-11"><a href="16-Beta.html#cb105-11" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(cbn)){</span>
-<span id="cb105-12"><a href="16-Beta.html#cb105-12" tabindex="-1"></a>  <span class="co">#Subset to site phyloseq</span></span>
+<span id="cb105-12"><a href="16-Beta.html#cb105-12" tabindex="-1"></a>  <span class="co">#Subset phyloseq and extract metadata</span></span>
 <span id="cb105-13"><a href="16-Beta.html#cb105-13" tabindex="-1"></a>  <span class="co">#Ensure to change metadata group if using different grouping (site)</span></span>
 <span id="cb105-14"><a href="16-Beta.html#cb105-14" tabindex="-1"></a>  pseq_rarefy_subset <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">subset_samples</span>(pseq_rarefy, site <span class="sc">%in%</span> cbn[,i])</span>
 <span id="cb105-15"><a href="16-Beta.html#cb105-15" tabindex="-1"></a>  <span class="co">#Metadata data frame</span></span>
 <span id="cb105-16"><a href="16-Beta.html#cb105-16" tabindex="-1"></a>  metadf_subset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq_rarefy_subset))</span>
-<span id="cb105-17"><a href="16-Beta.html#cb105-17" tabindex="-1"></a>  <span class="co">#Weighted unifrac distance calculation</span></span>
-<span id="cb105-18"><a href="16-Beta.html#cb105-18" tabindex="-1"></a>  wunifrac_dist_mat <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">distance</span>(pseq_rarefy_subset, <span class="at">method=</span><span class="st">&quot;wunifrac&quot;</span>)</span>
-<span id="cb105-19"><a href="16-Beta.html#cb105-19" tabindex="-1"></a>  <span class="co">#PERMANOVA/ADONIS of site</span></span>
-<span id="cb105-20"><a href="16-Beta.html#cb105-20" tabindex="-1"></a>  <span class="co">#Ensure to change metadata group if using different grouping (site)</span></span>
-<span id="cb105-21"><a href="16-Beta.html#cb105-21" tabindex="-1"></a>  wunifrac_pairwise_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat <span class="sc">~</span> site, </span>
-<span id="cb105-22"><a href="16-Beta.html#cb105-22" tabindex="-1"></a>                                             <span class="at">data =</span> metadf_subset, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
-<span id="cb105-23"><a href="16-Beta.html#cb105-23" tabindex="-1"></a>  <span class="co">#Add the gorup names and p-value to the main data frame</span></span>
-<span id="cb105-24"><a href="16-Beta.html#cb105-24" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> cbn[,i]</span>
-<span id="cb105-25"><a href="16-Beta.html#cb105-25" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">3</span>] <span class="ot">&lt;-</span> wunifrac_pairwise_adonis[<span class="dv">1</span>,<span class="st">&quot;Pr(&gt;F)&quot;</span>]</span>
-<span id="cb105-26"><a href="16-Beta.html#cb105-26" tabindex="-1"></a>}</span>
-<span id="cb105-27"><a href="16-Beta.html#cb105-27" tabindex="-1"></a><span class="co">#Add adjusted P-values</span></span>
-<span id="cb105-28"><a href="16-Beta.html#cb105-28" tabindex="-1"></a>pairwise_permanova_df<span class="sc">$</span>p.adj <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(pairwise_permanova_df<span class="sc">$</span>p, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>)</span>
-<span id="cb105-29"><a href="16-Beta.html#cb105-29" tabindex="-1"></a><span class="co">#Write to a file</span></span>
-<span id="cb105-30"><a href="16-Beta.html#cb105-30" tabindex="-1"></a><span class="fu">write.table</span>(<span class="at">x =</span> pairwise_permanova_df, <span class="at">file =</span> <span class="st">&quot;pairwise_permanova_site_wunifrac.tsv&quot;</span>,</span>
-<span id="cb105-31"><a href="16-Beta.html#cb105-31" tabindex="-1"></a>            <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb105-32"><a href="16-Beta.html#cb105-32" tabindex="-1"></a><span class="co">#View data frame</span></span>
-<span id="cb105-33"><a href="16-Beta.html#cb105-33" tabindex="-1"></a>pairwise_permanova_df</span></code></pre></div>
+<span id="cb105-17"><a href="16-Beta.html#cb105-17" tabindex="-1"></a>  <span class="co">#Extract sample names</span></span>
+<span id="cb105-18"><a href="16-Beta.html#cb105-18" tabindex="-1"></a>  samples_subset <span class="ot">&lt;-</span> <span class="fu">row.names</span>(metadf_subset)</span>
+<span id="cb105-19"><a href="16-Beta.html#cb105-19" tabindex="-1"></a>  <span class="co">#Subset distance matrix</span></span>
+<span id="cb105-20"><a href="16-Beta.html#cb105-20" tabindex="-1"></a>  wunifrac_dist_mat_subset <span class="ot">&lt;-</span> wunifrac_dist_mat[samples_subset,samples_subset]</span>
+<span id="cb105-21"><a href="16-Beta.html#cb105-21" tabindex="-1"></a>  <span class="co">#PERMANOVA/ADONIS of site</span></span>
+<span id="cb105-22"><a href="16-Beta.html#cb105-22" tabindex="-1"></a>  <span class="co">#Ensure to change metadata group if using different grouping (site)</span></span>
+<span id="cb105-23"><a href="16-Beta.html#cb105-23" tabindex="-1"></a>  wunifrac_pairwise_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat_subset <span class="sc">~</span> site, </span>
+<span id="cb105-24"><a href="16-Beta.html#cb105-24" tabindex="-1"></a>                                             <span class="at">data =</span> metadf_subset, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
+<span id="cb105-25"><a href="16-Beta.html#cb105-25" tabindex="-1"></a>  <span class="co">#Add the group names and p-value to the main data frame</span></span>
+<span id="cb105-26"><a href="16-Beta.html#cb105-26" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> cbn[,i]</span>
+<span id="cb105-27"><a href="16-Beta.html#cb105-27" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">3</span>] <span class="ot">&lt;-</span> wunifrac_pairwise_adonis[<span class="dv">1</span>,<span class="st">&quot;Pr(&gt;F)&quot;</span>]</span>
+<span id="cb105-28"><a href="16-Beta.html#cb105-28" tabindex="-1"></a>}</span>
+<span id="cb105-29"><a href="16-Beta.html#cb105-29" tabindex="-1"></a><span class="co">#Add adjusted P-values</span></span>
+<span id="cb105-30"><a href="16-Beta.html#cb105-30" tabindex="-1"></a>pairwise_permanova_df<span class="sc">$</span>p.adj <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(pairwise_permanova_df<span class="sc">$</span>p, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>)</span>
+<span id="cb105-31"><a href="16-Beta.html#cb105-31" tabindex="-1"></a><span class="co">#Write to a file</span></span>
+<span id="cb105-32"><a href="16-Beta.html#cb105-32" tabindex="-1"></a><span class="fu">write.table</span>(<span class="at">x =</span> pairwise_permanova_df, <span class="at">file =</span> <span class="st">&quot;pairwise_permanova_site_wunifrac.tsv&quot;</span>,</span>
+<span id="cb105-33"><a href="16-Beta.html#cb105-33" tabindex="-1"></a>            <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb105-34"><a href="16-Beta.html#cb105-34" tabindex="-1"></a><span class="co">#View data frame</span></span>
+<span id="cb105-35"><a href="16-Beta.html#cb105-35" tabindex="-1"></a>pairwise_permanova_df</span></code></pre></div>
 </div>
 <p>Unfortunately, we cannot detect any significant differences between the sites.
 Can we detect differences between the different combinations of sites and media?
@@ -750,30 +758,32 @@ Site and media PERMANOVA solution
 <span id="cb106-7"><a href="16-Beta.html#cb106-7" tabindex="-1"></a><span class="co">#Add column names</span></span>
 <span id="cb106-8"><a href="16-Beta.html#cb106-8" tabindex="-1"></a><span class="fu">colnames</span>(pairwise_permanova_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;2&quot;</span>,<span class="st">&quot;p&quot;</span>,<span class="st">&quot;p.adj&quot;</span>)</span>
 <span id="cb106-9"><a href="16-Beta.html#cb106-9" tabindex="-1"></a></span>
-<span id="cb106-10"><a href="16-Beta.html#cb106-10" tabindex="-1"></a><span class="co">#Loop trhough the combinations</span></span>
+<span id="cb106-10"><a href="16-Beta.html#cb106-10" tabindex="-1"></a><span class="co">#Loop through the combinations</span></span>
 <span id="cb106-11"><a href="16-Beta.html#cb106-11" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(cbn)){</span>
-<span id="cb106-12"><a href="16-Beta.html#cb106-12" tabindex="-1"></a>  <span class="co">#Subset to site &amp; media phyloseq</span></span>
+<span id="cb106-12"><a href="16-Beta.html#cb106-12" tabindex="-1"></a>  <span class="co">#Subset phyloseq and extract metadata</span></span>
 <span id="cb106-13"><a href="16-Beta.html#cb106-13" tabindex="-1"></a>  <span class="co">#Ensure to change metadata group if using different grouping (site &amp; media)</span></span>
 <span id="cb106-14"><a href="16-Beta.html#cb106-14" tabindex="-1"></a>  pseq_rarefy_subset <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">subset_samples</span>(pseq_rarefy, site.media <span class="sc">%in%</span> cbn[,i])</span>
 <span id="cb106-15"><a href="16-Beta.html#cb106-15" tabindex="-1"></a>  <span class="co">#Metadata data frame</span></span>
 <span id="cb106-16"><a href="16-Beta.html#cb106-16" tabindex="-1"></a>  metadf_subset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq_rarefy_subset))</span>
-<span id="cb106-17"><a href="16-Beta.html#cb106-17" tabindex="-1"></a>  <span class="co">#Weighted unifrac distance calculation</span></span>
-<span id="cb106-18"><a href="16-Beta.html#cb106-18" tabindex="-1"></a>  wunifrac_dist_mat <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">distance</span>(pseq_rarefy_subset, <span class="at">method=</span><span class="st">&quot;wunifrac&quot;</span>)</span>
-<span id="cb106-19"><a href="16-Beta.html#cb106-19" tabindex="-1"></a>  <span class="co">#PERMANOVA/ADONIS of site &amp; media</span></span>
-<span id="cb106-20"><a href="16-Beta.html#cb106-20" tabindex="-1"></a>  <span class="co">#Ensure to change metadata group if using different grouping (site &amp; media)</span></span>
-<span id="cb106-21"><a href="16-Beta.html#cb106-21" tabindex="-1"></a>  wunifrac_pairwise_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat <span class="sc">~</span> site.media, </span>
-<span id="cb106-22"><a href="16-Beta.html#cb106-22" tabindex="-1"></a>                                             <span class="at">data =</span> metadf_subset, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
-<span id="cb106-23"><a href="16-Beta.html#cb106-23" tabindex="-1"></a>  <span class="co">#Add the gorup names and p-value to the main data frame</span></span>
-<span id="cb106-24"><a href="16-Beta.html#cb106-24" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> cbn[,i]</span>
-<span id="cb106-25"><a href="16-Beta.html#cb106-25" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">3</span>] <span class="ot">&lt;-</span> wunifrac_pairwise_adonis[<span class="dv">1</span>,<span class="st">&quot;Pr(&gt;F)&quot;</span>]</span>
-<span id="cb106-26"><a href="16-Beta.html#cb106-26" tabindex="-1"></a>}</span>
-<span id="cb106-27"><a href="16-Beta.html#cb106-27" tabindex="-1"></a><span class="co">#Add adjusted P-values</span></span>
-<span id="cb106-28"><a href="16-Beta.html#cb106-28" tabindex="-1"></a>pairwise_permanova_df<span class="sc">$</span>p.adj <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(pairwise_permanova_df<span class="sc">$</span>p, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>)</span>
-<span id="cb106-29"><a href="16-Beta.html#cb106-29" tabindex="-1"></a><span class="co">#Write to a file</span></span>
-<span id="cb106-30"><a href="16-Beta.html#cb106-30" tabindex="-1"></a><span class="fu">write.table</span>(<span class="at">x =</span> pairwise_permanova_df, <span class="at">file =</span> <span class="st">&quot;pairwise_permanova_site_media_wunifrac.tsv&quot;</span>,</span>
-<span id="cb106-31"><a href="16-Beta.html#cb106-31" tabindex="-1"></a>            <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb106-32"><a href="16-Beta.html#cb106-32" tabindex="-1"></a><span class="co">#View data frame</span></span>
-<span id="cb106-33"><a href="16-Beta.html#cb106-33" tabindex="-1"></a>pairwise_permanova_df</span></code></pre></div>
+<span id="cb106-17"><a href="16-Beta.html#cb106-17" tabindex="-1"></a>  <span class="co">#Extract sample names</span></span>
+<span id="cb106-18"><a href="16-Beta.html#cb106-18" tabindex="-1"></a>  samples_subset <span class="ot">&lt;-</span> <span class="fu">row.names</span>(metadf_subset)</span>
+<span id="cb106-19"><a href="16-Beta.html#cb106-19" tabindex="-1"></a>  <span class="co">#Subset distance matrix</span></span>
+<span id="cb106-20"><a href="16-Beta.html#cb106-20" tabindex="-1"></a>  wunifrac_dist_mat_subset <span class="ot">&lt;-</span> wunifrac_dist_mat[samples_subset,samples_subset]</span>
+<span id="cb106-21"><a href="16-Beta.html#cb106-21" tabindex="-1"></a>  <span class="co">#PERMANOVA/ADONIS of site</span></span>
+<span id="cb106-22"><a href="16-Beta.html#cb106-22" tabindex="-1"></a>  <span class="co">#Ensure to change metadata group if using different grouping (site &amp; media)</span></span>
+<span id="cb106-23"><a href="16-Beta.html#cb106-23" tabindex="-1"></a>  wunifrac_pairwise_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat_subset <span class="sc">~</span> site.media, </span>
+<span id="cb106-24"><a href="16-Beta.html#cb106-24" tabindex="-1"></a>                                             <span class="at">data =</span> metadf_subset, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
+<span id="cb106-25"><a href="16-Beta.html#cb106-25" tabindex="-1"></a>  <span class="co">#Add the group names and p-value to the main data frame</span></span>
+<span id="cb106-26"><a href="16-Beta.html#cb106-26" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> cbn[,i]</span>
+<span id="cb106-27"><a href="16-Beta.html#cb106-27" tabindex="-1"></a>  pairwise_permanova_df[i,<span class="dv">3</span>] <span class="ot">&lt;-</span> wunifrac_pairwise_adonis[<span class="dv">1</span>,<span class="st">&quot;Pr(&gt;F)&quot;</span>]</span>
+<span id="cb106-28"><a href="16-Beta.html#cb106-28" tabindex="-1"></a>}</span>
+<span id="cb106-29"><a href="16-Beta.html#cb106-29" tabindex="-1"></a><span class="co">#Add adjusted P-values</span></span>
+<span id="cb106-30"><a href="16-Beta.html#cb106-30" tabindex="-1"></a>pairwise_permanova_df<span class="sc">$</span>p.adj <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(pairwise_permanova_df<span class="sc">$</span>p, <span class="at">method =</span> <span class="st">&quot;BH&quot;</span>)</span>
+<span id="cb106-31"><a href="16-Beta.html#cb106-31" tabindex="-1"></a><span class="co">#Write to a file</span></span>
+<span id="cb106-32"><a href="16-Beta.html#cb106-32" tabindex="-1"></a><span class="fu">write.table</span>(<span class="at">x =</span> pairwise_permanova_df, <span class="at">file =</span> <span class="st">&quot;pairwise_permanova_site_media_wunifrac.tsv&quot;</span>,</span>
+<span id="cb106-33"><a href="16-Beta.html#cb106-33" tabindex="-1"></a>            <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb106-34"><a href="16-Beta.html#cb106-34" tabindex="-1"></a><span class="co">#View data frame</span></span>
+<span id="cb106-35"><a href="16-Beta.html#cb106-35" tabindex="-1"></a>pairwise_permanova_df</span></code></pre></div>
 </div>
 <p>We are getting very high adjusted P-values for these comparisons.
 Most likely there is not enough power for this analysis as there are only 3 replicates for each grouping.</p>
