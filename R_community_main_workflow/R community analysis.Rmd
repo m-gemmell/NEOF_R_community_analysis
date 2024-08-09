@@ -33,7 +33,7 @@ knitr::write_bib(c(
 ```
 
 <center>
-![](figures/NEOF.png){style="border-radius: 15px; width: 300px"}
+![](figures/NEOF_rounded_corners.png){style="width:300px"}
 </center>
 
 # (PART\*) Intro {-}
@@ -69,22 +69,22 @@ There are [supplemental](https://neof-workshops.github.io/R_community_whqkt8/Sup
 column_1 <- c(
   #1 intro
   '[**Intro**](#datasetandworkflowchap)', 
- '[![](figures/data.png){height="150"}](#datasetandworkflowchap)',
+ '[![](figures/data.png){style="height:150px"}](#datasetandworkflowchap)',
  #3 Setup
     '[**Set-up**](#setupchap)', 
- '[![](figures/start.png){height="150"}](#setupchap)',
+ '[![](figures/start.png){style="height:150px"}](#setupchap)',
  #5 Data prep
    '[**Data preparation**](#preprocess_section)', 
- '[![](figures/half_tablespoon.png){height="150"}](#preprocess_section)',
+ '[![](figures/half_tablespoon.png){style="height:150px"}](#preprocess_section)',
  #7 Taxa relabund
    '[**Taxonomy relative abundance**](#taxa_relabund_chap)', 
- '[![](figures/taxa.png){height="150"}](#taxa_relabund_chap)',
+ '[![](figures/taxa.png){style="height:150px"}](#taxa_relabund_chap)',
  #9 Rarefaction
  '[**Rarefaction**](#rarefaction_chap)', 
- '[![](figures/whale.png){height="150"}](#rarefaction_chap)',
+ '[![](figures/whale.png){style="height:150px"}](#rarefaction_chap)',
  #11 Beta
   '[**Beta diversity**](#beta_chap)', 
- '[![](figures/beta.png){height="150"}](#beta_chap)',
+ '[![](figures/beta.png){style="height:150px"}](#beta_chap)',
  #13 Summary
    '[**Summary**](#sumchap)', 
  '[![](figures/recap.png){style="height:150px; border-radius:15px; background:white"}](#sumchap)'
@@ -92,22 +92,22 @@ column_1 <- c(
 column_2 <- c(
   #2: R packages
   '[**R packages**](#rpackchap)', 
- '[![](figures/R.png){height="150"}](#rpackchap)',
+ '[![](figures/R.png){style="height:150px"}](#rpackchap)',
  #4 Jupyter
    '[**Jupyter**](#jupyterchap)', 
  '[![](figures/jupyter_logo.png){style="height:150px; border-radius:15px; background:white"}](#jupyterchap)',
  #6 Min reads
    '[**Minimum read depth**](#mindepthchap)', 
- '[![](figures/depth_diver.png){height="150"}](#mindepthchap)',
+ '[![](figures/depth_diver.png){style="height:150px"}](#mindepthchap)',
  #8 taxa plots
  '[**Taxa plots**](#chaptaxaplots)', 
- '[![](figures/bar_chart.png){height="150"}](#chaptaxaplots)',
+ '[![](figures/bar_chart.png){style="height:150px"}](#chaptaxaplots)',
  #10 ALpha
  '[**Alpha diversity**](#alpha_chap)', 
- '[![](figures/alpha.png){height="150"}](#alpha_chap)',
+ '[![](figures/alpha.png){style="height:150px"}](#alpha_chap)',
  #12 DA
   '[**Differential abundance**](#DA_chap)', 
- '[![](figures/difference.png){height="150"}](#DA_chap)',
+ '[![](figures/difference.png){style="height:150px"}](#DA_chap)',
    #14 appendix
     '[**Appendix**](#mambainstalls)', 
  '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; background:null"}](#mambainstalls)'
@@ -137,7 +137,7 @@ library(webexercises)
 
 ## Dataset
 <center>
-![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}
+![](figures/freshwater_france.png){style="border-radius: 3px; width: 500px"}
 </center>
 
 In this tutorial we will be using a 16S metabarcoding dataset derived from surface water from the Durance River in the south-east of France.
@@ -298,7 +298,7 @@ For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of 
 In this book we will be working with [`phyloseq`](https://joey711.github.io/phyloseq/) objects to preprocess  our dataset, create visualisations, and carry out statistical analyses. This is a very popular object type for community abundance datasets as it contains the abundance table, metadata, and taxonomy table in one object, optionally containing the phylogenetic tree and reference sequences if wanted/required.
 
 <center>
-![](figures/phyloseq_input.png){style="border-radius: 15px; width: 800px; border: 5px solid #333333"}
+![](figures/phyloseq_input.png){style="border-radius: 5px; width: 800px"}
 </center>
 
 For more info on `phyloseq` and associated packages please see the [appendix](#phyloseq_appendix).
@@ -327,15 +327,17 @@ If you do not see something similar please ask for assistance.
 ![](figures/logon_pic.png){style="width:800px"}
 </center>
 
-If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. 
-You will most likely need to use your browser's tool bar to accomplish this. 
-Ensure you can see the grey borders.
+If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
 
-These instructions will not work outside of this workshop. 
-If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
+These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
 
 The following link is a guide to install Mint Linux:  
 https://linuxmint-installation-guide.readthedocs.io/en/latest/
+
+If you have a windows machine and would like to install linux on it you can install Windows Subsystem for Linux. 
+
+The following link is a guide to instal linux via WSL:
+https://learn.microsoft.com/en-us/windows/wsl/install
 
 ## Mamba
 <center>
@@ -407,23 +409,23 @@ You may need to zoom out with your browser so you can see the full webVNC window
 
 - __Chrome__: Click on the __three dots in vertical line__ (
 ```{r, echo=FALSE}
-icons::ionicons("ellipsis-vertical")
+icons::icon_style(icons::ionicons("ellipsis-vertical"), background="white", border="solid white")
 ``` 
 ) on the top left for a dropdown menu which includes zoom options.
 - __Edge__: Click on the __three horizontal lines__ (
 ```{r, echo=FALSE}
-icons::ionicons("ellipsis-horizontal")
+icons::icon_style(icons::ionicons("ellipsis-horizontal"), background="white", border="solid white")
 ``` 
 ) on the top left for a dropdown menu which includes zoom options.
 - __Firefox__: Click on the __three dots in horizontal line__ (
 ```{r, echo=FALSE}
-icons::fontawesome("bars")
+icons::icon_style(icons::fontawesome("bars", style="solid"), background="white", border="solid white")
 ```
 ) on the top left for a dropdown menu which includes zoom options.
 `r unhide()`
 
 <center>
-![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px"}
 </center>
 
 ## Create R notebook
@@ -436,7 +438,7 @@ The next step is to create an R notebook.
 This will open up a new R notebook like below.
 
 <center>
-![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px"}
 </center>
 
 ## Cells and code
@@ -455,7 +457,7 @@ When pressing enter in **cells** it will create a new line. To run all commands 
 Run your current **cell** and you should see something like below.
 
 <center>
-![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px"}
 </center>
 
 ## Create new cells
@@ -504,7 +506,7 @@ To run all **cells** from the start:
 You should then see something like the below in your notebook.
 
 <center>
-![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px"}
 </center>
 
 There is no output printed for __cell__ 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in **cell** 2 before **cell** 3 was run.
@@ -542,7 +544,9 @@ To add a header __cell__ to the top of our notebook:
 -   Click on the **"Code"** drop down and select **"Markdown"**.
     -   The **"Heading"** option no longer works.
 
-<center>![](figures/jupyter_notebook_example_5.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_example_5.png){style="width: 1000px; border-radius: 15px"}
+</center>
 
 -   Add the following to the **"Markdown"** cell to create a first level header.
     -   Ensure you have a space between the `#` and header text ("Tutorial").
@@ -571,7 +575,7 @@ icons::icon_style(icons::ionicons("refresh"), background="white")
 towards the top right.
 
 <center>
-![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px"}
 </center>
 
 With that quick tutorial of `jupyter-notebook` we can start our community analysis in the next chapter.

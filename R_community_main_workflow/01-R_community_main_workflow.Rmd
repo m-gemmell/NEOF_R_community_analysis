@@ -30,7 +30,7 @@ knitr::write_bib(c(
 ```
 
 <center>
-![](figures/NEOF.png){style="border-radius: 15px; width: 300px"}
+![](figures/NEOF_rounded_corners.png){style="width:300px"}
 </center>
 
 # (PART\*) Intro {-}
@@ -66,22 +66,22 @@ There are [supplemental](https://neof-workshops.github.io/R_community_whqkt8/Sup
 column_1 <- c(
   #1 intro
   '[**Intro**](#datasetandworkflowchap)', 
- '[![](figures/data.png){height="150"}](#datasetandworkflowchap)',
+ '[![](figures/data.png){style="height:150px"}](#datasetandworkflowchap)',
  #3 Setup
     '[**Set-up**](#setupchap)', 
- '[![](figures/start.png){height="150"}](#setupchap)',
+ '[![](figures/start.png){style="height:150px"}](#setupchap)',
  #5 Data prep
    '[**Data preparation**](#preprocess_section)', 
- '[![](figures/half_tablespoon.png){height="150"}](#preprocess_section)',
+ '[![](figures/half_tablespoon.png){style="height:150px"}](#preprocess_section)',
  #7 Taxa relabund
    '[**Taxonomy relative abundance**](#taxa_relabund_chap)', 
- '[![](figures/taxa.png){height="150"}](#taxa_relabund_chap)',
+ '[![](figures/taxa.png){style="height:150px"}](#taxa_relabund_chap)',
  #9 Rarefaction
  '[**Rarefaction**](#rarefaction_chap)', 
- '[![](figures/whale.png){height="150"}](#rarefaction_chap)',
+ '[![](figures/whale.png){style="height:150px"}](#rarefaction_chap)',
  #11 Beta
   '[**Beta diversity**](#beta_chap)', 
- '[![](figures/beta.png){height="150"}](#beta_chap)',
+ '[![](figures/beta.png){style="height:150px"}](#beta_chap)',
  #13 Summary
    '[**Summary**](#sumchap)', 
  '[![](figures/recap.png){style="height:150px; border-radius:15px; background:white"}](#sumchap)'
@@ -89,22 +89,22 @@ column_1 <- c(
 column_2 <- c(
   #2: R packages
   '[**R packages**](#rpackchap)', 
- '[![](figures/R.png){height="150"}](#rpackchap)',
+ '[![](figures/R.png){style="height:150px"}](#rpackchap)',
  #4 Jupyter
    '[**Jupyter**](#jupyterchap)', 
  '[![](figures/jupyter_logo.png){style="height:150px; border-radius:15px; background:white"}](#jupyterchap)',
  #6 Min reads
    '[**Minimum read depth**](#mindepthchap)', 
- '[![](figures/depth_diver.png){height="150"}](#mindepthchap)',
+ '[![](figures/depth_diver.png){style="height:150px"}](#mindepthchap)',
  #8 taxa plots
  '[**Taxa plots**](#chaptaxaplots)', 
- '[![](figures/bar_chart.png){height="150"}](#chaptaxaplots)',
+ '[![](figures/bar_chart.png){style="height:150px"}](#chaptaxaplots)',
  #10 ALpha
  '[**Alpha diversity**](#alpha_chap)', 
- '[![](figures/alpha.png){height="150"}](#alpha_chap)',
+ '[![](figures/alpha.png){style="height:150px"}](#alpha_chap)',
  #12 DA
   '[**Differential abundance**](#DA_chap)', 
- '[![](figures/difference.png){height="150"}](#DA_chap)',
+ '[![](figures/difference.png){style="height:150px"}](#DA_chap)',
    #14 appendix
     '[**Appendix**](#mambainstalls)', 
  '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; background:null"}](#mambainstalls)'

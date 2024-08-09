@@ -34,23 +34,23 @@ You may need to zoom out with your browser so you can see the full webVNC window
 
 - __Chrome__: Click on the __three dots in vertical line__ (
 ```{r, echo=FALSE}
-icons::ionicons("ellipsis-vertical")
+icons::icon_style(icons::ionicons("ellipsis-vertical"), background="white", border="solid white")
 ``` 
 ) on the top left for a dropdown menu which includes zoom options.
 - __Edge__: Click on the __three horizontal lines__ (
 ```{r, echo=FALSE}
-icons::ionicons("ellipsis-horizontal")
+icons::icon_style(icons::ionicons("ellipsis-horizontal"), background="white", border="solid white")
 ``` 
 ) on the top left for a dropdown menu which includes zoom options.
 - __Firefox__: Click on the __three dots in horizontal line__ (
 ```{r, echo=FALSE}
-icons::fontawesome("bars")
+icons::icon_style(icons::fontawesome("bars", style="solid"), background="white", border="solid white")
 ```
 ) on the top left for a dropdown menu which includes zoom options.
 `r unhide()`
 
 <center>
-![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px"}
 </center>
 
 ## Create R notebook
@@ -63,7 +63,7 @@ The next step is to create an R notebook.
 This will open up a new R notebook like below.
 
 <center>
-![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px"}
 </center>
 
 ## Cells and code
@@ -82,7 +82,7 @@ When pressing enter in **cells** it will create a new line. To run all commands 
 Run your current **cell** and you should see something like below.
 
 <center>
-![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px"}
 </center>
 
 ## Create new cells
@@ -131,7 +131,7 @@ To run all **cells** from the start:
 You should then see something like the below in your notebook.
 
 <center>
-![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px"}
 </center>
 
 There is no output printed for __cell__ 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in **cell** 2 before **cell** 3 was run.
@@ -169,7 +169,9 @@ To add a header __cell__ to the top of our notebook:
 -   Click on the **"Code"** drop down and select **"Markdown"**.
     -   The **"Heading"** option no longer works.
 
-<center>![](figures/jupyter_notebook_example_5.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}</center>
+<center>
+![](figures/jupyter_notebook_example_5.png){style="width: 1000px; border-radius: 15px"}
+</center>
 
 -   Add the following to the **"Markdown"** cell to create a first level header.
     -   Ensure you have a space between the `#` and header text ("Tutorial").
@@ -198,7 +200,7 @@ icons::icon_style(icons::ionicons("refresh"), background="white")
 towards the top right.
 
 <center>
-![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px; border: 5px solid #333333"}
+![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px"}
 </center>
 
 With that quick tutorial of `jupyter-notebook` we can start our community analysis in the next chapter.

@@ -17,15 +17,17 @@ If you do not see something similar please ask for assistance.
 ![](figures/logon_pic.png){style="width:800px"}
 </center>
 
-If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. 
-You will most likely need to use your browser's tool bar to accomplish this. 
-Ensure you can see the grey borders.
+If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
 
-These instructions will not work outside of this workshop. 
-If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
+These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
 
 The following link is a guide to install Mint Linux:  
 https://linuxmint-installation-guide.readthedocs.io/en/latest/
+
+If you have a windows machine and would like to install linux on it you can install Windows Subsystem for Linux. 
+
+The following link is a guide to instal linux via WSL:
+https://learn.microsoft.com/en-us/windows/wsl/install
 
 ## Mamba
 <center>
