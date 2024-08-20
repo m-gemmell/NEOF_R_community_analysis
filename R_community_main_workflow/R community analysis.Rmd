@@ -597,7 +597,7 @@ library(webexercises)
 
 # Data prep intro {#preprocess_section}
 <center>
-![](figures/half_tablespoon.png){style="width:200px"}
+![](figures/half_tablespoon.png){style="width:200px; background: white; border-radius:15px"}
 </center>
 
 In the next 3 chapters (7-9) we will learn how to:
@@ -623,7 +623,7 @@ Before carrying out any analysis we first need to import our QIIME2 artifacts in
 
 ## Import: notebook
 <center>
-![](figures/r_script.png){style="width:200px"}
+![](figures/r_script.png){style="width:200px; background:white;border-radius:15px"}
 </center>
 
 Prior to any coding, we will create a new directory, our analysis directory.
@@ -762,7 +762,9 @@ save(pseq, file = "phyloseq.RData")
 
 This saves our object `pseq` into the file `phyloseq.RData`. The suffix `.RData` is the normal convention.
 
-We have saved our final object of the notebook. Close and halt it.
+We have saved our final object of the notebook. Save the notebook then close and halt it.
+
+__Tip:__ Make sure to save your notebooks regularly. Sometimes jupyter-notebook freezes and you may lose your progress since your last save.
 
 ## Import: recap
 <center>
@@ -909,7 +911,7 @@ This information is very useful. We will use it in the next chapter to determine
 ![](figures/nice_table.png){style="width:200px"}
 </center>
 
-The last information we will look at before some preprocessing are the ASVs (Amplicon Sequnces Variants).
+Before preprocessing we will look at information related to the ASVs (Amplicon Sequnces Variants).
 
 A useful `phyloseq` command is `otu_table()`. This allows us to extract the ASV/OTU/feature table. With this we can then carry out some other commands.
 
@@ -1131,7 +1133,7 @@ IRdisplay::display_png(file="./boxplot_x_site_y_depth.png")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__LD (Lower Durance)__", "__MD (Middle Durance)__", "__UD (Upper Durance__")
 ```
-- Which site has the highest median depth (middle line of boxplot)? `r longmcq(opts_p)`
+Which site has the highest median depth (middle line of boxplot)? `r longmcq(opts_p)`
 
 ### Media by depth boxplot
 <center>
@@ -1156,7 +1158,7 @@ IRdisplay::display_png(file="./boxplot_x_media_y_depth.png")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__CVP__", "__ENV__", "__TSA__")
 ```
-- Which media has the lowest median depth (middle line of boxplot)? `r longmcq(opts_p)`
+Which media has the lowest median depth (middle line of boxplot)? `r longmcq(opts_p)`
 
 From the boxplots we can see there is no drastic difference between the depths of the different media groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.
 
@@ -1198,7 +1200,7 @@ asv_abund_df <- as.data.frame(t(phyloseq::otu_table(pseq)))
 
 ### vegan's rarecurve
 <center>
-![](figures/vegan.png){style="width:200px"}
+![](figures/vegan.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 With this data frame we can create a rarefaction curve with `vegan`'s `rarecurve()` function.
@@ -1299,17 +1301,17 @@ Try to write your own R code in a new cell to answer the following questions:
 ```{r, echo = FALSE}
 opts_p <- c("__4__", answer="__613__", "__42507__")
 ```
-- What is the difference of the minimum number of reads between `pseq_min11K` and `pseq`? `r longmcq(opts_p)`
+What is the difference of the minimum number of reads between `pseq_min11K` and `pseq`? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__4__", "__613__", "__42507__")
 ```
-- How many samples were removed due to the read depth filtering? `r longmcq(opts_p)`
+How many samples were removed due to the read depth filtering? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__4__", "__613__", answer="__42507__")
 ```
-- How many reads were removed by the minimum read filtering? `r longmcq(opts_p)`
+How many reads were removed by the minimum read filtering? `r longmcq(opts_p)`
 
 `r hide("Tip")`
 Combining `microbiome::readcount()` with `min()`, `length()`, and `sum()` might help.
@@ -1470,14 +1472,14 @@ library(webexercises)
 ```
 # Taxa plots {#chaptaxaplots}
 <center>
-![](figures/owl_eyes.png){style="width:200px"}
+![](figures/owl_eyes.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 Now that we have our Phylum relative abundance `phyloseq` we can create a bar chart.
 
 ## Simple bar chart
 <center>
-![](figures/bar_chart.png){style="width:200px"}
+![](figures/bar_chart.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 To create, save, and view a simple phylum bar chart we can use the following code.
@@ -1542,7 +1544,7 @@ With the heatmap it is much easier to tell what the relative abundances of diffe
 ```{r, echo = FALSE}
 opts_p <- c("__Chloroflexi__", "__Firmicutes__", answer="__Proteobacteria__")
 ```
-- What is the most abundant phyla across the samples? `r longmcq(opts_p)`
+What is the most abundant phyla across the samples? `r longmcq(opts_p)`
 
 ## Aggregate rare taxa{#aggregateraretaxa}
 <center>
@@ -1630,7 +1632,7 @@ Additionally, it seems that the biggest difference between samples is due to the
 One of the many great advantages of `ggplot2` is that you can create plots tailored to your metadata.
 As an example we will create another taxonomy bar chart but have one bar for each media site.
 
-We'll use a very similar code as the above bar chart but add the `microbiome::plot_composition` option `average_by =`.
+We'll use very similar code as the above bar chart but add the `microbiome::plot_composition` option `average_by =`.
 With this we will average the rare aggregated relative abundance values by the four different media.
 
 ```{r, eval=FALSE}
@@ -2075,10 +2077,10 @@ In the next 4 chapters we will carry out diversity analyses. This will include c
 
 In the chapters we will carry out:
 
-- [Rarefaction of our ASV table.](#rarefaction_chap)
-- [Alpha diversity of the rarefied data.](#alpha_chap)
-- [Beta diversity of the rarefied data.](#beta_chap)
-- [Biomarker detection.](#DA_chap)
+- [Rarefaction of our ASV table](#rarefaction_chap)
+- [Alpha diversity of the rarefied data](#alpha_chap)
+- [Beta diversity of the rarefied data](#beta_chap)
+- [Biomarker detection](#DA_chap)
 
 During this we will attempt to answer our questions from [Chapter 2](#sum_and_qs):
 
@@ -2094,7 +2096,7 @@ library(webexercises)
 ```
 # Rarefaction {#rarefaction_chap}
 <center>
-![](figures/whale.png){style="width:200px"}
+![](figures/whale.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 We are going to create a rarefied abundance table in this chapter. 
@@ -2121,8 +2123,7 @@ load("phyloseq.RData")
 load("num_asvs_vec.RData")
 ```
 
-Ensure you add markdown and code cells to this notebook to give yourself
-a good structure.
+Ensure you add markdown and code cells to this notebook to give it structure.
 
 ## Rarefaction curve
 <center>
@@ -2146,7 +2147,7 @@ many unique ASVs it has currently discovered from all 10 samplings.
 
 ### Bird analogy
 <center>
-![](figures/ibyster.png){style="width:200px"}
+![](figures/ibyster.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 You are cataloguing the bird diversity (ASV diversity) in three forests/woods in Hampshire (3 samples of our abundance table). 
@@ -2174,7 +2175,7 @@ Telegraph_woods <- c(0,7,12,16,21,23,24,25)
 Old_lords_wood <- c(0,8,10,11,13,13,13,13)
 time_points <- 0:7
 plot(x = time_points, y = New_forest, col = "#D81B60", type = "l",
-     xlab = "Bird species", ylab = "Bird species", lwd = 5)
+     xlab = "Sampling day", ylab = "Bird species", lwd = 5)
 lines(x = time_points, y = Telegraph_woods, col = "#1E88E5", lwd = 5)
 lines(x = time_points, y = Old_lords_wood, col = "#004D40", lwd = 5)
 ```
@@ -2222,17 +2223,16 @@ IRdisplay::display_png(file="./rarefaction_plot.png")
 </center>
 
 It is a useful plot but we can make it better! 
-We will do that with the following addition:
+We will add the following options to `vegan::rarecurve()`:
 
--   Adding extra options to `vegan::rarecurve()`:
-    -   `lwd`: Sets the line width of the plot.
-    -   `label`: Turn the sample labels on (`T`) or off (`F`). We will turn them off as it is hard to read them all.
-    -   `sample`: Draws a vertical line at the specified depth.
+  -   `lwd`: Sets the line width of the plot.
+  -   `label`: Turn the sample labels on (`T`) or off (`F`). We will turn them off as it is hard to read them all.
+  -   `sample`: Draws a vertical line at the specified depth.
         Additionally, draws a horizontal line for each sample showing
         how many ASVs were discovered at the sampling depth.
 
 We will initially use our minimum sample depth as our rarefaction/sampling depth.
-This is a good idea if it seems like a good amount as it will allow us to keep all our samples after rarefaction.
+If you can use your minimum depth it is always preferable as it allows you to keep all your samples.
 Any samples with a lower depth than our final rarefaction size will be removed.
 
 ```{r, eval=FALSE}
@@ -2305,11 +2305,11 @@ opts_p <- c(answer="__Environmental__", "__Media__")
 
 Overall the slopes values are low (<0.01).
 It is noticeable that the environmental samples have higher slopes than the media samples.
-Biologically, this makes sense as there is no bias being introduced by media.
+Biologically, this makes sense as there is no bias, whereas the media do introduce biases.
 
 ## Rarefy data
 <center>
-![](figures/pangolin.png){style="width:200px"}
+![](figures/pangolin.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 The minimum sample depth appears to be a good choice for rarefying.
@@ -2381,7 +2381,7 @@ library(webexercises)
 ```
 # Alpha diversity {#alpha_chap}
 <center>
-![](figures/alpha.png){style="width:200px"}
+![](figures/alpha.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 In this chapter we are going to produce alpha diversity plots and statistics with our rarefied data.
@@ -2523,7 +2523,7 @@ IRdisplay::display_png(file="./Alpha_diversity_media_boxplot.png")
 ```
 
 How do I choose a good height and width?
-This comes down to trial and error and experience.
+This comes down to trial and error, and experience.
 You want something with a good aspect ratio for the plot and you want all the text to be clear.
 Additionally, the size requirements of figures for journals will play a big consideration as well.
 One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.
@@ -2549,7 +2549,7 @@ We have all the alpha metrics in the new data frame.
 Additionally, we also have the standard error for some of the metrics (e.g. `se.chao1`).
 
 With this information we can carry out a pairwise comparison using Wilcoxon rank sum test (the same way as QIIME2).
-Base R comes with the function `pairwsie.wilcox.test()` to carry this out.
+Base R comes with the function `pairwise.wilcox.test()` to carry this out.
 We'll do this using media as our groups from the `sample_data()` and the Observed metric from the alpha_df.
 
 ```{r, eval=FALSE}
@@ -2565,7 +2565,7 @@ Observe the results.
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Yes__", "__No__")
 ```
-Are all the pairwise comparisons significant different (<0.05)? `r longmcq(opts_p)`
+Are all the pairwise comparisons significantly different (<0.05)? `r longmcq(opts_p)`
 
 The test has carried out P value adjustments using the Holm-Bonferroni method (`P value adjustment method: holm`) which is good.
 
@@ -2596,7 +2596,7 @@ However, the p-values when comparing the Shannon values are not all significant.
 The only significant differences are between ENV & KBC, and between KBC & TSA. 
 Going back to the boxplot, does this look like the case?
 I would say yes as the IQRs for CVP, KBC, and TSA all overlap.
-There is little to no overlap of the IQRs of KBC and TSA against ENV.
+There is little to no overlap of the IQRs of KBC and TSA, or of KBC and ENV.
 
 We can therefore make these claims about the alpha diversity values of the groups.
 
@@ -2607,7 +2607,7 @@ We can therefore make these claims about the alpha diversity values of the group
 
 ## Alpha diversity: violin plot
 <center>
-![](figures/violin.png){style="width:200px"}
+![](figures/violin.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 Boxplots are quite nice but violin plots can be even nicer.
@@ -2731,7 +2731,7 @@ library(webexercises)
 ```
 # Beta {#beta_chap}
 <center>
-![](figures/beta.png){style="width:200px"}
+![](figures/beta.png){style="width:200px; background: white; border-radius:15px; border:solid white 5px"}
 </center>
 
 In this chapter we are going to carry out beta diversity analysis.
@@ -2741,7 +2741,7 @@ When carrying out beta diversity all samples are compared in a pairwise manner.
 Using various metrics a table of pairwise distances is created.
 These distances are dissimilarity measures with smaller values indicating higher similarity and larger values representing higher dissimilarity.
 
-With these dissimilarity measures we can produce scatter plots based visualisations (e.g. PCoA, & NMDS plots).
+With these dissimilarity measures we can produce scatter plot based visualisations (e.g. PCoA, & NMDS plots).
 Samples with low dissimilarity (i.e. similar samples) will be close to each other (cluster).
 Samples with high dissimilarity will be apart from each other.
 In a perfect example samples from the same group will form clusters that are distinct from the clusters of other groups.
@@ -2837,12 +2837,12 @@ In this case the total is >88% which is very good.
 
 Additionally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).
 
-## Beta: plot ordination with ellipse
+## Beta: plot ordination with ellipses
 <center>
 ![](figures/elippses_plot.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
-We can crate an ordination plot with ellipse, circular shapes showing clustering of groups.
+We can crate an ordination plot with ellipses, circular shapes showing clustering of groups.
 The statistics of the ellipses and visualisation can be carried out with the function `ggplot2::stat_ellipse()`.
 The primary purpose is to see if clusters overlap each other or are separate.
 
@@ -2912,7 +2912,7 @@ We can see that significant differences are found within the groups for media (P
 
 We will now see which media groups are significantly different to each other.
 We will do this with pairwise PERMANOVA tests.
-Unfortunately the `vegan` library does not have a function to do this so we will need to do some scripting.
+Unfortunately the `vegan` library does not have a function to automatically do this so we will need to do some scripting.
 
 The first step is to get every combination of groupings with the `combn()` and `unique()` functions.
 
@@ -2960,6 +2960,7 @@ wunifrac_pairwise_adonis
 ```
 
 We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
+
 #### Pairwise PERMANOVA on all combinations
 <center>
 ![](figures/combination_lock_2.png){style="width:200px"}

@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-08-09" />
+<meta name="date" content="2024-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.1" data-path="16-Beta.html"><a href="16-Beta.html#beta-setup"><i class="fa fa-check"></i><b>16.1</b> Beta: setup</a></li>
 <li class="chapter" data-level="16.2" data-path="16-Beta.html"><a href="16-Beta.html#beta-ordination"><i class="fa fa-check"></i><b>16.2</b> Beta: ordination</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination"><i class="fa fa-check"></i><b>16.3</b> Beta: plot ordination</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination-with-ellipse"><i class="fa fa-check"></i><b>16.4</b> Beta: plot ordination with ellipse</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination-with-ellipses"><i class="fa fa-check"></i><b>16.4</b> Beta: plot ordination with ellipses</a></li>
 <li class="chapter" data-level="16.5" data-path="16-Beta.html"><a href="16-Beta.html#beta-statistics"><i class="fa fa-check"></i><b>16.5</b> Beta: statistics</a>
 <ul>
 <li class="chapter" data-level="16.5.1" data-path="16-Beta.html"><a href="16-Beta.html#permanova"><i class="fa fa-check"></i><b>16.5.1</b> PERMANOVA</a></li>
@@ -396,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="alpha_chap" class="section level1 hasAnchor" number="15">
 <h1><span class="header-section-number">Chapter 15</span> Alpha diversity<a href="15-Alpha.html#alpha_chap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/alpha.png" style="width:200px" />
+<img src="figures/alpha.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>In this chapter we are going to produce alpha diversity plots and statistics with our rarefied data.
 Alpha diversity is carried out by producing a metric for each sample.
@@ -508,7 +508,7 @@ We'll try 150 (height) and 250 (width).</p>
 <span id="cb80-9"><a href="15-Alpha.html#cb80-9" tabindex="-1"></a><span class="co">#Display plot</span></span>
 <span id="cb80-10"><a href="15-Alpha.html#cb80-10" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./Alpha_diversity_media_boxplot.png&quot;</span>)</span></code></pre></div>
 <p>How do I choose a good height and width?
-This comes down to trial and error and experience.
+This comes down to trial and error, and experience.
 You want something with a good aspect ratio for the plot and you want all the text to be clear.
 Additionally, the size requirements of figures for journals will play a big consideration as well.
 One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.</p>
@@ -529,16 +529,16 @@ This can be carried out with the function<code>phyloseq::estimate_richness()</co
 <p>We have all the alpha metrics in the new data frame.
 Additionally, we also have the standard error for some of the metrics (e.g. <code>se.chao1</code>).</p>
 <p>With this information we can carry out a pairwise comparison using Wilcoxon rank sum test (the same way as QIIME2).
-Base R comes with the function <code>pairwsie.wilcox.test()</code> to carry this out.
+Base R comes with the function <code>pairwise.wilcox.test()</code> to carry this out.
 We'll do this using media as our groups from the <code>sample_data()</code> and the Observed metric from the alpha_df.</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb82-1"><a href="15-Alpha.html#cb82-1" tabindex="-1"></a><span class="co">#Paired wilcoxon test</span></span>
 <span id="cb82-2"><a href="15-Alpha.html#cb82-2" tabindex="-1"></a><span class="co">#Observed</span></span>
 <span id="cb82-3"><a href="15-Alpha.html#cb82-3" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(alpha_df<span class="sc">$</span>Observed, phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq_rarefy)<span class="sc">$</span>media)</span></code></pre></div>
 <p>You can ignore the warning messages in this case.</p>
 <p>Observe the results.</p>
-Are all the pairwise comparisons significant different (&lt;0.05)?
-<div id="radio_WAGVJBNSZP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WAGVJBNSZP" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WAGVJBNSZP" value=""></input> <span><strong>No</strong></span></label>
+Are all the pairwise comparisons significantly different (&lt;0.05)?
+<div id="radio_KSPBMHQFBZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KSPBMHQFBZ" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KSPBMHQFBZ" value=""></input> <span><strong>No</strong></span></label>
 </div>
 <p>The test has carried out P value adjustments using the Holm-Bonferroni method (<code>P value adjustment method: holm</code>) which is good.</p>
 <p>In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
@@ -564,7 +564,7 @@ Alpha stats solution
 The only significant differences are between ENV &amp; KBC, and between KBC &amp; TSA.
 Going back to the boxplot, does this look like the case?
 I would say yes as the IQRs for CVP, KBC, and TSA all overlap.
-There is little to no overlap of the IQRs of KBC and TSA against ENV.</p>
+There is little to no overlap of the IQRs of KBC and TSA, or of KBC and ENV.</p>
 <p>We can therefore make these claims about the alpha diversity values of the groups.</p>
 <ul>
 <li>ENV has the highest number of observed ASVs and the highest diversity.</li>
@@ -577,7 +577,7 @@ There is little to no overlap of the IQRs of KBC and TSA against ENV.</p>
 <div id="alpha-diversity-violin-plot" class="section level2 hasAnchor" number="15.4">
 <h2><span class="header-section-number">15.4</span> Alpha diversity: violin plot<a href="15-Alpha.html#alpha-diversity-violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/violin.png" style="width:200px" />
+<img src="figures/violin.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>Boxplots are quite nice but violin plots can be even nicer.
 They show the distribution of the data in the IQR better and you can display each value.</p>

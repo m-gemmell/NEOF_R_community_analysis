@@ -1,6 +1,6 @@
 # Rarefaction {#rarefaction_chap}
 <center>
-![](figures/whale.png){style="width:200px"}
+![](figures/whale.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 We are going to create a rarefied abundance table in this chapter. 
@@ -27,8 +27,7 @@ load("phyloseq.RData")
 load("num_asvs_vec.RData")
 ```
 
-Ensure you add markdown and code cells to this notebook to give yourself
-a good structure.
+Ensure you add markdown and code cells to this notebook to give it structure.
 
 ## Rarefaction curve
 <center>
@@ -52,7 +51,7 @@ many unique ASVs it has currently discovered from all 10 samplings.
 
 ### Bird analogy
 <center>
-![](figures/ibyster.png){style="width:200px"}
+![](figures/ibyster.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 You are cataloguing the bird diversity (ASV diversity) in three forests/woods in Hampshire (3 samples of our abundance table). 
@@ -80,7 +79,7 @@ Telegraph_woods <- c(0,7,12,16,21,23,24,25)
 Old_lords_wood <- c(0,8,10,11,13,13,13,13)
 time_points <- 0:7
 plot(x = time_points, y = New_forest, col = "#D81B60", type = "l",
-     xlab = "Bird species", ylab = "Bird species", lwd = 5)
+     xlab = "Sampling day", ylab = "Bird species", lwd = 5)
 lines(x = time_points, y = Telegraph_woods, col = "#1E88E5", lwd = 5)
 lines(x = time_points, y = Old_lords_wood, col = "#004D40", lwd = 5)
 ```
@@ -128,17 +127,16 @@ IRdisplay::display_png(file="./rarefaction_plot.png")
 </center>
 
 It is a useful plot but we can make it better! 
-We will do that with the following addition:
+We will add the following options to `vegan::rarecurve()`:
 
--   Adding extra options to `vegan::rarecurve()`:
-    -   `lwd`: Sets the line width of the plot.
-    -   `label`: Turn the sample labels on (`T`) or off (`F`). We will turn them off as it is hard to read them all.
-    -   `sample`: Draws a vertical line at the specified depth.
+  -   `lwd`: Sets the line width of the plot.
+  -   `label`: Turn the sample labels on (`T`) or off (`F`). We will turn them off as it is hard to read them all.
+  -   `sample`: Draws a vertical line at the specified depth.
         Additionally, draws a horizontal line for each sample showing
         how many ASVs were discovered at the sampling depth.
 
 We will initially use our minimum sample depth as our rarefaction/sampling depth.
-This is a good idea if it seems like a good amount as it will allow us to keep all our samples after rarefaction.
+If you can use your minimum depth it is always preferable as it allows you to keep all your samples.
 Any samples with a lower depth than our final rarefaction size will be removed.
 
 ```{r, eval=FALSE}
@@ -211,11 +209,11 @@ opts_p <- c(answer="__Environmental__", "__Media__")
 
 Overall the slopes values are low (<0.01).
 It is noticeable that the environmental samples have higher slopes than the media samples.
-Biologically, this makes sense as there is no bias being introduced by media.
+Biologically, this makes sense as there is no bias, whereas the media do introduce biases.
 
 ## Rarefy data
 <center>
-![](figures/pangolin.png){style="width:200px"}
+![](figures/pangolin.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 The minimum sample depth appears to be a good choice for rarefying.

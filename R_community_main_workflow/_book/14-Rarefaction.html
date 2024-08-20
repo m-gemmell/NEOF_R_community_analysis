@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-08-09" />
+<meta name="date" content="2024-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.1" data-path="16-Beta.html"><a href="16-Beta.html#beta-setup"><i class="fa fa-check"></i><b>16.1</b> Beta: setup</a></li>
 <li class="chapter" data-level="16.2" data-path="16-Beta.html"><a href="16-Beta.html#beta-ordination"><i class="fa fa-check"></i><b>16.2</b> Beta: ordination</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination"><i class="fa fa-check"></i><b>16.3</b> Beta: plot ordination</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination-with-ellipse"><i class="fa fa-check"></i><b>16.4</b> Beta: plot ordination with ellipse</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination-with-ellipses"><i class="fa fa-check"></i><b>16.4</b> Beta: plot ordination with ellipses</a></li>
 <li class="chapter" data-level="16.5" data-path="16-Beta.html"><a href="16-Beta.html#beta-statistics"><i class="fa fa-check"></i><b>16.5</b> Beta: statistics</a>
 <ul>
 <li class="chapter" data-level="16.5.1" data-path="16-Beta.html"><a href="16-Beta.html#permanova"><i class="fa fa-check"></i><b>16.5.1</b> PERMANOVA</a></li>
@@ -396,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="rarefaction_chap" class="section level1 hasAnchor" number="14">
 <h1><span class="header-section-number">Chapter 14</span> Rarefaction<a href="14-Rarefaction.html#rarefaction_chap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/whale.png" style="width:200px" />
+<img src="figures/whale.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>We are going to create a rarefied abundance table in this chapter.
 This can be a controversial topic.
@@ -417,8 +417,7 @@ Add the following to the top of this new notebook to load the required libraries
 <span id="cb68-7"><a href="14-Rarefaction.html#cb68-7" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;phyloseq.RData&quot;</span>)</span>
 <span id="cb68-8"><a href="14-Rarefaction.html#cb68-8" tabindex="-1"></a><span class="co">#Load ASV count vector</span></span>
 <span id="cb68-9"><a href="14-Rarefaction.html#cb68-9" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;num_asvs_vec.RData&quot;</span>)</span></code></pre></div>
-<p>Ensure you add markdown and code cells to this notebook to give yourself
-a good structure.</p>
+<p>Ensure you add markdown and code cells to this notebook to give it structure.</p>
 </div>
 <div id="rarefaction-curve" class="section level2 hasAnchor" number="14.2">
 <h2><span class="header-section-number">14.2</span> Rarefaction curve<a href="14-Rarefaction.html#rarefaction-curve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -440,7 +439,7 @@ many unique ASVs it has currently discovered from all 10 samplings.</p>
 <div id="bird-analogy" class="section level3 hasAnchor" number="14.2.1">
 <h3><span class="header-section-number">14.2.1</span> Bird analogy<a href="14-Rarefaction.html#bird-analogy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <center>
-<img src="figures/ibyster.png" style="width:200px" />
+<img src="figures/ibyster.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>You are cataloguing the bird diversity (ASV diversity) in three forests/woods in Hampshire (3 samples of our abundance table).
 You record your findings over a week for each forest.
@@ -545,19 +544,16 @@ This can be caused by our barcodes not picking up all species, our sampling wasn
 <img src="figures/palette_brush.png" style="width:200px" />
 </center>
 <p>It is a useful plot but we can make it better!
-We will do that with the following addition:</p>
-<ul>
-<li>Adding extra options to <code>vegan::rarecurve()</code>:
+We will add the following options to <code>vegan::rarecurve()</code>:</p>
 <ul>
 <li><code>lwd</code>: Sets the line width of the plot.</li>
 <li><code>label</code>: Turn the sample labels on (<code>T</code>) or off (<code>F</code>). We will turn them off as it is hard to read them all.</li>
 <li><code>sample</code>: Draws a vertical line at the specified depth.
 Additionally, draws a horizontal line for each sample showing
 how many ASVs were discovered at the sampling depth.</li>
-</ul></li>
 </ul>
 <p>We will initially use our minimum sample depth as our rarefaction/sampling depth.
-This is a good idea if it seems like a good amount as it will allow us to keep all our samples after rarefaction.
+If you can use your minimum depth it is always preferable as it allows you to keep all your samples.
 Any samples with a lower depth than our final rarefaction size will be removed.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb70-1"><a href="14-Rarefaction.html#cb70-1" tabindex="-1"></a><span class="co">#Improved plot saved as file</span></span>
 <span id="cb70-2"><a href="14-Rarefaction.html#cb70-2" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;./rarefaction_plot.png&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>,</span>
@@ -606,26 +602,26 @@ A slope of 1 shows a flat vertical line (not what we want).</p>
 <p>With the calculated slopes attempt the following questions:</p>
 <ol style="list-style-type: decimal">
 <li>Which sample has the largest slope value?
-<div id="radio_BMAZTNZBFT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BMAZTNZBFT" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BMAZTNZBFT" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BMAZTNZBFT" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_BPRCXGZUHX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BPRCXGZUHX" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BPRCXGZUHX" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BPRCXGZUHX" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which sample has the lowest slope value?
-<div id="radio_KXAFXRFDVX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KXAFXRFDVX" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KXAFXRFDVX" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KXAFXRFDVX" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_XKCOSPKYEP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XKCOSPKYEP" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XKCOSPKYEP" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XKCOSPKYEP" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which samples have larger slope values, the environmental samples or media samples?
-<div id="radio_VTRLWNHNMI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VTRLWNHNMI" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VTRLWNHNMI" value=""></input> <span><strong>Media</strong></span></label>
+<div id="radio_TVDZDOJNAC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TVDZDOJNAC" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TVDZDOJNAC" value=""></input> <span><strong>Media</strong></span></label>
 </div></li>
 </ol>
 <p>Overall the slopes values are low (&lt;0.01).
 It is noticeable that the environmental samples have higher slopes than the media samples.
-Biologically, this makes sense as there is no bias being introduced by media.</p>
+Biologically, this makes sense as there is no bias, whereas the media do introduce biases.</p>
 </div>
 <div id="rarefy-data" class="section level2 hasAnchor" number="14.4">
 <h2><span class="header-section-number">14.4</span> Rarefy data<a href="14-Rarefaction.html#rarefy-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/pangolin.png" style="width:200px" />
+<img src="figures/pangolin.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>The minimum sample depth appears to be a good choice for rarefying.
 It keeps all the samples and at this depth the samples have a very good coverage of the ASVs present in the data.

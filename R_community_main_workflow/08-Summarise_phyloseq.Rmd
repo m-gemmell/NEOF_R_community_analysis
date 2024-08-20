@@ -131,7 +131,7 @@ This information is very useful. We will use it in the next chapter to determine
 ![](figures/nice_table.png){style="width:200px"}
 </center>
 
-The last information we will look at before some preprocessing are the ASVs (Amplicon Sequnces Variants).
+Before preprocessing we will look at information related to the ASVs (Amplicon Sequnces Variants).
 
 A useful `phyloseq` command is `otu_table()`. This allows us to extract the ASV/OTU/feature table. With this we can then carry out some other commands.
 

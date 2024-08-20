@@ -172,7 +172,7 @@ IRdisplay::display_png(file="./boxplot_x_site_y_depth.png")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__LD (Lower Durance)__", "__MD (Middle Durance)__", "__UD (Upper Durance__")
 ```
-- Which site has the highest median depth (middle line of boxplot)? `r longmcq(opts_p)`
+Which site has the highest median depth (middle line of boxplot)? `r longmcq(opts_p)`
 
 ### Media by depth boxplot
 <center>
@@ -197,7 +197,7 @@ IRdisplay::display_png(file="./boxplot_x_media_y_depth.png")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__CVP__", "__ENV__", "__TSA__")
 ```
-- Which media has the lowest median depth (middle line of boxplot)? `r longmcq(opts_p)`
+Which media has the lowest median depth (middle line of boxplot)? `r longmcq(opts_p)`
 
 From the boxplots we can see there is no drastic difference between the depths of the different media groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.
 
@@ -239,7 +239,7 @@ asv_abund_df <- as.data.frame(t(phyloseq::otu_table(pseq)))
 
 ### vegan's rarecurve
 <center>
-![](figures/vegan.png){style="width:200px"}
+![](figures/vegan.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 With this data frame we can create a rarefaction curve with `vegan`'s `rarecurve()` function.
@@ -340,17 +340,17 @@ Try to write your own R code in a new cell to answer the following questions:
 ```{r, echo = FALSE}
 opts_p <- c("__4__", answer="__613__", "__42507__")
 ```
-- What is the difference of the minimum number of reads between `pseq_min11K` and `pseq`? `r longmcq(opts_p)`
+What is the difference of the minimum number of reads between `pseq_min11K` and `pseq`? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__4__", "__613__", "__42507__")
 ```
-- How many samples were removed due to the read depth filtering? `r longmcq(opts_p)`
+How many samples were removed due to the read depth filtering? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__4__", "__613__", answer="__42507__")
 ```
-- How many reads were removed by the minimum read filtering? `r longmcq(opts_p)`
+How many reads were removed by the minimum read filtering? `r longmcq(opts_p)`
 
 `r hide("Tip")`
 Combining `microbiome::readcount()` with `min()`, `length()`, and `sum()` might help.

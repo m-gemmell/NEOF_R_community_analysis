@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-08-09" />
+<meta name="date" content="2024-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.1" data-path="16-Beta.html"><a href="16-Beta.html#beta-setup"><i class="fa fa-check"></i><b>16.1</b> Beta: setup</a></li>
 <li class="chapter" data-level="16.2" data-path="16-Beta.html"><a href="16-Beta.html#beta-ordination"><i class="fa fa-check"></i><b>16.2</b> Beta: ordination</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination"><i class="fa fa-check"></i><b>16.3</b> Beta: plot ordination</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination-with-ellipse"><i class="fa fa-check"></i><b>16.4</b> Beta: plot ordination with ellipse</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination-with-ellipses"><i class="fa fa-check"></i><b>16.4</b> Beta: plot ordination with ellipses</a></li>
 <li class="chapter" data-level="16.5" data-path="16-Beta.html"><a href="16-Beta.html#beta-statistics"><i class="fa fa-check"></i><b>16.5</b> Beta: statistics</a>
 <ul>
 <li class="chapter" data-level="16.5.1" data-path="16-Beta.html"><a href="16-Beta.html#permanova"><i class="fa fa-check"></i><b>16.5.1</b> PERMANOVA</a></li>
@@ -457,8 +457,8 @@ This is the general consensus for <strong>human microbiome</strong> data.</p>
 <p>We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:</p>
 <ul>
 <li>What is the approximate read depth range of our dataset?
-<div id="radio_QFKHRZTBZL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QFKHRZTBZL" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QFKHRZTBZL" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QFKHRZTBZL" value=""></input> <span><strong>20,000+</strong></span></label>
+<div id="radio_ZYNBUZUBEX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZYNBUZUBEX" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZYNBUZUBEX" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZYNBUZUBEX" value=""></input> <span><strong>20,000+</strong></span></label>
 </div></li>
 </ul>
 <p>This is a good first step but what if we want to know how the read depths vary between sample groups?</p>
@@ -545,12 +545,10 @@ This can then be displayed with <code>IRdisplay::display_png()</code>.</p>
 <span id="cb32-3"><a href="09-Minimum_read_depth.html#cb32-3" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">100</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
 <span id="cb32-4"><a href="09-Minimum_read_depth.html#cb32-4" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
 <span id="cb32-5"><a href="09-Minimum_read_depth.html#cb32-5" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./boxplot_x_site_y_depth.png&quot;</span>)</span></code></pre></div>
-<ul>
-<li>Which site has the highest median depth (middle line of boxplot)?
-<div id="radio_EDYSKWUMXM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EDYSKWUMXM" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EDYSKWUMXM" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EDYSKWUMXM" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
-</div></li>
-</ul>
+Which site has the highest median depth (middle line of boxplot)?
+<div id="radio_AOSVVYQSCB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AOSVVYQSCB" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AOSVVYQSCB" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AOSVVYQSCB" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
+</div>
 </div>
 <div id="media-by-depth-boxplot" class="section level3 hasAnchor" number="9.4.4">
 <h3><span class="header-section-number">9.4.4</span> Media by depth boxplot<a href="09-Minimum_read_depth.html#media-by-depth-boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -568,12 +566,10 @@ Carry this out in the same cell and run the code.</p>
 <span id="cb33-6"><a href="09-Minimum_read_depth.html#cb33-6" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">100</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
 <span id="cb33-7"><a href="09-Minimum_read_depth.html#cb33-7" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
 <span id="cb33-8"><a href="09-Minimum_read_depth.html#cb33-8" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./boxplot_x_media_y_depth.png&quot;</span>)</span></code></pre></div>
-<ul>
-<li>Which media has the lowest median depth (middle line of boxplot)?
-<div id="radio_TQEDMBNVPL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TQEDMBNVPL" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TQEDMBNVPL" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TQEDMBNVPL" value=""></input> <span><strong>TSA</strong></span></label>
-</div></li>
-</ul>
+Which media has the lowest median depth (middle line of boxplot)?
+<div id="radio_MLTWWPSZUN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MLTWWPSZUN" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MLTWWPSZUN" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MLTWWPSZUN" value=""></input> <span><strong>TSA</strong></span></label>
+</div>
 <p>From the boxplots we can see there is no drastic difference between the depths of the different media groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.</p>
 <p>For more resources on <code>ggplot2</code> please see the <a href="19-Appendix.html#ggplot2_appendix">appendix</a> of this book.</p>
 </div>
@@ -608,7 +604,7 @@ Additionally, we will ensure it is a data frame with the function <code>as.data.
 <div id="vegans-rarecurve" class="section level3 hasAnchor" number="9.5.2">
 <h3><span class="header-section-number">9.5.2</span> vegan's rarecurve<a href="09-Minimum_read_depth.html#vegans-rarecurve" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <center>
-<img src="figures/vegan.png" style="width:200px" />
+<img src="figures/vegan.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>With this data frame we can create a rarefaction curve with <code>vegan</code>'s <code>rarecurve()</code> function.</p>
 <p>Add the following code to the same cell and run it.</p>
@@ -681,20 +677,18 @@ Add the following in the same cell and then run the code in the cell.</p>
 <span id="cb39-5"><a href="09-Minimum_read_depth.html#cb39-5" tabindex="-1"></a>pseq_min11K</span></code></pre></div>
 <p>We can see that the data lost 26 ASVs (2551 - 2525).</p>
 <p>Try to write your own R code in a new cell to answer the following questions:</p>
-<ul>
-<li>What is the difference of the minimum number of reads between <code>pseq_min11K</code> and <code>pseq</code>?
-<div id="radio_ILASIKODEV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ILASIKODEV" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ILASIKODEV" value="answer"></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ILASIKODEV" value=""></input> <span><strong>42507</strong></span></label>
-</div></li>
-<li>How many samples were removed due to the read depth filtering?
-<div id="radio_HXOZWBYFYC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HXOZWBYFYC" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HXOZWBYFYC" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HXOZWBYFYC" value=""></input> <span><strong>42507</strong></span></label>
-</div></li>
-<li>How many reads were removed by the minimum read filtering?
-<div id="radio_DPABFNBGEX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DPABFNBGEX" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DPABFNBGEX" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DPABFNBGEX" value="answer"></input> <span><strong>42507</strong></span></label>
-</div></li>
-</ul>
+What is the difference of the minimum number of reads between <code>pseq_min11K</code> and <code>pseq</code>?
+<div id="radio_PYRFDQSIAI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PYRFDQSIAI" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PYRFDQSIAI" value="answer"></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PYRFDQSIAI" value=""></input> <span><strong>42507</strong></span></label>
+</div>
+How many samples were removed due to the read depth filtering?
+<div id="radio_SYHHYJKSBC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SYHHYJKSBC" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SYHHYJKSBC" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SYHHYJKSBC" value=""></input> <span><strong>42507</strong></span></label>
+</div>
+How many reads were removed by the minimum read filtering?
+<div id="radio_MOOIYEUNPZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MOOIYEUNPZ" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MOOIYEUNPZ" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MOOIYEUNPZ" value="answer"></input> <span><strong>42507</strong></span></label>
+</div>
 <div class="webex-solution">
 <button>
 Tip

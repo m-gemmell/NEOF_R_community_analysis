@@ -1,6 +1,6 @@
 # Alpha diversity {#alpha_chap}
 <center>
-![](figures/alpha.png){style="width:200px"}
+![](figures/alpha.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 In this chapter we are going to produce alpha diversity plots and statistics with our rarefied data.
@@ -142,7 +142,7 @@ IRdisplay::display_png(file="./Alpha_diversity_media_boxplot.png")
 ```
 
 How do I choose a good height and width?
-This comes down to trial and error and experience.
+This comes down to trial and error, and experience.
 You want something with a good aspect ratio for the plot and you want all the text to be clear.
 Additionally, the size requirements of figures for journals will play a big consideration as well.
 One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.
@@ -168,7 +168,7 @@ We have all the alpha metrics in the new data frame.
 Additionally, we also have the standard error for some of the metrics (e.g. `se.chao1`).
 
 With this information we can carry out a pairwise comparison using Wilcoxon rank sum test (the same way as QIIME2).
-Base R comes with the function `pairwsie.wilcox.test()` to carry this out.
+Base R comes with the function `pairwise.wilcox.test()` to carry this out.
 We'll do this using media as our groups from the `sample_data()` and the Observed metric from the alpha_df.
 
 ```{r, eval=FALSE}
@@ -184,7 +184,7 @@ Observe the results.
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Yes__", "__No__")
 ```
-Are all the pairwise comparisons significant different (<0.05)? `r longmcq(opts_p)`
+Are all the pairwise comparisons significantly different (<0.05)? `r longmcq(opts_p)`
 
 The test has carried out P value adjustments using the Holm-Bonferroni method (`P value adjustment method: holm`) which is good.
 
@@ -215,7 +215,7 @@ However, the p-values when comparing the Shannon values are not all significant.
 The only significant differences are between ENV & KBC, and between KBC & TSA. 
 Going back to the boxplot, does this look like the case?
 I would say yes as the IQRs for CVP, KBC, and TSA all overlap.
-There is little to no overlap of the IQRs of KBC and TSA against ENV.
+There is little to no overlap of the IQRs of KBC and TSA, or of KBC and ENV.
 
 We can therefore make these claims about the alpha diversity values of the groups.
 
@@ -226,7 +226,7 @@ We can therefore make these claims about the alpha diversity values of the group
 
 ## Alpha diversity: violin plot
 <center>
-![](figures/violin.png){style="width:200px"}
+![](figures/violin.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 Boxplots are quite nice but violin plots can be even nicer.

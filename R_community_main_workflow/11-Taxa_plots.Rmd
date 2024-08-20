@@ -1,13 +1,13 @@
 # Taxa plots {#chaptaxaplots}
 <center>
-![](figures/owl_eyes.png){style="width:200px"}
+![](figures/owl_eyes.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 Now that we have our Phylum relative abundance `phyloseq` we can create a bar chart.
 
 ## Simple bar chart
 <center>
-![](figures/bar_chart.png){style="width:200px"}
+![](figures/bar_chart.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 To create, save, and view a simple phylum bar chart we can use the following code.
@@ -72,7 +72,7 @@ With the heatmap it is much easier to tell what the relative abundances of diffe
 ```{r, echo = FALSE}
 opts_p <- c("__Chloroflexi__", "__Firmicutes__", answer="__Proteobacteria__")
 ```
-- What is the most abundant phyla across the samples? `r longmcq(opts_p)`
+What is the most abundant phyla across the samples? `r longmcq(opts_p)`
 
 ## Aggregate rare taxa{#aggregateraretaxa}
 <center>
@@ -160,7 +160,7 @@ Additionally, it seems that the biggest difference between samples is due to the
 One of the many great advantages of `ggplot2` is that you can create plots tailored to your metadata.
 As an example we will create another taxonomy bar chart but have one bar for each media site.
 
-We'll use a very similar code as the above bar chart but add the `microbiome::plot_composition` option `average_by =`.
+We'll use very similar code as the above bar chart but add the `microbiome::plot_composition` option `average_by =`.
 With this we will average the rare aggregated relative abundance values by the four different media.
 
 ```{r, eval=FALSE}

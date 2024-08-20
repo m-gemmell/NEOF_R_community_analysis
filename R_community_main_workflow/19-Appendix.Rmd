@@ -24,9 +24,11 @@ To create the mamba environment `r_community` run the below commands in your bas
 mamba create -n r_community
 mamba activate r_community
 mamba install -c anaconda -c bioconda -c r -c conda-forge \
-bioconductor-microbiome bioconductor-ancombc biom-format \
+bioconductor-microbiome bioconductor-ancombc=2.0.1 biom-format \
 r-tidyverse r-devtools r-ggforce pandoc r-plotly r-irkernel r-htmltools=0.5.4
 ```
+
+__Note:__ It is common that some tools/packages will conflict with others. To overcome this we can set the version by adding `=xx` after a tool name in `conda` (e.g. `r-htmltools=0.5.4`). We have set the version for `bioconductor-ancombc` as newer version are designed for a different package (`mia`) than `phyloseq`. Therefore newer version of ancombc2 do not work in our workflow.
 
 Activate the environment in bash.
 

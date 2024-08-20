@@ -7,7 +7,7 @@ Before carrying out any analysis we first need to import our QIIME2 artifacts in
 
 ## Import: notebook
 <center>
-![](figures/r_script.png){style="width:200px"}
+![](figures/r_script.png){style="width:200px; background:white;border-radius:15px"}
 </center>
 
 Prior to any coding, we will create a new directory, our analysis directory.
@@ -146,7 +146,9 @@ save(pseq, file = "phyloseq.RData")
 
 This saves our object `pseq` into the file `phyloseq.RData`. The suffix `.RData` is the normal convention.
 
-We have saved our final object of the notebook. Close and halt it.
+We have saved our final object of the notebook. Save the notebook then close and halt it.
+
+__Tip:__ Make sure to save your notebooks regularly. Sometimes jupyter-notebook freezes and you may lose your progress since your last save.
 
 ## Import: recap
 <center>

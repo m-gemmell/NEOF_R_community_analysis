@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-08-09" />
+<meta name="date" content="2024-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.1" data-path="16-Beta.html"><a href="16-Beta.html#beta-setup"><i class="fa fa-check"></i><b>16.1</b> Beta: setup</a></li>
 <li class="chapter" data-level="16.2" data-path="16-Beta.html"><a href="16-Beta.html#beta-ordination"><i class="fa fa-check"></i><b>16.2</b> Beta: ordination</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination"><i class="fa fa-check"></i><b>16.3</b> Beta: plot ordination</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination-with-ellipse"><i class="fa fa-check"></i><b>16.4</b> Beta: plot ordination with ellipse</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Beta.html"><a href="16-Beta.html#beta-plot-ordination-with-ellipses"><i class="fa fa-check"></i><b>16.4</b> Beta: plot ordination with ellipses</a></li>
 <li class="chapter" data-level="16.5" data-path="16-Beta.html"><a href="16-Beta.html#beta-statistics"><i class="fa fa-check"></i><b>16.5</b> Beta: statistics</a>
 <ul>
 <li class="chapter" data-level="16.5.1" data-path="16-Beta.html"><a href="16-Beta.html#permanova"><i class="fa fa-check"></i><b>16.5.1</b> PERMANOVA</a></li>
@@ -396,14 +396,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="beta_chap" class="section level1 hasAnchor" number="16">
 <h1><span class="header-section-number">Chapter 16</span> Beta<a href="16-Beta.html#beta_chap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/beta.png" style="width:200px" />
+<img src="figures/beta.png" style="width:200px; background: white; border-radius:15px; border:solid white 5px" />
 </center>
 <p>In this chapter we are going to carry out beta diversity analysis.
 This will include the production of ordination plots and statistical analysis.</p>
 <p>When carrying out beta diversity all samples are compared in a pairwise manner.
 Using various metrics a table of pairwise distances is created.
 These distances are dissimilarity measures with smaller values indicating higher similarity and larger values representing higher dissimilarity.</p>
-<p>With these dissimilarity measures we can produce scatter plots based visualisations (e.g. PCoA, &amp; NMDS plots).
+<p>With these dissimilarity measures we can produce scatter plot based visualisations (e.g. PCoA, &amp; NMDS plots).
 Samples with low dissimilarity (i.e. similar samples) will be close to each other (cluster).
 Samples with high dissimilarity will be apart from each other.
 In a perfect example samples from the same group will form clusters that are distinct from the clusters of other groups.</p>
@@ -484,12 +484,12 @@ In this case the total is &gt;88% which is very good.</p>
 </ul>
 <p>Additionally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).</p>
 </div>
-<div id="beta-plot-ordination-with-ellipse" class="section level2 hasAnchor" number="16.4">
-<h2><span class="header-section-number">16.4</span> Beta: plot ordination with ellipse<a href="16-Beta.html#beta-plot-ordination-with-ellipse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="beta-plot-ordination-with-ellipses" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> Beta: plot ordination with ellipses<a href="16-Beta.html#beta-plot-ordination-with-ellipses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
 <img src="figures/elippses_plot.png" style="width:200px; border-radius:15px; background:white" />
 </center>
-<p>We can crate an ordination plot with ellipse, circular shapes showing clustering of groups.
+<p>We can crate an ordination plot with ellipses, circular shapes showing clustering of groups.
 The statistics of the ellipses and visualisation can be carried out with the function <code>ggplot2::stat_ellipse()</code>.
 The primary purpose is to see if clusters overlap each other or are separate.</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb92-1"><a href="16-Beta.html#cb92-1" tabindex="-1"></a><span class="co">#Plot ordination with ellipse</span></span>
@@ -545,7 +545,7 @@ We can see that significant differences are found within the groups for media (P
 </center>
 <p>We will now see which media groups are significantly different to each other.
 We will do this with pairwise PERMANOVA tests.
-Unfortunately the <code>vegan</code> library does not have a function to do this so we will need to do some scripting.</p>
+Unfortunately the <code>vegan</code> library does not have a function to automatically do this so we will need to do some scripting.</p>
 <p>The first step is to get every combination of groupings with the <code>combn()</code> and <code>unique()</code> functions.</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb95-1"><a href="16-Beta.html#cb95-1" tabindex="-1"></a><span class="co">#Pairwise comparisons</span></span>
 <span id="cb95-2"><a href="16-Beta.html#cb95-2" tabindex="-1"></a><span class="co">#Get combinations of unique media values</span></span>
@@ -578,8 +578,10 @@ Additionally, we can extract the metadata from this subsetted <code>phyloseq</co
 <span id="cb97-6"><a href="16-Beta.html#cb97-6" tabindex="-1"></a>wunifrac_pairwise_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat <span class="sc">~</span> media, </span>
 <span id="cb97-7"><a href="16-Beta.html#cb97-7" tabindex="-1"></a>                                           <span class="at">data =</span> metadf_subset, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
 <span id="cb97-8"><a href="16-Beta.html#cb97-8" tabindex="-1"></a>wunifrac_pairwise_adonis</span></code></pre></div>
-We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
-#### Pairwise PERMANOVA on all combinations
+<p>We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).</p>
+</div>
+<div id="pairwise-permanova-on-all-combinations" class="section level4 hasAnchor" number="16.5.2.2">
+<h4><span class="header-section-number">16.5.2.2</span> Pairwise PERMANOVA on all combinations<a href="16-Beta.html#pairwise-permanova-on-all-combinations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <center>
 <img src="figures/combination_lock_2.png" style="width:200px" />
 </center>

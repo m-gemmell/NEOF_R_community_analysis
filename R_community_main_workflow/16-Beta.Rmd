@@ -1,6 +1,6 @@
 # Beta {#beta_chap}
 <center>
-![](figures/beta.png){style="width:200px"}
+![](figures/beta.png){style="width:200px; background: white; border-radius:15px; border:solid white 5px"}
 </center>
 
 In this chapter we are going to carry out beta diversity analysis.
@@ -10,7 +10,7 @@ When carrying out beta diversity all samples are compared in a pairwise manner.
 Using various metrics a table of pairwise distances is created.
 These distances are dissimilarity measures with smaller values indicating higher similarity and larger values representing higher dissimilarity.
 
-With these dissimilarity measures we can produce scatter plots based visualisations (e.g. PCoA, & NMDS plots).
+With these dissimilarity measures we can produce scatter plot based visualisations (e.g. PCoA, & NMDS plots).
 Samples with low dissimilarity (i.e. similar samples) will be close to each other (cluster).
 Samples with high dissimilarity will be apart from each other.
 In a perfect example samples from the same group will form clusters that are distinct from the clusters of other groups.
@@ -106,12 +106,12 @@ In this case the total is >88% which is very good.
 
 Additionally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).
 
-## Beta: plot ordination with ellipse
+## Beta: plot ordination with ellipses
 <center>
 ![](figures/elippses_plot.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
-We can crate an ordination plot with ellipse, circular shapes showing clustering of groups.
+We can crate an ordination plot with ellipses, circular shapes showing clustering of groups.
 The statistics of the ellipses and visualisation can be carried out with the function `ggplot2::stat_ellipse()`.
 The primary purpose is to see if clusters overlap each other or are separate.
 
@@ -181,7 +181,7 @@ We can see that significant differences are found within the groups for media (P
 
 We will now see which media groups are significantly different to each other.
 We will do this with pairwise PERMANOVA tests.
-Unfortunately the `vegan` library does not have a function to do this so we will need to do some scripting.
+Unfortunately the `vegan` library does not have a function to automatically do this so we will need to do some scripting.
 
 The first step is to get every combination of groupings with the `combn()` and `unique()` functions.
 
@@ -229,6 +229,7 @@ wunifrac_pairwise_adonis
 ```
 
 We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
+
 #### Pairwise PERMANOVA on all combinations
 <center>
 ![](figures/combination_lock_2.png){style="width:200px"}
@@ -346,8 +347,8 @@ ord.mds.wunifrac <- phyloseq::ordinate(pseq_rarefy_no_env, method = "MDS", dista
 nmds.wunifrac <- phyloseq::plot_ordination(pseq_rarefy_no_env, ord.mds.wunifrac,
                                    color = "site", shape = "media") +
                   #Choose a ranges for the x axis and y axis to zoom into
-                  #Thiese were chosen after viewing the plot without the zoom
-                  ggforce::facet_zoom( xlim = c(-0.055,-0.03), ylim = c(-0.01,0.005), zoom.size = 1)
+                  #These were chosen after viewing the plot without the zoom
+                  ggforce::facet_zoom(xlim = c(-0.055,-0.03), ylim = c(-0.01,0.005), zoom.size = 1)
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_mds_wunifrac_media_site_no_env.png", plot = nmds.wunifrac,
        device = "png", dpi = 300, units = "mm", height = 150, width = 150)
@@ -470,7 +471,7 @@ There are many other things you could do such as:
 - Carry out beta diversity with taxa aggregated `phyloseq` objects.
 - Use different distance measures (`phyloseq::distanceMethodList`).
   - We have a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac").
-  - If you do not have this you will have to use non-phylogenetic aware `betadiver` distances such as "jaccard" or "bray".
+  - If you do not have this you will have to use non-phylogenetic aware beta diversity distances such as "jaccard" or "bray".
 - Use different different ordination methods (`?phyloseq:ordinate`).
   - Different methods will produce different __percentage of variation explained__ values. If your plot has low values try another method to see if you can get higher values.
   - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values. This is perfectly acceptable and encouraged by many.
