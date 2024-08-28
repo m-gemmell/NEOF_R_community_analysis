@@ -153,13 +153,13 @@ microbiome::summarize_phyloseq(genus_pseq)
 paste0("Genera: ", nrow(phyloseq::otu_table(genus_pseq)))
 ```
 
-In your own analysis you may even want to use family or order to aggregate to, or to keep using genus
+In your own analysis you may even want to use family or order to aggregate to, or to keep using genus.
 Know your data, look at the literature, and make an informed decision.
 Of course it can be useful to look at multiple levels of taxonomy.
 
 ## Plain text files
 <center>
-![](figures/plain_text.png){style="width:100px"}
+![](figures/plain_text.png){style="width:100px; background: white; border-radius:5px"}
 </center>
 
 If you have plain text files you can read them into R and then phyloseq-ize them.

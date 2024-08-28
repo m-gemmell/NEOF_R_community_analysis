@@ -47,7 +47,7 @@ knitr::opts_chunk$set(class.source="Rchunk")
 ```
 
 <center>
-![](figures/NEOF.png){style="border-radius: 15px; width: 300px; border: 5px solid #333333"}
+![](figures/NEOF.png){style="border-radius: 15px; width: 300px; border: 5px solid white"}
 </center>
 
 # (PART\*) Intro {-}
@@ -263,13 +263,13 @@ microbiome::summarize_phyloseq(genus_pseq)
 paste0("Genera: ", nrow(phyloseq::otu_table(genus_pseq)))
 ```
 
-In your own analysis you may even want to use family or order to aggregate to, or to keep using genus
+In your own analysis you may even want to use family or order to aggregate to, or to keep using genus.
 Know your data, look at the literature, and make an informed decision.
 Of course it can be useful to look at multiple levels of taxonomy.
 
 ## Plain text files
 <center>
-![](figures/plain_text.png){style="width:100px"}
+![](figures/plain_text.png){style="width:100px; background: white; border-radius:5px"}
 </center>
 
 If you have plain text files you can read them into R and then phyloseq-ize them.
@@ -380,7 +380,7 @@ head(penguin_df)
 
 ## PNG with ggplot2
 <center>
-![](figures/png_file.png){style="width:200px"}
+![](figures/png_file.png){style="width:150px; background:white; border-radius:5px; border:white solid 5px"}
 </center>
 
 After having your data the next step is to create your `ggplot2` object.
@@ -403,12 +403,12 @@ IRdisplay::display_png(file = "penguin_boxplot.png")
 
 ## HTML with plotly
 <center>
-![](figures/html.png){style="width:200px"}
+![](figures/html.png){style="width:150px; background:white; border-radius:5px; border:white solid 5px"}
 </center>
 
 Let's create that plot again but using `plotly`.
 Additionally, we'll save the `plotly` plot to an html file with `htmlwidgets::saveWidget()`.
-We can then view the plot with `plotly::embed_notebook()`
+We can then view the plot with `plotly::embed_notebook()`.
 
 ```{r, eval=FALSE}
 #ggplot2 boxplot

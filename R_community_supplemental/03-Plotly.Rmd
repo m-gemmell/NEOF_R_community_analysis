@@ -82,7 +82,7 @@ head(penguin_df)
 
 ## PNG with ggplot2
 <center>
-![](figures/png_file.png){style="width:200px"}
+![](figures/png_file.png){style="width:150px; background:white; border-radius:5px; border:white solid 5px"}
 </center>
 
 After having your data the next step is to create your `ggplot2` object.
@@ -105,12 +105,12 @@ IRdisplay::display_png(file = "penguin_boxplot.png")
 
 ## HTML with plotly
 <center>
-![](figures/html.png){style="width:200px"}
+![](figures/html.png){style="width:150px; background:white; border-radius:5px; border:white solid 5px"}
 </center>
 
 Let's create that plot again but using `plotly`.
 Additionally, we'll save the `plotly` plot to an html file with `htmlwidgets::saveWidget()`.
-We can then view the plot with `plotly::embed_notebook()`
+We can then view the plot with `plotly::embed_notebook()`.
 
 ```{r, eval=FALSE}
 #ggplot2 boxplot
