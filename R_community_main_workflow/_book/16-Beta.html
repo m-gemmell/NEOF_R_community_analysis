@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-08-19" />
+<meta name="date" content="2024-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -345,7 +345,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="19-Appendix.html"><a href="19-Appendix.html"><i class="fa fa-check"></i><b>A</b> Mamba installs</a>
 <ul>
-<li class="chapter" data-level="A.1" data-path="19-Appendix.html"><a href="19-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>A.1</b> Mamba installation and environment</a></li>
+<li class="chapter" data-level="A.1" data-path="19-Appendix.html"><a href="19-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>A.1</b> Mamba installation and environment</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="19-Appendix.html"><a href="19-Appendix.html#install-specific-version-of-r-bioconductor-package"><i class="fa fa-check"></i><b>A.1.1</b> Install specific version of R bioconductor package</a></li>
+</ul></li>
 <li class="chapter" data-level="A.2" data-path="19-Appendix.html"><a href="19-Appendix.html#jupyter_appendix"><i class="fa fa-check"></i><b>A.2</b> Jupyter-notebook</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="19-Appendix.html"><a href="19-Appendix.html#r-packages"><i class="fa fa-check"></i><b>B</b> R packages</a>
@@ -683,8 +686,8 @@ To see the differences between the 3 media it will be good to remove it and prod
 <span id="cb101-6"><a href="16-Beta.html#cb101-6" tabindex="-1"></a>nmds.wunifrac <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">plot_ordination</span>(pseq_rarefy_no_env, ord.mds.wunifrac,</span>
 <span id="cb101-7"><a href="16-Beta.html#cb101-7" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&quot;site&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;media&quot;</span>) <span class="sc">+</span></span>
 <span id="cb101-8"><a href="16-Beta.html#cb101-8" tabindex="-1"></a>                  <span class="co">#Choose a ranges for the x axis and y axis to zoom into</span></span>
-<span id="cb101-9"><a href="16-Beta.html#cb101-9" tabindex="-1"></a>                  <span class="co">#Thiese were chosen after viewing the plot without the zoom</span></span>
-<span id="cb101-10"><a href="16-Beta.html#cb101-10" tabindex="-1"></a>                  ggforce<span class="sc">::</span><span class="fu">facet_zoom</span>( <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.055</span>,<span class="sc">-</span><span class="fl">0.03</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.01</span>,<span class="fl">0.005</span>), <span class="at">zoom.size =</span> <span class="dv">1</span>)</span>
+<span id="cb101-9"><a href="16-Beta.html#cb101-9" tabindex="-1"></a>                  <span class="co">#These were chosen after viewing the plot without the zoom</span></span>
+<span id="cb101-10"><a href="16-Beta.html#cb101-10" tabindex="-1"></a>                  ggforce<span class="sc">::</span><span class="fu">facet_zoom</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.055</span>,<span class="sc">-</span><span class="fl">0.03</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.01</span>,<span class="fl">0.005</span>), <span class="at">zoom.size =</span> <span class="dv">1</span>)</span>
 <span id="cb101-11"><a href="16-Beta.html#cb101-11" tabindex="-1"></a><span class="co">#Save ggplot2 object with ggsave</span></span>
 <span id="cb101-12"><a href="16-Beta.html#cb101-12" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./Beta_diversity_mds_wunifrac_media_site_no_env.png&quot;</span>, <span class="at">plot =</span> nmds.wunifrac,</span>
 <span id="cb101-13"><a href="16-Beta.html#cb101-13" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">150</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
@@ -802,7 +805,7 @@ There are many other things you could do such as:</p>
 <li>Use different distance measures (<code>phyloseq::distanceMethodList</code>).
 <ul>
 <li>We have a phylogenetic tree in our <code>phyloseq</code> object which allows us to use <code>UniFrac</code> measures ("unifrac" and "wunifrac").</li>
-<li>If you do not have this you will have to use non-phylogenetic aware <code>betadiver</code> distances such as "jaccard" or "bray".</li>
+<li>If you do not have this you will have to use non-phylogenetic aware beta diversity distances such as "jaccard" or "bray".</li>
 </ul></li>
 <li>Use different different ordination methods (<code>?phyloseq:ordinate</code>).
 <ul>

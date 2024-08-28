@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-08-19" />
+<meta name="date" content="2024-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -345,7 +345,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="19-Appendix.html"><a href="19-Appendix.html"><i class="fa fa-check"></i><b>A</b> Mamba installs</a>
 <ul>
-<li class="chapter" data-level="A.1" data-path="19-Appendix.html"><a href="19-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>A.1</b> Mamba installation and environment</a></li>
+<li class="chapter" data-level="A.1" data-path="19-Appendix.html"><a href="19-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>A.1</b> Mamba installation and environment</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="19-Appendix.html"><a href="19-Appendix.html#install-specific-version-of-r-bioconductor-package"><i class="fa fa-check"></i><b>A.1.1</b> Install specific version of R bioconductor package</a></li>
+</ul></li>
 <li class="chapter" data-level="A.2" data-path="19-Appendix.html"><a href="19-Appendix.html#jupyter_appendix"><i class="fa fa-check"></i><b>A.2</b> Jupyter-notebook</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="19-Appendix.html"><a href="19-Appendix.html#r-packages"><i class="fa fa-check"></i><b>B</b> R packages</a>
@@ -457,8 +460,8 @@ This is the general consensus for <strong>human microbiome</strong> data.</p>
 <p>We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:</p>
 <ul>
 <li>What is the approximate read depth range of our dataset?
-<div id="radio_ZYNBUZUBEX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZYNBUZUBEX" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZYNBUZUBEX" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZYNBUZUBEX" value=""></input> <span><strong>20,000+</strong></span></label>
+<div id="radio_XMDSGJOLXM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XMDSGJOLXM" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XMDSGJOLXM" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XMDSGJOLXM" value=""></input> <span><strong>20,000+</strong></span></label>
 </div></li>
 </ul>
 <p>This is a good first step but what if we want to know how the read depths vary between sample groups?</p>
@@ -546,8 +549,8 @@ This can then be displayed with <code>IRdisplay::display_png()</code>.</p>
 <span id="cb32-4"><a href="09-Minimum_read_depth.html#cb32-4" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
 <span id="cb32-5"><a href="09-Minimum_read_depth.html#cb32-5" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./boxplot_x_site_y_depth.png&quot;</span>)</span></code></pre></div>
 Which site has the highest median depth (middle line of boxplot)?
-<div id="radio_AOSVVYQSCB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AOSVVYQSCB" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AOSVVYQSCB" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AOSVVYQSCB" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
+<div id="radio_XKIYXPAVFR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XKIYXPAVFR" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XKIYXPAVFR" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XKIYXPAVFR" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
 </div>
 </div>
 <div id="media-by-depth-boxplot" class="section level3 hasAnchor" number="9.4.4">
@@ -567,8 +570,8 @@ Carry this out in the same cell and run the code.</p>
 <span id="cb33-7"><a href="09-Minimum_read_depth.html#cb33-7" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
 <span id="cb33-8"><a href="09-Minimum_read_depth.html#cb33-8" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./boxplot_x_media_y_depth.png&quot;</span>)</span></code></pre></div>
 Which media has the lowest median depth (middle line of boxplot)?
-<div id="radio_MLTWWPSZUN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MLTWWPSZUN" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MLTWWPSZUN" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MLTWWPSZUN" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_JJGYOBWPKA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JJGYOBWPKA" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJGYOBWPKA" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJGYOBWPKA" value=""></input> <span><strong>TSA</strong></span></label>
 </div>
 <p>From the boxplots we can see there is no drastic difference between the depths of the different media groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.</p>
 <p>For more resources on <code>ggplot2</code> please see the <a href="19-Appendix.html#ggplot2_appendix">appendix</a> of this book.</p>
@@ -678,16 +681,16 @@ Add the following in the same cell and then run the code in the cell.</p>
 <p>We can see that the data lost 26 ASVs (2551 - 2525).</p>
 <p>Try to write your own R code in a new cell to answer the following questions:</p>
 What is the difference of the minimum number of reads between <code>pseq_min11K</code> and <code>pseq</code>?
-<div id="radio_PYRFDQSIAI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PYRFDQSIAI" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PYRFDQSIAI" value="answer"></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PYRFDQSIAI" value=""></input> <span><strong>42507</strong></span></label>
+<div id="radio_LHQKQERFXA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LHQKQERFXA" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LHQKQERFXA" value="answer"></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LHQKQERFXA" value=""></input> <span><strong>42507</strong></span></label>
 </div>
 How many samples were removed due to the read depth filtering?
-<div id="radio_SYHHYJKSBC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SYHHYJKSBC" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SYHHYJKSBC" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SYHHYJKSBC" value=""></input> <span><strong>42507</strong></span></label>
+<div id="radio_SHBMIPKMSD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SHBMIPKMSD" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SHBMIPKMSD" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SHBMIPKMSD" value=""></input> <span><strong>42507</strong></span></label>
 </div>
 How many reads were removed by the minimum read filtering?
-<div id="radio_MOOIYEUNPZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MOOIYEUNPZ" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MOOIYEUNPZ" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MOOIYEUNPZ" value="answer"></input> <span><strong>42507</strong></span></label>
+<div id="radio_TSULMTZSPE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TSULMTZSPE" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TSULMTZSPE" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TSULMTZSPE" value="answer"></input> <span><strong>42507</strong></span></label>
 </div>
 <div class="webex-solution">
 <button>

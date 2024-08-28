@@ -132,6 +132,7 @@ media-versus-env-samples
 conclusion
 mambainstalls
 mamba_install
+install-specific-version-of-r-bioconductor-package
 jupyter_appendix
 r-packages
 ggplot2_appendix

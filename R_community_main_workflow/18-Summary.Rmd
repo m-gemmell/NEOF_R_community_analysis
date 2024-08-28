@@ -6,7 +6,7 @@ You have learnt a lot during this course. This chapter will summarise what you h
 
 ## Dataset
 <center>
-![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
+![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid white"}</center>
 </center>
 
 You were introduced to the 16S dataset in the intro.
@@ -27,7 +27,7 @@ We discovered these findings through our analysis.
 
 ## Data preparation
 <center>
-![](figures/half_tablespoon.png){style="width:200px"}
+![](figures/half_tablespoon.png){style="width:200px; background: white; border-radius:5px"}
 </center>
 
 Briefly we carried out the following steps to prepare our data:
@@ -141,7 +141,7 @@ However, the biggest inconsistencies are within the TSA samples. followed by the
 This is shown by the loose clustering in the beta diversity of the these sample and the tight clustering for CVP & KBC samples.
 This indicates that variation within groups may be caused by the sample variation rather than media inconsistencies.
 In fact the KBC and CVP seem to "normalise" the community profiles.
-This is again hard to determine due to small numbers of replicates.
+However, this is hard to determine due to small numbers of replicates.
 
 ### Site or media
 <center>

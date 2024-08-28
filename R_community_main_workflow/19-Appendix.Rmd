@@ -28,7 +28,7 @@ bioconductor-microbiome bioconductor-ancombc=2.0.1 biom-format \
 r-tidyverse r-devtools r-ggforce pandoc r-plotly r-irkernel r-htmltools=0.5.4
 ```
 
-__Note:__ It is common that some tools/packages will conflict with others. To overcome this we can set the version by adding `=xx` after a tool name in `conda` (e.g. `r-htmltools=0.5.4`). We have set the version for `bioconductor-ancombc` as newer version are designed for a different package (`mia`) than `phyloseq`. Therefore newer version of ancombc2 do not work in our workflow.
+__Note:__ It is common that some tools/packages will conflict with others. To overcome this we can set the version by adding `=xx` after a tool name in `conda` (e.g. `r-htmltools=0.5.4`). We have set the version for `bioconductor-ancombc` as newer versions are designed for a different package (`mia`) than `phyloseq`. Therefore newer version of ancombc2 do not work in our workflow.
 
 Activate the environment in bash.
 
@@ -51,6 +51,20 @@ R
 ```{r, eval=FALSE}
 library("devtools")
 devtools::install_github("jbisanz/qiime2R")
+```
+
+
+### Install specific version of R bioconductor package
+
+If installing in R (rather than through conda/mamba) some packages, such as ancombc, needs to be installed with `BiocManager`.
+Specific versions of bioconductor pacages can be installed like below:
+
+```{R, eval=FALSE}
+#Install and load BiocManager
+install.packages("BiocManager")
+library("BiocManager")
+#Install specific ancombc version
+BiocManager::install("ancombc", version="2.0.1")
 ```
 
 ## Jupyter-notebook {#jupyter_appendix}
@@ -94,7 +108,7 @@ Below are some useful resource if you would like to learn ggplot2.
 
 The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It contains a section called [Understanding ggplot2](https://r-graphics.org/chapter-ggplot2) in its appendix which is useful for learning some key terminologies and concepts.
 
-`ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](#http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/).
+`ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/).
 
 [__ggplot2 function reference__](https://ggplot2.tidyverse.org/reference/#layers).
 
@@ -136,7 +150,7 @@ Alpha diversity measures assess the diversity of each sample separately. General
 
 The observed number of features is defined as the number of distinct features, such as ASVs, within a sample.
 
-The number of observed features can also be known as the feature richness of a sample. A sample with more present features than another would be said to be richer.
+The number of observed features can also be known as the feature richness of a sample. A sample with a higher number of present features than another would be said to be richer.
 
 ### Chao {#chao}
 
@@ -168,7 +182,9 @@ Faith's PD represents the minimum total branch length that covers all taxa withi
 
 A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.
 
-<center>![](figures/faith_pd.png){style="border-radius: 15px; width: 60%; border: 5px solid #333333"}</center>
+<center>
+![](figures/faith_pd.png){style="border-radius: 15px; width: 60%"}
+</center>
 
 ### Simpson {#simpson}
 
