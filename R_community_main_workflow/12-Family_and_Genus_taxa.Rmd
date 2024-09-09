@@ -174,7 +174,7 @@ family_rareaggregate_pseq <- microbiome::aggregate_rare(
 
 Choosing a good detection and prevalence threshold is quite difficult.
 It takes a lot of trial and error, and I find the thresholds to not be very intuitive to understand.
-One piece of advise is to only change one threshold at a time during your trial and errors.
+One piece of advice is to only change one threshold at a time during your trial and errors.
 
 ### Family bar chart
 <center>

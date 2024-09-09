@@ -340,7 +340,7 @@ Try to write your own R code in a new cell to answer the following questions:
 ```{r, echo = FALSE}
 opts_p <- c("__4__", answer="__613__", "__42507__")
 ```
-What is the difference of the minimum number of reads between `pseq_min11K` and `pseq`? `r longmcq(opts_p)`
+What is the difference between the minimum number of reads of `pseq_min11K` and `pseq`? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__4__", "__613__", "__42507__")
@@ -381,7 +381,7 @@ rm(pseq_min11K)
 
 Once you are finished with this notebook you can save it then close and halt it.
 
-## Minmum read depth: Summary
+## Minimum read depth: Summary
 <center>
 ![](figures/sum_blue.png){style="width:200px"}
 </center>

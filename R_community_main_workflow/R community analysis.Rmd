@@ -1301,7 +1301,7 @@ Try to write your own R code in a new cell to answer the following questions:
 ```{r, echo = FALSE}
 opts_p <- c("__4__", answer="__613__", "__42507__")
 ```
-What is the difference of the minimum number of reads between `pseq_min11K` and `pseq`? `r longmcq(opts_p)`
+What is the difference between the minimum number of reads of `pseq_min11K` and `pseq`? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__4__", "__613__", "__42507__")
@@ -1342,7 +1342,7 @@ rm(pseq_min11K)
 
 Once you are finished with this notebook you can save it then close and halt it.
 
-## Minmum read depth: Summary
+## Minimum read depth: Summary
 <center>
 ![](figures/sum_blue.png){style="width:200px"}
 </center>
@@ -1890,7 +1890,7 @@ family_rareaggregate_pseq <- microbiome::aggregate_rare(
 
 Choosing a good detection and prevalence threshold is quite difficult.
 It takes a lot of trial and error, and I find the thresholds to not be very intuitive to understand.
-One piece of advise is to only change one threshold at a time during your trial and errors.
+One piece of advice is to only change one threshold at a time during your trial and errors.
 
 ### Family bar chart
 <center>
@@ -2084,8 +2084,8 @@ In the chapters we will carry out:
 
 During this we will attempt to answer our questions from [Chapter 2](#sum_and_qs):
 
-- How does the bacterial communities change across the anthropisation gradient?
-- Is there a difference in the replicates of one site and media combination. I.e. do any of the media produce inconsistent profiles.
+- How do the bacterial communities change across the anthropisation gradient?
+- Is there a difference in the replicates of one site and media combination? I.e. Do any of the media produce inconsistent profiles?
 - Is there more difference between the sites or the media used?
 - Do any of the media produce a similar taxonomic profile to the environmental sample?
 
@@ -2842,7 +2842,7 @@ Additionally, we can see that there seems to be some separation of the sites wit
 ![](figures/elippses_plot.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
-We can crate an ordination plot with ellipses, circular shapes showing clustering of groups.
+We can create an ordination plot with ellipses, circular shapes showing clustering of groups.
 The statistics of the ellipses and visualisation can be carried out with the function `ggplot2::stat_ellipse()`.
 The primary purpose is to see if clusters overlap each other or are separate.
 
@@ -2910,7 +2910,7 @@ We can see that significant differences are found within the groups for media (P
 ![](figures/pear.png){style="width:100px"}
 </center>
 
-We will now see which media groups are significantly different to each other.
+We will now see which media groups are significantly different from each other.
 We will do this with pairwise PERMANOVA tests.
 Unfortunately the `vegan` library does not have a function to automatically do this so we will need to do some scripting.
 
@@ -3203,7 +3203,7 @@ There are many other things you could do such as:
 - Use different distance measures (`phyloseq::distanceMethodList`).
   - We have a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac").
   - If you do not have this you will have to use non-phylogenetic aware beta diversity distances such as "jaccard" or "bray".
-- Use different different ordination methods (`?phyloseq:ordinate`).
+- Use different ordination methods (`?phyloseq:ordinate`).
   - Different methods will produce different __percentage of variation explained__ values. If your plot has low values try another method to see if you can get higher values.
   - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values. This is perfectly acceptable and encouraged by many.
   
@@ -3332,7 +3332,7 @@ There are many more options that have been left as the default. Please see the p
 ![](figures/output_file_blue.png){style="width:200px"}
 </center>
 
-There is a lot of information in `ancom_class_out`. Therefore, lets extract the results we want to look at and then remove the large object.
+There is a lot of information in `ancom_class_out`. Therefore, let's extract the results we want to look at and then remove the large object.
 
 ```{r, eval=FALSE}
 #Output of analysis compared to reference groups
@@ -3378,7 +3378,7 @@ Go to the jupyter-notebook file explorer tab and click on the html file to open 
 
 One very clear pattern is that there are no biomarkers found for the site comparisons (MD vs UD and LD vs UD). I believe this is because we don't have enough replicates for the sites within the media samples and the differences between the medias are so large. However, there is a good amount of biomarkers for the three different medias compared to ENV.
 
-## DA: Create signifcant LFC long data frame
+## DA: Create significant LFC long data frame
 
 <center>
 ![](figures/portrait.png){style="width:200px"}
@@ -3400,7 +3400,7 @@ res_ancom_class_media <- res_ancom_class[,media_colnames]
 head(res_ancom_class_media)
 ```
 
-Because we had comparisons with more that 1 grouping (media & site) we might have rows with no significant results. We will therefore remove these rows.
+Because we had comparisons with more than 1 grouping (media & site) we might have rows with no significant results. We will therefore remove these rows.
 
 **Note:** The next 2 code sections use the packages `dplyr` & `tidyr` along with piping `%>%`. This is used as it would be very difficult to do these steps in base R and they are the code provided in the [`ANCOMBC2` tutorial](https://bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html). If you would like to learn more about these packages please see the [R for Data Science book](https://r4ds.had.co.nz/).
 
@@ -3571,7 +3571,7 @@ ggsave(filename = "./class_relabund_heatmap.png", plot = class_heatmap,
 IRdisplay::display_png(file="./class_relabund_heatmap.png")
 ```
 
-With this plot we can clearly see that there are many classess with abundances in the ENV samples that have very little in the media samples. Most of the relative abundances of the media samples consist of Gammaproteobacteria. The TSA and KBC samples also have a high abundance of Bacilli. Overall, this is a nice visual confirmation of our ANCOM results.
+With this plot we can clearly see that there are many classes with abundances in the ENV samples that have very little in the media samples. Most of the relative abundances of the media samples consist of Gammaproteobacteria. The TSA and KBC samples also have a high abundance of Bacilli. Overall, this is a nice visual confirmation of our ANCOM results.
 
 ## DA: summary
 
@@ -3584,11 +3584,11 @@ We have used ANCOMBC to detect biomarkers in the media samples compared to the E
 You could carry out more analysis in your future research in various ways:
 
 -   Carry out biomarker detection at different taxonomy levels such as genus.
-    -   We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there wasn't too many results to look at.
+    -   We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there weren't too many results to look at.
 -   There are many other types of tests and considerations to keep in mind. Check out the [ANCOMBC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC.html), it is very in depth.
     -   There is also a handy FAQ on the [ANCOMBC github page](https://github.com/FrederickHuangLin/ANCOMBC).
 
-That is the last of the analysis. In the final chapter we will review the steps we carried out and the answers to the various questions we have about the dataset.
+That is the last part of the analysis. In the final chapter we will review the steps we carried out and the answers to the various questions we have about the dataset.
 
 <!--chapter:end:17-Differential_abundance_analysis.Rmd-->
 
@@ -3659,7 +3659,7 @@ Due to the difference of media we cannot see any clear differences between the s
 Prior to alpha & beta diversity analysis we carried out rarefaction to normalise the depths between samples in [Chapter 14](#rarefaction_chap).
 This is a controversial technique.
 We carry it out due to the logic and the fact the QIIME2 developers recommend it.
-Please make you own decision.
+Please make your own decision.
 
 Two of the leading papers are:
 
@@ -3680,7 +3680,7 @@ The alpha diversity showed significant differences between the media and ENV sam
 Additionally, the alpha metrics between the 3 media groupings were also significantly different.
 This was the case for observed ASVs and the Chao1 estimator which had much higher values in the ENV samples.
 
-Although the ENV samples had higher Shannon scores (diversity), the values were also wide spread leading to lack of significance when comparing the ENV to CVP and TSA samples.
+Although the ENV samples had higher Shannon scores (diversity), the values were also widespread leading to lack of significance when comparing the ENV to CVP and TSA samples.
 
 No difference was found when comparing the sites.
 
@@ -3693,7 +3693,7 @@ There is also some presence of clustering by site within each media group which 
 
 Unfortunately we are not able to detect any differences between sites due to power and the large differences caused by media.
 
-### Differential abundance anlaysis
+### Differential abundance analysis
 <center>
 ![](figures/difference.png){style="width:200px"}
 </center>
@@ -3720,7 +3720,7 @@ Let's try to answer them.
 ![](figures/farm.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
-How does the bacterial communities change across the anthropisation gradient?
+How do the bacterial communities change across the anthropisation gradient?
 
 Due to the vast difference caused by the media we were not able to determine this.
 You could try to remove all but the ENV samples to determine this. 
@@ -3731,11 +3731,11 @@ However, you would not have much power with only 9 samples (3 sites by 3 replica
 ![](figures/replicate_difference.png){style="width:200px"}
 </center>
 
-Is there a difference in the replicates of one site and media combination? I.e. do any of the media produce inconsistent profiles?
+Is there a difference in the replicates of one site and media combination? I.e. Do any of the media produce inconsistent profiles?
 
 There are inconsistencies between the replicates of site and media combinations.
 However, the biggest inconsistencies are within the TSA samples. followed by the ENV samples
-This is shown by the loose clustering in the beta diversity of the these sample and the tight clustering for CVP & KBC samples.
+This is shown by the loose clustering in the beta diversity of these sample and the tight clustering for CVP & KBC samples.
 This indicates that variation within groups may be caused by the sample variation rather than media inconsistencies.
 In fact the KBC and CVP seem to "normalise" the community profiles.
 However, this is hard to determine due to small numbers of replicates.

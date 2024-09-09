@@ -107,7 +107,7 @@ There are many more options that have been left as the default. Please see the p
 ![](figures/output_file_blue.png){style="width:200px"}
 </center>
 
-There is a lot of information in `ancom_class_out`. Therefore, lets extract the results we want to look at and then remove the large object.
+There is a lot of information in `ancom_class_out`. Therefore, let's extract the results we want to look at and then remove the large object.
 
 ```{r, eval=FALSE}
 #Output of analysis compared to reference groups
@@ -153,7 +153,7 @@ Go to the jupyter-notebook file explorer tab and click on the html file to open 
 
 One very clear pattern is that there are no biomarkers found for the site comparisons (MD vs UD and LD vs UD). I believe this is because we don't have enough replicates for the sites within the media samples and the differences between the medias are so large. However, there is a good amount of biomarkers for the three different medias compared to ENV.
 
-## DA: Create signifcant LFC long data frame
+## DA: Create significant LFC long data frame
 
 <center>
 ![](figures/portrait.png){style="width:200px"}
@@ -175,7 +175,7 @@ res_ancom_class_media <- res_ancom_class[,media_colnames]
 head(res_ancom_class_media)
 ```
 
-Because we had comparisons with more that 1 grouping (media & site) we might have rows with no significant results. We will therefore remove these rows.
+Because we had comparisons with more than 1 grouping (media & site) we might have rows with no significant results. We will therefore remove these rows.
 
 **Note:** The next 2 code sections use the packages `dplyr` & `tidyr` along with piping `%>%`. This is used as it would be very difficult to do these steps in base R and they are the code provided in the [`ANCOMBC2` tutorial](https://bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html). If you would like to learn more about these packages please see the [R for Data Science book](https://r4ds.had.co.nz/).
 
@@ -346,7 +346,7 @@ ggsave(filename = "./class_relabund_heatmap.png", plot = class_heatmap,
 IRdisplay::display_png(file="./class_relabund_heatmap.png")
 ```
 
-With this plot we can clearly see that there are many classess with abundances in the ENV samples that have very little in the media samples. Most of the relative abundances of the media samples consist of Gammaproteobacteria. The TSA and KBC samples also have a high abundance of Bacilli. Overall, this is a nice visual confirmation of our ANCOM results.
+With this plot we can clearly see that there are many classes with abundances in the ENV samples that have very little in the media samples. Most of the relative abundances of the media samples consist of Gammaproteobacteria. The TSA and KBC samples also have a high abundance of Bacilli. Overall, this is a nice visual confirmation of our ANCOM results.
 
 ## DA: summary
 
@@ -359,8 +359,8 @@ We have used ANCOMBC to detect biomarkers in the media samples compared to the E
 You could carry out more analysis in your future research in various ways:
 
 -   Carry out biomarker detection at different taxonomy levels such as genus.
-    -   We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there wasn't too many results to look at.
+    -   We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there weren't too many results to look at.
 -   There are many other types of tests and considerations to keep in mind. Check out the [ANCOMBC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC.html), it is very in depth.
     -   There is also a handy FAQ on the [ANCOMBC github page](https://github.com/FrederickHuangLin/ANCOMBC).
 
-That is the last of the analysis. In the final chapter we will review the steps we carried out and the answers to the various questions we have about the dataset.
+That is the last part of the analysis. In the final chapter we will review the steps we carried out and the answers to the various questions we have about the dataset.

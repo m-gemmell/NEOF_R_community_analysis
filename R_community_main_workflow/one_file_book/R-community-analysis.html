@@ -13,7 +13,7 @@
 
 <meta name="author" content="Matthew R. Gemmell" />
 
-<meta name="date" content="2024-08-09" />
+<meta name="date" content="2024-09-05" />
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -140,7 +140,7 @@ img {
   height: auto;
 }
 /* show arrow before summary tag as in bootstrap
-TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+TODO: remove if bootstrap in updated in html_document (rmarkdown#1485) */
 details > summary {
   display: list-item;
   cursor: pointer;
@@ -164,10 +164,10 @@ details > summary {
 <div id="header">
 <h1 class="title">R community analysis</h1>
 <h4 class="author"><em>Matthew R. Gemmell</em></h4>
-<h4 class="date"><em>2024-08-09</em></h4>
+<h4 class="date"><em>2024-09-05</em></h4>
 </div>
 <center>
-<img src="figures/NEOF.png" style="border-radius: 15px; width: 300px" />
+<img src="figures/NEOF_rounded_corners.png" style="width:300px" />
 </center>
 
 
@@ -191,10 +191,9 @@ details > summary {
 <li>Run statistical analysis.</li>
 </ul>
 <p>There are <a href="https://neof-workshops.github.io/R_community_whqkt8/Supplemental/">supplemental</a> materials including importing other types of data into phyloseq, and the use of R plotly to produce interactive HTML based plots.</p>
-<div style="page-break-after: always;"></div>
 <div id="table-of-contents" class="section level2 unnumbered">
 <h2>Table of contents</h2>
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table" style="color: black; margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
 <td style="text-align:center;">
@@ -322,7 +321,7 @@ details > summary {
 <div id="dataset" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Dataset</h2>
 <center>
-<img src="figures/freshwater_france.png" style="border-radius: 5px; width: 500px; border: 5px solid #333333" />
+<img src="figures/freshwater_france.png" style="border-radius: 3px; width: 500px" />
 </center>
 <p>In this tutorial we will be using a 16S metabarcoding dataset derived from surface water from the Durance River in the south-east of France.
 Two major comparisons were carried out in combination with each other.</p>
@@ -459,7 +458,7 @@ R package or R Library?
 </center>
 <p>In this book we will be working with <a href="https://joey711.github.io/phyloseq/"><code>phyloseq</code></a> objects to preprocess our dataset, create visualisations, and carry out statistical analyses. This is a very popular object type for community abundance datasets as it contains the abundance table, metadata, and taxonomy table in one object, optionally containing the phylogenetic tree and reference sequences if wanted/required.</p>
 <center>
-<img src="figures/phyloseq_input.png" style="border-radius: 15px; width: 800px; border: 5px solid #333333" />
+<img src="figures/phyloseq_input.png" style="border-radius: 5px; width: 800px" />
 </center>
 <p>For more info on <code>phyloseq</code> and associated packages please see the <a href="#phyloseq_appendix">appendix</a>.</p>
 
@@ -480,13 +479,13 @@ If you do not see something similar please ask for assistance.</p>
 <center>
 <img src="figures/logon_pic.png" style="width:800px" />
 </center>
-<p>If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size.
-You will most likely need to use your browser’s tool bar to accomplish this.
-Ensure you can see the grey borders.</p>
-<p>These instructions will not work outside of this workshop.
-If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux</p>
+<p>If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.</p>
+<p>These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux</p>
 <p>The following link is a guide to install Mint Linux:<br />
 <a href="https://linuxmint-installation-guide.readthedocs.io/en/latest/" class="uri">https://linuxmint-installation-guide.readthedocs.io/en/latest/</a></p>
+<p>If you have a windows machine and would like to install linux on it you can install Windows Subsystem for Linux.</p>
+<p>The following link is a guide to instal linux via WSL:
+<a href="https://learn.microsoft.com/en-us/windows/wsl/install" class="uri">https://learn.microsoft.com/en-us/windows/wsl/install</a></p>
 </div>
 <div id="mamba" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Mamba</h2>
@@ -536,18 +535,18 @@ Can’t see the whole webVNC window?
 <p>You may need to zoom out with your browser so you can see the full webVNC window.</p>
 <ul>
 <li><strong>Chrome</strong>: Click on the <strong>three dots in vertical line</strong> (
-<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <circle cx="256" cy="256" r="48"></circle> <circle cx="256" cy="416" r="48"></circle> <circle cx="256" cy="96" r="48"></circle></svg>
+<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;background:white;border:solid white;" xmlns="http://www.w3.org/2000/svg"> <circle cx="256" cy="256" r="48"></circle> <circle cx="256" cy="416" r="48"></circle> <circle cx="256" cy="96" r="48"></circle></svg>
 ) on the top left for a dropdown menu which includes zoom options.</li>
 <li><strong>Edge</strong>: Click on the <strong>three horizontal lines</strong> (
-<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <circle cx="256" cy="256" r="48"></circle> <circle cx="416" cy="256" r="48"></circle> <circle cx="96" cy="256" r="48"></circle></svg>
+<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;background:white;border:solid white;" xmlns="http://www.w3.org/2000/svg"> <circle cx="256" cy="256" r="48"></circle> <circle cx="416" cy="256" r="48"></circle> <circle cx="96" cy="256" r="48"></circle></svg>
 ) on the top left for a dropdown menu which includes zoom options.</li>
 <li><strong>Firefox</strong>: Click on the <strong>three dots in horizontal line</strong> (
-<svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+<svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;background:white;border:solid white;" xmlns="http://www.w3.org/2000/svg"> <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
 ) on the top left for a dropdown menu which includes zoom options.</li>
 </ul>
 </div>
 <center>
-<img src="figures/jupyter_notebook_example_1.png" style="width: 1000px; border-radius: 15px; border: 5px solid #333333" />
+<img src="figures/jupyter_notebook_example_1.png" style="width: 1000px; border-radius: 15px" />
 </center>
 </div>
 <div id="create-r-notebook" class="section level2" number="5.2">
@@ -559,7 +558,7 @@ Can’t see the whole webVNC window?
 </ol>
 <p>This will open up a new R notebook like below.</p>
 <center>
-<img src="figures/jupyter_notebook_example_2.png" style="width: 1000px; border-radius: 15px; border: 5px solid #333333" />
+<img src="figures/jupyter_notebook_example_2.png" style="width: 1000px; border-radius: 15px" />
 </center>
 </div>
 <div id="cells-and-code" class="section level2" number="5.3">
@@ -571,7 +570,7 @@ Can’t see the whole webVNC window?
 <p>When pressing enter in <strong>cells</strong> it will create a new line. To run all commands in a <strong>cell</strong> press <code>CTRL + enter</code>.</p>
 <p>Run your current <strong>cell</strong> and you should see something like below.</p>
 <center>
-<img src="figures/jupyter_notebook_example_3.png" style="width: 1000px; border-radius: 15px; border: 5px solid #333333" />
+<img src="figures/jupyter_notebook_example_3.png" style="width: 1000px; border-radius: 15px" />
 </center>
 </div>
 <div id="create-new-cells" class="section level2" number="5.4">
@@ -604,7 +603,7 @@ and scissors
 </ul>
 <p>You should then see something like the below in your notebook.</p>
 <center>
-<img src="figures/jupyter_notebook_example_4.png" style="width: 1000px; border-radius: 15px; border: 5px solid #333333" />
+<img src="figures/jupyter_notebook_example_4.png" style="width: 1000px; border-radius: 15px" />
 </center>
 <p>There is no output printed for <strong>cell</strong> 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in <strong>cell</strong> 2 before <strong>cell</strong> 3 was run.</p>
 </div>
@@ -643,7 +642,7 @@ on the toolbar.</li>
 </ul></li>
 </ul>
 <center>
-<img src="figures/jupyter_notebook_example_5.png" style="width: 1000px; border-radius: 15px; border: 5px solid #333333" />
+<img src="figures/jupyter_notebook_example_5.png" style="width: 1000px; border-radius: 15px" />
 </center>
 <ul>
 <li>Add the following to the <strong>“Markdown”</strong> cell to create a first level header.
@@ -671,7 +670,7 @@ Markdown
 <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;background:white;" xmlns="http://www.w3.org/2000/svg"> <path d="M320,146s24.36-12-64-12A160,160,0,1,0,416,294" style="fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"></path> <polyline points="256 58 336 138 256 218" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></polyline></svg>
 towards the top right.</p>
 <center>
-<img src="figures/jupyter_notebook_refresh.png" style="width: 1000px; border-radius: 15px; border: 5px solid #333333" />
+<img src="figures/jupyter_notebook_refresh.png" style="width: 1000px; border-radius: 15px" />
 </center>
 <p>With that quick tutorial of <code>jupyter-notebook</code> we can start our community analysis in the next chapter.</p>
 <p>For more info on <code>jupter-notebook</code> please see the <a href="#jupyter_appendix">appendix</a>.</p>
@@ -691,7 +690,7 @@ towards the top right.</p>
 <div id="preprocess_section" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Data prep intro</h1>
 <center>
-<img src="figures/half_tablespoon.png" style="width:200px" />
+<img src="figures/half_tablespoon.png" style="width:200px; background: white; border-radius:15px" />
 </center>
 <p>In the next 3 chapters (7-9) we will learn how to:</p>
 <ul>
@@ -712,7 +711,7 @@ However, from chapters 10 onwards you will make more decisions on how many <stro
 <div id="import-notebook" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Import: notebook</h2>
 <center>
-<img src="figures/r_script.png" style="width:200px" />
+<img src="figures/r_script.png" style="width:200px; background:white;border-radius:15px" />
 </center>
 <p>Prior to any coding, we will create a new directory, our analysis directory.
 Next, we’ll create a new notebook called <strong>“1-Import.ipynb”</strong> in it.
@@ -861,7 +860,8 @@ sparsity = Z/C
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co">#Save phyloseq as file</span></span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="fu">save</span>(pseq, <span class="at">file =</span> <span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
 <p>This saves our object <code>pseq</code> into the file <code>phyloseq.RData</code>. The suffix <code>.RData</code> is the normal convention.</p>
-<p>We have saved our final object of the notebook. Close and halt it.</p>
+<p>We have saved our final object of the notebook. Save the notebook then close and halt it.</p>
+<p><strong>Tip:</strong> Make sure to save your notebooks regularly. Sometimes jupyter-notebook freezes and you may lose your progress since your last save.</p>
 </div>
 <div id="import-recap" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Import: recap</h2>
@@ -963,7 +963,7 @@ We will save this as a <code>.png</code> file with the functions <code>png()</co
 <center>
 <img src="figures/nice_table.png" style="width:200px" />
 </center>
-<p>The last information we will look at before some preprocessing are the ASVs (Amplicon Sequnces Variants).</p>
+<p>Before preprocessing we will look at information related to the ASVs (Amplicon Sequnces Variants).</p>
 <p>A useful <code>phyloseq</code> command is <code>otu_table()</code>. This allows us to extract the ASV/OTU/feature table. With this we can then carry out some other commands.</p>
 <p>For demonstrative purposes write and run the following code in its own <strong>cell</strong> to display the ASV table.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co">#Can extract ASV table (known as otu table in phyloseq)</span></span>
@@ -1060,8 +1060,8 @@ This is the general consensus for <strong>human microbiome</strong> data.</p>
 <p>We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:</p>
 <ul>
 <li>What is the approximate read depth range of our dataset?
-<div id="radio_ANSKTLAPQG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ANSKTLAPQG" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ANSKTLAPQG" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ANSKTLAPQG" value=""></input> <span><strong>20,000+</strong></span></label>
+<div id="radio_VJPDFVWMZW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VJPDFVWMZW" value=""></input> <span><strong>1-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VJPDFVWMZW" value="answer"></input> <span><strong>10,000-18,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VJPDFVWMZW" value=""></input> <span><strong>20,000+</strong></span></label>
 </div></li>
 </ul>
 <p>This is a good first step but what if we want to know how the read depths vary between sample groups?</p>
@@ -1148,12 +1148,10 @@ This can then be displayed with <code>IRdisplay::display_png()</code>.</p>
 <span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">100</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
 <span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
 <span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./boxplot_x_site_y_depth.png&quot;</span>)</span></code></pre></div>
-<ul>
-<li>Which site has the highest median depth (middle line of boxplot)?
-<div id="radio_JLDEWCBCFM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JLDEWCBCFM" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JLDEWCBCFM" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JLDEWCBCFM" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
-</div></li>
-</ul>
+Which site has the highest median depth (middle line of boxplot)?
+<div id="radio_TBYDMUENKJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TBYDMUENKJ" value="answer"></input> <span><strong>LD (Lower Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TBYDMUENKJ" value=""></input> <span><strong>MD (Middle Durance)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TBYDMUENKJ" value=""></input> <span><strong>UD (Upper Durance</strong></span></label>
+</div>
 </div>
 <div id="media-by-depth-boxplot" class="section level3" number="9.4.4">
 <h3><span class="header-section-number">9.4.4</span> Media by depth boxplot</h3>
@@ -1171,12 +1169,10 @@ Carry this out in the same cell and run the code.</p>
 <span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">100</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
 <span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
 <span id="cb33-8"><a href="#cb33-8" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./boxplot_x_media_y_depth.png&quot;</span>)</span></code></pre></div>
-<ul>
-<li>Which media has the lowest median depth (middle line of boxplot)?
-<div id="radio_FBUDCCLXMP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FBUDCCLXMP" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FBUDCCLXMP" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FBUDCCLXMP" value=""></input> <span><strong>TSA</strong></span></label>
-</div></li>
-</ul>
+Which media has the lowest median depth (middle line of boxplot)?
+<div id="radio_TOCFKMVMRE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TOCFKMVMRE" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TOCFKMVMRE" value=""></input> <span><strong>ENV</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TOCFKMVMRE" value=""></input> <span><strong>TSA</strong></span></label>
+</div>
 <p>From the boxplots we can see there is no drastic difference between the depths of the different media groups. We will therefore continue and make some rarefaction curves to further assess the depth of our samples.</p>
 <p>For more resources on <code>ggplot2</code> please see the <a href="#ggplot2_appendix">appendix</a> of this book.</p>
 </div>
@@ -1211,7 +1207,7 @@ Additionally, we will ensure it is a data frame with the function <code>as.data.
 <div id="vegans-rarecurve" class="section level3" number="9.5.2">
 <h3><span class="header-section-number">9.5.2</span> vegan’s rarecurve</h3>
 <center>
-<img src="figures/vegan.png" style="width:200px" />
+<img src="figures/vegan.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>With this data frame we can create a rarefaction curve with <code>vegan</code>’s <code>rarecurve()</code> function.</p>
 <p>Add the following code to the same cell and run it.</p>
@@ -1284,20 +1280,18 @@ Add the following in the same cell and then run the code in the cell.</p>
 <span id="cb39-5"><a href="#cb39-5" tabindex="-1"></a>pseq_min11K</span></code></pre></div>
 <p>We can see that the data lost 26 ASVs (2551 - 2525).</p>
 <p>Try to write your own R code in a new cell to answer the following questions:</p>
-<ul>
-<li>What is the difference of the minimum number of reads between <code>pseq_min11K</code> and <code>pseq</code>?
-<div id="radio_ESXFMWEXUU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ESXFMWEXUU" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ESXFMWEXUU" value="answer"></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ESXFMWEXUU" value=""></input> <span><strong>42507</strong></span></label>
-</div></li>
-<li>How many samples were removed due to the read depth filtering?
-<div id="radio_HYNTRQRXRL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HYNTRQRXRL" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HYNTRQRXRL" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HYNTRQRXRL" value=""></input> <span><strong>42507</strong></span></label>
-</div></li>
-<li>How many reads were removed by the minimum read filtering?
-<div id="radio_BAQTMXHTVY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BAQTMXHTVY" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BAQTMXHTVY" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BAQTMXHTVY" value="answer"></input> <span><strong>42507</strong></span></label>
-</div></li>
-</ul>
+What is the difference of the minimum number of reads between <code>pseq_min11K</code> and <code>pseq</code>?
+<div id="radio_WXUFUQWNOL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WXUFUQWNOL" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WXUFUQWNOL" value="answer"></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WXUFUQWNOL" value=""></input> <span><strong>42507</strong></span></label>
+</div>
+How many samples were removed due to the read depth filtering?
+<div id="radio_RTQCKJCTJY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RTQCKJCTJY" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RTQCKJCTJY" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RTQCKJCTJY" value=""></input> <span><strong>42507</strong></span></label>
+</div>
+How many reads were removed by the minimum read filtering?
+<div id="radio_YZQEIOTWZV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YZQEIOTWZV" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YZQEIOTWZV" value=""></input> <span><strong>613</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YZQEIOTWZV" value="answer"></input> <span><strong>42507</strong></span></label>
+</div>
 <div class="webex-solution">
 <button>
 Tip
@@ -1429,13 +1423,13 @@ Please create your own coding and markdown cells where you think appropriate.</p
 <div id="chaptaxaplots" class="section level1" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Taxa plots</h1>
 <center>
-<img src="figures/owl_eyes.png" style="width:200px" />
+<img src="figures/owl_eyes.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>Now that we have our Phylum relative abundance <code>phyloseq</code> we can create a bar chart.</p>
 <div id="simple-bar-chart" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Simple bar chart</h2>
 <center>
-<img src="figures/bar_chart.png" style="width:200px" />
+<img src="figures/bar_chart.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>To create, save, and view a simple phylum bar chart we can use the following code.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="co">#Simple bar chart</span></span>
@@ -1481,12 +1475,10 @@ Use the below code to produce and visualise a heatmap.</p>
 <span id="cb49-8"><a href="#cb49-8" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
 <span id="cb49-9"><a href="#cb49-9" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./phylum_relabund_heatmap.png&quot;</span>)</span></code></pre></div>
 <p>With the heatmap it is much easier to tell what the relative abundances of different phyla are.</p>
-<ul>
-<li>What is the most abundant phyla across the samples?
-<div id="radio_BNOQWJQOMP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BNOQWJQOMP" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BNOQWJQOMP" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BNOQWJQOMP" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
-</div></li>
-</ul>
+What is the most abundant phyla across the samples?
+<div id="radio_DGEGTFYOJM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DGEGTFYOJM" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DGEGTFYOJM" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DGEGTFYOJM" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
+</div>
 </div>
 <div id="aggregateraretaxa" class="section level2" number="11.3">
 <h2><span class="header-section-number">11.3</span> Aggregate rare taxa</h2>
@@ -1556,7 +1548,7 @@ Additionally, it seems that the biggest difference between samples is due to the
 </center>
 <p>One of the many great advantages of <code>ggplot2</code> is that you can create plots tailored to your metadata.
 As an example we will create another taxonomy bar chart but have one bar for each media site.</p>
-<p>We’ll use a very similar code as the above bar chart but add the <code>microbiome::plot_composition</code> option <code>average_by =</code>.
+<p>We’ll use very similar code as the above bar chart but add the <code>microbiome::plot_composition</code> option <code>average_by =</code>.
 With this we will average the rare aggregated relative abundance values by the four different media.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="co">#Plot by media</span></span>
 <span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a>phylum_media_bar <span class="ot">&lt;-</span> </span>
@@ -1574,12 +1566,12 @@ With this we will average the rare aggregated relative abundance values by the f
 <p>Now we get a good picture of which medias have the highest and lowest phlya diversity.
 The Environmental samples (ENV) definitely have the highest diversity with clear presence of all phyla.</p>
 Which media has the highest relative abundance of <em>Protoebacteria</em> and the lowest phyla diversity (excluding ENV)?
-<div id="radio_CMGLKZAHGP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CMGLKZAHGP" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CMGLKZAHGP" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CMGLKZAHGP" value=""></input> <span><strong>TSA</strong></span></label>
+<div id="radio_FQRFUPLTDM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FQRFUPLTDM" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FQRFUPLTDM" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FQRFUPLTDM" value=""></input> <span><strong>TSA</strong></span></label>
 </div>
 Which media has the lowest relative abundance of <em>Protoebacteria</em> and the highest phyla diversity (excluding ENV)?
-<div id="radio_NJGFVSVLNJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NJGFVSVLNJ" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NJGFVSVLNJ" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NJGFVSVLNJ" value="answer"></input> <span><strong>TSA</strong></span></label>
+<div id="radio_LTPMWWOJUK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LTPMWWOJUK" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LTPMWWOJUK" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LTPMWWOJUK" value="answer"></input> <span><strong>TSA</strong></span></label>
 </div>
 <p>Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.</p>
 </div>
@@ -1949,10 +1941,10 @@ Bar chart
 <p>In the next 4 chapters we will carry out diversity analyses. This will include calculating and visualising diversity values plus carrying out the associated statistics.</p>
 <p>In the chapters we will carry out:</p>
 <ul>
-<li><a href="#rarefaction_chap">Rarefaction of our ASV table.</a></li>
-<li><a href="#alpha_chap">Alpha diversity of the rarefied data.</a></li>
-<li><a href="#beta_chap">Beta diversity of the rarefied data.</a></li>
-<li><a href="#DA_chap">Biomarker detection.</a></li>
+<li><a href="#rarefaction_chap">Rarefaction of our ASV table</a></li>
+<li><a href="#alpha_chap">Alpha diversity of the rarefied data</a></li>
+<li><a href="#beta_chap">Beta diversity of the rarefied data</a></li>
+<li><a href="#DA_chap">Biomarker detection</a></li>
 </ul>
 <p>During this we will attempt to answer our questions from <a href="#sum_and_qs">Chapter 2</a>:</p>
 <ul>
@@ -1966,7 +1958,7 @@ Bar chart
 <div id="rarefaction_chap" class="section level1" number="14">
 <h1><span class="header-section-number">Chapter 14</span> Rarefaction</h1>
 <center>
-<img src="figures/whale.png" style="width:200px" />
+<img src="figures/whale.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>We are going to create a rarefied abundance table in this chapter.
 This can be a controversial topic.
@@ -1987,8 +1979,7 @@ Add the following to the top of this new notebook to load the required libraries
 <span id="cb68-7"><a href="#cb68-7" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;phyloseq.RData&quot;</span>)</span>
 <span id="cb68-8"><a href="#cb68-8" tabindex="-1"></a><span class="co">#Load ASV count vector</span></span>
 <span id="cb68-9"><a href="#cb68-9" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;num_asvs_vec.RData&quot;</span>)</span></code></pre></div>
-<p>Ensure you add markdown and code cells to this notebook to give yourself
-a good structure.</p>
+<p>Ensure you add markdown and code cells to this notebook to give it structure.</p>
 </div>
 <div id="rarefaction-curve" class="section level2" number="14.2">
 <h2><span class="header-section-number">14.2</span> Rarefaction curve</h2>
@@ -2010,7 +2001,7 @@ many unique ASVs it has currently discovered from all 10 samplings.</p>
 <div id="bird-analogy" class="section level3" number="14.2.1">
 <h3><span class="header-section-number">14.2.1</span> Bird analogy</h3>
 <center>
-<img src="figures/ibyster.png" style="width:200px" />
+<img src="figures/ibyster.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>You are cataloguing the bird diversity (ASV diversity) in three forests/woods in Hampshire (3 samples of our abundance table).
 You record your findings over a week for each forest.
@@ -2115,19 +2106,16 @@ This can be caused by our barcodes not picking up all species, our sampling wasn
 <img src="figures/palette_brush.png" style="width:200px" />
 </center>
 <p>It is a useful plot but we can make it better!
-We will do that with the following addition:</p>
-<ul>
-<li>Adding extra options to <code>vegan::rarecurve()</code>:
+We will add the following options to <code>vegan::rarecurve()</code>:</p>
 <ul>
 <li><code>lwd</code>: Sets the line width of the plot.</li>
 <li><code>label</code>: Turn the sample labels on (<code>T</code>) or off (<code>F</code>). We will turn them off as it is hard to read them all.</li>
 <li><code>sample</code>: Draws a vertical line at the specified depth.
 Additionally, draws a horizontal line for each sample showing
 how many ASVs were discovered at the sampling depth.</li>
-</ul></li>
 </ul>
 <p>We will initially use our minimum sample depth as our rarefaction/sampling depth.
-This is a good idea if it seems like a good amount as it will allow us to keep all our samples after rarefaction.
+If you can use your minimum depth it is always preferable as it allows you to keep all your samples.
 Any samples with a lower depth than our final rarefaction size will be removed.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a><span class="co">#Improved plot saved as file</span></span>
 <span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;./rarefaction_plot.png&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>,</span>
@@ -2176,26 +2164,26 @@ A slope of 1 shows a flat vertical line (not what we want).</p>
 <p>With the calculated slopes attempt the following questions:</p>
 <ol style="list-style-type: decimal">
 <li>Which sample has the largest slope value?
-<div id="radio_ASQKEEIJMV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ASQKEEIJMV" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ASQKEEIJMV" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ASQKEEIJMV" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_MKETCJXBNH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MKETCJXBNH" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MKETCJXBNH" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MKETCJXBNH" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which sample has the lowest slope value?
-<div id="radio_CYKVSJIQIX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CYKVSJIQIX" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CYKVSJIQIX" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CYKVSJIQIX" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_FGPEIPLCSZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FGPEIPLCSZ" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FGPEIPLCSZ" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FGPEIPLCSZ" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which samples have larger slope values, the environmental samples or media samples?
-<div id="radio_ENVTMIBWPD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ENVTMIBWPD" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ENVTMIBWPD" value=""></input> <span><strong>Media</strong></span></label>
+<div id="radio_SULVHJUDCP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SULVHJUDCP" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SULVHJUDCP" value=""></input> <span><strong>Media</strong></span></label>
 </div></li>
 </ol>
 <p>Overall the slopes values are low (&lt;0.01).
 It is noticeable that the environmental samples have higher slopes than the media samples.
-Biologically, this makes sense as there is no bias being introduced by media.</p>
+Biologically, this makes sense as there is no bias, whereas the media do introduce biases.</p>
 </div>
 <div id="rarefy-data" class="section level2" number="14.4">
 <h2><span class="header-section-number">14.4</span> Rarefy data</h2>
 <center>
-<img src="figures/pangolin.png" style="width:200px" />
+<img src="figures/pangolin.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>The minimum sample depth appears to be a good choice for rarefying.
 It keeps all the samples and at this depth the samples have a very good coverage of the ASVs present in the data.
@@ -2252,7 +2240,7 @@ I would definetly be happy with this outcome.</p>
 <div id="alpha_chap" class="section level1" number="15">
 <h1><span class="header-section-number">Chapter 15</span> Alpha diversity</h1>
 <center>
-<img src="figures/alpha.png" style="width:200px" />
+<img src="figures/alpha.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>In this chapter we are going to produce alpha diversity plots and statistics with our rarefied data.
 Alpha diversity is carried out by producing a metric for each sample.
@@ -2364,7 +2352,7 @@ We’ll try 150 (height) and 250 (width).</p>
 <span id="cb80-9"><a href="#cb80-9" tabindex="-1"></a><span class="co">#Display plot</span></span>
 <span id="cb80-10"><a href="#cb80-10" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./Alpha_diversity_media_boxplot.png&quot;</span>)</span></code></pre></div>
 <p>How do I choose a good height and width?
-This comes down to trial and error and experience.
+This comes down to trial and error, and experience.
 You want something with a good aspect ratio for the plot and you want all the text to be clear.
 Additionally, the size requirements of figures for journals will play a big consideration as well.
 One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.</p>
@@ -2385,16 +2373,16 @@ This can be carried out with the function<code>phyloseq::estimate_richness()</co
 <p>We have all the alpha metrics in the new data frame.
 Additionally, we also have the standard error for some of the metrics (e.g. <code>se.chao1</code>).</p>
 <p>With this information we can carry out a pairwise comparison using Wilcoxon rank sum test (the same way as QIIME2).
-Base R comes with the function <code>pairwsie.wilcox.test()</code> to carry this out.
+Base R comes with the function <code>pairwise.wilcox.test()</code> to carry this out.
 We’ll do this using media as our groups from the <code>sample_data()</code> and the Observed metric from the alpha_df.</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a><span class="co">#Paired wilcoxon test</span></span>
 <span id="cb82-2"><a href="#cb82-2" tabindex="-1"></a><span class="co">#Observed</span></span>
 <span id="cb82-3"><a href="#cb82-3" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(alpha_df<span class="sc">$</span>Observed, phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq_rarefy)<span class="sc">$</span>media)</span></code></pre></div>
 <p>You can ignore the warning messages in this case.</p>
 <p>Observe the results.</p>
-Are all the pairwise comparisons significant different (&lt;0.05)?
-<div id="radio_XKMHGZWILT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XKMHGZWILT" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XKMHGZWILT" value=""></input> <span><strong>No</strong></span></label>
+Are all the pairwise comparisons significantly different (&lt;0.05)?
+<div id="radio_ROMPAHFTJY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ROMPAHFTJY" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ROMPAHFTJY" value=""></input> <span><strong>No</strong></span></label>
 </div>
 <p>The test has carried out P value adjustments using the Holm-Bonferroni method (<code>P value adjustment method: holm</code>) which is good.</p>
 <p>In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
@@ -2420,7 +2408,7 @@ Alpha stats solution
 The only significant differences are between ENV &amp; KBC, and between KBC &amp; TSA.
 Going back to the boxplot, does this look like the case?
 I would say yes as the IQRs for CVP, KBC, and TSA all overlap.
-There is little to no overlap of the IQRs of KBC and TSA against ENV.</p>
+There is little to no overlap of the IQRs of KBC and TSA, or of KBC and ENV.</p>
 <p>We can therefore make these claims about the alpha diversity values of the groups.</p>
 <ul>
 <li>ENV has the highest number of observed ASVs and the highest diversity.</li>
@@ -2433,7 +2421,7 @@ There is little to no overlap of the IQRs of KBC and TSA against ENV.</p>
 <div id="alpha-diversity-violin-plot" class="section level2" number="15.4">
 <h2><span class="header-section-number">15.4</span> Alpha diversity: violin plot</h2>
 <center>
-<img src="figures/violin.png" style="width:200px" />
+<img src="figures/violin.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>Boxplots are quite nice but violin plots can be even nicer.
 They show the distribution of the data in the IQR better and you can display each value.</p>
@@ -2534,14 +2522,14 @@ The environmental samples have much higher diversity samples than the media samp
 <div id="beta_chap" class="section level1" number="16">
 <h1><span class="header-section-number">Chapter 16</span> Beta</h1>
 <center>
-<img src="figures/beta.png" style="width:200px" />
+<img src="figures/beta.png" style="width:200px; background: white; border-radius:15px; border:solid white 5px" />
 </center>
 <p>In this chapter we are going to carry out beta diversity analysis.
 This will include the production of ordination plots and statistical analysis.</p>
 <p>When carrying out beta diversity all samples are compared in a pairwise manner.
 Using various metrics a table of pairwise distances is created.
 These distances are dissimilarity measures with smaller values indicating higher similarity and larger values representing higher dissimilarity.</p>
-<p>With these dissimilarity measures we can produce scatter plots based visualisations (e.g. PCoA, &amp; NMDS plots).
+<p>With these dissimilarity measures we can produce scatter plot based visualisations (e.g. PCoA, &amp; NMDS plots).
 Samples with low dissimilarity (i.e. similar samples) will be close to each other (cluster).
 Samples with high dissimilarity will be apart from each other.
 In a perfect example samples from the same group will form clusters that are distinct from the clusters of other groups.</p>
@@ -2622,12 +2610,12 @@ In this case the total is &gt;88% which is very good.</p>
 </ul>
 <p>Additionally, we can see that there seems to be some separation of the sites within the different media groups. This is clear in TSA and ENV but not in CVP and KBC since the cluster is very tight (short distances).</p>
 </div>
-<div id="beta-plot-ordination-with-ellipse" class="section level2" number="16.4">
-<h2><span class="header-section-number">16.4</span> Beta: plot ordination with ellipse</h2>
+<div id="beta-plot-ordination-with-ellipses" class="section level2" number="16.4">
+<h2><span class="header-section-number">16.4</span> Beta: plot ordination with ellipses</h2>
 <center>
 <img src="figures/elippses_plot.png" style="width:200px; border-radius:15px; background:white" />
 </center>
-<p>We can crate an ordination plot with ellipse, circular shapes showing clustering of groups.
+<p>We can crate an ordination plot with ellipses, circular shapes showing clustering of groups.
 The statistics of the ellipses and visualisation can be carried out with the function <code>ggplot2::stat_ellipse()</code>.
 The primary purpose is to see if clusters overlap each other or are separate.</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a><span class="co">#Plot ordination with ellipse</span></span>
@@ -2683,7 +2671,7 @@ We can see that significant differences are found within the groups for media (P
 </center>
 <p>We will now see which media groups are significantly different to each other.
 We will do this with pairwise PERMANOVA tests.
-Unfortunately the <code>vegan</code> library does not have a function to do this so we will need to do some scripting.</p>
+Unfortunately the <code>vegan</code> library does not have a function to automatically do this so we will need to do some scripting.</p>
 <p>The first step is to get every combination of groupings with the <code>combn()</code> and <code>unique()</code> functions.</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a><span class="co">#Pairwise comparisons</span></span>
 <span id="cb95-2"><a href="#cb95-2" tabindex="-1"></a><span class="co">#Get combinations of unique media values</span></span>
@@ -2716,8 +2704,10 @@ Additionally, we can extract the metadata from this subsetted <code>phyloseq</co
 <span id="cb97-6"><a href="#cb97-6" tabindex="-1"></a>wunifrac_pairwise_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(wunifrac_dist_mat <span class="sc">~</span> media, </span>
 <span id="cb97-7"><a href="#cb97-7" tabindex="-1"></a>                                           <span class="at">data =</span> metadf_subset, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
 <span id="cb97-8"><a href="#cb97-8" tabindex="-1"></a>wunifrac_pairwise_adonis</span></code></pre></div>
-We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
-#### Pairwise PERMANOVA on all combinations
+<p>We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).</p>
+</div>
+<div id="pairwise-permanova-on-all-combinations" class="section level4" number="16.5.2.2">
+<h4><span class="header-section-number">16.5.2.2</span> Pairwise PERMANOVA on all combinations</h4>
 <center>
 <img src="figures/combination_lock_2.png" style="width:200px" />
 </center>
@@ -2819,8 +2809,8 @@ To see the differences between the 3 media it will be good to remove it and prod
 <span id="cb101-6"><a href="#cb101-6" tabindex="-1"></a>nmds.wunifrac <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">plot_ordination</span>(pseq_rarefy_no_env, ord.mds.wunifrac,</span>
 <span id="cb101-7"><a href="#cb101-7" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&quot;site&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;media&quot;</span>) <span class="sc">+</span></span>
 <span id="cb101-8"><a href="#cb101-8" tabindex="-1"></a>                  <span class="co">#Choose a ranges for the x axis and y axis to zoom into</span></span>
-<span id="cb101-9"><a href="#cb101-9" tabindex="-1"></a>                  <span class="co">#Thiese were chosen after viewing the plot without the zoom</span></span>
-<span id="cb101-10"><a href="#cb101-10" tabindex="-1"></a>                  ggforce<span class="sc">::</span><span class="fu">facet_zoom</span>( <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.055</span>,<span class="sc">-</span><span class="fl">0.03</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.01</span>,<span class="fl">0.005</span>), <span class="at">zoom.size =</span> <span class="dv">1</span>)</span>
+<span id="cb101-9"><a href="#cb101-9" tabindex="-1"></a>                  <span class="co">#These were chosen after viewing the plot without the zoom</span></span>
+<span id="cb101-10"><a href="#cb101-10" tabindex="-1"></a>                  ggforce<span class="sc">::</span><span class="fu">facet_zoom</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.055</span>,<span class="sc">-</span><span class="fl">0.03</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.01</span>,<span class="fl">0.005</span>), <span class="at">zoom.size =</span> <span class="dv">1</span>)</span>
 <span id="cb101-11"><a href="#cb101-11" tabindex="-1"></a><span class="co">#Save ggplot2 object with ggsave</span></span>
 <span id="cb101-12"><a href="#cb101-12" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./Beta_diversity_mds_wunifrac_media_site_no_env.png&quot;</span>, <span class="at">plot =</span> nmds.wunifrac,</span>
 <span id="cb101-13"><a href="#cb101-13" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">150</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
@@ -2938,7 +2928,7 @@ There are many other things you could do such as:</p>
 <li>Use different distance measures (<code>phyloseq::distanceMethodList</code>).
 <ul>
 <li>We have a phylogenetic tree in our <code>phyloseq</code> object which allows us to use <code>UniFrac</code> measures (“unifrac” and “wunifrac”).</li>
-<li>If you do not have this you will have to use non-phylogenetic aware <code>betadiver</code> distances such as “jaccard” or “bray”.</li>
+<li>If you do not have this you will have to use non-phylogenetic aware beta diversity distances such as “jaccard” or “bray”.</li>
 </ul></li>
 <li>Use different different ordination methods (<code>?phyloseq:ordinate</code>).
 <ul>
@@ -2966,25 +2956,15 @@ Let’s try to figure out which taxa are affected in which ways.</p>
 <center>
 <img src="figures/difference.png" style="width:200px" />
 </center>
-<p>We are going to carry out differential abundance analysis with <a href="https://www.nature.com/articles/s41467-020-17041-7">ANCOM-BC (Analysis of compositions of microbiomes with bias correction)</a>.
-This is an improvement of the original ANCOM method but with added bias correction.
-This bias correction aims to account for the bias caused by the difference in sampling/depth across the samples.</p>
-<p>Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that have different abundances between groups.
-This can be used to detect organisms in high abundance in diseased states versus healthy states.
-This helps to determine the disease causing organisms.
-However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.</p>
-<p>This will be shown in our data.
-Organisms in higher abundance in the media samples compared to the environmental samples are most likely caused by selection pressures the media introduces.
-To keep our data manageable in a workshop we will look at the class abundances.
-If a class is detected to have higher abundance in media compared to the environmental group, we can say the class is a biomarker of the media compared to the environmental sample.
-Additionally, we will be able to detect classes that have been depleted in the media samples versus the environmental sample.</p>
+<p>We are going to carry out differential abundance analysis with <a href="https://www.nature.com/articles/s41467-020-17041-7">ANCOM-BC (Analysis of compositions of microbiomes with bias correction)</a>. This is an improvement of the original ANCOM method but with added bias correction. This bias correction aims to account for the bias caused by the difference in sampling/depth across the samples.</p>
+<p>Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that have different abundances between groups. This can be used to detect organisms in high abundance in diseased states versus healthy states. This helps to determine the disease causing organisms. However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.</p>
+<p>This will be shown in our data. Organisms in higher abundance in the media samples compared to the environmental samples are most likely caused by selection pressures the media introduces. To keep our data manageable in a workshop we will look at the class abundances. If a class is detected to have higher abundance in media compared to the environmental group, we can say the class is a biomarker of the media compared to the environmental sample. Additionally, we will be able to detect classes that have been depleted in the media samples versus the environmental samples.</p>
 <div id="da-setup" class="section level2" number="17.1">
 <h2><span class="header-section-number">17.1</span> DA: setup</h2>
 <center>
 <img src="figures/packages_1.png" style="width:200px" />
 </center>
-<p>We will use a new notebook called <strong>“7-differential_abundance.ipynb”</strong>.
-Add the following to the top of this new notebook to load the required libraries/packages and data.</p>
+<p>We will use a new notebook called <strong>“7-differential_abundance.ipynb”</strong>. Add the following to the top of this new notebook to load the required libraries/packages and data.</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" tabindex="-1"></a><span class="co">#Packages</span></span>
 <span id="cb104-2"><a href="#cb104-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;phyloseq&quot;</span>)</span>
 <span id="cb104-3"><a href="#cb104-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;microbiome&quot;</span>)</span>
@@ -2995,32 +2975,24 @@ Add the following to the top of this new notebook to load the required libraries
 <span id="cb104-8"><a href="#cb104-8" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyr&quot;</span>)</span>
 <span id="cb104-9"><a href="#cb104-9" tabindex="-1"></a><span class="co">#Load phyloseq object</span></span>
 <span id="cb104-10"><a href="#cb104-10" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;phyloseq.RData&quot;</span>)</span></code></pre></div>
-<p>We will be using the package <a href="https://github.com/FrederickHuangLin/ANCOM-BC-Code-Archive"><code>ANCOMBC</code></a> to carry out our DA analysis.
-Instead of using our rarefied data we will use our original abundance data.
-This is because ANCOM-BC uses absolute abundances and corrects for differences between samples.
-This is a statistically heavy method and I recommend you read the <a href="https://www.nature.com/articles/s41467-020-17041-7">ANCOM-BC paper</a> if you are interested in how it works.
-As bioinformaticians we are more interested in the output rather than the method.</p>
+<p>We will be using the package <a href="https://github.com/FrederickHuangLin/ANCOM-BC-Code-Archive"><code>ANCOMBC</code></a> to carry out our DA analysis. Instead of using our rarefied data we will use our original abundance data. This is because ANCOM-BC uses absolute abundances and corrects for differences between samples. ANCOM-BC is a statistically heavy method and I recommend you read the <a href="https://www.nature.com/articles/s41467-020-17041-7">ANCOM-BC paper</a> if you are interested in how it works. As bioinformaticians we are more interested in the output rather than the method.</p>
 </div>
 <div id="da-preprocess" class="section level2" number="17.2">
 <h2><span class="header-section-number">17.2</span> DA: Preprocess</h2>
 <center>
 <img src="figures/water_surface.png" style="width:200px" />
 </center>
-<p>When carrying out ANCOM analysis you need to specify the reference group for the groupings you use.
-The reference group will be the 1st level of the factor.
-Therefore we will check our level orders for our media and site metadata categories.</p>
+<p>When carrying out ANCOM analysis you need to specify the reference group for the groupings you use. The reference group will be the 1st level of the factor. Therefore we will check our level orders for our media and site metadata categories.</p>
 <div class="webex-solution">
 <button>
 What are factors?
 </button>
-<p>For an explanation on the factors class please see the following section in the R primer omics book:
-<a href="https://neof-workshops.github.io/R_j4c0xh/14-Plots_scatterplot_and_box_plots.html#factors">Factors</a></p>
+<p>For an explanation on the factors class please see the following section in the R primer omics book: <a href="https://neof-workshops.github.io/R_j4c0xh/14-Plots_scatterplot_and_box_plots.html#factors">Factors</a></p>
 </div>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a><span class="co">#Check media and site levels</span></span>
 <span id="cb105-2"><a href="#cb105-2" tabindex="-1"></a><span class="fu">levels</span>(phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq)<span class="sc">$</span>media)</span>
 <span id="cb105-3"><a href="#cb105-3" tabindex="-1"></a><span class="fu">levels</span>(phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq)<span class="sc">$</span>site)</span></code></pre></div>
-<p>The levels are not in the order we would like.
-We’ll therefore change the order with the <code>factor()</code> function and <code>levels =</code> option.</p>
+<p>The levels are not in the order we would like. We’ll therefore change the order with the <code>factor()</code> function and <code>levels =</code> option.</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a><span class="co">#Ensure ENV is our reference level for media</span></span>
 <span id="cb106-2"><a href="#cb106-2" tabindex="-1"></a>phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq)<span class="sc">$</span>media <span class="ot">&lt;-</span> <span class="fu">factor</span>(phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq)<span class="sc">$</span>media,</span>
 <span id="cb106-3"><a href="#cb106-3" tabindex="-1"></a>                                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;ENV&quot;</span>, <span class="st">&quot;CVP&quot;</span>, <span class="st">&quot;KBC&quot;</span>, <span class="st">&quot;TSA&quot;</span>))</span>
@@ -3035,8 +3007,7 @@ We’ll therefore change the order with the <code>factor()</code> function and <
 <center>
 <img src="figures/play_blue.png" style="width:200px" />
 </center>
-<p>Now that we have our data the way we would like it we can carry out the ANCOM analysis.
-We’ll use the function <code>ANCOMBC::ancombc2()</code> for our ANCOM-BC analysis.</p>
+<p>Now that we have our data the way we would like it we can carry out the ANCOM analysis. We’ll use the function <code>ANCOMBC::ancombc2()</code> for our ANCOM-BC analysis.</p>
 <p><strong>Note:</strong> This command will take a few minutes to run.</p>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" tabindex="-1"></a><span class="co">#Run ANCOMBC</span></span>
 <span id="cb107-2"><a href="#cb107-2" tabindex="-1"></a>ancom_class_out <span class="ot">&lt;-</span> ANCOMBC<span class="sc">::</span><span class="fu">ancombc2</span>(<span class="at">data =</span> pseq, <span class="at">fix_formula =</span> <span class="st">&quot;media + site&quot;</span>,</span>
@@ -3050,15 +3021,14 @@ We’ll use the function <code>ANCOMBC::ancombc2()</code> for our ANCOM-BC analy
 <center>
 <img src="figures/parameter_blue.png" style="width:200px" />
 </center>
-<p>The options we use in the function are:</p>
+<p>The options we used in the function are:</p>
 <ul>
 <li><code>data =</code>: The data to be analysed. This can be provided in various types of objects including the <code>phyloseq</code> object.</li>
 <li><code>fix_formula =</code>: The groupings within your data. It is important to add all groupings that may have an influence on the microbial abundances.</li>
 <li><code>p_adj_method =</code>: The p adjustment value to use.</li>
 <li><code>tax_level =</code>: The taxonomic level of interest.</li>
 </ul>
-<p>There are many more options that have been left as the default.
-Please see the package <a href="https://bioc.ism.ac.jp/packages/devel/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf">PDF</a> for more options and explanations.</p>
+<p>There are many more options that have been left as the default. Please see the package <a href="https://www.bioconductor.org/packages/release/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf">PDF</a> for more options and explanations.</p>
 </div>
 </div>
 <div id="da-ancom-bc-results" class="section level2" number="17.4">
@@ -3066,57 +3036,47 @@ Please see the package <a href="https://bioc.ism.ac.jp/packages/devel/bioc/manua
 <center>
 <img src="figures/output_file_blue.png" style="width:200px" />
 </center>
-<p>There is a lot of information in <code>ancom_class_out</code>.
-Therefore, lets extract the results we want to look at and then remove the large object.</p>
+<p>There is a lot of information in <code>ancom_class_out</code>. Therefore, lets extract the results we want to look at and then remove the large object.</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" tabindex="-1"></a><span class="co">#Output of analysis compared to reference groups</span></span>
 <span id="cb109-2"><a href="#cb109-2" tabindex="-1"></a>res_ancom_class <span class="ot">&lt;-</span> ancom_class_out<span class="sc">$</span>res</span>
 <span id="cb109-3"><a href="#cb109-3" tabindex="-1"></a><span class="co">#Remove large object</span></span>
 <span id="cb109-4"><a href="#cb109-4" tabindex="-1"></a><span class="fu">rm</span>(ancom_class_out)</span>
 <span id="cb109-5"><a href="#cb109-5" tabindex="-1"></a><span class="co">#Check top rows of results</span></span>
 <span id="cb109-6"><a href="#cb109-6" tabindex="-1"></a><span class="fu">head</span>(res_ancom_class)</span></code></pre></div>
-<p>These results only contain taxon where a significant result was found in at least one comparison.
-This is based on the adjusted p-values (&lt;0.05).
-There are a lot of columns (37) in our result data frame.
-Apart from the “taxon” column they are split by the comparison groups.
-These contain the following information:</p>
+<p>These results only contain taxon where a significant result was found in at least one comparison. This is based on the adjusted p-values (&lt;0.05). There are a lot of columns (37) in our result data frame. Apart from the “taxon” column they are split by the comparison groups. These contain the following information:</p>
 <ul>
-<li><strong>taxon</strong>: The taxa groups found to be a biomarker in at least one comparison.</li>
-<li>__lfc_*__: This contains the log (natural log) fold changes with respect to the reference group.
+<li><strong>taxon:</strong> The taxa groups found to be a biomarker in at least one comparison.</li>
+<li><strong>lfc_*:</strong> This contains the log (natural log) fold changes with respect to the reference group.
 <ul>
 <li>For example The values for lfc_mediaCVP would equal LFC(CVP - ENV).</li>
 <li>A positive value means the abundances are higher in the comparison group (CVP) and lower in the ref (ENV).</li>
 <li>A negative value means the abundances are lower in the comparison group (CVP) and higher in the ref (ENV).</li>
 <li>The intercept value is the grand mean and is likely not of interest.</li>
 </ul></li>
-<li>__se_*__: The standard error for the LFC values.</li>
-<li>__W_*__: The W statistic. The higher this value the more significant the feature is differentially abundant between groups.</li>
-<li>__p_*__: The P-value.</li>
-<li>__q_*__: The Q-value. This is the adjusted P-value.</li>
-<li>__diff*__: This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value &lt; 0.05.</li>
+<li><strong>se_*:</strong> The standard error for the LFC values.</li>
+<li><strong>W_*:</strong> The W statistic. The higher this value the more significant the feature is differentially abundant between groups.</li>
+<li><strong>p_*:</strong> The P-value.</li>
+<li><strong>q_*:</strong> The Q-value. This is the adjusted P-value.</li>
+<li><strong>diff*:</strong> This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value &lt; 0.05.</li>
 </ul>
 <p>It is quite a large table so let’s save it as a tsv (tab separated value) file.</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" tabindex="-1"></a><span class="co">#Save as file</span></span>
 <span id="cb110-2"><a href="#cb110-2" tabindex="-1"></a><span class="fu">write.table</span>(<span class="at">x =</span> res_ancom_class, <span class="at">file =</span> <span class="st">&quot;ANCOMBC2_class_results.tsv&quot;</span>,</span>
 <span id="cb110-3"><a href="#cb110-3" tabindex="-1"></a>            <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p>This is good to open in excel but we don’t have something like that on our cluster.
-Therefore, we will use the package <code>DT</code> to create an interactive table with the function <code>datatable()</code>.
-We can then save this object as an HTML with <code>htmlwidgets::saveWidget()</code>.</p>
+<p>This is good to open in excel but we don’t have something like that on our cluster. Therefore, we will use the package <code>DT</code> to create an interactive table with the function <code>datatable()</code>. We can then save this object as an HTML with <code>htmlwidgets::saveWidget()</code>.</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a><span class="co">#Create data table</span></span>
 <span id="cb111-2"><a href="#cb111-2" tabindex="-1"></a>m <span class="ot">&lt;-</span> DT<span class="sc">::</span><span class="fu">datatable</span>(res_ancom_class)</span>
 <span id="cb111-3"><a href="#cb111-3" tabindex="-1"></a><span class="co">#Save data table as html</span></span>
 <span id="cb111-4"><a href="#cb111-4" tabindex="-1"></a>htmlwidgets<span class="sc">::</span><span class="fu">saveWidget</span>(m, <span class="st">&quot;ANCOM_class_results.html&quot;</span>, <span class="at">selfcontained =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p>Go to the jupyter-notebook file explorer tab and click on the html file to open it in a new tab.
-This gives a relatively nice way to view all the results.</p>
-<p>One very clear pattern is that there are no biomarkers found for the site comparisons (MD and LD).
-I believe this is because we don’t have enough replicates for the sites within the media samples and the differences between the medias are so large.
-However, there is a good amount of biomarkers for the three different medias compared to ENV.</p>
+<p>Go to the jupyter-notebook file explorer tab and click on the html file to open it in a new tab. This gives a relatively nice way to view all the results.</p>
+<p>One very clear pattern is that there are no biomarkers found for the site comparisons (MD vs UD and LD vs UD). I believe this is because we don’t have enough replicates for the sites within the media samples and the differences between the medias are so large. However, there is a good amount of biomarkers for the three different medias compared to ENV.</p>
 </div>
 <div id="da-create-signifcant-lfc-long-data-frame" class="section level2" number="17.5">
 <h2><span class="header-section-number">17.5</span> DA: Create signifcant LFC long data frame</h2>
 <center>
 <img src="figures/portrait.png" style="width:200px" />
 </center>
-<p>The results table is good but let’s make a heatmap showing the LFCs (Log fold changes) of the significant biomarkers. First, we need to do some preprecessing.</p>
+<p>The results table is good but let’s make a heatmap showing the LFCs (Log fold changes) of the significant biomarkers. First, we need to do some preprocessing.</p>
 <p>Remove columns unrelated to the media comparisons.</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" tabindex="-1"></a><span class="co">#Extract the taxon column and the media columns from the results</span></span>
 <span id="cb112-2"><a href="#cb112-2" tabindex="-1"></a><span class="co">#Get positions of columns which contain &quot;media&quot;</span></span>
@@ -3127,11 +3087,8 @@ However, there is a good amount of biomarkers for the three different medias com
 <span id="cb112-7"><a href="#cb112-7" tabindex="-1"></a><span class="co">#Create new df with only taxon and media columns</span></span>
 <span id="cb112-8"><a href="#cb112-8" tabindex="-1"></a>res_ancom_class_media <span class="ot">&lt;-</span> res_ancom_class[,media_colnames]</span>
 <span id="cb112-9"><a href="#cb112-9" tabindex="-1"></a><span class="fu">head</span>(res_ancom_class_media)</span></code></pre></div>
-<p>Because we had comparisons with more that 1 grouping (media &amp; site) we might have rows with no significant results.
-We will therefore remove these rows.</p>
-<p><strong>Note:</strong> The next 2 code sections use the packages <code>dplyr</code> &amp; <code>tidyr</code> along with piping <code>%&gt;%</code>.
-This is used as it would be very difficult to do these steps in base R and they are the code provided in the <a href="https://bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html"><code>ANCOMBC2</code> tutorial</a>.
-If you would like to learn more about these packages please see the <a href="https://r4ds.had.co.nz/">R for Data Science book</a>.</p>
+<p>Because we had comparisons with more that 1 grouping (media &amp; site) we might have rows with no significant results. We will therefore remove these rows.</p>
+<p><strong>Note:</strong> The next 2 code sections use the packages <code>dplyr</code> &amp; <code>tidyr</code> along with piping <code>%&gt;%</code>. This is used as it would be very difficult to do these steps in base R and they are the code provided in the <a href="https://bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html"><code>ANCOMBC2</code> tutorial</a>. If you would like to learn more about these packages please see the <a href="https://r4ds.had.co.nz/">R for Data Science book</a>.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a><span class="co">#Remove any taxon where there are no TRUE values</span></span>
 <span id="cb113-2"><a href="#cb113-2" tabindex="-1"></a><span class="co">#I.e. no significant differences found for the media samples</span></span>
 <span id="cb113-3"><a href="#cb113-3" tabindex="-1"></a><span class="co">#Number of biomarkers prior to removal</span></span>
@@ -3144,19 +3101,13 @@ If you would like to learn more about these packages please see the <a href="htt
 <span id="cb113-10"><a href="#cb113-10" tabindex="-1"></a><span class="fu">nrow</span>(res_ancom_class_media_sig)</span>
 <span id="cb113-11"><a href="#cb113-11" tabindex="-1"></a><span class="fu">head</span>(res_ancom_class_media_sig)</span></code></pre></div>
 <p>This has removed one biomarker which is great.</p>
-<p>Next we need to do a variety of preprocessing steps.
-This will create an edited long data frame.
-Long data frames are needed for <code>ggplot2()</code> when not using a <code>phyloseq</code> object.
-Instead of having the LFC (log fold change) values over many columns there will be only one column for the values.
-The long data frame will contain the following columns:</p>
+<p>Next we need to do a variety of preprocessing steps. This will create an edited long data frame. Long data frames are needed for <code>ggplot2()</code> when not using a <code>phyloseq</code> object. Instead of having the LFC (log fold change) values over many columns there will be only one column for the values. The long data frame will contain the following columns:</p>
 <ul>
 <li><strong>taxon</strong>: The biomarker name.</li>
 <li><strong>group</strong>: The comparison group.</li>
 <li><strong>value</strong>: The LFC value.</li>
 </ul>
-<p>Please see the code and its annotation below.
-If you do not fully understand the code that is fine.
-As long as you can edit it to work with your own future code.</p>
+<p>Please see the code and its annotation below. If you do not fully understand the code that is fine. As long as you can edit it to work with your own future code.</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a><span class="co">#Create edited long df to plot significant log fold changes on heatmap</span></span>
 <span id="cb114-2"><a href="#cb114-2" tabindex="-1"></a>res_ancom_class_media_sig_lfc_fig <span class="ot">&lt;-</span> res_ancom_class_media_sig <span class="sc">%&gt;%</span></span>
 <span id="cb114-3"><a href="#cb114-3" tabindex="-1"></a>  <span class="co">#Change log fold change values to 0 if diff is false</span></span>
@@ -3189,11 +3140,8 @@ As long as you can edit it to work with your own future code.</p>
 <center>
 <img src="figures/tiles.png" style="width:200px" />
 </center>
-<p>We now have a long data frame with the significant LFC values.
-We can use this to create a heatmap.</p>
-<p>There are some specific functions and packages for R that can produce heatmaps.
-These can include dendrograms on the y and x axes to show clustering.
-We are not interested in having all the bells and whistles so we will use the <code>ggplot2</code> layer <code>geom_tile()</code>.</p>
+<p>We now have a long data frame with the significant LFC values. We can use this to create a heatmap.</p>
+<p>There are some specific functions and packages for R that can produce heatmaps. These can include dendrograms on the y and x axes to show clustering. We are not interested in having all the bells and whistles so we will use the <code>ggplot2</code> layer <code>geom_tile()</code>.</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a><span class="co">#LFC heatmap</span></span>
 <span id="cb115-2"><a href="#cb115-2" tabindex="-1"></a>heatmap_media <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(res_ancom_class_media_sig_lfc_fig,</span>
 <span id="cb115-3"><a href="#cb115-3" tabindex="-1"></a>                        <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> taxon, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
@@ -3210,11 +3158,7 @@ We are not interested in having all the bells and whistles so we will use the <c
 <span id="cb115-14"><a href="#cb115-14" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">125</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
 <span id="cb115-15"><a href="#cb115-15" tabindex="-1"></a><span class="co">#Display plot</span></span>
 <span id="cb115-16"><a href="#cb115-16" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./ANCOMBC_class_media_ref_ENV.png&quot;</span>)</span></code></pre></div>
-<p>It is a good start but the colour of the tiles is not useful.
-We are going to use the layer <code>ggplot2::scale_fill_gradient2()</code> to customise this.
-First, we need to decide on the minimum and maximum values.
-Let’s generate these with some code based on the minimum and maximum LFC values.
-We will use 0 as the midpoint so we can easily differentiate between higher and lower abundance biomarkers.</p>
+<p>It is a good start but the colour of the tiles is not useful. We are going to use the layer <code>ggplot2::scale_fill_gradient2()</code> to customise this. First, we need to decide on the minimum and maximum values. Let’s generate these with some code based on the minimum and maximum LFC values. We will use 0 as the midpoint so we can easily differentiate between higher and lower abundance biomarkers.</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a><span class="co">#Get min and max log fold changes</span></span>
 <span id="cb116-2"><a href="#cb116-2" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">min</span>(res_ancom_class_media_sig_lfc_fig<span class="sc">$</span>value))</span>
 <span id="cb116-3"><a href="#cb116-3" tabindex="-1"></a>up <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(<span class="fu">max</span>(res_ancom_class_media_sig_lfc_fig<span class="sc">$</span>value))</span>
@@ -3240,38 +3184,29 @@ We will use 0 as the midpoint so we can easily differentiate between higher and 
 <span id="cb117-18"><a href="#cb117-18" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">125</span>, <span class="at">width =</span> <span class="dv">150</span>)</span>
 <span id="cb117-19"><a href="#cb117-19" tabindex="-1"></a><span class="co">#Display plot</span></span>
 <span id="cb117-20"><a href="#cb117-20" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./ANCOMBC_class_media_ref_ENV.png&quot;</span>)</span></code></pre></div>
-<p>Great, now we can see the biomarker with higher abundances in the ENV sample (blue) and higher abundances in the comparison media (red).
-Any 0 values are non-significant results we turned to 0 when we created the long data frame.</p>
-<ul>
-<li>Are there more biomarkers in higher abundance in ENV rather than the comparison media (i.e blue/negative results)?
-<div id="radio_DVHQJEWPYP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DVHQJEWPYP" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DVHQJEWPYP" value=""></input> <span><strong>No</strong></span></label>
-</div></li>
-<li>Which biomarker has the highest positive values?
-<div id="radio_RSWCJDPXYP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RSWCJDPXYP" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RSWCJDPXYP" value="answer"></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RSWCJDPXYP" value=""></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
-</div></li>
-<li>Which biomarker has the lowest value?
-<div id="radio_CWQYULDAZP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CWQYULDAZP" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CWQYULDAZP" value=""></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CWQYULDAZP" value="answer"></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
-</div></li>
-</ul>
-<p>From these results we can see that there are a lot of biomarkers with low abundances in the comparison media samples.
-There are only 2 biomarkers with higher abundance in the media samples.</p>
-<p>The LFC values between the different media are quite similar.
-There are some biomarkers that are only significant in 1 or 2 of the media though.
-It seems that CVP and KBC are more similar to each other than to TSA.
-This matches the clustering we found in the beta diversity.</p>
-<p>This seems to indicate that the media samples are not a good representation of the actual environmental community.
-They appear to select for a few bacterial classes and select against a lot of bacterial classes.</p>
+<p>Great, now we can see the biomarker with higher abundances in the ENV sample (blue) and higher abundances in the comparison media (red). Any 0 values are non-significant results we turned to 0 when we created the long data frame.</p>
+<strong>Q1:</strong> Are there more biomarkers in higher abundance in ENV rather than the comparison media (i.e blue/negative results)?
+<div id="radio_LBQOMOAGRJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LBQOMOAGRJ" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LBQOMOAGRJ" value=""></input> <span><strong>No</strong></span></label>
+</div>
+<strong>Q2:</strong> Which biomarker has the highest positive values?
+<div id="radio_VUISDHDKUA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VUISDHDKUA" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VUISDHDKUA" value="answer"></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VUISDHDKUA" value=""></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
+</div>
+<strong>Q3:</strong> Which biomarker has the lowest value?
+<div id="radio_OWTSIOLLRL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OWTSIOLLRL" value=""></input> <span><strong>Phylum:Verrucomicrobia</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OWTSIOLLRL" value=""></input> <span><strong>Class:Bacilli</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OWTSIOLLRL" value="answer"></input> <span><strong>Class:Alphaproteobacteria</strong></span></label>
+</div>
+<p>From these results we can see that there are a lot of biomarkers with low abundances in the comparison media samples. There are only 2 biomarkers with higher abundance in the media samples.</p>
+<p>The LFC values between the different media are quite similar. There are some biomarkers that are only significant in 1 or 2 of the media though. It seems that CVP and KBC are more similar to each other than to TSA. This matches the clustering we found in the beta diversity.</p>
+<p>This seems to indicate that the media samples are not a good representation of the actual environmental community. They appear to select for a few bacterial classes and select against a lot of bacterial classes.</p>
 </div>
 <div id="da-taxonomy-heatmap" class="section level2" number="17.7">
 <h2><span class="header-section-number">17.7</span> DA: Taxonomy heatmap</h2>
 <center>
-<img src="figures/heatmap_2.png" style="width:200px; border-radius:5px; background:white" />
+<img src="figures/heatmap_2.png" style="width:200px; border-radius:5px; background:white; border:5px solid white" />
 </center>
-<p>Using code from the <a href="#chaptaxaplots">taxa plots chapter</a> we’ll make a quick class based heatmap.
-We will use the relative abundances for this.</p>
+<p>Using code from the <a href="#chaptaxaplots">taxa plots chapter</a> we’ll make a quick class based heatmap. We will use the relative abundances for this.</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" tabindex="-1"></a><span class="co">#Quick class based relative abundance heatmap</span></span>
 <span id="cb118-2"><a href="#cb118-2" tabindex="-1"></a><span class="co">#Convert abundance table to class relative abundance (compositional) table</span></span>
 <span id="cb118-3"><a href="#cb118-3" tabindex="-1"></a>pseq_relabund <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">transform</span>(pseq, <span class="st">&quot;compositional&quot;</span>)</span>
@@ -3286,18 +3221,14 @@ We will use the relative abundances for this.</p>
 <span id="cb118-12"><a href="#cb118-12" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">200</span>, <span class="at">width =</span> <span class="dv">200</span>)</span>
 <span id="cb118-13"><a href="#cb118-13" tabindex="-1"></a><span class="co">#Display the plot in jupyter notebook</span></span>
 <span id="cb118-14"><a href="#cb118-14" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./class_relabund_heatmap.png&quot;</span>)</span></code></pre></div>
-<p>With this plot we can clearly see that there are many classess with abundances in the ENV samples that have very little in the media samples.
-Most of the relative abundances of the media samples consist of Gammaproteobacteria.
-The TSA and KBC samples also have a high abundance of Bacilli.
-Overall, this is a nice visual confirmation of our ANCOM results.</p>
+<p>With this plot we can clearly see that there are many classess with abundances in the ENV samples that have very little in the media samples. Most of the relative abundances of the media samples consist of Gammaproteobacteria. The TSA and KBC samples also have a high abundance of Bacilli. Overall, this is a nice visual confirmation of our ANCOM results.</p>
 </div>
 <div id="da-summary" class="section level2" number="17.8">
 <h2><span class="header-section-number">17.8</span> DA: summary</h2>
 <center>
 <img src="figures/sum_blue.png" style="width:200px" />
 </center>
-<p>We have used ANCOMBC to detect biomarkers in the media samples compared to the ENV samples.
-This showed most biomarkers were caused by depletion of many classes and selection of a few classes by the media.</p>
+<p>We have used ANCOMBC to detect biomarkers in the media samples compared to the ENV samples. This showed most biomarkers were caused by depletion of many classes and selection of a few classes by the media.</p>
 <p>You could carry out more analysis in your future research in various ways:</p>
 <ul>
 <li>Carry out biomarker detection at different taxonomy levels such as genus.
@@ -3322,7 +3253,7 @@ This showed most biomarkers were caused by depletion of many classes and selecti
 <div id="dataset-1" class="section level2" number="18.1">
 <h2><span class="header-section-number">18.1</span> Dataset</h2>
 <center>
-<img src="figures/freshwater_france.png" style="border-radius: 5px; width: 500px; border: 5px solid #333333" />
+<img src="figures/freshwater_france.png" style="border-radius: 5px; width: 500px; border: 5px solid white" />
 </center>
 </center>
 <p>You were introduced to the 16S dataset in the intro.
@@ -3341,7 +3272,7 @@ It may also help to sample more sites along the gradient.</p>
 <div id="data-preparation" class="section level2" number="18.2">
 <h2><span class="header-section-number">18.2</span> Data preparation</h2>
 <center>
-<img src="figures/half_tablespoon.png" style="width:200px" />
+<img src="figures/half_tablespoon.png" style="width:200px; background: white; border-radius:5px" />
 </center>
 <p>Briefly we carried out the following steps to prepare our data:</p>
 <ul>
@@ -3446,7 +3377,7 @@ However, the biggest inconsistencies are within the TSA samples. followed by the
 This is shown by the loose clustering in the beta diversity of the these sample and the tight clustering for CVP &amp; KBC samples.
 This indicates that variation within groups may be caused by the sample variation rather than media inconsistencies.
 In fact the KBC and CVP seem to “normalise” the community profiles.
-This is again hard to determine due to small numbers of replicates.</p>
+However, this is hard to determine due to small numbers of replicates.</p>
 </div>
 <div id="site-or-media" class="section level3" number="18.5.3">
 <h3><span class="header-section-number">18.5.3</span> Site or media</h3>
@@ -3506,8 +3437,9 @@ If we had more ENV samples we could try to deduce more about the differences bet
 <span id="cb119-2"><a href="#cb119-2" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> r_community</span>
 <span id="cb119-3"><a href="#cb119-3" tabindex="-1"></a><span class="ex">mamba</span> activate r_community</span>
 <span id="cb119-4"><a href="#cb119-4" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda <span class="at">-c</span> bioconda <span class="at">-c</span> r <span class="at">-c</span> conda-forge <span class="dt">\</span></span>
-<span id="cb119-5"><a href="#cb119-5" tabindex="-1"></a>bioconductor-microbiome bioconductor-ancombc biom-format <span class="dt">\</span></span>
+<span id="cb119-5"><a href="#cb119-5" tabindex="-1"></a>bioconductor-microbiome bioconductor-ancombc=2.0.1 biom-format <span class="dt">\</span></span>
 <span id="cb119-6"><a href="#cb119-6" tabindex="-1"></a>r-tidyverse r-devtools r-ggforce pandoc r-plotly r-irkernel r-htmltools=0.5.4</span></code></pre></div>
+<p><strong>Note:</strong> It is common that some tools/packages will conflict with others. To overcome this we can set the version by adding <code>=xx</code> after a tool name in <code>conda</code> (e.g. <code>r-htmltools=0.5.4</code>). We have set the version for <code>bioconductor-ancombc</code> as newer versions are designed for a different package (<code>mia</code>) than <code>phyloseq</code>. Therefore newer version of ancombc2 do not work in our workflow.</p>
 <p>Activate the environment in bash.</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb120-1"><a href="#cb120-1" tabindex="-1"></a><span class="ex">mamba</span> activate r_community</span></code></pre></div>
 <p>Use <code>pip</code> to install <code>kraken-biom</code></p>
@@ -3516,6 +3448,16 @@ If we had more ENV samples we could try to deduce more about the differences bet
 <div class="sourceCode" id="cb122"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb122-1"><a href="#cb122-1" tabindex="-1"></a><span class="ex">R</span></span></code></pre></div>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;devtools&quot;</span>)</span>
 <span id="cb123-2"><a href="#cb123-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;jbisanz/qiime2R&quot;</span>)</span></code></pre></div>
+<div id="install-specific-version-of-r-bioconductor-package" class="section level3" number="19.1.1">
+<h3><span class="header-section-number">A.1.1</span> Install specific version of R bioconductor package</h3>
+<p>If installing in R (rather than through conda/mamba) some packages, such as ancombc, needs to be installed with <code>BiocManager</code>.
+Specific versions of bioconductor pacages can be installed like below:</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" tabindex="-1"></a><span class="co">#Install and load BiocManager</span></span>
+<span id="cb124-2"><a href="#cb124-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb124-3"><a href="#cb124-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb124-4"><a href="#cb124-4" tabindex="-1"></a><span class="co">#Install specific ancombc version</span></span>
+<span id="cb124-5"><a href="#cb124-5" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;ancombc&quot;</span>, <span class="at">version=</span><span class="st">&quot;2.0.1&quot;</span>)</span></code></pre></div>
+</div>
 </div>
 <div id="jupyter_appendix" class="section level2" number="19.2">
 <h2><span class="header-section-number">A.2</span> Jupyter-notebook</h2>
@@ -3526,15 +3468,15 @@ If we had more ENV samples we could try to deduce more about the differences bet
 However, you can also use <a href="https://jupyter.org/"><code>Jupyter-notebook</code></a> if you are using an HPC or prefer it.</p>
 <p>If using bash you will need to create an environment with <code>Jupyter-notebook</code>.
 Ensure you are in the <code>(base)</code> mamba environment.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb124-1"><a href="#cb124-1" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> jupyter</span>
-<span id="cb124-2"><a href="#cb124-2" tabindex="-1"></a><span class="ex">mamba</span> activate jupyter</span>
-<span id="cb124-3"><a href="#cb124-3" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda jupyter</span>
-<span id="cb124-4"><a href="#cb124-4" tabindex="-1"></a><span class="ex">mamba</span> deactivate</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb125-1"><a href="#cb125-1" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> jupyter</span>
+<span id="cb125-2"><a href="#cb125-2" tabindex="-1"></a><span class="ex">mamba</span> activate jupyter</span>
+<span id="cb125-3"><a href="#cb125-3" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda jupyter</span>
+<span id="cb125-4"><a href="#cb125-4" tabindex="-1"></a><span class="ex">mamba</span> deactivate</span></code></pre></div>
 <p>To run <code>Jupyter-notebook</code> with your <code>r_community</code> environment you can run the following.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb125-1"><a href="#cb125-1" tabindex="-1"></a><span class="co">#Activate you R_community env</span></span>
-<span id="cb125-2"><a href="#cb125-2" tabindex="-1"></a><span class="ex">mamba</span> activate r_community</span>
-<span id="cb125-3"><a href="#cb125-3" tabindex="-1"></a><span class="co">#Run jupyter-notebook (may be a slightly different path)</span></span>
-<span id="cb125-4"><a href="#cb125-4" tabindex="-1"></a><span class="ex">~/mamba/envs/jupyter/bin/jupyter-notebook</span></span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb126-1"><a href="#cb126-1" tabindex="-1"></a><span class="co">#Activate you R_community env</span></span>
+<span id="cb126-2"><a href="#cb126-2" tabindex="-1"></a><span class="ex">mamba</span> activate r_community</span>
+<span id="cb126-3"><a href="#cb126-3" tabindex="-1"></a><span class="co">#Run jupyter-notebook (may be a slightly different path)</span></span>
+<span id="cb126-4"><a href="#cb126-4" tabindex="-1"></a><span class="ex">~/mamba/envs/jupyter/bin/jupyter-notebook</span></span></code></pre></div>
 </div>
 </div>
 <div id="r-packages" class="section level1" number="20">
@@ -3549,7 +3491,7 @@ Ensure you are in the <code>(base)</code> mamba environment.</p>
 </center>
 <p>Below are some useful resource if you would like to learn ggplot2.</p>
 <p>The <a href="https://r-graphics.org/">R Graphics Cookbook</a> is a good place to start. It contains a section called <a href="https://r-graphics.org/chapter-ggplot2">Understanding ggplot2</a> in its appendix which is useful for learning some key terminologies and concepts.</p>
-<p><code>ggplot2</code> requires its input to be in long format. You will therefore need to know how to <a href="#http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">convert your wide data to long data</a>.</p>
+<p><code>ggplot2</code> requires its input to be in long format. You will therefore need to know how to <a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">convert your wide data to long data</a>.</p>
 <p><a href="https://ggplot2.tidyverse.org/reference/#layers"><strong>ggplot2 function reference</strong></a>.</p>
 </div>
 <div id="phyloseq_appendix" class="section level2" number="20.2">
@@ -3594,7 +3536,7 @@ Ensure you are in the <code>(base)</code> mamba environment.</p>
 <div id="obvs" class="section level3" number="21.1.1">
 <h3><span class="header-section-number">C.1.1</span> Observed features</h3>
 <p>The observed number of features is defined as the number of distinct features, such as ASVs, within a sample.</p>
-<p>The number of observed features can also be known as the feature richness of a sample. A sample with more present features than another would be said to be richer.</p>
+<p>The number of observed features can also be known as the feature richness of a sample. A sample with a higher number of present features than another would be said to be richer.</p>
 </div>
 <div id="chao" class="section level3" number="21.1.2">
 <h3><span class="header-section-number">C.1.2</span> Chao</h3>
@@ -3626,7 +3568,7 @@ O +
 <p>Faith’s PD represents the minimum total branch length that covers all taxa within the sample on a phylogenetic tree (Faith, 1992). A smaller PD value indicates a reduced expected taxonomic diversity whilst a large PD value indicates a higher expected diversity.</p>
 <p>A sample with 10 ASVs could have a lower Faith’s PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.</p>
 <center>
-<img src="figures/faith_pd.png" style="border-radius: 15px; width: 60%; border: 5px solid #333333" />
+<img src="figures/faith_pd.png" style="border-radius: 15px; width: 60%" />
 </center>
 </div>
 <div id="simpson" class="section level3" number="21.1.5">

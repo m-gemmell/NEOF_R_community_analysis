@@ -111,7 +111,7 @@ Additionally, we can see that there seems to be some separation of the sites wit
 ![](figures/elippses_plot.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
-We can crate an ordination plot with ellipses, circular shapes showing clustering of groups.
+We can create an ordination plot with ellipses, circular shapes showing clustering of groups.
 The statistics of the ellipses and visualisation can be carried out with the function `ggplot2::stat_ellipse()`.
 The primary purpose is to see if clusters overlap each other or are separate.
 
@@ -179,7 +179,7 @@ We can see that significant differences are found within the groups for media (P
 ![](figures/pear.png){style="width:100px"}
 </center>
 
-We will now see which media groups are significantly different to each other.
+We will now see which media groups are significantly different from each other.
 We will do this with pairwise PERMANOVA tests.
 Unfortunately the `vegan` library does not have a function to automatically do this so we will need to do some scripting.
 
@@ -472,7 +472,7 @@ There are many other things you could do such as:
 - Use different distance measures (`phyloseq::distanceMethodList`).
   - We have a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac").
   - If you do not have this you will have to use non-phylogenetic aware beta diversity distances such as "jaccard" or "bray".
-- Use different different ordination methods (`?phyloseq:ordinate`).
+- Use different ordination methods (`?phyloseq:ordinate`).
   - Different methods will produce different __percentage of variation explained__ values. If your plot has low values try another method to see if you can get higher values.
   - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values. This is perfectly acceptable and encouraged by many.
   
