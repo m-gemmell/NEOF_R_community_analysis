@@ -88,7 +88,7 @@ head(penguin_df)
 After having your data the next step is to create your `ggplot2` object.
 We'll make a box plot of Species and sex of Penguin (x-axis) versus the Flipper length (y-axis).
 We'll facet the plot by species and use sex as the x axis.
-We'll save this as an object, save it as a png with `ggsave()`, and display it with `IRdisplay::display_png()`.
+We can then save this as an object, save the object as a png with `ggsave()`, and display it with `IRdisplay::display_png()`.
 This is what we carried out in the main book.
 
 ```{r, eval=FALSE}

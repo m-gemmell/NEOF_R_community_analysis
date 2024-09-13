@@ -50,7 +50,7 @@ kraken-biom *breport2 -o KW.biom
 ```
 
 [__Biom__](https://biom-format.org/) files are not human readable.
-Therefore to check the file is correct we can create a tsv (tab seperated value) file to inspect.
+Therefore to check the file is correct we can create a tsv (tab separated value) file to inspect.
 
 ```{bash, eval=FALSE}
 #Create tsv file
@@ -71,7 +71,7 @@ Now we are ready to carry out some R analysis.
 
 Open up `jupyter-notebook` and create a new `R` notebook called "Bracken_phyloseq_creation".
 
-At the top of the notebook create a cell to load the libaries we'll need.
+At the top of the notebook create a cell to load the libraries we'll need.
 
 ```{r, eval=FALSE}
 #Libraries
@@ -96,7 +96,7 @@ pseq <- phyloseq::import_biom("./KW.biom")
 ![](figures/samples.png){style="width:100px"}
 </center>
 
-Next we need to import the samples data.
+Next we need to import the sample data.
 We have a tab delimited file we will read into R as a __data frame__.
 Then we can assign the sample data of `pseq` to the __data frame__.
 As long as the row names contain the same sample names, like in the biom file, it should work correctly.
