@@ -223,7 +223,7 @@ With this info we can subset our distance matrix (calculated at the start of the
 wunifrac_dist_mat_subset <- wunifrac_dist_mat[samples_subset,samples_subset]
 #Carry out permanova/adonis with the subset data
 #This is 1 of the pairwise PERMANOVA tests
-wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat ~ media, 
+wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat_subset ~ media, 
                                            data = metadf_subset, by = "margin")
 wunifrac_pairwise_adonis
 ```
