@@ -2886,7 +2886,7 @@ We will use the function `phyloseq::distance()`.
 ```{r, eval=FALSE}
 #PERMANOVA
 #Produce distance matrix
-wunifrac_dist_mat <- phyloseq::distance(pseq_rarefy, method="wunifrac")
+wunifrac_dist_mat <- as.matrix(phyloseq::distance(pseq_rarefy, method="wunifrac"))
 ```
 
 With the distance matrix we can carry out a PERMANOVA test with [`vegan::adonis2()`](https://search.r-project.org/CRAN/refmans/vegan/html/adonis.html).

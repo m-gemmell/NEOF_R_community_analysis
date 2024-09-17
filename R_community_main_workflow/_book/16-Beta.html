@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 16 Beta | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 16 Beta | R community analysis" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-09-13" />
+<meta name="date" content="2024-09-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,9 +142,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img 
-src="figures/neof_rounded_corners_300ppi.png" 
-width=250px></a></li>
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank">
+<img src="figures/neof_rounded_corners_300ppi.png" width=250px></a></li>
 <li><a>R community analysis</a></li>
 
 <li class="divider"></li>
@@ -530,7 +529,7 @@ Prior to PERMANOVA we need to create a matrix containing all the sample paired d
 We will use the function <code>phyloseq::distance()</code>.</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb93-1"><a href="16-Beta.html#cb93-1" tabindex="-1"></a><span class="co">#PERMANOVA</span></span>
 <span id="cb93-2"><a href="16-Beta.html#cb93-2" tabindex="-1"></a><span class="co">#Produce distance matrix</span></span>
-<span id="cb93-3"><a href="16-Beta.html#cb93-3" tabindex="-1"></a>wunifrac_dist_mat <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">distance</span>(pseq_rarefy, <span class="at">method=</span><span class="st">&quot;wunifrac&quot;</span>)</span></code></pre></div>
+<span id="cb93-3"><a href="16-Beta.html#cb93-3" tabindex="-1"></a>wunifrac_dist_mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(phyloseq<span class="sc">::</span><span class="fu">distance</span>(pseq_rarefy, <span class="at">method=</span><span class="st">&quot;wunifrac&quot;</span>))</span></code></pre></div>
 <p>With the distance matrix we can carry out a PERMANOVA test with <a href="https://search.r-project.org/CRAN/refmans/vegan/html/adonis.html"><code>vegan::adonis2()</code></a>.
 This requires the metadata in the form of a data frame.
 In this case we can assess if there are any differences by media and by site (<code>media+site</code>).</p>
