@@ -19,7 +19,8 @@ __Rarefaction__ can be a hotly debated topic with two main points of view.
     2.  Various R package developers do not recommend it such as the developers of [`phyloseq`](https://joey711.github.io/phyloseq/) & [`microbiome`](https://microbiome.github.io/tutorials/).
 2.  Some researchers believe it is appropriate.
     1.  This is backed up by the 2022 paper ["To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data"](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959)
-    2.  The QIIME2 developers include rarefaction in their tutorials/SOPs for alpha and beta diversity analysis
+    2. Further strength for rarefaction is given by the 2024 paper ["Rarefaction is currently the best approach to control for uneven sequencing effort in amplicon sequence analyses"](https://journals.asm.org/doi/10.1128/msphere.00354-23)
+    3.  The QIIME2 developers include rarefaction in their tutorials/SOPs for alpha and beta diversity analysis
 
 We use __rarefaction__ in our analyses but it is ultimately up to you whether you utilise it or not.
 
@@ -28,7 +29,7 @@ We use __rarefaction__ in our analyses but it is ultimately up to you whether yo
 ![](figures/iterations.png){style="width:200px; background-color:white; border-radius:15px"}
 </center>
 
-In our initial R community analysis workshop we only carried out one round of __rarefaction__ for each sample.
+In our main course materials for the R community analysis workshop we only carried out one round of __rarefaction__ for each sample.
 In this book we will __rarefy__ with multiple rounds/iterations to calculate average values for alpha and beta diversity metrics.
 This is __iterative rarefaction__ analysis.
 
@@ -43,6 +44,10 @@ These extreme results can include:
 <center>
 ![](figures/contents.png){style="width:200px; background-color:white; border-radius:15px"}
 </center>
+
+Unfortunately many of the R packages for community analysis do not contain inbuilt rarefaction method with their diversity methods.
+This makes carrying out iterative rarefaction based diveristy analysis more complicated than it ought to be.
+This explains the size and breadth of this book.
 
 In this book you will learn how to:
 

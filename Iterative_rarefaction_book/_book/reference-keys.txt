@@ -5,7 +5,7 @@ using-iterations
 book-contents
 setupchap
 dataset
-conda-environment
+mamba
 directory-and-files
 random_seeds_n_sampling_chap
 random-seed-notebook

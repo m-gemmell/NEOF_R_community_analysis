@@ -1,6 +1,9 @@
 # (PART\*) Iterating rarefaction {-}
 
 # Iterating rarefaction intro & setup {#iterating_rarefaction_chap}
+<center>
+![](figures/iterations.png){style="width:300px; background-color:white; border-radius:15px"}
+</center>
 
 In this section we will create code to carry out __iterative rarefaction__.
 For this we need to create a vector of __random seeds__, one for each __iteration__ of __rarefaction__.
@@ -9,7 +12,7 @@ In the next sections we will utilise this code to produce alpha and beta diversi
 
 ## Iterating rarefaction setup
 <center>
-![](figures/setup_5.png){style="width:200px"}
+![](figures/setup_5.png){style="width:200px; border-radius:45px; background:white; border:#FFFFFF 10px solid"}
 </center>
 
 First, create a new R jupyter-notebook called "Iterating_rarefaction.ipynb".
@@ -22,8 +25,11 @@ library("phyloseq")
 library("microbiome")
 library("IRdisplay")
 #Load processed but unrarefied data from R community analysis workshop
-load("phyloseq.RData")
+load("/pub14/tea/nsc206/NEOF/R_community/data/phyloseq.RData")
 ```
+
+__Note:__ The `phyloseq` object in the file "phyloseq.RData" was created after [importing the qiime2 artifacts](https://neof-workshops.github.io/R_community_whqkt8/Course/07-Import.html#save-the-phyloseq-object).
+Ensure you are using your phyloseq data after processing in your real life analysis (i.e. after any sample or ASV filtering) but not your rarefied data.
 
 ## Rarefaction iterations
 <center>
@@ -45,7 +51,7 @@ rarefaction_iters <- 10
 
 ## RNG vector creation {#rng_vec_creation}
 <center>
-![](figures/list.png){style="width:200px; background-color:white; border-radius:15px"}
+![](figures/list.png){style="width:200px; background-color:white; border-radius:15px; border:#FFFFFF 6px solid"}
 </center>
 
 We can now carry out __Random Number Generation (RNG)__ to create a number of __random seeds__ equal to the number of iterations planned.

@@ -5,6 +5,9 @@
 ![](figures/random_seeds.png){style="width:200px"}
 </center>
 
+__Rarefaction__ requires __random sampling__.
+You can carry out __random sampling__ in R with __random seeds__.
+
 What are __random seeds__?
 
 __Random seeds__ are numbers that computational tasks use to determine how they will carry out a random task.
@@ -62,7 +65,7 @@ When sampling __with replacement__ you replace each result back into the pool be
 When sampling __without replacement__ you don't replace the results.
 
 The famous example is sampling green and yellow balls from a bag.
-If you had a bag with 1000 balls and you wanted a rough idea of the ratio of yellow and green balls you could count the number of these balls within a sample of only 50.
+If you had a bag with 1000 balls and you wanted a rough idea of the ratio of yellow and green balls you could count the number of these balls within a sample of 50.
 Without replacement you would take out a ball, record its colour and throw it in a separate container.
 With replacement you would take out a ball, record its colour and put it back into the initial bag, meaning it could possibly be recounted.
 

@@ -1,5 +1,5 @@
 --- 
-title: "Iterative rarefaction"
+title: "R community iterative rarefaction"
 author: "Matthew R. Gemmell"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -45,8 +45,10 @@ knitr::write_bib(c(
 </center>
 
 This book explains and demonstrates how to carry out __iterative rarefaction__ for __alpha__ and __beta__ diversity analysis in __R__ with the `phyloseq` object.
-This involves running multiple rounds/iterations of rarefaction and producing and averaged table of __alpha__ and __beta__ diversity values.
+This involves running multiple rounds/iterations of rarefaction and producing an averaged table of __alpha__ and __beta__ diversity values.
 This is a more robust method than only carrying out one round of rarefaction.
+
+This book is an optional path for the [main NEOF R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course)
 
 ## Table of contents {-}
 
@@ -80,7 +82,8 @@ __Rarefaction__ can be a hotly debated topic with two main points of view.
     2.  Various R package developers do not recommend it such as the developers of [`phyloseq`](https://joey711.github.io/phyloseq/) & [`microbiome`](https://microbiome.github.io/tutorials/).
 2.  Some researchers believe it is appropriate.
     1.  This is backed up by the 2022 paper ["To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data"](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959)
-    2.  The QIIME2 developers include rarefaction in their tutorials/SOPs for alpha and beta diversity analysis
+    2. Further strength for rarefaction is given by the 2024 paper ["Rarefaction is currently the best approach to control for uneven sequencing effort in amplicon sequence analyses"](https://journals.asm.org/doi/10.1128/msphere.00354-23)
+    3.  The QIIME2 developers include rarefaction in their tutorials/SOPs for alpha and beta diversity analysis
 
 We use __rarefaction__ in our analyses but it is ultimately up to you whether you utilise it or not.
 
@@ -89,7 +92,7 @@ We use __rarefaction__ in our analyses but it is ultimately up to you whether yo
 ![](figures/iterations.png){style="width:200px; background-color:white; border-radius:15px"}
 </center>
 
-In our initial R community analysis workshop we only carried out one round of __rarefaction__ for each sample.
+In our main course materials for the R community analysis workshop we only carried out one round of __rarefaction__ for each sample.
 In this book we will __rarefy__ with multiple rounds/iterations to calculate average values for alpha and beta diversity metrics.
 This is __iterative rarefaction__ analysis.
 
@@ -104,6 +107,10 @@ These extreme results can include:
 <center>
 ![](figures/contents.png){style="width:200px; background-color:white; border-radius:15px"}
 </center>
+
+Unfortunately many of the R packages for community analysis do not contain inbuilt rarefaction method with their diversity methods.
+This makes carrying out iterative rarefaction based diveristy analysis more complicated than it ought to be.
+This explains the size and breadth of this book.
 
 In this book you will learn how to:
 
@@ -122,14 +129,15 @@ library(webexercises)
 ![](figures/france.png){style="width:200px"}
 </center>
 
-Include info on directory, copying data, and environment setup
+We will utilise the same data and environment as the [main NEOF R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course). 
+This chapter containers a reminder on the dataset, how to setup your directory and files, and how to activate the required `mamba/conda` environment. 
 
 ## Dataset
 <center>
 ![](figures/river.png){style="width:200px"}
 </center>
 
-The data set we will use in this book is the same as that used in the [R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/02-Dataset_and_workflow.html#dataset).
+The data set we will use in this book is the same as that used in the [main R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/02-Dataset_and_workflow.html#dataset).
 
 Below are brief bullet points about the data:
 
@@ -146,9 +154,54 @@ Below are brief bullet points about the data:
   - CVP incubated at 28°C for 3 days.
 - There are three replicates for each sampling site and media combination (36 samples total)
 
-## Conda environment
+## Mamba
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
+</center>
+
+This book uses the same environment as in the [main R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/04-Setup.html#mamba)
+
+If you do not have the environment activated you can set-up your environment by run the following code (you must include the full stop and space at the front of the command).
+
+```{bash, eval=FALSE}
+. usercommunity
+```
+
+You will have successfully activated the environment if you now see `(r_community)` at the start of your command prompt. 
+This indicates you are now in the mamba environment called `r_community` created by the instructor.
+
+If you are interested in the use script you can look at its contents.
+
+```{bash, eval=FALSE}
+less /usr/local/bin/usercommunity
+```
+
+__Tip:__ press `q` to quit `less`.
 
 ## Directory and files
+<center>
+![](figures/open_file.png){style="width:200px; border-radius:15px; background:null"}
+</center>
+
+We will keep the analysis in this book separate to the analysis from the [main NEOF R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course).
+This is so this book can be more easily approached at a later time separate to the main content.
+
+Open up `Jupyter-notebook` with bash, ensuring you are in your home directory.
+
+__Note:__ `Jupyter-notebook` tutorial is here: [Tutorial](https://neof-workshops.github.io/R_community_whqkt8/Course/05-Jupyter.html)
+
+```{bash, eval=FALSE}
+#Set directory to your home directory
+cd ~
+#Open jupyter-notebook
+jupyter-notebook
+```
+
+Create a directory/folder for the analysis in your home directory called "R_community_iterative_rarefaction", then move into it.
+Create subsequent Jupyter-notebooks and carry out your analysis in this directory.
+
+[Instructions on creating a directory in `jupyter-notebook`](https://neof-workshops.github.io/R_community_whqkt8/Course/07-Import.html#import-notebook)
+
 
 <!--chapter:end:03-Setup.Rmd-->
 
@@ -161,6 +214,9 @@ library(webexercises)
 <center>
 ![](figures/random_seeds.png){style="width:200px"}
 </center>
+
+__Rarefaction__ requires __random sampling__.
+You can carry out __random sampling__ in R with __random seeds__.
 
 What are __random seeds__?
 
@@ -219,7 +275,7 @@ When sampling __with replacement__ you replace each result back into the pool be
 When sampling __without replacement__ you don't replace the results.
 
 The famous example is sampling green and yellow balls from a bag.
-If you had a bag with 1000 balls and you wanted a rough idea of the ratio of yellow and green balls you could count the number of these balls within a sample of only 50.
+If you had a bag with 1000 balls and you wanted a rough idea of the ratio of yellow and green balls you could count the number of these balls within a sample of 50.
 Without replacement you would take out a ball, record its colour and throw it in a separate container.
 With replacement you would take out a ball, record its colour and put it back into the initial bag, meaning it could possibly be recounted.
 
@@ -243,7 +299,7 @@ library(webexercises)
 ```
 # R and random seeds
 <center>
-![](figures/braille_r.png){style="width:200px; border-radius:15px; border:#FFFFFF 6px solid"}
+![](figures/braille_r.png){style="width:200px; border-radius:15px; border:#FFFFFF 10px solid"}
 </center>
 
 Sampling is meant to be random but true randomness is pretty much impossible, especially in computing.
@@ -261,10 +317,10 @@ Various programs that use __random seeds__ include:
 
 To carry out random processes `R` uses a global variable called `seed`.
 The `seed` is normally random and changes every time it is used.
-This is useful for everyday analysis but what if you want replicable results?
+This is useful for everyday analysis but what if you want replicable/repeatable results?
 
 In R we can set the `seed` with the function `seet.seed()`.
-Carry this to determien the randomness of sampling.
+Carry this out to determine the randomness of sampling.
 
 ```{R, eval=FALSE}
 #Set random seed
@@ -453,6 +509,9 @@ library(webexercises)
 # (PART\*) Iterating rarefaction {-}
 
 # Iterating rarefaction intro & setup {#iterating_rarefaction_chap}
+<center>
+![](figures/iterations.png){style="width:300px; background-color:white; border-radius:15px"}
+</center>
 
 In this section we will create code to carry out __iterative rarefaction__.
 For this we need to create a vector of __random seeds__, one for each __iteration__ of __rarefaction__.
@@ -461,7 +520,7 @@ In the next sections we will utilise this code to produce alpha and beta diversi
 
 ## Iterating rarefaction setup
 <center>
-![](figures/setup_5.png){style="width:200px"}
+![](figures/setup_5.png){style="width:200px; border-radius:45px; background:white; border:#FFFFFF 10px solid"}
 </center>
 
 First, create a new R jupyter-notebook called "Iterating_rarefaction.ipynb".
@@ -474,8 +533,11 @@ library("phyloseq")
 library("microbiome")
 library("IRdisplay")
 #Load processed but unrarefied data from R community analysis workshop
-load("phyloseq.RData")
+load("/pub14/tea/nsc206/NEOF/R_community/data/phyloseq.RData")
 ```
+
+__Note:__ The `phyloseq` object in the file "phyloseq.RData" was created after [importing the qiime2 artifacts](https://neof-workshops.github.io/R_community_whqkt8/Course/07-Import.html#save-the-phyloseq-object).
+Ensure you are using your phyloseq data after processing in your real life analysis (i.e. after any sample or ASV filtering) but not your rarefied data.
 
 ## Rarefaction iterations
 <center>
@@ -497,7 +559,7 @@ rarefaction_iters <- 10
 
 ## RNG vector creation {#rng_vec_creation}
 <center>
-![](figures/list.png){style="width:200px; background-color:white; border-radius:15px"}
+![](figures/list.png){style="width:200px; background-color:white; border-radius:15px; border:#FFFFFF 6px solid"}
 </center>
 
 We can now carry out __Random Number Generation (RNG)__ to create a number of __random seeds__ equal to the number of iterations planned.
@@ -534,14 +596,14 @@ library(webexercises)
 ```
 # Phyla relative abundance
 <center>
-![](figures/river_2.png){style="width:200px"}
+![](figures/river_2.png){style="width:200px; background:white; border-radius:15px; border:5px solid white"}
 </center>
 
 Prior to __iterative rarefaction__ we will look at the phyla composition of the environmental samples.
 
 ## Subset and phyla aggregation
 <center>
-![](figures/aggregate.png){style="width:200px"}
+![](figures/aggregate.png){style="width:200px; background:white; border-radius:15px; border:5px solid white"}
 </center>
 
 For demonstrative purposes we will reduce the amount of samples and features in our data for this section. We will carry this out by:
@@ -585,7 +647,7 @@ pseq_env_phyla_relabund <- microbiome::transform(pseq_env_phyla, "compositional"
 #Create, save, and display bar chart
 phylum_bar <- microbiome::plot_composition(pseq_env_phyla_relabund)
 ggsave(filename = "./env_phyla_relabund.png", plot = phylum_bar,
-       device = "png", dpi = 300, units = "mm", height = 100, width = 100)
+       device = "png", dpi = 300, units = "mm", height = 100, width = 200)
 IRdisplay::display_png(file = "./env_phyla_relabund.png")
 ```
 
@@ -596,22 +658,23 @@ library(webexercises)
 ```
 # One Round of rarefaction
 <center>
-![](figures/one_round.png){style="width:200px"}
+![](figures/one_round.png){style="width:200px; background: white; border-radius:5px; border:5px solid white"}
 </center>
 
-Building up to multiple __iterations__ of __rarefaction__ we will first carry out one round of __rarefaction__ on our environmental pPhyla relative abundance data.
+Building up to multiple __iterations__ of __rarefaction__ we will first carry out one round of __rarefaction__ on our environmental phyla relative abundance data.
 
 This will also allow us to compare the compare the results of no __rarefaction__ to only one round.
 
 ## 1R: Rarefaction
 <center>
-![](figures/black_rhino.png){style="width:300px"}
+![](figures/black_rhino.png){style="width:300px; background: white; border-radius:5px; border:5px solid white"}
 </center>
 
 Carry out one round of __rarefaction__ and view the __rarefied__ counts.
 
 We are using the environmental samples subsetted and phyla aggregated data.
 Additionally, we are using the first of our __random seeds__ in `rng_seed_vec` and the minimum read count as our __rarefaction__ size.
+Please see advice on how to determine the rarefaction size of your own data in the [main NEOF R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/14-Rarefaction.html)
 
 ```{R, eval=FALSE}
 #One round of rarefaction

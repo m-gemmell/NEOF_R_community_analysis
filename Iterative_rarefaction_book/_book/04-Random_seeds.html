@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Random seeds and sampling | Iterative rarefaction</title>
+  <title>Chapter 4 Random seeds and sampling | R community iterative rarefaction</title>
   <meta name="description" content="NEOF book for the R community advanced analysis course" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Random seeds and sampling | Iterative rarefaction" />
+  <meta property="og:title" content="Chapter 4 Random seeds and sampling | R community iterative rarefaction" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community advanced analysis course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Random seeds and sampling | Iterative rarefaction" />
+  <meta name="twitter:title" content="Chapter 4 Random seeds and sampling | R community iterative rarefaction" />
   
   <meta name="twitter:description" content="NEOF book for the R community advanced analysis course" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-07-22" />
+<meta name="date" content="2024-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -138,8 +138,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/NEOF_bordered_small.png"></a></li>
-<li><a>Iterative rarefaction</a></li>
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank">
+<img src="figures/neof_rounded_corners_300ppi.png" width=250px></a></li>
+<li><a>R community iterative rarefaction</a></li>
 
 <li class="divider"></li>
 <li class="part"><span><b>Intro</b></span></li>
@@ -156,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="03-Setup.html"><a href="03-Setup.html"><i class="fa fa-check"></i><b>3</b> Setup</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="03-Setup.html"><a href="03-Setup.html#dataset"><i class="fa fa-check"></i><b>3.1</b> Dataset</a></li>
-<li class="chapter" data-level="3.2" data-path="03-Setup.html"><a href="03-Setup.html#conda-environment"><i class="fa fa-check"></i><b>3.2</b> Conda environment</a></li>
+<li class="chapter" data-level="3.2" data-path="03-Setup.html"><a href="03-Setup.html#mamba"><i class="fa fa-check"></i><b>3.2</b> Mamba</a></li>
 <li class="chapter" data-level="3.3" data-path="03-Setup.html"><a href="03-Setup.html#directory-and-files"><i class="fa fa-check"></i><b>3.3</b> Directory and files</a></li>
 </ul></li>
 <li class="part"><span><b>Random seeds</b></span></li>
@@ -315,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Iterative rarefaction</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R community iterative rarefaction</a>
           </h1>
         </div>
 
@@ -328,6 +329,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/random_seeds.png" style="width:200px" />
 </center>
+<p><strong>Rarefaction</strong> requires <strong>random sampling</strong>.
+You can carry out <strong>random sampling</strong> in R with <strong>random seeds</strong>.</p>
 <p>What are <strong>random seeds</strong>?</p>
 <p><strong>Random seeds</strong> are numbers that computational tasks use to determine how they will carry out a random task.</p>
 <p>In this section we will demonstrate the use of <strong>random seeds</strong>.
@@ -347,10 +350,10 @@ This is to help understand what they are and why they are used.</p>
 <p>To demonstrate the use of random seeds we will use the R function <code>sample()</code>.
 This function randomly samples a set of numbers.</p>
 <p>Create the below code in a code cell.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb1-1"><a href="04-Random_seeds.html#cb1-1" tabindex="-1"></a><span class="co">#Create a vector containing the numbers 0 to 9</span></span>
-<span id="cb1-2"><a href="04-Random_seeds.html#cb1-2" tabindex="-1"></a>num_vec <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span></span>
-<span id="cb1-3"><a href="04-Random_seeds.html#cb1-3" tabindex="-1"></a><span class="co">#Randomly sample 5 of these numbers</span></span>
-<span id="cb1-4"><a href="04-Random_seeds.html#cb1-4" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x =</span> num_vec, <span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb4-1"><a href="04-Random_seeds.html#cb4-1" tabindex="-1"></a><span class="co">#Create a vector containing the numbers 0 to 9</span></span>
+<span id="cb4-2"><a href="04-Random_seeds.html#cb4-2" tabindex="-1"></a>num_vec <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span></span>
+<span id="cb4-3"><a href="04-Random_seeds.html#cb4-3" tabindex="-1"></a><span class="co">#Randomly sample 5 of these numbers</span></span>
+<span id="cb4-4"><a href="04-Random_seeds.html#cb4-4" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x =</span> num_vec, <span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>If you run the code you will get five random single digit numbers.</p>
 <p>Run this multiple times and you will hopefully see the sampled numbers are different every time.</p>
 </div>
@@ -362,21 +365,21 @@ This function randomly samples a set of numbers.</p>
 <p>You may also notice that within each sample there are no repeating numbers.
 You can change this by adding the option <code>replace = TRUE</code>.</p>
 <p>Try this out in a new cell.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb2-1"><a href="04-Random_seeds.html#cb2-1" tabindex="-1"></a><span class="co">#Randomly sample 5 of these numbers with replacement</span></span>
-<span id="cb2-2"><a href="04-Random_seeds.html#cb2-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x =</span> num_vec, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb5-1"><a href="04-Random_seeds.html#cb5-1" tabindex="-1"></a><span class="co">#Randomly sample 5 of these numbers with replacement</span></span>
+<span id="cb5-2"><a href="04-Random_seeds.html#cb5-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x =</span> num_vec, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Run this a few times and you will hopefully notice that the five numbers are not always unique.</p>
 <p>When sampling <strong>with replacement</strong> you replace each result back into the pool before sampling again.
 When sampling <strong>without replacement</strong> you don't replace the results.</p>
 <p>The famous example is sampling green and yellow balls from a bag.
-If you had a bag with 1000 balls and you wanted a rough idea of the ratio of yellow and green balls you could count the number of these balls within a sample of only 50.
+If you had a bag with 1000 balls and you wanted a rough idea of the ratio of yellow and green balls you could count the number of these balls within a sample of 50.
 Without replacement you would take out a ball, record its colour and throw it in a separate container.
 With replacement you would take out a ball, record its colour and put it back into the initial bag, meaning it could possibly be recounted.</p>
 <p>One advantage of sampling with replacement is that your sampling size can be larger than your actual population size.
 For example, you could create a random sampling of 50 with a bag containing 10 balls with replacement.
 This would not work without replacement.
 The below script will cause R to produce an error saying "cannot take a sample larger than the population when 'replace = FALSE' ".</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb3-1"><a href="04-Random_seeds.html#cb3-1" tabindex="-1"></a><span class="co">#Randomly sample 15 of these numbers without replacement</span></span>
-<span id="cb3-2"><a href="04-Random_seeds.html#cb3-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x =</span> num_vec, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb6-1"><a href="04-Random_seeds.html#cb6-1" tabindex="-1"></a><span class="co">#Randomly sample 15 of these numbers without replacement</span></span>
+<span id="cb6-2"><a href="04-Random_seeds.html#cb6-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x =</span> num_vec, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Importantly for us <strong>rarefaction</strong> uses sampling <strong>without replacement</strong>.
 Any samples with a lower depth than the rarefaction size will be removed and will therefore not be in the resulting rarefied data.</p>
 

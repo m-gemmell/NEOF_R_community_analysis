@@ -1,6 +1,6 @@
 # R and random seeds
 <center>
-![](figures/braille_r.png){style="width:200px; border-radius:15px; border:#FFFFFF 6px solid"}
+![](figures/braille_r.png){style="width:200px; border-radius:15px; border:#FFFFFF 10px solid"}
 </center>
 
 Sampling is meant to be random but true randomness is pretty much impossible, especially in computing.
@@ -18,10 +18,10 @@ Various programs that use __random seeds__ include:
 
 To carry out random processes `R` uses a global variable called `seed`.
 The `seed` is normally random and changes every time it is used.
-This is useful for everyday analysis but what if you want replicable results?
+This is useful for everyday analysis but what if you want replicable/repeatable results?
 
 In R we can set the `seed` with the function `seet.seed()`.
-Carry this to determien the randomness of sampling.
+Carry this out to determine the randomness of sampling.
 
 ```{R, eval=FALSE}
 #Set random seed

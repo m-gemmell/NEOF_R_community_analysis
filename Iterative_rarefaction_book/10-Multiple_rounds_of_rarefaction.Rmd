@@ -1,14 +1,14 @@
 # Multiple Rarefaction iterations
 <center>
-![](figures/ten_rounds.png){style="width:200px"}
+![](figures/ten_rounds.png){style="width:200px; background: white; border-radius:5px; border:5px solid white"}
 </center>
 
 This chapter will demonstrate how to use a loop to carry out multiple rounds of rarefaction.
-We'll then compare the __non-rarefied__ data to our iteratively rarefied data.
+We'll then compare the __non-rarefied__ data to our __iteratively rarefied__ data.
 
 ## MR: Rarefaction
 <center>
-![](figures/tiger.png){style="width:300px"}
+![](figures/tiger.png){style="width:300px; background: white; border-radius:5px; border:5px solid white"}
 </center>
 
 The below loop creates a relative abundance table created by 10 rounds of iteration.
@@ -44,7 +44,7 @@ for (i in 2:length(rngseed_vec)){
                                            rngseed = rngseed_vec[i])
   #Calculate relative abundance
   pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
-  #Sum values to phyla_table
+  #Add values to phyla_table
   relabund_phyla_df <- 
     relabund_phyla_df + as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
 }
@@ -52,9 +52,9 @@ for (i in 2:length(rngseed_vec)){
 relabund_phyla_mean_df <- relabund_phyla_df / length(rngseed_vec)
 ```
 
-The loop produces a data frame (`relabund_phyla_df`) that has all the values from the ten  rarefied data frames summed in each corresponding cell.
+The loop produces a data frame (`relabund_phyla_df`) that has all the values from the ten rarefied data frames totalled/summed in each corresponding cell. More info on this is under the next heading in this chapter.
 
-The final data frame is then divided by the number of __iterations__ .
+The final data frame is then divided by the number of __iterations__ to get the average value for each cell.
 This produces the final data frame `relabund_phyla_mean_df`. 
 
 ## Mathematical operators & data frames

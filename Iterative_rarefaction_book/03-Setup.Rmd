@@ -3,14 +3,15 @@
 ![](figures/france.png){style="width:200px"}
 </center>
 
-Include info on directory, copying data, and environment setup
+We will utilise the same data and environment as the [main NEOF R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course). 
+This chapter containers a reminder on the dataset, how to setup your directory and files, and how to activate the required `mamba/conda` environment. 
 
 ## Dataset
 <center>
 ![](figures/river.png){style="width:200px"}
 </center>
 
-The data set we will use in this book is the same as that used in the [R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/02-Dataset_and_workflow.html#dataset).
+The data set we will use in this book is the same as that used in the [main R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/02-Dataset_and_workflow.html#dataset).
 
 Below are brief bullet points about the data:
 
@@ -27,6 +28,51 @@ Below are brief bullet points about the data:
   - CVP incubated at 28°C for 3 days.
 - There are three replicates for each sampling site and media combination (36 samples total)
 
-## Conda environment
+## Mamba
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
+</center>
+
+This book uses the same environment as in the [main R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/04-Setup.html#mamba)
+
+If you do not have the environment activated you can set-up your environment by run the following code (you must include the full stop and space at the front of the command).
+
+```{bash, eval=FALSE}
+. usercommunity
+```
+
+You will have successfully activated the environment if you now see `(r_community)` at the start of your command prompt. 
+This indicates you are now in the mamba environment called `r_community` created by the instructor.
+
+If you are interested in the use script you can look at its contents.
+
+```{bash, eval=FALSE}
+less /usr/local/bin/usercommunity
+```
+
+__Tip:__ press `q` to quit `less`.
 
 ## Directory and files
+<center>
+![](figures/open_file.png){style="width:200px; border-radius:15px; background:null"}
+</center>
+
+We will keep the analysis in this book separate to the analysis from the [main NEOF R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course).
+This is so this book can be more easily approached at a later time separate to the main content.
+
+Open up `Jupyter-notebook` with bash, ensuring you are in your home directory.
+
+__Note:__ `Jupyter-notebook` tutorial is here: [Tutorial](https://neof-workshops.github.io/R_community_whqkt8/Course/05-Jupyter.html)
+
+```{bash, eval=FALSE}
+#Set directory to your home directory
+cd ~
+#Open jupyter-notebook
+jupyter-notebook
+```
+
+Create a directory/folder for the analysis in your home directory called "R_community_iterative_rarefaction", then move into it.
+Create subsequent Jupyter-notebooks and carry out your analysis in this directory.
+
+[Instructions on creating a directory in `jupyter-notebook`](https://neof-workshops.github.io/R_community_whqkt8/Course/07-Import.html#import-notebook)
+

@@ -8,7 +8,7 @@ Superlative! Now that you know how to carry out __iterative rarefaction__ I'll a
 ![](figures/per_thousand.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
-Create a rarefaction averaged phyla relative abundance as we have done above but with 1000 __rarefaction iterations__.
+Create a rarefaction averaged phyla relative abundance as we have done in the previous chapters but with 1000 __rarefaction iterations__.
 For this task use __153478__ as the __seed__ when creating your vector of 1000 __rng seeds__.
 Save this vector of rngseeds to a file called "rngseeds_1000.RData".
 
@@ -96,6 +96,6 @@ With this section you have learnt:
 - How to use rng seeds to carry out __iterative rarefaction__
 
 In you real life analysis you would not use this method to create relative abundance taxonomy bar charts, you would use the non-rarefied relative abundance.
-However, this hopefully gave you a good idea of how __iterative rarefaction__ works so we can utilise it the next 2 chapters for alpha and beta diversity analysis.
+However, this has hopefully gave you a good idea of how __iterative rarefaction__ works so we can utilise it the next 2 chapters for alpha and beta diversity analysis.
 
 Feel free to save then close and halt your "Iterating_rarefaction.ipynb" notebook.

@@ -1,13 +1,13 @@
 # Phyla relative abundance
 <center>
-![](figures/river_2.png){style="width:200px"}
+![](figures/river_2.png){style="width:200px; background:white; border-radius:15px; border:5px solid white"}
 </center>
 
 Prior to __iterative rarefaction__ we will look at the phyla composition of the environmental samples.
 
 ## Subset and phyla aggregation
 <center>
-![](figures/aggregate.png){style="width:200px"}
+![](figures/aggregate.png){style="width:200px; background:white; border-radius:15px; border:5px solid white"}
 </center>
 
 For demonstrative purposes we will reduce the amount of samples and features in our data for this section. We will carry this out by:
@@ -51,6 +51,6 @@ pseq_env_phyla_relabund <- microbiome::transform(pseq_env_phyla, "compositional"
 #Create, save, and display bar chart
 phylum_bar <- microbiome::plot_composition(pseq_env_phyla_relabund)
 ggsave(filename = "./env_phyla_relabund.png", plot = phylum_bar,
-       device = "png", dpi = 300, units = "mm", height = 100, width = 100)
+       device = "png", dpi = 300, units = "mm", height = 100, width = 200)
 IRdisplay::display_png(file = "./env_phyla_relabund.png")
 ```

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Phyla relative abundance | Iterative rarefaction</title>
+  <title>Chapter 8 Phyla relative abundance | R community iterative rarefaction</title>
   <meta name="description" content="NEOF book for the R community advanced analysis course" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Phyla relative abundance | Iterative rarefaction" />
+  <meta property="og:title" content="Chapter 8 Phyla relative abundance | R community iterative rarefaction" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community advanced analysis course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Phyla relative abundance | Iterative rarefaction" />
+  <meta name="twitter:title" content="Chapter 8 Phyla relative abundance | R community iterative rarefaction" />
   
   <meta name="twitter:description" content="NEOF book for the R community advanced analysis course" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-07-22" />
+<meta name="date" content="2024-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -138,8 +138,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/NEOF_bordered_small.png"></a></li>
-<li><a>Iterative rarefaction</a></li>
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank">
+<img src="figures/neof_rounded_corners_300ppi.png" width=250px></a></li>
+<li><a>R community iterative rarefaction</a></li>
 
 <li class="divider"></li>
 <li class="part"><span><b>Intro</b></span></li>
@@ -156,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="03-Setup.html"><a href="03-Setup.html"><i class="fa fa-check"></i><b>3</b> Setup</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="03-Setup.html"><a href="03-Setup.html#dataset"><i class="fa fa-check"></i><b>3.1</b> Dataset</a></li>
-<li class="chapter" data-level="3.2" data-path="03-Setup.html"><a href="03-Setup.html#conda-environment"><i class="fa fa-check"></i><b>3.2</b> Conda environment</a></li>
+<li class="chapter" data-level="3.2" data-path="03-Setup.html"><a href="03-Setup.html#mamba"><i class="fa fa-check"></i><b>3.2</b> Mamba</a></li>
 <li class="chapter" data-level="3.3" data-path="03-Setup.html"><a href="03-Setup.html#directory-and-files"><i class="fa fa-check"></i><b>3.3</b> Directory and files</a></li>
 </ul></li>
 <li class="part"><span><b>Random seeds</b></span></li>
@@ -315,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Iterative rarefaction</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R community iterative rarefaction</a>
           </h1>
         </div>
 
@@ -326,36 +327,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="phyla-relative-abundance" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Phyla relative abundance<a href="08-Phyla_relative_abundance.html#phyla-relative-abundance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/river_2.png" style="width:200px" />
+<img src="figures/river_2.png" style="width:200px; background:white; border-radius:15px; border:5px solid white" />
 </center>
 <p>Prior to <strong>iterative rarefaction</strong> we will look at the phyla composition of the environmental samples.</p>
 <div id="subset-and-phyla-aggregation" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Subset and phyla aggregation<a href="08-Phyla_relative_abundance.html#subset-and-phyla-aggregation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/aggregate.png" style="width:200px" />
+<img src="figures/aggregate.png" style="width:200px; background:white; border-radius:15px; border:5px solid white" />
 </center>
 <p>For demonstrative purposes we will reduce the amount of samples and features in our data for this section. We will carry this out by:</p>
 <ul>
 <li>Subsetting the data so it only contains the 9 environmental samples.</li>
 <li>Aggregate the taxa to phyla whilst aggregating rare taxa to one "other group"</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb13-1"><a href="08-Phyla_relative_abundance.html#cb13-1" tabindex="-1"></a><span class="co">#Reduce data for demonstrative purposes</span></span>
-<span id="cb13-2"><a href="08-Phyla_relative_abundance.html#cb13-2" tabindex="-1"></a><span class="co">#Subset phyloseq object to only retain the ENV samples</span></span>
-<span id="cb13-3"><a href="08-Phyla_relative_abundance.html#cb13-3" tabindex="-1"></a><span class="co">#I.e. remove the media samples</span></span>
-<span id="cb13-4"><a href="08-Phyla_relative_abundance.html#cb13-4" tabindex="-1"></a>physeq_env <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">subset_samples</span>(pseq, media <span class="sc">==</span> <span class="st">&quot;ENV&quot;</span>)</span>
-<span id="cb13-5"><a href="08-Phyla_relative_abundance.html#cb13-5" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="08-Phyla_relative_abundance.html#cb13-6" tabindex="-1"></a><span class="co">#Aggregate to phyla level whilst aggregating rare phyla</span></span>
-<span id="cb13-7"><a href="08-Phyla_relative_abundance.html#cb13-7" tabindex="-1"></a>pseq_env_phyla <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">aggregate_rare</span>(</span>
-<span id="cb13-8"><a href="08-Phyla_relative_abundance.html#cb13-8" tabindex="-1"></a>  pseq_env, <span class="at">level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb13-9"><a href="08-Phyla_relative_abundance.html#cb13-9" tabindex="-1"></a>  <span class="at">detection =</span> <span class="fl">0.1</span>, <span class="at">prevalence =</span> <span class="fl">0.5</span>,</span>
-<span id="cb13-10"><a href="08-Phyla_relative_abundance.html#cb13-10" tabindex="-1"></a>  <span class="co">#Prevent info on aggregation to be printed out</span></span>
-<span id="cb13-11"><a href="08-Phyla_relative_abundance.html#cb13-11" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-12"><a href="08-Phyla_relative_abundance.html#cb13-12" tabindex="-1"></a><span class="co">#View count table</span></span>
-<span id="cb13-13"><a href="08-Phyla_relative_abundance.html#cb13-13" tabindex="-1"></a><span class="fu">otu_table</span>(pseq_env_phyla)</span>
-<span id="cb13-14"><a href="08-Phyla_relative_abundance.html#cb13-14" tabindex="-1"></a><span class="co">#Sum count of samples</span></span>
-<span id="cb13-15"><a href="08-Phyla_relative_abundance.html#cb13-15" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">readcount</span>(pseq_env_phyla)</span>
-<span id="cb13-16"><a href="08-Phyla_relative_abundance.html#cb13-16" tabindex="-1"></a><span class="co">#Remove unwanted objects</span></span>
-<span id="cb13-17"><a href="08-Phyla_relative_abundance.html#cb13-17" tabindex="-1"></a><span class="fu">rm</span>(pseq, pseq_env)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb16-1"><a href="08-Phyla_relative_abundance.html#cb16-1" tabindex="-1"></a><span class="co">#Reduce data for demonstrative purposes</span></span>
+<span id="cb16-2"><a href="08-Phyla_relative_abundance.html#cb16-2" tabindex="-1"></a><span class="co">#Subset phyloseq object to only retain the ENV samples</span></span>
+<span id="cb16-3"><a href="08-Phyla_relative_abundance.html#cb16-3" tabindex="-1"></a><span class="co">#I.e. remove the media samples</span></span>
+<span id="cb16-4"><a href="08-Phyla_relative_abundance.html#cb16-4" tabindex="-1"></a>physeq_env <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">subset_samples</span>(pseq, media <span class="sc">==</span> <span class="st">&quot;ENV&quot;</span>)</span>
+<span id="cb16-5"><a href="08-Phyla_relative_abundance.html#cb16-5" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="08-Phyla_relative_abundance.html#cb16-6" tabindex="-1"></a><span class="co">#Aggregate to phyla level whilst aggregating rare phyla</span></span>
+<span id="cb16-7"><a href="08-Phyla_relative_abundance.html#cb16-7" tabindex="-1"></a>pseq_env_phyla <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">aggregate_rare</span>(</span>
+<span id="cb16-8"><a href="08-Phyla_relative_abundance.html#cb16-8" tabindex="-1"></a>  pseq_env, <span class="at">level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb16-9"><a href="08-Phyla_relative_abundance.html#cb16-9" tabindex="-1"></a>  <span class="at">detection =</span> <span class="fl">0.1</span>, <span class="at">prevalence =</span> <span class="fl">0.5</span>,</span>
+<span id="cb16-10"><a href="08-Phyla_relative_abundance.html#cb16-10" tabindex="-1"></a>  <span class="co">#Prevent info on aggregation to be printed out</span></span>
+<span id="cb16-11"><a href="08-Phyla_relative_abundance.html#cb16-11" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb16-12"><a href="08-Phyla_relative_abundance.html#cb16-12" tabindex="-1"></a><span class="co">#View count table</span></span>
+<span id="cb16-13"><a href="08-Phyla_relative_abundance.html#cb16-13" tabindex="-1"></a><span class="fu">otu_table</span>(pseq_env_phyla)</span>
+<span id="cb16-14"><a href="08-Phyla_relative_abundance.html#cb16-14" tabindex="-1"></a><span class="co">#Sum count of samples</span></span>
+<span id="cb16-15"><a href="08-Phyla_relative_abundance.html#cb16-15" tabindex="-1"></a>microbiome<span class="sc">::</span><span class="fu">readcount</span>(pseq_env_phyla)</span>
+<span id="cb16-16"><a href="08-Phyla_relative_abundance.html#cb16-16" tabindex="-1"></a><span class="co">#Remove unwanted objects</span></span>
+<span id="cb16-17"><a href="08-Phyla_relative_abundance.html#cb16-17" tabindex="-1"></a><span class="fu">rm</span>(pseq, pseq_env)</span></code></pre></div>
 </div>
 <div id="phyla-relative-abundance-bar-chart" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Phyla relative abundance bar chart<a href="08-Phyla_relative_abundance.html#phyla-relative-abundance-bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -364,14 +365,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <p>Let's have a quick look at the non rarefied phyla relative abundance through a bar chart.</p>
 <p><strong>Note:</strong> This is how you would normally look at this type of bar chart.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb14-1"><a href="08-Phyla_relative_abundance.html#cb14-1" tabindex="-1"></a><span class="co">#Quick phyla bar chart of relative abundance</span></span>
-<span id="cb14-2"><a href="08-Phyla_relative_abundance.html#cb14-2" tabindex="-1"></a><span class="co">#Relative abundance transformation</span></span>
-<span id="cb14-3"><a href="08-Phyla_relative_abundance.html#cb14-3" tabindex="-1"></a>pseq_env_phyla_relabund <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">transform</span>(pseq_env_phyla, <span class="st">&quot;compositional&quot;</span>)</span>
-<span id="cb14-4"><a href="08-Phyla_relative_abundance.html#cb14-4" tabindex="-1"></a><span class="co">#Create, save, and display bar chart</span></span>
-<span id="cb14-5"><a href="08-Phyla_relative_abundance.html#cb14-5" tabindex="-1"></a>phylum_bar <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(pseq_env_phyla_relabund)</span>
-<span id="cb14-6"><a href="08-Phyla_relative_abundance.html#cb14-6" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./env_phyla_relabund.png&quot;</span>, <span class="at">plot =</span> phylum_bar,</span>
-<span id="cb14-7"><a href="08-Phyla_relative_abundance.html#cb14-7" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">100</span>, <span class="at">width =</span> <span class="dv">100</span>)</span>
-<span id="cb14-8"><a href="08-Phyla_relative_abundance.html#cb14-8" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file =</span> <span class="st">&quot;./env_phyla_relabund.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb17-1"><a href="08-Phyla_relative_abundance.html#cb17-1" tabindex="-1"></a><span class="co">#Quick phyla bar chart of relative abundance</span></span>
+<span id="cb17-2"><a href="08-Phyla_relative_abundance.html#cb17-2" tabindex="-1"></a><span class="co">#Relative abundance transformation</span></span>
+<span id="cb17-3"><a href="08-Phyla_relative_abundance.html#cb17-3" tabindex="-1"></a>pseq_env_phyla_relabund <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">transform</span>(pseq_env_phyla, <span class="st">&quot;compositional&quot;</span>)</span>
+<span id="cb17-4"><a href="08-Phyla_relative_abundance.html#cb17-4" tabindex="-1"></a><span class="co">#Create, save, and display bar chart</span></span>
+<span id="cb17-5"><a href="08-Phyla_relative_abundance.html#cb17-5" tabindex="-1"></a>phylum_bar <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(pseq_env_phyla_relabund)</span>
+<span id="cb17-6"><a href="08-Phyla_relative_abundance.html#cb17-6" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./env_phyla_relabund.png&quot;</span>, <span class="at">plot =</span> phylum_bar,</span>
+<span id="cb17-7"><a href="08-Phyla_relative_abundance.html#cb17-7" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">100</span>, <span class="at">width =</span> <span class="dv">200</span>)</span>
+<span id="cb17-8"><a href="08-Phyla_relative_abundance.html#cb17-8" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file =</span> <span class="st">&quot;./env_phyla_relabund.png&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

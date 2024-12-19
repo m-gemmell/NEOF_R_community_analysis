@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Setup | Iterative rarefaction</title>
+  <title>Chapter 3 Setup | R community iterative rarefaction</title>
   <meta name="description" content="NEOF book for the R community advanced analysis course" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Setup | Iterative rarefaction" />
+  <meta property="og:title" content="Chapter 3 Setup | R community iterative rarefaction" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the R community advanced analysis course" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Setup | Iterative rarefaction" />
+  <meta name="twitter:title" content="Chapter 3 Setup | R community iterative rarefaction" />
   
   <meta name="twitter:description" content="NEOF book for the R community advanced analysis course" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-07-22" />
+<meta name="date" content="2024-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -138,8 +138,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/NEOF_bordered_small.png"></a></li>
-<li><a>Iterative rarefaction</a></li>
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank">
+<img src="figures/neof_rounded_corners_300ppi.png" width=250px></a></li>
+<li><a>R community iterative rarefaction</a></li>
 
 <li class="divider"></li>
 <li class="part"><span><b>Intro</b></span></li>
@@ -156,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="03-Setup.html"><a href="03-Setup.html"><i class="fa fa-check"></i><b>3</b> Setup</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="03-Setup.html"><a href="03-Setup.html#dataset"><i class="fa fa-check"></i><b>3.1</b> Dataset</a></li>
-<li class="chapter" data-level="3.2" data-path="03-Setup.html"><a href="03-Setup.html#conda-environment"><i class="fa fa-check"></i><b>3.2</b> Conda environment</a></li>
+<li class="chapter" data-level="3.2" data-path="03-Setup.html"><a href="03-Setup.html#mamba"><i class="fa fa-check"></i><b>3.2</b> Mamba</a></li>
 <li class="chapter" data-level="3.3" data-path="03-Setup.html"><a href="03-Setup.html#directory-and-files"><i class="fa fa-check"></i><b>3.3</b> Directory and files</a></li>
 </ul></li>
 <li class="part"><span><b>Random seeds</b></span></li>
@@ -315,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Iterative rarefaction</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R community iterative rarefaction</a>
           </h1>
         </div>
 
@@ -328,13 +329,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/france.png" style="width:200px" />
 </center>
-<p>Include info on directory, copying data, and environment setup</p>
+<p>We will utilise the same data and environment as the <a href="https://neof-workshops.github.io/R_community_whqkt8/Course">main NEOF R community analysis workshop</a>.
+This chapter containers a reminder on the dataset, how to setup your directory and files, and how to activate the required <code>mamba/conda</code> environment.</p>
 <div id="dataset" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Dataset<a href="03-Setup.html#dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
 <img src="figures/river.png" style="width:200px" />
 </center>
-<p>The data set we will use in this book is the same as that used in the <a href="https://neof-workshops.github.io/R_community_whqkt8/Course/02-Dataset_and_workflow.html#dataset">R community analysis workshop</a>.</p>
+<p>The data set we will use in this book is the same as that used in the <a href="https://neof-workshops.github.io/R_community_whqkt8/Course/02-Dataset_and_workflow.html#dataset">main R community analysis workshop</a>.</p>
 <p>Below are brief bullet points about the data:</p>
 <ul>
 <li>It is a 16S dataset of ASV counts with taxonomy and phylogeny produced by QIIME2</li>
@@ -355,11 +357,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>There are three replicates for each sampling site and media combination (36 samples total)</li>
 </ul>
 </div>
-<div id="conda-environment" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Conda environment<a href="03-Setup.html#conda-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mamba" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Mamba<a href="03-Setup.html#mamba" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<center>
+<img src="figures/mamba_logo.png" style="width:200px; border-radius:15px; background:null" />
+</center>
+<p>This book uses the same environment as in the <a href="https://neof-workshops.github.io/R_community_whqkt8/Course/04-Setup.html#mamba">main R community analysis workshop</a></p>
+<p>If you do not have the environment activated you can set-up your environment by run the following code (you must include the full stop and space at the front of the command).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb1-1"><a href="03-Setup.html#cb1-1" tabindex="-1"></a><span class="bu">.</span> usercommunity</span></code></pre></div>
+<p>You will have successfully activated the environment if you now see <code>(r_community)</code> at the start of your command prompt.
+This indicates you are now in the mamba environment called <code>r_community</code> created by the instructor.</p>
+<p>If you are interested in the use script you can look at its contents.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb2-1"><a href="03-Setup.html#cb2-1" tabindex="-1"></a><span class="fu">less</span> /usr/local/bin/usercommunity</span></code></pre></div>
+<p><strong>Tip:</strong> press <code>q</code> to quit <code>less</code>.</p>
 </div>
 <div id="directory-and-files" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Directory and files<a href="03-Setup.html#directory-and-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<center>
+<img src="figures/open_file.png" style="width:200px; border-radius:15px; background:null" />
+</center>
+<p>We will keep the analysis in this book separate to the analysis from the <a href="https://neof-workshops.github.io/R_community_whqkt8/Course">main NEOF R community analysis workshop</a>.
+This is so this book can be more easily approached at a later time separate to the main content.</p>
+<p>Open up <code>Jupyter-notebook</code> with bash, ensuring you are in your home directory.</p>
+<p><strong>Note:</strong> <code>Jupyter-notebook</code> tutorial is here: <a href="https://neof-workshops.github.io/R_community_whqkt8/Course/05-Jupyter.html">Tutorial</a></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb3-1"><a href="03-Setup.html#cb3-1" tabindex="-1"></a><span class="co">#Set directory to your home directory</span></span>
+<span id="cb3-2"><a href="03-Setup.html#cb3-2" tabindex="-1"></a><span class="bu">cd</span> ~</span>
+<span id="cb3-3"><a href="03-Setup.html#cb3-3" tabindex="-1"></a><span class="co">#Open jupyter-notebook</span></span>
+<span id="cb3-4"><a href="03-Setup.html#cb3-4" tabindex="-1"></a><span class="ex">jupyter-notebook</span></span></code></pre></div>
+<p>Create a directory/folder for the analysis in your home directory called "R_community_iterative_rarefaction", then move into it.
+Create subsequent Jupyter-notebooks and carry out your analysis in this directory.</p>
+<p><a href="https://neof-workshops.github.io/R_community_whqkt8/Course/07-Import.html#import-notebook">Instructions on creating a directory in <code>jupyter-notebook</code></a></p>
 
 </div>
 </div>

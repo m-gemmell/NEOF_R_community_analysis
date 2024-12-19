@@ -1,5 +1,5 @@
 --- 
-title: "Iterative rarefaction"
+title: "R community iterative rarefaction"
 author: "Matthew R. Gemmell"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -42,8 +42,10 @@ knitr::write_bib(c(
 </center>
 
 This book explains and demonstrates how to carry out __iterative rarefaction__ for __alpha__ and __beta__ diversity analysis in __R__ with the `phyloseq` object.
-This involves running multiple rounds/iterations of rarefaction and producing and averaged table of __alpha__ and __beta__ diversity values.
+This involves running multiple rounds/iterations of rarefaction and producing an averaged table of __alpha__ and __beta__ diversity values.
 This is a more robust method than only carrying out one round of rarefaction.
+
+This book is an optional path for the [main NEOF R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course)
 
 ## Table of contents {-}
 
