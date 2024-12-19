@@ -1,0 +1,410 @@
+# Differential abundance (DA) analysis {#DA_chap}
+<center>
+![](figures/difference.png){style="width:200px"}
+</center>
+
+We are going to carry out differential abundance analysis with [ANCOM-BC (Analysis of compositions of microbiomes with bias correction)](https://www.nature.com/articles/s41467-020-17041-7).
+This is an improvement of the original ANCOM method but with added bias correction.
+This bias correction aims to account for the bias caused by the difference in sampling/depth across the samples.
+
+Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that have different abundances between groups.
+This can be used to detect organisms in high abundance in diseased states versus healthy states.
+This helps to determine the disease causing organisms.
+However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.
+
+This will be shown in our data.
+Organisms in higher abundance in the media samples compared to the environmental samples are most likely caused by selection pressures the media introduces.
+To keep our data manageable in a workshop we will look at the class abundances.
+If a class is detected to have higher abundance in media compared to the environmental group, we can say the class is a biomarker of the media compared to the environmental sample.
+Additionally, we will be able to detect classes that have been depleted in the media samples versus the environmental sample.
+
+## DA: setup
+<center>
+![](figures/packages_1.png){style="width:200px"}
+</center>
+
+We will use a new notebook called **"7-differential_abundance.ipynb"**. 
+Add the following to the top of this new notebook to load the required libraries/packages and data.
+
+```{r, eval=FALSE}
+#Packages
+library("phyloseq")
+library("microbiome")
+library("IRdisplay")
+library("ANCOMBC")
+library("DT")
+library("dplyr")
+library("tidyr")
+#Load phyloseq object
+load("phyloseq.RData")
+```
+
+We will be using the package [`ANCOMBC`](https://github.com/FrederickHuangLin/ANCOM-BC-Code-Archive) to carry out our DA analysis.
+Instead of using our rarefied data we will use our original abundance data.
+This is because ANCOM-BC uses absolute abundances and corrects for differences between samples.
+This is a statistically heavy method and I recommend you read the [ANCOM-BC paper](https://www.nature.com/articles/s41467-020-17041-7) if you are interested in how it works.
+As bioinformaticians we are more interested in the output rather than the method.
+
+## DA: Preprocess
+<center>
+![](figures/water_surface.png){style="width:200px"}
+</center>
+
+When carrying out ANCOM analysis you need to specify the reference group for the groupings you use.
+The reference group will be the 1st level of the factor.
+Therefore we will check our level orders for our media and site metadata categories.
+
+`r hide("What are factors?")`
+For an explanation on the factors class please see the following section in the R primer omics book:
+[Factors](https://neof-workshops.github.io/R_j4c0xh/14-Plots_scatterplot_and_box_plots.html#factors)
+`r unhide()`
+
+```{r, eval = FALSE}
+#Check media and site levels
+levels(phyloseq::sample_data(pseq)$media)
+levels(phyloseq::sample_data(pseq)$site)
+```
+
+The levels are not in the order we would like.
+We'll therefore change the order with the `factor()` function and `levels = ` option.
+
+```{r, eval = FALSE}
+#Ensure ENV is our reference level for media
+phyloseq::sample_data(pseq)$media <- factor(phyloseq::sample_data(pseq)$media,
+                                  levels = c("ENV", "CVP", "KBC", "TSA"))
+levels(phyloseq::sample_data(pseq)$media)
+#Ensure UD is our reference level for site
+phyloseq::sample_data(pseq)$site <- factor(phyloseq::sample_data(pseq)$site,
+                                  levels = c("UD", "MD", "LD"))
+levels(phyloseq::sample_data(pseq)$site)
+```
+
+## DA: ANCOM-BC analysis
+<center>
+![](figures/play_blue.png){style="width:200px"}
+</center>
+
+Now that we have our data the way we would like it we can carry out the ANCOM analysis.
+We'll use the function `ANCOMBC::ancombc2()` for our ANCOM-BC analysis.
+
+__Note:__ This command will take a few minutes to run.
+
+```{r, eval=FALSE}
+#Run ANCOMBC
+ancom_class_out <- ANCOMBC::ancombc2(data = pseq, fix_formula = "media + site",
+                                     p_adj_method = "holm",
+                                     tax_level = "Class")
+```
+
+The resulting object is very large so it can be a good idea to save it.
+
+```{r, eval=FALSE}
+#Save results
+save(ancom_class_out, file = "ANCOMBC2_class_analysis.RData")
+```
+
+### ANCOMBC2 options
+<center>
+![](figures/parameter_blue.png){style="width:200px"}
+</center>
+
+The options we use in the function are:
+
+- `data = `: The data to be analysed. This can be provided in various types of objects including the `phyloseq` object.
+- `fix_formula = `: The groupings within your data. It is important to add all groupings that may have an influence on the microbial abundances.
+- `p_adj_method =`: The p adjustment value to use.
+- `tax_level =`: The taxonomic level of interest.
+
+There are many more options that have been left as the default.
+Please see the package [PDF](https://bioc.ism.ac.jp/packages/devel/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf) for more options and explanations.
+
+## DA: ANCOM-BC results
+<center>
+![](figures/output_file_blue.png){style="width:200px"}
+</center>
+
+There is a lot of information in `ancom_class_out`.
+Therefore, lets extract the results we want to look at and then remove the large object.
+
+```{r, eval=FALSE}
+#Output of analysis compared to reference groups
+res_ancom_class <- ancom_class_out$res
+#Remove large object
+rm(ancom_class_out)
+#Check top rows of results
+head(res_ancom_class)
+```
+
+These results only contain taxon where a significant result was found in at least one comparison.
+This is based on the adjusted p-values (<0.05).
+There are a lot of columns (37) in our result data frame.
+Apart from the "taxon" column they are split by the comparison groups.
+These contain the following information:
+
+- __taxon__: The taxa groups found to be a biomarker in at least one comparison.
+- __lfc_*__: This contains the log (natural log) fold changes with respect to the reference group.
+  - For example The values for lfc_mediaCVP would equal LFC(CVP - ENV).
+  - A positive value means the abundances are higher in the comparison group (CVP) and lower in the ref (ENV).
+  - A negative value means the abundances are lower in the comparison group (CVP) and higher in the ref (ENV).
+  - The intercept value is the grand mean and is likely not of interest.
+- __se_*__: The standard error for the LFC values.
+- __W_*__: The W statistic. The higher this value the more significant the feature is differentially abundant between groups.
+- __p_*__: The P-value.
+- __q_*__: The Q-value. This is the adjusted P-value.
+- __diff*__: This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value < 0.05.
+
+It is quite a large table so let's save it as a tsv (tab separated value) file.
+
+```{r, eval=FALSE}
+#Save as file
+write.table(x = res_ancom_class, file = "ANCOMBC2_class_results.tsv",
+            quote = FALSE, row.names = FALSE)
+```
+
+This is good to open in excel but we don't have something like that on our cluster.
+Therefore, we will use the package `DT` to create an interactive table with the function `datatable()`.
+We can then save this object as an HTML with `htmlwidgets::saveWidget()`.
+
+```{r, eval=FALSE}
+#Create data table
+m <- DT::datatable(res_ancom_class)
+#Save data table as html
+htmlwidgets::saveWidget(m, "ANCOM_class_results.html", selfcontained = FALSE)
+```
+
+Go to the jupyter-notebook file explorer tab and click on the html file to open it in a new tab.
+This gives a relatively nice way to view all the results.
+
+One very clear pattern is that there are no biomarkers found for the site comparisons (MD and LD).
+I believe this is because we don't have enough replicates for the sites within the media samples and the differences between the medias are so large.
+However, there is a good amount of biomarkers for the three different medias compared to ENV.
+
+## DA: Create signifcant LFC long data frame
+<center>
+![](figures/portrait.png){style="width:200px"}
+</center>
+
+The results table is good but let's make a heatmap showing the LFCs (Log fold changes) of the significant biomarkers. First, we need to do some preprecessing.
+
+Remove columns unrelated to the media comparisons.
+
+```{r, eval = FALSE}
+#Extract the taxon column and the media columns from the results
+#Get positions of columns which contain "media"
+media_colnames_pos <- grep("media", colnames(res_ancom_class))
+#Taxon column and media column names
+media_colnames <- colnames(res_ancom_class)[c(1,media_colnames_pos)]
+media_colnames
+#Create new df with only taxon and media columns
+res_ancom_class_media <- res_ancom_class[,media_colnames]
+head(res_ancom_class_media)
+```
+
+Because we had comparisons with more that 1 grouping (media & site) we might have rows with no significant results.
+We will therefore remove these rows.
+
+__Note:__ The next 2 code sections use the packages `dplyr` & `tidyr` along with piping `%>%`.
+This is used as it would be very difficult to do these steps in base R and they are the code provided in the [`ANCOMBC2` tutorial](https://bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html).
+If you would like to learn more about these packages please see the [R for Data Science book](https://r4ds.had.co.nz/).
+
+```{r, eval = FALSE}
+#Remove any taxon where there are no TRUE values
+#I.e. no significant differences found for the media samples
+#Number of biomarkers prior to removal
+nrow(res_ancom_class_media)
+#Extract rows that contain at least one TRUE value
+res_ancom_class_media_sig <- res_ancom_class_media %>% dplyr::filter_all(
+  dplyr::any_vars(. %in% TRUE)
+)
+#Number of rows and the top of the new df
+nrow(res_ancom_class_media_sig)
+head(res_ancom_class_media_sig)
+```
+
+This has removed one biomarker which is great.
+
+Next we need to do a variety of preprocessing steps.
+This will create an edited long data frame.
+Long data frames are needed for `ggplot2()` when not using a `phyloseq` object.
+Instead of having the LFC (log fold change) values over many columns there will be only one column for the values. 
+The long data frame will contain the following columns:
+
+- __taxon__: The biomarker name.
+- __group__: The comparison group.
+- __value__: The LFC value.
+
+Please see the code and its annotation below.
+If you do not fully understand the code that is fine.
+As long as you can edit it to work with your own future code.
+
+```{r, eval = FALSE}
+#Create edited long df to plot significant log fold changes on heatmap
+res_ancom_class_media_sig_lfc_fig <- res_ancom_class_media_sig %>%
+  #Change log fold change values to 0 if diff is false
+  #test: Is diff TRUE?
+  #yes: Set LFC to original value (e.g. lfc_mediaCVP)
+  #no: Set LFC to 0
+  dplyr::mutate(lfc_mediaCVP = ifelse(test = diff_mediaCVP == TRUE,
+                                      yes = lfc_mediaCVP, no = 0),
+                lfc_mediaKBC = ifelse(test = diff_mediaKBC == TRUE,
+                                      yes = lfc_mediaKBC, no = 0),
+                lfc_mediaTSA = ifelse(test = diff_mediaTSA == TRUE,
+                                      yes = lfc_mediaTSA, no = 0)) %>%
+  #Only retain taxon and log fold change columns
+  #Additionally, change column names and round LFC values to 2 decimal places
+  dplyr::transmute(taxon,
+                   CVP = round(lfc_mediaCVP,2),
+                   KBC = round(lfc_mediaKBC,2),
+                   TSA = round(lfc_mediaTSA,2)) %>%
+  #Convert to long data frame
+  tidyr::pivot_longer(cols = CVP:TSA,
+                      names_to = "group",
+                      values_to = "value") %>%
+  #Arrange order of rows based on taxons
+  dplyr::arrange(taxon)
+#Check new long df
+head(res_ancom_class_media_sig_lfc_fig)
+```
+
+## DA: Biomarker LFC heatmap
+<center>
+![](figures/tiles.png){style="width:200px"}
+</center>
+
+We now have a long data frame with the significant LFC values. 
+We can use this to create a heatmap.
+
+There are some specific functions and packages for R that can produce heatmaps.
+These can include dendrograms on the y and x axes to show clustering.
+We are not interested in having all the bells and whistles so we will use the `ggplot2` layer `geom_tile()`.
+
+```{r, eval = FALSE}
+#LFC heatmap
+heatmap_media <- ggplot(res_ancom_class_media_sig_lfc_fig,
+                        aes(x = group, y = taxon, fill = value)) +
+                  #Produce ggplot as tile/heatmap style plot
+                  ggplot2::geom_tile(colour = "black") +
+                  #Add the LFC values as text in the cells
+                  ggplot2::geom_text(aes(group, taxon, label = value),
+                      colour = "black", size = 4) +
+                  #Remove the x and y labels (NULL) and add a title
+                  ggplot2::labs(x = NULL, y = NULL,
+                    title = "Log fold changes compared to ENV samples")
+#Save ggplot2 object with ggsave
+ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file="./ANCOMBC_class_media_ref_ENV.png")
+```
+
+It is a good start but the colour of the tiles is not useful.
+We are going to use the layer `ggplot2::scale_fill_gradient2()` to customise this.
+First, we need to decide on the minimum and maximum values.
+Let's generate these with some code based on the minimum and maximum LFC values.
+We will use 0 as the midpoint so we can easily differentiate between higher and lower abundance biomarkers.
+
+```{r, eval = FALSE}
+#Get min and max log fold changes
+lo <- floor(min(res_ancom_class_media_sig_lfc_fig$value))
+up <- ceiling(max(res_ancom_class_media_sig_lfc_fig$value))
+mid <- 0
+```
+
+With these values we can now make our upgraded heatmap.
+
+```{r, eval = FALSE}
+#LFC heatmap
+heatmap_media <- ggplot(res_ancom_class_media_sig_lfc_fig,
+                        aes(x = group, y = taxon, fill = value)) +
+                  #Produce ggplot as tile/heatmap style plot
+                  ggplot2::geom_tile(colour = "black") +
+                  #Customise colour gradient
+                  ggplot2::scale_fill_gradient2(low = "blue", high = "red", mid = "white",
+                                                na.value = "white",
+                                                midpoint = mid, limit = c(lo,up)) +
+                  #Add the LFC values as text in the cells
+                  ggplot2::geom_text(aes(group, taxon, label = value),
+                      colour = "black", size = 4) +
+                  #Remove the x and y labels (NULL) and add a title
+                  ggplot2::labs(x = NULL, y = NULL,
+                    title = "Log fold changes compared to ENV samples")
+#Save ggplot2 object with ggsave
+ggsave(filename = "./ANCOMBC_class_media_ref_ENV.png", plot = heatmap_media,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file="./ANCOMBC_class_media_ref_ENV.png")
+```
+
+Great, now we can see the biomarker with higher abundances in the ENV sample (blue) and higher abundances in the comparison media (red).
+Any 0 values are non-significant results we turned to 0 when we created the long data frame.
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+- Are there more biomarkers in higher abundance in ENV rather than the comparison media (i.e blue/negative results)? `r longmcq(opts_p)`
+```{r, echo = FALSE}
+opts_p <- c("__Phylum:Verrucomicrobia__", answer="__Class:Bacilli__", "__Class:Alphaproteobacteria__")
+```
+- Which biomarker has the highest positive values? `r longmcq(opts_p)`
+```{r, echo = FALSE}
+opts_p <- c("__Phylum:Verrucomicrobia__", "__Class:Bacilli__", answer="__Class:Alphaproteobacteria__")
+```
+ - Which biomarker has the lowest value? `r longmcq(opts_p)`
+
+From these results we can see that there are a lot of biomarkers with low abundances in the comparison media samples.
+There are only 2 biomarkers with higher abundance in the media samples.
+
+The LFC values between the different media are quite similar.
+There are some biomarkers that are only significant in 1 or 2 of the media though.
+It seems that CVP and KBC are more similar to each other than to TSA.
+This matches the clustering we found in the beta diversity.
+
+This seems to indicate that the media samples are not a good representation of the actual environmental community.
+They appear to select for a few bacterial classes and select against a lot of bacterial classes.
+
+## DA: Taxonomy heatmap
+<center>
+![](figures/heatmap_2.png){style="width:200px; border-radius:5px; background:white"}
+</center>
+
+Using code from the [taxa plots chapter](#chaptaxaplots) we'll make a quick class based heatmap.
+We will use the relative abundances for this.
+
+```{r, eval=FALSE}
+#Quick class based relative abundance heatmap
+#Convert abundance table to class relative abundance (compositional) table
+pseq_relabund <- microbiome::transform(pseq, "compositional")
+#Class phyloseq
+class_relabund_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Class", verbose = FALSE)
+#Produce heatmap ggplot
+class_heatmap <- microbiome::plot_composition(class_relabund_pseq, plot.type = "heatmap") +
+  xlab("Class") + ylab("Sample") +
+  ggtitle("Class relative abundance heatmap")
+#Save ggplot object as png file
+ggsave(filename = "./class_relabund_heatmap.png", plot = class_heatmap,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 200)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./class_relabund_heatmap.png")
+```
+
+With this plot we can clearly see that there are many classess with abundances in the ENV samples that have very little in the media samples.
+Most of the relative abundances of the media samples consist of Gammaproteobacteria.
+The TSA and KBC samples also have a high abundance of Bacilli.
+Overall, this is a nice visual confirmation of our ANCOM results.
+
+## DA: summary
+<center>
+![](figures/sum_blue.png){style="width:200px"}
+</center>
+
+We have used ANCOMBC to detect biomarkers in the media samples compared to the ENV samples.
+This showed most biomarkers were caused by depletion of many classes and selection of a few classes by the media.
+
+You could carry out more analysis in your future research in various ways:
+
+- Carry out biomarker detection at different taxonomy levels such as genus.
+  - We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there wasn't too many results to look at.
+- There are many other types of tests and considerations to keep in mind. Check out the [ANCOMBC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC.html), it is very in depth.
+  - There is also a handy FAQ on the [ANCOMBC github page](https://github.com/FrederickHuangLin/ANCOMBC).
+
+That is the last of the analysis. In the final chapter we will review the steps we carried out and the answers to the various questions we have about the dataset.

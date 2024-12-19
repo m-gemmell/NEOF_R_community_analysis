@@ -1,0 +1,61 @@
+# $\beta$: Considerations
+
+There are many considerations to take in mind when carrying out beta diversity analysis.
+
+## Which distance measure to use?
+
+There are many beta diversity distances that you can use.
+Ultimately the choice is yours but our recommendations would be:
+
+- Weighted and unweighted unifrac distances if you have a phylogenetic tree
+- Bray-Curtis and Jaccard distances if you do not have a phylogenetic tree
+
+These 2 sets of distances are very popular and commonly used as the default choices.
+
+There are two distances in each set as one is based on:
+
+- Richness (presence/absence): Unweighted unifrac & Jaccard
+- Richness and abundance values: Weighted unifrac & Bray-Curtis
+
+Normally the measure using abundance values will be more infomrative.
+However, it is good to attempt the richness only approach too as it may show something hidden by tthe inclusion of the abundance data.
+
+## Which ordination method to use?
+
+A common question is "Which ordination method should I use?"
+There are many ordination methods with __NMDS__ and __PCoA__ being popular for ordination distance based values (dissimilarity matrices).
+
+A general guide to which to use for your data is by choosing the most informative one.
+Choose the one that shows the best picture and that explains the data the best.
+
+In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high _% variance explained__ and it shows more separation of the samples.
+
+If the PCoA plot had a low __% variance explained__ it may be better to choose the NMDS plot.
+NMDS attempts to explain the data in the number of dimensions chosen by the user.
+We chose 2 as we want to plot the data in 2 dimensions.
+
+## More dimensions
+
+Your data may be very complex and two dimensions would not be sufficient to plot the data.
+There are two main ways to plot multiple dimensions.
+
+### Produce multiple plots {-}
+
+Create multiple 2D plots to compare pairs of axes.
+If you wanted to plot the first three axes this way you would produce the following scatter plots:
+
+- Axis 1 against Axis 2
+- Axis 1 against Axis 3
+- Axis 2 against Axis 3
+
+You can use this method to easily visualise as many axes as possible.
+The drawback is that you can only directly compare two axes in each plot.
+
+### 3D scatterplot {-}
+
+You can create an interactive 3D scatter plot with the package `plotly` using the `plot_ly()` function ([guide](https://plotly.com/r/3d-scatter-plots/)).
+
+This allows you to directly compare 3 axes at once.
+It is interactive, allowing you to change the perspective of the plot.
+This allows you to choose the best angle to save the image to use in publication.
+However, you would generally not use this method to compare more than 3 axes.

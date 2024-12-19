@@ -1,0 +1,61 @@
+# $\alpha$: Iterative rarefaction loop
+<center>
+![](figures/iterative_loops.png){style="width:300px"}
+</center>
+
+Now we will create averaged __alpha diversity__ values through __iterative rarefaction__.
+We will carry this out by:
+
+- Calculating initial __alpha diversity__ values from the first __iteration__
+- Looping through the subsequent __rarefaction iterations__ and adding/summing calculated __alpha diversity__ values to the initial __alpha diversity__ values
+- Dividing each value of the final summed __alpha diversity__ by the number of __rarefaction iterations__.
+
+For this we will use the function `microbiome::alpha()` to calculate our alpha diversity values.
+
+```{r, eval=FALSE}
+#Loop to create iteration based rarefied alpha diversity values
+
+#Create data frame to contain final summed alpha diversity values
+#In this case we'll run the first rarefied alpha diversity analysis
+pseq_rarefy <- phyloseq::rarefy_even_depth(
+  pseq,
+  sample.size = rarefaction_size,
+  rngseed = rngseed_vec[1],
+  verbose = FALSE)
+#Alpha diversity
+alpha_df_sum <- microbiome::alpha(pseq_rarefy, index = "all")
+
+#Loop through 2 to the number of iterations
+for (i in 2:rarefaction_iters){
+  pseq_rarefy <- phyloseq::rarefy_even_depth(
+    pseq,
+    sample.size = rarefaction_size,
+    rngseed = rngseed_vec[i],
+    verbose = FALSE)
+  #Alpha diversity
+  alpha_df <- microbiome::alpha(pseq_rarefy, index = "all")
+  #Add/sum the new data frame values to the sum data frame
+  alpha_df_sum <- alpha_df_sum + alpha_df
+}
+#Divide by number of rarefaction iterations to get average
+alpha_df_mean <- alpha_df_sum / rarefaction_iters
+#Save alpha mean data frame
+save(alpha_df_mean, file = "alpha_df_mean.RData")
+#Remove unneeded objects
+rm(pseq,alpha_df_sum, alpha_df)
+```
+
+`r hide("verbose = FALSE option")`
+We include the option `verbose = FALSE` in the `phyloseq::rarefy_even_depth()` to prevent a lot of text to be displayed.
+This text says which rngseed was used in the rarefaction.
+We don't need this message as we already have a record of the rngseeds we used in `rngseed_vec`.
+`r unhide()`
+
+You can check the structure and contents of our alpha diversity data frame with `head()`.
+
+```{r, eval=FALSE}
+head(alpha_df_mean)
+```
+
+There are a lot of diversity metrics.
+We are only interested in a few of them here but we will remove the other ones later on.

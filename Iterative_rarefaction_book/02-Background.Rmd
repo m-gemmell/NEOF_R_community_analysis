@@ -1,0 +1,52 @@
+# Iterative rarefaction background {#iter_rarefaction_background_chap}
+
+<center>
+![](figures/iteration.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+__Rarefaction__ is the process of randomly subsetting abundances to ensure the total count values are identical across all samples.
+__Rarefaction__ is intended to correct for bias caused by varying sampling depths across the samples.
+
+## Should you rarefy?
+<center>
+![](figures/choice_sign.png){style="width:200px"}
+</center>
+
+__Rarefaction__ can be a hotly debated topic with two main points of view.
+
+1.  Some researchers believe it is not appropriate.
+    1.  This is backed up by the 2014 paper ["Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible"](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531)
+    2.  Various R package developers do not recommend it such as the developers of [`phyloseq`](https://joey711.github.io/phyloseq/) & [`microbiome`](https://microbiome.github.io/tutorials/).
+2.  Some researchers believe it is appropriate.
+    1.  This is backed up by the 2022 paper ["To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data"](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959)
+    2.  The QIIME2 developers include rarefaction in their tutorials/SOPs for alpha and beta diversity analysis
+
+We use __rarefaction__ in our analyses but it is ultimately up to you whether you utilise it or not.
+
+## Using iterations
+<center>
+![](figures/iterations.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+In our initial R community analysis workshop we only carried out one round of __rarefaction__ for each sample.
+In this book we will __rarefy__ with multiple rounds/iterations to calculate average values for alpha and beta diversity metrics.
+This is __iterative rarefaction__ analysis.
+
+This iterative approach will, in theory, smooth out any extreme results one round of __rarefaction__ may cause. Extreme results are possible due the random nature of __rarefaction__.
+These extreme results can include:
+
+-   Leaving important features (ASVs, taxonomic groups, etc.) with no counts
+-   Causing a few features to have much higher relative abundances
+-   Varying alpha and beta diversity values with different sets of rarefaction
+
+## Book contents
+<center>
+![](figures/contents.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+In this book you will learn how to:
+
+- Use __random seeds__ for sampling
+- Carry out __iterative rarefaction__ with sets of __random seeds__
+- Use __iterative rarefaction__ to carry out alpha diversity analysis
+- Use __iterative rarefaction__ to carry out beta diversity analysis

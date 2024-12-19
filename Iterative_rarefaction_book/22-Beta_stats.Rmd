@@ -1,0 +1,79 @@
+# $\beta$: Stats
+<center>
+![](figures/navigation.png){style="width:200px"}
+</center>
+
+Now to carry out some statistics on our ordinations.
+These are the same methods as covered in the [R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/16-Beta.html#permanova).
+However, the code is slightly different.
+
+## Stats setup
+
+Load the required data.
+
+```{R, eval = FALSE}
+#Load wunifrac
+load("wunifrac_df_mean.RData")
+#Extract metadata
+#need data.frame() for vegan::adonis2() used later
+metadf <- data.frame(phyloseq::sample_data(pseq))
+```
+
+## PERMANOVA
+<center>
+![](figures/permanova.png){style="width:200px"}
+</center>
+
+To determine if their is a significant overall difference between the media & site groups we can carry out a PERMANOVA.
+We'll use the package `vegan` with its function `adonis2()`.
+
+__Note:__ The original `vegan::adonis()` function is deprecated and should not be used.
+
+```{R, eval = FALSE}
+#PERMANOVA of media+site
+wunifrac_adonis <- vegan::adonis2(beta_df_mean ~ media+site,
+                                  data = metadf, by = "margin")
+```
+
+## Pairwise PERMANOVA
+<center>
+![](figures/pear.png){style="width:100px"}
+</center>
+
+We can use a pairwise PERMANOVA to determine if their are significant differences between groups in a metadata category.
+The below code carries this out for the media groupings.
+
+```{R, eval = FALSE}
+#Pairwise PERMANOVA for media
+#Get combinations of unique media values
+cbn <- combn(x = unique(metadf$media), m = 2)
+#Create empty final data frame with 4 columns
+# and a number of rows equal to the the number of combinations
+pairwise_permanova_df <- as.data.frame(matrix(data = NA, nrow = ncol(cbn), ncol = 4))
+#Add column names
+colnames(pairwise_permanova_df) <- c("1","2","p","p.adj")
+
+#Loop through the combinations
+for(i in 1:ncol(cbn)){
+  #Subset metadata
+  metadata_subset <- metadf[metadf$media %in% cbn[,i],]
+  #Extract sample names
+  samples_subset <- row.names(metadf_subset)
+  #Subset distance matrix
+  wunifrac_dist_mat_subset <- beta_df_mean[samples_subset,samples_subset]
+  #PERMANOVA/ADONIS of media
+  #Ensure to change group name if using different group (media)
+  pairwise_adonis <- vegan::adonis2(
+    wunifrac_dist_mat_subset ~ media, data = metadf_subset, by = "margin")
+  #Add the group names and p-value to the main data frame
+  pairwise_permanova_df[i,1:2] <- cbn[,i]
+  pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
+}
+#Add adjusted P-values
+pairwise_permanova_df$p.adj <- p.adjust(pairwise_permanova_df$p, method = "BH")
+#View data frame
+pairwise_permanova_df
+#Write to a file
+write.table(x = pairwise_permanova_df, file = "pairwise_permanova_media_wunifrac.tsv",
+            quote = FALSE, row.names = FALSE)
+```

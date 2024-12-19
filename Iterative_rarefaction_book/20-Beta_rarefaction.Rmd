@@ -1,0 +1,91 @@
+# $\beta$: Iterative rarefaction
+<center>
+![](figures/iterative_distances.png){style="width:400px"}
+</center>
+
+Now that we know how to create a __beta diveristy__ paired distance matrix, we can create one with averaged values created by __iterative rarefaction__.
+
+## Iterative rarefaction values
+<center>
+![](figures/ten_rng_seeds.png){style="width:200px"}
+</center>
+
+We need to set our __rarefaction__ values and rngseeds.
+We can use the same code as we used in the __alpha_diversity__ analysis.
+
+```{R, eval = FALSE}
+#Rarefaction values
+#Rarefaction size
+#Minimum sample depth in this case
+rarefaction_size <- min(microbiome::readcount(pseq))
+#Load the vector of 10 rngseeds created in the previous chapter
+load("rngseeds.RData")
+#Number of rarefaction iterations to be carried out
+#Based on length of rng seed vector
+rarefaction_iters <- length(rngseed_vec)
+```
+
+## Iterative beta diversity calculation
+<center>
+![](figures/mean.png){style="width:200px"}
+</center>
+
+The below code carries out __itertaive rarefaction__ and produces an averaged __weighted unifrac__ paired distance matrix.
+
+```{R, eval = FALSE}
+#Loop to create iteration based rarefied weighted unifrac values
+
+#Create matrix to contain summed wunifrac beta diversity values
+#In this case we'll run the first rarefied beta diversity analysis
+pseq_rarefy <- phyloseq::rarefy_even_depth(
+  pseq,
+  sample.size = rarefaction_size,
+  rngseed = rngseed_vec[1],
+  verbose = FALSE)
+#wunifrac beta diversity
+beta_df_sum <- as.matrix(
+  rbiom::unifrac(
+    biom = phyloseq::otu_table(pseq_rarefy),
+    tree = phyloseq::phy_tree(pseq_rarefy),
+    weighted = TRUE))
+
+#Loop through 2 to the number of iterations
+for (i in 2:rarefaction_iters){
+  #Rarefaction
+  pseq_rarefy <- phyloseq::rarefy_even_depth(
+    pseq,
+    sample.size = rarefaction_size,
+    rngseed = rngseed_vec[i],
+    verbose = FALSE)
+  #Beta diversity
+  beta_df <- as.matrix(
+    rbiom::unifrac(
+      biom = phyloseq::otu_table(pseq_rarefy),
+      tree = phyloseq::phy_tree(pseq_rarefy),
+      weighted = TRUE))
+  #Add/sum the new data frame values to the sum data frame
+  beta_df_sum <- beta_df_sum + beta_df
+}
+#Divide by number of rarefaction iterations to get average
+beta_df_mean <- beta_df_sum / rarefaction_iters
+#Save alpha mean data frame
+save(beta_df_mean, file = "wunifrac_df_mean.RData")
+#View first 6 rows and columns of matrix
+beta_df_mean[1:6,1:6]
+#Remove unneeded objects
+rm(beta_df_sum, beta_df_mean, pseq_rarefy)
+```
+
+`r hide("verbose = FALSE option")`
+We include the option `verbose = FALSE` in the `phyloseq::rarefy_even_depth()` to prevent a lot of text to be displayed.
+This text says which rngseed was used in the rarefaction.
+We don't need this message as we already have a record of the rngseeds we used in `rngseed_vec`.
+`r unhide()`
+
+You'll notice that each value is duplicated, once in the bottom left triangle and once in the top right triangle.
+This is fine as the subsequent functions in this chapter will work with this in the same manner as if the matrix was de-duplicated.
+
+In the above case we saved our final distance matrix and removed it.
+We will then load the object in the next section.
+This is convenient as it means we only need to run this code cell once. 
+With higher numbers of rarefaction iterations it can take a while.

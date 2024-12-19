@@ -1,0 +1,102 @@
+# (PART\*) Taxonomy {-}
+
+# Taxa relative abundance {#taxa_relabund_chap}
+<center>
+![](figures/taxa.png){style="width:200px"}
+</center>
+
+In this section we are going to create taxonomy bar charts.
+For this we are going to use relative abundance tables of different taxa levels; Genus, Family, & Phyla.
+
+In this chapter we are going to create a `phyloseq` object with relative abundance values of phyla. 
+We would use read depth filtered data if we wanted to use it for other downstream analyses.
+But, as stated in the last chapter all our samples had sufficient depth, so we will use our original abundance `phyloseq` object.
+
+## Taxa relative abundance: setup
+<center>
+![](figures/packages.png){style="width:200px"}
+</center>
+
+The first steps before analysis are:
+
+- Create a new notebook called __"3-taxonomy_barcharts.ipynb"__.
+  - We will use this to create our phyloseq objects and taxonomy bar charts.
+- Add a markdown cell with the first level header: `# Taxonomy bar charts`.
+- Add the below to a code cell to load in the `phyloseq` object and libraries.
+```{r, eval=FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+library("IRdisplay")
+#Load phyloseq object
+load("phyloseq.RData")
+```
+
+From now on you will get less instructions on your notebook structure. 
+Please create your own coding and markdown cells where you think appropriate.
+
+## Relative abundance transformation
+<center>
+![](figures/count_to_percent.png){style="width:400px; border-radius:15px; background:white"}
+</center>
+
+Now that we have the data loaded we can create a new `phyloseq` object by transforming the abundance values to relative abundances.
+
+This is carried out with the `microbiome` function `transform()`. With it we transform the ASV abundance table within the `phyloseq` object to a "compositional" table (relative abundance). 
+
+Run the below command in an appropriate place in your notebook:
+
+```{r, eval=FALSE}
+#Transform abundance table to a relative abundance (compositional) table
+pseq_relabund <- microbiome::transform(pseq, "compositional")
+```
+
+As always it is good to check the contents of the new ASV table.
+
+```{r, eval=FALSE}
+#Summarise and check sample counts which should each amount to 1
+microbiome::summarize_phyloseq(pseq_relabund)
+microbiome::readcount(pseq_relabund)
+```
+
+You will notice the read count for each sample is __1__. This abundance table contains fractional relative abundances for each ASV. This fraction is relative to the total abundance within each sample. Therefore, the sum of fractional relative abundance values of the ASVs in one sample will equal 1.
+
+We will use this to produce all our different taxa tables.
+
+## Aggregate taxa
+<center>
+![](figures/aggregate_taxa.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+To produce a taxa table we can use the `microbiome` function `aggregate_taxa()`.
+
+Run the below command to produce a phylum based `phyloseq` object.
+
+__Reminder__: You may want a markdown cell to create a 2nd level header for this phylum section.
+
+```{r, eval = FALSE}
+#Check head of tax_table
+#This will tell us the taxa level names on the column names
+head(phyloseq::tax_table(pseq_relabund))
+#Phylum phyloseq
+phylum_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Phylum", verbose = FALSE)
+```
+
+Let's check our phyla `phyloseq`.
+
+```{r, eval=FALSE}
+#Head of phylum relative abundance table
+head(phyloseq::otu_table(phylum_pseq))
+#Number of phyla
+paste0("Number of phyla: ", nrow(phyloseq::otu_table(phylum_pseq)))
+#Summarise
+microbiome::summarize_phyloseq(phylum_pseq)
+microbiome::readcount(phylum_pseq)
+```
+
+## Taxa Relative abundance: summary
+<center>
+![](figures/sum_blue.png){style="width:200px"}
+</center>
+
+We have produced a `phyloseq` object containing a Phylum relative abundance table. Next, we will create a taxonomy bar chart with this.

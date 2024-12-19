@@ -1,0 +1,88 @@
+# $\alpha$: Plot and stats
+
+In this chapter we will create a violin plot, similar to a box plot, to visullaise our metrics.
+To detmeine if differences are significant we will then carry out Kruskal Wallis test and Paired Wilcoxon tests. 
+
+## $\alpha$: Violin plot
+<center>
+![](figures/violin_2.png){style="width:100px"}
+</center>
+
+To visualise the differences of the alpha diversity values between the four different media we'll use violin plots.
+We can use the function `ggplot2::geom_violin()` to carry this out.
+
+Additionally, we'll add a point for each value and colour it based on the site it canme from (UD, MD, or LD).
+The function `ggforce::geom_sina()` can be used for this.
+We'll use its parameter `alpha()` to make the points 50% (`0.5`) transparent.
+
+As we are plotting values from three different metrics we will split the plot into three separate plots.
+`ggplot2::facet_wrap()` can be used for this tasked with `~metric` used to split the plot by the metrics.
+We also specify `scales = "free"` so each of the three plots has their own x and y scales.
+This is important when the values are drastically different such is the case between the observed and chao1 (>100) compared to the shannon values (<10).
+
+`r hide("scales options")`
+The four `scales` are:
+
+- __`"fixed"` (default):__ All the scales are the same (fixed), based on the largest and smallest x and y values across all the plots. Useful where you want direct comparisons such as looking at teh overall pattern in ordination plots.
+- __`"free"`:__ All the scales are free. Each plot's x and y values limits are based on the data within it.
+- __`"free_x"`:__ The x axis is free and the y axis is fixed.
+- __`"free_y"`:__ The y axis is free and the x axis is fixed.
+
+Which you want to use depends on your data and how you are facetting it.
+`r unhide()`
+
+```{R, eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- ggplot(basic_alpha_metrics_long_df, aes(x = media, y = value)) +
+                            ggplot2::geom_violin() +
+                            ggforce::geom_sina(alpha=0.5, aes(color=site)) +
+                            ggplot2::labs(color = "Site", x = "Media", y = "Value") +
+                            ggplot2::facet_wrap(~metric, scales = "free")
+#Save ggplot2 object with ggsave()
+ggsave(filename = "./Alpha_diversity_rarefy_iters_media_violinplot.png", plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_media_violinplot.png")
+```
+
+## $\alpha$: Stats
+<center>
+![](figures/stats.png){style="width:200px"}
+</center>
+
+We can carry out statistics to compare the alpha diversity values between sample groups.
+
+### Kruskal Wallis test
+
+To determine if there is an overall difference in our data we'll use the Kruskal Wallis test.
+We'll carry this out using the media grouping for our three alpha diversity values.
+
+```{R, eval =FALSE}
+#Kruskal Wallis test
+#Observed ASVs
+kruskal.test(observed ~ media, data = meta_alpha_mean_df)
+#Chao1 estimator
+kruskal.test(chao1 ~ media, data = meta_alpha_mean_df)
+#Shannon diversity
+kruskal.test(shannon ~ media, data = meta_alpha_mean_df)
+```
+
+All the p-values are less than 0.05 indicating statistical significance.
+That means we can move onto pairwise comparisons.
+
+### Paired Wilcoxon test
+
+To determine what groups are significantly different from each other we can carry out paired Wilcoxon test.
+This tests 
+
+```{R, eval=FALSE}
+#Paired wilcoxon test
+#Observed ASVs
+pairwise.wilcox.test(meta_alpha_mean_df$observed, meta_alpha_mean_df, p.adjust.method = "holm")
+#Chao1 estimator
+pairwise.wilcox.test(meta_alpha_mean_df$chao1, meta_alpha_mean_df, p.adjust.method = "holm")
+#Shannon diversity
+pairwise.wilcox.test(meta_alpha_mean_df$shannon, meta_alpha_mean_df, p.adjust.method = "holm")
+```
+
+You'll see three p-value adjusted tables with all the values (except Shannon: ENV against TSA) being significant (<0.05).

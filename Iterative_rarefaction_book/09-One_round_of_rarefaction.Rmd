@@ -1,0 +1,89 @@
+# One Round of rarefaction
+<center>
+![](figures/one_round.png){style="width:200px"}
+</center>
+
+Building up to multiple __iterations__ of __rarefaction__ we will first carry out one round of __rarefaction__ on our environmental phyla relative abundance data.
+
+This will also allow us to compare the compare the results of no __rarefaction__ to only one round.
+
+## 1R: Rarefaction
+<center>
+![](figures/black_rhino.png){style="width:300px"}
+</center>
+
+Carry out one round of __rarefaction__ and view the __rarefied__ counts.
+
+We are using the environmental samples subsetted and phyla aggregated data.
+Additionally, we are using the first of our __random seeds__ in `rng_seed_vec` and the minimum read count as our __rarefaction__ size.
+
+```{R, eval=FALSE}
+#One round of rarefaction
+pseq_env_phyla_rarefy_1 <- phyloseq::rarefy_even_depth(
+  pseq_env_phyla,
+  #Minimum read count as rarefaction size
+  sample.size = min(microbiome::readcount(pseq_env_phyla)),
+  #First random seed as the rng seed
+  rngseed = rngseed_vec[1])
+#View count table
+otu_table(pseq_env_phyla_rarefy_1)
+#Sum count of samples
+microbiome::readcount(pseq_env_phyla_rarefy_1)
+```
+
+You should see that all the samples now have a total count of __11046__.
+
+## 1R: Relative abundance bar chart
+<center>
+![](figures/stacked_bar_chart_2.png){style="width:200px"}
+</center>
+
+Now to create a relative abundance bar chart with our __rarefied__ data to compare to our non-rarefied data.
+
+__Note:__ This is not something you would do in real analysis.
+
+```{R, eval=FALSE}
+#Quick phyla bar chart of relative abundance
+#Relative abundance transformation
+pseq_env_phyla_rarefy_1_relabund <- microbiome::transform(pseq_env_phyla_rarefy_1, "compositional")
+#Create, save, and display bar chart
+phylum_bar <- microbiome::plot_composition(pseq_env_phyla_rarefy_1_relabund)
+ggsave(filename = "./env_phyla_rarefy_1_relabund.png", plot = phylum_bar,
+       device = "png", dpi = 300, units = "mm", height = 100, width = 100)
+IRdisplay::display_png(file = "./env_phyla_rarefy_1_relabund.png")
+```
+
+Viewing the __non-rarefied__ and __rarefied__ based bar charts shows some differences. However, these are quite difficult to discern.
+
+## 1R: Difference from non-rarefied
+<center>
+![](figures/histogram_1.png){style="width:300px"}
+</center>
+
+To more easily see the differences we will subtract the two relative abundance tables from each other.
+This will produce a matrix of differences.
+
+```{R, eval=FALSE}
+#Value difference matrix
+single_rarefaction_diff <- 
+  phyloseq::otu_table(pseq_env_phyla_relabund) - phyloseq::otu_table(pseq_env_phyla_rarefy_1_relabund)
+single_rarefaction_diff
+```
+
+We can see there are differences.
+To make these differences even clearer let's make a histogram.
+
+```{R, eval = FALSE}
+#Histogram of differences
+hist(single_rarefaction_diff, main = "Single rarefaction")
+```
+
+```{r, echo = FALSE}
+opts_p <- c("__-0.0003(-3e-04) to 0.0003(3e-04)__", "__-0.003 to 0.003__", answer="__-0.015 to 0.015__")
+```
+What is the range of the differences compared to the non rarefied relative abundance values? `r longmcq(opts_p)`
+
+Although these values appear quite small keep in mind we are working with relative abundance values.
+Each sample has a total relative abundance of 1.00 so a relative abundance value of 0.01 is 1%.
+
+Let's see if we can get these differences smaller with multiple rounds of rarefaction.

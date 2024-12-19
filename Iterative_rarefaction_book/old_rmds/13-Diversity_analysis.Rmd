@@ -1,0 +1,22 @@
+# (PART\*) Diversity analysis {-}
+
+# Diversity analysis intro {#divsection}
+<center>
+![](figures/diversity.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+In the next 4 chapters we will carry out diversity analyses. This will include calculating and visualising diversity values plus carrying out the associated statistics.
+
+In the chapters we will carry out:
+
+- [Rarefaction of our ASV table.](#rarefaction_chap)
+- [Alpha diversity of the rarefied data.](#alpha_chap)
+- [Beta diversity of the rarefied data.](#beta_chap)
+- [Biomarker detection.](#DA_chap)
+
+During this we will attempt to answer our questions from [Chapter 2](#sum_and_qs):
+
+- How does the bacterial communities change across the anthropisation gradient?
+- Is there a difference in the replicates of one site and media combination. I.e. do any of the media produce inconsistent profiles.
+- Is there more difference between the sites or the media used?
+- Do any of the media produce a similar taxonomic profile to the environmental sample?

@@ -1,0 +1,146 @@
+# $\beta$: Practice
+
+## $\beta$: Task
+
+As an optional task create a NMDS and PCoA scatter plot using Bray-Curtis. To do this carry out the following steps:
+
+- Generate a Bray-Curtis distance matrix using the 10 rng seeds previosuly created.
+- Carry out ordination using NMDS and PCoA
+- Create long data frames with metadata and points
+- Plot the points using the media groupings as the shape and the site groupings as the colour
+
+`r hide("Solution code")`
+Rarefaction values and rng seeds.
+```{R, eval=FALSE}
+#Rarefaction values
+#Rarefaction size
+#Minimum sample depth in this case
+rarefaction_size <- min(microbiome::readcount(pseq))
+#Load the vector of 10 rngseeds created in the previous chapter
+load("rngseeds.RData")
+#Number of rarefaction iterations to be carried out
+#Based on length of rng seed vector
+rarefaction_iters <- length(rngseed_vec)
+```
+
+Calculate rarefied Bray-Curtis distance matrix by iterative rarefaction.
+```{R, eval=FALSE}
+#Calculate rarefied bray-curtis through iterations
+#We can use a loop to carry this out for us
+
+#First create a matrix to contain the final summed bray-curtis beta diversity values
+#In this case we'll run the first rarefied beta diversity analysis
+pseq_rarefy <- phyloseq::rarefy_even_depth(
+  pseq,
+  sample.size = rarefaction_size,
+  rngseed = rngseed_vec[1],
+  verbose = FALSE)
+#bray-curtis beta diversity
+beta_df_sum <- as.matrix(
+  vegan::vegdist(x = t(phyloseq::otu_table(pseq_rarefy)), 
+                 method = "bray"))
+#Loop through 2 to the number of iterations
+for (i in 2:rarefaction_iters){
+  #Rarefaction
+  pseq_rarefy <- phyloseq::rarefy_even_depth(
+    pseq,
+    sample.size = rarefaction_size,
+    rngseed = rngseed_vec[i],
+    verbose = FALSE)
+  #Beta diversity
+  beta_df <- as.matrix(
+    rbiom::unifrac(
+      vegan::vegdist(x = t(phyloseq::otu_table(pseq_rarefy)), 
+                 method = "bray"))
+  #Add/sum the new data frame values to the sum data frame
+  beta_df_sum <- beta_df_sum + beta_df
+}
+#Divide by number of rarefaction iterations to get average
+beta_df_mean <- beta_df_sum / rarefaction_iters
+#Save alpha mean data frame
+save(beta_df_mean, file = "bray_curtis_df_mean.RData")
+#View first 6 rows and columns of matrix
+beta_df_mean[1:6,1:6]
+#Remove unneeded objects
+rm(beta_df_sum, beta_df_mean, pseq_rarefy)
+```
+
+NMDS ordinate & long data frame
+```{R,eval = FALSE}
+#NMDS ordinate
+nmds_res <- vegan::metaMDS(beta_df_mean, k = 2)
+#Plot points
+nmds_res$points
+#Create long data frame with metadata and points
+#Extract metadata and ensure row names order matches
+metadf <- phyloseq::sample_data(pseq)
+if (identicial(row.names(metadf), row.names(nmds_points)) == FALSE) {
+  metadf <- metadf[row.names(nmds_points),]
+}
+#Make points with metadata data frame
+nmds_points_metadata <- cbind(nmds_points, metadf)
+#Check head of data frame
+head(nmds_points_metadata)
+#Save object we want, remove ones we don't
+save(nmds_points_metadata, file = "bray_NMDS.RData")
+rm(metadf, nmds_res, nmds_points)
+```
+
+NMDS scatterplot
+```{R,eval = FALSE}
+#Produce NMDS scatter plot
+#Plot ordination
+nmds.bray <- ggplot(data = nmds_points_metadata,
+                        aes(x = NMDS1, y = NMDS2, color = site, shape = media)) +
+                ggplot2::geom_point()
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_NMDS_bray_media_site.png",
+       plot = nmds.bray,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file = "./Beta_diversity_NMDS_bray_media_site.png")
+```
+
+PCoA ordinate & long data frame
+```{r,eval = FALSE}
+#PCoA ordinate
+pcoa_res <- ape::pcoa(beta_df_mean)
+#Extract first 2 axes
+pcoa_points <- pcoa_res$vectors[,1:2]
+head(pcoa_points)
+#Variation explained values 
+pcoa_axis_var_explained <- round(x=pcoa_res$values[,"Relative_eig"] * 100, digits=2)
+pcoa_axis_var_explained
+#Create point long data frame with metadata
+#Extract metadata and ensure row names order matches
+metadf <- phyloseq::sample_data(pseq)
+if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
+  metadf <- metadf[row.names(pcoa_points),]
+}
+#Make points with metadata data frame
+pcoa_points_metadata <- cbind(pcoa_points, metadf)
+head(pcoa_points_metadata)
+#Save object we want, remove ones we don't
+save(pcoa_points_metadata, file = "wunifrac_PCoA.RData")
+rm(metadf, pcoa_res, pcoa_points)
+```
+
+PCoA scatterplot
+```{R, eval = FALSE}
+#Produce PCoA scatter plot
+#Plot ordination
+pcoa.bray <- ggplot(data = pcoa_points_metadata, 
+                        aes(x = Axis.1, y = Axis.2, color = site, shape = media)) +
+                ggplot2::geom_point() +
+                #Add x and y labels to include % variance explained
+                labs(x = paste0("Axis.1 [", pcoa_axis_var_explained[1], "%]"),
+                     y = paste0("Axis.2 [", pcoa_axis_var_explained[2], "%]"))
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_pcoa_bray_media_site.png", plot = pcoa.bray
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file = "./Beta_diversity_pcoa_bray_media_site.png")
+```
+`r unhide()`
+
+## $\beta$: Recap

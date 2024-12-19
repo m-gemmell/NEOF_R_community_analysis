@@ -1,0 +1,109 @@
+# $\alpha$: Practice
+
+## $\alpha$: Task
+<center>
+![](figures/tasks.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+As an optional task create a new violin plot that includes the following:
+
+- Plots the metrics:
+  - "chao1"
+  - "evenness_pielou" renaming it as "pielou"
+  - "diversity_fisher" renaming it as "fisher"
+  - Ensure they are in the order "chao1", "pielou", then "fisher"
+- The x-axis is separated by Site (UD, MD, LD) rather than media.
+  - Ensure the order is UD, MD, then LD
+- Points are coloured by Media (ENV, CVP, KBC, and TSA)
+  - Ensure the order is ENV, CVP, KBC, then TSA
+- Include Wilcoxon paired stats comparing the Sites
+
+`r hide("Solution code")`
+Subset [long alpha diversity table created earlier in this chapter](#alpha_long_df) to contain metrics of choice.
+```{R, eval=FALSE}
+#Process our long data frame
+#Subset our long alpha diversity data frame to only contain our metrics of choice
+metrics <- c("chao1", "evenness_pielou","diversity_fisher")
+subset_alpha_metrics_long_df <- meta_alpha_mean_long_df[
+  meta_alpha_mean_long_df$metric %in% metrics,
+]
+#Change instances of evenness_pielou to pielou
+subset_alpha_metrics_long_df$metric <- gsub(pattern = "evenness_pieloue",
+                                           replacement = "pielou",
+                                           x = subset_alpha_metrics_long_df$metric)
+#Change instances of diversity_fisher to fisher
+subset_alpha_metrics_long_df$metric <- gsub(pattern = "diversity_fisher",
+                                           replacement = "fisher",
+                                           x = subset_alpha_metrics_long_df$metric)
+#The gsub() function changes our factor to a character vector
+#Therefore change back to factor
+#We will also choose our order of the metric names for plotting
+subset_alpha_metrics_long_df$metric <- factor(x = subset_alpha_metrics_long_df$metric,
+                                             levels = c("chao1","pielou","fisher"))
+#Check level order of metric factor column
+levels(subset_alpha_metrics_long_df$metric)
+#Check head of subsetted long data frame
+head(subset_alpha_metrics_long_df)
+```
+
+Create metadata combination list for plot stats
+```{R,eval = FALSE}
+#To compare mean we need to create a list of comparisons
+#Create character vector of unique metadata values (site in this case)
+uniq_site_values_chr_vec <- unique(as.character(subset_alpha_metrics_long_df$site))
+uniq_site_values_chr_vec
+#Can use combn() to get comparisons
+my_comparisons <- combn(uniq_site_values_chr_vec, m = 2, simplify = FALSE))
+#Check contents and structure
+my_comparisons
+str(my_comparisons)
+```
+
+Reorder factors and comparisons
+```{r,eval = FALSE}
+#Reorder sites, media and comparisons
+#Set order of sites
+subset_alpha_metrics_long_df$site <- factor(subset_alpha_metrics_long_df$site,
+                                            #Set order of levels
+                                            levels = c("UD", "MD", "LD"))
+#Set order of media
+subset_alpha_metrics_long_df$media <- factor(subset_alpha_metrics_long_df$media,
+                                            #Set order of levels
+                                            levels = c("ENV", "CVP", "KBC", "TSA"))
+#Order comparisons
+my_ordered_comparisons <- my_comparisons[c(1,3,2)]
+my_ordered_comparisons
+```
+
+Plot with stats
+```{R, eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- ggplot(subset_alpha_metrics_long_df, aes(x = site, y = value)) +
+                            ggplot2::geom_violin() +
+                            ggforce::geom_sina(alpha=0.5, aes(color=site)) +
+                            ggplot2::labs(color = "Media", x = "Site", y = "Value") +
+                            ggplot2::facet_wrap(~metric, scales = "free") +
+                            #Add comparisons
+                            ggpubr::stat_compare_means(comparisons = my_ordered_comparisons)
+#Save ggplot2 object with ggsave()
+ggsave(filename = "./Alpha_diversity_rarefy_iters_site_violinplot_pairwise_wilcox.png", 
+       plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_site_violinplot_pairwise_wilcox.png")
+```
+`r unhide()`
+
+## $\alpha$: Recap
+<center>
+![](figures/recap.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+In this chapter you have:
+
+- Produced __alpha diversity__ values through __iterative rarefaction__
+- Created a long data frame containing metadata and specified __alpha diversity__ metrics
+- Visualised the group differences of __alpha diversity__ metrics with violin plots
+- Embedded paired Wilcoxon p-values in our violin plots
+
+With these skills and knowledge you will be able to carry out thorough investigations of __alpha diversity__ in your future research.

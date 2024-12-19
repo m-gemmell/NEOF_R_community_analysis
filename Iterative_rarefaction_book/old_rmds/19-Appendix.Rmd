@@ -1,0 +1,260 @@
+# (APPENDIX) Appendix {-}
+
+# Mamba installs {#mambainstalls}
+<center>
+![](figures/mamba_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333"}
+</center>
+
+## Mamba installation and environment {#mamba_install}
+
+Mamba is a reimplementation of conda. It is a great tool for installing bioinformatic packages including R packages.
+
+Mamba github: <https://github.com/mamba-org/mamba>
+
+The best way to use Mamba is to install Miniforge. It has both Conda and Mamba commands.
+
+Miniforge installation: <https://github.com/conda-forge/miniforge>
+
+Mamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>
+
+To create the mamba environment `r_community` run the below commands in your bash. You will need to have installed `mamba` first.
+
+```{bash, eval=FALSE}
+#R community
+mamba create -n r_community
+mamba activate r_community
+mamba install -c anaconda -c bioconda -c r -c conda-forge \
+bioconductor-microbiome bioconductor-ancombc biom-format \
+r-tidyverse r-devtools r-ggforce pandoc r-plotly r-irkernel r-htmltools=0.5.4
+```
+
+Activate the environment in bash.
+
+```{bash, eval=FALSE}
+mamba activate r_community
+```
+
+Use `pip` to install `kraken-biom`
+
+```{bash, eval=FALSE}
+pip install kraken-biom
+```
+
+Activate your `mamba's` `R` and install `Qiime2R`.
+
+```{bash, eval=FALSE}
+R
+```
+
+```{r, eval=FALSE}
+library("devtools")
+devtools::install_github("jbisanz/qiime2R")
+```
+
+## Jupyter-notebook {#jupyter_appendix}
+<center>
+![](figures/jupyter_logo.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+If you are running this on your own computer you can use `RStudio`.
+However, you can also use [`Jupyter-notebook`](https://jupyter.org/) if you are using an HPC or prefer it.
+
+If using bash you will need to create an environment with `Jupyter-notebook`.
+Ensure you are in the `(base)` mamba environment.
+
+```{bash, eval=FALSE}
+mamba create -n jupyter
+mamba activate jupyter
+mamba install -c anaconda jupyter
+mamba deactivate
+```
+
+To run `Jupyter-notebook` with your `r_community` environment you can run the following.
+
+```{bash, eval=FALSE}
+#Activate you R_community env
+mamba activate r_community
+#Run jupyter-notebook (may be a slightly different path)
+~/mamba/envs/jupyter/bin/jupyter-notebook
+```
+
+# R packages
+<center>
+![](figures/r_package.png){style="width:200px"}
+</center>
+
+## ggplot2 {#ggplot2_appendix}
+<center>
+![](figures/ggplot2.png){style="width:200px"}
+</center>
+
+Below are some useful resource if you would like to learn ggplot2.
+
+The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It contains a section called [Understanding ggplot2](https://r-graphics.org/chapter-ggplot2) in its appendix which is useful for learning some key terminologies and concepts.
+
+`ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](#http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/).
+
+[__ggplot2 function reference__](https://ggplot2.tidyverse.org/reference/#layers).
+
+## Phyloseq {#phyloseq_appendix}
+<center>
+![](figures/phyloseq_logo.png){style="width:200px"}
+</center>
+
+Below are various resources if you would like to learn more about phyloseq and associated packages.
+
+- [Phyloseq](https://joey711.github.io/phyloseq/): The original `phyloseq`. The R object is still great but the included tutorials and some functions are a bit outdated.
+- [microbiome](https://microbiome.github.io/tutorials/): A supplemental package to `phyloseq`. It contains some much needed functions. The tutorials are much clearer than the `phyloseq` tutorials but still not always the clearest.
+
+## Importing into phyloseq
+<center>
+![](figures/import.png){style="width:200px"}
+</center>
+
+- [QIIME2R](https://github.com/jbisanz/qiime2R): A very useful package to import QIIME2 artifacts into a `phyloseq` object.
+- [Phyloseqize R data](https://joey711.github.io/phyloseq/import-data.html): A tutorial on how to import data frames into a `phyloseq` object.
+- __Shotgun metagenomics data__
+  - You can import Kraken2 data by converting the [report file to a biom file](https://github.com/smdabdoub/kraken-biom) then importing the biom file into a `phyloseq` object with the [`QIIME2R` function `read_q2biom()`](https://github.com/jbisanz/qiime2R).
+  - You can also import the [Kraken-Style Bracken report](https://github.com/jenniferlu717/Bracken#output-kraken-style-bracken-report) in the above manner.
+  - The [biom format](https://biom-format.org/) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
+
+# Diversity metrics
+<center>
+![](figures/metric_square.png){style="width:200px"}
+</center>
+
+## Alpha diversity {#alpha_appendix}
+<center>
+![](figures/alpha.png){style="width:200px"}
+</center>
+
+Alpha diversity measures assess the diversity of each sample separately. Generally a higher value of these indexes/measures indicates higher diversity/evenness. 
+
+### Observed features {#obvs}
+
+The observed number of features is defined as the number of distinct features, such as ASVs, within a sample.
+
+The number of observed features can also be known as the feature richness of a sample. A sample with more present features than another would be said to be richer.
+
+### Chao {#chao}
+
+This is an estimation of the actual number of features within a sample.
+
+__Equation__:
+$$
+C = 
+O + 
+\frac{f1(f1-1)}
+{2(f2 + 1)}
+$$
+
+- C = Chao1 estimator, i.e. estimated total feature richness.
+- O = Observed number of features.
+- f1 = Frequency of singletons (features with total abundance of 1).
+- f2 = Frequency of doubletons (features with total abundance of 2).
+
+### Evenness
+
+How evenly spread the abundances are across all present features.
+
+- A sample with 4 ASVs, each with 25% relative abundance would be perfectly even.
+- A sample with 4 ASVs, where one ASV has 97% abundance and the other 3 have 1%, would be highly uneven.
+
+### Faith's PD (phylogenetic diversity) {#faith}
+
+Faith's PD represents the minimum total branch length that covers all taxa within the sample on a phylogenetic tree (Faith, 1992). A smaller PD value indicates a reduced expected taxonomic diversity whilst a large PD value indicates a higher expected diversity.
+
+A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.
+
+<center>![](figures/faith_pd.png){style="border-radius: 15px; width: 60%; border: 5px solid #333333"}</center>
+
+### Simpson {#simpson}
+
+A measure of diversity based on number of features present and the relative abundance of each feature. If richness and evenness increase the diversity score increases.
+
+__Equation__:
+$$
+D = 1 - 
+{(
+\frac
+{\sum n{(n-1)}}
+{N{(N-1)}}
+)}
+$$
+
+- D = Simpson diversity index
+- n = Abundance of feature
+- N = Total feature abundance of sample
+
+The values range from 0 (no diversity) to 1 (infinite diversity).
+
+### Simpson evenness measure (simpson_e) {#simpsone}
+
+This is a measure of evenness based on the Simpson index. It ranges from 0 (lowest eveness) to 1 (complete evenness). It compares the calculated Simpson Index of a sample to its theoretical maximum if the sample was perfectly even but had the same amount of features.
+
+__Equation__:
+$$
+E_D = 
+\frac{D}
+{D_m}
+$$
+
+- E~D~ = Simpson evenness measure
+- D = Simpson diversity index
+- D~m~ = Max possible Simpson diveristy index given the number of features
+
+### Shannon {#shannon}
+
+A measure of diversity where a higher number means higher diversity. Shannon's index accounts for both abundance and evenness of the feaures present.
+
+__Equation__:
+
+$$
+H =
+-\sum_{i=1}^{n} p_i lnp_i
+$$
+
+- H = Shannon diversity index
+- p = n/N
+- n = Abundance of feature
+- N = Total feature abundance of sample
+
+## Beta diversity {#beta_appendix}
+<center>
+![](figures/beta.png){style="width:200px"}
+</center>
+
+Beta diversity compares 2 samples at a time. This is measured in terms of dissimilarity:
+
+- A lower score indicate the 2 samples are more similar.
+- A higher score indicates the 2 samples are more dissimilar.
+
+### Weighted and unweighted UniFrac distances {#unifrac_explanation}
+
+The UniFrac metric is a phylogenetic distance measure between two samples. It is defined as “the sum of the unshared branch lengths between two samples divided by the total branch length (shared + unshared) of two samples” (Lozupone and Knight, 2005). This results in calculating the fraction of the branch lengths unique to each sample (ie. the higher this value is, the more dissimilar two samples are). The entire phylogenetic tree created for all the sequences of all the analysed samples is used for this calculation.
+
+- Unweighted UniFrac: Only considers feature presence/absence.
+- Weighted UniFrac: Takes into account feature presence/absence & abundance. I.e. the value is weighted by the abundances.
+
+### Bray-Curtis {#bray_explanation}
+
+The Bray-Curtis metric is a dissimilarity measure that can quantify the level of difference between two samples. Two identical samples would have a Bray-Curtis measure of 0 (i.e. they have 0 dissimilarity).
+
+There are 2 versions but the one used by QIIME2 looks at the number of features shared by the 2 samples.
+
+__Equation__:
+
+$$
+CBC = 1 – 
+(\frac{2c}
+{a + b})
+$$
+
+- c = # features present in both samples
+- a = # features present in sample a
+- b = # features present in sample b
+
+## Diversity Resources
+
+For more diveristy measure please see: https://forum.qiime2.org/t/alpha-and-beta-diversity-explanations-and-commands/2282
+

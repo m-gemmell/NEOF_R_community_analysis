@@ -1,0 +1,80 @@
+# (PART\*) Random seeds {-}
+
+# Random seeds and sampling {#random_seeds_n_sampling_chap}
+<center>
+![](figures/random_seeds.png){style="width:200px"}
+</center>
+
+What are __random seeds__?
+
+__Random seeds__ are numbers that computational tasks use to determine how they will carry out a random task.
+
+In this section we will demonstrate the use of __random seeds__. 
+This is to help understand what they are and why they are used.
+
+## Random seed notebook
+
+<center>
+![](figures/seed_notebook.png){style="width:100px"}
+</center>
+
+Create a new R jupyter-notebook called "Random_seeds.ipynb" for this section.
+
+## Random sampling
+<center>
+![](figures/random_sampling.png){style="width:200px; background:white; border-radius:5px"}
+</center>
+
+To demonstrate the use of random seeds we will use the R function `sample()`. 
+This function randomly samples a set of numbers.
+
+Create the below code in a code cell.
+
+```{R, eval=FALSE}
+#Create a vector containing the numbers 0 to 9
+num_vec <- 0:9
+#Randomly sample 5 of these numbers
+sample(x = num_vec, size = 5)
+```
+
+If you run the code you will get five random single digit numbers.
+
+Run this multiple times and you will hopefully see the sampled numbers are different every time.
+
+## Sampling with replacement
+<center>
+![](figures/balls.png){style="width:200px"}
+</center>
+
+You may also notice that within each sample there are no repeating numbers.
+You can change this by adding the option `replace = TRUE`.
+
+Try this out in a new cell.
+
+```{R, eval=FALSE}
+#Randomly sample 5 of these numbers with replacement
+sample(x = num_vec, size = 5, replace = TRUE)
+```
+
+Run this a few times and you will hopefully notice that the five numbers are not always unique.
+
+When sampling __with replacement__ you replace each result back into the pool before sampling again.
+When sampling __without replacement__ you don't replace the results.
+
+The famous example is sampling green and yellow balls from a bag.
+If you had a bag with 1000 balls and you wanted a rough idea of the ratio of yellow and green balls you could count the number of these balls within a sample of only 50.
+Without replacement you would take out a ball, record its colour and throw it in a separate container.
+With replacement you would take out a ball, record its colour and put it back into the initial bag, meaning it could possibly be recounted.
+
+One advantage of sampling with replacement is that your sampling size can be larger than your actual population size.
+For example, you could create a random sampling of 50 with a bag containing 10 balls with replacement.
+This would not work without replacement.
+The below script will cause R to produce an error saying "cannot take a sample larger than the population when 'replace = FALSE' ".
+
+```{R, eval=FALSE}
+#Randomly sample 15 of these numbers without replacement
+sample(x = num_vec, size = 15, replace = FALSE)
+```
+
+Importantly for us __rarefaction__ uses sampling __without replacement__.
+Any samples with a lower depth than the rarefaction size will be removed and will therefore not be in the resulting rarefied data.

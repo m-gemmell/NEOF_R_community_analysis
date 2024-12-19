@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Rarefaction | R community analysis</title>
   <meta name="description" content="NEOF book for the R community analysis workflow" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Rarefaction | R community analysis" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-09-17" />
+<meta name="date" content="2024-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -405,6 +405,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We are going to create a rarefied abundance table in this chapter.
 This can be a controversial topic.
 Please make your own decision if you want to do this or not in your own analysis.</p>
+<p>Pro rarefaction:</p>
+<ul>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/35212706/">To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data, 2022</a></li>
+<li><a href="https://journals.asm.org/doi/10.1128/msphere.00354-23">Rarefaction is currently the best approach to control for uneven sequencing effort in amplicon sequence analyses, 2024</a></li>
+</ul>
+<p>Against rarefaction:</p>
+<ul>
+<li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531">Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible, 2014</a></li>
+</ul>
 <div id="rarefaction-setup" class="section level2 hasAnchor" number="14.1">
 <h2><span class="header-section-number">14.1</span> Rarefaction: setup<a href="14-Rarefaction.html#rarefaction-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
@@ -606,16 +615,16 @@ A slope of 1 shows a flat vertical line (not what we want).</p>
 <p>With the calculated slopes attempt the following questions:</p>
 <ol style="list-style-type: decimal">
 <li>Which sample has the largest slope value?
-<div id="radio_KOTZATWKLE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KOTZATWKLE" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KOTZATWKLE" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KOTZATWKLE" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_RZVJEMHXQK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RZVJEMHXQK" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RZVJEMHXQK" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RZVJEMHXQK" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which sample has the lowest slope value?
-<div id="radio_LAVLTNMXHX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LAVLTNMXHX" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LAVLTNMXHX" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LAVLTNMXHX" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_QETSDOIUGI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QETSDOIUGI" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QETSDOIUGI" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QETSDOIUGI" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which samples have larger slope values, the environmental samples or media samples?
-<div id="radio_XAUIDBTQII" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XAUIDBTQII" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XAUIDBTQII" value=""></input> <span><strong>Media</strong></span></label>
+<div id="radio_MNXVVHTMFK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MNXVVHTMFK" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MNXVVHTMFK" value=""></input> <span><strong>Media</strong></span></label>
 </div></li>
 </ol>
 <p>Overall the slopes values are low (&lt;0.01).

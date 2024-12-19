@@ -1,0 +1,52 @@
+--- 
+title: "Iterative rarefaction"
+author: "Matthew R. Gemmell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+favicon: figures/NEOF_favicon.png
+description: NEOF book for the R community advanced analysis course
+cover-image: "figures/NEOF.png"
+---
+
+```{r, echo=FALSE}
+#Change colour, border, and text of code chunks
+#Check style.css for .Rchunk
+#https://stackoverflow.com/questions/65627531/change-r-chunk-background-color-in-bookdown-gitbook
+#https://bookdown.org/yihui/rmarkdown-cookbook/chunk-styling.html
+knitr::opts_chunk$set(class.source="Rchunk") 
+```
+
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'webexercises'
+), 'packages.bib')
+```
+
+<center>
+![](figures/NEOF.png){style="border-radius: 15px; width: 300px"}
+</center>
+
+# (PART\*) Intro {-}
+
+# Introduction
+
+<center>
+![](figures/iterative_rarefaction.png){style="width: 300px"}
+</center>
+
+This book explains and demonstrates how to carry out __iterative rarefaction__ for __alpha__ and __beta__ diversity analysis in __R__ with the `phyloseq` object.
+This involves running multiple rounds/iterations of rarefaction and producing and averaged table of __alpha__ and __beta__ diversity values.
+This is a more robust method than only carrying out one round of rarefaction.
+
+## Table of contents {-}
+
+ADD TABLE OF CONTENTS
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

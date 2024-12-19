@@ -1,0 +1,346 @@
+# Family & Genus plots {#family_genus_chap}
+<center>
+![](figures/plots.png){style="width:200px"}
+</center>
+
+In this chapter you will:
+
+- Create Family plots by following example code.
+- Be tasked to create Genus plots with little instruction.
+
+I highly encourage you to copy previous code and edit it.
+It is a major time saver.
+However, it can be easy to overlook some edits.
+It is a good idea to double check your edited code to ensure you have changed the relevant options, and object & file names.
+
+## Family taxa plots
+<center>
+![](figures/family.png){style="width:200px"}
+</center>
+
+This part will show you a nice workflow for creating some family based taxa plots.
+Run this at the bottom of your "3-taxonomy_barchart.ipynb" notebook.
+
+### Aggregate families
+<center>
+![](figures/aggregate_taxa.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+First we will create a `phyloseq` object by aggregating the families from the relative abundance `phyloseq` object.
+We'll also check the family `phyloseq` object.
+
+```{r, eval = FALSE}
+#Family phyloseq
+family_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Family", verbose = FALSE)
+#Head of family relative abundance table
+head(phyloseq::otu_table(family_pseq))
+#Number of families
+paste0("Number of families: ", nrow(phyloseq::otu_table(family_pseq)))
+#Summarise
+microbiome::summarize_phyloseq(family_pseq)
+microbiome::readcount(family_pseq)
+```
+
+We have 112 families. Quite a bit but hopefully they will all fit into a heatmap.
+
+### Family heatmap
+<center>
+![](figures/heat_topology.png){style="width:200px"}
+</center>
+
+We will create a heatmap as before with one added `ggplot2` component.
+As there are a lot of Families (112) and fewer samples (36) it will be easier to view if we have the families on the y-axis.
+By default `microbiome::plot_composition()` will plot the taxa/families on the x-axis.
+Thankfully we can use the `ggplot2()` function/component `coord_flip()` to flip/swap the x and y axes.
+
+__Note__: The `xlab()` and `ylab()` are specified before this flipping.
+E.g. `xlab()` is set to "Family" which will appear on the y axis because of the flip.
+
+```{r, eval=FALSE}
+#Family heatmap
+family_heatmap <- microbiome::plot_composition(family_pseq, plot.type = "heatmap") +
+  xlab("Family") + ylab("Sample") +
+  ggtitle("Family relative abundance heatmap") +
+  #Flip the x and y axes
+  coord_flip()
+#Save ggplot object as png file
+ggsave(filename = "./family_relabund_heatmap.png", plot = family_heatmap,
+       device = "png", dpi = 300, units = "mm", height = 350, width = 200)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./family_relabund_heatmap.png")
+```
+
+The plot is quite large.
+You can right click on the image and click "Open Image in New Tab" to view the whole image in a new tab.
+
+With this heatmap we can see that the KBC and TSA samples have a high relative abundance of _Pseudomonadaceae_ whilst the TSA samples have a high relative abundance of _Aeromonadaceae_.
+Additionally, we can see that a lot of families have relatively low relative abundances.
+
+Once you are finished looking at the plot, close the tab containing the plot.
+This will help to keep the used resources low on the cluster.
+Next we'll carry out our rare aggregation and produce some bar charts.
+
+### Family rare aggregation
+<center>
+![](figures/elephant_origami.png){style="width:200px"}
+</center>
+
+To aggregate our rare families we need to choose a suitable [detection and prevalence threshold](#aggregateraretaxa).
+Generally, this is a process of trial and error trying to get a total of 12 taxa.
+Twelve is a good number as it is the total number of colours in the Paired palette from Colour brewer.
+You may need more in your own analysis so it is not a hard limit.
+
+Therefore, lets try out various thresholds and see how many families we get.
+To get a good idea where to start we can get a summary of the mean relative abundance values of the families.
+
+```{r, eval=FALSE}
+#Summary of row means (families) from the family otu table
+summary(rowMeans(phyloseq::otu_table(family_pseq)))
+```
+
+We have a lot of families so we will want to remove a good amount of them.
+For our first attempt at rare aggregation we will use a detection value near the 3rd Quartile (0.0021601).
+This will hopefully remove at least 3/4 of the families.
+
+We'll set up the code a bit differently so we can easily copy and paste it to try out various other values of detection and threshold.
+
+```{r, eval = FALSE}
+#Tests
+#1
+d <- 0.002
+p <- 5/100
+test_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Family",
+  detection = d, prevalence = p
+)
+paste0("Detection = ", d, ", Prevalence = ", p,
+       ", Number of families = ", nrow(phyloseq::otu_table(test_pseq)))
+```
+
+That gives us 56 families which is too high for a nice visualisation. We'll therefore try a bunch of trial and error to get 12 families after aggregation.
+
+```{r, eval = FALSE}
+#2 Increase prevalence threshold
+d <- 0.002
+p <- 10/100
+test_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Family",
+  detection = d, prevalence = p
+)
+paste0("Detection = ", d, ", Prevalence = ", p,
+       ", Number of families = ", nrow(phyloseq::otu_table(test_pseq)))
+#3 Increase detection threshold
+d <- 0.005
+p <- 10/100
+test_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Family",
+  detection = d, prevalence = p
+)
+paste0("Detection = ", d, ", Prevalence = ", p,
+       ", Number of families = ", nrow(phyloseq::otu_table(test_pseq)))
+#4 Increase detection threshold
+d <- 0.02
+p <- 10/100
+test_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Family",
+  detection = d, prevalence = p
+)
+paste0("Detection = ", d, ", Prevalence = ", p,
+       ", Number of families = ", nrow(phyloseq::otu_table(test_pseq)))
+#5 Increase prevalence threshold
+d <- 0.02
+p <- 20/100
+test_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Family",
+  detection = d, prevalence = p
+)
+paste0("Detection = ", d, ", Prevalence = ", p,
+       ", Number of families = ", nrow(phyloseq::otu_table(test_pseq)))
+#Remove unwanted test_pseq
+rm(test_pseq)
+```
+
+Super! 
+A Detection threshold of 0.02 and a prevalence threshold of 20/100 gives us 12 families.
+We'll now create a new `phyloseq` object using this info in a new cell.
+
+```{r, eval = FALSE}
+#Aggregate families
+family_rareaggregate_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Family",
+  detection = 0.02, prevalence = 20/100
+)
+```
+
+Choosing a good detection and prevalence threshold is quite difficult.
+It takes a lot of trial and error, and I find the thresholds to not be very intuitive to understand.
+One piece of advise is to only change one threshold at a time during your trial and errors.
+
+### Family bar chart
+<center>
+![](figures/chocolate_bar.png){style="width:200px"}
+</center>
+
+With our family rare aggregated `phyloseq` object we'll create a bar chart.
+
+```{r, eval=FALSE}
+#Plot
+family_bar <- 
+  microbiome::plot_composition(family_rareaggregate_pseq,
+                               #otu.sort to sort family by abundance
+                               otu.sort = "abundance", group_by = "media") +
+  xlab("Sample") + ylab("Relative abundance") +
+  ggtitle("Family relative abundance bar chart") +
+  #Change colours of families to that of the "Paired" palette from colour brewer
+  scale_fill_brewer("Family", palette = "Paired")
+#Save ggplot object as png
+ggsave(filename = "./family_relabund_rareaggregate.png", plot = family_bar,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./family_relabund_rareaggregate.png")
+```
+
+Brilliant, we are now finished with the Family taxa plots. Onto something harder.
+
+## Genus taxa plots
+<center>
+![](figures/ginger.png){style="width:200px"}
+</center>
+
+In this section you are running your own analysis for the Genus information in the "3-taxonomy_barchart.ipynb" notebook.
+Carry out the following tasks with the relative abundance `phyloseq` object (`pseq_relabund`):
+
+- Create an aggregated genus `phyloseq` object and summarise it (no rare aggregation).
+- Create a heatmap of the genera relative abundances.
+- Carry out genus rare aggregation so the resulting `phyloseq` object only contains 12 genera.
+- Use the rare aggregated `phyloseq` object to create a bar chart grouped by __media__.
+
+In essence you are going through the workflow for the family data but for genus instead.
+Again, I encourage you to copy, paste, and edit previous code.
+You will most likely need to change names of objects and also change various options.
+
+### Genus taxa plots solutions
+<center>
+![](figures/ginger_solutions.png){style="width:200px"}
+</center>
+
+Please give the task a good try before looking at the solutions in the expandable boxes.
+However, if you are really stuck or want to compare your code to mine please have a look.
+Please, remember that there are many ways to do the same thing.
+If your code is different but it works and you understand it then that is fine.
+
+`r hide("Aggregate genus and summarise")`
+```{r, eval = FALSE}
+#Genus phyloseq
+genus_pseq <- microbiome::aggregate_taxa(pseq_relabund, "Genus", verbose = FALSE)
+#Head of genus relative abundance table
+head(phyloseq::otu_table(genus_pseq))
+#Number of genera
+paste0("Number of genera: ", nrow(phyloseq::otu_table(genus_pseq)))
+#Summarise
+microbiome::summarize_phyloseq(genus_pseq)
+microbiome::readcount(genus_pseq)
+```
+`r unhide()`
+
+`r hide("Heatmap")`
+```{r, eval=FALSE}
+#Genus heatmap
+genus_heatmap <- microbiome::plot_composition(genus_pseq, plot.type = "heatmap") +
+  xlab("Genus") + ylab("Sample") +
+  ggtitle("Genus relative abundance heatmap") +
+  #Flip the x and y axes
+  coord_flip()
+#Save ggplot object as png file
+ggsave(filename = "./genus_relabund_heatmap.png", plot = genus_heatmap,
+       device = "png", dpi = 300, units = "mm", height = 450, width = 300)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./genus_relabund_heatmap.png")
+```
+`r unhide()`
+
+`r hide("Aggregate rare genus")`
+```{r, eval=FALSE}
+#Summary of row means (families) from the family otu table
+summary(rowMeans(phyloseq::otu_table(genus_pseq)))
+```
+```{r, eval = FALSE}
+#Tests
+#1
+d <- 0.001
+p <- 5/100
+test_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Genus",
+  detection = d, prevalence = p
+)
+paste0("Detection = ", d, ", Prevalence = ", p,
+       ", Number of genera = ", nrow(phyloseq::otu_table(test_pseq)))
+#2
+d <- 0.01
+p <- 5/100
+test_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Genus",
+  detection = d, prevalence = p
+)
+paste0("Detection = ", d, ", Prevalence = ", p,
+       ", Number of genera = ", nrow(phyloseq::otu_table(test_pseq)))
+#3
+d <- 0.01
+p <- 20/100
+test_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Genus",
+  detection = d, prevalence = p
+)
+paste0("Detection = ", d, ", Prevalence = ", p,
+       ", Number of genera = ", nrow(phyloseq::otu_table(test_pseq)))
+#4
+d <- 0.005
+p <- 20/100
+test_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Genus",
+  detection = d, prevalence = p
+)
+paste0("Detection = ", d, ", Prevalence = ", p,
+       ", Number of genera = ", nrow(phyloseq::otu_table(test_pseq)))
+#5
+d <- 0.006
+p <- 20/100
+test_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Genus",
+  detection = d, prevalence = p
+)
+paste0("Detection = ", d, ", Prevalence = ", p,
+       ", Number of genera = ", nrow(phyloseq::otu_table(test_pseq)))
+
+#Remove unwanted test_pseq
+rm(test_pseq)
+```
+```{r, eval = FALSE}
+#Aggregate genus
+genus_rareaggregate_pseq <- microbiome::aggregate_rare(
+  pseq_relabund, level = "Genus",
+  detection = 0.006, prevalence = 20/100
+)
+```
+`r unhide()`
+
+`r hide("Bar chart")`
+```{r, eval=FALSE}
+#Plot
+genus_bar <- 
+  microbiome::plot_composition(genus_rareaggregate_pseq,
+                               #otu.sort to sort genera by abundance
+                               otu.sort = "abundance", group_by = "media") +
+  xlab("Sample") + ylab("Relative abundance") +
+  ggtitle("Genus relative abundance bar chart") +
+  #Change colours of genera to that of the "Paired" palette from colour brewer
+  scale_fill_brewer("Genus", palette = "Paired")
+#Save ggplot object as png
+ggsave(filename = "./genus_relabund_rareaggregate.png", plot = genus_bar,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./genus_relabund_rareaggregate.png")
+```
+`r unhide()`
+
+Once you are happy you can Save then __Close and Halt__ the notebook.

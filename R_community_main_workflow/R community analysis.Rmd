@@ -2103,6 +2103,15 @@ We are going to create a rarefied abundance table in this chapter.
 This can be a controversial topic.
 Please make your own decision if you want to do this or not in your own analysis.
 
+Pro rarefaction:
+
+- [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data, 2022](https://pubmed.ncbi.nlm.nih.gov/35212706/)
+- [Rarefaction is currently the best approach to control for uneven sequencing effort in amplicon sequence analyses, 2024](https://journals.asm.org/doi/10.1128/msphere.00354-23)
+
+Against rarefaction:
+
+- [Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible, 2014](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531)
+
 ## Rarefaction: setup
 <center>
 ![](figures/library_1.png){style="width:200px"}

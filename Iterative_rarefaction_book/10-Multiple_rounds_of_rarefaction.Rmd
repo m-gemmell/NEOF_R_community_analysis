@@ -1,0 +1,121 @@
+# Multiple Rarefaction iterations
+<center>
+![](figures/ten_rounds.png){style="width:200px"}
+</center>
+
+This chapter will demonstrate how to use a loop to carry out multiple rounds of rarefaction.
+We'll then compare the __non-rarefied__ data to our iteratively rarefied data.
+
+## MR: Rarefaction
+<center>
+![](figures/tiger.png){style="width:300px"}
+</center>
+
+The below loop creates a relative abundance table created by 10 rounds of iteration.
+Type the code and read the annotations to understand it.
+Then run the code.
+
+```{R, eval=FALSE}
+#Iterative rarefaction to produce an average rarefied relative abundance table
+
+#Assign rarefaction size
+rarefaction_size <- min(microbiome::readcount(pseq_env_phyla))
+#Load our rng seed vector
+load("rngseeds.RData")
+
+#Initalise where we will store the output
+#In this case we create the first iteration
+#Carry out first rarefaction
+pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
+                                           sample.size = rarefaction_size
+                                           #First random seed as the rng seed
+                                           rngseed = rngseed_vec[1])
+#Calculate relative abundance
+pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
+#Extract relative abundance phyla table as a data frame
+relabund_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+
+#Loop through the next 9 iterations
+#Add the relabund rarefied values to phyla_table
+for (i in 2:length(rngseed_vec)){
+  #Rarefy
+  pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
+                                           sample.size = rarefaction_size
+                                           rngseed = rngseed_vec[i])
+  #Calculate relative abundance
+  pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
+  #Sum values to phyla_table
+  relabund_phyla_df <- 
+    relabund_phyla_df + as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+}
+#Average the values of the summed relabund phyla_table
+relabund_phyla_mean_df <- relabund_phyla_df / length(rngseed_vec)
+```
+
+The loop produces a data frame (`relabund_phyla_df`) that has all the values from the ten  rarefied data frames summed in each corresponding cell.
+
+The final data frame is then divided by the number of __iterations__ .
+This produces the final data frame `relabund_phyla_mean_df`. 
+
+## Mathematical operators & data frames
+<center>
+![](figures/add+matrices.png){style="width:300px; background:white; border-radius:15px"}
+</center>
+
+Two numeric data frames/matrices can be summed together with `+` if they have the same dimensions.
+This can be carried out with any mathematical operator (`+`,`-`,`*`,`/`, etc.)
+An example of how this works is below.
+
+__Note:__ You don't need to run the below code as the output is displayed.
+
+```{R, eval = TRUE}
+#Matrix 1
+mat1 <- matrix(1:9, nrow = 3, ncol = 3)
+mat1
+```
+```{R, eval = TRUE}
+#Matrix 2
+mat2 <- matrix((1:9)*10, nrow = 3, ncol = 3)
+mat2
+```
+```{R, eval = TRUE}
+#Summed matrix
+mat_sum <- mat1 + mat2
+mat_sum
+```
+
+If you only use one number with a data frame/matrix the operation will act upon each cell in the same manner.
+You could add 1 to each cell, minus 4 from each cell, etc.
+
+Continuing the matrix example, we'll get the average of the 2 data frames by dividins by two (`/2`).
+
+```{R, eval = TRUE}
+#Mean matrix
+mat_mean <- mat_sum / 2
+mat_mean
+```
+
+## MR: Difference from non-rarefied
+<center>
+![](figures/histogram_3.png){style="width:200px"}
+</center>
+
+We'll skip the bar chart this time and only look at the difference of the values.
+
+```{R, eval=FALSE}
+#Value difference matrix
+iterative_rarefaction_diff <- 
+  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - relabund_phyla_mean_df)
+iterative_rarefaction_diff
+#Histogram
+hist(iterative_rarefaction_diff)
+```
+
+```{r, echo = FALSE}
+opts_p <- c("__-0.0003(-3e-04) to 0.0003(3e-04)__", answer="__-0.003 to 0.003__", "__-0.015 to 0.015__")
+```
+What is the range of the differences compared to the non rarefied relative abundance values? `r longmcq(opts_p)`
+
+You should notice that the differences are much smaller.
+This indicates that the structure of the __iterative rarefied__ data is much closer to the non-rarefied data compared to the one round __rarefied__ data.
+This is what we want.

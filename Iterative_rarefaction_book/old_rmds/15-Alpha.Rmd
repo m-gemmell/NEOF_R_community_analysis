@@ -1,0 +1,344 @@
+# Alpha diversity {#alpha_chap}
+<center>
+![](figures/alpha.png){style="width:200px"}
+</center>
+
+In this chapter we are going to produce alpha diversity plots and statistics with our rarefied data.
+Alpha diversity is carried out by producing a metric for each sample.
+These metrics are primarily interested in the evenness or diversity of a sample.
+
+Generally, these metrics are carried out on the ASV data to see the most fine grain differences between samples.
+However, you can also use different taxa levels which we will show later on.
+This can be useful if there is too much difference in the ASVs from sample to sample or you can only accurately classify sequences to a high level taxonomy (such as with `KRAKEN2` output).
+
+Once we have a value for each sample they can be used to compare samples and sample groups.
+Box plots are used for visualisation.
+Statistics are used to determine if there is a significant difference between groups.
+
+We'll start out by producing a basic box plot and statistics.
+Next we'll improve the plot with some extra R packages.
+With these tools we will compare the metrics across the various metadata fields we have.
+
+## Alpha: setup
+<center>
+![](figures/gear_setup.png){style="width:200px"}
+</center>
+
+We will use a new notebook called **"5-alpha_diversity.ipynb"**. 
+Add the following to the top of this new notebook to load the required libraries/packages and data.
+
+```{r, eval=FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+library("IRdisplay")
+library("ggforce")
+#Load phyloseq object
+load("phyloseq_rarefied.RData")
+```
+
+Reminder to use markdown and code cells in the notebook.
+
+## Alpha: simple plot
+<center>
+![](figures/simple_boxplot.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+The first step is to calculate and plot the alpha diversity metrics based on the ASV data.
+Thankfully, the command `phyloseq::plot_richness()` will do both of these.
+Try it out.
+
+```{r, eval = FALSE}
+#Simple alpha plot
+alpha_plot <- phyloseq::plot_richness(physeq = pseq_rarefy)
+#Save ggplot object as png file
+ggsave(filename = "./alpha_div.png", plot = alpha_plot,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./alpha_div.png")
+```
+
+The resulting plot is pretty good but is difficult to read. 
+We can do 3 major things to make the contents easier to read.
+
+### Metric choice
+<center>
+![](figures/metric_square_1.png){style="width:200px"}
+</center>
+
+We can choose certain alpha diversity metrics to plot. 
+Currently it is showing 7 metrics (Observed, Chao1 etc.).
+I like to use:
+
+- __Observed__: This is the number of observed features (ASVs, Genera, etc) in each sample.
+- __Chao1__: This is an estimate number of the total number of features in each sample.
+- __Shannon__: A measure of diversity where a higher number means higher diversity. Shannon's index accounts for both abundance and evenness of the features present.
+
+We'll choose these metrics with the `measures = ` option.
+Either make a new code block with new code or you can edit and run the previous code you wrote.
+
+```{r , eval = FALSE}
+#Simple alpha plot
+alpha_plot <- phyloseq::plot_richness(physeq = pseq_rarefy, measures = c("Observed","Chao1","Shannon"))
+#Save ggplot object as png file
+ggsave(filename = "./alpha_div.png", plot = alpha_plot,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 300)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./alpha_div.png")
+```
+
+To see which measures are available you can see the help page of `phyloseq::plot_richness()`.
+
+```{r, eval=FALSE}
+?phyloseq::plot_richness
+```
+
+For a list and full description of some of the metrics please see the [APPENDIX](#alpha_appendix).
+
+### Sample grouping & box plot
+<center>
+![](figures/boxplots_groups.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+The last plot looks a bit better.
+To actually make them box plots we'll change the x axis so they are based on media rather than individual samples.
+
+The `phyloseq::plot_richness()` function produces a `ggplot2` object.
+To convert our dot plot into a box plot we can add the layer `geom_boxplot()` like with our [depth boxplots](#depth-boxplots).
+This will combine samples from one media into one IQR box.
+
+```{r , eval = FALSE}
+#Box plot
+phyloseq::plot_richness(physeq = pseq_rarefy, 
+                        x = "media",
+                        measures = c("Observed","Chao1","Shannon")) +
+            ggplot2::geom_boxplot()
+#Save ggplot object as png file
+ggsave(filename = "./alpha_div.png", plot = alpha_plot,
+       device = "png", dpi = 300, units = "mm", height = 200, width = 200)
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./alpha_div.png")
+```
+
+### PNG height and width choice
+<center>
+![](figures/display_png.png){style="width:200px"}
+</center>
+
+Choosing a good height and width size can make plots easier to read.
+We'll try 150 (height) and 250 (width).
+
+```{r , eval = FALSE}
+#Produce ggplot object of boxplot
+alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+                        x = "media",
+                        measures = c("Observed","Chao1","Shannon")) +
+                          ggplot2::geom_boxplot()
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Alpha_diversity_media_boxplot.png", plot = alpha_boxplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file="./Alpha_diversity_media_boxplot.png")
+```
+
+How do I choose a good height and width?
+This comes down to trial and error and experience.
+You want something with a good aspect ratio for the plot and you want all the text to be clear.
+Additionally, the size requirements of figures for journals will play a big consideration as well.
+One of the nice things with creating jupyter-notebooks or R markdowns with all your code is that you can go back, edit, and rerun the code relatively easily and quickly.
+
+## Alpha: stats
+<center>
+![](figures/pear.png){style="width:100px"}
+</center>
+
+Along with the plot it is also good to carry out statistical tests.
+This will allow us to statistically determine if the alpha diversity values between groups are significantly different.
+
+Before carrying out statistics we will need a data frame with the alpha diveristy values for each sample.
+This can be carried out with the function`phyloseq::estimate_richness()`.
+
+```{r, eval=FALSE}
+#Produce data frame of all alpha diversity values
+alpha_df <- phyloseq::estimate_richness(physeq = pseq_rarefy)
+head(alpha_df)
+```
+
+We have all the alpha metrics in the new data frame.
+Additionally, we also have the standard error for some of the metrics (e.g. `se.chao1`).
+
+With this information we can carry out a pairwise comparison using Wilcoxon rank sum test (the same way as QIIME2).
+Base R comes with the function `pairwsie.wilcox.test()` to carry this out.
+We'll do this using media as our groups from the `sample_data()` and the Observed metric from the alpha_df.
+
+```{r, eval=FALSE}
+#Paired wilcoxon test
+#Observed
+pairwise.wilcox.test(alpha_df$Observed, phyloseq::sample_data(pseq_rarefy)$media)
+```
+
+You can ignore the warning messages in this case.
+
+Observe the results.
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+Are all the pairwise comparisons significant different (<0.05)? `r longmcq(opts_p)`
+
+The test has carried out P value adjustments using the Holm-Bonferroni method (`P value adjustment method: holm`) which is good.
+
+In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
+The only group with a large variance is the ENV group with values going from < 150 to > 450.
+
+For more info on Wilcoxon test [Wikipedia](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test) is a good start.
+
+### Alpha stats task
+<center>
+![](figures/exercises.png){style="width:200px"}
+</center>
+
+Carry out the same statistical analysis (media as the grouping) with the `Chao1` and `Shannon` metrics.
+
+`r hide("Alpha stats solution")`
+```{r, eval=FALSE}
+#Chao1
+pairwise.wilcox.test(alpha_df$Chao1, phyloseq::sample_data(pseq_rarefy)$media)
+#Shannon
+pairwise.wilcox.test(alpha_df$Shannon, phyloseq::sample_data(pseq_rarefy)$media)
+```
+`r unhide()`
+
+With these we can see that the differences between the Chao1 values of the different media are significantly different.
+
+However, the p-values when comparing the Shannon values are not all significant.
+The only significant differences are between ENV & KBC, and between KBC & TSA. 
+Going back to the boxplot, does this look like the case?
+I would say yes as the IQRs for CVP, KBC, and TSA all overlap.
+There is little to no overlap of the IQRs of KBC and TSA against ENV.
+
+We can therefore make these claims about the alpha diversity values of the groups.
+
+- ENV has the highest number of observed ASVs and the highest diversity.
+- ENV appears to have a wider range of diversities across its samples.
+- The different culture media have much lower numbers of ASVs and diversity compared to ENV.
+- Within each media grouping the samples have very similar numbers of ASVs present.
+
+## Alpha diversity: violin plot
+<center>
+![](figures/violin.png){style="width:200px"}
+</center>
+
+Boxplots are quite nice but violin plots can be even nicer.
+They show the distribution of the data in the IQR better and you can display each value.
+
+We can change our boxplot to a violin plot by changing `ggplot2:geom_boxplot()` to `ggplot2::geom_violin()`.
+
+Copy and paste the previous boxplot code to a new cell at the bottom of your notebook.
+Edit and run the code so it looks like the below.
+
+__Tip:__ Remember to change the name of your png file in the `ggsave()` and `IRdisplay::display_png()` functions.
+
+```{r , eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+                        x = "media",
+                        measures = c("Observed","Chao1","Shannon")) +
+                          ggplot2::geom_violin()
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Alpha_diversity_media_violinplot.png", plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
+```
+
+We can also add semi transparent dots representing the values for each sample.
+To do this, add the `ggplot2` layer `ggforce::geom_sina()`.
+This has the option `alpha=0.5` where alpha represents the transparency of the dots and 0.5 represents 50% transparency.
+Alpha is a common option used for many plots.
+
+```{r , eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+                        x = "media",
+                        measures = c("Observed","Chao1","Shannon")) +
+                          ggplot2::geom_violin() +
+                          ggforce::geom_sina(alpha=0.5)
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Alpha_diversity_media_violinplot.png", plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
+```
+
+## Alpha: Site plots and statistics
+<center>
+![](figures/river.png){style="width:200px"}
+</center>
+
+With all the knowledge, skills, and code from this chapter carry out the following tasks:
+
+- Produce a violin plot of Observed, Chao1, and Shannon with the Site groups.
+- Carry out paired Wilcoxon test for Observed, Chao1, and Shannon with the Site groups.
+
+`r hide("Alpha sites solution")`
+```{r , eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+                        x = "site",
+                        measures = c("Observed","Chao1","Shannon")) +
+                          ggplot2::geom_violin() +
+                          ggforce::geom_sina(alpha=0.5)
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Alpha_diversity_site_violinplot.png", plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
+```
+
+```{r, eval=FALSE}
+#Paired wilcoxon test
+#Observed
+pairwise.wilcox.test(alpha_df$Observed, phyloseq::sample_data(pseq_rarefy)$site)
+#Chao1
+pairwise.wilcox.test(alpha_df$Chao1, phyloseq::sample_data(pseq_rarefy)$site)
+#Shannon
+pairwise.wilcox.test(alpha_df$Shannon, phyloseq::sample_data(pseq_rarefy)$site)
+```
+`r unhide()`
+
+The plots and stats do not show anything particularly interesting in terms of site unfortunately.
+There is too much difference caused by the media.
+To view this we can add the option `aes(colour=media)` to `ggforce_sina()`.
+This will colour the points by media.
+
+If we only do this it will give us a legend with the title "colour".
+We can fix this by adding the layer `ggplot2::labs(colour = "Media")`.
+
+```{r , eval = FALSE}
+# Produce ggplot object of violin plot
+alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
+                        x = "site",
+                        measures = c("Observed","Chao1","Shannon")) +
+                          ggplot2::geom_violin() +
+                          ggforce::geom_sina(alpha=0.5, aes(colour=media)) +
+                          ggplot2::labs(colour = "Media")
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Alpha_diversity_site_violinplot.png", plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
+```
+
+When you are happy you can close and halt the notebook.
+
+## Alpha: summary
+<center>
+![](figures/sum_blue.png){style="width:200px"}
+</center>
+
+In this chapter we have created alpha diversity plots and run pairwise comparisons.
+The biggest difference between samples is caused by the media choice which overwrites differences we can see between sites.
+The environmental samples have much higher diversity samples than the media samples but this is expected.
+
+

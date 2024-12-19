@@ -1,0 +1,70 @@
+# $\beta$: Distance matrices
+<center>
+![](figures/measuring_tape_2.png){style="width:300px"}
+</center>
+
+Here we'll find out how to produce a paired distance matrix with our __beta diversity__ metric of choice.
+Unfortunately there is not one function that can calculate all the metrics we may want.
+
+## Unifrac distances
+<center>
+![](figures/weighted_blanket.png){style="width:200px"}
+</center>
+
+Unifrac distances are preferred by many when a phylogenetic tree is available for your data.
+We are working with 16S data so a phylogenetic tree was created.
+Other barcodes or types of data may not have a phylogenetic such as ITS data or complex shotgun metagenomic data.
+
+To produce a Unifrac distance matrix we will use the function `unifrac()` from the package `rbiom`.
+
+The function `rbiom::unifrac()` was created to work with biom files and not __phyloseq__ objects.
+Thankfully we don't need to convert our objects to a biom object, instead only needing to extract our count/abundance data and phylogenetic tree.
+We can carry this out with the following 2 functions:
+
+- `phyloseq::otu_table()`: Extracts the feature count/abundances table
+- `phyloseq::phy_tree()`: Extract the phylogenetic tree
+
+There are 2 types of Unifrac distances:
+
+- Weighted: Incorporate relative abundances
+- Unweighted: Does not incorporate relative abundances
+
+We'll calculate weighted Unifrac distances by specifying the parameter `weighted = TRUE`.
+
+So our output works with subsequent ordination step we'll convert the output of `rbiom::unifrac()` into a matrix with `as.matrix()`.
+
+Carry out the matrix production with the below script:
+
+```{R, eval=FALSE}
+#Calculate weighted unifrac values
+unifrac_rbiom_microbiome <- as.matrix(
+  rbiom::unifrac(biom = phyloseq::otu_table(pseq),
+                 tree = phyloseq::phy_tree(pseq),
+                 weighted = TRUE))
+#Check the first 6 rows and columns of the resulting distance matrix
+head(unifrac_rbiom_microbiome)
+```
+
+## Vegan distances
+<center>
+![](figures/vegan_fork.png){style="width:200px"}
+</center>
+
+To calculate non-unifrac __beta diversity__ distances we can use the `vegan` package and its function `vegdist()`.
+
+The function `rbiom::unifrac()` calculates paired distances, this is the samples in the `otu_table` of a phyloseq object.
+Unfortunately, `vegan::vegdist()` calculates paired distances by rows (features), this being the features in the `otu_table` of a phyloseq object.
+We do not want this but thankfully all we need to add is the function `t()` to our abundance object to transpose the data.
+
+Create a __Bray-Curtis__ distance matrix with the below code:
+
+```{R, eval=FALSE}
+#Calculate Bray-Curtis distance matrix
+bray_curtis_mat <- as.matrix(
+  vegan::vegdist(x = t(phyloseq::otu_table(pseq)),
+                 method = "bray"))
+#Check first 6 rows and columns of matrix
+bray_curtis_mat[1:6,1:6]
+```
+
+The function can calculate a plethora of metrics with the full list available at the following [webpage](https://rdrr.io/cran/vegan/man/vegdist.html).

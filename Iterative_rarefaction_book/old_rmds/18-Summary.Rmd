@@ -1,0 +1,183 @@
+# (PART\*) Outro {-}
+
+# Summary {#sumchap}
+
+You have learnt a lot during this course. This chapter will summarise what you have done.
+
+## Dataset
+<center>
+![](figures/freshwater_france.png){style="border-radius: 5px; width: 500px; border: 5px solid #333333"}</center>
+</center>
+
+You were introduced to the 16S dataset in the intro.
+This consisted of samples from 3 parts of the Durance river (UD, MD, & LD).
+This is across a gradient of anthropisation.
+Unfortunately, we were not able to glean much information on the differences due to low power, only 3 replicates per ENV sample.
+
+The more interesting metadata grouping was that of the culture.
+We were interested to find out if 3 different media (TSA, KBC, and CVP) had different profiled communities than the ENV samples.
+They were found to be very different compared to the ENV samples.
+Some differences between the media groupings were also found.
+Overall, any differences between the sites were hard to determine due to the large differences between media.
+
+To properly determine the differences across the anthropisation gradient it would be best to use a good amount of environmental samples.
+It may also help to sample more sites along the gradient.
+
+We discovered these findings through our analysis.
+
+## Data preparation
+<center>
+![](figures/half_tablespoon.png){style="width:200px"}
+</center>
+
+Briefly we carried out the following steps to prepare our data:
+
+- [Chapter 7](#import_chap): Imported a `phyloseq` object with `qiime2R`.
+- [Chapter 8](#sum_phyloseq_chap): Checked our data with summarisations.
+- [Chapter 9](#mindepthchap): Checked the minimum depth we should use and removed samples with lower depth.
+
+## Taxonomy
+<center>
+![](figures/taxa.png){style="width:200px"}
+</center>
+
+We investigated the taxonomic composition of our samples.
+
+- [Chapter 10](#taxa_relabund_chap): Creation of taxonomic relative abundance tables.
+- [Chapter 11](#chaptaxaplots): Produced heat maps and bar plots of taxa relative abundances.
+  - We also learnt how to aggregate rare taxa to produce fewer taxa groups for plotting.
+- [Chapter 12](#family_genus_chap): Produced family and genus based taxa plots.
+
+With our taxa plots we saw that the biggest difference was caused by the media.
+The ENV samples appear to have the most diversity with many different taxa groups.
+The media samples were mostly composed of Proteobacteria & Firmicutes.
+
+Due to the difference of media we cannot see any clear differences between the sites.
+
+## Diversity analysis
+<center>
+![](figures/diversity.png){style="width:200px"}
+</center>
+
+Prior to alpha & beta diversity analysis we carried out rarefaction to normalise the depths between samples in [Chapter 14](#rarefaction_chap).
+This is a controversial technique.
+We carry it out due to the logic and the fact the QIIME2 developers recommend it.
+Please make you own decision.
+
+Two of the leading papers are:
+
+- [Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible (McMurdie & Holmes 2014)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531).
+- [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data (Hong et al, 2022)](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959).
+
+### Alpha & beta
+<center>
+![](figures/alpha.png){style="width:200px"}
+</center>
+
+With our rarefied table we carried out diversity analysis.
+
+- [Chapter 15](#alpha_chap): Produced alpha violin plots and statistics to compare the diversity of groups.
+- [Chapter 16](#beta_chap): Produced MDS plots based on pairwise distance metrics. Along with statistics this allowed us to determine how similar/dissimilar samples were to each other.
+
+The alpha diversity showed significant differences between the media and ENV samples.
+Additionally, the alpha metrics between the 3 media groupings were also significantly different.
+This was the case for observed ASVs and the Chao1 estimator which had much higher values in the ENV samples.
+
+Although the ENV samples had higher Shannon scores (diversity), the values were also wide spread leading to lack of significance when comparing the ENV to CVP and TSA samples.
+
+No difference was found when comparing the sites.
+
+The beta diversity analysis found significant differences between all the media groupings.
+Clustering of the media groups was also clearly visible in the MDS plots.
+
+Interestingly the CVP and KBC samples had relatively tight clusters that were quite near each other.
+The TSA and ENV samples had very loose clusters indicating large differences within the group.
+There is also some presence of clustering by site within each media group which appears to cause the main differences within the groups.
+
+Unfortunately we are not able to detect any differences between sites due to power and the large differences caused by media.
+
+### Differential abundance anlaysis
+<center>
+![](figures/difference.png){style="width:200px"}
+</center>
+
+After diversity analysis we carried out differential abundance analysis in [chapter 17](#DA_chap).
+This was carried out with ANCOM whilst taking into account both the media and site information.
+
+We found many bacterial classes with lower abundances in the media samples compared to the ENV samples.
+We only found 2 classes with higher abundance in the media samples compared to the ENV samples.
+This indicates the media are selecting for only a few classes and many bacteria cannot survive on the media.
+This biologically makes sense but also corroborates what we have seen in our other analyses.
+
+## Findings
+
+<center>
+![](figures/compass.png){style="width:200px"}
+</center>
+
+In [chapter 2](#sum_and_qs) we asked some questions about our dataset.
+Let's try to answer them.
+
+### Anthropisation gradient
+<center>
+![](figures/farm.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+How does the bacterial communities change across the anthropisation gradient?
+
+Due to the vast difference caused by the media we were not able to determine this.
+You could try to remove all but the ENV samples to determine this. 
+However, you would not have much power with only 9 samples (3 sites by 3 replicates).
+
+### Replicate differences
+<center>
+![](figures/replicate_difference.png){style="width:200px"}
+</center>
+
+Is there a difference in the replicates of one site and media combination? I.e. do any of the media produce inconsistent profiles?
+
+There are inconsistencies between the replicates of site and media combinations.
+However, the biggest inconsistencies are within the TSA samples. followed by the ENV samples
+This is shown by the loose clustering in the beta diversity of the these sample and the tight clustering for CVP & KBC samples.
+This indicates that variation within groups may be caused by the sample variation rather than media inconsistencies.
+In fact the KBC and CVP seem to "normalise" the community profiles.
+This is again hard to determine due to small numbers of replicates.
+
+### Site or media
+<center>
+![](figures/site_and_media.png){style="width:300px"}
+</center>
+
+Is there more difference between the sites or the media used?
+
+It appears that more difference is caused by the different culture media than the sites.
+If you only look at the ENV samples there is a big difference between the sites.
+This could be investigated further by checking for [homogeneity](https://microbiome.github.io/tutorials/PERMANOVA.html).
+
+### Media versus ENV samples
+<center>
+![](figures/petri.png){style="width:200px"}
+</center>
+
+Do the media samples differ from the ENV samples? If so, how?
+
+This is a definite yes.
+
+Compared to the ENV samples the media samples:
+
+- Have lower biodiversity.
+- Consist primarily of a few taxa.
+- There appear to be less differences between the sites within the CVP & KBC samples.
+
+## Conclusion
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+We have successfully analysed our data with `phyloseq` and various other R packages.
+The main difference found was between the ENV samples and the media samples.
+If we had more ENV samples we could try to deduce more about the differences between the anthropisation gradient.
+
+If you have time you could try to subset the data to only contain the ENV samples and carry out some analysis.
+
+Great work and thanks for reading.

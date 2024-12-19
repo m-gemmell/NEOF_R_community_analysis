@@ -1,0 +1,175 @@
+# Summarise phyloseq {#sum_phyloseq_chap}
+<center>
+![](figures/transform.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+For the next 2 chapters we will use one notebook. We will setup this notebook with packages and the `phyloseq` object we created in the last chapter.
+
+After this, we will summarise the `phyloseq` object. We will investigate the read depth of samples and the number of ASVs in our dataset.
+
+## Summarise: setup
+<center>
+![](figures/setup_2.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+Before starting analysis create and save a new `R` notebook called __"2-Preprocess.ipynb"__ in the analysis directory (when renaming you don't need to include the suffix).
+
+It is useful to add a title to the top of the notebook. 
+Create a __"Markdown"__ __cell__ and add the following first level header:
+
+```{r, eval=FALSE}
+# Preprocessing data notebook
+```
+
+The first section of our notebook will be used for setup.
+This will involve loading packages and data we need. 
+
+For good documentation add a second level heading to the first __"Markdown"__ cell. 
+
+```{r, eval=FALSE}
+## Setup
+```
+
+To decrease the level of a heading add another `#`.
+
+- `# `: 1st level header.
+- `## `: 2nd level header.
+- `### `: 3rd level header etc...
+
+I like to load all the packages to be used in the notebook in this section. We will explain their uses later in this chapter. Add the below to a new __"Code"__ cell in your notebook:
+
+```{r, eval=FALSE}
+#Packages
+library("phyloseq")
+library("microbiome")
+library("vegan")
+library("IRdisplay")
+```
+
+Our last bit of set-up is to load in our abundance `phyloseq` object we created in the previous chapter.
+
+```{r, eval=FALSE}
+#Load the phyloseq object
+load("phyloseq.RData")
+```
+
+Ensure you have run the code in this cell.
+
+### Summarise header
+<center>
+![](figures/header.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+When you load in a dataset it is always useful to check it. 
+We will therefore use a new section to inspect the data.
+
+In a new __"Markdown"__ cell add the following 2nd level header.
+
+```{r, eval=FALSE}
+## Summarise the phyloseq object
+```
+
+### Summarise phyloseq
+<center>
+![](figures/list_blue.png){style="width:200px"}
+</center>
+
+Create a new code __cell__ and add the following annotation and code. Then run the code.
+
+```{r, eval=FALSE}
+#Summary of phyloseq object
+microbiome::summarize_phyloseq(pseq)
+```
+
+We ran this code in the __"01-Import.ipynb"__. You can therefore check if our new output matched the output from that notebook. This should be the case since they are the same data.
+
+Due to the relative large amount of output to screen we'll put the next part into a new __cell__.
+
+### Reads per sample
+<center>
+![](figures/histogram.png){style="width:200px"}
+</center>
+
+In a new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`).
+
+```{r, eval=FALSE}
+#Number of reads per sample
+sample_depths <- microbiome::readcount(pseq)
+sample_depths
+```
+
+With this info we can make a histogram of read numbers per sample with the base `R` function `hist()`.
+We will save this as a `.png` file with the functions `png()` and `dev.off()`.
+
+```{r, eval=FALSE}
+#Histogram
+#Save as png
+png(filename = "./sample_depth_histogram.png", res = 300,
+    units = "mm", height = 100, width = 200)
+hist(sample_depths, main = "Histogram of read depths")
+dev.off()
+```
+
+### Display png
+<center>
+![](figures/display_png.png){style="width:200px"}
+</center>
+
+We can use the R package [`IRdisplay`](https://github.com/IRkernel/IRdisplay) to display plots from files in `jupyter-notebook`.
+
+Use the function `display_png()` to display our histogram.
+
+```{r, eval=FALSE}
+#Display the plot in jupyter notebook
+IRdisplay::display_png(file="./sample_depth_histogram.png")
+```
+
+This information is very useful. We will use it in the next chapter to determine what our minimum read depth should be.
+
+### ASVs per sample
+<center>
+![](figures/nice_table.png){style="width:200px"}
+</center>
+
+The last information we will look at before some preprocessing are the ASVs (Amplicon Sequnces Variants).
+
+A useful `phyloseq` command is `otu_table()`. This allows us to extract the ASV/OTU/feature table. With this we can then carry out some other commands.
+
+For demonstrative purposes write and run the following code in its own __cell__ to display the ASV table.
+
+```{r, eval=FALSE}
+#Can extract ASV table (known as otu table in phyloseq)
+phyloseq::otu_table(pseq)
+```
+
+With this function we will extract the number of ASVs in the original abundance table. 
+We will then save this in a vector using a new __cell__.
+
+```{r, eval=FALSE}
+#Each row is an ASV and each column is a sample
+#Therefore we can get the number of ASVs in the data by counting the number of rows
+#Let's make a new vector with this info so we can easily keep track
+num_asvs_vec <- c(nrow(phyloseq::otu_table(pseq)))
+#Give the 1st element a relevant name
+names(num_asvs_vec)[1] <- "abundance"
+#View current vector
+num_asvs_vec
+```
+
+Save this vector as a `.Rdata` object in a new __cell__.
+This will allow us to load it in future notebooks.
+We can remove the object so it doesn't use RAM.
+
+```{r, eval=FALSE}
+#Save object as file
+save(num_asvs_vec, file= "num_asvs_vec.RData")
+#Remove object from environment
+rm(num_asvs_vec)
+```
+
+## Summarise: recap
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+We now have an idea of some of the attributes of our dataset. This includes the number of reads and ASVs. We can use this knowledge to carry out some preprocessing.

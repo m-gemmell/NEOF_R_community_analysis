@@ -1,0 +1,30 @@
+bookdown::gitbook:
+  split_by: rmd
+  css:
+  - style.css
+  - www/webex.css
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/NEOF_bordered_small.png"></a></li>
+        <li><a>Iterative rarefaction</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit: ~
+    download: ~
+    sharing: ~
+  includes:
+    after_body: www/webex.js
+  md_extensions: -smart
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default
+bookdown::html_book:
+  split_by: none
+  css: style.css
+  toc: no

@@ -1,0 +1,2386 @@
+--- 
+title: "Iterative rarefaction"
+author: "Matthew R. Gemmell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+favicon: figures/NEOF_favicon.png
+description: NEOF book for the R community advanced analysis course
+cover-image: "figures/NEOF.png"
+---
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+
+```{r, echo=FALSE}
+#Change colour, border, and text of code chunks
+#Check style.css for .Rchunk
+#https://stackoverflow.com/questions/65627531/change-r-chunk-background-color-in-bookdown-gitbook
+#https://bookdown.org/yihui/rmarkdown-cookbook/chunk-styling.html
+knitr::opts_chunk$set(class.source="Rchunk") 
+```
+
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'webexercises'
+), 'packages.bib')
+```
+
+<center>
+![](figures/NEOF.png){style="border-radius: 15px; width: 300px"}
+</center>
+
+# (PART\*) Intro {-}
+
+# Introduction
+
+<center>
+![](figures/iterative_rarefaction.png){style="width: 300px"}
+</center>
+
+This book explains and demonstrates how to carry out __iterative rarefaction__ for __alpha__ and __beta__ diversity analysis in __R__ with the `phyloseq` object.
+This involves running multiple rounds/iterations of rarefaction and producing and averaged table of __alpha__ and __beta__ diversity values.
+This is a more robust method than only carrying out one round of rarefaction.
+
+## Table of contents {-}
+
+ADD TABLE OF CONTENTS
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+<!--chapter:end:01-Iterative_rarefaction_intro.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# Iterative rarefaction background {#iter_rarefaction_background_chap}
+
+<center>
+![](figures/iteration.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+__Rarefaction__ is the process of randomly subsetting abundances to ensure the total count values are identical across all samples.
+__Rarefaction__ is intended to correct for bias caused by varying sampling depths across the samples.
+
+## Should you rarefy?
+<center>
+![](figures/choice_sign.png){style="width:200px"}
+</center>
+
+__Rarefaction__ can be a hotly debated topic with two main points of view.
+
+1.  Some researchers believe it is not appropriate.
+    1.  This is backed up by the 2014 paper ["Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible"](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531)
+    2.  Various R package developers do not recommend it such as the developers of [`phyloseq`](https://joey711.github.io/phyloseq/) & [`microbiome`](https://microbiome.github.io/tutorials/).
+2.  Some researchers believe it is appropriate.
+    1.  This is backed up by the 2022 paper ["To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data"](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959)
+    2.  The QIIME2 developers include rarefaction in their tutorials/SOPs for alpha and beta diversity analysis
+
+We use __rarefaction__ in our analyses but it is ultimately up to you whether you utilise it or not.
+
+## Using iterations
+<center>
+![](figures/iterations.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+In our initial R community analysis workshop we only carried out one round of __rarefaction__ for each sample.
+In this book we will __rarefy__ with multiple rounds/iterations to calculate average values for alpha and beta diversity metrics.
+This is __iterative rarefaction__ analysis.
+
+This iterative approach will, in theory, smooth out any extreme results one round of __rarefaction__ may cause. Extreme results are possible due the random nature of __rarefaction__.
+These extreme results can include:
+
+-   Leaving important features (ASVs, taxonomic groups, etc.) with no counts
+-   Causing a few features to have much higher relative abundances
+-   Varying alpha and beta diversity values with different sets of rarefaction
+
+## Book contents
+<center>
+![](figures/contents.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+In this book you will learn how to:
+
+- Use __random seeds__ for sampling
+- Carry out __iterative rarefaction__ with sets of __random seeds__
+- Use __iterative rarefaction__ to carry out alpha diversity analysis
+- Use __iterative rarefaction__ to carry out beta diversity analysis
+
+<!--chapter:end:02-Background.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# Setup {#setupchap}
+<center>
+![](figures/france.png){style="width:200px"}
+</center>
+
+Include info on directory, copying data, and environment setup
+
+## Dataset
+<center>
+![](figures/river.png){style="width:200px"}
+</center>
+
+The data set we will use in this book is the same as that used in the [R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/02-Dataset_and_workflow.html#dataset).
+
+Below are brief bullet points about the data:
+
+- It is a 16S dataset of ASV counts with taxonomy and phylogeny produced by QIIME2
+- The samples come from surface water from the Durance River in the south-east of France
+- There are three sampling sites on an anthropisation gradient (low to high agriculture)
+  - Upper Durance (UD)
+  - Middle Durance (MD)
+  - Lower Durance (LD)
+- Four different media approaches were used to produce bacterial lawns that were sequenced
+  - Environmental sample (ENV): No media used, frozen at -20°C.
+  - TSA 10% incubated at 28°C for 2 days.
+  - KBC incubated at 28°C for 2 days.
+  - CVP incubated at 28°C for 3 days.
+- There are three replicates for each sampling site and media combination (36 samples total)
+
+## Conda environment
+
+## Directory and files
+
+<!--chapter:end:03-Setup.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# (PART\*) Random seeds {-}
+
+# Random seeds and sampling {#random_seeds_n_sampling_chap}
+<center>
+![](figures/random_seeds.png){style="width:200px"}
+</center>
+
+What are __random seeds__?
+
+__Random seeds__ are numbers that computational tasks use to determine how they will carry out a random task.
+
+In this section we will demonstrate the use of __random seeds__. 
+This is to help understand what they are and why they are used.
+
+## Random seed notebook
+
+<center>
+![](figures/seed_notebook.png){style="width:100px"}
+</center>
+
+Create a new R jupyter-notebook called "Random_seeds.ipynb" for this section.
+
+## Random sampling
+<center>
+![](figures/random_sampling.png){style="width:200px; background:white; border-radius:5px"}
+</center>
+
+To demonstrate the use of random seeds we will use the R function `sample()`. 
+This function randomly samples a set of numbers.
+
+Create the below code in a code cell.
+
+```{R, eval=FALSE}
+#Create a vector containing the numbers 0 to 9
+num_vec <- 0:9
+#Randomly sample 5 of these numbers
+sample(x = num_vec, size = 5)
+```
+
+If you run the code you will get five random single digit numbers.
+
+Run this multiple times and you will hopefully see the sampled numbers are different every time.
+
+## Sampling with replacement
+<center>
+![](figures/balls.png){style="width:200px"}
+</center>
+
+You may also notice that within each sample there are no repeating numbers.
+You can change this by adding the option `replace = TRUE`.
+
+Try this out in a new cell.
+
+```{R, eval=FALSE}
+#Randomly sample 5 of these numbers with replacement
+sample(x = num_vec, size = 5, replace = TRUE)
+```
+
+Run this a few times and you will hopefully notice that the five numbers are not always unique.
+
+When sampling __with replacement__ you replace each result back into the pool before sampling again.
+When sampling __without replacement__ you don't replace the results.
+
+The famous example is sampling green and yellow balls from a bag.
+If you had a bag with 1000 balls and you wanted a rough idea of the ratio of yellow and green balls you could count the number of these balls within a sample of only 50.
+Without replacement you would take out a ball, record its colour and throw it in a separate container.
+With replacement you would take out a ball, record its colour and put it back into the initial bag, meaning it could possibly be recounted.
+
+One advantage of sampling with replacement is that your sampling size can be larger than your actual population size.
+For example, you could create a random sampling of 50 with a bag containing 10 balls with replacement.
+This would not work without replacement.
+The below script will cause R to produce an error saying "cannot take a sample larger than the population when 'replace = FALSE' ".
+
+```{R, eval=FALSE}
+#Randomly sample 15 of these numbers without replacement
+sample(x = num_vec, size = 15, replace = FALSE)
+```
+
+Importantly for us __rarefaction__ uses sampling __without replacement__.
+Any samples with a lower depth than the rarefaction size will be removed and will therefore not be in the resulting rarefied data.
+
+<!--chapter:end:04-Random_seeds.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# R and random seeds
+<center>
+![](figures/braille_r.png){style="width:200px; border-radius:15px; border:#FFFFFF 6px solid"}
+</center>
+
+Sampling is meant to be random but true randomness is pretty much impossible, especially in computing.
+Therefore, many programs use __seeds__ to determine how random tasks will be carried out.
+Various programs that use __random seeds__ include:
+
+- Sampling tools such as `sample()` and rarefaction
+- Creating bootstrapped phylogenies
+- Creating procedural content such as building Minecraft worlds
+
+## Setting the R seed
+<center>
+![](figures/set_a_seed.png){style="width:300px; border-radius:15px; background:white; border:#FFFFFF 6px solid"}
+</center>
+
+To carry out random processes `R` uses a global variable called `seed`.
+The `seed` is normally random and changes every time it is used.
+This is useful for everyday analysis but what if you want replicable results?
+
+In R we can set the `seed` with the function `seet.seed()`.
+Carry this to determien the randomness of sampling.
+
+```{R, eval=FALSE}
+#Set random seed
+set.seed(1234)
+#Randomly sample 12 of these numbers without replacement
+sample(x = num_vec, size = 12, replace = FALSE)
+#Reset random seed (covered later)
+set.seed(NULL)
+```
+
+You will get a result of "9, 5, 4, 3, & 0".
+You can try to run the code multiple times and you will always get the same results.
+
+If you run a tool that uses random sampling you will always get the same results if:
+
+- You use the same random seed (`seed` for R)
+- You use the same data
+- You use the same parameters including the replacement method (with or without)
+
+In fact, run the below code in a new code cell and you may notice a similarity with your previous output.
+
+```{R, eval=FALSE}
+#Set random seed
+set.seed(1234)
+#Create a vector containing the numbers 0 to 10
+larger_num_vec <- 10:19
+#Randomly sample 5 of these numbers
+sample(x = num_vec, size = 5)
+#Reset random seed (covered later)
+set.seed(NULL)
+```
+
+That's right, `sample()` will always take the 10th (9/19), 6th (5/15), 5th (4/14), 4th (3/13), and 1st (0/10) values if it is given the __random seed__ of __1234__, provided with an 10 length vector, and asked to sample 5 values.
+
+Setting our randomness is incredibly beneficial for reproducibility in research.
+
+When you carry out analysis you may need to redo some work. 
+This could be due to reviewer comments or you may want to incorporate some new methods.
+As long as you saved the random seeds you used you can get the same results where you need to.
+It also means others can replicate your results.
+
+## Reset seed
+<center>
+![](figures/reset_seed.png){style="width:300px"}
+</center>
+
+We set a __random seed__ at the start of the cell for reproducibility and control, but why do we then run the line `set.seed(NULL)`?
+
+The normal operation of R means that, in effect, its __random seed__ changes every time it is used.
+This means R normally randomly determines randomness.
+This is how it should be until we want to determine the randomness.
+It is therefore good practice to set the seed to `NULL` after you have utilised your set __seeds__.
+This will revert the __seed__ to its normal random operations.
+
+One last point to note is R versions. 
+Version 3.6 changed R's sampling methods, therefore if you use Version 3.5 or below you will get different results than we have got.
+Hopefully the R developers will not change this in a later version again.
+
+<!--chapter:end:05-R_and_random_seeds.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# Random seed practice
+<center>
+![](figures/seed_sowing.png){style="width:200px; border-radius:15px; background:white; border:#FFFFFF 6px solid"}
+</center>
+
+Brilliant! To reinforce your gained knowledge try out the following challenges.
+
+First create the following vector:
+
+```{R, eval=FALSE}
+second_millenium <- 1001:2000
+```
+
+__Note:__ Remember it is best practice to `set.seed(NULL)` at the end of a code cell.
+
+## RSQ1
+<center>
+![](figures/printing_press.png){style="width:150px"}
+</center>
+
+Sample the object `second_millenium` with the following parameters:
+
+- Extract 10 values
+- Without replacement
+- Use the __random seed__ `489`
+
+```{r, echo = FALSE}
+opts_p <- c("__1120__", answer="__1369__", "__1744__")
+```
+What is the fourth number in the produced vector? `r longmcq(opts_p)`
+
+`r hide("RSQ1 code solution")`
+```{R, eval=FALSE}
+#RSQ1
+#Set random seed
+set.seed(489)
+#Randomly sample
+first_answer <- sample(x = second_millenium, size = 10)[4]
+first_answer
+#Reset random seed
+set.seed(NULL)
+```
+`r unhide()`
+
+## RSQ2
+<center>
+![](figures/vaccination_bottle.png){style="width:150px"}
+</center>
+
+Sample the object `second_millenium` with the following parameters:
+
+- Extract 24 values
+- Without replacement
+- Use the answer to the first question as the __random seed__
+
+```{r, echo = FALSE}
+opts_p <- c("__1120__", "__1369__", answer="__1744__")
+```
+What is the 16th number in the produced vector? `r longmcq(opts_p)`
+
+`r hide("RSQ2 code solution")`
+```{R, eval=FALSE}
+#RSQ2
+#Set random seed
+set.seed(first_answer)
+#Randomly sample
+second_answer <- sample(x = second_millenium, size = 24)[16]
+second_answer
+#Reset random seed
+set.seed(NULL)
+```
+`r unhide()`
+
+## RSQ3
+<center>
+![](figures/automobile.png){style="width:200px; border-radius:15px; background:white"}
+</center>
+
+Sample the object `second_millenium` with the following parameters:
+
+- Extract a number of values equal to the answer of the second question
+- With replacement
+- Use the answer to the first question as the __random seed__
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__1120__", "__1369__", "__1744__")
+```
+What is the 999th number in the produced vector? `r longmcq(opts_p)`
+
+`r hide("RSQ3 code solution")`
+```{R, eval=FALSE}
+#RSQ3
+#Set random seed
+set.seed(first_answer)
+#Randomly sample
+sample(x = second_millenium, size = second_answer, replace = TRUE)[999]
+#Reset random seed
+set.seed(NULL)
+```
+`r unhide()`
+
+## Random seed recap
+<center>
+![](figures/recap.png){style="width:200px; background:white; border-radius:15px"}
+</center>
+
+
+Once you are happy you can save then close and halt your "Random_seeds.ipynb" notebook.
+
+Through this section you have learnt:
+
+- The use of random seeds for random processes such as sampling
+- The difference between sampling with and without replacement
+- How to set __random seeds__ in `R` for reproducible randomness
+
+With this you can continue onto __iterative rarefaction__.
+
+<!--chapter:end:06-Random_seeds_practice.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# (PART\*) Iterating rarefaction {-}
+
+# Iterating rarefaction intro & setup {#iterating_rarefaction_chap}
+
+In this section we will create code to carry out __iterative rarefaction__.
+For this we need to create a vector of __random seeds__, one for each __iteration__ of __rarefaction__.
+We will loop through this vector, using each __random seed__ to carry out one __iteration__ of __rarefaction__.
+In the next sections we will utilise this code to produce alpha and beta diversity values that we will analyse.
+
+## Iterating rarefaction setup
+<center>
+![](figures/setup_5.png){style="width:200px"}
+</center>
+
+First, create a new R jupyter-notebook called "Iterating_rarefaction.ipynb".
+
+At the top of this notebook create a code cell to load in the various packages and data we need.
+
+```{R, eval=FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+library("IRdisplay")
+#Load processed but unrarefied data from R community analysis workshop
+load("phyloseq.RData")
+```
+
+## Rarefaction iterations
+<center>
+![](figures/number_pad.png){style="width:200px"}
+</center>
+
+We need to choose the number of __iterations__ we are going to carry out.
+
+For our speed we will use __10 iterations__ in this practice. 
+In your real analysis I would recommend using __1000 iterations__.
+
+Let's create a variable for our number of __iterations__.
+
+```{R, eval=FALSE}
+#Number of rarefaction iterations to be carried out
+#Using 10 here for speed, real analysis should use 1000
+rarefaction_iters <- 10
+```
+
+## RNG vector creation {#rng_vec_creation}
+<center>
+![](figures/list.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+We can now carry out __Random Number Generation (RNG)__ to create a number of __random seeds__ equal to the number of iterations planned.
+
+```{R, eval=FALSE}
+#Create rngseed vector
+#Set seed for reproducibility
+#This number was chosen randomly
+set.seed(2605)
+#Sample 10 (number of iters) values from the number range 1-100,000
+rngseed_vec <- sample(x=1:100000, size = rarefaction_iters, replace = FALSE)
+#Print out vector
+rngseed_vec
+#Save our rngseed vector
+save(rngseed_vec, file="rngseeds.RData")
+#Reset seed
+set.seed(NULL)
+```
+
+There are a lot of steps above. These are:
+
+- __Setting the random seed:__ We carry this out so we will always get the same rngseed vector that will be used for the rarefaction iterations. This is important so you will always get the same results if you need to rework some analysis, stats, or plots. Also useful here so you get the same results as the instructor and other attendees.
+- __Creating the rngseed vector:__ We use our old friend `sample()` to create a random number for each __iteration__ we will carry out. 
+  - We arbitrarily sample from the numbers 1-100,000. You could change this to a larger range in your future research.
+  - We use our previous object `rarefaction_iters` as `size=` to produce a random number for each of our __iterations__.
+  - We carry this out __without replacement__ so none of our __rarefaction iterations__ are identical.
+- __Save the rngseed vector:__ We save the vector as a file. We will load this in our alpha and beta diversity notebooks to be used for iterative rarefaction. This is also useful so you have a backup file of the rngseed vectors. 
+- __Reset seed:__ Always good to reset the seed at the end of a Jupyter notebook cell or after it has been used in a Rscript.
+
+<!--chapter:end:07-Iterating_rarefaction_intro.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# Phyla relative abundance
+<center>
+![](figures/river_2.png){style="width:200px"}
+</center>
+
+Prior to __iterative rarefaction__ we will look at the phyla composition of the environmental samples.
+
+## Subset and phyla aggregation
+<center>
+![](figures/aggregate.png){style="width:200px"}
+</center>
+
+For demonstrative purposes we will reduce the amount of samples and features in our data for this section. We will carry this out by:
+
+- Subsetting the data so it only contains the 9 environmental samples.
+- Aggregate the taxa to phyla whilst aggregating rare taxa to one "other group"
+
+```{R, eval=FALSE}
+#Reduce data for demonstrative purposes
+#Subset phyloseq object to only retain the ENV samples
+#I.e. remove the media samples
+physeq_env <- phyloseq::subset_samples(pseq, media == "ENV")
+
+#Aggregate to phyla level whilst aggregating rare phyla
+pseq_env_phyla <- microbiome::aggregate_rare(
+  pseq_env, level = "Phylum",
+  detection = 0.1, prevalence = 0.5,
+  #Prevent info on aggregation to be printed out
+  verbose = FALSE)
+#View count table
+otu_table(pseq_env_phyla)
+#Sum count of samples
+microbiome::readcount(pseq_env_phyla)
+#Remove unwanted objects
+rm(pseq, pseq_env)
+```
+
+## Phyla relative abundance bar chart
+<center>
+![](figures/stacked_bar_chart.png){style="width:200px"}
+</center>
+
+Let's have a quick look at the non rarefied phyla relative abundance through a bar chart.
+
+__Note:__ This is how you would normally look at this type of bar chart.
+
+```{R, eval=FALSE}
+#Quick phyla bar chart of relative abundance
+#Relative abundance transformation
+pseq_env_phyla_relabund <- microbiome::transform(pseq_env_phyla, "compositional")
+#Create, save, and display bar chart
+phylum_bar <- microbiome::plot_composition(pseq_env_phyla_relabund)
+ggsave(filename = "./env_phyla_relabund.png", plot = phylum_bar,
+       device = "png", dpi = 300, units = "mm", height = 100, width = 100)
+IRdisplay::display_png(file = "./env_phyla_relabund.png")
+```
+
+<!--chapter:end:08-Phyla_relative_abundance.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# One Round of rarefaction
+<center>
+![](figures/one_round.png){style="width:200px"}
+</center>
+
+Building up to multiple __iterations__ of __rarefaction__ we will first carry out one round of __rarefaction__ on our environmental pPhyla relative abundance data.
+
+This will also allow us to compare the compare the results of no __rarefaction__ to only one round.
+
+## 1R: Rarefaction
+<center>
+![](figures/black_rhino.png){style="width:300px"}
+</center>
+
+Carry out one round of __rarefaction__ and view the __rarefied__ counts.
+
+We are using the environmental samples subsetted and phyla aggregated data.
+Additionally, we are using the first of our __random seeds__ in `rng_seed_vec` and the minimum read count as our __rarefaction__ size.
+
+```{R, eval=FALSE}
+#One round of rarefaction
+pseq_env_phyla_rarefy_1 <- phyloseq::rarefy_even_depth(
+  pseq_env_phyla,
+  #Minimum read count as rarefaction size
+  sample.size = min(microbiome::readcount(pseq_env_phyla)),
+  #First random seed as the rng seed
+  rngseed = rngseed_vec[1])
+#View count table
+otu_table(pseq_env_phyla_rarefy_1)
+#Sum count of samples
+microbiome::readcount(pseq_env_phyla_rarefy_1)
+```
+
+You should see that all the samples now have a total count of __11046__.
+
+## 1R: Relative abundance bar chart
+<center>
+![](figures/stacked_bar_chart_2.png){style="width:200px"}
+</center>
+
+Now to create a relative abundance bar chart with our __rarefied__ data to compare to our non-rarefied data.
+
+__Note:__ This is not something you would do in real analysis.
+
+```{R, eval=FALSE}
+#Quick phyla bar chart of relative abundance
+#Relative abundance transformation
+pseq_env_phyla_rarefy_1_relabund <- microbiome::transform(pseq_env_phyla_rarefy_1, "compositional")
+#Create, save, and display bar chart
+phylum_bar <- microbiome::plot_composition(pseq_env_phyla_rarefy_1_relabund)
+ggsave(filename = "./env_phyla_rarefy_1_relabund.png", plot = phylum_bar,
+       device = "png", dpi = 300, units = "mm", height = 100, width = 100)
+IRdisplay::display_png(file = "./env_phyla_rarefy_1_relabund.png")
+```
+
+Viewing the __non-rarefied__ and __rarefied__ based bar charts shows some differences. However, these are quite difficult to discern.
+
+## 1R: Difference from non-rarefied
+<center>
+![](figures/histogram_1.png){style="width:300px"}
+</center>
+
+To more easily see the differences we will subtract the two relative abundance tables from each other.
+This will produce a matrix of differences.
+
+```{R, eval=FALSE}
+#Value difference matrix
+single_rarefaction_diff <- 
+  phyloseq::otu_table(pseq_env_phyla_relabund) - phyloseq::otu_table(pseq_env_phyla_rarefy_1_relabund)
+single_rarefaction_diff
+```
+
+We can see there are differences.
+To make these differences even clearer let's make a histogram.
+
+```{R, eval = FALSE}
+#Histogram of differences
+hist(single_rarefaction_diff, main = "Single rarefaction")
+```
+
+```{r, echo = FALSE}
+opts_p <- c("__-0.0003(-3e-04) to 0.0003(3e-04)__", "__-0.003 to 0.003__", answer="__-0.015 to 0.015__")
+```
+What is the range of the differences compared to the non rarefied relative abundance values? `r longmcq(opts_p)`
+
+Although these values appear quite small keep in mind we are working with relative abundance values.
+Each sample has a total relative abundance of 1.00 so a relative abundance value of 0.01 is 1%.
+
+Let's see if we can get these differences smaller with multiple rounds of rarefaction.
+
+<!--chapter:end:09-One_round_of_rarefaction.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# Multiple Rarefaction iterations
+<center>
+![](figures/ten_rounds.png){style="width:200px"}
+</center>
+
+This chapter will demonstrate how to use a loop to carry out multiple rounds of rarefaction.
+We'll then compare the __non-rarefied__ data to our iteratively rarefied data.
+
+## MR: Rarefaction
+<center>
+![](figures/tiger.png){style="width:300px"}
+</center>
+
+The below loop creates a relative abundance table created by 10 rounds of iteration.
+Type the code and read the annotations to understand it.
+Then run the code.
+
+```{R, eval=FALSE}
+#Iterative rarefaction to produce an average rarefied relative abundance table
+
+#Assign rarefaction size
+rarefaction_size <- min(microbiome::readcount(pseq_env_phyla))
+#Load our rng seed vector
+load("rngseeds.RData")
+
+#Initalise where we will store the output
+#In this case we create the first iteration
+#Carry out first rarefaction
+pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
+                                           sample.size = rarefaction_size
+                                           #First random seed as the rng seed
+                                           rngseed = rngseed_vec[1])
+#Calculate relative abundance
+pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
+#Extract relative abundance phyla table as a data frame
+relabund_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+
+#Loop through the next 9 iterations
+#Add the relabund rarefied values to phyla_table
+for (i in 2:length(rngseed_vec)){
+  #Rarefy
+  pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
+                                           sample.size = rarefaction_size
+                                           rngseed = rngseed_vec[i])
+  #Calculate relative abundance
+  pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
+  #Sum values to phyla_table
+  relabund_phyla_df <- 
+    relabund_phyla_df + as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+}
+#Average the values of the summed relabund phyla_table
+relabund_phyla_mean_df <- relabund_phyla_df / length(rngseed_vec)
+```
+
+The loop produces a data frame (`relabund_phyla_df`) that has all the values from the ten  rarefied data frames summed in each corresponding cell.
+
+The final data frame is then divided by the number of __iterations__ .
+This produces the final data frame `relabund_phyla_mean_df`. 
+
+## Mathematical operators & data frames
+<center>
+![](figures/add+matrices.png){style="width:300px; background:white; border-radius:15px"}
+</center>
+
+Two numeric data frames/matrices can be summed together with `+` if they have the same dimensions.
+This can be carried out with any mathematical operator (`+`,`-`,`*`,`/`, etc.)
+An example of how this works is below.
+
+__Note:__ You don't need to run the below code as the output is displayed.
+
+```{R, eval = TRUE}
+#Matrix 1
+mat1 <- matrix(1:9, nrow = 3, ncol = 3)
+mat1
+```
+```{R, eval = TRUE}
+#Matrix 2
+mat2 <- matrix((1:9)*10, nrow = 3, ncol = 3)
+mat2
+```
+```{R, eval = TRUE}
+#Summed matrix
+mat_sum <- mat1 + mat2
+mat_sum
+```
+
+If you only use one number with a data frame/matrix the operation will act upon each cell in the same manner.
+You could add 1 to each cell, minus 4 from each cell, etc.
+
+Continuing the matrix example, we'll get the average of the 2 data frames by dividins by two (`/2`).
+
+```{R, eval = TRUE}
+#Mean matrix
+mat_mean <- mat_sum / 2
+mat_mean
+```
+
+## MR: Difference from non-rarefied
+<center>
+![](figures/histogram_3.png){style="width:200px"}
+</center>
+
+We'll skip the bar chart this time and only look at the difference of the values.
+
+```{R, eval=FALSE}
+#Value difference matrix
+iterative_rarefaction_diff <- 
+  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - relabund_phyla_mean_df)
+iterative_rarefaction_diff
+#Histogram
+hist(iterative_rarefaction_diff)
+```
+
+```{r, echo = FALSE}
+opts_p <- c("__-0.0003(-3e-04) to 0.0003(3e-04)__", answer="__-0.003 to 0.003__", "__-0.015 to 0.015__")
+```
+What is the range of the differences compared to the non rarefied relative abundance values? `r longmcq(opts_p)`
+
+You should notice that the differences are much smaller.
+This indicates that the structure of the __iterative rarefied__ data is much closer to the non-rarefied data compared to the one round __rarefied__ data.
+This is what we want.
+
+<!--chapter:end:10-Multiple_rounds_of_rarefaction.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# Iterating rarefaction practice
+
+
+Superlative! Now that you know how to carry out __iterative rarefaction__ I'll ask you to do it once more for the phyla data.
+
+## One thousand iteration
+<center>
+![](figures/per_thousand.png){style="width:200px; background:white; border-radius:15px"}
+</center>
+
+Create a rarefaction averaged phyla relative abundance as we have done above but with 1000 __rarefaction iterations__.
+For this task use __153478__ as the __seed__ when creating your vector of 1000 __rng seeds__.
+Save this vector of rngseeds to a file called "rngseeds_1000.RData".
+
+__Note:__ The iterative rarefaction step may take a few minutes. 
+
+After creating the relative abundance matrix determine how different the values are compared to the non-rarefied relative abundance with a histogram.
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__-0.0003(-3e-04) to 0.0003(3e-04)__", "__-0.003 to 0.003__", "__-0.015 to 0.015__")
+```
+What is the range of the differences compared to the non rarefied relative abundance values? `r longmcq(opts_p)`
+
+Please attempt the task yourself before looking at the solution code in the below expandable box.
+
+`r hide("Task solution code")`
+```{R, eval=FALSE}
+#Number of rarefaction iterations to be carried out
+rarefaction_iters <- 1000
+#Create rngseed vector
+#Set seed for reproducibility
+set.seed(153478)
+#Create the rngseed vector
+#Sample 1000 (number of iters) values from the number range 1-100,000
+rngseed_vec <- sample(x=1:100000, size = rarefaction_iters, replace = FALSE)
+#Save our rngseed vector
+save(rngseed_vec, file="rngseeds_1000.RData")
+#Reset seed
+set.seed(NULL)
+```
+
+```{R, eval=FALSE}
+#Iterative rarefaction to produce an average rarefied relative abundance table
+
+#Assign rarefaction size
+rarefaction_size <- min(microbiome::readcount(pseq_env_phyla))
+#Read in our rng seed vector
+load("rngseeds_1000.RData")
+
+#Initalise where we will store the output
+#In this case we create the first iteration
+#Carry out first rarefaction
+pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
+                                           sample.size = rarefaction_size
+                                           rngseed = rngseed_vec[1])
+#Calculate relative abundance
+pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
+#Relabund phyla table object
+relabund_phyla_table <- as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+
+#Loop through the next 999 iterations
+#Add the relabund rarefied values to phyla_table
+for (i in 2:length(rngseed_vec)){
+  #Rarefy
+  pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
+                                           sample.size = rarefaction_size
+                                           rngseed = rngseed_vec[i])
+  #Calculate relative abundance
+  pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
+  #Sum values to phyla_table
+  relabund_phyla_table <- 
+    relabund_phyla_table + as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+}
+#Average the values of the summed relabund phyla_table
+relabund_phyla_table <- relabund_phyla_table / length(rngseed_vec)
+```
+
+```{R, eval=FALSE}
+#Value difference matrix
+iterative_rarefaction_1000_diff <- 
+  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - relabund_phyla_table)
+iterative_rarefaction_diff
+#Histogram
+hist(iterative_rarefaction_diff)
+```
+`r unhide()`
+
+## Iterating rarefaction recap
+<center>
+![](figures/recap.png){style="width:200px; background:white; border-radius:15px"}
+</center>
+
+With this section you have learnt:
+
+- How to create a vector of rngseeds
+- How to use rng seeds to carry out __iterative rarefaction__
+
+In you real life analysis you would not use this method to create relative abundance taxonomy bar charts, you would use the non-rarefied relative abundance.
+However, this hopefully gave you a good idea of how __iterative rarefaction__ works so we can utilise it the next 2 chapters for alpha and beta diversity analysis.
+
+Feel free to save then close and halt your "Iterating_rarefaction.ipynb" notebook.
+
+<!--chapter:end:11-Iterating_rarefaction_practice.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# (PART\*) Alpha diversity {-}
+
+# $\alpha$ Diversity intro {#alpha_chap}
+<center>
+![](figures/alpha_iterative_rarefaction.png){style="width:300px"}
+</center>
+
+In this section we'll carry out __alpha diversity__ analysis using the __iterative rarefaction__ approach.
+We will carry this out on the ASV counts rather than at a taxonomy level such as phyla.
+
+These materials are mostly a combination of the __iterative rarefaction__ in this book and the __alpha diversity__ analysis in the R community workshop.
+Due to this we won't go into great detail, instead focussing on giving you the code to be able to carry this out.
+
+## $\alpha$: Setup
+<center>
+![](figures/setup_6.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+Create a new R jupyter notebook called "Alpha_diversity.ipynb".
+
+Load the required data and libraries.
+
+```{R, eval = FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+library("tidyverse")
+library("IRdisplay")
+library("ggpubr")
+#Load processed but unrarefied ASV data from main R community workshop
+load("phyloseq.RData")
+```
+
+## $\alpha$: Iterative rarefaction values
+<center>
+![](figures/ten_rng_seeds.png){style="width:200px"}
+</center>
+
+Before carrying out __iterative rarefaction__ we need to decide on a few values
+
+- __Rarefaction size:__ The sequence depth to normalise samples to
+  - We are using the minimum sample depth here
+  - The size you choose will be based on your data and what you feel is appropriate
+  - More info in the R community workshop
+- __RNG seeds:__ The rng seeds we will use for all the rarefactions
+  - We created these in the previous [chapter](#rng_vec_creation)
+- __Rarefaction iterations:__ The number of rarefaction iterations we will use
+  - We are using 10 here based on the length of our rng seed vector
+  - We recommend you use 1000 in your real analysis
+
+```{r, eval=FALSE}
+#Rarefaction values
+#Rarefaction size
+#Minimum sample depth in this case
+rarefaction_size <- min(microbiome::readcount(pseq))
+#Load the vector of 10 rngseeds created in the previous chapter
+load("rngseeds.RData")
+#Number of rarefaction iterations to be carried out
+#Based on length of rng seed vector
+rarefaction_iters <- length(rngseed_vec)
+```
+
+<!--chapter:end:12-Alpha_diversity_intro.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\alpha$: Iterative rarefaction loop
+<center>
+![](figures/iterative_loops.png){style="width:300px"}
+</center>
+
+Now we will create averaged __alpha diversity__ values through __iterative rarefaction__.
+We will carry this out by:
+
+- Calculating initial __alpha diversity__ values from the first __iteration__
+- Looping through the subsequent __rarefaction iterations__ and adding/summing calculated __alpha diversity__ values to the initial __alpha diversity__ values
+- Dividing each value of the final summed __alpha diversity__ by the number of __rarefaction iterations__.
+
+For this we will use the function `microbiome::alpha()` to calculate our alpha diversity values.
+
+```{r, eval=FALSE}
+#Loop to create iteration based rarefied alpha diversity values
+
+#Create data frame to contain final summed alpha diversity values
+#In this case we'll run the first rarefied alpha diversity analysis
+pseq_rarefy <- phyloseq::rarefy_even_depth(
+  pseq,
+  sample.size = rarefaction_size,
+  rngseed = rngseed_vec[1],
+  verbose = FALSE)
+#Alpha diversity
+alpha_df_sum <- microbiome::alpha(pseq_rarefy, index = "all")
+
+#Loop through 2 to the number of iterations
+for (i in 2:rarefaction_iters){
+  pseq_rarefy <- phyloseq::rarefy_even_depth(
+    pseq,
+    sample.size = rarefaction_size,
+    rngseed = rngseed_vec[i],
+    verbose = FALSE)
+  #Alpha diversity
+  alpha_df <- microbiome::alpha(pseq_rarefy, index = "all")
+  #Add/sum the new data frame values to the sum data frame
+  alpha_df_sum <- alpha_df_sum + alpha_df
+}
+#Divide by number of rarefaction iterations to get average
+alpha_df_mean <- alpha_df_sum / rarefaction_iters
+#Save alpha mean data frame
+save(alpha_df_mean, file = "alpha_df_mean.RData")
+#Remove unneeded objects
+rm(pseq,alpha_df_sum, alpha_df)
+```
+
+`r hide("verbose = FALSE option")`
+We include the option `verbose = FALSE` in the `phyloseq::rarefy_even_depth()` to prevent a lot of text to be displayed.
+This text says which rngseed was used in the rarefaction.
+We don't need this message as we already have a record of the rngseeds we used in `rngseed_vec`.
+`r unhide()`
+
+You can check the structure and contents of our alpha diversity data frame with `head()`.
+
+```{r, eval=FALSE}
+head(alpha_df_mean)
+```
+
+There are a lot of diversity metrics.
+We are only interested in a few of them here but we will remove the other ones later on.
+
+<!--chapter:end:13-Alpha_diversity_rarefaction.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\alpha$ data frame tidying
+<center>
+![](figures/clean_2.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+In this section we will tidy up our data frame to make it ready for plotting by:
+
+- Combining our __alpha diversity__ values and metadata
+- Converting our wide data frame to a long data frame
+- Subsetting our data frame so it only contains the __alpha diversity__ metrics we want to plot
+
+## $\alpha$: Metric and metadata data frame
+<center>
+![](figures/wide_data_frame.png){style="width:200px"}
+</center>
+
+Now that we have our __alpha diversity__ values we can create a data frame that contains these values and the metadata.
+
+In the below code we extract the metadata from the rarefied phyloseq object created in the last rarefaction iteration loop.
+This ensures we only acquire metadata from samples that are retained after __rarefaction__.
+The samples that are retained are always the same across our __rarefaction iterations__.
+This is because samples are retained based on the __rarefaction size/depth__ which is kept consistent across our __rarefactions iterations__.
+
+```{r, eval=FALSE}
+#Combine metadata and alpha diversity mean values into one data frame
+#Extract metadata from rarefied phyloseq object
+metadf <- phyloseq::sample_data(pseq)
+#Ensure row names are identical
+#if not sort alpha data frame rows by metadata row names
+if (identical(row.names(metadf), row.names(alpha_df_mean)) == FALSE) {
+  alpha_df_mean <- alpha_df_mean[row.names(metadf),]
+}
+#Combine with cbind (column bind)
+meta_alpha_mean_df <- cbind(metadf,alpha_df_mean)
+head(meta_alpha_mean_df)
+#Remove rarefied phyloseq object that we do not need any more in this notebook
+rm(pseq_rarefy) 
+```
+
+From the output of `head()` you should see a table with the first set of columns being the metadata columns. The next set of columns is the alpha diversity metrics.
+
+## $\alpha$: Long data frame {#alpha_long_df}
+<center>
+![](figures/long_data_frame.png){style="width:100px"}
+</center>
+
+We will plot our __alpha diversity__ values with `ggplot2` functions.
+Before we carry this out we need to convert our wide data frame to a long data frame.
+We'll carry this out with `tidyr::pivot_longer()`.
+
+We want our metric values to become long.
+This means that instead of the __alpha diversity__ values being spread across multiple rows and columns, there will only be one value per row.
+
+Two columns will represent these values in the long format:
+
+- __metric:__ The name of the alpha diversity metric
+- __value:__ The value of the alpha diversity metric
+
+```{r,eval=FALSE}
+#Create long version for plotting
+#alpha_df_mean (no metadata) column names to be used for long conversion
+alpha_div_colnames <- colnames(alpha_df_mean)
+#Wide to long
+meta_alpha_mean_long_df <- 
+  tidyr::pivot_longer(data = meta_alpha_mean_df,
+                      #Change the alpha diversity names to long format
+                      #I.e. keep our metadata columns as separate columns
+                      #all_of() used to silence warning message
+                      cols = all_of(alpha_div_colnames)
+                      #Set metric names to column called metric
+                      #Set values to column called value
+                      names_to = "metric", values_to = "value"
+                      )
+#Change our metric column to a factor
+#Useful for plotting
+meta_alpha_mean_long_df$metric <- as.factor(meta_alpha_mean_long_df$metric)
+#Check head and dimensions of long data frame
+head(meta_alpha_mean_long_df)
+dim(meta_alpha_mean_long_df)
+#Remove unneeded objects
+rm(alpha_df_mean, metadf)
+```
+
+## $\alpha$: Subset metrics
+<center>
+![](figures/observe.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+There are a lot of diversity values created by `microbiome::alpha()`.
+For this tutorial we are only interested in:
+
+- __observed:__ The number of observed features (ASVs, Phlya, Species, etc.)
+- __chao1:__ The estimated real total number of features
+- __diversity_shannon:__ The Shannon diversity metric
+  - An estimate of feature diversity based on richness (presence/absence) and abundance
+  - The higher the value the higher the diversity
+  
+We'll subset our long data frame to only retain rows with these metrics.
+We'll also use the utility of factors to order the metrics so they will be plotted in our preferred order.
+
+```{R, eval=FALSE}
+#Process our long data frame
+#Subset our long alpha diversity data frame to only contain our metrics of choice
+metrics <- c("observed", "chao1","diversity_shannon")
+basic_alpha_metrics_long_df <- meta_alpha_mean_long_df[
+  meta_alpha_mean_long_df$metric %in% metrics,
+]
+#Change instances of diversity_shannon to shannon
+basic_alpha_metrics_long_df$metric <- gsub(pattern = "diversity_shannon",
+                                           replacement = "shannon",
+                                           x = basic_alpha_metrics_long_df$metric)
+#The gsub() function changes our factor to a character vector
+#Therefore change back to factor
+#We will also choose our order of the metric names for plotting
+basic_alpha_metrics_long_df$metric <- factor(x = basic_alpha_metrics_long_df$metric,
+                                             levels = c("observed","chao1","shannon"))
+#Check level order of metric factor column
+levels(basic_alpha_metrics_long_df$metric)
+#Check head of subsetted long data frame
+head(basic_alpha_metrics_long_df)
+```
+
+With this data frame we can move onto visualisation and statistics.
+
+<!--chapter:end:14-Alpha_data_frame_tidy.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\alpha$: Plot and stats
+
+In this chapter we will create a violin plot, similar to a box plot, to visullaise our metrics.
+To detmeine if differences are significant we will then carry out Kruskal Wallis test and Paired Wilcoxon tests. 
+
+## $\alpha$: Violin plot
+<center>
+![](figures/violin_2.png){style="width:100px"}
+</center>
+
+To visualise the differences of the alpha diversity values between the four different media we'll use violin plots.
+We can use the function `ggplot2::geom_violin()` to carry this out.
+
+Additionally, we'll add a point for each value and colour it based on the site it canme from (UD, MD, or LD).
+The function `ggforce::geom_sina()` can be used for this.
+We'll use its parameter `alpha()` to make the points 50% (`0.5`) transparent.
+
+As we are plotting values from three different metrics we will split the plot into three separate plots.
+`ggplot2::facet_wrap()` can be used for this tasked with `~metric` used to split the plot by the metrics.
+We also specify `scales = "free"` so each of the three plots has their own x and y scales.
+This is important when the values are drastically different such is the case between the observed and chao1 (>100) compared to the shannon values (<10).
+
+`r hide("scales options")`
+The four `scales` are:
+
+- __`"fixed"` (default):__ All the scales are the same (fixed), based on the largest and smallest x and y values across all the plots. Useful where you want direct comparisons such as looking at teh overall pattern in ordination plots.
+- __`"free"`:__ All the scales are free. Each plot's x and y values limits are based on the data within it.
+- __`"free_x"`:__ The x axis is free and the y axis is fixed.
+- __`"free_y"`:__ The y axis is free and the x axis is fixed.
+
+Which you want to use depends on your data and how you are facetting it.
+`r unhide()`
+
+```{R, eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- ggplot(basic_alpha_metrics_long_df, aes(x = media, y = value)) +
+                            ggplot2::geom_violin() +
+                            ggforce::geom_sina(alpha=0.5, aes(color=site)) +
+                            ggplot2::labs(color = "Site", x = "Media", y = "Value") +
+                            ggplot2::facet_wrap(~metric, scales = "free")
+#Save ggplot2 object with ggsave()
+ggsave(filename = "./Alpha_diversity_rarefy_iters_media_violinplot.png", plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_media_violinplot.png")
+```
+
+## $\alpha$: Stats
+<center>
+![](figures/stats.png){style="width:200px"}
+</center>
+
+We can carry out statistics to compare the alpha diversity values between sample groups.
+
+### Kruskal Wallis test
+
+To determine if there is an overall difference in our data we'll use the Kruskal Wallis test.
+We'll carry this out using the media grouping for our three alpha diversity values.
+
+```{R, eval =FALSE}
+#Kruskal Wallis test
+#Observed ASVs
+kruskal.test(observed ~ media, data = meta_alpha_mean_df)
+#Chao1 estimator
+kruskal.test(chao1 ~ media, data = meta_alpha_mean_df)
+#Shannon diversity
+kruskal.test(shannon ~ media, data = meta_alpha_mean_df)
+```
+
+All the p-values are less than 0.05 indicating statistical significance.
+That means we can move onto pairwise comparisons.
+
+### Paired Wilcoxon test
+
+To determine what groups are significantly different from each other we can carry out paired Wilcoxon test.
+This tests 
+
+```{R, eval=FALSE}
+#Paired wilcoxon test
+#Observed ASVs
+pairwise.wilcox.test(meta_alpha_mean_df$observed, meta_alpha_mean_df, p.adjust.method = "holm")
+#Chao1 estimator
+pairwise.wilcox.test(meta_alpha_mean_df$chao1, meta_alpha_mean_df, p.adjust.method = "holm")
+#Shannon diversity
+pairwise.wilcox.test(meta_alpha_mean_df$shannon, meta_alpha_mean_df, p.adjust.method = "holm")
+```
+
+You'll see three p-value adjusted tables with all the values (except Shannon: ENV against TSA) being significant (<0.05).
+
+<!--chapter:end:15-Alpha_violin_plot_and_stats.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\alpha$: Plot with stats
+<center>
+![](figures/violin_plot_w_stats.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+Rather than having the plot and stats separate, we can add stats onto our plot.
+This can be carried out with the function `stat_compare_means()` from the ``ggpubr` package.
+
+## List of comparisons
+<center>
+![](figures/venn_pairwise.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+To produce pairwise comparisons with `ggpubr::stat_compare_means()` we need a __list__ of the comparisons we want to carry out.
+
+We can create this with the function `combn()`, short for combination.
+We provide it with three parameters:
+
+- __Input data:__ This is a __vector__ of the unique metadata categories to create the combinations from
+  - We are using our created `uniq_media_values_chr_vec` in this case
+  - We ensure that this is a __vector__ of __characters__ so the created combination __list__ contains __character vectors__
+  - A __list__ of __character vectors__ is required for `ggpubr::stat_compare_means()`
+- __`m = `:__ The number of elements to choose when creating combinations.
+  - We choose `2` so we get all pair combinations
+- __`simplify = `:__ Indicates if the result should be simple (`TRUE`) or not (`FALSE`)
+  - `TRUE` returns a simplified array such as a __matrix__ or a __data frame__
+  - `FALSE` returns a __list__. This is what we want as `ggpubr::stat_compare_means()` requires a __list__
+
+```{R,eval = FALSE}
+#To compare mean we need to create a list of comparisons
+#Create character vector of unique metadata values (media in this case)
+uniq_media_values_chr_vec <- unique(as.character(basic_alpha_metrics_long_df$media))
+uniq_media_values_chr_vec
+#Can use combn() to get comparisons
+my_comparisons <- combn(uniq_media_values_chr_vec, m = 2, simplify = FALSE))
+#Check contents and structure
+my_comparisons
+str(my_comparisons)
+```
+
+## Violin plot with stats
+<center>
+![](figures/eye_2.png){style="width:200px"}
+</center>
+
+With our __list__ of comparisons we can add `ggpubr::stat_compare_means()` to our `ggplot2` code.
+This function will both calculate the Wilcoxon tests and add them to the plot.
+
+```{R, eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- ggplot(basic_alpha_metrics_long_df, aes(x = media, y = value)) +
+                            ggplot2::geom_violin() +
+                            ggforce::geom_sina(alpha=0.5, aes(color=site)) +
+                            ggplot2::labs(color = "Site", x = "Media", y = "Value") +
+                            ggplot2::facet_wrap(~metric, scales = "free") +
+                            #Add comparisons
+                            ggpubr::stat_compare_means(comparisons = my_comparisons)
+#Save ggplot2 object with ggsave()
+ggsave(filename = "./Alpha_diversity_rarefy_iters_media_violinplot_pairwise_wilcox.png", 
+       plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_media_violinplot_pairwise_wilcox.png")
+```
+
+## Reorder x-axis and stats
+<center>
+![](figures/reorder.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+`ggplot` orders the x-axis by alphabetical order.
+This is not normally wanted so we will convert our media column to a __factor__ and order the levels how we want them.
+As the environmental samples can be seen as the baseline we will have them first.
+
+```{r,eval = FALSE}
+#Set order of media
+basic_alpha_metrics_long_df$media <- factor(basic_alpha_metrics_long_df$media,
+                                            #Set order of levels
+                                            levels = c("ENV", "CVP", "KBC", "TSA"))
+```
+
+The stats in our previous plot were also not in a good order.
+We'll therefore reorder them.
+When doing this it is important to note that the first comparison in the __lists__ is the bottom most stat in the plot.
+
+```{R, eval = FALSE}
+#Order comparisons
+my_ordered_comparisons <- my_comparisons[c(1,2,6,4,3,5)]
+my_ordered_comparisons
+```
+
+You'll notice this can be quite manual.
+It can be made easier when doing this yourself to roughly reorder, run the below code for your plot, then fix the stats reorder.
+
+With our media categories and comparisons reordered we can create the final plot.
+
+```{R, eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- ggplot(basic_alpha_metrics_long_df, aes(x = media, y = value)) +
+                            ggplot2::geom_violin() +
+                            ggforce::geom_sina(alpha=0.5, aes(color=site)) +
+                            ggplot2::labs(color = "Site", x = "Media", y = "Value") +
+                            ggplot2::facet_wrap(~metric, scales = "free") +
+                            #Add comparisons
+                            ggpubr::stat_compare_means(comparisons = my_ordered_comparisons)
+#Save ggplot2 object with ggsave()
+ggsave(filename = "./Alpha_diversity_rarefy_iters_media_violinplot_pairwise_wilcox.png", 
+       plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_media_violinplot_pairwise_wilcox.png")
+```
+
+<!--chapter:end:16-Alpha_plot_with_stats.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\alpha$: Practice
+
+## $\alpha$: Task
+<center>
+![](figures/tasks.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+As an optional task create a new violin plot that includes the following:
+
+- Plots the metrics:
+  - "chao1"
+  - "evenness_pielou" renaming it as "pielou"
+  - "diversity_fisher" renaming it as "fisher"
+  - Ensure they are in the order "chao1", "pielou", then "fisher"
+- The x-axis is separated by Site (UD, MD, LD) rather than media.
+  - Ensure the order is UD, MD, then LD
+- Points are coloured by Media (ENV, CVP, KBC, and TSA)
+  - Ensure the order is ENV, CVP, KBC, then TSA
+- Include Wilcoxon paired stats comparing the Sites
+
+`r hide("Solution code")`
+Subset [long alpha diversity table created earlier in this chapter](#alpha_long_df) to contain metrics of choice.
+```{R, eval=FALSE}
+#Process our long data frame
+#Subset our long alpha diversity data frame to only contain our metrics of choice
+metrics <- c("chao1", "evenness_pielou","diversity_fisher")
+subset_alpha_metrics_long_df <- meta_alpha_mean_long_df[
+  meta_alpha_mean_long_df$metric %in% metrics,
+]
+#Change instances of evenness_pielou to pielou
+subset_alpha_metrics_long_df$metric <- gsub(pattern = "evenness_pieloue",
+                                           replacement = "pielou",
+                                           x = subset_alpha_metrics_long_df$metric)
+#Change instances of diversity_fisher to fisher
+subset_alpha_metrics_long_df$metric <- gsub(pattern = "diversity_fisher",
+                                           replacement = "fisher",
+                                           x = subset_alpha_metrics_long_df$metric)
+#The gsub() function changes our factor to a character vector
+#Therefore change back to factor
+#We will also choose our order of the metric names for plotting
+subset_alpha_metrics_long_df$metric <- factor(x = subset_alpha_metrics_long_df$metric,
+                                             levels = c("chao1","pielou","fisher"))
+#Check level order of metric factor column
+levels(subset_alpha_metrics_long_df$metric)
+#Check head of subsetted long data frame
+head(subset_alpha_metrics_long_df)
+```
+
+Create metadata combination list for plot stats
+```{R,eval = FALSE}
+#To compare mean we need to create a list of comparisons
+#Create character vector of unique metadata values (site in this case)
+uniq_site_values_chr_vec <- unique(as.character(subset_alpha_metrics_long_df$site))
+uniq_site_values_chr_vec
+#Can use combn() to get comparisons
+my_comparisons <- combn(uniq_site_values_chr_vec, m = 2, simplify = FALSE))
+#Check contents and structure
+my_comparisons
+str(my_comparisons)
+```
+
+Reorder factors and comparisons
+```{r,eval = FALSE}
+#Reorder sites, media and comparisons
+#Set order of sites
+subset_alpha_metrics_long_df$site <- factor(subset_alpha_metrics_long_df$site,
+                                            #Set order of levels
+                                            levels = c("UD", "MD", "LD"))
+#Set order of media
+subset_alpha_metrics_long_df$media <- factor(subset_alpha_metrics_long_df$media,
+                                            #Set order of levels
+                                            levels = c("ENV", "CVP", "KBC", "TSA"))
+#Order comparisons
+my_ordered_comparisons <- my_comparisons[c(1,3,2)]
+my_ordered_comparisons
+```
+
+Plot with stats
+```{R, eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- ggplot(subset_alpha_metrics_long_df, aes(x = site, y = value)) +
+                            ggplot2::geom_violin() +
+                            ggforce::geom_sina(alpha=0.5, aes(color=site)) +
+                            ggplot2::labs(color = "Media", x = "Site", y = "Value") +
+                            ggplot2::facet_wrap(~metric, scales = "free") +
+                            #Add comparisons
+                            ggpubr::stat_compare_means(comparisons = my_ordered_comparisons)
+#Save ggplot2 object with ggsave()
+ggsave(filename = "./Alpha_diversity_rarefy_iters_site_violinplot_pairwise_wilcox.png", 
+       plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_site_violinplot_pairwise_wilcox.png")
+```
+`r unhide()`
+
+## $\alpha$: Recap
+<center>
+![](figures/recap.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+In this chapter you have:
+
+- Produced __alpha diversity__ values through __iterative rarefaction__
+- Created a long data frame containing metadata and specified __alpha diversity__ metrics
+- Visualised the group differences of __alpha diversity__ metrics with violin plots
+- Embedded paired Wilcoxon p-values in our violin plots
+
+With these skills and knowledge you will be able to carry out thorough investigations of __alpha diversity__ in your future research.
+
+<!--chapter:end:17-Alpha_diversity_practice.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# (PART\*) Beta diversity {-}
+
+# $\beta$ Diversity intro {#beta_chap}
+<center>
+![](figures/beta_iterative_rarefaction.png){style="width:300px"}
+</center>
+
+This section will teach you how to carry out __beta diversity__ analysis.
+The steps will include:
+
+- Calculating __beta diversity__ distances
+- Using __iterative rarefaction__ to create averaged distance values
+- Carrying various ordination techniques to visualise the distances between samples
+
+## $\beta$: Setup
+<center>
+![](figures/setup_7.png){style="width:200px"}
+</center>
+
+Create a new R jupyter notebook called "Beta_diversity.ipynb".
+
+Load the required data and libraries.
+
+```{R, eval = FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+library("IRdisplay")
+library("vegan")
+library("rbiom")
+library("ape")
+#Load processed but unrarefied ASV data from main R community workshop
+load("phyloseq.RData")
+```
+
+<!--chapter:end:18-Beta_intro.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\beta$: Distance matrices
+<center>
+![](figures/measuring_tape_2.png){style="width:300px"}
+</center>
+
+Here we'll find out how to produce a paired distance matrix with our __beta diversity__ metric of choice.
+Unfortunately there is not one function that can calculate all the metrics we may want.
+
+## Unifrac distances
+<center>
+![](figures/weighted_blanket.png){style="width:200px"}
+</center>
+
+Unifrac distances are preferred by many when a phylogenetic tree is available for your data.
+We are working with 16S data so a phylogenetic tree was created.
+Other barcodes or types of data may not have a phylogenetic such as ITS data or complex shotgun metagenomic data.
+
+To produce a Unifrac distance matrix we will use the function `unifrac()` from the package `rbiom`.
+
+The function `rbiom::unifrac()` was created to work with biom files and not __phyloseq__ objects.
+Thankfully we don't need to convert our objects to a biom object, instead only needing to extract our count/abundance data and phylogenetic tree.
+We can carry this out with the following 2 functions:
+
+- `phyloseq::otu_table()`: Extracts the feature count/abundances table
+- `phyloseq::phy_tree()`: Extract the phylogenetic tree
+
+There are 2 types of Unifrac distances:
+
+- Weighted: Incorporate relative abundances
+- Unweighted: Does not incorporate relative abundances
+
+We'll calculate weighted Unifrac distances by specifying the parameter `weighted = TRUE`.
+
+So our output works with subsequent ordination step we'll convert the output of `rbiom::unifrac()` into a matrix with `as.matrix()`.
+
+Carry out the matrix production with the below script:
+
+```{R, eval=FALSE}
+#Calculate weighted unifrac values
+unifrac_rbiom_microbiome <- as.matrix(
+  rbiom::unifrac(biom = phyloseq::otu_table(pseq),
+                 tree = phyloseq::phy_tree(pseq),
+                 weighted = TRUE))
+#Check the first 6 rows and columns of the resulting distance matrix
+head(unifrac_rbiom_microbiome)
+```
+
+## Vegan distances
+<center>
+![](figures/vegan_fork.png){style="width:200px"}
+</center>
+
+To calculate non-unifrac __beta diversity__ distances we can use the `vegan` package and its function `vegdist()`.
+
+The function `rbiom::unifrac()` calculates paired distances, this is the samples in the `otu_table` of a phyloseq object.
+Unfortunately, `vegan::vegdist()` calculates paired distances by rows (features), this being the features in the `otu_table` of a phyloseq object.
+We do not want this but thankfully all we need to add is the function `t()` to our abundance object to transpose the data.
+
+Create a __Bray-Curtis__ distance matrix with the below code:
+
+```{R, eval=FALSE}
+#Calculate Bray-Curtis distance matrix
+bray_curtis_mat <- as.matrix(
+  vegan::vegdist(x = t(phyloseq::otu_table(pseq)),
+                 method = "bray"))
+#Check first 6 rows and columns of matrix
+bray_curtis_mat[1:6,1:6]
+```
+
+The function can calculate a plethora of metrics with the full list available at the following [webpage](https://rdrr.io/cran/vegan/man/vegdist.html).
+
+<!--chapter:end:19-Beta_distances_metrics.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\beta$: Iterative rarefaction
+<center>
+![](figures/iterative_distances.png){style="width:400px"}
+</center>
+
+Now that we know how to create a __beta diveristy__ paired distance matrix, we can create one with averaged values created by __iterative rarefaction__.
+
+## Iterative rarefaction values
+<center>
+![](figures/ten_rng_seeds.png){style="width:200px"}
+</center>
+
+We need to set our __rarefaction__ values and rngseeds.
+We can use the same code as we used in the __alpha_diversity__ analysis.
+
+```{R, eval = FALSE}
+#Rarefaction values
+#Rarefaction size
+#Minimum sample depth in this case
+rarefaction_size <- min(microbiome::readcount(pseq))
+#Load the vector of 10 rngseeds created in the previous chapter
+load("rngseeds.RData")
+#Number of rarefaction iterations to be carried out
+#Based on length of rng seed vector
+rarefaction_iters <- length(rngseed_vec)
+```
+
+## Iterative beta diversity calculation
+<center>
+![](figures/mean.png){style="width:200px"}
+</center>
+
+The below code carries out __itertaive rarefaction__ and produces an averaged __weighted unifrac__ paired distance matrix.
+
+```{R, eval = FALSE}
+#Loop to create iteration based rarefied weighted unifrac values
+
+#Create matrix to contain summed wunifrac beta diversity values
+#In this case we'll run the first rarefied beta diversity analysis
+pseq_rarefy <- phyloseq::rarefy_even_depth(
+  pseq,
+  sample.size = rarefaction_size,
+  rngseed = rngseed_vec[1],
+  verbose = FALSE)
+#wunifrac beta diversity
+beta_df_sum <- as.matrix(
+  rbiom::unifrac(
+    biom = phyloseq::otu_table(pseq_rarefy),
+    tree = phyloseq::phy_tree(pseq_rarefy),
+    weighted = TRUE))
+
+#Loop through 2 to the number of iterations
+for (i in 2:rarefaction_iters){
+  #Rarefaction
+  pseq_rarefy <- phyloseq::rarefy_even_depth(
+    pseq,
+    sample.size = rarefaction_size,
+    rngseed = rngseed_vec[i],
+    verbose = FALSE)
+  #Beta diversity
+  beta_df <- as.matrix(
+    rbiom::unifrac(
+      biom = phyloseq::otu_table(pseq_rarefy),
+      tree = phyloseq::phy_tree(pseq_rarefy),
+      weighted = TRUE))
+  #Add/sum the new data frame values to the sum data frame
+  beta_df_sum <- beta_df_sum + beta_df
+}
+#Divide by number of rarefaction iterations to get average
+beta_df_mean <- beta_df_sum / rarefaction_iters
+#Save alpha mean data frame
+save(beta_df_mean, file = "wunifrac_df_mean.RData")
+#View first 6 rows and columns of matrix
+beta_df_mean[1:6,1:6]
+#Remove unneeded objects
+rm(beta_df_sum, beta_df_mean, pseq_rarefy)
+```
+
+`r hide("verbose = FALSE option")`
+We include the option `verbose = FALSE` in the `phyloseq::rarefy_even_depth()` to prevent a lot of text to be displayed.
+This text says which rngseed was used in the rarefaction.
+We don't need this message as we already have a record of the rngseeds we used in `rngseed_vec`.
+`r unhide()`
+
+You'll notice that each value is duplicated, once in the bottom left triangle and once in the top right triangle.
+This is fine as the subsequent functions in this chapter will work with this in the same manner as if the matrix was de-duplicated.
+
+In the above case we saved our final distance matrix and removed it.
+We will then load the object in the next section.
+This is convenient as it means we only need to run this code cell once. 
+With higher numbers of rarefaction iterations it can take a while.
+
+<!--chapter:end:20-Beta_rarefaction.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\beta$: Ordination
+<center>
+![](figures/navigation.png){style="width:200px"}
+</center>
+
+There are various ways to ordinate paired dissimilarity distances.
+We are going to use two of the most popular for community based data: __NMDS__ and __PCoA__.
+
+## Load weighted unifrac matrix
+<center>
+![](figures/loading.png){style="width:300px"}
+</center>
+
+Prior to ordination we need to load the weighted unifrac matrix.
+This is a useful cell to have as we don't need to rerun the __iterative rarefaction__ to reacquire this object if we save, close + halt, and then reopen this notebook.
+
+```{R, eval=FALSE}
+#Load wunifrac matrix
+load("wunifrac_df_mean.RData")
+```
+
+## NMDS
+<center>
+![](figures/kettle_bell_pounds.png){style="width:200px"}
+</center>
+
+The first ordination technique we will use is __NMDS__ (Non-metric MultiDimensional Scaling).
+To carry this out we can use the function `vegan::monoMDS()`.
+
+### NMDS ordinate
+<center>
+![](figures/speedometer_miles_per_hour.png){style="width:200px"}
+</center>
+
+We provide the function with our __beta diversity dissimilarity matrix__ and the parameter `k = 2`.
+The parameter`k` specifies the number of dimensions to calculate, we want 2 as we will only be plotting an x and y axis i.e. 2 dimensions.
+
+```{R, eval=FALSE}
+#NMDS ordinate
+nmds_res <- vegan::monoMDS(beta_df_mean, k = 2)
+#Structure of nmds_res
+str(nmds_res)
+```
+
+### NMDS points
+<center>
+![](figures/barrel.png){style="width:150px"}
+</center>
+
+The function produces a __list__ containing 28 different objects.
+Here we are only interested in the `points` data frame.
+This contains the points we will be plotting in our NMDS plot.
+Lets extract this data frame.
+
+```{R, eval = FALSE}
+#Extract plot points
+nmds_points <- nmds_res$points
+#Check head
+head(nmds_points)
+```
+
+### NMDS data frame with metadata
+<center>
+![](figures/milk_carton.png){style="width:200px"}
+</center>
+
+Before plotting with `ggplot2` we need to combine the metadata and points into a long data frame.
+There is no need to "longify" our data frame as it will start in the long format we require.
+
+```{R, eval=FALSE}
+#Create long data frame with metadata and points
+#Extract metadata and ensure row names order matches
+metadf <- phyloseq::sample_data(pseq)
+if (identicial(row.names(metadf), row.names(nmds_points)) == FALSE) {
+  metadf <- metadf[row.names(nmds_points),]
+}
+#Make points with metadata data frame
+nmds_points_metadata <- cbind(nmds_points, metadf)
+#Check head of data frame
+head(nmds_points_metadata)
+#Save object we want, remove ones we don't
+save(nmds_points_metadata, file = "wunifrac_NMDS.RData")
+rm(metadf, nmds_res, nmds_points)
+```
+
+### NMDS scatter plot
+<center>
+![](figures/hide.png){style="width:150px"}
+</center>
+
+Now we can produce a NMDS scatter plot.
+We will colour the points by site and the point shapes will be determined by the media.
+
+```{R, eval = FALSE}
+#Produce NMDS scatter plot
+#Plot ordination
+nmds.wunifrac <- ggplot(data = nmds_points_metadata,
+                        aes(x = NMDS1, y = NMDS2, color = site, shape = media)) +
+                ggplot2::geom_point()
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_NMDS_wunifrac_media_site.png",
+       plot = nmds.wunifrac,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file = "./Beta_diversity_NMDS_wunifrac_media_site.png")
+```
+
+Super!
+You should see that the plot is mainly separated by NMDS1 splitting the ENV samples compared to the media samples.
+The next major difference is in NMDS2 which separates the TSA samples compared to the CVP and KBC samples.
+The CVP and KBC samples also appear to form distinct clusters.
+
+## PCoA
+<center>
+![](figures/coordinate.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+The second, and last, ordination method we will look at is __PCoA__ (Principal Correspondence Analysis).
+
+### PCoA ordinate
+<center>
+![](figures/bonobo.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+The `vegan` package cannot carry out __PCoA__ ordination. 
+Therefore, we will use the function `pcoa()` from the `ape` package.
+
+```{R, eval = FALSE}
+#PCoA ordinate
+pcoa_res <- ape::pcoa(beta_df_mean)
+#Structure of pcoa_res
+str(pcoa_res)
+```
+
+The function creates a __list__ containing 5 objects.
+
+We are interested in 2 of these objects, `vectors` and `values`.
+
+### PCoA points
+<center>
+![](figures/map_points.png){style="width:150px"}
+</center>
+
+Whereas we can specify the number of dimensions we want for NMDS, PCoA will create a certain number of dimensions based on the provided data.
+The `vectors` object contains the axes points for all these dimensions.
+We will only plot the first 2 axes.
+
+Extract these points:
+
+```{R, eval = FALSE}
+#Extract first 2 axes
+pcoa_points <- pcoa_res$vectors[,1:2]
+head(pcoa_points)
+```
+
+### PCoA variance
+<center>
+![](figures/variance.png){style="width:200px; background-color:white; border-radius:15px; border: white solid 5px"}
+</center>
+
+As there are multiple axes created we need to know the strength of each axis.
+This is known as the __"Percentage/proportion of variance explained"__, this tells us how much of the total variance is explained by each axis.
+The axes are always ordered from highest to lowest __% variance explained__.
+Therefore axis one explains the most variance, followed by axis 2.
+
+The higher the __% variance explained__ of axis 1 and axis 2, the better our subsequent plot represents our data.
+General guidelines to how good our plot are based on the sum of these 2 values:
+
+- <50%: Poor
+- 50-69%: Decent
+- 70-89%: Good
+- 90-100%: Great
+
+The __% variance explained__ is contained in the `values` __data frame__ within the `Relative_eig` column.
+These are proportion values (0-1) so we will times them by 100 to make them percentages and round these digits to 2 decimal places (`round(,digits=2)`.
+
+Let's extract the __% variance explained__ values.
+
+```{R, eval = FALSE}
+#Variation explained values 
+pcoa_axis_var_explained <- round(x=pcoa_res$values[,"Relative_eig"] * 100, digits=2)
+```
+
+### PCoA data frame with metadata
+<center>
+![](figures/wayfinding.png){style="width:150px; background-color:white; border-radius:15px"}
+</center>
+
+As with the NMDS data we will create a __long data frame__ containing our points and metadata.
+
+```{R, eval=FALSE}
+#Create point long data frame with metadata
+#Extract metadata and ensure row names order matches
+metadf <- phyloseq::sample_data(pseq)
+if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
+  metadf <- metadf[row.names(pcoa_points),]
+}
+#Make points with metadata data frame
+pcoa_points_metadata <- cbind(pcoa_points, metadf)
+head(pcoa_points_metadata)
+#Save object we want, remove ones we don't
+save(pcoa_points_metadata, file = "wunifrac_PCoA.RData")
+rm(metadf, pcoa_res, pcoa_points)
+```
+
+### PCoA scatter plot
+<center>
+![](figures/scatter.png){style="width:150px; background-color:white; border-radius:15px"}
+</center>
+
+When plotting a PCoA scatter plot it is important to include the __% variance__ on the axes labels.
+We will carry this out using the `pcoa_axis_var_explained` __vector__ we created earlier.
+
+```{R, eval = FALSE}
+#Produce PCoA scatter plot
+#Plot ordination
+pcoa.wunifrac <- ggplot(data = pcoa_points_metadata, 
+                        aes(x = Axis.1, y = Axis.2, color = site, shape = media)) +
+                ggplot2::geom_point() +
+                #Add x and y labels to include % variance explained
+                labs(x = paste0("Axis.1 [", pcoa_axis_var_explained[1], "%]"),
+                     y = paste0("Axis.2 [", pcoa_axis_var_explained[2], "%]"))
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_pcoa_wunifrac_media_site.png", plot = pcoa.wunifrac
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file = "./Beta_diversity_pcoa_wunifrac_media_site.png")
+```
+
+We have a PCoA plot which represents 82.1% (67.46+14.64) of the variance of our data.
+It is quite similar to our NMDS plot.
+
+## Ordination recap
+
+In this chapter you have created ordination values (NMDS & PCOA) with iterative rarefaction and created scatter plots with these.
+In the next chapter we will use the ordination values to carry out statistics. 
+
+
+
+
+
+
+<!--chapter:end:21-Beta_ordination.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\beta$: Stats
+<center>
+![](figures/navigation.png){style="width:200px"}
+</center>
+
+Now to carry out some statistics on our ordinations.
+These are the same methods as covered in the [R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/16-Beta.html#permanova).
+However, the code is slightly different.
+
+## Stats setup
+
+Load the required data.
+
+```{R, eval = FALSE}
+#Load wunifrac
+load("wunifrac_df_mean.RData")
+#Extract metadata
+#need data.frame() for vegan::adonis2() used later
+metadf <- data.frame(phyloseq::sample_data(pseq))
+```
+
+## PERMANOVA
+<center>
+![](figures/permanova.png){style="width:200px"}
+</center>
+
+To determine if their is a significant overall difference between the media & site groups we can carry out a PERMANOVA.
+We'll use the package `vegan` with its function `adonis2()`.
+
+__Note:__ The original `vegan::adonis()` function is deprecated and should not be used.
+
+```{R, eval = FALSE}
+#PERMANOVA of media+site
+wunifrac_adonis <- vegan::adonis2(beta_df_mean ~ media+site,
+                                  data = metadf, by = "margin")
+```
+
+## Pairwise PERMANOVA
+<center>
+![](figures/pear.png){style="width:100px"}
+</center>
+
+We can use a pairwise PERMANOVA to determine if their are significant differences between groups in a metadata category.
+The below code carries this out for the media groupings.
+
+```{R, eval = FALSE}
+#Pairwise PERMANOVA for media
+#Get combinations of unique media values
+cbn <- combn(x = unique(metadf$media), m = 2)
+#Create empty final data frame with 4 columns
+# and a number of rows equal to the the number of combinations
+pairwise_permanova_df <- as.data.frame(matrix(data = NA, nrow = ncol(cbn), ncol = 4))
+#Add column names
+colnames(pairwise_permanova_df) <- c("1","2","p","p.adj")
+
+#Loop through the combinations
+for(i in 1:ncol(cbn)){
+  #Subset metadata
+  metadata_subset <- metadf[metadf$media %in% cbn[,i],]
+  #Extract sample names
+  samples_subset <- row.names(metadf_subset)
+  #Subset distance matrix
+  wunifrac_dist_mat_subset <- beta_df_mean[samples_subset,samples_subset]
+  #PERMANOVA/ADONIS of media
+  #Ensure to change group name if using different group (media)
+  pairwise_adonis <- vegan::adonis2(
+    wunifrac_dist_mat_subset ~ media, data = metadf_subset, by = "margin")
+  #Add the group names and p-value to the main data frame
+  pairwise_permanova_df[i,1:2] <- cbn[,i]
+  pairwise_permanova_df[i,3] <- wunifrac_pairwise_adonis[1,"Pr(>F)"]
+}
+#Add adjusted P-values
+pairwise_permanova_df$p.adj <- p.adjust(pairwise_permanova_df$p, method = "BH")
+#View data frame
+pairwise_permanova_df
+#Write to a file
+write.table(x = pairwise_permanova_df, file = "pairwise_permanova_media_wunifrac.tsv",
+            quote = FALSE, row.names = FALSE)
+```
+
+<!--chapter:end:22-Beta_stats.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\beta$: Subset ordinations
+<center>
+![](figures/navigation_subset.png){style="width:200px"}
+</center>
+
+When you ordinate data the distances within groups may be hard to see.
+This can be caused by one group causing a larger difference and therefore most of the displayed variation is explaining that.
+
+This can be seen with our previous ordination plots where the majority of the variation explained is caused by the difference of the environmental samples against the media samples.
+We will therefore subset our ordination in this chapter to only look at the media samples.
+
+## Subset distance matrix
+<center>
+![](figures/wide_data_frame_subset.png){style="width:200px"}
+</center>
+
+The ordination values (PCoA, NMDS) will change when you remove or add samples.
+This means we cannot simply subset our ordination points.
+
+However, paired distance values never change between samples.
+We can therefore subset our distance matrix and then ordinate it.
+This is much better than having to carry out the iterative rarefaction again.
+
+Subset out previously produced distance matrix to only removes the environmental samples:
+
+```{R, eval=FALSE}
+#Load wunifrac
+load("wunifrac_df_mean.RData")
+#Load metadata
+metadf <- phyloseq::sample_data(pseq)
+#Subset data frame so it excludes env samples
+metadf_noenv <- metadf[metadf$media != ENV,]
+#Subset distance matrix so it only contains non env samples
+beta_df_mean_noenv <- beta_df_mean[row.names(metadf_noenv), row.names(metadf_noenv)]
+beta_df_mean_no_env
+```
+
+## Points long data frame
+<center>
+![](figures/long_data_frame_subset.png){style="width:150px"}
+</center>
+
+We can now ordinate (PCoA) our subset distance matrix:
+
+```{R, eval=FALSE}
+#Ordinate subset distance matrix with PCoA
+#PCoA ordinate
+pcoa_res <- ape::pcoa(beta_df_mean_noenv)
+#Variation explained values
+pcoa_axis_var_explained <- round(pcoa_res$values[,"Relative_eig"] * 100, digits = 2)
+pcoa_axis_var_explained
+#Extract 1st 2 axes
+pcoa_res_points <- pcoa_res$vectros[,1:2]
+head(pcoa_res_points)
+```
+
+Followed by producing a long data frame for plotting:
+
+```{R, eval = FALSE}
+#Create point long data frame with metadata
+#Ennsure row names order matches
+if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
+  metadf <- metadf[row.names(pcoa_points),]
+}
+#Make points with metadata data frame
+pcoa_points_metadata <- cbind(pcoa_points, metadf_noenv)
+head(nmds_points_metadata)
+#Save object we want, remove ones we don't
+save(pcoa_points_metadata, file = "noenv_wunifrac_PCoA.RData")
+rm(metadf, nmds_res, pcoa_points)
+```
+
+## Media PCoA scatter plot
+<center>
+![](figures/scatter_subset.png){style="width:200px; background-color:white; border-radius:15px; border: white solid 5px"}
+</center>
+
+Finally you can produce the PCoA scatter plot for just the media samples:
+
+```{R, eval = FALSE}
+#Produce PCoA scatter plot
+#Plot ordination
+pcoa.wunifrac <- ggplot(data = pcoa_points_metadata, 
+                        aes(x = Axis.1, y = Axis.2, color = site, shape = media)) +
+  ggplot2::geom_points() +
+  labs(x = paste0("Axis.1 [", pcoa_axis_var_explained[1], "%]"),
+       y = paste0("Axis.2 [", pcoa_axis_var_explained[2], "%]"))
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_pcoa_wunifrac_noenv_media_site.png",
+       plot = pcoa.wunifrac,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file = "./Beta_diversity_pcoa_wunifrac_noenv_media_site.png")
+```
+
+Now we can see some much clearer clustering of the media and site groupings:
+
+- The different media produce distinct separate clusters.
+- CVP has the tightest clustering.
+- Within the KBC and TSA groups the three different sites seems to produce distinct clusters.
+
+## Stats?
+
+As the statistics are based on the paired distances and not the ordination you don't need to repeat the statistical tests if you have already compared the media group pairs as we did.
+
+<!--chapter:end:23-Beta_subset_ordination.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\beta$: Considerations
+
+There are many considerations to take in mind when carrying out beta diversity analysis.
+
+## Which distance measure to use?
+
+There are many beta diversity distances that you can use.
+Ultimately the choice is yours but our recommendations would be:
+
+- Weighted and unweighted unifrac distances if you have a phylogenetic tree
+- Bray-Curtis and Jaccard distances if you do not have a phylogenetic tree
+
+These 2 sets of distances are very popular and commonly used as the default choices.
+
+There are two distances in each set as one is based on:
+
+- Richness (presence/absence): Unweighted unifrac & Jaccard
+- Richness and abundance values: Weighted unifrac & Bray-Curtis
+
+Normally the measure using abundance values will be more infomrative.
+However, it is good to attempt the richness only approach too as it may show something hidden by tthe inclusion of the abundance data.
+
+## Which ordination method to use?
+
+A common question is "Which ordination method should I use?"
+There are many ordination methods with __NMDS__ and __PCoA__ being popular for ordination distance based values (dissimilarity matrices).
+
+A general guide to which to use for your data is by choosing the most informative one.
+Choose the one that shows the best picture and that explains the data the best.
+
+In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high _% variance explained__ and it shows more separation of the samples.
+
+If the PCoA plot had a low __% variance explained__ it may be better to choose the NMDS plot.
+NMDS attempts to explain the data in the number of dimensions chosen by the user.
+We chose 2 as we want to plot the data in 2 dimensions.
+
+## More dimensions
+
+Your data may be very complex and two dimensions would not be sufficient to plot the data.
+There are two main ways to plot multiple dimensions.
+
+### Produce multiple plots {-}
+
+Create multiple 2D plots to compare pairs of axes.
+If you wanted to plot the first three axes this way you would produce the following scatter plots:
+
+- Axis 1 against Axis 2
+- Axis 1 against Axis 3
+- Axis 2 against Axis 3
+
+You can use this method to easily visualise as many axes as possible.
+The drawback is that you can only directly compare two axes in each plot.
+
+### 3D scatterplot {-}
+
+You can create an interactive 3D scatter plot with the package `plotly` using the `plot_ly()` function ([guide](https://plotly.com/r/3d-scatter-plots/)).
+
+This allows you to directly compare 3 axes at once.
+It is interactive, allowing you to change the perspective of the plot.
+This allows you to choose the best angle to save the image to use in publication.
+However, you would generally not use this method to compare more than 3 axes.
+
+<!--chapter:end:24-Beta_considerations.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# $\beta$: Practice
+
+## $\beta$: Task
+
+As an optional task create a NMDS and PCoA scatter plot using Bray-Curtis. To do this carry out the following steps:
+
+- Generate a Bray-Curtis distance matrix using the 10 rng seeds previosuly created.
+- Carry out ordination using NMDS and PCoA
+- Create long data frames with metadata and points
+- Plot the points using the media groupings as the shape and the site groupings as the colour
+
+`r hide("Solution code")`
+Rarefaction values and rng seeds.
+```{R, eval=FALSE}
+#Rarefaction values
+#Rarefaction size
+#Minimum sample depth in this case
+rarefaction_size <- min(microbiome::readcount(pseq))
+#Load the vector of 10 rngseeds created in the previous chapter
+load("rngseeds.RData")
+#Number of rarefaction iterations to be carried out
+#Based on length of rng seed vector
+rarefaction_iters <- length(rngseed_vec)
+```
+
+Calculate rarefied Bray-Curtis distance matrix by iterative rarefaction.
+```{R, eval=FALSE}
+#Calculate rarefied bray-curtis through iterations
+#We can use a loop to carry this out for us
+
+#First create a matrix to contain the final summed bray-curtis beta diversity values
+#In this case we'll run the first rarefied beta diversity analysis
+pseq_rarefy <- phyloseq::rarefy_even_depth(
+  pseq,
+  sample.size = rarefaction_size,
+  rngseed = rngseed_vec[1],
+  verbose = FALSE)
+#bray-curtis beta diversity
+beta_df_sum <- as.matrix(
+  vegan::vegdist(x = t(phyloseq::otu_table(pseq_rarefy)), 
+                 method = "bray"))
+#Loop through 2 to the number of iterations
+for (i in 2:rarefaction_iters){
+  #Rarefaction
+  pseq_rarefy <- phyloseq::rarefy_even_depth(
+    pseq,
+    sample.size = rarefaction_size,
+    rngseed = rngseed_vec[i],
+    verbose = FALSE)
+  #Beta diversity
+  beta_df <- as.matrix(
+    rbiom::unifrac(
+      vegan::vegdist(x = t(phyloseq::otu_table(pseq_rarefy)), 
+                 method = "bray"))
+  #Add/sum the new data frame values to the sum data frame
+  beta_df_sum <- beta_df_sum + beta_df
+}
+#Divide by number of rarefaction iterations to get average
+beta_df_mean <- beta_df_sum / rarefaction_iters
+#Save alpha mean data frame
+save(beta_df_mean, file = "bray_curtis_df_mean.RData")
+#View first 6 rows and columns of matrix
+beta_df_mean[1:6,1:6]
+#Remove unneeded objects
+rm(beta_df_sum, beta_df_mean, pseq_rarefy)
+```
+
+NMDS ordinate & long data frame
+```{R,eval = FALSE}
+#NMDS ordinate
+nmds_res <- vegan::metaMDS(beta_df_mean, k = 2)
+#Plot points
+nmds_res$points
+#Create long data frame with metadata and points
+#Extract metadata and ensure row names order matches
+metadf <- phyloseq::sample_data(pseq)
+if (identicial(row.names(metadf), row.names(nmds_points)) == FALSE) {
+  metadf <- metadf[row.names(nmds_points),]
+}
+#Make points with metadata data frame
+nmds_points_metadata <- cbind(nmds_points, metadf)
+#Check head of data frame
+head(nmds_points_metadata)
+#Save object we want, remove ones we don't
+save(nmds_points_metadata, file = "bray_NMDS.RData")
+rm(metadf, nmds_res, nmds_points)
+```
+
+NMDS scatterplot
+```{R,eval = FALSE}
+#Produce NMDS scatter plot
+#Plot ordination
+nmds.bray <- ggplot(data = nmds_points_metadata,
+                        aes(x = NMDS1, y = NMDS2, color = site, shape = media)) +
+                ggplot2::geom_point()
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_NMDS_bray_media_site.png",
+       plot = nmds.bray,
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file = "./Beta_diversity_NMDS_bray_media_site.png")
+```
+
+PCoA ordinate & long data frame
+```{r,eval = FALSE}
+#PCoA ordinate
+pcoa_res <- ape::pcoa(beta_df_mean)
+#Extract first 2 axes
+pcoa_points <- pcoa_res$vectors[,1:2]
+head(pcoa_points)
+#Variation explained values 
+pcoa_axis_var_explained <- round(x=pcoa_res$values[,"Relative_eig"] * 100, digits=2)
+pcoa_axis_var_explained
+#Create point long data frame with metadata
+#Extract metadata and ensure row names order matches
+metadf <- phyloseq::sample_data(pseq)
+if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
+  metadf <- metadf[row.names(pcoa_points),]
+}
+#Make points with metadata data frame
+pcoa_points_metadata <- cbind(pcoa_points, metadf)
+head(pcoa_points_metadata)
+#Save object we want, remove ones we don't
+save(pcoa_points_metadata, file = "wunifrac_PCoA.RData")
+rm(metadf, pcoa_res, pcoa_points)
+```
+
+PCoA scatterplot
+```{R, eval = FALSE}
+#Produce PCoA scatter plot
+#Plot ordination
+pcoa.bray <- ggplot(data = pcoa_points_metadata, 
+                        aes(x = Axis.1, y = Axis.2, color = site, shape = media)) +
+                ggplot2::geom_point() +
+                #Add x and y labels to include % variance explained
+                labs(x = paste0("Axis.1 [", pcoa_axis_var_explained[1], "%]"),
+                     y = paste0("Axis.2 [", pcoa_axis_var_explained[2], "%]"))
+#Save ggplot2 object with ggsave
+ggsave(filename = "./Beta_diversity_pcoa_bray_media_site.png", plot = pcoa.bray
+       device = "png", dpi = 300, units = "mm", height = 125, width = 150)
+#Display plot
+IRdisplay::display_png(file = "./Beta_diversity_pcoa_bray_media_site.png")
+```
+`r unhide()`
+
+## $\beta$: Recap
+
+<!--chapter:end:25-Beta_practice.Rmd-->
+

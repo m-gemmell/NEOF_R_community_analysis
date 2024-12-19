@@ -1,0 +1,32 @@
+# Setup {#setupchap}
+<center>
+![](figures/france.png){style="width:200px"}
+</center>
+
+Include info on directory, copying data, and environment setup
+
+## Dataset
+<center>
+![](figures/river.png){style="width:200px"}
+</center>
+
+The data set we will use in this book is the same as that used in the [R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/02-Dataset_and_workflow.html#dataset).
+
+Below are brief bullet points about the data:
+
+- It is a 16S dataset of ASV counts with taxonomy and phylogeny produced by QIIME2
+- The samples come from surface water from the Durance River in the south-east of France
+- There are three sampling sites on an anthropisation gradient (low to high agriculture)
+  - Upper Durance (UD)
+  - Middle Durance (MD)
+  - Lower Durance (LD)
+- Four different media approaches were used to produce bacterial lawns that were sequenced
+  - Environmental sample (ENV): No media used, frozen at -20°C.
+  - TSA 10% incubated at 28°C for 2 days.
+  - KBC incubated at 28°C for 2 days.
+  - CVP incubated at 28°C for 3 days.
+- There are three replicates for each sampling site and media combination (36 samples total)
+
+## Conda environment
+
+## Directory and files

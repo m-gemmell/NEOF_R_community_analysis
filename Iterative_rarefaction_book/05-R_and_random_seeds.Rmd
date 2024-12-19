@@ -1,0 +1,81 @@
+# R and random seeds
+<center>
+![](figures/braille_r.png){style="width:200px; border-radius:15px; border:#FFFFFF 6px solid"}
+</center>
+
+Sampling is meant to be random but true randomness is pretty much impossible, especially in computing.
+Therefore, many programs use __seeds__ to determine how random tasks will be carried out.
+Various programs that use __random seeds__ include:
+
+- Sampling tools such as `sample()` and rarefaction
+- Creating bootstrapped phylogenies
+- Creating procedural content such as building Minecraft worlds
+
+## Setting the R seed
+<center>
+![](figures/set_a_seed.png){style="width:300px; border-radius:15px; background:white; border:#FFFFFF 6px solid"}
+</center>
+
+To carry out random processes `R` uses a global variable called `seed`.
+The `seed` is normally random and changes every time it is used.
+This is useful for everyday analysis but what if you want replicable results?
+
+In R we can set the `seed` with the function `seet.seed()`.
+Carry this to determien the randomness of sampling.
+
+```{R, eval=FALSE}
+#Set random seed
+set.seed(1234)
+#Randomly sample 12 of these numbers without replacement
+sample(x = num_vec, size = 12, replace = FALSE)
+#Reset random seed (covered later)
+set.seed(NULL)
+```
+
+You will get a result of "9, 5, 4, 3, & 0".
+You can try to run the code multiple times and you will always get the same results.
+
+If you run a tool that uses random sampling you will always get the same results if:
+
+- You use the same random seed (`seed` for R)
+- You use the same data
+- You use the same parameters including the replacement method (with or without)
+
+In fact, run the below code in a new code cell and you may notice a similarity with your previous output.
+
+```{R, eval=FALSE}
+#Set random seed
+set.seed(1234)
+#Create a vector containing the numbers 0 to 10
+larger_num_vec <- 10:19
+#Randomly sample 5 of these numbers
+sample(x = num_vec, size = 5)
+#Reset random seed (covered later)
+set.seed(NULL)
+```
+
+That's right, `sample()` will always take the 10th (9/19), 6th (5/15), 5th (4/14), 4th (3/13), and 1st (0/10) values if it is given the __random seed__ of __1234__, provided with an 10 length vector, and asked to sample 5 values.
+
+Setting our randomness is incredibly beneficial for reproducibility in research.
+
+When you carry out analysis you may need to redo some work. 
+This could be due to reviewer comments or you may want to incorporate some new methods.
+As long as you saved the random seeds you used you can get the same results where you need to.
+It also means others can replicate your results.
+
+## Reset seed
+<center>
+![](figures/reset_seed.png){style="width:300px"}
+</center>
+
+We set a __random seed__ at the start of the cell for reproducibility and control, but why do we then run the line `set.seed(NULL)`?
+
+The normal operation of R means that, in effect, its __random seed__ changes every time it is used.
+This means R normally randomly determines randomness.
+This is how it should be until we want to determine the randomness.
+It is therefore good practice to set the seed to `NULL` after you have utilised your set __seeds__.
+This will revert the __seed__ to its normal random operations.
+
+One last point to note is R versions. 
+Version 3.6 changed R's sampling methods, therefore if you use Version 3.5 or below you will get different results than we have got.
+Hopefully the R developers will not change this in a later version again.

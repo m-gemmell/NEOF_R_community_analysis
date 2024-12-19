@@ -1,0 +1,112 @@
+# $\alpha$: Plot with stats
+<center>
+![](figures/violin_plot_w_stats.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+Rather than having the plot and stats separate, we can add stats onto our plot.
+This can be carried out with the function `stat_compare_means()` from the ``ggpubr` package.
+
+## List of comparisons
+<center>
+![](figures/venn_pairwise.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+To produce pairwise comparisons with `ggpubr::stat_compare_means()` we need a __list__ of the comparisons we want to carry out.
+
+We can create this with the function `combn()`, short for combination.
+We provide it with three parameters:
+
+- __Input data:__ This is a __vector__ of the unique metadata categories to create the combinations from
+  - We are using our created `uniq_media_values_chr_vec` in this case
+  - We ensure that this is a __vector__ of __characters__ so the created combination __list__ contains __character vectors__
+  - A __list__ of __character vectors__ is required for `ggpubr::stat_compare_means()`
+- __`m = `:__ The number of elements to choose when creating combinations.
+  - We choose `2` so we get all pair combinations
+- __`simplify = `:__ Indicates if the result should be simple (`TRUE`) or not (`FALSE`)
+  - `TRUE` returns a simplified array such as a __matrix__ or a __data frame__
+  - `FALSE` returns a __list__. This is what we want as `ggpubr::stat_compare_means()` requires a __list__
+
+```{R,eval = FALSE}
+#To compare mean we need to create a list of comparisons
+#Create character vector of unique metadata values (media in this case)
+uniq_media_values_chr_vec <- unique(as.character(basic_alpha_metrics_long_df$media))
+uniq_media_values_chr_vec
+#Can use combn() to get comparisons
+my_comparisons <- combn(uniq_media_values_chr_vec, m = 2, simplify = FALSE))
+#Check contents and structure
+my_comparisons
+str(my_comparisons)
+```
+
+## Violin plot with stats
+<center>
+![](figures/eye_2.png){style="width:200px"}
+</center>
+
+With our __list__ of comparisons we can add `ggpubr::stat_compare_means()` to our `ggplot2` code.
+This function will both calculate the Wilcoxon tests and add them to the plot.
+
+```{R, eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- ggplot(basic_alpha_metrics_long_df, aes(x = media, y = value)) +
+                            ggplot2::geom_violin() +
+                            ggforce::geom_sina(alpha=0.5, aes(color=site)) +
+                            ggplot2::labs(color = "Site", x = "Media", y = "Value") +
+                            ggplot2::facet_wrap(~metric, scales = "free") +
+                            #Add comparisons
+                            ggpubr::stat_compare_means(comparisons = my_comparisons)
+#Save ggplot2 object with ggsave()
+ggsave(filename = "./Alpha_diversity_rarefy_iters_media_violinplot_pairwise_wilcox.png", 
+       plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_media_violinplot_pairwise_wilcox.png")
+```
+
+## Reorder x-axis and stats
+<center>
+![](figures/reorder.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+`ggplot` orders the x-axis by alphabetical order.
+This is not normally wanted so we will convert our media column to a __factor__ and order the levels how we want them.
+As the environmental samples can be seen as the baseline we will have them first.
+
+```{r,eval = FALSE}
+#Set order of media
+basic_alpha_metrics_long_df$media <- factor(basic_alpha_metrics_long_df$media,
+                                            #Set order of levels
+                                            levels = c("ENV", "CVP", "KBC", "TSA"))
+```
+
+The stats in our previous plot were also not in a good order.
+We'll therefore reorder them.
+When doing this it is important to note that the first comparison in the __lists__ is the bottom most stat in the plot.
+
+```{R, eval = FALSE}
+#Order comparisons
+my_ordered_comparisons <- my_comparisons[c(1,2,6,4,3,5)]
+my_ordered_comparisons
+```
+
+You'll notice this can be quite manual.
+It can be made easier when doing this yourself to roughly reorder, run the below code for your plot, then fix the stats reorder.
+
+With our media categories and comparisons reordered we can create the final plot.
+
+```{R, eval = FALSE}
+#Produce ggplot object of violin plot
+alpha_violinplot <- ggplot(basic_alpha_metrics_long_df, aes(x = media, y = value)) +
+                            ggplot2::geom_violin() +
+                            ggforce::geom_sina(alpha=0.5, aes(color=site)) +
+                            ggplot2::labs(color = "Site", x = "Media", y = "Value") +
+                            ggplot2::facet_wrap(~metric, scales = "free") +
+                            #Add comparisons
+                            ggpubr::stat_compare_means(comparisons = my_ordered_comparisons)
+#Save ggplot2 object with ggsave()
+ggsave(filename = "./Alpha_diversity_rarefy_iters_media_violinplot_pairwise_wilcox.png", 
+       plot = alpha_violinplot,
+       device = "png", dpi = 300, units = "mm", height = 150, width = 250)
+#Display plot
+IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_media_violinplot_pairwise_wilcox.png")
+```
