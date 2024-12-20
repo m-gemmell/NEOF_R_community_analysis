@@ -164,11 +164,11 @@ This book uses the same environment as in the [main R community analysis worksho
 If you do not have the environment activated you can set-up your environment by run the following code (you must include the full stop and space at the front of the command).
 
 ```{bash, eval=FALSE}
-. usercommunity
+. usercommunity2025
 ```
 
-You will have successfully activated the environment if you now see `(r_community)` at the start of your command prompt. 
-This indicates you are now in the mamba environment called `r_community` created by the instructor.
+You will have successfully activated the environment if you now see `(r_community_2025)` at the start of your command prompt. 
+This indicates you are now in the mamba environment called `r_community_2025` created by the instructor.
 
 If you are interested in the use script you can look at its contents.
 
@@ -699,7 +699,7 @@ You should see that all the samples now have a total count of __11046__.
 
 Now to create a relative abundance bar chart with our __rarefied__ data to compare to our non-rarefied data.
 
-__Note:__ This is not something you would do in real analysis.
+__Note:__ This is for demonstrtaive purposes and not something you would do in your real analysis.
 
 ```{R, eval=FALSE}
 #Quick phyla bar chart of relative abundance
@@ -708,7 +708,7 @@ pseq_env_phyla_rarefy_1_relabund <- microbiome::transform(pseq_env_phyla_rarefy_
 #Create, save, and display bar chart
 phylum_bar <- microbiome::plot_composition(pseq_env_phyla_rarefy_1_relabund)
 ggsave(filename = "./env_phyla_rarefy_1_relabund.png", plot = phylum_bar,
-       device = "png", dpi = 300, units = "mm", height = 100, width = 100)
+       device = "png", dpi = 300, units = "mm", height = 100, width = 200)
 IRdisplay::display_png(file = "./env_phyla_rarefy_1_relabund.png")
 ```
 
@@ -719,7 +719,7 @@ Viewing the __non-rarefied__ and __rarefied__ based bar charts shows some differ
 ![](figures/histogram_1.png){style="width:300px"}
 </center>
 
-To more easily see the differences we will subtract the two relative abundance tables from each other.
+To more easily see the differences between the rarefied and non-rarefied data we will subtract the two phyla relative abundance tables from each other.
 This will produce a matrix of differences.
 
 ```{R, eval=FALSE}
@@ -729,8 +729,7 @@ single_rarefaction_diff <-
 single_rarefaction_diff
 ```
 
-We can see there are differences.
-To make these differences even clearer let's make a histogram.
+To have a clearer viewer of these differences let's make a histogram.
 
 ```{R, eval = FALSE}
 #Histogram of differences
@@ -740,7 +739,7 @@ hist(single_rarefaction_diff, main = "Single rarefaction")
 ```{r, echo = FALSE}
 opts_p <- c("__-0.0003(-3e-04) to 0.0003(3e-04)__", "__-0.003 to 0.003__", answer="__-0.015 to 0.015__")
 ```
-What is the range of the differences compared to the non rarefied relative abundance values? `r longmcq(opts_p)`
+What is the range of the differences? `r longmcq(opts_p)`
 
 Although these values appear quite small keep in mind we are working with relative abundance values.
 Each sample has a total relative abundance of 1.00 so a relative abundance value of 0.01 is 1%.
@@ -754,15 +753,15 @@ library(webexercises)
 ```
 # Multiple Rarefaction iterations
 <center>
-![](figures/ten_rounds.png){style="width:200px"}
+![](figures/ten_rounds.png){style="width:200px; background: white; border-radius:5px; border:5px solid white"}
 </center>
 
 This chapter will demonstrate how to use a loop to carry out multiple rounds of rarefaction.
-We'll then compare the __non-rarefied__ data to our iteratively rarefied data.
+We'll then compare the __non-rarefied__ data to our __iteratively rarefied__ data.
 
 ## MR: Rarefaction
 <center>
-![](figures/tiger.png){style="width:300px"}
+![](figures/tiger.png){style="width:300px; background: white; border-radius:5px; border:5px solid white"}
 </center>
 
 The below loop creates a relative abundance table created by 10 rounds of iteration.
@@ -798,7 +797,7 @@ for (i in 2:length(rngseed_vec)){
                                            rngseed = rngseed_vec[i])
   #Calculate relative abundance
   pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
-  #Sum values to phyla_table
+  #Add values to phyla_table
   relabund_phyla_df <- 
     relabund_phyla_df + as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
 }
@@ -806,9 +805,9 @@ for (i in 2:length(rngseed_vec)){
 relabund_phyla_mean_df <- relabund_phyla_df / length(rngseed_vec)
 ```
 
-The loop produces a data frame (`relabund_phyla_df`) that has all the values from the ten  rarefied data frames summed in each corresponding cell.
+The loop produces a data frame (`relabund_phyla_df`) that has all the values from the ten rarefied data frames totalled/summed in each corresponding cell. More info on this is under the next heading in this chapter.
 
-The final data frame is then divided by the number of __iterations__ .
+The final data frame is then divided by the number of __iterations__ to get the average value for each cell.
 This produces the final data frame `relabund_phyla_mean_df`. 
 
 ## Mathematical operators & data frames
@@ -889,7 +888,7 @@ Superlative! Now that you know how to carry out __iterative rarefaction__ I'll a
 ![](figures/per_thousand.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
-Create a rarefaction averaged phyla relative abundance as we have done above but with 1000 __rarefaction iterations__.
+Create a rarefaction averaged phyla relative abundance as we have done in the previous chapters but with 1000 __rarefaction iterations__.
 For this task use __153478__ as the __seed__ when creating your vector of 1000 __rng seeds__.
 Save this vector of rngseeds to a file called "rngseeds_1000.RData".
 
@@ -977,7 +976,7 @@ With this section you have learnt:
 - How to use rng seeds to carry out __iterative rarefaction__
 
 In you real life analysis you would not use this method to create relative abundance taxonomy bar charts, you would use the non-rarefied relative abundance.
-However, this hopefully gave you a good idea of how __iterative rarefaction__ works so we can utilise it the next 2 chapters for alpha and beta diversity analysis.
+However, this has hopefully gave you a good idea of how __iterative rarefaction__ works so we can utilise it the next 2 chapters for alpha and beta diversity analysis.
 
 Feel free to save then close and halt your "Iterating_rarefaction.ipynb" notebook.
 
@@ -990,7 +989,7 @@ library(webexercises)
 
 # $\alpha$ Diversity intro {#alpha_chap}
 <center>
-![](figures/alpha_iterative_rarefaction.png){style="width:300px"}
+![](figures/alpha_iterative_rarefaction.png){style="width:300px; background-color:white; border-radius:15px"}
 </center>
 
 In this section we'll carry out __alpha diversity__ analysis using the __iterative rarefaction__ approach.
@@ -1021,7 +1020,7 @@ load("phyloseq.RData")
 
 ## $\alpha$: Iterative rarefaction values
 <center>
-![](figures/ten_rng_seeds.png){style="width:200px"}
+![](figures/ten_rng_seeds.png){style="width:200px; background-color:white; border-radius:15px"}
 </center>
 
 Before carrying out __iterative rarefaction__ we need to decide on a few values

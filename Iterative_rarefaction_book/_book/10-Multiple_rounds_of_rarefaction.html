@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-19" />
+<meta name="date" content="2024-12-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -327,14 +327,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="multiple-rarefaction-iterations" class="section level1 hasAnchor" number="10">
 <h1><span class="header-section-number">Chapter 10</span> Multiple Rarefaction iterations<a href="10-Multiple_rounds_of_rarefaction.html#multiple-rarefaction-iterations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/ten_rounds.png" style="width:200px" />
+<img src="figures/ten_rounds.png" style="width:200px; background: white; border-radius:5px; border:5px solid white" />
 </center>
 <p>This chapter will demonstrate how to use a loop to carry out multiple rounds of rarefaction.
-We'll then compare the <strong>non-rarefied</strong> data to our iteratively rarefied data.</p>
+We'll then compare the <strong>non-rarefied</strong> data to our <strong>iteratively rarefied</strong> data.</p>
 <div id="mr-rarefaction" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> MR: Rarefaction<a href="10-Multiple_rounds_of_rarefaction.html#mr-rarefaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/tiger.png" style="width:300px" />
+<img src="figures/tiger.png" style="width:300px; background: white; border-radius:5px; border:5px solid white" />
 </center>
 <p>The below loop creates a relative abundance table created by 10 rounds of iteration.
 Type the code and read the annotations to understand it.
@@ -367,14 +367,14 @@ Then run the code.</p>
 <span id="cb22-26"><a href="10-Multiple_rounds_of_rarefaction.html#cb22-26" tabindex="-1"></a>                                           <span class="at">rngseed =</span> rngseed_vec[i])</span>
 <span id="cb22-27"><a href="10-Multiple_rounds_of_rarefaction.html#cb22-27" tabindex="-1"></a>  <span class="co">#Calculate relative abundance</span></span>
 <span id="cb22-28"><a href="10-Multiple_rounds_of_rarefaction.html#cb22-28" tabindex="-1"></a>  pseq_rarefy_relabund <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">transform</span>(pseq_rarefy, <span class="st">&quot;compositional&quot;</span>)</span>
-<span id="cb22-29"><a href="10-Multiple_rounds_of_rarefaction.html#cb22-29" tabindex="-1"></a>  <span class="co">#Sum values to phyla_table</span></span>
+<span id="cb22-29"><a href="10-Multiple_rounds_of_rarefaction.html#cb22-29" tabindex="-1"></a>  <span class="co">#Add values to phyla_table</span></span>
 <span id="cb22-30"><a href="10-Multiple_rounds_of_rarefaction.html#cb22-30" tabindex="-1"></a>  relabund_phyla_df <span class="ot">&lt;-</span> </span>
 <span id="cb22-31"><a href="10-Multiple_rounds_of_rarefaction.html#cb22-31" tabindex="-1"></a>    relabund_phyla_df <span class="sc">+</span> <span class="fu">as.data.frame</span>(phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(pseq_rarefy_relabund))</span>
 <span id="cb22-32"><a href="10-Multiple_rounds_of_rarefaction.html#cb22-32" tabindex="-1"></a>}</span>
 <span id="cb22-33"><a href="10-Multiple_rounds_of_rarefaction.html#cb22-33" tabindex="-1"></a><span class="co">#Average the values of the summed relabund phyla_table</span></span>
 <span id="cb22-34"><a href="10-Multiple_rounds_of_rarefaction.html#cb22-34" tabindex="-1"></a>relabund_phyla_mean_df <span class="ot">&lt;-</span> relabund_phyla_df <span class="sc">/</span> <span class="fu">length</span>(rngseed_vec)</span></code></pre></div>
-<p>The loop produces a data frame (<code>relabund_phyla_df</code>) that has all the values from the ten rarefied data frames summed in each corresponding cell.</p>
-<p>The final data frame is then divided by the number of <strong>iterations</strong> .
+<p>The loop produces a data frame (<code>relabund_phyla_df</code>) that has all the values from the ten rarefied data frames totalled/summed in each corresponding cell. More info on this is under the next heading in this chapter.</p>
+<p>The final data frame is then divided by the number of <strong>iterations</strong> to get the average value for each cell.
 This produces the final data frame <code>relabund_phyla_mean_df</code>.</p>
 </div>
 <div id="mathematical-operators-data-frames" class="section level2 hasAnchor" number="10.2">
@@ -431,8 +431,8 @@ You could add 1 to each cell, minus 4 from each cell, etc.</p>
 <span id="cb31-5"><a href="10-Multiple_rounds_of_rarefaction.html#cb31-5" tabindex="-1"></a><span class="co">#Histogram</span></span>
 <span id="cb31-6"><a href="10-Multiple_rounds_of_rarefaction.html#cb31-6" tabindex="-1"></a><span class="fu">hist</span>(iterative_rarefaction_diff)</span></code></pre></div>
 What is the range of the differences compared to the non rarefied relative abundance values?
-<div id="radio_LKGYMLIYEF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LKGYMLIYEF" value=""></input> <span><strong>-0.0003(-3e-04) to 0.0003(3e-04)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LKGYMLIYEF" value="answer"></input> <span><strong>-0.003 to 0.003</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LKGYMLIYEF" value=""></input> <span><strong>-0.015 to 0.015</strong></span></label>
+<div id="radio_UNJRPRGMBB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UNJRPRGMBB" value=""></input> <span><strong>-0.0003(-3e-04) to 0.0003(3e-04)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UNJRPRGMBB" value="answer"></input> <span><strong>-0.003 to 0.003</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UNJRPRGMBB" value=""></input> <span><strong>-0.015 to 0.015</strong></span></label>
 </div>
 <p>You should notice that the differences are much smaller.
 This indicates that the structure of the <strong>iterative rarefied</strong> data is much closer to the non-rarefied data compared to the one round <strong>rarefied</strong> data.

@@ -38,11 +38,11 @@ This book uses the same environment as in the [main R community analysis worksho
 If you do not have the environment activated you can set-up your environment by run the following code (you must include the full stop and space at the front of the command).
 
 ```{bash, eval=FALSE}
-. usercommunity
+. usercommunity2025
 ```
 
-You will have successfully activated the environment if you now see `(r_community)` at the start of your command prompt. 
-This indicates you are now in the mamba environment called `r_community` created by the instructor.
+You will have successfully activated the environment if you now see `(r_community_2025)` at the start of your command prompt. 
+This indicates you are now in the mamba environment called `r_community_2025` created by the instructor.
 
 If you are interested in the use script you can look at its contents.
 

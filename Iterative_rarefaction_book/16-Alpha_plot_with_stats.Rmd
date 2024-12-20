@@ -4,7 +4,7 @@
 </center>
 
 Rather than having the plot and stats separate, we can add stats onto our plot.
-This can be carried out with the function `stat_compare_means()` from the ``ggpubr` package.
+This can be carried out with the function `stat_compare_means()` from the `ggpubr` package.
 
 ## List of comparisons
 <center>
@@ -40,7 +40,7 @@ str(my_comparisons)
 
 ## Violin plot with stats
 <center>
-![](figures/eye_2.png){style="width:200px"}
+![](figures/eye_2.png){style="width:200px;background-color:white; border-radius:15px; border:white solid 5px"}
 </center>
 
 With our __list__ of comparisons we can add `ggpubr::stat_compare_means()` to our `ggplot2` code.
@@ -65,7 +65,7 @@ IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_media_violinplot_p
 
 ## Reorder x-axis and stats
 <center>
-![](figures/reorder.png){style="width:200px; background-color:white; border-radius:15px"}
+![](figures/reorder.png){style="width:200px; background-color:white; border-radius:15px; border:white solid 5px"}
 </center>
 
 `ggplot` orders the x-axis by alphabetical order.

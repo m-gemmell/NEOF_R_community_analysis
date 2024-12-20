@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-19" />
+<meta name="date" content="2024-12-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -332,14 +332,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/per_thousand.png" style="width:200px; background:white; border-radius:15px" />
 </center>
-<p>Create a rarefaction averaged phyla relative abundance as we have done above but with 1000 <strong>rarefaction iterations</strong>.
+<p>Create a rarefaction averaged phyla relative abundance as we have done in the previous chapters but with 1000 <strong>rarefaction iterations</strong>.
 For this task use <strong>153478</strong> as the <strong>seed</strong> when creating your vector of 1000 <strong>rng seeds</strong>.
 Save this vector of rngseeds to a file called "rngseeds_1000.RData".</p>
 <p><strong>Note:</strong> The iterative rarefaction step may take a few minutes.</p>
 <p>After creating the relative abundance matrix determine how different the values are compared to the non-rarefied relative abundance with a histogram.</p>
 What is the range of the differences compared to the non rarefied relative abundance values?
-<div id="radio_JPHSFVSYFL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JPHSFVSYFL" value="answer"></input> <span><strong>-0.0003(-3e-04) to 0.0003(3e-04)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JPHSFVSYFL" value=""></input> <span><strong>-0.003 to 0.003</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JPHSFVSYFL" value=""></input> <span><strong>-0.015 to 0.015</strong></span></label>
+<div id="radio_VPVPTJXKBO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VPVPTJXKBO" value="answer"></input> <span><strong>-0.0003(-3e-04) to 0.0003(3e-04)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VPVPTJXKBO" value=""></input> <span><strong>-0.003 to 0.003</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VPVPTJXKBO" value=""></input> <span><strong>-0.015 to 0.015</strong></span></label>
 </div>
 <p>Please attempt the task yourself before looking at the solution code in the below expandable box.</p>
 <div class="webex-solution">
@@ -410,7 +410,7 @@ Task solution code
 <li>How to use rng seeds to carry out <strong>iterative rarefaction</strong></li>
 </ul>
 <p>In you real life analysis you would not use this method to create relative abundance taxonomy bar charts, you would use the non-rarefied relative abundance.
-However, this hopefully gave you a good idea of how <strong>iterative rarefaction</strong> works so we can utilise it the next 2 chapters for alpha and beta diversity analysis.</p>
+However, this has hopefully gave you a good idea of how <strong>iterative rarefaction</strong> works so we can utilise it the next 2 chapters for alpha and beta diversity analysis.</p>
 <p>Feel free to save then close and halt your "Iterating_rarefaction.ipynb" notebook.</p>
 
 </div>

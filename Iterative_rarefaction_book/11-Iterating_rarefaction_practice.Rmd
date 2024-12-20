@@ -1,6 +1,5 @@
 # Iterating rarefaction practice
 
-
 Superlative! Now that you know how to carry out __iterative rarefaction__ I'll ask you to do it once more for the phyla data.
 
 ## One thousand iteration

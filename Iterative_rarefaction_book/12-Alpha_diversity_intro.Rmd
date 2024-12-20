@@ -2,7 +2,7 @@
 
 # $\alpha$ Diversity intro {#alpha_chap}
 <center>
-![](figures/alpha_iterative_rarefaction.png){style="width:300px"}
+![](figures/alpha_iterative_rarefaction.png){style="width:300px; background-color:white; border-radius:15px"}
 </center>
 
 In this section we'll carry out __alpha diversity__ analysis using the __iterative rarefaction__ approach.
@@ -33,7 +33,7 @@ load("phyloseq.RData")
 
 ## $\alpha$: Iterative rarefaction values
 <center>
-![](figures/ten_rng_seeds.png){style="width:200px"}
+![](figures/ten_rng_seeds.png){style="width:200px; background-color:white; border-radius:15px"}
 </center>
 
 Before carrying out __iterative rarefaction__ we need to decide on a few values
@@ -41,12 +41,12 @@ Before carrying out __iterative rarefaction__ we need to decide on a few values
 - __Rarefaction size:__ The sequence depth to normalise samples to
   - We are using the minimum sample depth here
   - The size you choose will be based on your data and what you feel is appropriate
-  - More info in the R community workshop
+  - More info in the main [R community workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/14-Rarefaction.html)
 - __RNG seeds:__ The rng seeds we will use for all the rarefactions
   - We created these in the previous [chapter](#rng_vec_creation)
 - __Rarefaction iterations:__ The number of rarefaction iterations we will use
   - We are using 10 here based on the length of our rng seed vector
-  - We recommend you use 1000 in your real analysis
+  - We recommend using 1000 in your real analysis
 
 ```{r, eval=FALSE}
 #Rarefaction values

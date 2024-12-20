@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-19" />
+<meta name="date" content="2024-12-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -359,14 +359,14 @@ Please see advice on how to determine the rarefaction size of your own data in t
 <img src="figures/stacked_bar_chart_2.png" style="width:200px" />
 </center>
 <p>Now to create a relative abundance bar chart with our <strong>rarefied</strong> data to compare to our non-rarefied data.</p>
-<p><strong>Note:</strong> This is not something you would do in real analysis.</p>
+<p><strong>Note:</strong> This is for demonstrtaive purposes and not something you would do in your real analysis.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb19-1"><a href="09-One_round_of_rarefaction.html#cb19-1" tabindex="-1"></a><span class="co">#Quick phyla bar chart of relative abundance</span></span>
 <span id="cb19-2"><a href="09-One_round_of_rarefaction.html#cb19-2" tabindex="-1"></a><span class="co">#Relative abundance transformation</span></span>
 <span id="cb19-3"><a href="09-One_round_of_rarefaction.html#cb19-3" tabindex="-1"></a>pseq_env_phyla_rarefy_1_relabund <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">transform</span>(pseq_env_phyla_rarefy_1, <span class="st">&quot;compositional&quot;</span>)</span>
 <span id="cb19-4"><a href="09-One_round_of_rarefaction.html#cb19-4" tabindex="-1"></a><span class="co">#Create, save, and display bar chart</span></span>
 <span id="cb19-5"><a href="09-One_round_of_rarefaction.html#cb19-5" tabindex="-1"></a>phylum_bar <span class="ot">&lt;-</span> microbiome<span class="sc">::</span><span class="fu">plot_composition</span>(pseq_env_phyla_rarefy_1_relabund)</span>
 <span id="cb19-6"><a href="09-One_round_of_rarefaction.html#cb19-6" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./env_phyla_rarefy_1_relabund.png&quot;</span>, <span class="at">plot =</span> phylum_bar,</span>
-<span id="cb19-7"><a href="09-One_round_of_rarefaction.html#cb19-7" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">100</span>, <span class="at">width =</span> <span class="dv">100</span>)</span>
+<span id="cb19-7"><a href="09-One_round_of_rarefaction.html#cb19-7" tabindex="-1"></a>       <span class="at">device =</span> <span class="st">&quot;png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">height =</span> <span class="dv">100</span>, <span class="at">width =</span> <span class="dv">200</span>)</span>
 <span id="cb19-8"><a href="09-One_round_of_rarefaction.html#cb19-8" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file =</span> <span class="st">&quot;./env_phyla_rarefy_1_relabund.png&quot;</span>)</span></code></pre></div>
 <p>Viewing the <strong>non-rarefied</strong> and <strong>rarefied</strong> based bar charts shows some differences. However, these are quite difficult to discern.</p>
 </div>
@@ -375,19 +375,18 @@ Please see advice on how to determine the rarefaction size of your own data in t
 <center>
 <img src="figures/histogram_1.png" style="width:300px" />
 </center>
-<p>To more easily see the differences we will subtract the two relative abundance tables from each other.
+<p>To more easily see the differences between the rarefied and non-rarefied data we will subtract the two phyla relative abundance tables from each other.
 This will produce a matrix of differences.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb20-1"><a href="09-One_round_of_rarefaction.html#cb20-1" tabindex="-1"></a><span class="co">#Value difference matrix</span></span>
 <span id="cb20-2"><a href="09-One_round_of_rarefaction.html#cb20-2" tabindex="-1"></a>single_rarefaction_diff <span class="ot">&lt;-</span> </span>
 <span id="cb20-3"><a href="09-One_round_of_rarefaction.html#cb20-3" tabindex="-1"></a>  phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(pseq_env_phyla_relabund) <span class="sc">-</span> phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(pseq_env_phyla_rarefy_1_relabund)</span>
 <span id="cb20-4"><a href="09-One_round_of_rarefaction.html#cb20-4" tabindex="-1"></a>single_rarefaction_diff</span></code></pre></div>
-<p>We can see there are differences.
-To make these differences even clearer let's make a histogram.</p>
+<p>To have a clearer viewer of these differences let's make a histogram.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb21-1"><a href="09-One_round_of_rarefaction.html#cb21-1" tabindex="-1"></a><span class="co">#Histogram of differences</span></span>
 <span id="cb21-2"><a href="09-One_round_of_rarefaction.html#cb21-2" tabindex="-1"></a><span class="fu">hist</span>(single_rarefaction_diff, <span class="at">main =</span> <span class="st">&quot;Single rarefaction&quot;</span>)</span></code></pre></div>
-What is the range of the differences compared to the non rarefied relative abundance values?
-<div id="radio_FDMGFNDICL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FDMGFNDICL" value=""></input> <span><strong>-0.0003(-3e-04) to 0.0003(3e-04)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FDMGFNDICL" value=""></input> <span><strong>-0.003 to 0.003</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FDMGFNDICL" value="answer"></input> <span><strong>-0.015 to 0.015</strong></span></label>
+What is the range of the differences?
+<div id="radio_WAXIWKSTYU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WAXIWKSTYU" value=""></input> <span><strong>-0.0003(-3e-04) to 0.0003(3e-04)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WAXIWKSTYU" value=""></input> <span><strong>-0.003 to 0.003</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WAXIWKSTYU" value="answer"></input> <span><strong>-0.015 to 0.015</strong></span></label>
 </div>
 <p>Although these values appear quite small keep in mind we are working with relative abundance values.
 Each sample has a total relative abundance of 1.00 so a relative abundance value of 0.01 is 1%.</p>

@@ -8,7 +8,7 @@ We will carry this out by:
 
 - Calculating initial __alpha diversity__ values from the first __iteration__
 - Looping through the subsequent __rarefaction iterations__ and adding/summing calculated __alpha diversity__ values to the initial __alpha diversity__ values
-- Dividing each value of the final summed __alpha diversity__ by the number of __rarefaction iterations__.
+- Dividing each value of the final summed __alpha diversity__ by the number of __rarefaction iterations__. This gives us the averaged alpha diversity values.
 
 For this we will use the function `microbiome::alpha()` to calculate our alpha diversity values.
 
