@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-20" />
+<meta name="date" content="2025-01-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -327,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="beta-ordination" class="section level1 hasAnchor" number="21">
 <h1><span class="header-section-number">Chapter 21</span> <span class="math inline">\(\beta\)</span>: Ordination<a href="21-Beta_ordination.html#beta-ordination" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/navigation.png" style="width:200px" />
+<img src="figures/navigation.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>There are various ways to ordinate paired dissimilarity distances.
 We are going to use two of the most popular for community based data: <strong>NMDS</strong> and <strong>PCoA</strong>.</p>
@@ -351,7 +351,7 @@ To carry this out we can use the function <code>vegan::monoMDS()</code>.</p>
 <div id="nmds-ordinate" class="section level3 hasAnchor" number="21.2.1">
 <h3><span class="header-section-number">21.2.1</span> NMDS ordinate<a href="21-Beta_ordination.html#nmds-ordinate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <center>
-<img src="figures/speedometer_miles_per_hour.png" style="width:200px" />
+<img src="figures/speedometer_miles_per_hour.png" style="width:200px; background:white; border-radius:15px; border:white 5px solid" />
 </center>
 <p>We provide the function with our <strong>beta diversity dissimilarity matrix</strong> and the parameter <code>k = 2</code>.
 The parameter<code>k</code> specifies the number of dimensions to calculate, we want 2 as we will only be plotting an x and y axis i.e. 2 dimensions.</p>
@@ -405,7 +405,7 @@ We will colour the points by site and the point shapes will be determined by the
 <div class="sourceCode" id="cb63"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb63-1"><a href="21-Beta_ordination.html#cb63-1" tabindex="-1"></a><span class="co">#Produce NMDS scatter plot</span></span>
 <span id="cb63-2"><a href="21-Beta_ordination.html#cb63-2" tabindex="-1"></a><span class="co">#Plot ordination</span></span>
 <span id="cb63-3"><a href="21-Beta_ordination.html#cb63-3" tabindex="-1"></a>nmds.wunifrac <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> nmds_points_metadata,</span>
-<span id="cb63-4"><a href="21-Beta_ordination.html#cb63-4" tabindex="-1"></a>                        <span class="fu">aes</span>(<span class="at">x =</span> NMDS1, <span class="at">y =</span> NMDS2, <span class="at">color =</span> site, <span class="at">shape =</span> media)) <span class="sc">+</span></span>
+<span id="cb63-4"><a href="21-Beta_ordination.html#cb63-4" tabindex="-1"></a>                        <span class="fu">aes</span>(<span class="at">x =</span> MDS1, <span class="at">y =</span> MDS2, <span class="at">color =</span> site, <span class="at">shape =</span> media)) <span class="sc">+</span></span>
 <span id="cb63-5"><a href="21-Beta_ordination.html#cb63-5" tabindex="-1"></a>                ggplot2<span class="sc">::</span><span class="fu">geom_point</span>()</span>
 <span id="cb63-6"><a href="21-Beta_ordination.html#cb63-6" tabindex="-1"></a><span class="co">#Save ggplot2 object with ggsave</span></span>
 <span id="cb63-7"><a href="21-Beta_ordination.html#cb63-7" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;./Beta_diversity_NMDS_wunifrac_media_site.png&quot;</span>,</span>
@@ -469,8 +469,8 @@ General guidelines to how good our plot are based on the sum of these 2 values:<
 <li>70-89%: Good</li>
 <li>90-100%: Great</li>
 </ul>
-<p>The <strong>% variance explained</strong> is contained in the <code>values</code> <strong>data frame</strong> within the <code>Relative_eig</code> column.
-These are proportion values (0-1) so we will times them by 100 to make them percentages and round these digits to 2 decimal places (<code>round(,digits=2)</code>.</p>
+<p>The <strong>% variance explained</strong> is contained in the <code>Relative_eig</code> column within the <code>values</code> <strong>data frame</strong>.
+These are proportion values (0-1) so we will multiply them by 100 to make them percentages and round these digits to 2 decimal places (<code>round(,digits=2)</code>).</p>
 <p>Let's extract the <strong>% variance explained</strong> values.</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb66-1"><a href="21-Beta_ordination.html#cb66-1" tabindex="-1"></a><span class="co">#Variation explained values </span></span>
 <span id="cb66-2"><a href="21-Beta_ordination.html#cb66-2" tabindex="-1"></a>pcoa_axis_var_explained <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="at">x=</span>pcoa_res<span class="sc">$</span>values[,<span class="st">&quot;Relative_eig&quot;</span>] <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits=</span><span class="dv">2</span>)</span></code></pre></div>

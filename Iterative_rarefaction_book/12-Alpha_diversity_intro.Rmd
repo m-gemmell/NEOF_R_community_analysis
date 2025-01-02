@@ -28,7 +28,7 @@ library("tidyverse")
 library("IRdisplay")
 library("ggpubr")
 #Load processed but unrarefied ASV data from main R community workshop
-load("phyloseq.RData")
+load("/pub14/tea/nsc206/NEOF/R_community/data/phyloseq.RData")
 ```
 
 ## $\alpha$: Iterative rarefaction values

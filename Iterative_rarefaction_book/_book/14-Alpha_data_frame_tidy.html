@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-20" />
+<meta name="date" content="2025-01-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -347,7 +347,7 @@ The samples that are retained are always the same across our <strong>rarefaction
 This is because samples are retained based on the <strong>rarefaction size/depth</strong> which is kept consistent across our <strong>rarefactions iterations</strong>.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb39-1"><a href="14-Alpha_data_frame_tidy.html#cb39-1" tabindex="-1"></a><span class="co">#Combine metadata and alpha diversity mean values into one data frame</span></span>
 <span id="cb39-2"><a href="14-Alpha_data_frame_tidy.html#cb39-2" tabindex="-1"></a><span class="co">#Extract metadata from rarefied phyloseq object</span></span>
-<span id="cb39-3"><a href="14-Alpha_data_frame_tidy.html#cb39-3" tabindex="-1"></a>metadf <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq)</span>
+<span id="cb39-3"><a href="14-Alpha_data_frame_tidy.html#cb39-3" tabindex="-1"></a>metadf <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(pseq_rarefy)</span>
 <span id="cb39-4"><a href="14-Alpha_data_frame_tidy.html#cb39-4" tabindex="-1"></a><span class="co">#Ensure row names are identical</span></span>
 <span id="cb39-5"><a href="14-Alpha_data_frame_tidy.html#cb39-5" tabindex="-1"></a><span class="co">#if not sort alpha data frame rows by metadata row names</span></span>
 <span id="cb39-6"><a href="14-Alpha_data_frame_tidy.html#cb39-6" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">identical</span>(<span class="fu">row.names</span>(metadf), <span class="fu">row.names</span>(alpha_df_mean)) <span class="sc">==</span> <span class="cn">FALSE</span>) {</span>
@@ -358,7 +358,7 @@ This is because samples are retained based on the <strong>rarefaction size/depth
 <span id="cb39-11"><a href="14-Alpha_data_frame_tidy.html#cb39-11" tabindex="-1"></a><span class="fu">head</span>(meta_alpha_mean_df)</span>
 <span id="cb39-12"><a href="14-Alpha_data_frame_tidy.html#cb39-12" tabindex="-1"></a><span class="co">#Remove rarefied phyloseq object that we do not need any more in this notebook</span></span>
 <span id="cb39-13"><a href="14-Alpha_data_frame_tidy.html#cb39-13" tabindex="-1"></a><span class="fu">rm</span>(pseq_rarefy) </span></code></pre></div>
-<p>From the output of <code>head()</code> you should see a table with the first set of columns being the metadata columns. The next set of columns is the alpha diversity metrics.</p>
+<p>From the output of <code>head()</code> you should see a table with the first set of columns being the metadata columns. The next set of columns are the alpha diversity metrics.</p>
 </div>
 <div id="alpha_long_df" class="section level2 hasAnchor" number="14.2">
 <h2><span class="header-section-number">14.2</span> <span class="math inline">\(\alpha\)</span>: Long data frame<a href="14-Alpha_data_frame_tidy.html#alpha_long_df" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -387,16 +387,15 @@ This means that instead of the <strong>alpha diversity</strong> values being spr
 <span id="cb40-10"><a href="14-Alpha_data_frame_tidy.html#cb40-10" tabindex="-1"></a>                      <span class="at">cols =</span> <span class="fu">all_of</span>(alpha_div_colnames)</span>
 <span id="cb40-11"><a href="14-Alpha_data_frame_tidy.html#cb40-11" tabindex="-1"></a>                      <span class="co">#Set metric names to column called metric</span></span>
 <span id="cb40-12"><a href="14-Alpha_data_frame_tidy.html#cb40-12" tabindex="-1"></a>                      <span class="co">#Set values to column called value</span></span>
-<span id="cb40-13"><a href="14-Alpha_data_frame_tidy.html#cb40-13" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">&quot;metric&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span></span>
-<span id="cb40-14"><a href="14-Alpha_data_frame_tidy.html#cb40-14" tabindex="-1"></a>                      )</span>
-<span id="cb40-15"><a href="14-Alpha_data_frame_tidy.html#cb40-15" tabindex="-1"></a><span class="co">#Change our metric column to a factor</span></span>
-<span id="cb40-16"><a href="14-Alpha_data_frame_tidy.html#cb40-16" tabindex="-1"></a><span class="co">#Useful for plotting</span></span>
-<span id="cb40-17"><a href="14-Alpha_data_frame_tidy.html#cb40-17" tabindex="-1"></a>meta_alpha_mean_long_df<span class="sc">$</span>metric <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(meta_alpha_mean_long_df<span class="sc">$</span>metric)</span>
-<span id="cb40-18"><a href="14-Alpha_data_frame_tidy.html#cb40-18" tabindex="-1"></a><span class="co">#Check head and dimensions of long data frame</span></span>
-<span id="cb40-19"><a href="14-Alpha_data_frame_tidy.html#cb40-19" tabindex="-1"></a><span class="fu">head</span>(meta_alpha_mean_long_df)</span>
-<span id="cb40-20"><a href="14-Alpha_data_frame_tidy.html#cb40-20" tabindex="-1"></a><span class="fu">dim</span>(meta_alpha_mean_long_df)</span>
-<span id="cb40-21"><a href="14-Alpha_data_frame_tidy.html#cb40-21" tabindex="-1"></a><span class="co">#Remove unneeded objects</span></span>
-<span id="cb40-22"><a href="14-Alpha_data_frame_tidy.html#cb40-22" tabindex="-1"></a><span class="fu">rm</span>(alpha_df_mean, metadf)</span></code></pre></div>
+<span id="cb40-13"><a href="14-Alpha_data_frame_tidy.html#cb40-13" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">&quot;metric&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb40-14"><a href="14-Alpha_data_frame_tidy.html#cb40-14" tabindex="-1"></a><span class="co">#Change our metric column to a factor</span></span>
+<span id="cb40-15"><a href="14-Alpha_data_frame_tidy.html#cb40-15" tabindex="-1"></a><span class="co">#Useful for plotting</span></span>
+<span id="cb40-16"><a href="14-Alpha_data_frame_tidy.html#cb40-16" tabindex="-1"></a>meta_alpha_mean_long_df<span class="sc">$</span>metric <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(meta_alpha_mean_long_df<span class="sc">$</span>metric)</span>
+<span id="cb40-17"><a href="14-Alpha_data_frame_tidy.html#cb40-17" tabindex="-1"></a><span class="co">#Check head and dimensions of long data frame</span></span>
+<span id="cb40-18"><a href="14-Alpha_data_frame_tidy.html#cb40-18" tabindex="-1"></a><span class="fu">head</span>(meta_alpha_mean_long_df)</span>
+<span id="cb40-19"><a href="14-Alpha_data_frame_tidy.html#cb40-19" tabindex="-1"></a><span class="fu">dim</span>(meta_alpha_mean_long_df)</span>
+<span id="cb40-20"><a href="14-Alpha_data_frame_tidy.html#cb40-20" tabindex="-1"></a><span class="co">#Remove unneeded objects</span></span>
+<span id="cb40-21"><a href="14-Alpha_data_frame_tidy.html#cb40-21" tabindex="-1"></a><span class="fu">rm</span>(alpha_df_mean, metadf)</span></code></pre></div>
 </div>
 <div id="alpha-subset-metrics" class="section level2 hasAnchor" number="14.3">
 <h2><span class="header-section-number">14.3</span> <span class="math inline">\(\alpha\)</span>: Subset metrics<a href="14-Alpha_data_frame_tidy.html#alpha-subset-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -407,7 +406,6 @@ This means that instead of the <strong>alpha diversity</strong> values being spr
 For this tutorial we are only interested in:</p>
 <ul>
 <li><strong>observed:</strong> The number of observed features (ASVs, Phlya, Species, etc.)</li>
-<li><strong>chao1:</strong> The estimated real total number of features</li>
 <li><strong>diversity_shannon:</strong> The Shannon diversity metric
 <ul>
 <li>An estimate of feature diversity based on richness (presence/absence) and abundance</li>
@@ -418,7 +416,7 @@ For this tutorial we are only interested in:</p>
 We'll also use the utility of factors to order the metrics so they will be plotted in our preferred order.</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb41-1"><a href="14-Alpha_data_frame_tidy.html#cb41-1" tabindex="-1"></a><span class="co">#Process our long data frame</span></span>
 <span id="cb41-2"><a href="14-Alpha_data_frame_tidy.html#cb41-2" tabindex="-1"></a><span class="co">#Subset our long alpha diversity data frame to only contain our metrics of choice</span></span>
-<span id="cb41-3"><a href="14-Alpha_data_frame_tidy.html#cb41-3" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;observed&quot;</span>, <span class="st">&quot;chao1&quot;</span>,<span class="st">&quot;diversity_shannon&quot;</span>)</span>
+<span id="cb41-3"><a href="14-Alpha_data_frame_tidy.html#cb41-3" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;observed&quot;</span>,<span class="st">&quot;diversity_shannon&quot;</span>)</span>
 <span id="cb41-4"><a href="14-Alpha_data_frame_tidy.html#cb41-4" tabindex="-1"></a>basic_alpha_metrics_long_df <span class="ot">&lt;-</span> meta_alpha_mean_long_df[</span>
 <span id="cb41-5"><a href="14-Alpha_data_frame_tidy.html#cb41-5" tabindex="-1"></a>  meta_alpha_mean_long_df<span class="sc">$</span>metric <span class="sc">%in%</span> metrics,</span>
 <span id="cb41-6"><a href="14-Alpha_data_frame_tidy.html#cb41-6" tabindex="-1"></a>]</span>
@@ -430,7 +428,7 @@ We'll also use the utility of factors to order the metrics so they will be plott
 <span id="cb41-12"><a href="14-Alpha_data_frame_tidy.html#cb41-12" tabindex="-1"></a><span class="co">#Therefore change back to factor</span></span>
 <span id="cb41-13"><a href="14-Alpha_data_frame_tidy.html#cb41-13" tabindex="-1"></a><span class="co">#We will also choose our order of the metric names for plotting</span></span>
 <span id="cb41-14"><a href="14-Alpha_data_frame_tidy.html#cb41-14" tabindex="-1"></a>basic_alpha_metrics_long_df<span class="sc">$</span>metric <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="at">x =</span> basic_alpha_metrics_long_df<span class="sc">$</span>metric,</span>
-<span id="cb41-15"><a href="14-Alpha_data_frame_tidy.html#cb41-15" tabindex="-1"></a>                                             <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;observed&quot;</span>,<span class="st">&quot;chao1&quot;</span>,<span class="st">&quot;shannon&quot;</span>))</span>
+<span id="cb41-15"><a href="14-Alpha_data_frame_tidy.html#cb41-15" tabindex="-1"></a>                                             <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;observed&quot;</span>,<span class="st">&quot;shannon&quot;</span>))</span>
 <span id="cb41-16"><a href="14-Alpha_data_frame_tidy.html#cb41-16" tabindex="-1"></a><span class="co">#Check level order of metric factor column</span></span>
 <span id="cb41-17"><a href="14-Alpha_data_frame_tidy.html#cb41-17" tabindex="-1"></a><span class="fu">levels</span>(basic_alpha_metrics_long_df<span class="sc">$</span>metric)</span>
 <span id="cb41-18"><a href="14-Alpha_data_frame_tidy.html#cb41-18" tabindex="-1"></a><span class="co">#Check head of subsetted long data frame</span></span>

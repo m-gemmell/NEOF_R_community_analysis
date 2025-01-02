@@ -31,7 +31,7 @@ There are 2 types of Unifrac distances:
 
 We'll calculate weighted Unifrac distances by specifying the parameter `weighted = TRUE`.
 
-So our output works with subsequent ordination step we'll convert the output of `rbiom::unifrac()` into a matrix with `as.matrix()`.
+To ensure our output works with subsequent ordination step we'll convert the output of `rbiom::unifrac()` into a matrix with `as.matrix()`.
 
 Carry out the matrix production with the below script:
 
@@ -52,9 +52,9 @@ head(unifrac_rbiom_microbiome)
 
 To calculate non-unifrac __beta diversity__ distances we can use the `vegan` package and its function `vegdist()`.
 
-The function `rbiom::unifrac()` calculates paired distances, this is the samples in the `otu_table` of a phyloseq object.
-Unfortunately, `vegan::vegdist()` calculates paired distances by rows (features), this being the features in the `otu_table` of a phyloseq object.
-We do not want this but thankfully all we need to add is the function `t()` to our abundance object to transpose the data.
+The function `rbiom::unifrac()` calculates paired distances by columns, this is the samples in the `otu_table` of a phyloseq object.
+Unfortunately, `vegan::vegdist()` calculates paired distances by rows, this being the features in the `otu_table` of a phyloseq object.
+We do not want this but thankfully we can the function `t()` to our abundance object to transpose the data.
 
 Create a __Bray-Curtis__ distance matrix with the below code:
 

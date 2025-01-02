@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-20" />
+<meta name="date" content="2025-01-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -353,7 +353,7 @@ We can carry this out with the following 2 functions:</p>
 <li>Unweighted: Does not incorporate relative abundances</li>
 </ul>
 <p>We'll calculate weighted Unifrac distances by specifying the parameter <code>weighted = TRUE</code>.</p>
-<p>So our output works with subsequent ordination step we'll convert the output of <code>rbiom::unifrac()</code> into a matrix with <code>as.matrix()</code>.</p>
+<p>To ensure our output works with subsequent ordination step we'll convert the output of <code>rbiom::unifrac()</code> into a matrix with <code>as.matrix()</code>.</p>
 <p>Carry out the matrix production with the below script:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb55-1"><a href="19-Beta_distances_metrics.html#cb55-1" tabindex="-1"></a><span class="co">#Calculate weighted unifrac values</span></span>
 <span id="cb55-2"><a href="19-Beta_distances_metrics.html#cb55-2" tabindex="-1"></a>unifrac_rbiom_microbiome <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(</span>
@@ -369,9 +369,9 @@ We can carry this out with the following 2 functions:</p>
 <img src="figures/vegan_fork.png" style="width:200px" />
 </center>
 <p>To calculate non-unifrac <strong>beta diversity</strong> distances we can use the <code>vegan</code> package and its function <code>vegdist()</code>.</p>
-<p>The function <code>rbiom::unifrac()</code> calculates paired distances, this is the samples in the <code>otu_table</code> of a phyloseq object.
-Unfortunately, <code>vegan::vegdist()</code> calculates paired distances by rows (features), this being the features in the <code>otu_table</code> of a phyloseq object.
-We do not want this but thankfully all we need to add is the function <code>t()</code> to our abundance object to transpose the data.</p>
+<p>The function <code>rbiom::unifrac()</code> calculates paired distances by columns, this is the samples in the <code>otu_table</code> of a phyloseq object.
+Unfortunately, <code>vegan::vegdist()</code> calculates paired distances by rows, this being the features in the <code>otu_table</code> of a phyloseq object.
+We do not want this but thankfully we can the function <code>t()</code> to our abundance object to transpose the data.</p>
 <p>Create a <strong>Bray-Curtis</strong> distance matrix with the below code:</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb56-1"><a href="19-Beta_distances_metrics.html#cb56-1" tabindex="-1"></a><span class="co">#Calculate Bray-Curtis distance matrix</span></span>
 <span id="cb56-2"><a href="19-Beta_distances_metrics.html#cb56-2" tabindex="-1"></a>bray_curtis_mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(</span>

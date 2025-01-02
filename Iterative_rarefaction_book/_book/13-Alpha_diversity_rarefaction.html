@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-20" />
+<meta name="date" content="2025-01-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -334,7 +334,7 @@ We will carry this out by:</p>
 <ul>
 <li>Calculating initial <strong>alpha diversity</strong> values from the first <strong>iteration</strong></li>
 <li>Looping through the subsequent <strong>rarefaction iterations</strong> and adding/summing calculated <strong>alpha diversity</strong> values to the initial <strong>alpha diversity</strong> values</li>
-<li>Dividing each value of the final summed <strong>alpha diversity</strong> by the number of <strong>rarefaction iterations</strong>.</li>
+<li>Dividing each value of the final summed <strong>alpha diversity</strong> by the number of <strong>rarefaction iterations</strong>. This gives us the averaged alpha diversity values.</li>
 </ul>
 <p>For this we will use the function <code>microbiome::alpha()</code> to calculate our alpha diversity values.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb37-1"><a href="13-Alpha_diversity_rarefaction.html#cb37-1" tabindex="-1"></a><span class="co">#Loop to create iteration based rarefied alpha diversity values</span></span>

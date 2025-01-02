@@ -880,7 +880,6 @@ library(webexercises)
 ```
 # Iterating rarefaction practice
 
-
 Superlative! Now that you know how to carry out __iterative rarefaction__ I'll ask you to do it once more for the phyla data.
 
 ## One thousand iteration
@@ -1015,7 +1014,7 @@ library("tidyverse")
 library("IRdisplay")
 library("ggpubr")
 #Load processed but unrarefied ASV data from main R community workshop
-load("phyloseq.RData")
+load("/pub14/tea/nsc206/NEOF/R_community/data/phyloseq.RData")
 ```
 
 ## $\alpha$: Iterative rarefaction values
@@ -1028,12 +1027,12 @@ Before carrying out __iterative rarefaction__ we need to decide on a few values
 - __Rarefaction size:__ The sequence depth to normalise samples to
   - We are using the minimum sample depth here
   - The size you choose will be based on your data and what you feel is appropriate
-  - More info in the R community workshop
+  - More info in the main [R community workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/14-Rarefaction.html)
 - __RNG seeds:__ The rng seeds we will use for all the rarefactions
   - We created these in the previous [chapter](#rng_vec_creation)
 - __Rarefaction iterations:__ The number of rarefaction iterations we will use
   - We are using 10 here based on the length of our rng seed vector
-  - We recommend you use 1000 in your real analysis
+  - We recommend using 1000 in your real analysis
 
 ```{r, eval=FALSE}
 #Rarefaction values
@@ -1062,7 +1061,7 @@ We will carry this out by:
 
 - Calculating initial __alpha diversity__ values from the first __iteration__
 - Looping through the subsequent __rarefaction iterations__ and adding/summing calculated __alpha diversity__ values to the initial __alpha diversity__ values
-- Dividing each value of the final summed __alpha diversity__ by the number of __rarefaction iterations__.
+- Dividing each value of the final summed __alpha diversity__ by the number of __rarefaction iterations__. This gives us the averaged alpha diversity values.
 
 For this we will use the function `microbiome::alpha()` to calculate our alpha diversity values.
 
@@ -1145,7 +1144,7 @@ This is because samples are retained based on the __rarefaction size/depth__ whi
 ```{r, eval=FALSE}
 #Combine metadata and alpha diversity mean values into one data frame
 #Extract metadata from rarefied phyloseq object
-metadf <- phyloseq::sample_data(pseq)
+metadf <- phyloseq::sample_data(pseq_rarefy)
 #Ensure row names are identical
 #if not sort alpha data frame rows by metadata row names
 if (identical(row.names(metadf), row.names(alpha_df_mean)) == FALSE) {
@@ -1158,7 +1157,7 @@ head(meta_alpha_mean_df)
 rm(pseq_rarefy) 
 ```
 
-From the output of `head()` you should see a table with the first set of columns being the metadata columns. The next set of columns is the alpha diversity metrics.
+From the output of `head()` you should see a table with the first set of columns being the metadata columns. The next set of columns are the alpha diversity metrics.
 
 ## $\alpha$: Long data frame {#alpha_long_df}
 <center>
@@ -1190,8 +1189,7 @@ meta_alpha_mean_long_df <-
                       cols = all_of(alpha_div_colnames)
                       #Set metric names to column called metric
                       #Set values to column called value
-                      names_to = "metric", values_to = "value"
-                      )
+                      names_to = "metric", values_to = "value")
 #Change our metric column to a factor
 #Useful for plotting
 meta_alpha_mean_long_df$metric <- as.factor(meta_alpha_mean_long_df$metric)
@@ -1211,7 +1209,6 @@ There are a lot of diversity values created by `microbiome::alpha()`.
 For this tutorial we are only interested in:
 
 - __observed:__ The number of observed features (ASVs, Phlya, Species, etc.)
-- __chao1:__ The estimated real total number of features
 - __diversity_shannon:__ The Shannon diversity metric
   - An estimate of feature diversity based on richness (presence/absence) and abundance
   - The higher the value the higher the diversity
@@ -1222,7 +1219,7 @@ We'll also use the utility of factors to order the metrics so they will be plott
 ```{R, eval=FALSE}
 #Process our long data frame
 #Subset our long alpha diversity data frame to only contain our metrics of choice
-metrics <- c("observed", "chao1","diversity_shannon")
+metrics <- c("observed","diversity_shannon")
 basic_alpha_metrics_long_df <- meta_alpha_mean_long_df[
   meta_alpha_mean_long_df$metric %in% metrics,
 ]
@@ -1234,7 +1231,7 @@ basic_alpha_metrics_long_df$metric <- gsub(pattern = "diversity_shannon",
 #Therefore change back to factor
 #We will also choose our order of the metric names for plotting
 basic_alpha_metrics_long_df$metric <- factor(x = basic_alpha_metrics_long_df$metric,
-                                             levels = c("observed","chao1","shannon"))
+                                             levels = c("observed","shannon"))
 #Check level order of metric factor column
 levels(basic_alpha_metrics_long_df$metric)
 #Check head of subsetted long data frame
@@ -1250,18 +1247,18 @@ library(webexercises)
 ```
 # $\alpha$: Plot and stats
 
-In this chapter we will create a violin plot, similar to a box plot, to visullaise our metrics.
-To detmeine if differences are significant we will then carry out Kruskal Wallis test and Paired Wilcoxon tests. 
+In this chapter we will create a violin plot, similar to a box plot, to visualise our metrics.
+To determine if differences are significant we will then carry out Kruskal Wallis and Paired Wilcoxon tests. 
 
 ## $\alpha$: Violin plot
 <center>
-![](figures/violin_2.png){style="width:100px"}
+![](figures/violin_2.png){style="width:100px; background-color:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 To visualise the differences of the alpha diversity values between the four different media we'll use violin plots.
 We can use the function `ggplot2::geom_violin()` to carry this out.
 
-Additionally, we'll add a point for each value and colour it based on the site it canme from (UD, MD, or LD).
+Additionally, we'll add a point for each value and colour it based on the site it came from (UD, MD, or LD).
 The function `ggforce::geom_sina()` can be used for this.
 We'll use its parameter `alpha()` to make the points 50% (`0.5`) transparent.
 
@@ -1302,17 +1299,17 @@ IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_media_violinplot.p
 
 We can carry out statistics to compare the alpha diversity values between sample groups.
 
+An important note is that we are using our wide data frame (`meta_alpha_mean_df`) rather than our long data frame (`basic_alpha_metrics_long_df`).
+
 ### Kruskal Wallis test
 
 To determine if there is an overall difference in our data we'll use the Kruskal Wallis test.
-We'll carry this out using the media grouping for our three alpha diversity values.
+We'll carry this out using the media grouping for our two alpha diversity values.
 
 ```{R, eval =FALSE}
 #Kruskal Wallis test
 #Observed ASVs
 kruskal.test(observed ~ media, data = meta_alpha_mean_df)
-#Chao1 estimator
-kruskal.test(chao1 ~ media, data = meta_alpha_mean_df)
 #Shannon diversity
 kruskal.test(shannon ~ media, data = meta_alpha_mean_df)
 ```
@@ -1329,8 +1326,6 @@ This tests
 #Paired wilcoxon test
 #Observed ASVs
 pairwise.wilcox.test(meta_alpha_mean_df$observed, meta_alpha_mean_df, p.adjust.method = "holm")
-#Chao1 estimator
-pairwise.wilcox.test(meta_alpha_mean_df$chao1, meta_alpha_mean_df, p.adjust.method = "holm")
 #Shannon diversity
 pairwise.wilcox.test(meta_alpha_mean_df$shannon, meta_alpha_mean_df, p.adjust.method = "holm")
 ```
@@ -1348,7 +1343,7 @@ library(webexercises)
 </center>
 
 Rather than having the plot and stats separate, we can add stats onto our plot.
-This can be carried out with the function `stat_compare_means()` from the ``ggpubr` package.
+This can be carried out with the function `stat_compare_means()` from the `ggpubr` package.
 
 ## List of comparisons
 <center>
@@ -1384,7 +1379,7 @@ str(my_comparisons)
 
 ## Violin plot with stats
 <center>
-![](figures/eye_2.png){style="width:200px"}
+![](figures/eye_2.png){style="width:200px;background-color:white; border-radius:15px; border:white solid 5px"}
 </center>
 
 With our __list__ of comparisons we can add `ggpubr::stat_compare_means()` to our `ggplot2` code.
@@ -1409,7 +1404,7 @@ IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_media_violinplot_p
 
 ## Reorder x-axis and stats
 <center>
-![](figures/reorder.png){style="width:200px; background-color:white; border-radius:15px"}
+![](figures/reorder.png){style="width:200px; background-color:white; border-radius:15px; border:white solid 5px"}
 </center>
 
 `ggplot` orders the x-axis by alphabetical order.
@@ -1470,10 +1465,10 @@ library(webexercises)
 As an optional task create a new violin plot that includes the following:
 
 - Plots the metrics:
-  - "chao1"
+  - "diversity_inverse_simpson" renaming it as "invsimpson"
   - "evenness_pielou" renaming it as "pielou"
   - "diversity_fisher" renaming it as "fisher"
-  - Ensure they are in the order "chao1", "pielou", then "fisher"
+  - Ensure they are in the order "pielou", "invsimpson", then "fisher"
 - The x-axis is separated by Site (UD, MD, LD) rather than media.
   - Ensure the order is UD, MD, then LD
 - Points are coloured by Media (ENV, CVP, KBC, and TSA)
@@ -1485,10 +1480,14 @@ Subset [long alpha diversity table created earlier in this chapter](#alpha_long_
 ```{R, eval=FALSE}
 #Process our long data frame
 #Subset our long alpha diversity data frame to only contain our metrics of choice
-metrics <- c("chao1", "evenness_pielou","diversity_fisher")
+metrics <- c("diversity_inverse_simpson", "evenness_pielou","diversity_fisher")
 subset_alpha_metrics_long_df <- meta_alpha_mean_long_df[
   meta_alpha_mean_long_df$metric %in% metrics,
 ]
+#Change instances of diversity_inverse_simpson to invsimpson
+subset_alpha_metrics_long_df$metric <- gsub(pattern = "diversity_inverse_simpson",
+                                           replacement = "invsimpson",
+                                           x = subset_alpha_metrics_long_df$metric)
 #Change instances of evenness_pielou to pielou
 subset_alpha_metrics_long_df$metric <- gsub(pattern = "evenness_pieloue",
                                            replacement = "pielou",
@@ -1501,7 +1500,7 @@ subset_alpha_metrics_long_df$metric <- gsub(pattern = "diversity_fisher",
 #Therefore change back to factor
 #We will also choose our order of the metric names for plotting
 subset_alpha_metrics_long_df$metric <- factor(x = subset_alpha_metrics_long_df$metric,
-                                             levels = c("chao1","pielou","fisher"))
+                                             levels = c("pielou","invsimpson","fisher"))
 #Check level order of metric factor column
 levels(subset_alpha_metrics_long_df$metric)
 #Check head of subsetted long data frame
@@ -1533,7 +1532,7 @@ subset_alpha_metrics_long_df$media <- factor(subset_alpha_metrics_long_df$media,
                                             #Set order of levels
                                             levels = c("ENV", "CVP", "KBC", "TSA"))
 #Order comparisons
-my_ordered_comparisons <- my_comparisons[c(1,3,2)]
+my_ordered_comparisons <- my_comparisons[c(3,1,2)]
 my_ordered_comparisons
 ```
 
@@ -1579,7 +1578,7 @@ library(webexercises)
 
 # $\beta$ Diversity intro {#beta_chap}
 <center>
-![](figures/beta_iterative_rarefaction.png){style="width:300px"}
+![](figures/beta_iterative_rarefaction.png){style="width:300px;  background-color:white; border-radius:15px"}
 </center>
 
 This section will teach you how to carry out __beta diversity__ analysis.
@@ -1587,11 +1586,11 @@ The steps will include:
 
 - Calculating __beta diversity__ distances
 - Using __iterative rarefaction__ to create averaged distance values
-- Carrying various ordination techniques to visualise the distances between samples
+- Carrying out various ordination techniques to visualise the distances between samples
 
 ## $\beta$: Setup
 <center>
-![](figures/setup_7.png){style="width:200px"}
+![](figures/setup_7.png){style="width:200px; background-color:white; border-radius:15px; border: 5px white solid"}
 </center>
 
 Create a new R jupyter notebook called "Beta_diversity.ipynb".
@@ -1607,7 +1606,7 @@ library("vegan")
 library("rbiom")
 library("ape")
 #Load processed but unrarefied ASV data from main R community workshop
-load("phyloseq.RData")
+load("/pub14/tea/nsc206/NEOF/R_community/data/phyloseq.RData")
 ```
 
 <!--chapter:end:18-Beta_intro.Rmd-->
@@ -1648,7 +1647,7 @@ There are 2 types of Unifrac distances:
 
 We'll calculate weighted Unifrac distances by specifying the parameter `weighted = TRUE`.
 
-So our output works with subsequent ordination step we'll convert the output of `rbiom::unifrac()` into a matrix with `as.matrix()`.
+To ensure our output works with subsequent ordination step we'll convert the output of `rbiom::unifrac()` into a matrix with `as.matrix()`.
 
 Carry out the matrix production with the below script:
 
@@ -1669,9 +1668,9 @@ head(unifrac_rbiom_microbiome)
 
 To calculate non-unifrac __beta diversity__ distances we can use the `vegan` package and its function `vegdist()`.
 
-The function `rbiom::unifrac()` calculates paired distances, this is the samples in the `otu_table` of a phyloseq object.
-Unfortunately, `vegan::vegdist()` calculates paired distances by rows (features), this being the features in the `otu_table` of a phyloseq object.
-We do not want this but thankfully all we need to add is the function `t()` to our abundance object to transpose the data.
+The function `rbiom::unifrac()` calculates paired distances by columns, this is the samples in the `otu_table` of a phyloseq object.
+Unfortunately, `vegan::vegdist()` calculates paired distances by rows, this being the features in the `otu_table` of a phyloseq object.
+We do not want this but thankfully we can the function `t()` to our abundance object to transpose the data.
 
 Create a __Bray-Curtis__ distance matrix with the below code:
 
@@ -1696,11 +1695,11 @@ library(webexercises)
 ![](figures/iterative_distances.png){style="width:400px"}
 </center>
 
-Now that we know how to create a __beta diveristy__ paired distance matrix, we can create one with averaged values created by __iterative rarefaction__.
+Now that we know how to create a __beta diveristy__ paired distance matrix, we can create one with averaged values produced by __iterative rarefaction__.
 
 ## Iterative rarefaction values
 <center>
-![](figures/ten_rng_seeds.png){style="width:200px"}
+![](figures/ten_rng_seeds.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 We need to set our __rarefaction__ values and rngseeds.
@@ -1720,10 +1719,10 @@ rarefaction_iters <- length(rngseed_vec)
 
 ## Iterative beta diversity calculation
 <center>
-![](figures/mean.png){style="width:200px"}
+![](figures/mean.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
-The below code carries out __itertaive rarefaction__ and produces an averaged __weighted unifrac__ paired distance matrix.
+The below code carries out __iterative rarefaction__ and produces an averaged __weighted unifrac__ paired distance matrix.
 
 ```{R, eval = FALSE}
 #Loop to create iteration based rarefied weighted unifrac values
@@ -1790,7 +1789,7 @@ library(webexercises)
 ```
 # $\beta$: Ordination
 <center>
-![](figures/navigation.png){style="width:200px"}
+![](figures/navigation.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 There are various ways to ordinate paired dissimilarity distances.
@@ -1819,7 +1818,7 @@ To carry this out we can use the function `vegan::monoMDS()`.
 
 ### NMDS ordinate
 <center>
-![](figures/speedometer_miles_per_hour.png){style="width:200px"}
+![](figures/speedometer_miles_per_hour.png){style="width:200px; background:white; border-radius:15px; border:white 5px solid"}
 </center>
 
 We provide the function with our __beta diversity dissimilarity matrix__ and the parameter `k = 2`.
@@ -1885,7 +1884,7 @@ We will colour the points by site and the point shapes will be determined by the
 #Produce NMDS scatter plot
 #Plot ordination
 nmds.wunifrac <- ggplot(data = nmds_points_metadata,
-                        aes(x = NMDS1, y = NMDS2, color = site, shape = media)) +
+                        aes(x = MDS1, y = MDS2, color = site, shape = media)) +
                 ggplot2::geom_point()
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_NMDS_wunifrac_media_site.png",
@@ -1961,8 +1960,8 @@ General guidelines to how good our plot are based on the sum of these 2 values:
 - 70-89%: Good
 - 90-100%: Great
 
-The __% variance explained__ is contained in the `values` __data frame__ within the `Relative_eig` column.
-These are proportion values (0-1) so we will times them by 100 to make them percentages and round these digits to 2 decimal places (`round(,digits=2)`.
+The __% variance explained__ is contained in the `Relative_eig` column within the `values` __data frame__.
+These are proportion values (0-1) so we will multiply them by 100 to make them percentages and round these digits to 2 decimal places (`round(,digits=2)`).
 
 Let's extract the __% variance explained__ values.
 

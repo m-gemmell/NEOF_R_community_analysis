@@ -1,6 +1,6 @@
 # $\beta$: Ordination
 <center>
-![](figures/navigation.png){style="width:200px"}
+![](figures/navigation.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 There are various ways to ordinate paired dissimilarity distances.
@@ -29,7 +29,7 @@ To carry this out we can use the function `vegan::monoMDS()`.
 
 ### NMDS ordinate
 <center>
-![](figures/speedometer_miles_per_hour.png){style="width:200px"}
+![](figures/speedometer_miles_per_hour.png){style="width:200px; background:white; border-radius:15px; border:white 5px solid"}
 </center>
 
 We provide the function with our __beta diversity dissimilarity matrix__ and the parameter `k = 2`.
@@ -95,7 +95,7 @@ We will colour the points by site and the point shapes will be determined by the
 #Produce NMDS scatter plot
 #Plot ordination
 nmds.wunifrac <- ggplot(data = nmds_points_metadata,
-                        aes(x = NMDS1, y = NMDS2, color = site, shape = media)) +
+                        aes(x = MDS1, y = MDS2, color = site, shape = media)) +
                 ggplot2::geom_point()
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_NMDS_wunifrac_media_site.png",
@@ -171,14 +171,15 @@ General guidelines to how good our plot are based on the sum of these 2 values:
 - 70-89%: Good
 - 90-100%: Great
 
-The __% variance explained__ is contained in the `values` __data frame__ within the `Relative_eig` column.
-These are proportion values (0-1) so we will times them by 100 to make them percentages and round these digits to 2 decimal places (`round(,digits=2)`.
+The __% variance explained__ is contained in the `Relative_eig` column within the `values` __data frame__.
+These are proportion values (0-1) so we will multiply them by 100 to make them percentages and round these digits to 2 decimal places (`round(,digits=2)`).
 
 Let's extract the __% variance explained__ values.
 
 ```{R, eval = FALSE}
 #Variation explained values 
 pcoa_axis_var_explained <- round(x=pcoa_res$values[,"Relative_eig"] * 100, digits=2)
+pcoa_axis_var_explained
 ```
 
 ### PCoA data frame with metadata

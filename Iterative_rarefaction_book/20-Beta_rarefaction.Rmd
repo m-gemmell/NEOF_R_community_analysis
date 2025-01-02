@@ -3,11 +3,11 @@
 ![](figures/iterative_distances.png){style="width:400px"}
 </center>
 
-Now that we know how to create a __beta diveristy__ paired distance matrix, we can create one with averaged values created by __iterative rarefaction__.
+Now that we know how to create a __beta diveristy__ paired distance matrix, we can create one with averaged values produced by __iterative rarefaction__.
 
 ## Iterative rarefaction values
 <center>
-![](figures/ten_rng_seeds.png){style="width:200px"}
+![](figures/ten_rng_seeds.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 We need to set our __rarefaction__ values and rngseeds.
@@ -27,10 +27,10 @@ rarefaction_iters <- length(rngseed_vec)
 
 ## Iterative beta diversity calculation
 <center>
-![](figures/mean.png){style="width:200px"}
+![](figures/mean.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
-The below code carries out __itertaive rarefaction__ and produces an averaged __weighted unifrac__ paired distance matrix.
+The below code carries out __iterative rarefaction__ and produces an averaged __weighted unifrac__ paired distance matrix.
 
 ```{R, eval = FALSE}
 #Loop to create iteration based rarefied weighted unifrac values

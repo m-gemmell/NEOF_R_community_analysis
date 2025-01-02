@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-20" />
+<meta name="date" content="2025-01-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -330,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="figures/violin_plot_w_stats.png" style="width:200px; background-color:white; border-radius:15px" />
 </center>
 <p>Rather than having the plot and stats separate, we can add stats onto our plot.
-This can be carried out with the function <code>stat_compare_means()</code> from the `<code>ggpubr</code> package.</p>
+This can be carried out with the function <code>stat_compare_means()</code> from the <code>ggpubr</code> package.</p>
 <div id="list-of-comparisons" class="section level2 hasAnchor" number="16.1">
 <h2><span class="header-section-number">16.1</span> List of comparisons<a href="16-Alpha_plot_with_stats.html#list-of-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
@@ -369,7 +369,7 @@ We provide it with three parameters:</p>
 <div id="violin-plot-with-stats" class="section level2 hasAnchor" number="16.2">
 <h2><span class="header-section-number">16.2</span> Violin plot with stats<a href="16-Alpha_plot_with_stats.html#violin-plot-with-stats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/eye_2.png" style="width:200px" />
+<img src="figures/eye_2.png" style="width:200px;background-color:white; border-radius:15px; border:white solid 5px" />
 </center>
 <p>With our <strong>list</strong> of comparisons we can add <code>ggpubr::stat_compare_means()</code> to our <code>ggplot2</code> code.
 This function will both calculate the Wilcoxon tests and add them to the plot.</p>
@@ -391,7 +391,7 @@ This function will both calculate the Wilcoxon tests and add them to the plot.</
 <div id="reorder-x-axis-and-stats" class="section level2 hasAnchor" number="16.3">
 <h2><span class="header-section-number">16.3</span> Reorder x-axis and stats<a href="16-Alpha_plot_with_stats.html#reorder-x-axis-and-stats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/reorder.png" style="width:200px; background-color:white; border-radius:15px" />
+<img src="figures/reorder.png" style="width:200px; background-color:white; border-radius:15px; border:white solid 5px" />
 </center>
 <p><code>ggplot</code> orders the x-axis by alphabetical order.
 This is not normally wanted so we will convert our media column to a <strong>factor</strong> and order the levels how we want them.

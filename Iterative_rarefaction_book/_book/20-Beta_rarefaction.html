@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-20" />
+<meta name="date" content="2025-01-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -329,11 +329,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/iterative_distances.png" style="width:400px" />
 </center>
-<p>Now that we know how to create a <strong>beta diveristy</strong> paired distance matrix, we can create one with averaged values created by <strong>iterative rarefaction</strong>.</p>
+<p>Now that we know how to create a <strong>beta diveristy</strong> paired distance matrix, we can create one with averaged values produced by <strong>iterative rarefaction</strong>.</p>
 <div id="iterative-rarefaction-values" class="section level2 hasAnchor" number="20.1">
 <h2><span class="header-section-number">20.1</span> Iterative rarefaction values<a href="20-Beta_rarefaction.html#iterative-rarefaction-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/ten_rng_seeds.png" style="width:200px" />
+<img src="figures/ten_rng_seeds.png" style="width:200px; background:white; border-radius:15px" />
 </center>
 <p>We need to set our <strong>rarefaction</strong> values and rngseeds.
 We can use the same code as we used in the <strong>alpha_diversity</strong> analysis.</p>
@@ -350,9 +350,9 @@ We can use the same code as we used in the <strong>alpha_diversity</strong> anal
 <div id="iterative-beta-diversity-calculation" class="section level2 hasAnchor" number="20.2">
 <h2><span class="header-section-number">20.2</span> Iterative beta diversity calculation<a href="20-Beta_rarefaction.html#iterative-beta-diversity-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/mean.png" style="width:200px" />
+<img src="figures/mean.png" style="width:200px; background:white; border-radius:15px" />
 </center>
-<p>The below code carries out <strong>itertaive rarefaction</strong> and produces an averaged <strong>weighted unifrac</strong> paired distance matrix.</p>
+<p>The below code carries out <strong>iterative rarefaction</strong> and produces an averaged <strong>weighted unifrac</strong> paired distance matrix.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb58-1"><a href="20-Beta_rarefaction.html#cb58-1" tabindex="-1"></a><span class="co">#Loop to create iteration based rarefied weighted unifrac values</span></span>
 <span id="cb58-2"><a href="20-Beta_rarefaction.html#cb58-2" tabindex="-1"></a></span>
 <span id="cb58-3"><a href="20-Beta_rarefaction.html#cb58-3" tabindex="-1"></a><span class="co">#Create matrix to contain summed wunifrac beta diversity values</span></span>
