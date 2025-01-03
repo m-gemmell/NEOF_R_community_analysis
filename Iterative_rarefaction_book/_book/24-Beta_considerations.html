@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-01-02" />
+<meta name="date" content="2025-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -326,9 +326,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="beta-considerations" class="section level1 hasAnchor" number="24">
 <h1><span class="header-section-number">Chapter 24</span> <span class="math inline">\(\beta\)</span>: Considerations<a href="24-Beta_considerations.html#beta-considerations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<center>
+<img src="figures/consider.png" style="width:200px; background:white; border-radius:15px" />
+</center>
 <p>There are many considerations to take in mind when carrying out beta diversity analysis.</p>
 <div id="which-distance-measure-to-use" class="section level2 hasAnchor" number="24.1">
 <h2><span class="header-section-number">24.1</span> Which distance measure to use?<a href="24-Beta_considerations.html#which-distance-measure-to-use" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<center>
+<img src="figures/inch_or_mm.xcf.png" style="width:150px; background:white; border-radius:15px; border: white 5px solid" />
+</center>
 <p>There are many beta diversity distances that you can use.
 Ultimately the choice is yours but our recommendations would be:</p>
 <ul>
@@ -341,23 +347,29 @@ Ultimately the choice is yours but our recommendations would be:</p>
 <li>Richness (presence/absence): Unweighted unifrac &amp; Jaccard</li>
 <li>Richness and abundance values: Weighted unifrac &amp; Bray-Curtis</li>
 </ul>
-<p>Normally the measure using abundance values will be more infomrative.
-However, it is good to attempt the richness only approach too as it may show something hidden by tthe inclusion of the abundance data.</p>
+<p>Normally the measure using abundance values will be more informative.
+However, it is good to attempt the richness only approach too as it may show something hidden by the inclusion of the abundance data.</p>
 </div>
 <div id="which-ordination-method-to-use" class="section level2 hasAnchor" number="24.2">
 <h2><span class="header-section-number">24.2</span> Which ordination method to use?<a href="24-Beta_considerations.html#which-ordination-method-to-use" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<center>
+<img src="figures/compass_2.png" style="width:150px; background:white; border-radius:15px" />
+</center>
 <p>A common question is "Which ordination method should I use?"
 There are many ordination methods with <strong>NMDS</strong> and <strong>PCoA</strong> being popular for ordination distance based values (dissimilarity matrices).</p>
 <p>A general guide to which to use for your data is by choosing the most informative one.
 Choose the one that shows the best picture and that explains the data the best.</p>
-<p>In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high _% variance explained__ and it shows more separation of the samples.</p>
+<p>In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high <strong>% variance explained</strong> and it shows more separation of the samples.</p>
 <p>If the PCoA plot had a low <strong>% variance explained</strong> it may be better to choose the NMDS plot.
 NMDS attempts to explain the data in the number of dimensions chosen by the user.
 We chose 2 as we want to plot the data in 2 dimensions.</p>
 </div>
 <div id="more-dimensions" class="section level2 hasAnchor" number="24.3">
 <h2><span class="header-section-number">24.3</span> More dimensions<a href="24-Beta_considerations.html#more-dimensions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Your data may be very complex and two dimensions would not be sufficient to plot the data.
+<center>
+<img src="figures/3d.png" style="width:150px; background:white; border-radius:15px" />
+</center>
+<p>Your data may be very complex and two dimensions may not be sufficient to plot the data.
 There are two main ways to plot multiple dimensions.</p>
 <div id="produce-multiple-plots" class="section level3 unnumbered hasAnchor">
 <h3>Produce multiple plots<a href="24-Beta_considerations.html#produce-multiple-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>

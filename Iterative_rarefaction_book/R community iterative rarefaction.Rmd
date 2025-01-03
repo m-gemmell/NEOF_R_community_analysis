@@ -1560,7 +1560,7 @@ IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_site_violinplot_pa
 ![](figures/recap.png){style="width:200px; background-color:white; border-radius:15px"}
 </center>
 
-In this chapter you have:
+In this part you have:
 
 - Produced __alpha diversity__ values through __iterative rarefaction__
 - Created a long data frame containing metadata and specified __alpha diversity__ metrics
@@ -1760,7 +1760,7 @@ for (i in 2:rarefaction_iters){
 }
 #Divide by number of rarefaction iterations to get average
 beta_df_mean <- beta_df_sum / rarefaction_iters
-#Save alpha mean data frame
+#Save beta mean data frame
 save(beta_df_mean, file = "wunifrac_df_mean.RData")
 #View first 6 rows and columns of matrix
 beta_df_mean[1:6,1:6]
@@ -1968,6 +1968,7 @@ Let's extract the __% variance explained__ values.
 ```{R, eval = FALSE}
 #Variation explained values 
 pcoa_axis_var_explained <- round(x=pcoa_res$values[,"Relative_eig"] * 100, digits=2)
+pcoa_axis_var_explained
 ```
 
 ### PCoA data frame with metadata
@@ -2036,7 +2037,7 @@ library(webexercises)
 ```
 # $\beta$: Stats
 <center>
-![](figures/navigation.png){style="width:200px"}
+![](figures/stats.png){style="width:200px; background:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 Now to carry out some statistics on our ordinations.
@@ -2060,7 +2061,7 @@ metadf <- data.frame(phyloseq::sample_data(pseq))
 ![](figures/permanova.png){style="width:200px"}
 </center>
 
-To determine if their is a significant overall difference between the media & site groups we can carry out a PERMANOVA.
+To determine if their is a significant overall difference between the media & site groups we can carry out a PERMANOVA test.
 We'll use the package `vegan` with its function `adonis2()`.
 
 __Note:__ The original `vegan::adonis()` function is deprecated and should not be used.
@@ -2069,6 +2070,7 @@ __Note:__ The original `vegan::adonis()` function is deprecated and should not b
 #PERMANOVA of media+site
 wunifrac_adonis <- vegan::adonis2(beta_df_mean ~ media+site,
                                   data = metadf, by = "margin")
+wunifrac_adonis
 ```
 
 ## Pairwise PERMANOVA
@@ -2076,7 +2078,7 @@ wunifrac_adonis <- vegan::adonis2(beta_df_mean ~ media+site,
 ![](figures/pear.png){style="width:100px"}
 </center>
 
-We can use a pairwise PERMANOVA to determine if their are significant differences between groups in a metadata category.
+We can use a pairwise PERMANOVA to determine if there are significant differences between groups in a metadata category.
 The below code carries this out for the media groupings.
 
 ```{R, eval = FALSE}
@@ -2121,7 +2123,7 @@ library(webexercises)
 ```
 # $\beta$: Subset ordinations
 <center>
-![](figures/navigation_subset.png){style="width:200px"}
+![](figures/navigation_subset.png){style="width:200px; background:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 When you ordinate data the distances within groups may be hard to see.
@@ -2132,7 +2134,7 @@ We will therefore subset our ordination in this chapter to only look at the medi
 
 ## Subset distance matrix
 <center>
-![](figures/wide_data_frame_subset.png){style="width:200px"}
+![](figures/wide_data_frame_subset.png){style="width:200px; background:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 The ordination values (PCoA, NMDS) will change when you remove or add samples.
@@ -2142,7 +2144,7 @@ However, paired distance values never change between samples.
 We can therefore subset our distance matrix and then ordinate it.
 This is much better than having to carry out the iterative rarefaction again.
 
-Subset out previously produced distance matrix to only removes the environmental samples:
+Subset out previously produced distance matrix to remove the environmental samples:
 
 ```{R, eval=FALSE}
 #Load wunifrac
@@ -2158,7 +2160,7 @@ beta_df_mean_no_env
 
 ## Points long data frame
 <center>
-![](figures/long_data_frame_subset.png){style="width:150px"}
+![](figures/long_data_frame_subset.png){style="width:150px; background:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 We can now ordinate (PCoA) our subset distance matrix:
@@ -2179,16 +2181,16 @@ Followed by producing a long data frame for plotting:
 
 ```{R, eval = FALSE}
 #Create point long data frame with metadata
-#Ennsure row names order matches
-if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
-  metadf <- metadf[row.names(pcoa_points),]
+#Ensure row names order matches
+if (identicial(row.names(beta_df_mean_noenv), row.names(pcoa_points)) == FALSE) {
+  beta_df_mean_noenv <- beta_df_mean_noenv[row.names(pcoa_points),]
 }
 #Make points with metadata data frame
 pcoa_points_metadata <- cbind(pcoa_points, metadf_noenv)
 head(nmds_points_metadata)
 #Save object we want, remove ones we don't
 save(pcoa_points_metadata, file = "noenv_wunifrac_PCoA.RData")
-rm(metadf, nmds_res, pcoa_points)
+rm(metadf, pcoa_points, pcoa_res)
 ```
 
 ## Media PCoA scatter plot
@@ -2230,10 +2232,16 @@ As the statistics are based on the paired distances and not the ordination you d
 library(webexercises)
 ```
 # $\beta$: Considerations
+<center>
+![](figures/consider.png){style="width:200px; background:white; border-radius:15px"}
+</center>
 
 There are many considerations to take in mind when carrying out beta diversity analysis.
 
 ## Which distance measure to use?
+<center>
+![](figures/inch_or_mm.xcf.png){style="width:150px; background:white; border-radius:15px; border: white 5px solid"}
+</center>
 
 There are many beta diversity distances that you can use.
 Ultimately the choice is yours but our recommendations would be:
@@ -2248,10 +2256,13 @@ There are two distances in each set as one is based on:
 - Richness (presence/absence): Unweighted unifrac & Jaccard
 - Richness and abundance values: Weighted unifrac & Bray-Curtis
 
-Normally the measure using abundance values will be more infomrative.
-However, it is good to attempt the richness only approach too as it may show something hidden by tthe inclusion of the abundance data.
+Normally the measure using abundance values will be more informative.
+However, it is good to attempt the richness only approach too as it may show something hidden by the inclusion of the abundance data.
 
 ## Which ordination method to use?
+<center>
+![](figures/compass_2.png){style="width:150px; background:white; border-radius:15px"}
+</center>
 
 A common question is "Which ordination method should I use?"
 There are many ordination methods with __NMDS__ and __PCoA__ being popular for ordination distance based values (dissimilarity matrices).
@@ -2259,15 +2270,18 @@ There are many ordination methods with __NMDS__ and __PCoA__ being popular for o
 A general guide to which to use for your data is by choosing the most informative one.
 Choose the one that shows the best picture and that explains the data the best.
 
-In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high _% variance explained__ and it shows more separation of the samples.
+In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high __% variance explained__ and it shows more separation of the samples.
 
 If the PCoA plot had a low __% variance explained__ it may be better to choose the NMDS plot.
 NMDS attempts to explain the data in the number of dimensions chosen by the user.
 We chose 2 as we want to plot the data in 2 dimensions.
 
 ## More dimensions
+<center>
+![](figures/3d.png){style="width:150px; background:white; border-radius:15px"}
+</center>
 
-Your data may be very complex and two dimensions would not be sufficient to plot the data.
+Your data may be very complex and two dimensions may not be sufficient to plot the data.
 There are two main ways to plot multiple dimensions.
 
 ### Produce multiple plots {-}
@@ -2299,10 +2313,13 @@ library(webexercises)
 # $\beta$: Practice
 
 ## $\beta$: Task
+<center>
+![](figures/tasks.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
 
 As an optional task create a NMDS and PCoA scatter plot using Bray-Curtis. To do this carry out the following steps:
 
-- Generate a Bray-Curtis distance matrix using the 10 rng seeds previosuly created.
+- Generate a Bray-Curtis distance matrix using the 10 rng seeds previously created.
 - Carry out ordination using NMDS and PCoA
 - Create long data frames with metadata and points
 - Plot the points using the media groupings as the shape and the site groupings as the colour
@@ -2314,7 +2331,7 @@ Rarefaction values and rng seeds.
 #Rarefaction size
 #Minimum sample depth in this case
 rarefaction_size <- min(microbiome::readcount(pseq))
-#Load the vector of 10 rngseeds created in the previous chapter
+#Load the vector of 10 rngseeds created in the Itertaing rarefaction chapter
 load("rngseeds.RData")
 #Number of rarefaction iterations to be carried out
 #Based on length of rng seed vector
@@ -2347,7 +2364,6 @@ for (i in 2:rarefaction_iters){
     verbose = FALSE)
   #Beta diversity
   beta_df <- as.matrix(
-    rbiom::unifrac(
       vegan::vegdist(x = t(phyloseq::otu_table(pseq_rarefy)), 
                  method = "bray"))
   #Add/sum the new data frame values to the sum data frame
@@ -2355,12 +2371,18 @@ for (i in 2:rarefaction_iters){
 }
 #Divide by number of rarefaction iterations to get average
 beta_df_mean <- beta_df_sum / rarefaction_iters
-#Save alpha mean data frame
+#Save bray curtis mean data frame
 save(beta_df_mean, file = "bray_curtis_df_mean.RData")
 #View first 6 rows and columns of matrix
 beta_df_mean[1:6,1:6]
 #Remove unneeded objects
 rm(beta_df_sum, beta_df_mean, pseq_rarefy)
+```
+
+Load Bray-Curtis distance matrix
+```{R, eval=FALSE}
+#Load bray-curtis
+load("bray_curtis_df_mean.RData")
 ```
 
 NMDS ordinate & long data frame
@@ -2372,11 +2394,11 @@ nmds_res$points
 #Create long data frame with metadata and points
 #Extract metadata and ensure row names order matches
 metadf <- phyloseq::sample_data(pseq)
-if (identicial(row.names(metadf), row.names(nmds_points)) == FALSE) {
-  metadf <- metadf[row.names(nmds_points),]
+if (identicial(row.names(metadf), row.names(nmds_res$points)) == FALSE) {
+  metadf <- metadf[row.names(nmds_res$points),]
 }
 #Make points with metadata data frame
-nmds_points_metadata <- cbind(nmds_points, metadf)
+nmds_points_metadata <- cbind(nmds_res$points, metadf)
 #Check head of data frame
 head(nmds_points_metadata)
 #Save object we want, remove ones we don't
@@ -2389,7 +2411,7 @@ NMDS scatterplot
 #Produce NMDS scatter plot
 #Plot ordination
 nmds.bray <- ggplot(data = nmds_points_metadata,
-                        aes(x = NMDS1, y = NMDS2, color = site, shape = media)) +
+                        aes(x = MDS1, y = MDS2, color = site, shape = media)) +
                 ggplot2::geom_point()
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_NMDS_bray_media_site.png",
@@ -2419,7 +2441,7 @@ if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
 pcoa_points_metadata <- cbind(pcoa_points, metadf)
 head(pcoa_points_metadata)
 #Save object we want, remove ones we don't
-save(pcoa_points_metadata, file = "wunifrac_PCoA.RData")
+save(pcoa_points_metadata, file = "bray_PCoA.RData")
 rm(metadf, pcoa_res, pcoa_points)
 ```
 
@@ -2442,6 +2464,18 @@ IRdisplay::display_png(file = "./Beta_diversity_pcoa_bray_media_site.png")
 `r unhide()`
 
 ## $\beta$: Recap
+<center>
+![](figures/recap.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+In this part you have:
+
+- Produced __beta diversity__ paired distance matrices through __iterative rarefaction__
+- Ordinated your __beta diversity__ values through PCoA and NMDS
+- Visualised the ordinated data through scatter plots 
+- Carried out PERMANOVA tests to determine significant differences between groups
+
+With these skills and knowledge you will be able to carry out thorough investigations of __beta diversity__ in your future research.
 
 <!--chapter:end:25-Beta_practice.Rmd-->
 

@@ -1,6 +1,6 @@
 # Rarefaction {#rarefaction_chap}
 <center>
-![](figures/whale.png){style="width:200px; background:white; border-radius:15px"}
+![](figures/whale.png){style="width:200px; background:white; border-radius:15px; border:white 5px solid"}
 </center>
 
 We are going to create a rarefied abundance table in this chapter. 

@@ -1,10 +1,13 @@
 # $\beta$: Practice
 
 ## $\beta$: Task
+<center>
+![](figures/tasks.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
 
 As an optional task create a NMDS and PCoA scatter plot using Bray-Curtis. To do this carry out the following steps:
 
-- Generate a Bray-Curtis distance matrix using the 10 rng seeds previosuly created.
+- Generate a Bray-Curtis distance matrix using the 10 rng seeds previously created.
 - Carry out ordination using NMDS and PCoA
 - Create long data frames with metadata and points
 - Plot the points using the media groupings as the shape and the site groupings as the colour
@@ -16,7 +19,7 @@ Rarefaction values and rng seeds.
 #Rarefaction size
 #Minimum sample depth in this case
 rarefaction_size <- min(microbiome::readcount(pseq))
-#Load the vector of 10 rngseeds created in the previous chapter
+#Load the vector of 10 rngseeds created in the Itertaing rarefaction chapter
 load("rngseeds.RData")
 #Number of rarefaction iterations to be carried out
 #Based on length of rng seed vector
@@ -49,7 +52,6 @@ for (i in 2:rarefaction_iters){
     verbose = FALSE)
   #Beta diversity
   beta_df <- as.matrix(
-    rbiom::unifrac(
       vegan::vegdist(x = t(phyloseq::otu_table(pseq_rarefy)), 
                  method = "bray"))
   #Add/sum the new data frame values to the sum data frame
@@ -57,12 +59,18 @@ for (i in 2:rarefaction_iters){
 }
 #Divide by number of rarefaction iterations to get average
 beta_df_mean <- beta_df_sum / rarefaction_iters
-#Save alpha mean data frame
+#Save bray curtis mean data frame
 save(beta_df_mean, file = "bray_curtis_df_mean.RData")
 #View first 6 rows and columns of matrix
 beta_df_mean[1:6,1:6]
 #Remove unneeded objects
 rm(beta_df_sum, beta_df_mean, pseq_rarefy)
+```
+
+Load Bray-Curtis distance matrix
+```{R, eval=FALSE}
+#Load bray-curtis
+load("bray_curtis_df_mean.RData")
 ```
 
 NMDS ordinate & long data frame
@@ -74,11 +82,11 @@ nmds_res$points
 #Create long data frame with metadata and points
 #Extract metadata and ensure row names order matches
 metadf <- phyloseq::sample_data(pseq)
-if (identicial(row.names(metadf), row.names(nmds_points)) == FALSE) {
-  metadf <- metadf[row.names(nmds_points),]
+if (identicial(row.names(metadf), row.names(nmds_res$points)) == FALSE) {
+  metadf <- metadf[row.names(nmds_res$points),]
 }
 #Make points with metadata data frame
-nmds_points_metadata <- cbind(nmds_points, metadf)
+nmds_points_metadata <- cbind(nmds_res$points, metadf)
 #Check head of data frame
 head(nmds_points_metadata)
 #Save object we want, remove ones we don't
@@ -91,7 +99,7 @@ NMDS scatterplot
 #Produce NMDS scatter plot
 #Plot ordination
 nmds.bray <- ggplot(data = nmds_points_metadata,
-                        aes(x = NMDS1, y = NMDS2, color = site, shape = media)) +
+                        aes(x = MDS1, y = MDS2, color = site, shape = media)) +
                 ggplot2::geom_point()
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Beta_diversity_NMDS_bray_media_site.png",
@@ -121,7 +129,7 @@ if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
 pcoa_points_metadata <- cbind(pcoa_points, metadf)
 head(pcoa_points_metadata)
 #Save object we want, remove ones we don't
-save(pcoa_points_metadata, file = "wunifrac_PCoA.RData")
+save(pcoa_points_metadata, file = "bray_PCoA.RData")
 rm(metadf, pcoa_res, pcoa_points)
 ```
 
@@ -144,3 +152,15 @@ IRdisplay::display_png(file = "./Beta_diversity_pcoa_bray_media_site.png")
 `r unhide()`
 
 ## $\beta$: Recap
+<center>
+![](figures/recap.png){style="width:200px; background-color:white; border-radius:15px"}
+</center>
+
+In this part you have:
+
+- Produced __beta diversity__ paired distance matrices through __iterative rarefaction__
+- Ordinated your __beta diversity__ values through PCoA and NMDS
+- Visualised the ordinated data through scatter plots 
+- Carried out PERMANOVA tests to determine significant differences between groups
+
+With these skills and knowledge you will be able to carry out thorough investigations of __beta diversity__ in your future research.

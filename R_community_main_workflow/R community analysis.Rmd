@@ -1657,12 +1657,12 @@ The Environmental samples (ENV) definitely have the highest diversity with clear
 ```{r, echo = FALSE}
 opts_p <- c(answer="__CVP__", "__KBC__", "__TSA__")
 ```
-Which media has the highest relative abundance of _Protoebacteria_ and the lowest phyla diversity (excluding ENV)? `r longmcq(opts_p)`
+Which media has the highest relative abundance of _Proteobacteria_ and the lowest phyla diversity (excluding ENV)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__CVP__", "__KBC__", answer="__TSA__")
 ```
-Which media has the lowest relative abundance of _Protoebacteria_ and the highest phyla diversity (excluding ENV)? `r longmcq(opts_p)`
+Which media has the lowest relative abundance of _Proteobacteria_ and the highest phyla diversity (excluding ENV)? `r longmcq(opts_p)`
 
 Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.
 
@@ -2096,7 +2096,7 @@ library(webexercises)
 ```
 # Rarefaction {#rarefaction_chap}
 <center>
-![](figures/whale.png){style="width:200px; background:white; border-radius:15px"}
+![](figures/whale.png){style="width:200px; background:white; border-radius:15px; border:white 5px solid"}
 </center>
 
 We are going to create a rarefied abundance table in this chapter. 

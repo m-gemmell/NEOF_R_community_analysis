@@ -68,7 +68,7 @@ for (i in 2:rarefaction_iters){
 }
 #Divide by number of rarefaction iterations to get average
 beta_df_mean <- beta_df_sum / rarefaction_iters
-#Save alpha mean data frame
+#Save beta mean data frame
 save(beta_df_mean, file = "wunifrac_df_mean.RData")
 #View first 6 rows and columns of matrix
 beta_df_mean[1:6,1:6]

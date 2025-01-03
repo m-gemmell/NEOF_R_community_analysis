@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-01-02" />
+<meta name="date" content="2025-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -473,7 +473,8 @@ General guidelines to how good our plot are based on the sum of these 2 values:<
 These are proportion values (0-1) so we will multiply them by 100 to make them percentages and round these digits to 2 decimal places (<code>round(,digits=2)</code>).</p>
 <p>Let's extract the <strong>% variance explained</strong> values.</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb66-1"><a href="21-Beta_ordination.html#cb66-1" tabindex="-1"></a><span class="co">#Variation explained values </span></span>
-<span id="cb66-2"><a href="21-Beta_ordination.html#cb66-2" tabindex="-1"></a>pcoa_axis_var_explained <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="at">x=</span>pcoa_res<span class="sc">$</span>values[,<span class="st">&quot;Relative_eig&quot;</span>] <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits=</span><span class="dv">2</span>)</span></code></pre></div>
+<span id="cb66-2"><a href="21-Beta_ordination.html#cb66-2" tabindex="-1"></a>pcoa_axis_var_explained <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="at">x=</span>pcoa_res<span class="sc">$</span>values[,<span class="st">&quot;Relative_eig&quot;</span>] <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits=</span><span class="dv">2</span>)</span>
+<span id="cb66-3"><a href="21-Beta_ordination.html#cb66-3" tabindex="-1"></a>pcoa_axis_var_explained</span></code></pre></div>
 </div>
 <div id="pcoa-data-frame-with-metadata" class="section level3 hasAnchor" number="21.3.4">
 <h3><span class="header-section-number">21.3.4</span> PCoA data frame with metadata<a href="21-Beta_ordination.html#pcoa-data-frame-with-metadata" class="anchor-section" aria-label="Anchor link to header"></a></h3>

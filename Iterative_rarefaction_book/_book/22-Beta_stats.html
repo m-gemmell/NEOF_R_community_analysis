@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-01-02" />
+<meta name="date" content="2025-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -327,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="beta-stats" class="section level1 hasAnchor" number="22">
 <h1><span class="header-section-number">Chapter 22</span> <span class="math inline">\(\beta\)</span>: Stats<a href="22-Beta_stats.html#beta-stats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/navigation.png" style="width:200px" />
+<img src="figures/stats.png" style="width:200px; background:white; border-radius:15px; border: white solid 5px" />
 </center>
 <p>Now to carry out some statistics on our ordinations.
 These are the same methods as covered in the <a href="https://neof-workshops.github.io/R_community_whqkt8/Course/16-Beta.html#permanova">R community analysis workshop</a>.
@@ -346,19 +346,20 @@ However, the code is slightly different.</p>
 <center>
 <img src="figures/permanova.png" style="width:200px" />
 </center>
-<p>To determine if their is a significant overall difference between the media &amp; site groups we can carry out a PERMANOVA.
+<p>To determine if their is a significant overall difference between the media &amp; site groups we can carry out a PERMANOVA test.
 We'll use the package <code>vegan</code> with its function <code>adonis2()</code>.</p>
 <p><strong>Note:</strong> The original <code>vegan::adonis()</code> function is deprecated and should not be used.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb70-1"><a href="22-Beta_stats.html#cb70-1" tabindex="-1"></a><span class="co">#PERMANOVA of media+site</span></span>
 <span id="cb70-2"><a href="22-Beta_stats.html#cb70-2" tabindex="-1"></a>wunifrac_adonis <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">adonis2</span>(beta_df_mean <span class="sc">~</span> media<span class="sc">+</span>site,</span>
-<span id="cb70-3"><a href="22-Beta_stats.html#cb70-3" tabindex="-1"></a>                                  <span class="at">data =</span> metadf, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span></code></pre></div>
+<span id="cb70-3"><a href="22-Beta_stats.html#cb70-3" tabindex="-1"></a>                                  <span class="at">data =</span> metadf, <span class="at">by =</span> <span class="st">&quot;margin&quot;</span>)</span>
+<span id="cb70-4"><a href="22-Beta_stats.html#cb70-4" tabindex="-1"></a>wunifrac_adonis</span></code></pre></div>
 </div>
 <div id="pairwise-permanova" class="section level2 hasAnchor" number="22.3">
 <h2><span class="header-section-number">22.3</span> Pairwise PERMANOVA<a href="22-Beta_stats.html#pairwise-permanova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
 <img src="figures/pear.png" style="width:100px" />
 </center>
-<p>We can use a pairwise PERMANOVA to determine if their are significant differences between groups in a metadata category.
+<p>We can use a pairwise PERMANOVA to determine if there are significant differences between groups in a metadata category.
 The below code carries this out for the media groupings.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb71-1"><a href="22-Beta_stats.html#cb71-1" tabindex="-1"></a><span class="co">#Pairwise PERMANOVA for media</span></span>
 <span id="cb71-2"><a href="22-Beta_stats.html#cb71-2" tabindex="-1"></a><span class="co">#Get combinations of unique media values</span></span>

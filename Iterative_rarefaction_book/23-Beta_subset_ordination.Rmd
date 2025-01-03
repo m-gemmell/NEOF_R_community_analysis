@@ -1,6 +1,6 @@
 # $\beta$: Subset ordinations
 <center>
-![](figures/navigation_subset.png){style="width:200px"}
+![](figures/navigation_subset.png){style="width:200px; background:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 When you ordinate data the distances within groups may be hard to see.
@@ -11,7 +11,7 @@ We will therefore subset our ordination in this chapter to only look at the medi
 
 ## Subset distance matrix
 <center>
-![](figures/wide_data_frame_subset.png){style="width:200px"}
+![](figures/wide_data_frame_subset.png){style="width:200px; background:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 The ordination values (PCoA, NMDS) will change when you remove or add samples.
@@ -21,7 +21,7 @@ However, paired distance values never change between samples.
 We can therefore subset our distance matrix and then ordinate it.
 This is much better than having to carry out the iterative rarefaction again.
 
-Subset out previously produced distance matrix to only removes the environmental samples:
+Subset out previously produced distance matrix to remove the environmental samples:
 
 ```{R, eval=FALSE}
 #Load wunifrac
@@ -37,7 +37,7 @@ beta_df_mean_no_env
 
 ## Points long data frame
 <center>
-![](figures/long_data_frame_subset.png){style="width:150px"}
+![](figures/long_data_frame_subset.png){style="width:150px; background:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 We can now ordinate (PCoA) our subset distance matrix:
@@ -58,16 +58,16 @@ Followed by producing a long data frame for plotting:
 
 ```{R, eval = FALSE}
 #Create point long data frame with metadata
-#Ennsure row names order matches
-if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
-  metadf <- metadf[row.names(pcoa_points),]
+#Ensure row names order matches
+if (identicial(row.names(beta_df_mean_noenv), row.names(pcoa_points)) == FALSE) {
+  beta_df_mean_noenv <- beta_df_mean_noenv[row.names(pcoa_points),]
 }
 #Make points with metadata data frame
 pcoa_points_metadata <- cbind(pcoa_points, metadf_noenv)
 head(nmds_points_metadata)
 #Save object we want, remove ones we don't
 save(pcoa_points_metadata, file = "noenv_wunifrac_PCoA.RData")
-rm(metadf, nmds_res, pcoa_points)
+rm(metadf, pcoa_points, pcoa_res)
 ```
 
 ## Media PCoA scatter plot

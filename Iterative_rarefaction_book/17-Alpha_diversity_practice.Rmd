@@ -103,7 +103,7 @@ IRdisplay::display_png(file = "./Alpha_diversity_rarefy_iters_site_violinplot_pa
 ![](figures/recap.png){style="width:200px; background-color:white; border-radius:15px"}
 </center>
 
-In this chapter you have:
+In this part you have:
 
 - Produced __alpha diversity__ values through __iterative rarefaction__
 - Created a long data frame containing metadata and specified __alpha diversity__ metrics

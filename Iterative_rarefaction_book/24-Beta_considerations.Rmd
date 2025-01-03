@@ -1,8 +1,14 @@
 # $\beta$: Considerations
+<center>
+![](figures/consider.png){style="width:200px; background:white; border-radius:15px"}
+</center>
 
 There are many considerations to take in mind when carrying out beta diversity analysis.
 
 ## Which distance measure to use?
+<center>
+![](figures/inch_or_mm.xcf.png){style="width:150px; background:white; border-radius:15px; border: white 5px solid"}
+</center>
 
 There are many beta diversity distances that you can use.
 Ultimately the choice is yours but our recommendations would be:
@@ -17,10 +23,13 @@ There are two distances in each set as one is based on:
 - Richness (presence/absence): Unweighted unifrac & Jaccard
 - Richness and abundance values: Weighted unifrac & Bray-Curtis
 
-Normally the measure using abundance values will be more infomrative.
-However, it is good to attempt the richness only approach too as it may show something hidden by tthe inclusion of the abundance data.
+Normally the measure using abundance values will be more informative.
+However, it is good to attempt the richness only approach too as it may show something hidden by the inclusion of the abundance data.
 
 ## Which ordination method to use?
+<center>
+![](figures/compass_2.png){style="width:150px; background:white; border-radius:15px"}
+</center>
 
 A common question is "Which ordination method should I use?"
 There are many ordination methods with __NMDS__ and __PCoA__ being popular for ordination distance based values (dissimilarity matrices).
@@ -28,15 +37,18 @@ There are many ordination methods with __NMDS__ and __PCoA__ being popular for o
 A general guide to which to use for your data is by choosing the most informative one.
 Choose the one that shows the best picture and that explains the data the best.
 
-In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high _% variance explained__ and it shows more separation of the samples.
+In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high __% variance explained__ and it shows more separation of the samples.
 
 If the PCoA plot had a low __% variance explained__ it may be better to choose the NMDS plot.
 NMDS attempts to explain the data in the number of dimensions chosen by the user.
 We chose 2 as we want to plot the data in 2 dimensions.
 
 ## More dimensions
+<center>
+![](figures/3d.png){style="width:150px; background:white; border-radius:15px"}
+</center>
 
-Your data may be very complex and two dimensions would not be sufficient to plot the data.
+Your data may be very complex and two dimensions may not be sufficient to plot the data.
 There are two main ways to plot multiple dimensions.
 
 ### Produce multiple plots {-}

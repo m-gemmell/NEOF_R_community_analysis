@@ -1,6 +1,6 @@
 # $\beta$: Stats
 <center>
-![](figures/navigation.png){style="width:200px"}
+![](figures/stats.png){style="width:200px; background:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 Now to carry out some statistics on our ordinations.
@@ -24,7 +24,7 @@ metadf <- data.frame(phyloseq::sample_data(pseq))
 ![](figures/permanova.png){style="width:200px"}
 </center>
 
-To determine if their is a significant overall difference between the media & site groups we can carry out a PERMANOVA.
+To determine if their is a significant overall difference between the media & site groups we can carry out a PERMANOVA test.
 We'll use the package `vegan` with its function `adonis2()`.
 
 __Note:__ The original `vegan::adonis()` function is deprecated and should not be used.
@@ -33,6 +33,7 @@ __Note:__ The original `vegan::adonis()` function is deprecated and should not b
 #PERMANOVA of media+site
 wunifrac_adonis <- vegan::adonis2(beta_df_mean ~ media+site,
                                   data = metadf, by = "margin")
+wunifrac_adonis
 ```
 
 ## Pairwise PERMANOVA
@@ -40,7 +41,7 @@ wunifrac_adonis <- vegan::adonis2(beta_df_mean ~ media+site,
 ![](figures/pear.png){style="width:100px"}
 </center>
 
-We can use a pairwise PERMANOVA to determine if their are significant differences between groups in a metadata category.
+We can use a pairwise PERMANOVA to determine if there are significant differences between groups in a metadata category.
 The below code carries this out for the media groupings.
 
 ```{R, eval = FALSE}
