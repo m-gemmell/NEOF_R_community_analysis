@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-19" />
+<meta name="date" content="2025-01-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -311,17 +311,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html"><i class="fa fa-check"></i><b>17</b> Differential abundance (DA) analysis</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-setup"><i class="fa fa-check"></i><b>17.1</b> DA: setup</a></li>
-<li class="chapter" data-level="17.2" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-preprocess"><i class="fa fa-check"></i><b>17.2</b> DA: Preprocess</a></li>
-<li class="chapter" data-level="17.3" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-analysis"><i class="fa fa-check"></i><b>17.3</b> DA: ANCOM-BC analysis</a>
+<li class="chapter" data-level="17.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-mamba-env"><i class="fa fa-check"></i><b>17.1</b> DA: Mamba env</a></li>
+<li class="chapter" data-level="17.2" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-setup"><i class="fa fa-check"></i><b>17.2</b> DA: setup</a></li>
+<li class="chapter" data-level="17.3" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-preprocess"><i class="fa fa-check"></i><b>17.3</b> DA: Preprocess</a></li>
+<li class="chapter" data-level="17.4" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-analysis"><i class="fa fa-check"></i><b>17.4</b> DA: ANCOM-BC analysis</a>
 <ul>
-<li class="chapter" data-level="17.3.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#ancombc2-options"><i class="fa fa-check"></i><b>17.3.1</b> ANCOMBC2 options</a></li>
+<li class="chapter" data-level="17.4.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#ancombc2-options"><i class="fa fa-check"></i><b>17.4.1</b> ANCOMBC2 options</a></li>
 </ul></li>
-<li class="chapter" data-level="17.4" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-results"><i class="fa fa-check"></i><b>17.4</b> DA: ANCOM-BC results</a></li>
-<li class="chapter" data-level="17.5" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-create-significant-lfc-long-data-frame"><i class="fa fa-check"></i><b>17.5</b> DA: Create significant LFC long data frame</a></li>
-<li class="chapter" data-level="17.6" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-biomarker-lfc-heatmap"><i class="fa fa-check"></i><b>17.6</b> DA: Biomarker LFC heatmap</a></li>
-<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-taxonomy-heatmap"><i class="fa fa-check"></i><b>17.7</b> DA: Taxonomy heatmap</a></li>
-<li class="chapter" data-level="17.8" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-summary"><i class="fa fa-check"></i><b>17.8</b> DA: summary</a></li>
+<li class="chapter" data-level="17.5" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-results"><i class="fa fa-check"></i><b>17.5</b> DA: ANCOM-BC results</a></li>
+<li class="chapter" data-level="17.6" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-create-significant-lfc-long-data-frame"><i class="fa fa-check"></i><b>17.6</b> DA: Create significant LFC long data frame</a></li>
+<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-biomarker-lfc-heatmap"><i class="fa fa-check"></i><b>17.7</b> DA: Biomarker LFC heatmap</a></li>
+<li class="chapter" data-level="17.8" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-taxonomy-heatmap"><i class="fa fa-check"></i><b>17.8</b> DA: Taxonomy heatmap</a></li>
+<li class="chapter" data-level="17.9" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-summary"><i class="fa fa-check"></i><b>17.9</b> DA: summary</a></li>
 </ul></li>
 <li class="part"><span><b>Outro</b></span></li>
 <li class="chapter" data-level="18" data-path="18-Summary.html"><a href="18-Summary.html"><i class="fa fa-check"></i><b>18</b> Summary</a>
@@ -400,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="rarefaction_chap" class="section level1 hasAnchor" number="14">
 <h1><span class="header-section-number">Chapter 14</span> Rarefaction<a href="14-Rarefaction.html#rarefaction_chap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/whale.png" style="width:200px; background:white; border-radius:15px" />
+<img src="figures/whale.png" style="width:200px; background:white; border-radius:15px; border:white 5px solid" />
 </center>
 <p>We are going to create a rarefied abundance table in this chapter.
 This can be a controversial topic.
@@ -615,16 +616,16 @@ A slope of 1 shows a flat vertical line (not what we want).</p>
 <p>With the calculated slopes attempt the following questions:</p>
 <ol style="list-style-type: decimal">
 <li>Which sample has the largest slope value?
-<div id="radio_RZVJEMHXQK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RZVJEMHXQK" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RZVJEMHXQK" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RZVJEMHXQK" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_XHYXCWECKT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XHYXCWECKT" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XHYXCWECKT" value="answer"></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XHYXCWECKT" value=""></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which sample has the lowest slope value?
-<div id="radio_QETSDOIUGI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QETSDOIUGI" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QETSDOIUGI" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QETSDOIUGI" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
+<div id="radio_ENQEPYMKIF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ENQEPYMKIF" value=""></input> <span><strong>UD_ENV_rep2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ENQEPYMKIF" value=""></input> <span><strong>MD_ENV_rep3</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ENQEPYMKIF" value="answer"></input> <span><strong>LD_CVP_rep1</strong></span></label>
 </div></li>
 <li>Which samples have larger slope values, the environmental samples or media samples?
-<div id="radio_MNXVVHTMFK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MNXVVHTMFK" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MNXVVHTMFK" value=""></input> <span><strong>Media</strong></span></label>
+<div id="radio_JTBOMPYOTM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JTBOMPYOTM" value="answer"></input> <span><strong>Environmental</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JTBOMPYOTM" value=""></input> <span><strong>Media</strong></span></label>
 </div></li>
 </ol>
 <p>Overall the slopes values are low (&lt;0.01).

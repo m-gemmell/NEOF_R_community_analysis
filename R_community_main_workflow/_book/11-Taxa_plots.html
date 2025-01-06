@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-19" />
+<meta name="date" content="2025-01-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -311,17 +311,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html"><i class="fa fa-check"></i><b>17</b> Differential abundance (DA) analysis</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-setup"><i class="fa fa-check"></i><b>17.1</b> DA: setup</a></li>
-<li class="chapter" data-level="17.2" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-preprocess"><i class="fa fa-check"></i><b>17.2</b> DA: Preprocess</a></li>
-<li class="chapter" data-level="17.3" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-analysis"><i class="fa fa-check"></i><b>17.3</b> DA: ANCOM-BC analysis</a>
+<li class="chapter" data-level="17.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-mamba-env"><i class="fa fa-check"></i><b>17.1</b> DA: Mamba env</a></li>
+<li class="chapter" data-level="17.2" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-setup"><i class="fa fa-check"></i><b>17.2</b> DA: setup</a></li>
+<li class="chapter" data-level="17.3" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-preprocess"><i class="fa fa-check"></i><b>17.3</b> DA: Preprocess</a></li>
+<li class="chapter" data-level="17.4" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-analysis"><i class="fa fa-check"></i><b>17.4</b> DA: ANCOM-BC analysis</a>
 <ul>
-<li class="chapter" data-level="17.3.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#ancombc2-options"><i class="fa fa-check"></i><b>17.3.1</b> ANCOMBC2 options</a></li>
+<li class="chapter" data-level="17.4.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#ancombc2-options"><i class="fa fa-check"></i><b>17.4.1</b> ANCOMBC2 options</a></li>
 </ul></li>
-<li class="chapter" data-level="17.4" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-results"><i class="fa fa-check"></i><b>17.4</b> DA: ANCOM-BC results</a></li>
-<li class="chapter" data-level="17.5" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-create-significant-lfc-long-data-frame"><i class="fa fa-check"></i><b>17.5</b> DA: Create significant LFC long data frame</a></li>
-<li class="chapter" data-level="17.6" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-biomarker-lfc-heatmap"><i class="fa fa-check"></i><b>17.6</b> DA: Biomarker LFC heatmap</a></li>
-<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-taxonomy-heatmap"><i class="fa fa-check"></i><b>17.7</b> DA: Taxonomy heatmap</a></li>
-<li class="chapter" data-level="17.8" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-summary"><i class="fa fa-check"></i><b>17.8</b> DA: summary</a></li>
+<li class="chapter" data-level="17.5" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-results"><i class="fa fa-check"></i><b>17.5</b> DA: ANCOM-BC results</a></li>
+<li class="chapter" data-level="17.6" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-create-significant-lfc-long-data-frame"><i class="fa fa-check"></i><b>17.6</b> DA: Create significant LFC long data frame</a></li>
+<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-biomarker-lfc-heatmap"><i class="fa fa-check"></i><b>17.7</b> DA: Biomarker LFC heatmap</a></li>
+<li class="chapter" data-level="17.8" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-taxonomy-heatmap"><i class="fa fa-check"></i><b>17.8</b> DA: Taxonomy heatmap</a></li>
+<li class="chapter" data-level="17.9" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-summary"><i class="fa fa-check"></i><b>17.9</b> DA: summary</a></li>
 </ul></li>
 <li class="part"><span><b>Outro</b></span></li>
 <li class="chapter" data-level="18" data-path="18-Summary.html"><a href="18-Summary.html"><i class="fa fa-check"></i><b>18</b> Summary</a>
@@ -453,8 +454,8 @@ Use the below code to produce and visualise a heatmap.</p>
 <span id="cb49-9"><a href="11-Taxa_plots.html#cb49-9" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./phylum_relabund_heatmap.png&quot;</span>)</span></code></pre></div>
 <p>With the heatmap it is much easier to tell what the relative abundances of different phyla are.</p>
 What is the most abundant phyla across the samples?
-<div id="radio_IHAPDQDJAA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IHAPDQDJAA" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IHAPDQDJAA" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IHAPDQDJAA" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
+<div id="radio_GNXRWMHLFI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GNXRWMHLFI" value=""></input> <span><strong>Chloroflexi</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GNXRWMHLFI" value=""></input> <span><strong>Firmicutes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GNXRWMHLFI" value="answer"></input> <span><strong>Proteobacteria</strong></span></label>
 </div>
 </div>
 <div id="aggregateraretaxa" class="section level2 hasAnchor" number="11.3">
@@ -542,13 +543,13 @@ With this we will average the rare aggregated relative abundance values by the f
 <span id="cb53-13"><a href="11-Taxa_plots.html#cb53-13" tabindex="-1"></a>IRdisplay<span class="sc">::</span><span class="fu">display_png</span>(<span class="at">file=</span><span class="st">&quot;./phylum_relabund_media_rareaggregate.png&quot;</span>)</span></code></pre></div>
 <p>Now we get a good picture of which medias have the highest and lowest phlya diversity.
 The Environmental samples (ENV) definitely have the highest diversity with clear presence of all phyla.</p>
-Which media has the highest relative abundance of <em>Protoebacteria</em> and the lowest phyla diversity (excluding ENV)?
-<div id="radio_YQYUNFYFWN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YQYUNFYFWN" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YQYUNFYFWN" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YQYUNFYFWN" value=""></input> <span><strong>TSA</strong></span></label>
+Which media has the highest relative abundance of <em>Proteobacteria</em> and the lowest phyla diversity (excluding ENV)?
+<div id="radio_GGNQGUIOYW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GGNQGUIOYW" value="answer"></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GGNQGUIOYW" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GGNQGUIOYW" value=""></input> <span><strong>TSA</strong></span></label>
 </div>
-Which media has the lowest relative abundance of <em>Protoebacteria</em> and the highest phyla diversity (excluding ENV)?
-<div id="radio_IUQWOQVKMF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IUQWOQVKMF" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IUQWOQVKMF" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IUQWOQVKMF" value="answer"></input> <span><strong>TSA</strong></span></label>
+Which media has the lowest relative abundance of <em>Proteobacteria</em> and the highest phyla diversity (excluding ENV)?
+<div id="radio_KVTJWFJVCB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KVTJWFJVCB" value=""></input> <span><strong>CVP</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KVTJWFJVCB" value=""></input> <span><strong>KBC</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KVTJWFJVCB" value="answer"></input> <span><strong>TSA</strong></span></label>
 </div>
 <p>Later in this book we will investigate diversity more thoroughly with alpha and beta diversity visualisation and statistics.</p>
 </div>

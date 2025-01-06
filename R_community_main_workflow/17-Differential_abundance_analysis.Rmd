@@ -11,7 +11,6 @@ Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that 
 This will be shown in our data. Organisms in higher abundance in the media samples compared to the environmental samples are most likely caused by selection pressures the media introduces. To keep our data manageable in a workshop we will look at the class abundances. If a class is detected to have higher abundance in media compared to the environmental group, we can say the class is a biomarker of the media compared to the environmental sample. Additionally, we will be able to detect classes that have been depleted in the media samples versus the environmental samples.
 
 ## DA: setup
-
 <center>
 ![](figures/packages_1.png){style="width:200px"}
 </center>
@@ -360,7 +359,7 @@ You could carry out more analysis in your future research in various ways:
 
 -   Carry out biomarker detection at different taxonomy levels such as genus.
     -   We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there weren't too many results to look at.
--   There are many other types of tests and considerations to keep in mind. Check out the [ANCOMBC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC.html), it is very in depth.
+-   There are many other types of tests and considerations to keep in mind. Check out the [ANCOMBC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html), it is very in depth.
     -   There is also a handy FAQ on the [ANCOMBC github page](https://github.com/FrederickHuangLin/ANCOMBC).
 
 That is the last part of the analysis. In the final chapter we will review the steps we carried out and the answers to the various questions we have about the dataset.

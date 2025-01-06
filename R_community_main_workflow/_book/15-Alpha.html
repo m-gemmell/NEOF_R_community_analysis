@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-19" />
+<meta name="date" content="2025-01-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -311,17 +311,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html"><i class="fa fa-check"></i><b>17</b> Differential abundance (DA) analysis</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-setup"><i class="fa fa-check"></i><b>17.1</b> DA: setup</a></li>
-<li class="chapter" data-level="17.2" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-preprocess"><i class="fa fa-check"></i><b>17.2</b> DA: Preprocess</a></li>
-<li class="chapter" data-level="17.3" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-analysis"><i class="fa fa-check"></i><b>17.3</b> DA: ANCOM-BC analysis</a>
+<li class="chapter" data-level="17.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-mamba-env"><i class="fa fa-check"></i><b>17.1</b> DA: Mamba env</a></li>
+<li class="chapter" data-level="17.2" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-setup"><i class="fa fa-check"></i><b>17.2</b> DA: setup</a></li>
+<li class="chapter" data-level="17.3" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-preprocess"><i class="fa fa-check"></i><b>17.3</b> DA: Preprocess</a></li>
+<li class="chapter" data-level="17.4" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-analysis"><i class="fa fa-check"></i><b>17.4</b> DA: ANCOM-BC analysis</a>
 <ul>
-<li class="chapter" data-level="17.3.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#ancombc2-options"><i class="fa fa-check"></i><b>17.3.1</b> ANCOMBC2 options</a></li>
+<li class="chapter" data-level="17.4.1" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#ancombc2-options"><i class="fa fa-check"></i><b>17.4.1</b> ANCOMBC2 options</a></li>
 </ul></li>
-<li class="chapter" data-level="17.4" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-results"><i class="fa fa-check"></i><b>17.4</b> DA: ANCOM-BC results</a></li>
-<li class="chapter" data-level="17.5" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-create-significant-lfc-long-data-frame"><i class="fa fa-check"></i><b>17.5</b> DA: Create significant LFC long data frame</a></li>
-<li class="chapter" data-level="17.6" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-biomarker-lfc-heatmap"><i class="fa fa-check"></i><b>17.6</b> DA: Biomarker LFC heatmap</a></li>
-<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-taxonomy-heatmap"><i class="fa fa-check"></i><b>17.7</b> DA: Taxonomy heatmap</a></li>
-<li class="chapter" data-level="17.8" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-summary"><i class="fa fa-check"></i><b>17.8</b> DA: summary</a></li>
+<li class="chapter" data-level="17.5" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-ancom-bc-results"><i class="fa fa-check"></i><b>17.5</b> DA: ANCOM-BC results</a></li>
+<li class="chapter" data-level="17.6" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-create-significant-lfc-long-data-frame"><i class="fa fa-check"></i><b>17.6</b> DA: Create significant LFC long data frame</a></li>
+<li class="chapter" data-level="17.7" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-biomarker-lfc-heatmap"><i class="fa fa-check"></i><b>17.7</b> DA: Biomarker LFC heatmap</a></li>
+<li class="chapter" data-level="17.8" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-taxonomy-heatmap"><i class="fa fa-check"></i><b>17.8</b> DA: Taxonomy heatmap</a></li>
+<li class="chapter" data-level="17.9" data-path="17-Differential_abundance_analysis.html"><a href="17-Differential_abundance_analysis.html#da-summary"><i class="fa fa-check"></i><b>17.9</b> DA: summary</a></li>
 </ul></li>
 <li class="part"><span><b>Outro</b></span></li>
 <li class="chapter" data-level="18" data-path="18-Summary.html"><a href="18-Summary.html"><i class="fa fa-check"></i><b>18</b> Summary</a>
@@ -541,8 +542,8 @@ We'll do this using media as our groups from the <code>sample_data()</code> and 
 <p>You can ignore the warning messages in this case.</p>
 <p>Observe the results.</p>
 Are all the pairwise comparisons significantly different (&lt;0.05)?
-<div id="radio_ZRZWCIVTUA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZRZWCIVTUA" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZRZWCIVTUA" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_HQAKNWENIO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HQAKNWENIO" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HQAKNWENIO" value=""></input> <span><strong>No</strong></span></label>
 </div>
 <p>The test has carried out P value adjustments using the Holm-Bonferroni method (<code>P value adjustment method: holm</code>) which is good.</p>
 <p>In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
