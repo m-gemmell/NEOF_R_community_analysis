@@ -2,7 +2,7 @@
 
 # Summary {#sumchap}
 
-You have learnt a lot during this course. This chapter will summarise what you have done.
+Congratulations on completing this book. You have learnt a lot and this chapter will summarise what you have accomplished.
 
 ## Dataset
 <center>

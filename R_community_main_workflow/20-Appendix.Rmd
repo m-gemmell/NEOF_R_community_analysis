@@ -2,7 +2,7 @@
 
 # Mamba installs {#mambainstalls}
 <center>
-![](figures/mamba_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333"}
+![](figures/mamba_logo.png){style="border-radius: 15px; width: 200px"}
 </center>
 
 ## Mamba installation and environment {#mamba_install}

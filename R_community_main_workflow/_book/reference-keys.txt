@@ -108,7 +108,6 @@ beta-subset-samples
 permanova-tasks
 beta-summary
 DA_chap
-da-mamba-env
 da-setup
 da-preprocess
 da-ancom-bc-analysis
@@ -131,6 +130,14 @@ replicate-differences
 site-or-media
 media-versus-env-samples
 conclusion
+nextsteps
+supplemental-book
+iterative-rarefaction
+literature
+rarefaction
+diversity-measures
+online-tutorials
+book-appendix
 mambainstalls
 mamba_install
 install-specific-version-of-r-bioconductor-package

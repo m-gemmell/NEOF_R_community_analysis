@@ -84,7 +84,10 @@ column_1 <- c(
  '[![](figures/beta.png){style="height:150px"}](#beta_chap)',
  #13 Summary
    '[**Summary**](#sumchap)', 
- '[![](figures/recap.png){style="height:150px; border-radius:15px; background:white"}](#sumchap)'
+ '[![](figures/recap.png){style="height:150px; border-radius:15px; background:white"}](#sumchap)',
+    #15 appendix
+    '[**Appendix**](#mambainstalls)', 
+ '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; background:null"}](#mambainstalls)'
 )
 column_2 <- c(
   #2: R packages
@@ -105,9 +108,11 @@ column_2 <- c(
  #12 DA
   '[**Differential abundance**](#DA_chap)', 
  '[![](figures/difference.png){style="height:150px"}](#DA_chap)',
-   #14 appendix
-    '[**Appendix**](#mambainstalls)', 
- '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; background:null"}](#mambainstalls)'
+     #14 Next steps
+    '[**Next steps**](#nextsteps)', 
+ '[![](figures/step.png){style="height:150px; border-radius:15px; background:null"}](#nextsteps)',
+ '',''
+
 )
 table_df <- data.frame(column_1, column_2)
 #Kable and kableextra libraries

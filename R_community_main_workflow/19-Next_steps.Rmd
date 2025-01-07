@@ -1,0 +1,75 @@
+# Next steps {#nextsteps}
+<center>
+![](figures/step.png){style="border-radius: 5px; width: 200px"}</center>
+</center>
+
+There is always more to learn with more content available for this workshop.
+
+## Supplemental book
+<center>
+![](figures/r_comm_supplement.png){style="border-radius: 5px; width: 150px"}</center>
+</center>
+
+There is a [Supplemental book](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/) you can go through.
+
+This contains the following topics:
+
+- Importing other data types into `phyloseq`
+- Plotly to create interactive html plots
+
+## Iterative rarefaction
+<center>
+![](figures/iterative_rarefaction.png){style="border-radius: 5px; width: 200px; background:white; border: solid white 5px"}</center>
+</center>
+
+There is a [Iterative rarefaction book](https://neof-workshops.github.io/R_community_whqkt8/iterative_rarefaction).
+
+The book explains and demonstrates how to carry out iterative rarefaction for alpha and beta diversity analysis in R with the `phyloseq` object. This involves running multiple rounds/iterations of rarefaction and producing an averaged table of alpha and beta diversity values. This is a more robust method than only carrying out one round of rarefaction.
+
+It contains the following topics:
+
+- Random seeds
+- Iterating rarefaction
+- Alpha diversity
+- Beta diversity
+
+## Literature
+<center>
+![](figures/literature.png){style="border-radius: 5px; width: 200px; background:white; border: solid white 5px"}</center>
+</center>
+
+Of course there is a lot of literature you can explore to inform your future analysis decisions. Below is a list of some importnat litertaure.
+
+### Rarefaction
+
+- [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959)
+- [Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531)
+- [Rarefaction is currently the best approach to control for uneven sequencing effort in amplicon sequence analyses](https://journals.asm.org/doi/10.1128/msphere.00354-23)
+- [QIIME2 developers adding bootstrapping and rarefaction-based diversity analysis](https://forum.qiime2.org/t/q2-boots-bootstrapped-and-rarefaction-based-diversity-analysis/31134)
+
+### Diversity measures
+
+- [Key features and guidelines for the application of microbial alpha diversity metrics](https://www.nature.com/articles/s41598-024-77864-y)
+- [The Power of Microbiome Studies: Some Considerations on Which Alpha and Beta Metrics to Use and How to Report Results](https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2021.796025/full)
+
+## Online tutorials
+<center>
+![](figures/computer_tutorial.png){style="border-radius: 5px; width: 200px; background:white; border: solid white 5px"}</center>
+</center>
+
+There are other tutorials online that can solidify and expand the skills you learnt during this workshop.
+
+- [Introduction to the microbiome R package](https://microbiome.github.io/tutorials/)
+- [Phyloseq website that contains tutorials](https://joey711.github.io/phyloseq/)
+- [ANCOM-BC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html)
+- [ggplot2 website](https://ggplot2.tidyverse.org/)
+
+## Book appendix
+
+Check out this books' [appendix](#mambainstalls) for the following content:
+
+- Instructions to install the required `mamba/conda` environments
+- Information on the various R packages
+- Information on diversity measures
+
+

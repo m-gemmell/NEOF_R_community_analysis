@@ -48,7 +48,39 @@ This is a more robust method than only carrying out one round of rarefaction.
 This book is an optional path for the [main NEOF R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course)
 
 ## Table of contents {-}
-
-ADD TABLE OF CONTENTS
+```{r, echo=FALSE, align="centre"}
+#Create 2 column dataframe
+column_1 <- c(
+  #1 Background
+  '[**Intro**](#iter_rarefaction_background_chap)', 
+ '[![](figures/iteration.png){style="height:150px; border-radius:15px; background:white"}](#iter_rarefaction_background_chap)',
+ #3 Random seed
+    '[**Random seeds**](#random_seeds_n_sampling_chap)', 
+ '[![](figures/random_seeds.png){style="height:150px"}](#random_seeds_n_sampling_chap)',
+ #5 Alpha diversity
+   '[**Alpha diversity**](#alpha_chap)', 
+ '[![](figures/alpha_iterative_rarefaction.png){style="height:150px"}](#alpha_chap)'
+)
+column_2 <- c(
+  #2: Setup
+  '[**Setup**](#setupchap)', 
+ '[![](figures/france.png){style="height:150px"}](#setupchap)',
+ #4 Iterating rarefaction
+   '[**Iterating rarefaction**](#iterating_rarefaction_chap)', 
+ '[![](figures/iterations.png){style="height:100px; border-radius:15px; background:white"}](#iterating_rarefaction_chap)',
+ #6 Beta diversity
+   '[**Beta diversity**](#beta_chap)', 
+ '[![](figures/beta_iterative_rarefaction.png){style="height:150px"}](#beta_chap)'
+)
+table_df <- data.frame(column_1, column_2)
+#Kable and kableextra libraries
+library(knitr)
+library(kableExtra)
+#Create table
+#ALign both column in centre (align = "cc")
+table_df %>%
+  kbl(align= "cc", col.names = NULL) %>%
+  kable_styling(position = "center")
+```
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

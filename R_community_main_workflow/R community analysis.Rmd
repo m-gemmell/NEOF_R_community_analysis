@@ -87,7 +87,10 @@ column_1 <- c(
  '[![](figures/beta.png){style="height:150px"}](#beta_chap)',
  #13 Summary
    '[**Summary**](#sumchap)', 
- '[![](figures/recap.png){style="height:150px; border-radius:15px; background:white"}](#sumchap)'
+ '[![](figures/recap.png){style="height:150px; border-radius:15px; background:white"}](#sumchap)',
+    #15 appendix
+    '[**Appendix**](#mambainstalls)', 
+ '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; background:null"}](#mambainstalls)'
 )
 column_2 <- c(
   #2: R packages
@@ -108,9 +111,11 @@ column_2 <- c(
  #12 DA
   '[**Differential abundance**](#DA_chap)', 
  '[![](figures/difference.png){style="height:150px"}](#DA_chap)',
-   #14 appendix
-    '[**Appendix**](#mambainstalls)', 
- '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; background:null"}](#mambainstalls)'
+     #14 Next steps
+    '[**Next steps**](#nextsteps)', 
+ '[![](figures/step.png){style="height:150px; border-radius:15px; background:null"}](#nextsteps)',
+ '',''
+
 )
 table_df <- data.frame(column_1, column_2)
 #Kable and kableextra libraries
@@ -3244,25 +3249,6 @@ Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that 
 
 This will be shown in our data. Organisms in higher abundance in the media samples compared to the environmental samples are most likely caused by selection pressures the media introduces. To keep our data manageable in a workshop we will look at the class abundances. If a class is detected to have higher abundance in media compared to the environmental group, we can say the class is a biomarker of the media compared to the environmental sample. Additionally, we will be able to detect classes that have been depleted in the media samples versus the environmental samples.
 
-## DA: Mamba env
-<center>
-![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
-</center>
-
-Unfortunately the `ancombc-2` analysis requires a different `mamba/conda` environmental. Before activateing it you will need to close your `jupyter-notebook` instance. To carry this out:
-
-- Ensure you have have saved, and the close and halted all your open notebooks.
-- In the `juptyer-notebook` explorer (where you can view al the files in the directory) press the __"Quit"__ button on the top right.
-- Close `firefox`.
-
-To run `jupyter-notebook` with the required `mamba` environment:
-
-- Open a new bash terminal, right click on the light grey background and choose _-"Terminal"__
-- In the new terminal run the following command: `. useancombc2025`
-- Change directory to your workshop directory: `cd ~/R_community_workshop`
-- Activate `jupyter-notebook`: `jupyter-notebook`
-
-
 ## DA: setup
 <center>
 ![](figures/packages_1.png){style="width:200px"}
@@ -3626,7 +3612,7 @@ library(webexercises)
 
 # Summary {#sumchap}
 
-You have learnt a lot during this course. This chapter will summarise what you have done.
+Congratulations on completing this book. You have learnt a lot and this chapter will summarise what you have accomplished.
 
 ## Dataset
 <center>
@@ -3811,11 +3797,92 @@ Great work and thanks for reading.
 ```{r include=FALSE, cache=FALSE}
 library(webexercises)
 ```
+# Next steps {#nextsteps}
+<center>
+![](figures/step.png){style="border-radius: 5px; width: 200px"}</center>
+</center>
+
+There is always more to learn with more content available for this workshop.
+
+## Supplemental book
+<center>
+![](figures/r_comm_supplement.png){style="border-radius: 5px; width: 150px"}</center>
+</center>
+
+There is a [Supplemental book](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/) you can go through.
+
+This contains the following topics:
+
+- Importing other data types into `phyloseq`
+- Plotly to create interactive html plots
+
+## Iterative rarefaction
+<center>
+![](figures/iterative_rarefaction.png){style="border-radius: 5px; width: 200px; background:white; border: solid white 5px"}</center>
+</center>
+
+There is a [Iterative rarefaction book](https://neof-workshops.github.io/R_community_whqkt8/iterative_rarefaction).
+
+The book explains and demonstrates how to carry out iterative rarefaction for alpha and beta diversity analysis in R with the `phyloseq` object. This involves running multiple rounds/iterations of rarefaction and producing an averaged table of alpha and beta diversity values. This is a more robust method than only carrying out one round of rarefaction.
+
+It contains the following topics:
+
+- Random seeds
+- Iterating rarefaction
+- Alpha diversity
+- Beta diversity
+
+## Literature
+<center>
+![](figures/literature.png){style="border-radius: 5px; width: 200px; background:white; border: solid white 5px"}</center>
+</center>
+
+Of course there is a lot of literature you can explore to inform your future analysis decisions. Below is a list of some importnat litertaure.
+
+### Rarefaction
+
+- [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959)
+- [Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531)
+- [Rarefaction is currently the best approach to control for uneven sequencing effort in amplicon sequence analyses](https://journals.asm.org/doi/10.1128/msphere.00354-23)
+- [QIIME2 developers adding bootstrapping and rarefaction-based diversity analysis](https://forum.qiime2.org/t/q2-boots-bootstrapped-and-rarefaction-based-diversity-analysis/31134)
+
+### Diversity measures
+
+- [Key features and guidelines for the application of microbial alpha diversity metrics](https://www.nature.com/articles/s41598-024-77864-y)
+- [The Power of Microbiome Studies: Some Considerations on Which Alpha and Beta Metrics to Use and How to Report Results](https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2021.796025/full)
+
+## Online tutorials
+<center>
+![](figures/computer_tutorial.png){style="border-radius: 5px; width: 200px; background:white; border: solid white 5px"}</center>
+</center>
+
+There are other tutorials online that can solidify and expand the skills you learnt during this workshop.
+
+- [Introduction to the microbiome R package](https://microbiome.github.io/tutorials/)
+- [Phyloseq website that contains tutorials](https://joey711.github.io/phyloseq/)
+- [ANCOM-BC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html)
+- [ggplot2 website](https://ggplot2.tidyverse.org/)
+
+## Book appendix
+
+Check out this books' [appendix](#mambainstalls) for the following content:
+
+- Instructions to install the required `mamba/conda` environments
+- Information on the various R packages
+- Information on diversity measures
+
+
+
+<!--chapter:end:19-Next_steps.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
 # (APPENDIX) Appendix {-}
 
 # Mamba installs {#mambainstalls}
 <center>
-![](figures/mamba_logo.png){style="border-radius: 15px; width: 200px; border: 5px solid #333333"}
+![](figures/mamba_logo.png){style="border-radius: 15px; width: 200px"}
 </center>
 
 ## Mamba installation and environment {#mamba_install}
@@ -3836,9 +3903,13 @@ To create the mamba environment `r_community` run the below commands in your bas
 #R community
 mamba create -n r_community
 mamba activate r_community
-mamba install -c anaconda -c bioconda -c r -c conda-forge \
-bioconductor-microbiome bioconductor-ancombc=2.0.1 biom-format \
-r-tidyverse r-devtools r-ggforce pandoc r-plotly r-irkernel r-htmltools=0.5.4
+mamba install bioconductor-microbiome=1.20.0 bioconda::bioconductor-ancombc=2.0.1\
+bioconda::biom-format=2.1.7 bioconda::kraken-biom=1.2.0 \
+conda-forge::r-tidyverse=2.0.0 conda-forge::r-devtools=2.4.5 conda-forge::r-ggforce=0.4.2 \
+conda-forge::pandoc=3.6.1 conda-forge::r-plotly=4.10.4 conda-forge::r-irkernel=1.3.2 \
+conda-forge::r-htmltools=0.5.8.1 conda-forge::r-ggpubr=0.6.0 conda-forge::r-rbiom=1.0.3 \
+conda-forge::r-ape=5.8 conda-forge::r-xml2=1.3.6 conda-forge::r-dt=0.33 \
+anaconda::pathlib=1.0.1
 ```
 
 __Note:__ It is common that some tools/packages will conflict with others. To overcome this we can set the version by adding `=xx` after a tool name in `conda` (e.g. `r-htmltools=0.5.4`). We have set the version for `bioconductor-ancombc` as newer versions are designed for a different package (`mia`) than `phyloseq`. Therefore newer version of ancombc2 do not work in our workflow.
@@ -3847,12 +3918,6 @@ Activate the environment in bash.
 
 ```{bash, eval=FALSE}
 mamba activate r_community
-```
-
-Use `pip` to install `kraken-biom`
-
-```{bash, eval=FALSE}
-pip install kraken-biom
 ```
 
 Activate your `mamba's` `R` and install `Qiime2R`.
@@ -4090,5 +4155,5 @@ $$
 For more diveristy measure please see: https://forum.qiime2.org/t/alpha-and-beta-diversity-explanations-and-commands/2282
 
 
-<!--chapter:end:19-Appendix.Rmd-->
+<!--chapter:end:20-Appendix.Rmd-->
 
