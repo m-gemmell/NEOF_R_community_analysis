@@ -15,6 +15,12 @@ This website acts as a resource to demonstrate how to create various figures for
 - [R community analysis supplemental](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/)
 - [R community analysis iterative rarefaction](https://neof-workshops.github.io/R_community_whqkt8/iterative_rarefaction)
 
+It is recommened you go through the first section __Tidyverse__. 
+
+ADD SECTION GIVING QUICK INTRO TO TIDYVERSE INCLUDING PIPING
+
+
+
 The figures include:
 
 - [Upset plot](./upset): A visualisation of the intersection of multiple sets. This can be a much more efficient and clear method compared to Venn diagrams.
