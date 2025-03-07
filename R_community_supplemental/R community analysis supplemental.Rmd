@@ -130,6 +130,10 @@ Carry out the below steps in bash in your home directory (`cd ~`).
 ![](figures/setup_3.png){style="width:200px"}
 </center>
 
+We will use the `kraken_biom` conda environment. 
+Open a new terminal (right click on the main screen, choose Terminal).
+In the new terminal run `. usekrakenbiom` to activate the environment and then carry out the following.
+
 First we need the `Bracken` output in the `Kraken2` report output file format.
 We can copy over the output made during the NEOF Shotgun metagenomics workshop.
 
@@ -155,6 +159,8 @@ cp /pub14/tea/nsc206/NEOF/R_community/bracken_reports/KW_metadata.tsv .
 Unfortunately we can't use the `bracken` report files.
 Instead we need to convert them to a single collated biom file with `kraken-biom`.
 
+__Note:__ Continue using the `kraken_biom` terminal.
+
 ```{bash, eval=FALSE}
 kraken-biom *breport2 -o KW.biom 
 ```
@@ -178,6 +184,12 @@ You'll also have the taxonomy lineage as the last column because we added in `--
 </center>
 
 Now we are ready to carry out some R analysis.
+
+Use your terminal with the `r_community` environment activated and change directory into your `bracken_r_comm` directory.
+
+```{bash, eval=FALSE}
+cd ~/bracken_r_comm
+```
 
 Open up `jupyter-notebook` and create a new `R` notebook called "Bracken_phyloseq_creation".
 
