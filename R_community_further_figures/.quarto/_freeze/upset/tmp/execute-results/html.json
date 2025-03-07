@@ -1,0 +1,15 @@
+{
+  "hash": "50ac4ffde6d17ab92979a001287c1b5d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"tmp\"\nengine: knitr\neditor: \n  markdown: \n    wrap: sentence\n---\n\n\n\n\ntemp file",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

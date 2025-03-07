@@ -1,0 +1,9 @@
+---
+title: "Introduction"
+engine: knitr
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+Intro to upset plots

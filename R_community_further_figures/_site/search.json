@@ -1,0 +1,57 @@
+[
+  {
+    "objectID": "upset/something.html",
+    "href": "upset/something.html",
+    "title": "something",
+    "section": "",
+    "text": "Something",
+    "crumbs": [
+      "Upset",
+      "Part 1",
+      "something"
+    ]
+  },
+  {
+    "objectID": "upset/index.html",
+    "href": "upset/index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Intro to upset plots",
+    "crumbs": [
+      "Upset",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "This website acts as a resource to demonstrate how to create various figures for community analysis not covered in the other materials:\nThe figures include:",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "Overview",
+    "section": "License",
+    "text": "License\nThis work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "upset/tmp.html",
+    "href": "upset/tmp.html",
+    "title": "tmp",
+    "section": "",
+    "text": "temp file",
+    "crumbs": [
+      "Upset",
+      "Part 2",
+      "tmp"
+    ]
+  }
+]

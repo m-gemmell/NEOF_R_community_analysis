@@ -1,0 +1,66 @@
+project:
+  type: website
+editor: source
+website:
+  favicon: /images/NEOF_favicon.png
+  page-navigation: true
+  title: NEOF BFX
+  description: Useful bioinformatic resources as advised by NEOF
+  navbar:
+    title: NEOF BFX
+    collapse-below: lg
+    left:
+    - text: Overview
+      href: index.qmd
+    - text: Upset
+      href: upset/index.qmd
+    right:
+    - icon: linkedin
+      href: https://www.linkedin.com/in/training-neof/
+      aria-label: LinkedIn
+    - text: '![](/images/Bluesky_Logo.svg){height=20px}'
+      href: https://bsky.app/profile/nerc-eof.bsky.social
+  page-footer:
+    left: |
+      [![](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png){fig-alt="CC BY-SA 4.0" height=30px}](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+    center: |
+      [![](/images/NEOF_rounded_corners.png){fig-alt="NEOF" height=60px}](https://neof.org.uk/)
+  sidebar:
+  - id: Overview
+    title: Overview
+    style: floating
+    align: left
+    contents:
+    - href: index.qmd
+  - id: Upset
+    title: Upset
+    style: floating
+    collapse-level: 2
+    align: left
+    contents:
+    - href: upset/index.qmd
+    - section: Part 1
+      contents:
+      - href: upset/something.qmd
+    - section: Part 2
+      contents:
+      - href: upset/tmp.qmd
+format:
+  html:
+    grid:
+      sidebar-width: 200px
+      body-width: 1000px
+      margin-width: 200px
+      gutter-width: 0.75em
+    css: include/webex.css
+    include-after-body: include/webex.js
+    theme:
+      light:
+      - cosmo
+      - css_files/styles.scss
+      dark:
+      - darkly
+      - css_files/styles.scss
+    embed-resources: false
+    toc: true
+    mainfont: Lexend

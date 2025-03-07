@@ -1,0 +1,15 @@
+{
+  "hash": "64de1ce06415883b6d9053903ca8458c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Fastq format\"\nengine: knitr\neditor: \n  markdown: \n    wrap: sentence\n---\n\n\n\n<center>\n![](figures/files.png){style=\"width:200px\"}\n</center>\n\nThe next exercise will focus on a set of files including fastq files.\n\n- Fastq files are very commonly used in bioinformatics.\n- Fastq files contain DNA or Amino acid sequenceing data.\n- Fastq files contain the nucleotide/amino acid content and its sequencing quality for sequences. \n- Generally these files are separated by sample but not always.\n- A fastq file acts as a normal txt file that can be read but is of a specific format. \n- One fastq file contains many fastq entries, one after the other. \n- Each fastq entry contains four lines. \n    + One fastq entry represents one sequence. \n\nThe format of one entry is as below:\n\n__\\@Sequence 1__  \n__CTGTTAAATACCGACTTGCGTCAGGTGCGTGAACAACTGGGCCGCTTT__  \n__+__  \n__=<<<=>\\@\\@\\@ACDCBCDAC\\@BAA\\@BA\\@BBCBBDA\\@BB\\@>CD\\@A\\@B?B\\@\\@__\n\nThe lines represent:  \n1. Header for fastq entry known as the fastq header. This always begins with a ‘@’.  \n2. Sequence content of sequence  \n3. Quality header. Always begins with a ‘+’. Sometimes also contains the same information as fastq header.  \n4. Quality values for each base in the 2nd line. NOTE: ‘@’ can be used as quality values.\n\nFor more information on the fastq format the below resource is good:\n[Wikipedia fastq page](https://en.wikipedia.org/wiki/FASTQ_format)\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

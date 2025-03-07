@@ -1,0 +1,15 @@
+{
+  "hash": "9021513431ea75ed3a621c6e674b14cb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Exercise 1\"\nengine: knitr\neditor: \n  markdown: \n    wrap: sentence\n---\n\n\n\n<center>\n![](figures/exercise.png){style=\"width:200px\"}\n</center>\n\nPerform the following tasks with the skills and knowledge you have gained.\n\nChange the name of the subdirectory **\"four_exercises\"** within your **\"Linux\"** directory to **\"4_exercises\"**\n\n1.  Make a backup of the **\"4_exercises\"** directory\n2.  List the contents of the **\"4_exercises\"** directory\n3.  Within the directory **\"4_exercises\"**\n    1.  Print the working directory.\n    2.  Print out to screen the phrase '**the echo command allows me to print phrases to screen**'.\n    3.  Copy the file **\"copy_this_file.txt\"** to the directory **\"to_me\"**\n    4.  Rename the directory **\"to_me\"** to **\"you\"**\n    5.  Delete the initial **\"copy_this_file.txt\"** file\n\n## Answers\n\nClick on the below expandable boxes to view my solutions for the exercise.\nThese are not the definitive solution but only examples of solutions. If your method works and you understand why then you have done it correctly.\n\n\n<div class='webex-solution'><button>Directory setup</button>\n\nEnsure you are in the correct directory before carrying out the below commands\n\n\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncd ~/Linux/\n```\n:::\n\n\n\n\n</div>\n\n\n\n<div class='webex-solution'><button>Answer 1</button>\n\nMake a backup of the 4_exercises directory\n\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncp -r 4_exercises 4_exercises_backup \n```\n:::\n\n\n\n\n</div>\n\n\n\n<div class='webex-solution'><button>Answer 2</button>\n\nList the contents of the 4_exercises directory\n\n\n\n\n::: {.cell}\n\n```{.bash .cell-code}\nls 4_exercises\n```\n:::\n\n\n\n\n</div>\n\n\n\n<div class='webex-solution'><button>Answer 3</button>\n\nWithin the directory 4_exercises\n\n\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncd 4_exercises\n```\n:::\n\n\n\n\nPrint the working directory\n\n\n\n\n::: {.cell}\n\n```{.bash .cell-code}\npwd\n```\n:::\n\n\n\n\nb.  Print out to screen the phrase 'the echo command allows me to print phrases to screen'\n\n\n\n\n::: {.cell}\n\n```{.bash .cell-code}\necho “the echo command allows me to print phrases to screen”\n```\n:::\n\n\n\n\nc.  Copy the file copy_this_file.txt to the directory to_me\n\n\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncp copy_this_file.txt to_me\n```\n:::\n\n\n\n\nd.  Rename the directory to_me to you\n\n\n\n\n::: {.cell}\n\n```{.bash .cell-code}\nmv to_me you\n```\n:::\n\n\n\n\nf.  Delete the initial copy_this_file.txt file\n\n\n\n\n::: {.cell}\n\n```{.bash .cell-code}\nrm copy_this_file.txt\n```\n:::\n\n\n\n\n</div>\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

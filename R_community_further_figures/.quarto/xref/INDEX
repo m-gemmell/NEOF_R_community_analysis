@@ -1,0 +1,83 @@
+{
+  "Linux/12-Advanced_practice_exercise.qmd": {
+    "12-Advanced_practice_exercise.html": "1185795d"
+  },
+  "Linux/08-Recap.qmd": {
+    "08-Recap.html": "81026715"
+  },
+  "Linux/05-Manipulating_directories.qmd": {
+    "05-Manipulating_directories.html": "c94406fa"
+  },
+  "Linux/a1-cheat_sheet.qmd": {
+    "a1-cheat_sheet.html": "143375d6"
+  },
+  "Linux/index.qmd": {
+    "index.html": "619db77a"
+  },
+  "Linux/11-Advanced_linux_practice.qmd": {
+    "11-Advanced_linux_practice.html": "73dc5053"
+  },
+  "Linux/13-Bioinformatic_languages.qmd": {
+    "13-Bioinformatic_languages.html": "05d26e55"
+  },
+  "Linux/10-Exercise2.qmd": {
+    "10-Exercise2.html": "d6338dc0"
+  },
+  "Linux/09-Fastq.qmd": {
+    "09-Fastq.html": "6d9adeff"
+  },
+  "Linux/07-File_reading_and_processing.qmd": {
+    "07-File_reading_and_processing.html": "c83eecc4"
+  },
+  "Linux/01-Linux_Introduction.qmd": {
+    "01-Linux_Introduction.html": "893ce52d"
+  },
+  "Linux/03-Directories_and_Files.qmd": {
+    "03-Directories_and_Files.html": "a3348649"
+  },
+  "Linux/02-Starting.qmd": {
+    "02-Starting.html": "6fe88c7c"
+  },
+  "Linux/04-Tips_and_tricks.qmd": {
+    "04-Tips_and_tricks.html": "b772eba5"
+  },
+  "Linux/06-Exercise1.qmd": {
+    "06-Exercise1.html": "23131269"
+  },
+  "about_us.qmd": {
+    "about_us.html": "83aa259a"
+  },
+  "index.qmd": {
+    "index.html": "7952a7cb"
+  },
+  "about.qmd": {
+    "about.html": "534b939d"
+  },
+  "conda.qmd": {
+    "conda.html": "1bb61d0b"
+  },
+  "webexercises.qmd": {
+    "webexercises.html": "3a170ecd"
+  },
+  "ai.qmd": {
+    "ai.html": "a49d033c"
+  },
+  "AI/LLMS.qmd": {
+    "LLMS.html": "4a2d6406"
+  },
+  "AI/Issues.qmd": {
+    "Issues.html": "64333cb4"
+  },
+  "AI/Using.qmd": {
+    "Using.html": "0c024c53"
+  },
+  "upset/index.qmd": {
+    "index.html": "2dc72d28"
+  },
+  "upset/tmp.qmd": {
+    "tmp.html": "45079a3b"
+  },
+  "upset/something.qmd": {
+    "something.html": "655e7f7b"
+  }
+}

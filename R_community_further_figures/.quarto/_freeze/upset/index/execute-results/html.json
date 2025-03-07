@@ -1,0 +1,15 @@
+{
+  "hash": "1885467b786e3ed8ae83693c518e0be0",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Introduction\"\nengine: knitr\neditor: \n  markdown: \n    wrap: sentence\n---\n\n\n\n\nIntro to upset plots",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

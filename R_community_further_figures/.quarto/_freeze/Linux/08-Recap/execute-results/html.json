@@ -1,0 +1,15 @@
+{
+  "hash": "bef70e62909743b77a090831574f6fab",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Recap\"\nengine: knitr\neditor: \n  markdown: \n    wrap: sentence\n---\n\n\n\n<center>\n![](figures/recap.png){style=\"width:200px; background:white; border-radius:15px\"}\n</center>\n\nThroughout this practical we have covered the topics:\n\n* Linux\n    + Multiuser Multitasking OS\n    + User, Shell and Kernel\n* Running commands on the command line\n    + Search engines, cheat sheets and manual pages\n    + Commands: `man`\n* Useful Linux practice and commands\n    + Tab complete\n    + Up and Down arrow keys to access history\n    + __‘Ctrl’ + ‘c’__  to stop a command\n    + Commands: `clear` \n* Files and Directories\n    + Navigating through directory structure and looking at files with paths \n    + Commands: `cd`, `pwd`, `ls`, `mkdir`\n* Manipulating files i.e. creating, copying, moving, deleting\n    + Commands: `cp`, `mv`, `rm`\n* Looking at files\n    + Commands: `cat`, `head`, `tail`, `less`, `wc`, `grep`\n* Text editor\n    + Commands: `vim`\n    \n__Note__: There is a cheatsheet at the end of this book with these commands.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

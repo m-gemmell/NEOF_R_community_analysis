@@ -1,0 +1,25 @@
+---
+title: "Overview"
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+<center>
+![](./images/NEOF_rounded_corners.png){style="width:300px"}
+</center>
+
+This website acts as a resource to demonstrate how to create various figures for community analysis not covered in the other materials:
+
+- [R coomunity analysis main workflow](https://neof-workshops.github.io/R_community_whqkt8/Course)
+- [R community analysis supplemental](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/)
+- [R community analysis iterative rarefaction](https://neof-workshops.github.io/R_community_whqkt8/iterative_rarefaction)
+
+The figures include:
+
+- [Upset plot](./upset): A visualisation of the intersection of multiple sets. This can be a much more efficient and clear method compared to Venn diagrams.
+
+
+
+## License {.unnumbered}
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons Licence" style="border-width:0"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
