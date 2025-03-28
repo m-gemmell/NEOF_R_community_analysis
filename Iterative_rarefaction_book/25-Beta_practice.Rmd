@@ -82,7 +82,7 @@ nmds_res$points
 #Create long data frame with metadata and points
 #Extract metadata and ensure row names order matches
 metadf <- phyloseq::sample_data(pseq)
-if (identicial(row.names(metadf), row.names(nmds_res$points)) == FALSE) {
+if (identical(row.names(metadf), row.names(nmds_res$points)) == FALSE) {
   metadf <- metadf[row.names(nmds_res$points),]
 }
 #Make points with metadata data frame
@@ -122,7 +122,7 @@ pcoa_axis_var_explained
 #Create point long data frame with metadata
 #Extract metadata and ensure row names order matches
 metadf <- phyloseq::sample_data(pseq)
-if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
+if (identical(row.names(metadf), row.names(pcoa_points)) == FALSE) {
   metadf <- metadf[row.names(pcoa_points),]
 }
 #Make points with metadata data frame

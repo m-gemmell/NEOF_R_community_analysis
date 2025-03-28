@@ -1892,7 +1892,7 @@ There is no need to "longify" our data frame as it will start in the long format
 #Create long data frame with metadata and points
 #Extract metadata and ensure row names order matches
 metadf <- phyloseq::sample_data(pseq)
-if (identicial(row.names(metadf), row.names(nmds_points)) == FALSE) {
+if (identical(row.names(metadf), row.names(nmds_points)) == FALSE) {
   metadf <- metadf[row.names(nmds_points),]
 }
 #Make points with metadata data frame
@@ -2014,7 +2014,7 @@ As with the NMDS data we will create a __long data frame__ containing our points
 #Create point long data frame with metadata
 #Extract metadata and ensure row names order matches
 metadf <- phyloseq::sample_data(pseq)
-if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
+if (identical(row.names(metadf), row.names(pcoa_points)) == FALSE) {
   metadf <- metadf[row.names(pcoa_points),]
 }
 #Make points with metadata data frame
@@ -2214,7 +2214,7 @@ Followed by producing a long data frame for plotting:
 ```{R, eval = FALSE}
 #Create point long data frame with metadata
 #Ensure row names order matches
-if (identicial(row.names(beta_df_mean_noenv), row.names(pcoa_points)) == FALSE) {
+if (identical(row.names(beta_df_mean_noenv), row.names(pcoa_points)) == FALSE) {
   beta_df_mean_noenv <- beta_df_mean_noenv[row.names(pcoa_points),]
 }
 #Make points with metadata data frame
@@ -2426,7 +2426,7 @@ nmds_res$points
 #Create long data frame with metadata and points
 #Extract metadata and ensure row names order matches
 metadf <- phyloseq::sample_data(pseq)
-if (identicial(row.names(metadf), row.names(nmds_res$points)) == FALSE) {
+if (identical(row.names(metadf), row.names(nmds_res$points)) == FALSE) {
   metadf <- metadf[row.names(nmds_res$points),]
 }
 #Make points with metadata data frame
@@ -2466,7 +2466,7 @@ pcoa_axis_var_explained
 #Create point long data frame with metadata
 #Extract metadata and ensure row names order matches
 metadf <- phyloseq::sample_data(pseq)
-if (identicial(row.names(metadf), row.names(pcoa_points)) == FALSE) {
+if (identical(row.names(metadf), row.names(pcoa_points)) == FALSE) {
   metadf <- metadf[row.names(pcoa_points),]
 }
 #Make points with metadata data frame
