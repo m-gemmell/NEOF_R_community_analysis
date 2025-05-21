@@ -3263,8 +3263,7 @@ library("microbiome")
 library("IRdisplay")
 library("ANCOMBC")
 library("DT")
-library("dplyr")
-library("tidyr")
+library("tidyverse")
 #Load phyloseq object
 load("phyloseq.RData")
 ```
@@ -3415,7 +3414,24 @@ head(res_ancom_class_media)
 
 Because we had comparisons with more than 1 grouping (media & site) we might have rows with no significant results. We will therefore remove these rows.
 
-**Note:** The next 2 code sections use the packages `dplyr` & `tidyr` along with piping `%>%`. This is used as it would be very difficult to do these steps in base R and they are the code provided in the [`ANCOMBC2` tutorial](https://bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html). If you would like to learn more about these packages please see the [R for Data Science book](https://r4ds.had.co.nz/).
+**Note:** The next 2 code sections use the packages `dplyr` & `tidyr` along with piping `%>%`. This is used as it would be very difficult to do these steps in base R and they are the code provided in the [`ANCOMBC2` tutorial](https://bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html). If you would like to learn more about these packages please see in the below "Tidyverse" expandable box.
+
+`r hide("Tidyverse")`
+Tidyverse consists of a suite of packages. Please see below for links on the NEOF Tidyverse guide and appropriate packages.
+
+- [NEOF Tidyverse website](https://neof-workshops.github.io/Tidyverse/)
+
+Tidyverse functions used:
+
+- [Piping `|>`](https://neof-workshops.github.io/Tidyverse/dplyr/pipes.html)
+- [`dplyr::filter()`](https://neof-workshops.github.io/Tidyverse/dplyr/filter.html): Main family of `dplyr::filter_all()`
+- [`dplyr::mutate()`](https://neof-workshops.github.io/Tidyverse/dplyr/mutate.html)
+- [`dplyr::transmute()`](https://dplyr.tidyverse.org/reference/transmute.html)
+- [`dplyr::arrange()`](https://neof-workshops.github.io/Tidyverse/dplyr/arrange.html)
+
+__Note:__ Website is still in development.
+
+`r unhide()`
 
 ```{r, eval = FALSE}
 #Remove any taxon where there are no TRUE values
@@ -3423,9 +3439,10 @@ Because we had comparisons with more than 1 grouping (media & site) we might hav
 #Number of biomarkers prior to removal
 nrow(res_ancom_class_media)
 #Extract rows that contain at least one TRUE value
-res_ancom_class_media_sig <- res_ancom_class_media %>% dplyr::filter_all(
-  dplyr::any_vars(. %in% TRUE)
-)
+res_ancom_class_media_sig <- res_ancom_class_media |>
+                              dplyr::filter_all(
+                                dplyr::any_vars(. %in% TRUE)
+                              )
 #Number of rows and the top of the new df
 nrow(res_ancom_class_media_sig)
 head(res_ancom_class_media_sig)
