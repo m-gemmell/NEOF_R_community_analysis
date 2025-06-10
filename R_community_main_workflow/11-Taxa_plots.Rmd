@@ -98,9 +98,9 @@ Any taxa with an abundance >= to the __detection__ threshold in a number of samp
 The taxa which don't reach these thresholds will be classified as rare and aggregated into "Other".
 
 In the below example we are aggregating the rare taxa with our ASV relative abundance `phyloseq` object.
-Any phyla with a relative abundance >= to 0.01 (__detection__) in at least 5% (5/100) of the samples will not be classified as rare.
+Any phyla with a relative abundance >= to 0.01 (__detection__) in at least 5% (__prevalence__) of the samples will not be classified as rare.
 
-__Note__: The __detection__ and __prevalence__ thresholds can be given as numbers (1, 2, 1000 etc.), or percentage values (5/100, 50/100, etc.).
+__Note__: The __detection__ and __prevalence__ thresholds can be given as numbers (1, 2, 1000 etc.), or fractional values (5/100, 50/100, etc.).
 
 Aggregate the relative abundance table to phyla with the rare thresholds:
 

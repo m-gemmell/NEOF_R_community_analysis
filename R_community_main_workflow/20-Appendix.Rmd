@@ -179,6 +179,8 @@ $$
 - f1 = Frequency of singletons (features with total abundance of 1).
 - f2 = Frequency of doubletons (features with total abundance of 2).
 
+__Note:__ This cannot be used with DADA2 derived ASVs. DADA2 removes singletons which Chao uses within its calculation.
+
 ### Evenness
 
 How evenly spread the abundances are across all present features.

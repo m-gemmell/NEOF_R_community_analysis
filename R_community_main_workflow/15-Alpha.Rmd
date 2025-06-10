@@ -9,7 +9,7 @@ These metrics are primarily interested in the evenness or diversity of a sample.
 
 Generally, these metrics are carried out on the ASV data to see the most fine grain differences between samples.
 However, you can also use different taxa levels which we will show later on.
-This can be useful if there is too much difference in the ASVs from sample to sample or you can only accurately classify sequences to a high level taxonomy (such as with `KRAKEN2` output).
+This can be useful if there is too much difference in the ASVs from sample to sample or you can only accurately classify sequences to a high level taxonomy (such as with `KRAKEN2/Bracken` output).
 
 Once we have a value for each sample they can be used to compare samples and sample groups.
 Box plots are used for visualisation.
@@ -71,7 +71,6 @@ Currently it is showing 7 metrics (Observed, Chao1 etc.).
 I like to use:
 
 - __Observed__: This is the number of observed features (ASVs, Genera, etc) in each sample.
-- __Chao1__: This is an estimate number of the total number of features in each sample.
 - __Shannon__: A measure of diversity where a higher number means higher diversity. Shannon's index accounts for both abundance and evenness of the features present.
 
 We'll choose these metrics with the `measures = ` option.
@@ -79,7 +78,7 @@ Either make a new code block with new code or you can edit and run the previous 
 
 ```{r , eval = FALSE}
 #Simple alpha plot
-alpha_plot <- phyloseq::plot_richness(physeq = pseq_rarefy, measures = c("Observed","Chao1","Shannon"))
+alpha_plot <- phyloseq::plot_richness(physeq = pseq_rarefy, measures = c("Observed","Shannon"))
 #Save ggplot object as png file
 ggsave(filename = "./alpha_div.png", plot = alpha_plot,
        device = "png", dpi = 300, units = "mm", height = 200, width = 300)
@@ -109,9 +108,9 @@ This will combine samples from one media into one IQR box.
 
 ```{r , eval = FALSE}
 #Box plot
-phyloseq::plot_richness(physeq = pseq_rarefy, 
+alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
             ggplot2::geom_boxplot()
 #Save ggplot object as png file
 ggsave(filename = "./alpha_div.png", plot = alpha_plot,
@@ -132,7 +131,7 @@ We'll try 150 (height) and 250 (width).
 #Produce ggplot object of boxplot
 alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
                           ggplot2::geom_boxplot()
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Alpha_diversity_media_boxplot.png", plot = alpha_boxplot,
@@ -141,7 +140,7 @@ ggsave(filename = "./Alpha_diversity_media_boxplot.png", plot = alpha_boxplot,
 IRdisplay::display_png(file="./Alpha_diversity_media_boxplot.png")
 ```
 
-How do I choose a good height and width?
+How do you choose a good height and width?
 This comes down to trial and error, and experience.
 You want something with a good aspect ratio for the plot and you want all the text to be clear.
 Additionally, the size requirements of figures for journals will play a big consideration as well.
@@ -189,7 +188,7 @@ Are all the pairwise comparisons significantly different (<0.05)? `r longmcq(opt
 The test has carried out P value adjustments using the Holm-Bonferroni method (`P value adjustment method: holm`) which is good.
 
 In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
-The only group with a large variance is the ENV group with values going from < 150 to > 450.
+The only group with a large variance is the ENV group with observed values going from < 150 to > 450 (as seen on the boxplots).
 
 For more info on Wilcoxon test [Wikipedia](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test) is a good start.
 
@@ -198,20 +197,16 @@ For more info on Wilcoxon test [Wikipedia](https://en.wikipedia.org/wiki/Wilcoxo
 ![](figures/exercises.png){style="width:200px"}
 </center>
 
-Carry out the same statistical analysis (media as the grouping) with the `Chao1` and `Shannon` metrics.
+Carry out the same statistical analysis (media as the grouping) with the `Shannon` metric.
 
 `r hide("Alpha stats solution")`
 ```{r, eval=FALSE}
-#Chao1
-pairwise.wilcox.test(alpha_df$Chao1, phyloseq::sample_data(pseq_rarefy)$media)
 #Shannon
 pairwise.wilcox.test(alpha_df$Shannon, phyloseq::sample_data(pseq_rarefy)$media)
 ```
 `r unhide()`
 
-With these we can see that the differences between the Chao1 values of the different media are significantly different.
-
-However, the p-values when comparing the Shannon values are not all significant.
+The p-values when comparing the Shannon values are not all significant.
 The only significant differences are between ENV & KBC, and between KBC & TSA. 
 Going back to the boxplot, does this look like the case?
 I would say yes as the IQRs for CVP, KBC, and TSA all overlap.
@@ -243,7 +238,7 @@ __Tip:__ Remember to change the name of your png file in the `ggsave()` and `IRd
 #Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
                           ggplot2::geom_violin()
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Alpha_diversity_media_violinplot.png", plot = alpha_violinplot,
@@ -261,7 +256,7 @@ Alpha is a common option used for many plots.
 #Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
                           ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5)
 #Save ggplot2 object with ggsave
@@ -278,15 +273,15 @@ IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
 
 With all the knowledge, skills, and code from this chapter carry out the following tasks:
 
-- Produce a violin plot of Observed, Chao1, and Shannon with the Site groups.
-- Carry out paired Wilcoxon test for Observed, Chao1, and Shannon with the Site groups.
+- Produce a violin plot of Observed, Shannon with the Site groups.
+- Carry out paired Wilcoxon test for Observed and Shannon with the Site groups.
 
 `r hide("Alpha sites solution")`
 ```{r , eval = FALSE}
 #Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "site",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
                           ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5)
 #Save ggplot2 object with ggsave
@@ -300,8 +295,6 @@ IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
 #Paired wilcoxon test
 #Observed
 pairwise.wilcox.test(alpha_df$Observed, phyloseq::sample_data(pseq_rarefy)$site)
-#Chao1
-pairwise.wilcox.test(alpha_df$Chao1, phyloseq::sample_data(pseq_rarefy)$site)
 #Shannon
 pairwise.wilcox.test(alpha_df$Shannon, phyloseq::sample_data(pseq_rarefy)$site)
 ```
@@ -319,7 +312,7 @@ We can fix this by adding the layer `ggplot2::labs(colour = "Media")`.
 # Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "site",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
                           ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5, aes(colour=media)) +
                           ggplot2::labs(colour = "Media")

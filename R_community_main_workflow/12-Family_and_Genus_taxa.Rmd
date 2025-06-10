@@ -183,6 +183,9 @@ One piece of advice is to only change one threshold at a time during your trial 
 
 With our family rare aggregated `phyloseq` object we'll create a bar chart.
 
+This time we will use the `group_by=` option of `microbiome::plot_composition`.
+This groups/facets the samples in the plot by the specified metadata, in this case media.
+
 ```{r, eval=FALSE}
 #Plot
 family_bar <- 

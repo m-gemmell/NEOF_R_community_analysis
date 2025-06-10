@@ -58,7 +58,7 @@ With this data we can ask and investigate the following questions:
 1. [Import](#import_chap): Import QIIME2 artifacts into a `phyloseq` object with `qiime2R`.
 2. [Summarisations](#sum_phyloseq_chap): Check our `phyloseq` object with summarisations.
 3. [Minimum depth](#mindepthchap): Determine the minimum depth we should use and remove samples with lower depth.
-4. [Taxanomic relative abundance](#taxa_relabund_chap): Create taxonomic relative abundance tables.
+4. [Taxonomic relative abundance](#taxa_relabund_chap): Create taxonomic relative abundance tables.
 5. [Taxa plots](#chaptaxaplots): Produce heat maps and bar plots of taxa relative abundances.
 6. [Family and genus](#family_genus_chap): Using the last step to produce family and genus based taxa plots.
 7. [Rarefaction](#rarefaction_chap): Carry out sample depth normalisation with rarefactions. This will be used for alpha and beta diversity analysis.

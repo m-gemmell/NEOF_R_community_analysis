@@ -215,7 +215,7 @@ samples_subset <- row.names(metadf_subset)
 samples_subset
 ```
 
-With this info we can subset our distance matrix (calculated at the start of the [PERMANOVA section](#permanova)). We subset it so we only have columns and rows belonging to calculate the distances and then carry out the pairwise PERMANOVA.
+With this info we can subset our distance matrix (calculated at the start of the [PERMANOVA section](#permanova)). We subset it so we only have columns and rows belonging to our media groups of interest (CVP & ENV in this case). Afterwards we carry out the pairwise PERMANOVA.
 
 ```{r, eval=FALSE}
 #Subset distance matrix so it only contains row and column combinations of the
@@ -475,6 +475,7 @@ There are many other things you could do such as:
 - Use different ordination methods (`?phyloseq:ordinate`).
   - Different methods will produce different __percentage of variation explained__ values. If your plot has low values try another method to see if you can get higher values.
   - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values. This is perfectly acceptable and encouraged by many.
+  - Others may have other thoughts about trying multiple different metrics and the possibility of p-hacking. Please see the following paper for more info: [The Power of Microbiome Studies: Some Considerations on Which Alpha and Beta Metrics to Use and How to Report Results](https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2021.796025/full)
   
 With our analyses we found out:
 
