@@ -22,7 +22,7 @@ This contains the following topics:
 ![](figures/iterative_rarefaction.png){style="border-radius: 5px; width: 200px; background:white; border: solid white 5px"}</center>
 </center>
 
-There is a [Iterative rarefaction book](https://neof-workshops.github.io/R_community_whqkt8/iterative_rarefaction).
+There is an [Iterative rarefaction book](https://neof-workshops.github.io/R_community_whqkt8/iterative_rarefaction).
 
 The book explains and demonstrates how to carry out iterative rarefaction for alpha and beta diversity analysis in R with the `phyloseq` object. This involves running multiple rounds/iterations of rarefaction and producing an averaged table of alpha and beta diversity values. This is a more robust method than only carrying out one round of rarefaction.
 
@@ -38,7 +38,7 @@ It contains the following topics:
 ![](figures/literature.png){style="border-radius: 5px; width: 200px; background:white; border: solid white 5px"}</center>
 </center>
 
-Of course there is a lot of literature you can explore to inform your future analysis decisions. Below is a list of some importnat litertaure.
+Of course there is a lot of literature you can explore to inform your future analysis decisions. Below is a list of some important litertaure.
 
 ### Rarefaction
 
@@ -63,6 +63,8 @@ There are other tutorials online that can solidify and expand the skills you lea
 - [Phyloseq website that contains tutorials](https://joey711.github.io/phyloseq/)
 - [ANCOM-BC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html)
 - [ggplot2 website](https://ggplot2.tidyverse.org/)
+- [NEOF Tidyverse site (under construction)](https://neof-workshops.github.io/Tidyverse/)
+- [NEOF bioinformatics resources site](https://neof-workshops.github.io/BFX_resources/)
 
 ## Book appendix
 

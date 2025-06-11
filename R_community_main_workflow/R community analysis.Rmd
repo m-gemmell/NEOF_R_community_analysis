@@ -32,6 +32,14 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
+```{r, echo=FALSE}
+#Tippy library for tooltips 
+#https://atomiks.github.io/tippyjs/
+#https://tippy.john-coene.com/
+#install.packages("tippy") 
+library("tippy")
+```
+
 <center>
 ![](figures/NEOF_rounded_corners.png){style="width:300px"}
 </center>
@@ -195,7 +203,7 @@ With this data we can ask and investigate the following questions:
 1. [Import](#import_chap): Import QIIME2 artifacts into a `phyloseq` object with `qiime2R`.
 2. [Summarisations](#sum_phyloseq_chap): Check our `phyloseq` object with summarisations.
 3. [Minimum depth](#mindepthchap): Determine the minimum depth we should use and remove samples with lower depth.
-4. [Taxanomic relative abundance](#taxa_relabund_chap): Create taxonomic relative abundance tables.
+4. [Taxonomic relative abundance](#taxa_relabund_chap): Create taxonomic relative abundance tables.
 5. [Taxa plots](#chaptaxaplots): Produce heat maps and bar plots of taxa relative abundances.
 6. [Family and genus](#family_genus_chap): Using the last step to produce family and genus based taxa plots.
 7. [Rarefaction](#rarefaction_chap): Carry out sample depth normalisation with rarefactions. This will be used for alpha and beta diversity analysis.
@@ -315,7 +323,7 @@ library(webexercises)
 ```
 # Set-up {#setupchap}
 <center>
-![](figures/start.png){style="width:200px"}
+![](figures/start.png){style="width:200px; border-radius:15px; background:white; border: white solid 5px"}
 </center>
 
 Prior to any analysis we need to setup our environment in the webVNC.
@@ -653,7 +661,7 @@ Next step is to create a new R notebook, rename it to __"1-Import.ipynb"__, and 
 
 ## qiime2R
 <center>
-![](figures/qiime2r.png){style="width:400px"}
+![](figures/qiime2r.png){style="width:400px; border-radius:15px; background:white"}
 </center>
 
 [`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R `phyloseq` object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.
@@ -872,7 +880,7 @@ Due to the relative large amount of output to screen we'll put the next part int
 
 ### Reads per sample
 <center>
-![](figures/histogram.png){style="width:200px"}
+![](figures/histogram.png){style="width:200px; border-radius:15px; background:white; border: 5px solid white"}
 </center>
 
 In a new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`).
@@ -1021,7 +1029,7 @@ Create a new __"Markdown"__ __cell__ and add the following 2nd level header.
 
 ## Read depth vector and histogram
 <center>
-![](figures/histogram.png){style="width:200px"}
+![](figures/histogram.png){style="width:200px; border-radius:15px; background:white; border: 5px solid white"}
 </center>
 
 We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:
@@ -1042,7 +1050,7 @@ We are going to use `ggplot2` to create a couple boxplots to show the sequencing
 
 ### Creating a data frame for boxplots
 <center>
-![](figures/metadata.png){style="width:200px"}
+![](figures/metadata.png){style="width:200px; border-radius:15px; background:white; border: 5px solid white"}
 </center>
 
 First, we need to create an object containing our sample names, site & media information, and the depth.
@@ -1120,7 +1128,7 @@ We have a saved `ggplot2` object but now we need to save it as an image file and
 
 ### Save ggplot as png
 <center>
-![](figures/png_file.png){style="width:200px"}
+![](figures/png_file.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 You can save a `ggplot` object as an image file with `ggsave()`.
@@ -1171,7 +1179,7 @@ For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of 
 
 ## Rarefaction curve {#chap9rarefaction}
 <center>
-![](figures/rarefaction.png){style="width:200px"}
+![](figures/rarefaction.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 Our read depths appear a bit low, each sample has <20K reads. 
@@ -1371,7 +1379,7 @@ library(webexercises)
 
 # Taxa relative abundance {#taxa_relabund_chap}
 <center>
-![](figures/taxa.png){style="width:200px"}
+![](figures/taxa.png){style="width:200px; border-radius:15px; background:white; border: 5px white solid"}
 </center>
 
 In this section we are going to create taxonomy bar charts.
@@ -1383,7 +1391,7 @@ But, as stated in the last chapter all our samples had sufficient depth, so we w
 
 ## Taxa relative abundance: setup
 <center>
-![](figures/packages.png){style="width:200px"}
+![](figures/packages.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 The first steps before analysis are:
@@ -1524,7 +1532,7 @@ Now save and display the plot.
 
 ## Taxa heatmap
 <center>
-![](figures/heatmap.png){style="width:200px"}
+![](figures/heatmap.png){style="width:200px; border-radius:15px; border: 5px solid white; background:white"}
 </center>
 
 Our bar chart looks quite nice but for displaying all taxa present it may be better to use a heatmap.
@@ -1575,9 +1583,9 @@ Any taxa with an abundance >= to the __detection__ threshold in a number of samp
 The taxa which don't reach these thresholds will be classified as rare and aggregated into "Other".
 
 In the below example we are aggregating the rare taxa with our ASV relative abundance `phyloseq` object.
-Any phyla with a relative abundance >= to 0.01 (__detection__) in at least 5% (5/100) of the samples will not be classified as rare.
+Any phyla with a relative abundance >= to 0.01 (__detection__) in at least 5% (__prevalence__) of the samples will not be classified as rare.
 
-__Note__: The __detection__ and __prevalence__ thresholds can be given as numbers (1, 2, 1000 etc.), or percentage values (5/100, 50/100, etc.).
+__Note__: The __detection__ and __prevalence__ thresholds can be given as numbers (1, 2, 1000 etc.), or fractional values (5/100, 50/100, etc.).
 
 Aggregate the relative abundance table to phyla with the rare thresholds:
 
@@ -1673,7 +1681,7 @@ Later in this book we will investigate diversity more thoroughly with alpha and 
 
 ## Plot by site and media
 <center>
-![](figures/site_and_media.png){style="width:400px"}
+![](figures/site_and_media.png){style="width:400px; border-radius:15px; background:white"}
 </center>
 
 __Task__: In the `sample_data` there is a column called `site.media`.
@@ -1903,6 +1911,9 @@ One piece of advice is to only change one threshold at a time during your trial 
 </center>
 
 With our family rare aggregated `phyloseq` object we'll create a bar chart.
+
+This time we will use the `group_by=` option of `microbiome::plot_composition`.
+This groups/facets the samples in the plot by the specified metadata, in this case media.
 
 ```{r, eval=FALSE}
 #Plot
@@ -2404,7 +2415,7 @@ These metrics are primarily interested in the evenness or diversity of a sample.
 
 Generally, these metrics are carried out on the ASV data to see the most fine grain differences between samples.
 However, you can also use different taxa levels which we will show later on.
-This can be useful if there is too much difference in the ASVs from sample to sample or you can only accurately classify sequences to a high level taxonomy (such as with `KRAKEN2` output).
+This can be useful if there is too much difference in the ASVs from sample to sample or you can only accurately classify sequences to a high level taxonomy (such as with `KRAKEN2/Bracken` output).
 
 Once we have a value for each sample they can be used to compare samples and sample groups.
 Box plots are used for visualisation.
@@ -2466,7 +2477,6 @@ Currently it is showing 7 metrics (Observed, Chao1 etc.).
 I like to use:
 
 - __Observed__: This is the number of observed features (ASVs, Genera, etc) in each sample.
-- __Chao1__: This is an estimate number of the total number of features in each sample.
 - __Shannon__: A measure of diversity where a higher number means higher diversity. Shannon's index accounts for both abundance and evenness of the features present.
 
 We'll choose these metrics with the `measures = ` option.
@@ -2474,7 +2484,7 @@ Either make a new code block with new code or you can edit and run the previous 
 
 ```{r , eval = FALSE}
 #Simple alpha plot
-alpha_plot <- phyloseq::plot_richness(physeq = pseq_rarefy, measures = c("Observed","Chao1","Shannon"))
+alpha_plot <- phyloseq::plot_richness(physeq = pseq_rarefy, measures = c("Observed","Shannon"))
 #Save ggplot object as png file
 ggsave(filename = "./alpha_div.png", plot = alpha_plot,
        device = "png", dpi = 300, units = "mm", height = 200, width = 300)
@@ -2504,9 +2514,9 @@ This will combine samples from one media into one IQR box.
 
 ```{r , eval = FALSE}
 #Box plot
-phyloseq::plot_richness(physeq = pseq_rarefy, 
+alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
             ggplot2::geom_boxplot()
 #Save ggplot object as png file
 ggsave(filename = "./alpha_div.png", plot = alpha_plot,
@@ -2527,7 +2537,7 @@ We'll try 150 (height) and 250 (width).
 #Produce ggplot object of boxplot
 alpha_boxplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
                           ggplot2::geom_boxplot()
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Alpha_diversity_media_boxplot.png", plot = alpha_boxplot,
@@ -2536,7 +2546,7 @@ ggsave(filename = "./Alpha_diversity_media_boxplot.png", plot = alpha_boxplot,
 IRdisplay::display_png(file="./Alpha_diversity_media_boxplot.png")
 ```
 
-How do I choose a good height and width?
+How do you choose a good height and width?
 This comes down to trial and error, and experience.
 You want something with a good aspect ratio for the plot and you want all the text to be clear.
 Additionally, the size requirements of figures for journals will play a big consideration as well.
@@ -2584,7 +2594,7 @@ Are all the pairwise comparisons significantly different (<0.05)? `r longmcq(opt
 The test has carried out P value adjustments using the Holm-Bonferroni method (`P value adjustment method: holm`) which is good.
 
 In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
-The only group with a large variance is the ENV group with values going from < 150 to > 450.
+The only group with a large variance is the ENV group with observed values going from < 150 to > 450 (as seen on the boxplots).
 
 For more info on Wilcoxon test [Wikipedia](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test) is a good start.
 
@@ -2593,20 +2603,16 @@ For more info on Wilcoxon test [Wikipedia](https://en.wikipedia.org/wiki/Wilcoxo
 ![](figures/exercises.png){style="width:200px"}
 </center>
 
-Carry out the same statistical analysis (media as the grouping) with the `Chao1` and `Shannon` metrics.
+Carry out the same statistical analysis (media as the grouping) with the `Shannon` metric.
 
 `r hide("Alpha stats solution")`
 ```{r, eval=FALSE}
-#Chao1
-pairwise.wilcox.test(alpha_df$Chao1, phyloseq::sample_data(pseq_rarefy)$media)
 #Shannon
 pairwise.wilcox.test(alpha_df$Shannon, phyloseq::sample_data(pseq_rarefy)$media)
 ```
 `r unhide()`
 
-With these we can see that the differences between the Chao1 values of the different media are significantly different.
-
-However, the p-values when comparing the Shannon values are not all significant.
+The p-values when comparing the Shannon values are not all significant.
 The only significant differences are between ENV & KBC, and between KBC & TSA. 
 Going back to the boxplot, does this look like the case?
 I would say yes as the IQRs for CVP, KBC, and TSA all overlap.
@@ -2638,7 +2644,7 @@ __Tip:__ Remember to change the name of your png file in the `ggsave()` and `IRd
 #Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
                           ggplot2::geom_violin()
 #Save ggplot2 object with ggsave
 ggsave(filename = "./Alpha_diversity_media_violinplot.png", plot = alpha_violinplot,
@@ -2656,7 +2662,7 @@ Alpha is a common option used for many plots.
 #Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "media",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
                           ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5)
 #Save ggplot2 object with ggsave
@@ -2673,15 +2679,15 @@ IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
 
 With all the knowledge, skills, and code from this chapter carry out the following tasks:
 
-- Produce a violin plot of Observed, Chao1, and Shannon with the Site groups.
-- Carry out paired Wilcoxon test for Observed, Chao1, and Shannon with the Site groups.
+- Produce a violin plot of Observed, Shannon with the Site groups.
+- Carry out paired Wilcoxon test for Observed and Shannon with the Site groups.
 
 `r hide("Alpha sites solution")`
 ```{r , eval = FALSE}
 #Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "site",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
                           ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5)
 #Save ggplot2 object with ggsave
@@ -2695,8 +2701,6 @@ IRdisplay::display_png(file="./Alpha_diversity_site_violinplot.png")
 #Paired wilcoxon test
 #Observed
 pairwise.wilcox.test(alpha_df$Observed, phyloseq::sample_data(pseq_rarefy)$site)
-#Chao1
-pairwise.wilcox.test(alpha_df$Chao1, phyloseq::sample_data(pseq_rarefy)$site)
 #Shannon
 pairwise.wilcox.test(alpha_df$Shannon, phyloseq::sample_data(pseq_rarefy)$site)
 ```
@@ -2714,7 +2718,7 @@ We can fix this by adding the layer `ggplot2::labs(colour = "Media")`.
 # Produce ggplot object of violin plot
 alpha_violinplot <- phyloseq::plot_richness(physeq = pseq_rarefy, 
                         x = "site",
-                        measures = c("Observed","Chao1","Shannon")) +
+                        measures = c("Observed","Shannon")) +
                           ggplot2::geom_violin() +
                           ggforce::geom_sina(alpha=0.5, aes(colour=media)) +
                           ggplot2::labs(colour = "Media")
@@ -2960,7 +2964,7 @@ samples_subset <- row.names(metadf_subset)
 samples_subset
 ```
 
-With this info we can subset our distance matrix (calculated at the start of the [PERMANOVA section](#permanova)). We subset it so we only have columns and rows belonging to calculate the distances and then carry out the pairwise PERMANOVA.
+With this info we can subset our distance matrix (calculated at the start of the [PERMANOVA section](#permanova)). We subset it so we only have columns and rows belonging to our media groups of interest (CVP & ENV in this case). Afterwards we carry out the pairwise PERMANOVA.
 
 ```{r, eval=FALSE}
 #Subset distance matrix so it only contains row and column combinations of the
@@ -3220,6 +3224,7 @@ There are many other things you could do such as:
 - Use different ordination methods (`?phyloseq:ordinate`).
   - Different methods will produce different __percentage of variation explained__ values. If your plot has low values try another method to see if you can get higher values.
   - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values. This is perfectly acceptable and encouraged by many.
+  - Others may have other thoughts about trying multiple different metrics and the possibility of p-hacking. Please see the following paper for more info: [The Power of Microbiome Studies: Some Considerations on Which Alpha and Beta Metrics to Use and How to Report Results](https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2021.796025/full)
   
 With our analyses we found out:
 
@@ -3381,19 +3386,47 @@ This is good to open in excel but we don't have something like that on our clust
 
 ```{r, eval=FALSE}
 #Create data table
-m <- DT::datatable(res_ancom_class)
+m <- DT::datatable(res_ancom_class,
+                   #Add options so it shows 50 rows by default
+                   options=list(pageLength=50)
+                   )
 #Save data table as html
-htmlwidgets::saveWidget(m, "ANCOM_class_results.html", selfcontained = FALSE)
+htmlwidgets::saveWidget(m, "ANCOM_class_results.html",
+                        #Make self contained HTML
+                        #i.e. all required data in one file
+                        selfcontained = TRUE)
 ```
 
 Go to the jupyter-notebook file explorer tab and click on the html file to open it in a new tab. This gives a relatively nice way to view all the results.
 
 One very clear pattern is that there are no biomarkers found for the site comparisons (MD vs UD and LD vs UD). I believe this is because we don't have enough replicates for the sites within the media samples and the differences between the medias are so large. However, there is a good amount of biomarkers for the three different medias compared to ENV.
 
+## Tidyverse
+
+The next section use the packages `dplyr` & `tidyr` along with piping `|>`. This is used as it would be very difficult to do these steps in base R and they are the code provided in the [`ANCOMBC2` tutorial](https://bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html). If you would like to learn more about these packages please see in the below "Tidyverse" expandable box.
+
+`r hide("Tidyverse")`
+Tidyverse consists of a suite of packages. Please see below for links on the NEOF Tidyverse guide and appropriate packages.
+
+- [NEOF Tidyverse website](https://neof-workshops.github.io/Tidyverse/)
+
+Tidyverse functions used:
+
+- [Piping `|>`](https://neof-workshops.github.io/Tidyverse/dplyr/pipes.html)
+- [`dplyr::filter()`](https://neof-workshops.github.io/Tidyverse/dplyr/filter.html): Main family of `dplyr::filter_all()`
+- [`dplyr::mutate()`](https://neof-workshops.github.io/Tidyverse/dplyr/mutate.html)
+- [`dplyr::transmute()`](https://dplyr.tidyverse.org/reference/transmute.html)
+- [`dplyr::arrange()`](https://neof-workshops.github.io/Tidyverse/dplyr/arrange.html)
+- [`tidyr::pivot_longer()`](https://neof-workshops.github.io/Tidyverse/tidyr/pivot_longer.html)
+
+__Note:__ Website is still in development.
+`r unhide()`
+
+
 ## DA: Create significant LFC long data frame
 
 <center>
-![](figures/portrait.png){style="width:200px"}
+![](figures/portrait.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 The results table is good but let's make a heatmap showing the LFCs (Log fold changes) of the significant biomarkers. First, we need to do some preprocessing.
@@ -3413,25 +3446,6 @@ head(res_ancom_class_media)
 ```
 
 Because we had comparisons with more than 1 grouping (media & site) we might have rows with no significant results. We will therefore remove these rows.
-
-**Note:** The next 2 code sections use the packages `dplyr` & `tidyr` along with piping `%>%`. This is used as it would be very difficult to do these steps in base R and they are the code provided in the [`ANCOMBC2` tutorial](https://bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html). If you would like to learn more about these packages please see in the below "Tidyverse" expandable box.
-
-`r hide("Tidyverse")`
-Tidyverse consists of a suite of packages. Please see below for links on the NEOF Tidyverse guide and appropriate packages.
-
-- [NEOF Tidyverse website](https://neof-workshops.github.io/Tidyverse/)
-
-Tidyverse functions used:
-
-- [Piping `|>`](https://neof-workshops.github.io/Tidyverse/dplyr/pipes.html)
-- [`dplyr::filter()`](https://neof-workshops.github.io/Tidyverse/dplyr/filter.html): Main family of `dplyr::filter_all()`
-- [`dplyr::mutate()`](https://neof-workshops.github.io/Tidyverse/dplyr/mutate.html)
-- [`dplyr::transmute()`](https://dplyr.tidyverse.org/reference/transmute.html)
-- [`dplyr::arrange()`](https://neof-workshops.github.io/Tidyverse/dplyr/arrange.html)
-
-__Note:__ Website is still in development.
-
-`r unhide()`
 
 ```{r, eval = FALSE}
 #Remove any taxon where there are no TRUE values
@@ -3460,7 +3474,7 @@ Please see the code and its annotation below. If you do not fully understand the
 
 ```{r, eval = FALSE}
 #Create edited long df to plot significant log fold changes on heatmap
-res_ancom_class_media_sig_lfc_fig <- res_ancom_class_media_sig %>%
+res_ancom_class_media_sig_lfc_fig <- res_ancom_class_media_sig |>
   #Change log fold change values to 0 if diff is false
   #test: Is diff TRUE?
   #yes: Set LFC to original value (e.g. lfc_mediaCVP)
@@ -3470,17 +3484,17 @@ res_ancom_class_media_sig_lfc_fig <- res_ancom_class_media_sig %>%
                 lfc_mediaKBC = ifelse(test = diff_mediaKBC == TRUE,
                                       yes = lfc_mediaKBC, no = 0),
                 lfc_mediaTSA = ifelse(test = diff_mediaTSA == TRUE,
-                                      yes = lfc_mediaTSA, no = 0)) %>%
+                                      yes = lfc_mediaTSA, no = 0)) |>
   #Only retain taxon and log fold change columns
   #Additionally, change column names and round LFC values to 2 decimal places
   dplyr::transmute(taxon,
                    CVP = round(lfc_mediaCVP,2),
                    KBC = round(lfc_mediaKBC,2),
-                   TSA = round(lfc_mediaTSA,2)) %>%
+                   TSA = round(lfc_mediaTSA,2)) |>
   #Convert to long data frame
   tidyr::pivot_longer(cols = CVP:TSA,
                       names_to = "group",
-                      values_to = "value") %>%
+                      values_to = "value") |>
   #Arrange order of rows based on taxons
   dplyr::arrange(taxon)
 #Check new long df
@@ -3490,7 +3504,7 @@ head(res_ancom_class_media_sig_lfc_fig)
 ## DA: Biomarker LFC heatmap
 
 <center>
-![](figures/tiles.png){style="width:200px"}
+![](figures/tiles.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 We now have a long data frame with the significant LFC values. We can use this to create a heatmap.
@@ -3647,7 +3661,8 @@ They were found to be very different compared to the ENV samples.
 Some differences between the media groupings were also found.
 Overall, any differences between the sites were hard to determine due to the large differences between media.
 
-To properly determine the differences across the anthropisation gradient it would be best to use a good amount of environmental samples.
+To properly determine the differences across the anthropisation gradient it would be best to use a good amount of environmental samples. I would say you would want at least 10 each but preferably aim for 20.
+Its likely some samples will drop out due to low depth or sequencing issues so its good to go for more than less if possible.
 It may also help to sample more sites along the gradient.
 
 We discovered these findings through our analysis.
@@ -3665,7 +3680,7 @@ Briefly we carried out the following steps to prepare our data:
 
 ## Taxonomy
 <center>
-![](figures/taxa.png){style="width:200px"}
+![](figures/taxa.png){style="width:200px; border-radius:15px; background:white; border: 5px white solid"}
 </center>
 
 We investigated the taxonomic composition of our samples.
@@ -3683,7 +3698,7 @@ Due to the difference of media we cannot see any clear differences between the s
 
 ## Diversity analysis
 <center>
-![](figures/diversity.png){style="width:200px"}
+![](figures/diversity.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 Prior to alpha & beta diversity analysis we carried out rarefaction to normalise the depths between samples in [Chapter 14](#rarefaction_chap).
@@ -3691,14 +3706,15 @@ This is a controversial technique.
 We carry it out due to the logic and the fact the QIIME2 developers recommend it.
 Please make your own decision.
 
-Two of the leading papers are:
+Three of the leading papers are:
 
 - [Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible (McMurdie & Holmes 2014)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531).
 - [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data (Hong et al, 2022)](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959).
+- [Rarefaction is currently the best approach to control for uneven sequencing effort in amplicon sequence analyses, 2024](https://journals.asm.org/doi/10.1128/msphere.00354-23)
 
-### Alpha & beta
+### Alpha & Beta
 <center>
-![](figures/alpha.png){style="width:200px"}
+![](figures/alpha.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 With our rarefied table we carried out diversity analysis.
@@ -3708,7 +3724,7 @@ With our rarefied table we carried out diversity analysis.
 
 The alpha diversity showed significant differences between the media and ENV samples.
 Additionally, the alpha metrics between the 3 media groupings were also significantly different.
-This was the case for observed ASVs and the Chao1 estimator which had much higher values in the ENV samples.
+This was the case for observed ASVs which had much higher values in the ENV samples.
 
 Although the ENV samples had higher Shannon scores (diversity), the values were also widespread leading to lack of significance when comparing the ENV to CVP and TSA samples.
 
@@ -3734,12 +3750,12 @@ This was carried out with ANCOM whilst taking into account both the media and si
 We found many bacterial classes with lower abundances in the media samples compared to the ENV samples.
 We only found 2 classes with higher abundance in the media samples compared to the ENV samples.
 This indicates the media are selecting for only a few classes and many bacteria cannot survive on the media.
-This biologically makes sense but also corroborates what we have seen in our other analyses.
+This biologically makes sense and also corroborates what we have seen in our other analyses.
 
 ## Findings
 
 <center>
-![](figures/compass.png){style="width:200px"}
+![](figures/compass.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 In [chapter 2](#sum_and_qs) we asked some questions about our dataset.
@@ -3758,7 +3774,7 @@ However, you would not have much power with only 9 samples (3 sites by 3 replica
 
 ### Replicate differences
 <center>
-![](figures/replicate_difference.png){style="width:200px"}
+![](figures/replicate_difference.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 Is there a difference in the replicates of one site and media combination? I.e. Do any of the media produce inconsistent profiles?
@@ -3772,7 +3788,7 @@ However, this is hard to determine due to small numbers of replicates.
 
 ### Site or media
 <center>
-![](figures/site_and_media.png){style="width:300px"}
+![](figures/site_and_media.png){style="width:300px; border-radius:15px; background:white"}
 </center>
 
 Is there more difference between the sites or the media used?
@@ -3838,7 +3854,7 @@ This contains the following topics:
 ![](figures/iterative_rarefaction.png){style="border-radius: 5px; width: 200px; background:white; border: solid white 5px"}</center>
 </center>
 
-There is a [Iterative rarefaction book](https://neof-workshops.github.io/R_community_whqkt8/iterative_rarefaction).
+There is an [Iterative rarefaction book](https://neof-workshops.github.io/R_community_whqkt8/iterative_rarefaction).
 
 The book explains and demonstrates how to carry out iterative rarefaction for alpha and beta diversity analysis in R with the `phyloseq` object. This involves running multiple rounds/iterations of rarefaction and producing an averaged table of alpha and beta diversity values. This is a more robust method than only carrying out one round of rarefaction.
 
@@ -3854,7 +3870,7 @@ It contains the following topics:
 ![](figures/literature.png){style="border-radius: 5px; width: 200px; background:white; border: solid white 5px"}</center>
 </center>
 
-Of course there is a lot of literature you can explore to inform your future analysis decisions. Below is a list of some importnat litertaure.
+Of course there is a lot of literature you can explore to inform your future analysis decisions. Below is a list of some important litertaure.
 
 ### Rarefaction
 
@@ -3879,6 +3895,8 @@ There are other tutorials online that can solidify and expand the skills you lea
 - [Phyloseq website that contains tutorials](https://joey711.github.io/phyloseq/)
 - [ANCOM-BC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html)
 - [ggplot2 website](https://ggplot2.tidyverse.org/)
+- [NEOF Tidyverse site (under construction)](https://neof-workshops.github.io/Tidyverse/)
+- [NEOF bioinformatics resources site](https://neof-workshops.github.io/BFX_resources/)
 
 ## Book appendix
 
@@ -3914,7 +3932,7 @@ Miniforge installation: <https://github.com/conda-forge/miniforge>
 
 Mamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>
 
-#### r_community
+### r_community
 
 To create the mamba environment `r_community` run the below commands in your bash. You will need to have installed `mamba` first.
 
@@ -3931,7 +3949,7 @@ conda-forge::r-ape=5.8 conda-forge::r-xml2=1.3.6 conda-forge::r-dt=0.33 \
 anaconda::pathlib=1.0.1 conda-forge::r-ggupset=0.4.0
 ```
 
-__Note:__ It is common that some tools/packages will conflict with others. To overcome this we can set the version by adding `=xx` after a tool name in `conda` (e.g. `r-htmltools=0.5.4`). We have set the version for `bioconductor-ancombc` as newer versions are designed for a different package (`mia`) than `phyloseq`. Therefore newer versions of ancombc2 do not work in our workflow.
+__Note:__ It is common that some tools/packages will conflict with others. To overcome this we have set versions by adding `=xx` after a tool name in `conda` (e.g. `r-htmltools=0.5.4`).
 
 Activate the environment in bash.
 
@@ -3950,9 +3968,9 @@ library("devtools")
 devtools::install_github("jbisanz/qiime2R")
 ```
 
-#### kraken_biom
+### kraken_biom
 
-To create the mamba environment `kraken_biom` run the below commands in your bash. You will need to have installed `mamba` first.
+To create the mamba environment `kraken_biom` (used in supplemental book) run the below commands in your bash. You will need to have installed `mamba` first.
 
 ```{bash, eval=FALSE}
 #R community
@@ -3964,7 +3982,7 @@ mamba install bioconda::kraken-biom=1.2.0
 ### Install specific version of R bioconductor package
 
 If installing in R (rather than through conda/mamba) some packages, such as ancombc, needs to be installed with `BiocManager`.
-Specific versions of bioconductor pacages can be installed like below:
+Specific versions of bioconductor packages can be installed like below:
 
 ```{R, eval=FALSE}
 #Install and load BiocManager
@@ -4011,11 +4029,11 @@ mamba activate r_community
 ![](figures/ggplot2.png){style="width:200px"}
 </center>
 
-Below are some useful resource if you would like to learn ggplot2.
+Below are some useful resources if you would like to learn ggplot2.
 
-The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It contains a section called [Understanding ggplot2](https://r-graphics.org/chapter-ggplot2) in its appendix which is useful for learning some key terminologies and concepts.
+The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It contains a section called [Understanding ggplot2](https://r-graphics.org/CHAPTER-GGPLOT2.html) in its appendix which is useful for learning some key terminologies and concepts.
 
-`ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/).
+`ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](https://neof-workshops.github.io/Tidyverse/tidyr/pivot_longer.html).
 
 [__ggplot2 function reference__](https://ggplot2.tidyverse.org/reference/#layers).
 
@@ -4037,14 +4055,27 @@ Below are various resources if you would like to learn more about phyloseq and a
 - [QIIME2R](https://github.com/jbisanz/qiime2R): A very useful package to import QIIME2 artifacts into a `phyloseq` object.
 - [Phyloseqize R data](https://joey711.github.io/phyloseq/import-data.html): A tutorial on how to import data frames into a `phyloseq` object.
 - __Shotgun metagenomics data__
+  - Tutorial in [Supplemental book](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/02-Importing.html)
   - You can import Kraken2 data by converting the [report file to a biom file](https://github.com/smdabdoub/kraken-biom) then importing the biom file into a `phyloseq` object with the [`QIIME2R` function `read_q2biom()`](https://github.com/jbisanz/qiime2R).
   - You can also import the [Kraken-Style Bracken report](https://github.com/jenniferlu717/Bracken#output-kraken-style-bracken-report) in the above manner.
-  - The [biom format](https://biom-format.org/) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
+  - The [biom format](https://github.com/biocore/biom-format) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
 
 # Diversity metrics
 <center>
 ![](figures/metric_square.png){style="width:200px"}
 </center>
+
+Below are a variety of diversity metrics.
+You will notice the calculations utilise frequency values.
+This is a large reason why relative abundances, represented by fractions, are not generally utilised for alpha and beta diversity analyses.
+Instead we used rarefied abundance values in this workshop.
+
+Additionally, 
+<u id='singletons'>singletons</u> 
+and/or 
+<u id='doubletons'>doubletons</u> 
+are used in various metrics which are impossible to have in relative abundance values.
+Be wary, as DADA2 removes singletons (not doubletons) so metrics that utilise singletons (such as chao) are not appropriate for DADA2 produced ASVs.
 
 ## Alpha diversity {#alpha_appendix}
 <center>
@@ -4073,8 +4104,16 @@ $$
 
 - C = Chao1 estimator, i.e. estimated total feature richness.
 - O = Observed number of features.
-- f1 = Frequency of singletons (features with total abundance of 1).
-- f2 = Frequency of doubletons (features with total abundance of 2).
+- f1 = Frequency of
+<u id='singletons'>singletons</u> 
+.
+- f2 = Frequency of
+<u id='doubletons'>doubletons</u> 
+.
+
+__Note:__ This cannot be used with DADA2 derived ASVs. DADA2 removes 
+<u id='singletons'>singletons</u>
+which Chao uses within its calculation.
 
 ### Evenness
 
@@ -4183,6 +4222,15 @@ $$
 
 For more diveristy measure please see: https://forum.qiime2.org/t/alpha-and-beta-diversity-explanations-and-commands/2282
 
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "singletons", 
+                  tooltip = "An ASV/feature with a total count/abundance of 1 across all samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "doubletons", 
+                  tooltip = "An ASV/feature with a total count/abundance of 2 across all samples",
+                  arrow = TRUE, placement = "bottom")
+```
 
 <!--chapter:end:20-Appendix.Rmd-->
 

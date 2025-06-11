@@ -20,7 +20,8 @@ They were found to be very different compared to the ENV samples.
 Some differences between the media groupings were also found.
 Overall, any differences between the sites were hard to determine due to the large differences between media.
 
-To properly determine the differences across the anthropisation gradient it would be best to use a good amount of environmental samples.
+To properly determine the differences across the anthropisation gradient it would be best to use a good amount of environmental samples. I would say you would want at least 10 each but preferably aim for 20.
+Its likely some samples will drop out due to low depth or sequencing issues so its good to go for more than less if possible.
 It may also help to sample more sites along the gradient.
 
 We discovered these findings through our analysis.
@@ -38,7 +39,7 @@ Briefly we carried out the following steps to prepare our data:
 
 ## Taxonomy
 <center>
-![](figures/taxa.png){style="width:200px"}
+![](figures/taxa.png){style="width:200px; border-radius:15px; background:white; border: 5px white solid"}
 </center>
 
 We investigated the taxonomic composition of our samples.
@@ -56,7 +57,7 @@ Due to the difference of media we cannot see any clear differences between the s
 
 ## Diversity analysis
 <center>
-![](figures/diversity.png){style="width:200px"}
+![](figures/diversity.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 Prior to alpha & beta diversity analysis we carried out rarefaction to normalise the depths between samples in [Chapter 14](#rarefaction_chap).
@@ -64,14 +65,15 @@ This is a controversial technique.
 We carry it out due to the logic and the fact the QIIME2 developers recommend it.
 Please make your own decision.
 
-Two of the leading papers are:
+Three of the leading papers are:
 
 - [Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible (McMurdie & Holmes 2014)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531).
 - [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data (Hong et al, 2022)](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959).
+- [Rarefaction is currently the best approach to control for uneven sequencing effort in amplicon sequence analyses, 2024](https://journals.asm.org/doi/10.1128/msphere.00354-23)
 
-### Alpha & beta
+### Alpha & Beta
 <center>
-![](figures/alpha.png){style="width:200px"}
+![](figures/alpha.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 With our rarefied table we carried out diversity analysis.
@@ -81,7 +83,7 @@ With our rarefied table we carried out diversity analysis.
 
 The alpha diversity showed significant differences between the media and ENV samples.
 Additionally, the alpha metrics between the 3 media groupings were also significantly different.
-This was the case for observed ASVs and the Chao1 estimator which had much higher values in the ENV samples.
+This was the case for observed ASVs which had much higher values in the ENV samples.
 
 Although the ENV samples had higher Shannon scores (diversity), the values were also widespread leading to lack of significance when comparing the ENV to CVP and TSA samples.
 
@@ -107,12 +109,12 @@ This was carried out with ANCOM whilst taking into account both the media and si
 We found many bacterial classes with lower abundances in the media samples compared to the ENV samples.
 We only found 2 classes with higher abundance in the media samples compared to the ENV samples.
 This indicates the media are selecting for only a few classes and many bacteria cannot survive on the media.
-This biologically makes sense but also corroborates what we have seen in our other analyses.
+This biologically makes sense and also corroborates what we have seen in our other analyses.
 
 ## Findings
 
 <center>
-![](figures/compass.png){style="width:200px"}
+![](figures/compass.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 In [chapter 2](#sum_and_qs) we asked some questions about our dataset.
@@ -131,7 +133,7 @@ However, you would not have much power with only 9 samples (3 sites by 3 replica
 
 ### Replicate differences
 <center>
-![](figures/replicate_difference.png){style="width:200px"}
+![](figures/replicate_difference.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 Is there a difference in the replicates of one site and media combination? I.e. Do any of the media produce inconsistent profiles?
@@ -145,7 +147,7 @@ However, this is hard to determine due to small numbers of replicates.
 
 ### Site or media
 <center>
-![](figures/site_and_media.png){style="width:300px"}
+![](figures/site_and_media.png){style="width:300px; border-radius:15px; background:white"}
 </center>
 
 Is there more difference between the sites or the media used?

@@ -182,7 +182,7 @@ __Note:__ Website is still in development.
 ## DA: Create significant LFC long data frame
 
 <center>
-![](figures/portrait.png){style="width:200px"}
+![](figures/portrait.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 The results table is good but let's make a heatmap showing the LFCs (Log fold changes) of the significant biomarkers. First, we need to do some preprocessing.
@@ -260,7 +260,7 @@ head(res_ancom_class_media_sig_lfc_fig)
 ## DA: Biomarker LFC heatmap
 
 <center>
-![](figures/tiles.png){style="width:200px"}
+![](figures/tiles.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 We now have a long data frame with the significant LFC values. We can use this to create a heatmap.

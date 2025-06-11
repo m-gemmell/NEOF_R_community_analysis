@@ -47,7 +47,7 @@ Now save and display the plot.
 
 ## Taxa heatmap
 <center>
-![](figures/heatmap.png){style="width:200px"}
+![](figures/heatmap.png){style="width:200px; border-radius:15px; border: 5px solid white; background:white"}
 </center>
 
 Our bar chart looks quite nice but for displaying all taxa present it may be better to use a heatmap.
@@ -196,7 +196,7 @@ Later in this book we will investigate diversity more thoroughly with alpha and 
 
 ## Plot by site and media
 <center>
-![](figures/site_and_media.png){style="width:400px"}
+![](figures/site_and_media.png){style="width:400px; border-radius:15px; background:white"}
 </center>
 
 __Task__: In the `sample_data` there is a column called `site.media`.

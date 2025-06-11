@@ -32,7 +32,7 @@ Next step is to create a new R notebook, rename it to __"1-Import.ipynb"__, and 
 
 ## qiime2R
 <center>
-![](figures/qiime2r.png){style="width:400px"}
+![](figures/qiime2r.png){style="width:400px; border-radius:15px; background:white"}
 </center>
 
 [`qiime2R`](https://github.com/jbisanz/qiime2R) is an R package for importing QIIME2 artifacts into a R `phyloseq` object. The package contains many different commands. Its function `read_qza()` can read a single artifact at a time.

@@ -55,7 +55,7 @@ Create a new __"Markdown"__ __cell__ and add the following 2nd level header.
 
 ## Read depth vector and histogram
 <center>
-![](figures/histogram.png){style="width:200px"}
+![](figures/histogram.png){style="width:200px; border-radius:15px; background:white; border: 5px solid white"}
 </center>
 
 We have already created a vector and histogram of the read depths across our samples. Scroll up your notebook to view these and answer the following MCQ:
@@ -76,7 +76,7 @@ We are going to use `ggplot2` to create a couple boxplots to show the sequencing
 
 ### Creating a data frame for boxplots
 <center>
-![](figures/metadata.png){style="width:200px"}
+![](figures/metadata.png){style="width:200px; border-radius:15px; background:white; border: 5px solid white"}
 </center>
 
 First, we need to create an object containing our sample names, site & media information, and the depth.
@@ -154,7 +154,7 @@ We have a saved `ggplot2` object but now we need to save it as an image file and
 
 ### Save ggplot as png
 <center>
-![](figures/png_file.png){style="width:200px"}
+![](figures/png_file.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 You can save a `ggplot` object as an image file with `ggsave()`.
@@ -205,7 +205,7 @@ For more resources on `ggplot2` please see the [appendix](#ggplot2_appendix) of 
 
 ## Rarefaction curve {#chap9rarefaction}
 <center>
-![](figures/rarefaction.png){style="width:200px"}
+![](figures/rarefaction.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 Our read depths appear a bit low, each sample has <20K reads. 

@@ -87,7 +87,7 @@ Due to the relative large amount of output to screen we'll put the next part int
 
 ### Reads per sample
 <center>
-![](figures/histogram.png){style="width:200px"}
+![](figures/histogram.png){style="width:200px; border-radius:15px; background:white; border: 5px solid white"}
 </center>
 
 In a new __cell__ we will use the command `microbiome::readcount()` to store and display the number of reads in each sample within our `phyloseq` object (`pseq`).

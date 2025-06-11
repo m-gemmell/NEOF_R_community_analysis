@@ -29,6 +29,14 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
+```{r, echo=FALSE}
+#Tippy library for tooltips 
+#https://atomiks.github.io/tippyjs/
+#https://tippy.john-coene.com/
+#install.packages("tippy") 
+library("tippy")
+```
+
 <center>
 ![](figures/NEOF_rounded_corners.png){style="width:300px"}
 </center>

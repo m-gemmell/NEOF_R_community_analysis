@@ -1,6 +1,6 @@
 # Set-up {#setupchap}
 <center>
-![](figures/start.png){style="width:200px"}
+![](figures/start.png){style="width:200px; border-radius:15px; background:white; border: white solid 5px"}
 </center>
 
 Prior to any analysis we need to setup our environment in the webVNC.

@@ -2,7 +2,7 @@
 
 # Taxa relative abundance {#taxa_relabund_chap}
 <center>
-![](figures/taxa.png){style="width:200px"}
+![](figures/taxa.png){style="width:200px; border-radius:15px; background:white; border: 5px white solid"}
 </center>
 
 In this section we are going to create taxonomy bar charts.
@@ -14,7 +14,7 @@ But, as stated in the last chapter all our samples had sufficient depth, so we w
 
 ## Taxa relative abundance: setup
 <center>
-![](figures/packages.png){style="width:200px"}
+![](figures/packages.png){style="width:200px; border-radius:15px; background:white"}
 </center>
 
 The first steps before analysis are:

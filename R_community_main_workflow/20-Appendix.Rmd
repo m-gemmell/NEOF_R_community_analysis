@@ -17,7 +17,7 @@ Miniforge installation: <https://github.com/conda-forge/miniforge>
 
 Mamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>
 
-#### r_community
+### r_community
 
 To create the mamba environment `r_community` run the below commands in your bash. You will need to have installed `mamba` first.
 
@@ -34,7 +34,7 @@ conda-forge::r-ape=5.8 conda-forge::r-xml2=1.3.6 conda-forge::r-dt=0.33 \
 anaconda::pathlib=1.0.1 conda-forge::r-ggupset=0.4.0
 ```
 
-__Note:__ It is common that some tools/packages will conflict with others. To overcome this we can set the version by adding `=xx` after a tool name in `conda` (e.g. `r-htmltools=0.5.4`). We have set the version for `bioconductor-ancombc` as newer versions are designed for a different package (`mia`) than `phyloseq`. Therefore newer versions of ancombc2 do not work in our workflow.
+__Note:__ It is common that some tools/packages will conflict with others. To overcome this we have set versions by adding `=xx` after a tool name in `conda` (e.g. `r-htmltools=0.5.4`).
 
 Activate the environment in bash.
 
@@ -53,9 +53,9 @@ library("devtools")
 devtools::install_github("jbisanz/qiime2R")
 ```
 
-#### kraken_biom
+### kraken_biom
 
-To create the mamba environment `kraken_biom` run the below commands in your bash. You will need to have installed `mamba` first.
+To create the mamba environment `kraken_biom` (used in supplemental book) run the below commands in your bash. You will need to have installed `mamba` first.
 
 ```{bash, eval=FALSE}
 #R community
@@ -67,7 +67,7 @@ mamba install bioconda::kraken-biom=1.2.0
 ### Install specific version of R bioconductor package
 
 If installing in R (rather than through conda/mamba) some packages, such as ancombc, needs to be installed with `BiocManager`.
-Specific versions of bioconductor pacages can be installed like below:
+Specific versions of bioconductor packages can be installed like below:
 
 ```{R, eval=FALSE}
 #Install and load BiocManager
@@ -114,11 +114,11 @@ mamba activate r_community
 ![](figures/ggplot2.png){style="width:200px"}
 </center>
 
-Below are some useful resource if you would like to learn ggplot2.
+Below are some useful resources if you would like to learn ggplot2.
 
-The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It contains a section called [Understanding ggplot2](https://r-graphics.org/chapter-ggplot2) in its appendix which is useful for learning some key terminologies and concepts.
+The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It contains a section called [Understanding ggplot2](https://r-graphics.org/CHAPTER-GGPLOT2.html) in its appendix which is useful for learning some key terminologies and concepts.
 
-`ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/).
+`ggplot2` requires its input to be in long format. You will therefore need to know how to [convert your wide data to long data](https://neof-workshops.github.io/Tidyverse/tidyr/pivot_longer.html).
 
 [__ggplot2 function reference__](https://ggplot2.tidyverse.org/reference/#layers).
 
@@ -140,14 +140,27 @@ Below are various resources if you would like to learn more about phyloseq and a
 - [QIIME2R](https://github.com/jbisanz/qiime2R): A very useful package to import QIIME2 artifacts into a `phyloseq` object.
 - [Phyloseqize R data](https://joey711.github.io/phyloseq/import-data.html): A tutorial on how to import data frames into a `phyloseq` object.
 - __Shotgun metagenomics data__
+  - Tutorial in [Supplemental book](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/02-Importing.html)
   - You can import Kraken2 data by converting the [report file to a biom file](https://github.com/smdabdoub/kraken-biom) then importing the biom file into a `phyloseq` object with the [`QIIME2R` function `read_q2biom()`](https://github.com/jbisanz/qiime2R).
   - You can also import the [Kraken-Style Bracken report](https://github.com/jenniferlu717/Bracken#output-kraken-style-bracken-report) in the above manner.
-  - The [biom format](https://biom-format.org/) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
+  - The [biom format](https://github.com/biocore/biom-format) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
 
 # Diversity metrics
 <center>
 ![](figures/metric_square.png){style="width:200px"}
 </center>
+
+Below are a variety of diversity metrics.
+You will notice the calculations utilise frequency values.
+This is a large reason why relative abundances, represented by fractions, are not generally utilised for alpha and beta diversity analyses.
+Instead we used rarefied abundance values in this workshop.
+
+Additionally, 
+<u id='singletons'>singletons</u> 
+and/or 
+<u id='doubletons'>doubletons</u> 
+are used in various metrics which are impossible to have in relative abundance values.
+Be wary, as DADA2 removes singletons (not doubletons) so metrics that utilise singletons (such as chao) are not appropriate for DADA2 produced ASVs.
 
 ## Alpha diversity {#alpha_appendix}
 <center>
@@ -176,10 +189,16 @@ $$
 
 - C = Chao1 estimator, i.e. estimated total feature richness.
 - O = Observed number of features.
-- f1 = Frequency of singletons (features with total abundance of 1).
-- f2 = Frequency of doubletons (features with total abundance of 2).
+- f1 = Frequency of
+<u id='singletons'>singletons</u> 
+.
+- f2 = Frequency of
+<u id='doubletons'>doubletons</u> 
+.
 
-__Note:__ This cannot be used with DADA2 derived ASVs. DADA2 removes singletons which Chao uses within its calculation.
+__Note:__ This cannot be used with DADA2 derived ASVs. DADA2 removes 
+<u id='singletons'>singletons</u>
+which Chao uses within its calculation.
 
 ### Evenness
 
@@ -288,3 +307,12 @@ $$
 
 For more diveristy measure please see: https://forum.qiime2.org/t/alpha-and-beta-diversity-explanations-and-commands/2282
 
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "singletons", 
+                  tooltip = "An ASV/feature with a total count/abundance of 1 across all samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "doubletons", 
+                  tooltip = "An ASV/feature with a total count/abundance of 2 across all samples",
+                  arrow = TRUE, placement = "bottom")
+```
