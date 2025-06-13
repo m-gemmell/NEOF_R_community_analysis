@@ -46,7 +46,7 @@ knitr::write_bib(c(
 
 This book explains and demonstrates how to carry out __iterative rarefaction__ for __alpha__ and __beta__ diversity analysis in __R__ with the `phyloseq` object.
 This involves running multiple rounds/iterations of rarefaction and producing an averaged table of __alpha__ and __beta__ diversity values.
-This is a more robust method than only carrying out one round of rarefaction.
+This is a more robust method than carrying out one round of rarefaction.
 
 This book is an optional path for the [main NEOF R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course)
 
@@ -70,7 +70,7 @@ column_2 <- c(
  '[![](figures/france.png){style="height:150px"}](#setupchap)',
  #4 Iterating rarefaction
    '[**Iterating rarefaction**](#iterating_rarefaction_chap)', 
- '[![](figures/iterations.png){style="height:100px; border-radius:15px; background:white"}](#iterating_rarefaction_chap)',
+ '[![](figures/iterations.png){style="height:150px; border-radius:15px; background:white"}](#iterating_rarefaction_chap)',
  #6 Beta diversity
    '[**Beta diversity**](#beta_chap)', 
  '[![](figures/beta_iterative_rarefaction.png){style="height:150px"}](#beta_chap)'
@@ -132,7 +132,7 @@ This iterative approach will, in theory, smooth out any extreme results one roun
 These extreme results can include:
 
 -   Leaving important features (ASVs, taxonomic groups, etc.) with no counts
--   Causing a few features to have much higher relative abundances
+-   Causing a few features to have much higher rarefied abundances
 -   Varying alpha and beta diversity values with different sets of rarefaction
 
 ## Book contents
@@ -140,7 +140,7 @@ These extreme results can include:
 ![](figures/contents.png){style="width:200px; background-color:white; border-radius:15px"}
 </center>
 
-Unfortunately many of the R packages for community analysis do not contain inbuilt rarefaction method with their diversity methods.
+Unfortunately many of the R packages for community analysis do not contain inbuilt rarefaction methods with their diversity functions.
 This makes carrying out iterative rarefaction based diveristy analysis more complicated than it ought to be.
 This explains the size and breadth of this book.
 
@@ -193,7 +193,7 @@ Below are brief bullet points about the data:
 
 This book uses the same environment as in the [main R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/04-Setup.html#mamba)
 
-If you do not have the environment activated you can set-up your environment by run the following code (you must include the full stop and space at the front of the command).
+If you do not have the environment activated you can set-up your environment by running the following code (you must include the full stop and space at the front of the command).
 
 ```{bash, eval=FALSE}
 . usercommunity
@@ -377,7 +377,7 @@ In fact, run the below code in a new code cell and you may notice a similarity w
 ```{R, eval=FALSE}
 #Set random seed
 set.seed(1234)
-#Create a vector containing the numbers 0 to 10
+#Create a vector containing the numbers 10 to 19
 larger_num_vec <- 10:19
 #Randomly sample 5 of these numbers
 sample(x = num_vec, size = 5)
@@ -563,6 +563,7 @@ At the top of this notebook create a code cell to load in the various packages a
 #Libraries
 library("phyloseq")
 library("microbiome")
+library("tidyverse")
 library("IRdisplay")
 #Load processed but unrarefied data from R community analysis workshop
 load("/pub14/tea/nsc206/NEOF/R_community/data/phyloseq.RData")
@@ -641,7 +642,7 @@ Prior to __iterative rarefaction__ we will look at the phyla composition of the 
 For demonstrative purposes we will reduce the amount of samples and features in our data for this section. We will carry this out by:
 
 - Subsetting the data so it only contains the 9 environmental samples.
-- Aggregate the taxa to phyla whilst aggregating rare taxa to one "other group"
+- Aggregate the taxa to phyla whilst [aggregating rare taxa](https://neof-workshops.github.io/R_community_whqkt8/Course/11-Taxa_plots.html#aggregateraretaxa) to one "other group"
 
 ```{R, eval=FALSE}
 #Reduce data for demonstrative purposes
@@ -668,7 +669,7 @@ rm(pseq, pseq_env)
 ![](figures/stacked_bar_chart.png){style="width:200px"}
 </center>
 
-Let's have a quick look at the non rarefied phyla relative abundance through a bar chart.
+Let's have a quick look at the non rarefied phyla relative abundances through a bar chart.
 
 __Note:__ This is how you would normally look at this type of bar chart.
 
@@ -693,9 +694,9 @@ library(webexercises)
 ![](figures/one_round.png){style="width:200px; background: white; border-radius:5px; border:5px solid white"}
 </center>
 
-Building up to multiple __iterations__ of __rarefaction__ we will first carry out one round of __rarefaction__ on our environmental phyla relative abundance data.
+Building up to multiple __iterations__ of __rarefaction__ we will first carry out one round of __rarefaction__ on our environmental phyla abundance data.
 
-This will also allow us to compare the compare the results of no __rarefaction__ to only one round.
+This will also allow us to compare the results of no __rarefaction__ to only one round.
 
 ## 1R: Rarefaction
 <center>
@@ -731,10 +732,10 @@ You should see that all the samples now have a total count of __11046__.
 
 Now to create a relative abundance bar chart with our __rarefied__ data to compare to our non-rarefied data.
 
-__Note:__ This is for demonstrtaive purposes and not something you would do in your real analysis.
+__Note:__ This is for demonstrative purposes. You would not use rarefied abudances for taxa barcharts in your real analysis.
 
 ```{R, eval=FALSE}
-#Quick phyla bar chart of relative abundance
+#Quick phyla bar chart of relative abundances
 #Relative abundance transformation
 pseq_env_phyla_rarefy_1_relabund <- microbiome::transform(pseq_env_phyla_rarefy_1, "compositional")
 #Create, save, and display bar chart
@@ -776,7 +777,7 @@ What is the range of the differences? `r longmcq(opts_p)`
 Although these values appear quite small keep in mind we are working with relative abundance values.
 Each sample has a total relative abundance of 1.00 so a relative abundance value of 0.01 is 1%.
 
-Let's see if we can get these differences smaller with multiple rounds of rarefaction.
+Let's see if we can make these differences smaller with multiple rounds of rarefaction.
 
 <!--chapter:end:09-One_round_of_rarefaction.Rmd-->
 
@@ -796,51 +797,55 @@ We'll then compare the __non-rarefied__ data to our __iteratively rarefied__ dat
 ![](figures/tiger.png){style="width:300px; background: white; border-radius:5px; border:5px solid white"}
 </center>
 
-The below loop creates a relative abundance table created by 10 rounds of iteration.
+The below loop creates a rarefied abundance table created by 10 rounds of iteration.
 Type the code and read the annotations to understand it.
 Then run the code.
 
 ```{R, eval=FALSE}
-#Iterative rarefaction to produce an average rarefied relative abundance table
+#Iterative rarefaction to produce an average rarefied abundance table
 
 #Assign rarefaction size
 rarefaction_size <- min(microbiome::readcount(pseq_env_phyla))
 #Load our rng seed vector
 load("rngseeds.RData")
 
-#Initalise where we will store the output
+#Initialise where we will store the output
 #In this case we create the first iteration
 #Carry out first rarefaction
 pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
                                            sample.size = rarefaction_size
                                            #First random seed as the rng seed
                                            rngseed = rngseed_vec[1])
-#Calculate relative abundance
-pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
-#Extract relative abundance phyla table as a data frame
-relabund_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+rarefy_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy))
 
 #Loop through the next 9 iterations
-#Add the relabund rarefied values to phyla_table
+#Add the rarefied values to rarefy_phyla_df
 for (i in 2:length(rngseed_vec)){
   #Rarefy
   pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
                                            sample.size = rarefaction_size
                                            rngseed = rngseed_vec[i])
-  #Calculate relative abundance
-  pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
-  #Add values to phyla_table
-  relabund_phyla_df <- 
-    relabund_phyla_df + as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+  #Add values to rarefy_phyla_df
+  rarefy_phyla_df <- 
+    rarefy_phyla_df + as.data.frame(phyloseq::otu_table(pseq_rarefy))
 }
 #Average the values of the summed relabund phyla_table
-relabund_phyla_mean_df <- relabund_phyla_df / length(rngseed_vec)
+rarefy_phyla_mean_df <- rarefy_phyla_df / length(rngseed_vec)
+#Remove unwanted objects
+rm(pseq_rarefy, rarefy_phyla_df)
 ```
 
-The loop produces a data frame (`relabund_phyla_df`) that has all the values from the ten rarefied data frames totalled/summed in each corresponding cell. More info on this is under the next heading in this chapter.
+The loop produces a data frame (`rarefy_phyla_df`) that has all the values from the ten rarefied data frames totalled/summed in each corresponding cell. More info on this is under the next heading in this chapter.
 
 The final data frame is then divided by the number of __iterations__ to get the average value for each cell.
-This produces the final data frame `relabund_phyla_mean_df`. 
+This produces the final data frame `rarefy_phyla_mean_df`. 
+
+Let's view the `rarefy_phyla_mean_df` object.
+
+```{R, eval = FALSE}
+#View iterative rarefied abundances
+rarefy_phyla_mean_df
+```
 
 ## Mathematical operators & data frames
 <center>
@@ -885,12 +890,36 @@ mat_mean
 ![](figures/histogram_3.png){style="width:200px"}
 </center>
 
-We'll skip the bar chart this time and only look at the difference of the values.
+For the purposes of demonstration (not something you would do in normal research) we will compare the phyla relative abundances of the non-rarefied data against the rarefied data with 10 iterations.
+
+### Relative abundance transformation
+
+First we will convert our rarefied counts into relative abundances (i.e. proportional counts by column). However, we can't use `microbiome::transform()` as our rarefied abundances are in a data frame rather than a __phyloseq object__.
+
+To carry this out we can use a few new functions:
+
+- `prop.table()`: Converts all values in a table to proportional values (i.e. sum of all values in table will equal 1).
+- [`dplyr::mutate_all()`](https://neof-workshops.github.io/Tidyverse/dplyr/mutate.html): Mutates all columns, in this instance using `prop.table` to proportionalise each column (i.e. each column will sum to 1).
+  - [dplyr](https://neof-workshops.github.io/Tidyverse/dplyr/dplyr.html) is part of the [tidyverse package suite](https://neof-workshops.github.io/Tidyverse/)
+  
+```{R, eval = FALSE}
+#Convert to relative abundance table
+rarefy_i10_relabund_phyla_df <- dplyr::mutate_all(rarefy_phyla_mean_df, prop.table)
+#View relative abundances
+rarefy_i10_relabund_phyla_df
+```
+
+### Histogram comparison
+
+We'll skip the bar chart this time and only look at the difference of the values of the following tables:
+
+- `as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund)`: Phyla relative abundances based on non-rarefied abundances.
+- `rarefy_i10_relabund_phyla_df`: Phyla relative abundances based on rarefied abundances with 10 iterations.
 
 ```{R, eval=FALSE}
 #Value difference matrix
 iterative_rarefaction_diff <- 
-  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - relabund_phyla_mean_df)
+  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - rarefy_i10_relabund_phyla_df)
 iterative_rarefaction_diff
 #Histogram
 hist(iterative_rarefaction_diff)
@@ -901,7 +930,7 @@ opts_p <- c("__-0.0003(-3e-04) to 0.0003(3e-04)__", answer="__-0.003 to 0.003__"
 ```
 What is the range of the differences compared to the non rarefied relative abundance values? `r longmcq(opts_p)`
 
-You should notice that the differences are much smaller.
+You should notice that the differences are much smaller compared to the differences found in [chapter 9](#r-difference-from-non-rarefied).
 This indicates that the structure of the __iterative rarefied__ data is much closer to the non-rarefied data compared to the one round __rarefied__ data.
 This is what we want.
 
@@ -951,45 +980,50 @@ set.seed(NULL)
 ```
 
 ```{R, eval=FALSE}
-#Iterative rarefaction to produce an average rarefied relative abundance table
+#Iterative rarefaction to produce an average rarefied abundance table
 
 #Assign rarefaction size
 rarefaction_size <- min(microbiome::readcount(pseq_env_phyla))
-#Read in our rng seed vector
+#Load our rng seed vector
 load("rngseeds_1000.RData")
 
-#Initalise where we will store the output
+#Initialise where we will store the output
 #In this case we create the first iteration
 #Carry out first rarefaction
 pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
                                            sample.size = rarefaction_size
+                                           #First random seed as the rng seed
                                            rngseed = rngseed_vec[1])
-#Calculate relative abundance
-pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
-#Relabund phyla table object
-relabund_phyla_table <- as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+rarefy_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy))
 
 #Loop through the next 999 iterations
-#Add the relabund rarefied values to phyla_table
+#Add the rarefied values to rarefy_phyla_df
 for (i in 2:length(rngseed_vec)){
   #Rarefy
   pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
                                            sample.size = rarefaction_size
                                            rngseed = rngseed_vec[i])
-  #Calculate relative abundance
-  pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
-  #Sum values to phyla_table
-  relabund_phyla_table <- 
-    relabund_phyla_table + as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+  #Add values to rarefy_phyla_df
+  rarefy_phyla_df <- 
+    rarefy_phyla_df + as.data.frame(phyloseq::otu_table(pseq_rarefy))
 }
 #Average the values of the summed relabund phyla_table
-relabund_phyla_table <- relabund_phyla_table / length(rngseed_vec)
+rarefy_phyla_mean_df <- rarefy_phyla_df / length(rngseed_vec)
+#Remove unwanted objects
+rm(pseq_rarefy, rarefy_phyla_df)
+```
+
+```{R, eval = FALSE}
+#Convert to relative abundance table
+rarefy_i1000_relabund_phyla_df <- dplyr::mutate_all(rarefy_phyla_mean_df, prop.table)
+#View relative abundances
+rarefy_i1000_relabund_phyla_df
 ```
 
 ```{R, eval=FALSE}
 #Value difference matrix
 iterative_rarefaction_1000_diff <- 
-  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - relabund_phyla_table)
+  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - rarefy_i1000_relabund_phyla_df)
 iterative_rarefaction_diff
 #Histogram
 hist(iterative_rarefaction_diff)
@@ -1061,7 +1095,7 @@ Before carrying out __iterative rarefaction__ we need to decide on a few values
   - The size you choose will be based on your data and what you feel is appropriate
   - More info in the main [R community workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/14-Rarefaction.html)
 - __RNG seeds:__ The rng seeds we will use for all the rarefactions
-  - We created these in the previous [chapter](#rng_vec_creation)
+  - We created these in the previous [section](#rng_vec_creation)
 - __Rarefaction iterations:__ The number of rarefaction iterations we will use
   - We are using 10 here based on the length of our rng seed vector
   - We recommend using 1000 in your real analysis
@@ -1161,6 +1195,25 @@ In this section we will tidy up our data frame to make it ready for plotting by:
 - Converting our wide data frame to a long data frame
 - Subsetting our data frame so it only contains the __alpha diversity__ metrics we want to plot
 
+## $\alpha$: Rename metrics
+<center>
+![](figures/dplyr_rename.png){style="width:150px"}
+</center>
+
+As seen at the end of the last chapter, many of the columns names are quite long such as "__diversity_shannon__".
+This is not great for plotting so we will rename the column to "__shannon__" with [the `dplyr::rename()` function](https://neof-workshops.github.io/Tidyverse/dplyr/rename.html).
+
+```{R, eval=FALSE}
+#Rename
+#Rename shannon_diversity column
+#dplyr::rename(df, new_name=old_name)
+alpha_df_mean <- 
+  dplyr::rename(alpha_df_mean,
+                shannon=diversity_shannon)
+```
+
+Keep this part in mind when you reach the practice task on [Chapter_17](#alpha-task).
+
 ## $\alpha$: Metric and metadata data frame
 <center>
 ![](figures/wide_data_frame.png){style="width:200px"}
@@ -1198,7 +1251,7 @@ From the output of `head()` you should see a table with the first set of columns
 
 We will plot our __alpha diversity__ values with `ggplot2` functions.
 Before we carry this out we need to convert our wide data frame to a long data frame.
-We'll carry this out with `tidyr::pivot_longer()`.
+We'll carry this out with [the `tidyr::pivot_longer()` function](https://neof-workshops.github.io/Tidyverse/tidyr/pivot_longer.html).
 
 We want our metric values to become long.
 This means that instead of the __alpha diversity__ values being spread across multiple rows and columns, there will only be one value per row.
@@ -1238,12 +1291,20 @@ rm(alpha_df_mean, metadf)
 </center>
 
 There are a lot of diversity values created by `microbiome::alpha()`.
-For this tutorial we are only interested in:
+
+You can check the variety with the below command:
+
+```{R, eval=FALSE}
+unique(meta_alpha_mean_long_df$metric)
+```
+
+For this tutorial we are only interested in the following:
 
 - __observed:__ The number of observed features (ASVs, Phlya, Species, etc.)
-- __diversity_shannon:__ The Shannon diversity metric
+- __shannon:__ The Shannon diversity metric
   - An estimate of feature diversity based on richness (presence/absence) and abundance
   - The higher the value the higher the diversity
+  - We renamed this from __diversity_shannon__
   
 We'll subset our long data frame to only retain rows with these metrics.
 We'll also use the utility of factors to order the metrics so they will be plotted in our preferred order.
@@ -1251,21 +1312,10 @@ We'll also use the utility of factors to order the metrics so they will be plott
 ```{R, eval=FALSE}
 #Process our long data frame
 #Subset our long alpha diversity data frame to only contain our metrics of choice
-metrics <- c("observed","diversity_shannon")
+metrics <- c("observed","shannon")
 basic_alpha_metrics_long_df <- meta_alpha_mean_long_df[
   meta_alpha_mean_long_df$metric %in% metrics,
 ]
-#Change instances of diversity_shannon to shannon
-basic_alpha_metrics_long_df$metric <- gsub(pattern = "diversity_shannon",
-                                           replacement = "shannon",
-                                           x = basic_alpha_metrics_long_df$metric)
-#The gsub() function changes our factor to a character vector
-#Therefore change back to factor
-#We will also choose our order of the metric names for plotting
-basic_alpha_metrics_long_df$metric <- factor(x = basic_alpha_metrics_long_df$metric,
-                                             levels = c("observed","shannon"))
-#Check level order of metric factor column
-levels(basic_alpha_metrics_long_df$metric)
 #Check head of subsetted long data frame
 head(basic_alpha_metrics_long_df)
 ```
@@ -1294,20 +1344,20 @@ Additionally, we'll add a point for each value and colour it based on the site i
 The function `ggforce::geom_sina()` can be used for this.
 We'll use its parameter `alpha()` to make the points 50% (`0.5`) transparent.
 
-As we are plotting values from three different metrics we will split the plot into three separate plots.
+As we are plotting values from three different metrics we will split the figure into three separate plots.
 `ggplot2::facet_wrap()` can be used for this tasked with `~metric` used to split the plot by the metrics.
 We also specify `scales = "free"` so each of the three plots has their own x and y scales.
-This is important when the values are drastically different such is the case between the observed and chao1 (>100) compared to the shannon values (<10).
+This is important when the values are drastically different such as in the case between the observed (>100) and shannon values (<10).
 
 `r hide("scales options")`
 The four `scales` are:
 
-- __`"fixed"` (default):__ All the scales are the same (fixed), based on the largest and smallest x and y values across all the plots. Useful where you want direct comparisons such as looking at teh overall pattern in ordination plots.
+- __`"fixed"` (default):__ All the scales are the same (fixed), based on the largest and smallest x and y values across all the plots. Useful where you want direct comparisons such as looking at the overall pattern in ordination plots.
 - __`"free"`:__ All the scales are free. Each plot's x and y values limits are based on the data within it.
 - __`"free_x"`:__ The x axis is free and the y axis is fixed.
 - __`"free_y"`:__ The y axis is free and the x axis is fixed.
 
-Which you want to use depends on your data and how you are facetting it.
+Which you want to use depends on your data and how you are faceting it.
 `r unhide()`
 
 ```{R, eval = FALSE}
@@ -1346,13 +1396,12 @@ kruskal.test(observed ~ media, data = meta_alpha_mean_df)
 kruskal.test(shannon ~ media, data = meta_alpha_mean_df)
 ```
 
-All the p-values are less than 0.05 indicating statistical significance.
+Both the p-values are less than 0.05 indicating statistical significance.
 That means we can move onto pairwise comparisons.
 
 ### Paired Wilcoxon test
 
 To determine what groups are significantly different from each other we can carry out paired Wilcoxon test.
-This tests 
 
 ```{R, eval=FALSE}
 #Paired wilcoxon test
@@ -1507,34 +1556,33 @@ As an optional task create a new violin plot that includes the following:
   - Ensure the order is ENV, CVP, KBC, then TSA
 - Include Wilcoxon paired stats comparing the Sites
 
+__Tip:__ Going to earlier code, [renaming](#alpha-rename-metrics), adding new options, and rerunning the entire notebook may be useful.
+
 `r hide("Solution code")`
+Add an extra [`dplyr::rename()` function](https://neof-workshops.github.io/Tidyverse/dplyr/rename.html) along with the previous one. You will then need to rerun the jupyter-notebook.
+In your own analysis it is best to do this at one time as rarefying with 1000 iterations will take much longer than with our demonstrative 10.
+```{R, eval=FALSE}
+#Rename
+#Rename columns
+#dplyr::rename(df, new_name=old_name)
+alpha_df_mean <- 
+  dplyr::rename(alpha_df_mean,
+                shannon=diversity_shannon,
+                invsimpson=diversity_inverse_simpson,
+                pielou=evenness_pielou,
+                fisher=diversity_fisher)
+```
+
+The next code blocks should be created and run at the bottom of the jupyter-notebook.
+
 Subset [long alpha diversity table created earlier in this chapter](#alpha_long_df) to contain metrics of choice.
 ```{R, eval=FALSE}
 #Process our long data frame
 #Subset our long alpha diversity data frame to only contain our metrics of choice
-metrics <- c("diversity_inverse_simpson", "evenness_pielou","diversity_fisher")
+metrics <- c("invsimpson", "pielou","fisher")
 subset_alpha_metrics_long_df <- meta_alpha_mean_long_df[
   meta_alpha_mean_long_df$metric %in% metrics,
 ]
-#Change instances of diversity_inverse_simpson to invsimpson
-subset_alpha_metrics_long_df$metric <- gsub(pattern = "diversity_inverse_simpson",
-                                           replacement = "invsimpson",
-                                           x = subset_alpha_metrics_long_df$metric)
-#Change instances of evenness_pielou to pielou
-subset_alpha_metrics_long_df$metric <- gsub(pattern = "evenness_pieloue",
-                                           replacement = "pielou",
-                                           x = subset_alpha_metrics_long_df$metric)
-#Change instances of diversity_fisher to fisher
-subset_alpha_metrics_long_df$metric <- gsub(pattern = "diversity_fisher",
-                                           replacement = "fisher",
-                                           x = subset_alpha_metrics_long_df$metric)
-#The gsub() function changes our factor to a character vector
-#Therefore change back to factor
-#We will also choose our order of the metric names for plotting
-subset_alpha_metrics_long_df$metric <- factor(x = subset_alpha_metrics_long_df$metric,
-                                             levels = c("pielou","invsimpson","fisher"))
-#Check level order of metric factor column
-levels(subset_alpha_metrics_long_df$metric)
 #Check head of subsetted long data frame
 head(subset_alpha_metrics_long_df)
 ```
@@ -1679,7 +1727,7 @@ There are 2 types of Unifrac distances:
 
 We'll calculate weighted Unifrac distances by specifying the parameter `weighted = TRUE`.
 
-To ensure our output works with subsequent ordination step we'll convert the output of `rbiom::unifrac()` into a matrix with `as.matrix()`.
+To ensure our output works with subsequent ordination steps we'll convert the output of `rbiom::unifrac()` into a matrix with `as.matrix()`.
 
 Carry out the matrix production with the below script:
 
@@ -1702,7 +1750,7 @@ To calculate non-unifrac __beta diversity__ distances we can use the `vegan` pac
 
 The function `rbiom::unifrac()` calculates paired distances by columns, this is the samples in the `otu_table` of a phyloseq object.
 Unfortunately, `vegan::vegdist()` calculates paired distances by rows, this being the features in the `otu_table` of a phyloseq object.
-We do not want this but thankfully we can the function `t()` to our abundance object to transpose the data.
+We do not want this but thankfully we can use the function `t()` to our abundance object to transpose the data.
 
 Create a __Bray-Curtis__ distance matrix with the below code:
 
@@ -1886,7 +1934,7 @@ head(nmds_points)
 </center>
 
 Before plotting with `ggplot2` we need to combine the metadata and points into a long data frame.
-There is no need to "longify" our data frame as it will start in the long format we require.
+There is no need to "longify" our data frame as it will already be in the long format we require.
 
 ```{R, eval=FALSE}
 #Create long data frame with metadata and points
@@ -1985,7 +2033,7 @@ The axes are always ordered from highest to lowest __% variance explained__.
 Therefore axis one explains the most variance, followed by axis 2.
 
 The higher the __% variance explained__ of axis 1 and axis 2, the better our subsequent plot represents our data.
-General guidelines to how good our plot are based on the sum of these 2 values:
+General guidelines to the power of our plot are based on the sum of these 2 values:
 
 - <50%: Poor
 - 50-69%: Decent
@@ -2093,7 +2141,7 @@ metadf <- data.frame(phyloseq::sample_data(pseq))
 ![](figures/permanova.png){style="width:200px"}
 </center>
 
-To determine if their is a significant overall difference between the media & site groups we can carry out a PERMANOVA test.
+To determine if there is a significant overall difference between the media & site groups we can carry out a PERMANOVA test.
 We'll use the package `vegan` with its function `adonis2()`.
 
 __Note:__ The original `vegan::adonis()` function is deprecated and should not be used.

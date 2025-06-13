@@ -9,6 +9,25 @@ In this section we will tidy up our data frame to make it ready for plotting by:
 - Converting our wide data frame to a long data frame
 - Subsetting our data frame so it only contains the __alpha diversity__ metrics we want to plot
 
+## $\alpha$: Rename metrics
+<center>
+![](figures/dplyr_rename.png){style="width:150px"}
+</center>
+
+As seen at the end of the last chapter, many of the columns names are quite long such as "__diversity_shannon__".
+This is not great for plotting so we will rename the column to "__shannon__" with [the `dplyr::rename()` function](https://neof-workshops.github.io/Tidyverse/dplyr/rename.html).
+
+```{R, eval=FALSE}
+#Rename
+#Rename shannon_diversity column
+#dplyr::rename(df, new_name=old_name)
+alpha_df_mean <- 
+  dplyr::rename(alpha_df_mean,
+                shannon=diversity_shannon)
+```
+
+Keep this part in mind when you reach the practice task on [Chapter_17](#alpha-task).
+
 ## $\alpha$: Metric and metadata data frame
 <center>
 ![](figures/wide_data_frame.png){style="width:200px"}
@@ -46,7 +65,7 @@ From the output of `head()` you should see a table with the first set of columns
 
 We will plot our __alpha diversity__ values with `ggplot2` functions.
 Before we carry this out we need to convert our wide data frame to a long data frame.
-We'll carry this out with `tidyr::pivot_longer()`.
+We'll carry this out with [the `tidyr::pivot_longer()` function](https://neof-workshops.github.io/Tidyverse/tidyr/pivot_longer.html).
 
 We want our metric values to become long.
 This means that instead of the __alpha diversity__ values being spread across multiple rows and columns, there will only be one value per row.
@@ -86,12 +105,20 @@ rm(alpha_df_mean, metadf)
 </center>
 
 There are a lot of diversity values created by `microbiome::alpha()`.
-For this tutorial we are only interested in:
+
+You can check the variety with the below command:
+
+```{R, eval=FALSE}
+unique(meta_alpha_mean_long_df$metric)
+```
+
+For this tutorial we are only interested in the following:
 
 - __observed:__ The number of observed features (ASVs, Phlya, Species, etc.)
-- __diversity_shannon:__ The Shannon diversity metric
+- __shannon:__ The Shannon diversity metric
   - An estimate of feature diversity based on richness (presence/absence) and abundance
   - The higher the value the higher the diversity
+  - We renamed this from __diversity_shannon__
   
 We'll subset our long data frame to only retain rows with these metrics.
 We'll also use the utility of factors to order the metrics so they will be plotted in our preferred order.
@@ -99,21 +126,10 @@ We'll also use the utility of factors to order the metrics so they will be plott
 ```{R, eval=FALSE}
 #Process our long data frame
 #Subset our long alpha diversity data frame to only contain our metrics of choice
-metrics <- c("observed","diversity_shannon")
+metrics <- c("observed","shannon")
 basic_alpha_metrics_long_df <- meta_alpha_mean_long_df[
   meta_alpha_mean_long_df$metric %in% metrics,
 ]
-#Change instances of diversity_shannon to shannon
-basic_alpha_metrics_long_df$metric <- gsub(pattern = "diversity_shannon",
-                                           replacement = "shannon",
-                                           x = basic_alpha_metrics_long_df$metric)
-#The gsub() function changes our factor to a character vector
-#Therefore change back to factor
-#We will also choose our order of the metric names for plotting
-basic_alpha_metrics_long_df$metric <- factor(x = basic_alpha_metrics_long_df$metric,
-                                             levels = c("observed","shannon"))
-#Check level order of metric factor column
-levels(basic_alpha_metrics_long_df$metric)
 #Check head of subsetted long data frame
 head(basic_alpha_metrics_long_df)
 ```

@@ -11,51 +11,55 @@ We'll then compare the __non-rarefied__ data to our __iteratively rarefied__ dat
 ![](figures/tiger.png){style="width:300px; background: white; border-radius:5px; border:5px solid white"}
 </center>
 
-The below loop creates a relative abundance table created by 10 rounds of iteration.
+The below loop creates a rarefied abundance table created by 10 rounds of iteration.
 Type the code and read the annotations to understand it.
 Then run the code.
 
 ```{R, eval=FALSE}
-#Iterative rarefaction to produce an average rarefied relative abundance table
+#Iterative rarefaction to produce an average rarefied abundance table
 
 #Assign rarefaction size
 rarefaction_size <- min(microbiome::readcount(pseq_env_phyla))
 #Load our rng seed vector
 load("rngseeds.RData")
 
-#Initalise where we will store the output
+#Initialise where we will store the output
 #In this case we create the first iteration
 #Carry out first rarefaction
 pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
                                            sample.size = rarefaction_size
                                            #First random seed as the rng seed
                                            rngseed = rngseed_vec[1])
-#Calculate relative abundance
-pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
-#Extract relative abundance phyla table as a data frame
-relabund_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+rarefy_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy))
 
 #Loop through the next 9 iterations
-#Add the relabund rarefied values to phyla_table
+#Add the rarefied values to rarefy_phyla_df
 for (i in 2:length(rngseed_vec)){
   #Rarefy
   pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
                                            sample.size = rarefaction_size
                                            rngseed = rngseed_vec[i])
-  #Calculate relative abundance
-  pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
-  #Add values to phyla_table
-  relabund_phyla_df <- 
-    relabund_phyla_df + as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+  #Add values to rarefy_phyla_df
+  rarefy_phyla_df <- 
+    rarefy_phyla_df + as.data.frame(phyloseq::otu_table(pseq_rarefy))
 }
 #Average the values of the summed relabund phyla_table
-relabund_phyla_mean_df <- relabund_phyla_df / length(rngseed_vec)
+rarefy_phyla_mean_df <- rarefy_phyla_df / length(rngseed_vec)
+#Remove unwanted objects
+rm(pseq_rarefy, rarefy_phyla_df)
 ```
 
-The loop produces a data frame (`relabund_phyla_df`) that has all the values from the ten rarefied data frames totalled/summed in each corresponding cell. More info on this is under the next heading in this chapter.
+The loop produces a data frame (`rarefy_phyla_df`) that has all the values from the ten rarefied data frames totalled/summed in each corresponding cell. More info on this is under the next heading in this chapter.
 
 The final data frame is then divided by the number of __iterations__ to get the average value for each cell.
-This produces the final data frame `relabund_phyla_mean_df`. 
+This produces the final data frame `rarefy_phyla_mean_df`. 
+
+Let's view the `rarefy_phyla_mean_df` object.
+
+```{R, eval = FALSE}
+#View iterative rarefied abundances
+rarefy_phyla_mean_df
+```
 
 ## Mathematical operators & data frames
 <center>
@@ -100,12 +104,36 @@ mat_mean
 ![](figures/histogram_3.png){style="width:200px"}
 </center>
 
-We'll skip the bar chart this time and only look at the difference of the values.
+For the purposes of demonstration (not something you would do in normal research) we will compare the phyla relative abundances of the non-rarefied data against the rarefied data with 10 iterations.
+
+### Relative abundance transformation
+
+First we will convert our rarefied counts into relative abundances (i.e. proportional counts by column). However, we can't use `microbiome::transform()` as our rarefied abundances are in a data frame rather than a __phyloseq object__.
+
+To carry this out we can use a few new functions:
+
+- `prop.table()`: Converts all values in a table to proportional values (i.e. sum of all values in table will equal 1).
+- [`dplyr::mutate_all()`](https://neof-workshops.github.io/Tidyverse/dplyr/mutate.html): Mutates all columns, in this instance using `prop.table` to proportionalise each column (i.e. each column will sum to 1).
+  - [dplyr](https://neof-workshops.github.io/Tidyverse/dplyr/dplyr.html) is part of the [tidyverse package suite](https://neof-workshops.github.io/Tidyverse/)
+  
+```{R, eval = FALSE}
+#Convert to relative abundance table
+rarefy_i10_relabund_phyla_df <- dplyr::mutate_all(rarefy_phyla_mean_df, prop.table)
+#View relative abundances
+rarefy_i10_relabund_phyla_df
+```
+
+### Histogram comparison
+
+We'll skip the bar chart this time and only look at the difference of the values of the following tables:
+
+- `as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund)`: Phyla relative abundances based on non-rarefied abundances.
+- `rarefy_i10_relabund_phyla_df`: Phyla relative abundances based on rarefied abundances with 10 iterations.
 
 ```{R, eval=FALSE}
 #Value difference matrix
 iterative_rarefaction_diff <- 
-  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - relabund_phyla_mean_df)
+  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - rarefy_i10_relabund_phyla_df)
 iterative_rarefaction_diff
 #Histogram
 hist(iterative_rarefaction_diff)
@@ -116,6 +144,6 @@ opts_p <- c("__-0.0003(-3e-04) to 0.0003(3e-04)__", answer="__-0.003 to 0.003__"
 ```
 What is the range of the differences compared to the non rarefied relative abundance values? `r longmcq(opts_p)`
 
-You should notice that the differences are much smaller.
+You should notice that the differences are much smaller compared to the differences found in [chapter 9](#r-difference-from-non-rarefied).
 This indicates that the structure of the __iterative rarefied__ data is much closer to the non-rarefied data compared to the one round __rarefied__ data.
 This is what we want.

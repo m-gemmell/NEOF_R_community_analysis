@@ -13,7 +13,7 @@ Prior to __iterative rarefaction__ we will look at the phyla composition of the 
 For demonstrative purposes we will reduce the amount of samples and features in our data for this section. We will carry this out by:
 
 - Subsetting the data so it only contains the 9 environmental samples.
-- Aggregate the taxa to phyla whilst aggregating rare taxa to one "other group"
+- Aggregate the taxa to phyla whilst [aggregating rare taxa](https://neof-workshops.github.io/R_community_whqkt8/Course/11-Taxa_plots.html#aggregateraretaxa) to one "other group"
 
 ```{R, eval=FALSE}
 #Reduce data for demonstrative purposes
@@ -40,7 +40,7 @@ rm(pseq, pseq_env)
 ![](figures/stacked_bar_chart.png){style="width:200px"}
 </center>
 
-Let's have a quick look at the non rarefied phyla relative abundance through a bar chart.
+Let's have a quick look at the non rarefied phyla relative abundances through a bar chart.
 
 __Note:__ This is how you would normally look at this type of bar chart.
 

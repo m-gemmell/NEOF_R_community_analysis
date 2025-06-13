@@ -65,7 +65,7 @@ head(nmds_points)
 </center>
 
 Before plotting with `ggplot2` we need to combine the metadata and points into a long data frame.
-There is no need to "longify" our data frame as it will start in the long format we require.
+There is no need to "longify" our data frame as it will already be in the long format we require.
 
 ```{R, eval=FALSE}
 #Create long data frame with metadata and points
@@ -164,7 +164,7 @@ The axes are always ordered from highest to lowest __% variance explained__.
 Therefore axis one explains the most variance, followed by axis 2.
 
 The higher the __% variance explained__ of axis 1 and axis 2, the better our subsequent plot represents our data.
-General guidelines to how good our plot are based on the sum of these 2 values:
+General guidelines to the power of our plot are based on the sum of these 2 values:
 
 - <50%: Poor
 - 50-69%: Decent

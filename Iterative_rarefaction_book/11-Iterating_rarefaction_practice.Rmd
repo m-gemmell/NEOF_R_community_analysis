@@ -39,45 +39,50 @@ set.seed(NULL)
 ```
 
 ```{R, eval=FALSE}
-#Iterative rarefaction to produce an average rarefied relative abundance table
+#Iterative rarefaction to produce an average rarefied abundance table
 
 #Assign rarefaction size
 rarefaction_size <- min(microbiome::readcount(pseq_env_phyla))
-#Read in our rng seed vector
+#Load our rng seed vector
 load("rngseeds_1000.RData")
 
-#Initalise where we will store the output
+#Initialise where we will store the output
 #In this case we create the first iteration
 #Carry out first rarefaction
 pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
                                            sample.size = rarefaction_size
+                                           #First random seed as the rng seed
                                            rngseed = rngseed_vec[1])
-#Calculate relative abundance
-pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
-#Relabund phyla table object
-relabund_phyla_table <- as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+rarefy_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy))
 
 #Loop through the next 999 iterations
-#Add the relabund rarefied values to phyla_table
+#Add the rarefied values to rarefy_phyla_df
 for (i in 2:length(rngseed_vec)){
   #Rarefy
   pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
                                            sample.size = rarefaction_size
                                            rngseed = rngseed_vec[i])
-  #Calculate relative abundance
-  pseq_rarefy_relabund <- microbiome::transform(pseq_rarefy, "compositional")
-  #Sum values to phyla_table
-  relabund_phyla_table <- 
-    relabund_phyla_table + as.data.frame(phyloseq::otu_table(pseq_rarefy_relabund))
+  #Add values to rarefy_phyla_df
+  rarefy_phyla_df <- 
+    rarefy_phyla_df + as.data.frame(phyloseq::otu_table(pseq_rarefy))
 }
 #Average the values of the summed relabund phyla_table
-relabund_phyla_table <- relabund_phyla_table / length(rngseed_vec)
+rarefy_phyla_mean_df <- rarefy_phyla_df / length(rngseed_vec)
+#Remove unwanted objects
+rm(pseq_rarefy, rarefy_phyla_df)
+```
+
+```{R, eval = FALSE}
+#Convert to relative abundance table
+rarefy_i1000_relabund_phyla_df <- dplyr::mutate_all(rarefy_phyla_mean_df, prop.table)
+#View relative abundances
+rarefy_i1000_relabund_phyla_df
 ```
 
 ```{R, eval=FALSE}
 #Value difference matrix
 iterative_rarefaction_1000_diff <- 
-  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - relabund_phyla_table)
+  as.matrix(phyloseq::otu_table(pseq_env_phyla_relabund) - rarefy_i1000_relabund_phyla_df)
 iterative_rarefaction_diff
 #Histogram
 hist(iterative_rarefaction_diff)

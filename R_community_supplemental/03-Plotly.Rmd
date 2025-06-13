@@ -13,6 +13,8 @@ However, we'll demonstrate how to plotlyify plots with [`ggplot2`](https://plotl
 You can even embed these in online books like the below chart.
 Try hovering over points to get more information on them.
 
+__Note:__ The below code is for demostrtaion, do not run it.
+
 ```{r, eval=FALSE, warning=FALSE, out.width="700px"}
 library("ggplot2")
 library("plotly")

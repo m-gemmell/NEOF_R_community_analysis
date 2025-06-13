@@ -24,7 +24,7 @@ metadf <- data.frame(phyloseq::sample_data(pseq))
 ![](figures/permanova.png){style="width:200px"}
 </center>
 
-To determine if their is a significant overall difference between the media & site groups we can carry out a PERMANOVA test.
+To determine if there is a significant overall difference between the media & site groups we can carry out a PERMANOVA test.
 We'll use the package `vegan` with its function `adonis2()`.
 
 __Note:__ The original `vegan::adonis()` function is deprecated and should not be used.

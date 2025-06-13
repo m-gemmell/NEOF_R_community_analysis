@@ -46,7 +46,7 @@ In fact, run the below code in a new code cell and you may notice a similarity w
 ```{R, eval=FALSE}
 #Set random seed
 set.seed(1234)
-#Create a vector containing the numbers 0 to 10
+#Create a vector containing the numbers 10 to 19
 larger_num_vec <- 10:19
 #Randomly sample 5 of these numbers
 sample(x = num_vec, size = 5)

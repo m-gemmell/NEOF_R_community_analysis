@@ -3,9 +3,9 @@
 ![](figures/one_round.png){style="width:200px; background: white; border-radius:5px; border:5px solid white"}
 </center>
 
-Building up to multiple __iterations__ of __rarefaction__ we will first carry out one round of __rarefaction__ on our environmental phyla relative abundance data.
+Building up to multiple __iterations__ of __rarefaction__ we will first carry out one round of __rarefaction__ on our environmental phyla abundance data.
 
-This will also allow us to compare the compare the results of no __rarefaction__ to only one round.
+This will also allow us to compare the results of no __rarefaction__ to only one round.
 
 ## 1R: Rarefaction
 <center>
@@ -41,10 +41,10 @@ You should see that all the samples now have a total count of __11046__.
 
 Now to create a relative abundance bar chart with our __rarefied__ data to compare to our non-rarefied data.
 
-__Note:__ This is for demonstrtaive purposes and not something you would do in your real analysis.
+__Note:__ This is for demonstrative purposes. You would not use rarefied abudances for taxa barcharts in your real analysis.
 
 ```{R, eval=FALSE}
-#Quick phyla bar chart of relative abundance
+#Quick phyla bar chart of relative abundances
 #Relative abundance transformation
 pseq_env_phyla_rarefy_1_relabund <- microbiome::transform(pseq_env_phyla_rarefy_1, "compositional")
 #Create, save, and display bar chart
@@ -86,4 +86,4 @@ What is the range of the differences? `r longmcq(opts_p)`
 Although these values appear quite small keep in mind we are working with relative abundance values.
 Each sample has a total relative abundance of 1.00 so a relative abundance value of 0.01 is 1%.
 
-Let's see if we can get these differences smaller with multiple rounds of rarefaction.
+Let's see if we can make these differences smaller with multiple rounds of rarefaction.

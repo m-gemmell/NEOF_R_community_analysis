@@ -15,20 +15,20 @@ Additionally, we'll add a point for each value and colour it based on the site i
 The function `ggforce::geom_sina()` can be used for this.
 We'll use its parameter `alpha()` to make the points 50% (`0.5`) transparent.
 
-As we are plotting values from three different metrics we will split the plot into three separate plots.
+As we are plotting values from three different metrics we will split the figure into three separate plots.
 `ggplot2::facet_wrap()` can be used for this tasked with `~metric` used to split the plot by the metrics.
 We also specify `scales = "free"` so each of the three plots has their own x and y scales.
-This is important when the values are drastically different such is the case between the observed and chao1 (>100) compared to the shannon values (<10).
+This is important when the values are drastically different such as in the case between the observed (>100) and shannon values (<10).
 
 `r hide("scales options")`
 The four `scales` are:
 
-- __`"fixed"` (default):__ All the scales are the same (fixed), based on the largest and smallest x and y values across all the plots. Useful where you want direct comparisons such as looking at teh overall pattern in ordination plots.
+- __`"fixed"` (default):__ All the scales are the same (fixed), based on the largest and smallest x and y values across all the plots. Useful where you want direct comparisons such as looking at the overall pattern in ordination plots.
 - __`"free"`:__ All the scales are free. Each plot's x and y values limits are based on the data within it.
 - __`"free_x"`:__ The x axis is free and the y axis is fixed.
 - __`"free_y"`:__ The y axis is free and the x axis is fixed.
 
-Which you want to use depends on your data and how you are facetting it.
+Which you want to use depends on your data and how you are faceting it.
 `r unhide()`
 
 ```{R, eval = FALSE}
@@ -67,13 +67,12 @@ kruskal.test(observed ~ media, data = meta_alpha_mean_df)
 kruskal.test(shannon ~ media, data = meta_alpha_mean_df)
 ```
 
-All the p-values are less than 0.05 indicating statistical significance.
+Both the p-values are less than 0.05 indicating statistical significance.
 That means we can move onto pairwise comparisons.
 
 ### Paired Wilcoxon test
 
 To determine what groups are significantly different from each other we can carry out paired Wilcoxon test.
-This tests 
 
 ```{R, eval=FALSE}
 #Paired wilcoxon test

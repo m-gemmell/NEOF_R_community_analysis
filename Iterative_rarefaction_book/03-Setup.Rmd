@@ -35,7 +35,7 @@ Below are brief bullet points about the data:
 
 This book uses the same environment as in the [main R community analysis workshop](https://neof-workshops.github.io/R_community_whqkt8/Course/04-Setup.html#mamba)
 
-If you do not have the environment activated you can set-up your environment by run the following code (you must include the full stop and space at the front of the command).
+If you do not have the environment activated you can set-up your environment by running the following code (you must include the full stop and space at the front of the command).
 
 ```{bash, eval=FALSE}
 . usercommunity

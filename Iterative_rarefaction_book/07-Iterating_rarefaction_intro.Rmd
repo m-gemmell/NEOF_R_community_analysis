@@ -23,6 +23,7 @@ At the top of this notebook create a code cell to load in the various packages a
 #Libraries
 library("phyloseq")
 library("microbiome")
+library("tidyverse")
 library("IRdisplay")
 #Load processed but unrarefied data from R community analysis workshop
 load("/pub14/tea/nsc206/NEOF/R_community/data/phyloseq.RData")
