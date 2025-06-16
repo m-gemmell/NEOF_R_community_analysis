@@ -2347,14 +2347,18 @@ However, it is good to attempt the richness only approach too as it may show som
 A common question is "Which ordination method should I use?"
 There are many ordination methods with __NMDS__ and __PCoA__ being popular for ordination distance based values (dissimilarity matrices).
 
-A general guide to which to use for your data is by choosing the most informative one.
-Choose the one that shows the best picture and that explains the data the best.
+Many people choose based on which method is the most informative.
+THey choose the one that shows the best picture and that explains the data the best.
 
 In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high __% variance explained__ and it shows more separation of the samples.
 
 If the PCoA plot had a low __% variance explained__ it may be better to choose the NMDS plot.
 NMDS attempts to explain the data in the number of dimensions chosen by the user.
 We chose 2 as we want to plot the data in 2 dimensions.
+
+There is one paper that recommends you create, publish, and stick to a statistical plan before carrying out you analysis. 
+The proposal and reasoning is in the following paper:
+[The Power of Microbiome Studies: Some Considerations on Which Alpha and Beta Metrics to Use and How to Report Results](https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2021.796025/full)
 
 ## More dimensions
 <center>
@@ -2558,4 +2562,238 @@ In this part you have:
 With these skills and knowledge you will be able to carry out thorough investigations of __beta diversity__ in your future research.
 
 <!--chapter:end:25-Beta_practice.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# (PART\*) Final loop {-}
+
+# Alpha and Beta loop
+
+This final bonus chapter contains code blocks to carry out iterative rarefaction for alpha and beta diversity with one loop.
+This is the best method in your own analyses so you only need to run the rarefaction loop once.
+
+__Note:__ We do not recommend you run the below during the course as it will take quite a while.
+
+## Libraries
+
+Load in the required libraries and your phyloseq object.
+
+```{R, eval=FALSE}
+#Libraries
+library("phyloseq")
+library("microbiome")
+library("tidyverse")
+library("vegan")
+library("rbiom")
+#Load processed but unrarefied phyloseq
+#Please provide your own below
+load("/pub14/tea/nsc206/NEOF/R_community/data/phyloseq.RData")
+```
+
+## RNG seeds
+
+Create the rngseeds for the iterations.
+
+```{R, eval=FALSE}
+#Number of rarefaction iterations to be carried out
+#1000 is a good default
+rarefaction_iters <- 1000
+#Create rngseed vector
+#Set seed for reproducibility
+#Can use a different seed
+set.seed(2605)
+#Create the rngseed vector
+#Sample 1000 (number of iters) values from the number range 1-100,000
+rngseed_vec <- sample(x = 1:100000, size = rarefaction_iters, replace = FALSE)
+#Save our rngseed vector
+save(rngseed_vec, file="rngseeds_1000.RData")
+#Reset seed
+set.seed(NULL)
+```
+
+## Rarefaction values
+
+Assign the rarefaction size and the number of rarefaction iterations.
+
+```{R, eval=FALSE}
+#Rarefaction values
+#Rarefaction size
+#Minimum sample depth in this case
+rarefaction_size <- min(microbiome::readcount(pseq))
+#Load the vector of 10 rngseeds created in the previous chapter
+load("rngseeds_1000.RData")
+#Number of rarefaction iterations to be carried out
+#Based on length of rng seed vector
+rarefaction_iters <- length(rngseed_vec)
+```
+
+## Iterative rarefaction loop
+
+Carry out iterative rarefaction whilst calculating all your alpha and beta diversity metrics in one loop.
+
+There are 2 code blocks below:
+
+- Phylogenetically aware metrics included.
+- Phylogenetically aware metrics excluded.
+
+Below we use pipes (`|>`) to make some of the code tidier.
+Please see more info about pipes in out [Tidyverse site](https://neof-workshops.github.io/Tidyverse/dplyr/pipes.html).
+
+### Phylogenetically aware metrics included
+
+In the below code block the following metrics are calculated:
+
+- All alpha diversity metrics available in `microbiome::alpha()`
+- Weighted & unweighted unifrac
+- Bray-curtis
+- Jaccard
+
+```{R, eval=FALSE}
+#Iteration based rarefied alpha diversity values
+
+#Initial data frames
+#First rarefaction
+pseq_rarefy <- phyloseq::rarefy_even_depth(
+    pseq, sample.size = rarefaction_size,
+    rngseed = rngseed_vec[1], verbose = FALSE)
+#Alpha diversity
+alpha_df_sum <- microbiome::alpha(pseq_rarefy, index= "all")
+#Beta diveristy values
+#Objects from phyloseq object
+otu_df <- phyloseq::otu_table(pseq_rarefy)
+phylo_tree <- phyloseq::phy_tree(pseq_rarefy)
+#Weighted unifrac beta diversity
+wunifrac_df_sum <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
+                                  weighted = TRUE) |> as.matrix()
+#Unweighted wunifrac beta diversity
+uwunifrac_df_sum <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
+                                   weighted = FALSE) |> as.matrix()
+#Bray-curtis
+bray_df_sum <- vegan::vegdist(x = t(otu_df), method = "bray") |> as.matrix()
+#Jaccard
+jaccard_df_sum <- vegan::vegdist(x = t(otu_df), method = "jaccard") |> as.matrix()
+
+#Loop through 2 to the number of rarefaction
+for (i in 2:rarefaction_iters){
+    pseq_rarefy <- phyloseq::rarefy_even_depth(
+        pseq, sample.size = rarefaction_size,
+        rngseed = rngseed_vec[i], verbose = FALSE)
+    #Alpha diversity
+    alpha_df <- microbiome::alpha(pseq_rarefy, index= "all")
+    #Add to sum dataframe
+    alpha_df_sum <- alpha_df_sum + alpha_df
+    #Beta diversity
+    #Below we assign all beta diversity values to beta_df 
+    # then add this to the appropriate sum dafa frame (e.g. wunifrac_df_sum)
+    #This is to limit number of objects saved in env at one time
+    #Objects from phyloseq object
+    otu_df <- phyloseq::otu_table(pseq_rarefy)
+    phylo_tree <- phyloseq::phy_tree(pseq_rarefy)
+    #Weighted unifrac beta diversity
+    beta_df <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
+                              weighted = TRUE) |> as.matrix()
+    wunifrac_df_sum <-  wunifrac_df_sum + beta_df
+    #Unweighted unifrac beta diversity
+    beta_df <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
+            weighted = FALSE) |> as.matrix()
+    uwunifrac_df_sum <-  uwunifrac_df_sum + beta_df
+    #Bray-curtis
+    beta_df <- vegan::vegdist(x = t(otu_df), method = "bray") |> as.matrix()
+    bray_df_sum <-  bray_df_sum + beta_df
+    #Jaccard
+    beta_df <- vegan::vegdist(x = t(otu_df), method = "jaccard") |> as.matrix()
+    jaccard_df_sum <-  jaccard_df_sum + beta_df
+}
+#Alpha
+#Divide by number of rarefaction iterations to get average
+alpha_df_mean <- alpha_df_sum / rarefaction_iters
+#Save alpha mean dataframe
+save(alpha_df_mean, file = "alpha_df_mean.RData")
+#Beta
+#Weighted unifrac beta diversity
+wunifrac_df_mean <- wunifrac_df_sum / rarefaction_iters
+save(wunifrac_df_mean, file = "wunifrac_df_mean.RData")
+#Unweighted unifrac beta diversity
+uwunifrac_df_mean <- uwunifrac_df_sum / rarefaction_iters
+save(uwunifrac_df_mean, file = "uwunifrac_df_mean.RData")
+#Bray-curtis beta diversity
+bray_df_mean <- bray_df_sum / rarefaction_iters
+save(bray_df_mean, file = "bray_df_mean.RData")
+#Jaccard beta diversity
+jaccard_df_mean <- jaccard_df_sum / rarefaction_iters
+save(jaccard_df_mean, file = "jaccard_df_mean.RData")
+
+#Remove unneeded objects
+rm(pseq, alpha_df_sum, alpha_df)
+```
+
+### Phylogenetically aware metrics excluded
+
+If you do not have a phylogenetic tree with your data, such as with kraken2/bracken derived data, you cannot use unifrac metrics.
+
+In the below code block the following metrics are calculated:
+
+- All alpha diversity metrics available in `microbiome::alpha()`
+- Bray-curtis
+- Jaccard
+
+```{R, eval=FALSE}
+#Iteration based rarefied alpha diversity values
+
+#Initial data frames
+#First rarefaction
+pseq_rarefy <- phyloseq::rarefy_even_depth(
+    pseq, sample.size = rarefaction_size,
+    rngseed = rngseed_vec[1], verbose = FALSE)
+#Alpha diversity
+alpha_df_sum <- microbiome::alpha(pseq_rarefy, index= "all")
+#Beta diveristy values
+#Objects from phyloseq object
+otu_df <- phyloseq::otu_table(pseq_rarefy)
+#Bray-curtis
+bray_df_sum <- vegan::vegdist(x = t(otu_df), method = "bray") |> as.matrix()
+#Jaccard
+jaccard_df_sum <- vegan::vegdist(x = t(otu_df), method = "jaccard") |> as.matrix()
+
+#Loop through 2 to the number of rarefaction
+for (i in 2:rarefaction_iters){
+    pseq_rarefy <- phyloseq::rarefy_even_depth(
+        pseq, sample.size = rarefaction_size,
+        rngseed = rngseed_vec[i], verbose = FALSE)
+    #Alpha diversity
+    alpha_df <- microbiome::alpha(pseq_rarefy, index= "all")
+    #Add to sum dataframe
+    alpha_df_sum <- alpha_df_sum + alpha_df
+    #Beta diversity
+    #Below we assign all beta diversity values to beta_df 
+    # then add this to the appropriate sum dafa frame (e.g. wunifrac_df_sum)
+    #This is to limit number of objects saved in env at one time
+    #Objects from phyloseq object
+    otu_df <- phyloseq::otu_table(pseq_rarefy)
+    #Bray-curtis
+    beta_df <- vegan::vegdist(x = t(otu_df), method = "bray") |> as.matrix()
+    bray_df_sum <-  bray_df_sum + beta_df
+    #Jaccard
+    beta_df <- vegan::vegdist(x = t(otu_df), method = "jaccard") |> as.matrix()
+    jaccard_df_sum <-  jaccard_df_sum + beta_df
+}
+#Alpha
+#Divide by number of rarefaction iterations to get average
+alpha_df_mean <- alpha_df_sum / rarefaction_iters
+#Save alpha mean dataframe
+save(alpha_df_mean, file = "alpha_df_mean.RData")
+#Beta
+#Bray-curtis beta diversity
+bray_df_mean <- bray_df_sum / rarefaction_iters
+save(bray_df_mean, file = "bray_df_mean.RData")
+#Jaccard beta diversity
+jaccard_df_mean <- jaccard_df_sum / rarefaction_iters
+save(jaccard_df_mean, file = "jaccard_df_mean.RData")
+
+#Remove unneeded objects
+rm(pseq, alpha_df_sum, alpha_df)
+```
+
+<!--chapter:end:26-Iterative_rarefaction_loop.Rmd-->
 
