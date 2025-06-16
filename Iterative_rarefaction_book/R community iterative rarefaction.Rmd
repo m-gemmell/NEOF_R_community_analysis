@@ -648,7 +648,7 @@ For demonstrative purposes we will reduce the amount of samples and features in 
 #Reduce data for demonstrative purposes
 #Subset phyloseq object to only retain the ENV samples
 #I.e. remove the media samples
-physeq_env <- phyloseq::subset_samples(pseq, media == "ENV")
+pseq_env <- phyloseq::subset_samples(pseq, media == "ENV")
 
 #Aggregate to phyla level whilst aggregating rare phyla
 pseq_env_phyla <- microbiome::aggregate_rare(
@@ -813,7 +813,7 @@ load("rngseeds.RData")
 #In this case we create the first iteration
 #Carry out first rarefaction
 pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
-                                           sample.size = rarefaction_size
+                                           sample.size = rarefaction_size,
                                            #First random seed as the rng seed
                                            rngseed = rngseed_vec[1])
 rarefy_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy))
@@ -823,7 +823,7 @@ rarefy_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy))
 for (i in 2:length(rngseed_vec)){
   #Rarefy
   pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
-                                           sample.size = rarefaction_size
+                                           sample.size = rarefaction_size,
                                            rngseed = rngseed_vec[i])
   #Add values to rarefy_phyla_df
   rarefy_phyla_df <- 
@@ -991,7 +991,7 @@ load("rngseeds_1000.RData")
 #In this case we create the first iteration
 #Carry out first rarefaction
 pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
-                                           sample.size = rarefaction_size
+                                           sample.size = rarefaction_size,
                                            #First random seed as the rng seed
                                            rngseed = rngseed_vec[1])
 rarefy_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy))
@@ -1001,7 +1001,7 @@ rarefy_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy))
 for (i in 2:length(rngseed_vec)){
   #Rarefy
   pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
-                                           sample.size = rarefaction_size
+                                           sample.size = rarefaction_size,
                                            rngseed = rngseed_vec[i])
   #Add values to rarefy_phyla_df
   rarefy_phyla_df <- 
@@ -1271,7 +1271,7 @@ meta_alpha_mean_long_df <-
                       #Change the alpha diversity names to long format
                       #I.e. keep our metadata columns as separate columns
                       #all_of() used to silence warning message
-                      cols = all_of(alpha_div_colnames)
+                      cols = all_of(alpha_div_colnames),
                       #Set metric names to column called metric
                       #Set values to column called value
                       names_to = "metric", values_to = "value")
@@ -1406,9 +1406,9 @@ To determine what groups are significantly different from each other we can carr
 ```{R, eval=FALSE}
 #Paired wilcoxon test
 #Observed ASVs
-pairwise.wilcox.test(meta_alpha_mean_df$observed, meta_alpha_mean_df, p.adjust.method = "holm")
+pairwise.wilcox.test(meta_alpha_mean_df$observed, meta_alpha_mean_df$media, p.adjust.method = "holm")
 #Shannon diversity
-pairwise.wilcox.test(meta_alpha_mean_df$shannon, meta_alpha_mean_df, p.adjust.method = "holm")
+pairwise.wilcox.test(meta_alpha_mean_df$shannon, meta_alpha_mean_df$media, p.adjust.method = "holm")
 ```
 
 You'll see three p-value adjusted tables with all the values (except Shannon: ENV against TSA) being significant (<0.05).
@@ -1452,7 +1452,7 @@ We provide it with three parameters:
 uniq_media_values_chr_vec <- unique(as.character(basic_alpha_metrics_long_df$media))
 uniq_media_values_chr_vec
 #Can use combn() to get comparisons
-my_comparisons <- combn(uniq_media_values_chr_vec, m = 2, simplify = FALSE))
+my_comparisons <- combn(uniq_media_values_chr_vec, m = 2, simplify = FALSE)
 #Check contents and structure
 my_comparisons
 str(my_comparisons)

@@ -19,7 +19,7 @@ For demonstrative purposes we will reduce the amount of samples and features in 
 #Reduce data for demonstrative purposes
 #Subset phyloseq object to only retain the ENV samples
 #I.e. remove the media samples
-physeq_env <- phyloseq::subset_samples(pseq, media == "ENV")
+pseq_env <- phyloseq::subset_samples(pseq, media == "ENV")
 
 #Aggregate to phyla level whilst aggregating rare phyla
 pseq_env_phyla <- microbiome::aggregate_rare(

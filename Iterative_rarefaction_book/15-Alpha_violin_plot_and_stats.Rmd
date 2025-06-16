@@ -77,9 +77,9 @@ To determine what groups are significantly different from each other we can carr
 ```{R, eval=FALSE}
 #Paired wilcoxon test
 #Observed ASVs
-pairwise.wilcox.test(meta_alpha_mean_df$observed, meta_alpha_mean_df, p.adjust.method = "holm")
+pairwise.wilcox.test(meta_alpha_mean_df$observed, meta_alpha_mean_df$media, p.adjust.method = "holm")
 #Shannon diversity
-pairwise.wilcox.test(meta_alpha_mean_df$shannon, meta_alpha_mean_df, p.adjust.method = "holm")
+pairwise.wilcox.test(meta_alpha_mean_df$shannon, meta_alpha_mean_df$media, p.adjust.method = "holm")
 ```
 
 You'll see three p-value adjusted tables with all the values (except Shannon: ENV against TSA) being significant (<0.05).

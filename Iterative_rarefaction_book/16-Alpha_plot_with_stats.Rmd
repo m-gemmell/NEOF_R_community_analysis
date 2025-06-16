@@ -32,7 +32,7 @@ We provide it with three parameters:
 uniq_media_values_chr_vec <- unique(as.character(basic_alpha_metrics_long_df$media))
 uniq_media_values_chr_vec
 #Can use combn() to get comparisons
-my_comparisons <- combn(uniq_media_values_chr_vec, m = 2, simplify = FALSE))
+my_comparisons <- combn(uniq_media_values_chr_vec, m = 2, simplify = FALSE)
 #Check contents and structure
 my_comparisons
 str(my_comparisons)

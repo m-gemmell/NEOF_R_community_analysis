@@ -85,7 +85,7 @@ meta_alpha_mean_long_df <-
                       #Change the alpha diversity names to long format
                       #I.e. keep our metadata columns as separate columns
                       #all_of() used to silence warning message
-                      cols = all_of(alpha_div_colnames)
+                      cols = all_of(alpha_div_colnames),
                       #Set metric names to column called metric
                       #Set values to column called value
                       names_to = "metric", values_to = "value")

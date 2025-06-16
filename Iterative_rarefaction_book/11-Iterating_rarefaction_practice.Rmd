@@ -50,7 +50,7 @@ load("rngseeds_1000.RData")
 #In this case we create the first iteration
 #Carry out first rarefaction
 pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
-                                           sample.size = rarefaction_size
+                                           sample.size = rarefaction_size,
                                            #First random seed as the rng seed
                                            rngseed = rngseed_vec[1])
 rarefy_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy))
@@ -60,7 +60,7 @@ rarefy_phyla_df <- as.data.frame(phyloseq::otu_table(pseq_rarefy))
 for (i in 2:length(rngseed_vec)){
   #Rarefy
   pseq_rarefy <- phyloseq::rarefy_even_depth(pseq_env_phyla,
-                                           sample.size = rarefaction_size
+                                           sample.size = rarefaction_size,
                                            rngseed = rngseed_vec[i])
   #Add values to rarefy_phyla_df
   rarefy_phyla_df <- 
