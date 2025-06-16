@@ -323,6 +323,8 @@ However, we'll demonstrate how to plotlyify plots with [`ggplot2`](https://plotl
 You can even embed these in online books like the below chart.
 Try hovering over points to get more information on them.
 
+__Note:__ The below code is for demostrtaion, do not run it.
+
 ```{r, eval=FALSE, warning=FALSE, out.width="700px"}
 library("ggplot2")
 library("plotly")
@@ -385,7 +387,7 @@ First we need to load it into `R` as a __data frame__.
 ```{r, eval=FALSE}
 #Read in penguin data
 penguin_df <- read.csv("/pub14/tea/nsc206/NEOF/R_community/penguin.tsv",
-                       check.names=FALSE, stringAsFactors = TRUE, sep = "\t")
+                       check.names=FALSE, stringsAsFactors = TRUE, sep = "\t")
 #Check df
 head(penguin_df)
 ```
