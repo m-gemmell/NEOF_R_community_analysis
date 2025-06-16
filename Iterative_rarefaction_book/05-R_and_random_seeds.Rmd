@@ -26,8 +26,8 @@ Carry this out to determine the randomness of sampling.
 ```{R, eval=FALSE}
 #Set random seed
 set.seed(1234)
-#Randomly sample 12 of these numbers without replacement
-sample(x = num_vec, size = 12, replace = FALSE)
+#Randomly sample 5 of these numbers without replacement
+sample(x = num_vec, size = 5, replace = FALSE)
 #Reset random seed (covered later)
 set.seed(NULL)
 ```
