@@ -2235,7 +2235,7 @@ metadf <- phyloseq::sample_data(pseq)
 metadf_noenv <- metadf[metadf$media != "ENV",]
 #Subset distance matrix so it only contains non env samples
 beta_df_mean_noenv <- beta_df_mean[row.names(metadf_noenv), row.names(metadf_noenv)]
-beta_df_mean_no_env
+beta_df_mean_noenv
 ```
 
 ## Points long data frame
