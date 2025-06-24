@@ -222,7 +222,7 @@ pcoa.wunifrac <- ggplot(data = pcoa_points_metadata,
                 labs(x = paste0("Axis.1 [", pcoa_axis_var_explained[1], "%]"),
                      y = paste0("Axis.2 [", pcoa_axis_var_explained[2], "%]"))
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Beta_diversity_pcoa_wunifrac_media_site.png", plot = pcoa.wunifrac
+ggsave(filename = "./Beta_diversity_pcoa_wunifrac_media_site.png", plot = pcoa.wunifrac,
        device = "png", dpi = 300, units = "mm", height = 125, width = 150)
 #Display plot
 IRdisplay::display_png(file = "./Beta_diversity_pcoa_wunifrac_media_site.png")

@@ -1594,7 +1594,7 @@ Create metadata combination list for plot stats
 uniq_site_values_chr_vec <- unique(as.character(subset_alpha_metrics_long_df$site))
 uniq_site_values_chr_vec
 #Can use combn() to get comparisons
-my_comparisons <- combn(uniq_site_values_chr_vec, m = 2, simplify = FALSE))
+my_comparisons <- combn(uniq_site_values_chr_vec, m = 2, simplify = FALSE)
 #Check contents and structure
 my_comparisons
 str(my_comparisons)
@@ -2091,7 +2091,7 @@ pcoa.wunifrac <- ggplot(data = pcoa_points_metadata,
                 labs(x = paste0("Axis.1 [", pcoa_axis_var_explained[1], "%]"),
                      y = paste0("Axis.2 [", pcoa_axis_var_explained[2], "%]"))
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Beta_diversity_pcoa_wunifrac_media_site.png", plot = pcoa.wunifrac
+ggsave(filename = "./Beta_diversity_pcoa_wunifrac_media_site.png", plot = pcoa.wunifrac,
        device = "png", dpi = 300, units = "mm", height = 125, width = 150)
 #Display plot
 IRdisplay::display_png(file = "./Beta_diversity_pcoa_wunifrac_media_site.png")
@@ -2174,14 +2174,14 @@ colnames(pairwise_permanova_df) <- c("1","2","p","p.adj")
 #Loop through the combinations
 for(i in 1:ncol(cbn)){
   #Subset metadata
-  metadata_subset <- metadf[metadf$media %in% cbn[,i],]
+  metadf_subset <- metadf[metadf$media %in% cbn[,i],]
   #Extract sample names
   samples_subset <- row.names(metadf_subset)
   #Subset distance matrix
   wunifrac_dist_mat_subset <- beta_df_mean[samples_subset,samples_subset]
   #PERMANOVA/ADONIS of media
   #Ensure to change group name if using different group (media)
-  pairwise_adonis <- vegan::adonis2(
+  wunifrac_pairwise_adonis <- vegan::adonis2(
     wunifrac_dist_mat_subset ~ media, data = metadf_subset, by = "margin")
   #Add the group names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]
@@ -2232,7 +2232,7 @@ load("wunifrac_df_mean.RData")
 #Load metadata
 metadf <- phyloseq::sample_data(pseq)
 #Subset data frame so it excludes env samples
-metadf_noenv <- metadf[metadf$media != ENV,]
+metadf_noenv <- metadf[metadf$media != "ENV",]
 #Subset distance matrix so it only contains non env samples
 beta_df_mean_noenv <- beta_df_mean[row.names(metadf_noenv), row.names(metadf_noenv)]
 beta_df_mean_no_env

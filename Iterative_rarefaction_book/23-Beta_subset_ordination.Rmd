@@ -29,7 +29,7 @@ load("wunifrac_df_mean.RData")
 #Load metadata
 metadf <- phyloseq::sample_data(pseq)
 #Subset data frame so it excludes env samples
-metadf_noenv <- metadf[metadf$media != ENV,]
+metadf_noenv <- metadf[metadf$media != "ENV",]
 #Subset distance matrix so it only contains non env samples
 beta_df_mean_noenv <- beta_df_mean[row.names(metadf_noenv), row.names(metadf_noenv)]
 beta_df_mean_no_env

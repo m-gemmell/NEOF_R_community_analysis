@@ -57,14 +57,14 @@ colnames(pairwise_permanova_df) <- c("1","2","p","p.adj")
 #Loop through the combinations
 for(i in 1:ncol(cbn)){
   #Subset metadata
-  metadata_subset <- metadf[metadf$media %in% cbn[,i],]
+  metadf_subset <- metadf[metadf$media %in% cbn[,i],]
   #Extract sample names
   samples_subset <- row.names(metadf_subset)
   #Subset distance matrix
   wunifrac_dist_mat_subset <- beta_df_mean[samples_subset,samples_subset]
   #PERMANOVA/ADONIS of media
   #Ensure to change group name if using different group (media)
-  pairwise_adonis <- vegan::adonis2(
+  wunifrac_pairwise_adonis <- vegan::adonis2(
     wunifrac_dist_mat_subset ~ media, data = metadf_subset, by = "margin")
   #Add the group names and p-value to the main data frame
   pairwise_permanova_df[i,1:2] <- cbn[,i]

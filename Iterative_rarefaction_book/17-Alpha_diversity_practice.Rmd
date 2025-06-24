@@ -56,7 +56,7 @@ Create metadata combination list for plot stats
 uniq_site_values_chr_vec <- unique(as.character(subset_alpha_metrics_long_df$site))
 uniq_site_values_chr_vec
 #Can use combn() to get comparisons
-my_comparisons <- combn(uniq_site_values_chr_vec, m = 2, simplify = FALSE))
+my_comparisons <- combn(uniq_site_values_chr_vec, m = 2, simplify = FALSE)
 #Check contents and structure
 my_comparisons
 str(my_comparisons)
