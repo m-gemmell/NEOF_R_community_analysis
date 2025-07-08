@@ -2262,15 +2262,15 @@ Followed by producing a long data frame for plotting:
 ```{R, eval = FALSE}
 #Create point long data frame with metadata
 #Ensure row names order matches
-if (identical(row.names(beta_df_mean_noenv), row.names(pcoa_points)) == FALSE) {
-  beta_df_mean_noenv <- beta_df_mean_noenv[row.names(pcoa_points),]
+if (identical(row.names(beta_df_mean_noenv), row.names(pcoa_res_points)) == FALSE) {
+  beta_df_mean_noenv <- beta_df_mean_noenv[row.names(pcoa_res_points),]
 }
 #Make points with metadata data frame
-pcoa_points_metadata <- cbind(pcoa_points, metadf_noenv)
+pcoa_points_metadata <- cbind(pcoa_res_points, metadf_noenv)
 head(nmds_points_metadata)
 #Save object we want, remove ones we don't
 save(pcoa_points_metadata, file = "noenv_wunifrac_PCoA.RData")
-rm(metadf, pcoa_points, pcoa_res)
+rm(metadf, pcoa_res_points, pcoa_res)
 ```
 
 ## Media PCoA scatter plot
@@ -2285,7 +2285,7 @@ Finally you can produce the PCoA scatter plot for just the media samples:
 #Plot ordination
 pcoa.wunifrac <- ggplot(data = pcoa_points_metadata, 
                         aes(x = Axis.1, y = Axis.2, color = site, shape = media)) +
-  ggplot2::geom_points() +
+  ggplot2::geom_point() +
   labs(x = paste0("Axis.1 [", pcoa_axis_var_explained[1], "%]"),
        y = paste0("Axis.2 [", pcoa_axis_var_explained[2], "%]"))
 #Save ggplot2 object with ggsave
@@ -2348,7 +2348,7 @@ A common question is "Which ordination method should I use?"
 There are many ordination methods with __NMDS__ and __PCoA__ being popular for ordination distance based values (dissimilarity matrices).
 
 Many people choose based on which method is the most informative.
-THey choose the one that shows the best picture and that explains the data the best.
+They choose the one that shows the best picture and that explains the data the best.
 
 In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high __% variance explained__ and it shows more separation of the samples.
 
@@ -2487,7 +2487,7 @@ nmds_points_metadata <- cbind(nmds_res$points, metadf)
 head(nmds_points_metadata)
 #Save object we want, remove ones we don't
 save(nmds_points_metadata, file = "bray_NMDS.RData")
-rm(metadf, nmds_res, nmds_points)
+rm(metadf, nmds_res)
 ```
 
 NMDS scatterplot
@@ -2540,7 +2540,7 @@ pcoa.bray <- ggplot(data = pcoa_points_metadata,
                 labs(x = paste0("Axis.1 [", pcoa_axis_var_explained[1], "%]"),
                      y = paste0("Axis.2 [", pcoa_axis_var_explained[2], "%]"))
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Beta_diversity_pcoa_bray_media_site.png", plot = pcoa.bray
+ggsave(filename = "./Beta_diversity_pcoa_bray_media_site.png", plot = pcoa.bray,
        device = "png", dpi = 300, units = "mm", height = 125, width = 150)
 #Display plot
 IRdisplay::display_png(file = "./Beta_diversity_pcoa_bray_media_site.png")

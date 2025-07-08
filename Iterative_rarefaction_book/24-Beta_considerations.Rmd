@@ -35,7 +35,7 @@ A common question is "Which ordination method should I use?"
 There are many ordination methods with __NMDS__ and __PCoA__ being popular for ordination distance based values (dissimilarity matrices).
 
 Many people choose based on which method is the most informative.
-THey choose the one that shows the best picture and that explains the data the best.
+They choose the one that shows the best picture and that explains the data the best.
 
 In this case the PCoA plot looks better than the NMDS plot as the PCoA plot has a high __% variance explained__ and it shows more separation of the samples.
 

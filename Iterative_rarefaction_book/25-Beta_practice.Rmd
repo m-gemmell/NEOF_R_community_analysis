@@ -91,7 +91,7 @@ nmds_points_metadata <- cbind(nmds_res$points, metadf)
 head(nmds_points_metadata)
 #Save object we want, remove ones we don't
 save(nmds_points_metadata, file = "bray_NMDS.RData")
-rm(metadf, nmds_res, nmds_points)
+rm(metadf, nmds_res)
 ```
 
 NMDS scatterplot
@@ -144,7 +144,7 @@ pcoa.bray <- ggplot(data = pcoa_points_metadata,
                 labs(x = paste0("Axis.1 [", pcoa_axis_var_explained[1], "%]"),
                      y = paste0("Axis.2 [", pcoa_axis_var_explained[2], "%]"))
 #Save ggplot2 object with ggsave
-ggsave(filename = "./Beta_diversity_pcoa_bray_media_site.png", plot = pcoa.bray
+ggsave(filename = "./Beta_diversity_pcoa_bray_media_site.png", plot = pcoa.bray,
        device = "png", dpi = 300, units = "mm", height = 125, width = 150)
 #Display plot
 IRdisplay::display_png(file = "./Beta_diversity_pcoa_bray_media_site.png")
