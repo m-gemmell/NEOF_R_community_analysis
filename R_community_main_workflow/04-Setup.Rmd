@@ -7,27 +7,62 @@ Prior to any analysis we need to setup our environment in the webVNC.
 
 ## Logon instructions {#cluster}
 
-For this workshop we will be using Virtual Network Computing (VNC). Connect to the VNC with a browser by using the webVNC link you were sent.
+For this workshop we will be using Virtual Network Computing (<u id='vnc'>VNC</u>). Connect to the <u id='vnc'>VNC</u> with a browser by using the webVNC link you were sent.
 
-You will now be in a logged-in Linux VNC desktop. 
-You will see something as below (there may be only one terminal which is fine). 
-If you do not see something similar please ask for assistance.
+You will now be in a logged-in Linux <u id='vnc'>VNC</u> desktop with two terminals. You will see something as below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
 
 <center>
-![](figures/logon_pic.png){style="width:800px"}
+![](figures/nsc200_logon.png){style="width:800px; border-radius:5px; border: #282828 solid 5px"}
 </center>
 
-If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
+If the <u id='vnc'>VNC</u> is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
 
-These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
+`r hide("How to zoom with your browser")`
+You may need to zoom out with your browser so you can see the full webVNC window.
+
+- __Chrome__: Click on the __three dots in vertical line__ (
+```{r, echo=FALSE}
+icons::icon_style(icons::ionicons("ellipsis-vertical"), background="white", border="solid white")
+``` 
+) on the top left for a dropdown menu which includes zoom options.
+- __Edge__: Click on the __three horizontal lines__ (
+```{r, echo=FALSE}
+icons::icon_style(icons::ionicons("ellipsis-horizontal"), background="white", border="solid white")
+``` 
+) on the top left for a dropdown menu which includes zoom options.
+- __Firefox__: Click on the __three dots in horizontal line__ (
+```{r, echo=FALSE}
+icons::icon_style(icons::fontawesome("bars", style="solid"), background="white", border="solid white")
+```
+) on the top left for a dropdown menu which includes zoom options.
+`r unhide()`
+
+These instructions will not work outside of this workshop. If you would like to install your own Linux <u id='os'>OS</u> on your desktop or laptop we would recommend Mint Linux 
 
 The following link is a guide to install Mint Linux:  
 https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
-If you have a windows machine and would like to install linux on it you can install Windows Subsystem for Linux. 
+If you have a windows machine and would like to install linux on it you can install Windows Subsystem for Linux (<u id='wsl'>WSL</u>). 
 
-The following link is a guide to instal linux via WSL:
+The following link is a guide to install linux via (<u id='wsl'>WSL</u>):
 https://learn.microsoft.com/en-us/windows/wsl/install
+
+## The Terminal Window
+
+In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
+
+<center>
+![](figures/terminal_window.png){style="width:700px; border-radius:5px"}
+</center>
+
+Already there is useful information for us on the terminal window.
+
+-   **nsc206**: This is the login name, also known as the username. In this case nsc206 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
+-   **ada02**: This is the machine name the user is logged into.
+-   **\~**: This represents the current directory of the user, or the directory a command was run in. In the Linux (<u id='os'>OS</u>) and others **'\~'** is a shortcut to the user's home directory.
+-   Everything after the **'\$'** is where commands are typed into the terminal. This is also referred to as the command line.
+
+To open a new terminal window, right click on the main screen, choose `Terminal`.
 
 ## Mamba
 <center>
