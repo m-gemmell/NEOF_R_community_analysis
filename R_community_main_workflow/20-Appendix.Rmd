@@ -31,7 +31,7 @@ conda-forge::r-tidyverse=2.0.0 conda-forge::r-devtools=2.4.5 conda-forge::r-ggfo
 conda-forge::pandoc=3.6.1 conda-forge::r-plotly=4.10.4 conda-forge::r-irkernel=1.3.2 \
 conda-forge::r-htmltools=0.5.8.1 conda-forge::r-ggpubr=0.6.0 conda-forge::r-rbiom=1.0.3 \
 conda-forge::r-ape=5.8 conda-forge::r-xml2=1.3.6 conda-forge::r-dt=0.33 \
-anaconda::pathlib=1.0.1 conda-forge::r-ggupset=0.4.0
+anaconda::pathlib=1.0.1 conda-forge::r-ggupset=0.4.0 conda-forge::r-patchwork=1.2.0
 ```
 
 __Note:__ It is common that some tools/packages will conflict with others. To overcome this we have set versions by adding `=xx` after a tool name in `conda` (e.g. `r-htmltools=0.5.4`).
