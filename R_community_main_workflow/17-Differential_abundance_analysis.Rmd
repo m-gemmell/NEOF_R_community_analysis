@@ -135,7 +135,7 @@ It is quite a large table so let's save it as a tsv (tab separated value) file.
 ```{r, eval=FALSE}
 #Save as file
 write.table(x = res_ancom_class, file = "ANCOMBC2_class_results.tsv",
-            quote = FALSE, row.names = FALSE)
+            quote = FALSE, row.names = FALSE, sep = "\t")
 ```
 
 This is good to open in excel but we don't have something like that on our cluster. Therefore, we will use the package `DT` to create an interactive table with the function `datatable()`. We can then save this object as an HTML with `htmlwidgets::saveWidget()`.
