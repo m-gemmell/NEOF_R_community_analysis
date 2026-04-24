@@ -32,8 +32,8 @@ For good documentation add a second level heading to the first __"Markdown"__ ce
 
 To decrease the level of a heading add another `#`.
 
-- `# `: 1st level header.
-- `## `: 2nd level header.
+- `# `: 1st level header
+- `## `: 2nd level header
 - `### `: 3rd level header etc...
 
 I like to load all the packages to be used in the notebook in this section. We will explain their uses later in this chapter. Add the below to a new __"Code"__ cell in your notebook:

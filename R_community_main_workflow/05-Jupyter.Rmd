@@ -1,23 +1,21 @@
 # Jupyter {#jupyterchap}
 
-<center>
-![](figures/jupyter_logo.png){style="border-radius: 15px; width: 200px; background-color: white"}
-</center>
-
+<center>![](figures/jupyter_logo.png){style="border-radius: 15px; width: 200px; background-color: white"}</center>
 
 [`Jupyter-notebook`](https://jupyter.org/) is a nice browser based method to write, edit, and run code. It was initally created for Python coding, but has since branched out to many other languages, such as `R`.
 
 We are using it in this workshop for a variety of its properties:
 
--   It is popular and well maintained.
--   It is lightweight. Other heavier weight programs, such as RStudio, would struggle in our HPC due to the graphical and CPU load.
--   It is interactive and displays code output.
--   It allows for easier annotation, editing, and debugging than the command line.
--   It provides a graphical interface for changing directories and choosing files.
+-   It is popular and well maintained
+-   It is lightweight
+-   Other heavier weight programs, such as RStudio, would struggle in our HPC due to the graphical and CPU load
+-   It is interactive and displays code output
+-   It allows for easier annotation, editing, and debugging than the command line
+-   It provides a graphical interface for changing directories and choosing files
 
 Before carrying out any analysis we will go through a quick tutorial of `jupyter-notebook`.
 
-__Note:__ There is a [video tutorial](#jup_vid_tut) of this chapter at the bottom of this page if you prefer to watch it.
+**Note:** There is a [video tutorial](#jup_vid_tut) of this chapter at the bottom of this page if you prefer to watch it.
 
 ## Open Jupyter-notebook
 
@@ -29,42 +27,18 @@ jupyter-notebook
 
 This will open `jupyter-notebook` in firefox. We won't need to access the linux terminal anymore. Leave the terminal running `jupyter-notebook` and full screen your `firefox` so you should see something like below.
 
-`r hide("Can't see the whole webVNC window?")`
-You may need to zoom out with your browser so you can see the full webVNC window.
-
-- __Chrome__: Click on the __three dots in vertical line__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::ionicons("ellipsis-vertical"), background="white", border="solid white")
-``` 
-) on the top left for a dropdown menu which includes zoom options.
-- __Edge__: Click on the __three horizontal lines__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::ionicons("ellipsis-horizontal"), background="white", border="solid white")
-``` 
-) on the top left for a dropdown menu which includes zoom options.
-- __Firefox__: Click on the __three dots in horizontal line__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::fontawesome("bars", style="solid"), background="white", border="solid white")
-```
-) on the top left for a dropdown menu which includes zoom options.
-`r unhide()`
-
-<center>
-![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border: solid #7490b5 2px; border-radius:2px"}</center>
 
 ## Create R notebook
 
 The next step is to create an R notebook.
 
-1.  Click on the **"New"** button towards the top right, right of the "Upload" button.
-2.  From the dropdown click **"R"** below "Python 3 (ipykernel)".
+1.  Click on the **"New"** button towards the top right, right of the "Upload" button
+2.  From the dropdown click **"R"** below "Python 3 (ipykernel)"
 
 This will open up a new R notebook like below.
 
-<center>
-![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border: solid #7490b5 2px; border-radius:2px"}</center>
 
 ## Cells and code
 
@@ -81,9 +55,7 @@ When pressing enter in **cells** it will create a new line. To run all commands 
 
 Run your current **cell** and you should see something like below.
 
-<center>
-![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px"}</center>
 
 ## Create new cells
 
@@ -92,13 +64,13 @@ You can create new **cells** by 2 different means.
 -   Press the `+` button on the tool bar (between the floppy disk
 ```{r, echo=FALSE}
 icons::icon_style(icons::ionicons("save-outline"), background="white")
-``` 
+```
 and scissors
 ```{r, echo=FALSE}
 icons::icon_style(icons::ionicons("cut"), background="white")
-``` 
-). This will add a **cell** below your currently selected **cell**.
--   Click on the **`Insert`** button and use the dropdown to add a cell above or below your currently selected cell.
+```
+) will will add a **cell** below your currently selected **cell**
+- Click on the **`Insert`** button and use the dropdown to add a cell above or below your currently selected cell
 
 **Tip:** Hover over the toolbar icons to display a text based description of its function.
 
@@ -125,56 +97,51 @@ We can run all the code in a notebook starting from the first **cell** to the la
 
 To run all **cells** from the start:
 
--   Click on the **"Cell"** button.
--   Click **"Run All"** from the drop-down options.
+-   Click on the **"Cell"** button
+-   Click **"Run All"** from the drop-down options
 
 You should then see something like the below in your notebook.
 
-<center>
-![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px"}</center>
 
-There is no output printed for __cell__ 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in **cell** 2 before **cell** 3 was run.
+There is no output printed for **cell** 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in **cell** 2 before **cell** 3 was run.
 
 ## Saving the file
-<center>
-![](figures/r_save.png){style="width:100px"}
-</center>
+
+<center>![](figures/r_save.png){style="width:100px"}</center>
 
 As with RStudio and other good coding interfaces we can save our notebook.
 
 First we should rename the file. Rename the notebook to **"jupyter_tut.ipynb"**:
 
-1.  Click on the name of the notebook, currently called **"Untitled"**.
-    -   This is at the very top of the notebook, right of the Jupyter logo.
-2.  A pop-up called **"Rename Notebook"** will appear. Change the Name to **"jupyter_tut.ipynb"**.
-3.  Click **"Rename"**.
+1.  Click on the name of the notebook, currently called **"Untitled"**
+    -   This is at the very top of the notebook, right of the Jupyter logo
+2.  A pop-up called **"Rename Notebook"** will appear. Change the Name to **"jupyter_tut.ipynb"**
+3.  Click **"Rename"**
 
 Now we can save the file. Two methods to save are:
 
--   Click the floppy disk 
+-   Click the floppy disk
 ```{r, echo=FALSE}
 icons::icon_style(icons::ionicons("save-outline"), background="white")
-``` 
-on the toolbar.
--   Click on the **"File"** button. Click **"Save and Checkpoint"** from the dropdown options.
+```
+on the toolbar. 
+- Click on the **"File"** button. Click **"Save and Checkpoint"** from the dropdown options
 
 ## Title cells with markdown
 
 We will be using multiple notebooks in this workshop. We will also have multiple sections per notebook. It will be useful to create header cells with markdown to create visual separation of the different sections.
 
-To add a header __cell__ to the top of our notebook:
+To add a header **cell** to the top of our notebook:
 
--   Create a new __cell__ at the top of the notebook.
--   Click on the **"Code"** drop down and select **"Markdown"**.
-    -   The **"Heading"** option no longer works.
+-   Create a new **cell** at the top of the notebook
+-   Click on the **"Code"** drop down and select **"Markdown"**
+    -   The **"Heading"** option no longer works
 
-<center>
-![](figures/jupyter_notebook_example_5.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_example_5.png){style="width: 1000px; border-radius: 15px"}</center>
 
--   Add the following to the **"Markdown"** cell to create a first level header.
-    -   Ensure you have a space between the `#` and header text ("Tutorial").
+-   Add the following to the **"Markdown"** cell to create a first level header
+    -   Ensure you have a space between the `#` and header text ("Tutorial")
 
 ```{r, eval=FALSE}
 # Tutorial
@@ -182,33 +149,33 @@ To add a header __cell__ to the top of our notebook:
 
 Great, we can now add nice headers in our notebooks. **Save** the notebook once more before carrying on to the next section.
 
-`r hide("Markdown")` 
-You won't need to know more about `Markdown` but if you are interested please see the [`Markdown` guide](https://www.markdownguide.org/basic-syntax/). 
-`r unhide()`
+`r hide("Markdown")` You won't need to know more about `Markdown` but if you are interested please see the [`Markdown` guide](https://www.markdownguide.org/basic-syntax/). `r unhide()`
 
 ## Close the notebook
 
 To close the notebook:
 
--   Click on **"File"**.
--   From the dropdown options click **"Close and Halt"**.
+-   Click on **"File"**
+-   From the dropdown options click **"Close and Halt"**
 
-When you are back in the file explorer page you may not yet see the new file you saved. If so, you will need to refresh the page with the Refresh button 
+When you are back in the file explorer page you may not yet see the new file you saved. If so, you will need to refresh the page with the Refresh button
+
 ```{r, echo=FALSE}
 icons::icon_style(icons::ionicons("refresh"), background="white")
-``` 
+```
+
 towards the top right.
 
-<center>
-![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px"}</center>
 
 With that quick tutorial of `jupyter-notebook` we can start our community analysis in the next chapter.
 
 For more info on `jupter-notebook` please see the [appendix](#jupyter_appendix).
 
 ## Video tutorial {#jup_vid_tut}
-<div class="container">
-<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" 
-frameborder="0" allowfullscreen class="video"></iframe>
-</div>
+
+::: container
+<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" frameborder="0" allowfullscreen class="video">
+
+</iframe>
+:::

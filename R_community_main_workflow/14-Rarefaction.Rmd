@@ -138,11 +138,10 @@ IRdisplay::display_png(file="./rarefaction_plot.png")
 It is a useful plot but we can make it better! 
 We will add the following options to `vegan::rarecurve()`:
 
-  -   `lwd`: Sets the line width of the plot.
-  -   `label`: Turn the sample labels on (`T`) or off (`F`). We will turn them off as it is hard to read them all.
-  -   `sample`: Draws a vertical line at the specified depth.
-        Additionally, draws a horizontal line for each sample showing
-        how many ASVs were discovered at the sampling depth.
+  -   `lwd`: Sets the line width of the plot
+  -   `label`: Turn the sample labels on (`T`) or off (`F`). We will turn them off as it is hard to read them all
+  -   `sample`: Draws a vertical line at the specified depth
+        Additionally, draws a horizontal line for each sample showing how many ASVs were discovered at the sampling depth
 
 We will initially use our minimum sample depth as our rarefaction/sampling depth.
 If you can use your minimum depth it is always preferable as it allows you to keep all your samples.
@@ -242,12 +241,12 @@ pseq_rarefy <- phyloseq::rarefy_even_depth(
 
 The options we provided to the function `rarefy_even_depth` were:
 
-- __`pseq`__: The `phyloseq` object to rarefy.
-- __`sample.size =`__: The sampling depth to rarefy to.
-- __`rngseed`__: This is the seed used for random subsampling.
-  - If you rarefy the data again with the same seed it will extract the same data.
-  - This is useful so you and others can replicate your work.
-  - Additionally, it means you will get the same output as me (the writer) so you can accurately compare your findings to mine.
+- __`pseq`__: The `phyloseq` object to rarefy
+- __`sample.size =`__: The sampling depth to rarefy to
+- __`rngseed`__: This is the seed used for random subsampling
+  - If you rarefy the data again with the same seed it will extract the same data
+  - This is useful so you and others can replicate your work
+  - Additionally, it means you will get the same output as me (the writer) so you can accurately compare your findings to mine
 
 As always, it is useful to check our data.
 
@@ -282,7 +281,7 @@ Now you can close and halt the notebook.
 
 In this chapter we:
 
-- Determined the sampling depth to rarefy to with rarefaction curves and slopes.
-- Rarefied our samples to the minimum read depth. This retained all our samples whilst using a good depth.
+- Determined the sampling depth to rarefy to with rarefaction curves and slopes
+- Rarefied our samples to the minimum read depth. This retained all our samples whilst using a good depth
 
 We now have an abundance table, relative abundance table, and rarefied abundance table. We will use these to carry out some analyses.

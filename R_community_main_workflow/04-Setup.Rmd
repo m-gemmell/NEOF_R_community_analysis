@@ -12,30 +12,10 @@ For this workshop we will be using Virtual Network Computing (<u id='vnc'>VNC</u
 You will now be in a logged-in Linux <u id='vnc'>VNC</u> desktop with two terminals. You will see something as below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
 
 <center>
-![](figures/nsc200_logon.png){style="width:800px; border-radius:5px; border: #282828 solid 5px"}
+![](figures/nsc200_logon.png){style="width:800px; border-radius:2px"}
 </center>
 
-If the <u id='vnc'>VNC</u> is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
-
-`r hide("How to zoom with your browser")`
-You may need to zoom out with your browser so you can see the full webVNC window.
-
-- __Chrome__: Click on the __three dots in vertical line__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::ionicons("ellipsis-vertical"), background="white", border="solid white")
-``` 
-) on the top left for a dropdown menu which includes zoom options.
-- __Edge__: Click on the __three horizontal lines__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::ionicons("ellipsis-horizontal"), background="white", border="solid white")
-``` 
-) on the top left for a dropdown menu which includes zoom options.
-- __Firefox__: Click on the __three dots in horizontal line__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::fontawesome("bars", style="solid"), background="white", border="solid white")
-```
-) on the top left for a dropdown menu which includes zoom options.
-`r unhide()`
+If the <u id='vnc'>VNC</u> is taking up too much/little space of your browser you can press the button "Fit Desktop to Browser". This will automatically adjust the size of the webVNC desktop to your browser window.
 
 These instructions will not work outside of this workshop. If you would like to install your own Linux <u id='os'>OS</u> on your desktop or laptop we would recommend Mint Linux 
 
@@ -52,12 +32,12 @@ https://learn.microsoft.com/en-us/windows/wsl/install
 In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
 
 <center>
-![](figures/terminal_window.png){style="width:700px; border-radius:5px"}
+![](figures/terminal_window.png){style="width:700px; border-radius:2px"}
 </center>
 
 Already there is useful information for us on the terminal window.
 
--   **nsc206**: This is the login name, also known as the username. In this case nsc206 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
+-   **nsc201**: This is the login name, also known as the username. In this case nsc201 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
 -   **ada02**: This is the machine name the user is logged into.
 -   **\~**: This represents the current directory of the user, or the directory a command was run in. In the Linux (<u id='os'>OS</u>) and others **'\~'** is a shortcut to the user's home directory.
 -   Everything after the **'\$'** is where commands are typed into the terminal. This is also referred to as the command line.
@@ -92,3 +72,16 @@ less /usr/local/bin/usercommunity
 __Tip:__ press `q` to quit `less`.
 
 For more about mamba and how to create your own `r_community` environment please see the [appendix](#mamba_install)
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "os", 
+                  tooltip = "Operating System",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "vnc", 
+                  tooltip = "Virtual Network Computing",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "wsl", 
+                  tooltip = "Windows Subsystem for Linux",
+                  arrow = TRUE, placement = "bottom")
+```

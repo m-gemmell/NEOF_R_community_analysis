@@ -87,9 +87,9 @@ This will give us less phyla to plot so we don't need to use so many colours.
 To carry this out we will use the `microbiome` function `aggregate_rare()`.
 The function has three main options:
 
-- __`level =`__: Taxa level to aggregate table.
-- __`detection =`__: Detection threshold (see below).
-- __`prevalence =`__: Prevalence threshold (see below).
+- __`level =`__: Taxa level to aggregate table
+- __`detection =`__: Detection threshold (see below)
+- __`prevalence =`__: Prevalence threshold (see below)
 
 The function will aggregate taxa to our specified level. 
 Whilst doing this it will aggregate the rare taxa of that level to one group called "Other".
@@ -228,11 +228,11 @@ IRdisplay::display_png(file="./phylum_relabund_site_media_rareaggregate.png")
 
 In this chapter we have:
 
-- Created taxa bar charts with `microbiome` and `ggplot2`.
-- Saved `ggplot2` plots as `pngs` with `ggsave()`.
-- Displayed `pngs` with `IRdisplay::display_png()`.
-- Produced taxa heatmaps.
-- Aggregated rare taxa based on detection and prevalence.
-- Grouped bars in bar charts by metadata groups.
+- Created taxa bar charts with `microbiome` and `ggplot2`
+- Saved `ggplot2` plots as `pngs` with `ggsave()`
+- Displayed `pngs` with `IRdisplay::display_png()`
+- Produced taxa heatmaps
+- Aggregated rare taxa based on detection and prevalence
+- Grouped bars in bar charts by metadata groups
 
 We will reinforce this by producing Family and Genus based plots in the next chapter.

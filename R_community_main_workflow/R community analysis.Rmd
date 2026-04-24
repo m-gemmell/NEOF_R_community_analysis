@@ -255,11 +255,12 @@ microbiome::summarize_phyloseq()
 
 This convention has 2 benefits:
 
-- We can easily tell which R package each function comes from.
-  - This is useful for your future coding where you may copy some, but not all, commands from one script to another. You will therefore know which packages you will need to load.
-  - If you need some more documentation about a function you will know what package to look up.
-  - Writing your methods will be a lot easier.
-- Different packages may have functions with the same name. Specifying the package will ensure you are using the correct function.
+- We can easily tell which R package each function comes from
+  - This is useful for your future coding where you may copy some, but not all, commands from one script to another 
+    - You will therefore know which packages you will need to load
+  - If you need some more documentation about a function you will know what package to look up
+  - Writing your methods will be a lot easier
+- Different packages may have functions with the same name. Specifying the package will ensure you are using the correct function
 
 ## The grammar of graphics
 <center>
@@ -326,30 +327,10 @@ For this workshop we will be using Virtual Network Computing (<u id='vnc'>VNC</u
 You will now be in a logged-in Linux <u id='vnc'>VNC</u> desktop with two terminals. You will see something as below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
 
 <center>
-![](figures/nsc200_logon.png){style="width:800px; border-radius:5px; border: #282828 solid 5px"}
+![](figures/nsc200_logon.png){style="width:800px; border-radius:2px"}
 </center>
 
-If the <u id='vnc'>VNC</u> is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
-
-`r hide("How to zoom with your browser")`
-You may need to zoom out with your browser so you can see the full webVNC window.
-
-- __Chrome__: Click on the __three dots in vertical line__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::ionicons("ellipsis-vertical"), background="white", border="solid white")
-``` 
-) on the top left for a dropdown menu which includes zoom options.
-- __Edge__: Click on the __three horizontal lines__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::ionicons("ellipsis-horizontal"), background="white", border="solid white")
-``` 
-) on the top left for a dropdown menu which includes zoom options.
-- __Firefox__: Click on the __three dots in horizontal line__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::fontawesome("bars", style="solid"), background="white", border="solid white")
-```
-) on the top left for a dropdown menu which includes zoom options.
-`r unhide()`
+If the <u id='vnc'>VNC</u> is taking up too much/little space of your browser you can press the button "Fit Desktop to Browser". This will automatically adjust the size of the webVNC desktop to your browser window.
 
 These instructions will not work outside of this workshop. If you would like to install your own Linux <u id='os'>OS</u> on your desktop or laptop we would recommend Mint Linux 
 
@@ -366,12 +347,12 @@ https://learn.microsoft.com/en-us/windows/wsl/install
 In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
 
 <center>
-![](figures/terminal_window.png){style="width:700px; border-radius:5px"}
+![](figures/terminal_window.png){style="width:700px; border-radius:2px"}
 </center>
 
 Already there is useful information for us on the terminal window.
 
--   **nsc206**: This is the login name, also known as the username. In this case nsc206 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
+-   **nsc201**: This is the login name, also known as the username. In this case nsc201 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
 -   **ada02**: This is the machine name the user is logged into.
 -   **\~**: This represents the current directory of the user, or the directory a command was run in. In the Linux (<u id='os'>OS</u>) and others **'\~'** is a shortcut to the user's home directory.
 -   Everything after the **'\$'** is where commands are typed into the terminal. This is also referred to as the command line.
@@ -407,6 +388,19 @@ __Tip:__ press `q` to quit `less`.
 
 For more about mamba and how to create your own `r_community` environment please see the [appendix](#mamba_install)
 
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "os", 
+                  tooltip = "Operating System",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "vnc", 
+                  tooltip = "Virtual Network Computing",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "wsl", 
+                  tooltip = "Windows Subsystem for Linux",
+                  arrow = TRUE, placement = "bottom")
+```
+
 <!--chapter:end:04-Setup.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
@@ -414,24 +408,22 @@ library(webexercises)
 ```
 # Jupyter {#jupyterchap}
 
-<center>
-![](figures/jupyter_logo.png){style="border-radius: 15px; width: 200px; background-color: white"}
-</center>
-
+<center>![](figures/jupyter_logo.png){style="border-radius: 15px; width: 200px; background-color: white"}</center>
 
 [`Jupyter-notebook`](https://jupyter.org/) is a nice browser based method to write, edit, and run code. It was initally created for Python coding, but has since branched out to many other languages, such as `R`.
 
 We are using it in this workshop for a variety of its properties:
 
--   It is popular and well maintained.
--   It is lightweight. Other heavier weight programs, such as RStudio, would struggle in our HPC due to the graphical and CPU load.
--   It is interactive and displays code output.
--   It allows for easier annotation, editing, and debugging than the command line.
--   It provides a graphical interface for changing directories and choosing files.
+-   It is popular and well maintained
+-   It is lightweight
+-   Other heavier weight programs, such as RStudio, would struggle in our HPC due to the graphical and CPU load
+-   It is interactive and displays code output
+-   It allows for easier annotation, editing, and debugging than the command line
+-   It provides a graphical interface for changing directories and choosing files
 
 Before carrying out any analysis we will go through a quick tutorial of `jupyter-notebook`.
 
-__Note:__ There is a [video tutorial](#jup_vid_tut) of this chapter at the bottom of this page if you prefer to watch it.
+**Note:** There is a [video tutorial](#jup_vid_tut) of this chapter at the bottom of this page if you prefer to watch it.
 
 ## Open Jupyter-notebook
 
@@ -443,42 +435,18 @@ jupyter-notebook
 
 This will open `jupyter-notebook` in firefox. We won't need to access the linux terminal anymore. Leave the terminal running `jupyter-notebook` and full screen your `firefox` so you should see something like below.
 
-`r hide("Can't see the whole webVNC window?")`
-You may need to zoom out with your browser so you can see the full webVNC window.
-
-- __Chrome__: Click on the __three dots in vertical line__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::ionicons("ellipsis-vertical"), background="white", border="solid white")
-``` 
-) on the top left for a dropdown menu which includes zoom options.
-- __Edge__: Click on the __three horizontal lines__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::ionicons("ellipsis-horizontal"), background="white", border="solid white")
-``` 
-) on the top left for a dropdown menu which includes zoom options.
-- __Firefox__: Click on the __three dots in horizontal line__ (
-```{r, echo=FALSE}
-icons::icon_style(icons::fontawesome("bars", style="solid"), background="white", border="solid white")
-```
-) on the top left for a dropdown menu which includes zoom options.
-`r unhide()`
-
-<center>
-![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_example_1.png){style="width: 1000px; border: solid #7490b5 2px; border-radius:2px"}</center>
 
 ## Create R notebook
 
 The next step is to create an R notebook.
 
-1.  Click on the **"New"** button towards the top right, right of the "Upload" button.
-2.  From the dropdown click **"R"** below "Python 3 (ipykernel)".
+1.  Click on the **"New"** button towards the top right, right of the "Upload" button
+2.  From the dropdown click **"R"** below "Python 3 (ipykernel)"
 
 This will open up a new R notebook like below.
 
-<center>
-![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_example_2.png){style="width: 1000px; border: solid #7490b5 2px; border-radius:2px"}</center>
 
 ## Cells and code
 
@@ -495,9 +463,7 @@ When pressing enter in **cells** it will create a new line. To run all commands 
 
 Run your current **cell** and you should see something like below.
 
-<center>
-![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_example_3.png){style="width: 1000px; border-radius: 15px"}</center>
 
 ## Create new cells
 
@@ -506,13 +472,13 @@ You can create new **cells** by 2 different means.
 -   Press the `+` button on the tool bar (between the floppy disk
 ```{r, echo=FALSE}
 icons::icon_style(icons::ionicons("save-outline"), background="white")
-``` 
+```
 and scissors
 ```{r, echo=FALSE}
 icons::icon_style(icons::ionicons("cut"), background="white")
-``` 
-). This will add a **cell** below your currently selected **cell**.
--   Click on the **`Insert`** button and use the dropdown to add a cell above or below your currently selected cell.
+```
+) will will add a **cell** below your currently selected **cell**
+- Click on the **`Insert`** button and use the dropdown to add a cell above or below your currently selected cell
 
 **Tip:** Hover over the toolbar icons to display a text based description of its function.
 
@@ -539,56 +505,51 @@ We can run all the code in a notebook starting from the first **cell** to the la
 
 To run all **cells** from the start:
 
--   Click on the **"Cell"** button.
--   Click **"Run All"** from the drop-down options.
+-   Click on the **"Cell"** button
+-   Click **"Run All"** from the drop-down options
 
 You should then see something like the below in your notebook.
 
-<center>
-![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_example_4.png){style="width: 1000px; border-radius: 15px"}</center>
 
-There is no output printed for __cell__ 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in **cell** 2 before **cell** 3 was run.
+There is no output printed for **cell** 2 because we are assigning variables. However, the correct output for Cell 3 is below it. This is because the variables were assigned in **cell** 2 before **cell** 3 was run.
 
 ## Saving the file
-<center>
-![](figures/r_save.png){style="width:100px"}
-</center>
+
+<center>![](figures/r_save.png){style="width:100px"}</center>
 
 As with RStudio and other good coding interfaces we can save our notebook.
 
 First we should rename the file. Rename the notebook to **"jupyter_tut.ipynb"**:
 
-1.  Click on the name of the notebook, currently called **"Untitled"**.
-    -   This is at the very top of the notebook, right of the Jupyter logo.
-2.  A pop-up called **"Rename Notebook"** will appear. Change the Name to **"jupyter_tut.ipynb"**.
-3.  Click **"Rename"**.
+1.  Click on the name of the notebook, currently called **"Untitled"**
+    -   This is at the very top of the notebook, right of the Jupyter logo
+2.  A pop-up called **"Rename Notebook"** will appear. Change the Name to **"jupyter_tut.ipynb"**
+3.  Click **"Rename"**
 
 Now we can save the file. Two methods to save are:
 
--   Click the floppy disk 
+-   Click the floppy disk
 ```{r, echo=FALSE}
 icons::icon_style(icons::ionicons("save-outline"), background="white")
-``` 
-on the toolbar.
--   Click on the **"File"** button. Click **"Save and Checkpoint"** from the dropdown options.
+```
+on the toolbar. 
+- Click on the **"File"** button. Click **"Save and Checkpoint"** from the dropdown options
 
 ## Title cells with markdown
 
 We will be using multiple notebooks in this workshop. We will also have multiple sections per notebook. It will be useful to create header cells with markdown to create visual separation of the different sections.
 
-To add a header __cell__ to the top of our notebook:
+To add a header **cell** to the top of our notebook:
 
--   Create a new __cell__ at the top of the notebook.
--   Click on the **"Code"** drop down and select **"Markdown"**.
-    -   The **"Heading"** option no longer works.
+-   Create a new **cell** at the top of the notebook
+-   Click on the **"Code"** drop down and select **"Markdown"**
+    -   The **"Heading"** option no longer works
 
-<center>
-![](figures/jupyter_notebook_example_5.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_example_5.png){style="width: 1000px; border-radius: 15px"}</center>
 
--   Add the following to the **"Markdown"** cell to create a first level header.
-    -   Ensure you have a space between the `#` and header text ("Tutorial").
+-   Add the following to the **"Markdown"** cell to create a first level header
+    -   Ensure you have a space between the `#` and header text ("Tutorial")
 
 ```{r, eval=FALSE}
 # Tutorial
@@ -596,36 +557,36 @@ To add a header __cell__ to the top of our notebook:
 
 Great, we can now add nice headers in our notebooks. **Save** the notebook once more before carrying on to the next section.
 
-`r hide("Markdown")` 
-You won't need to know more about `Markdown` but if you are interested please see the [`Markdown` guide](https://www.markdownguide.org/basic-syntax/). 
-`r unhide()`
+`r hide("Markdown")` You won't need to know more about `Markdown` but if you are interested please see the [`Markdown` guide](https://www.markdownguide.org/basic-syntax/). `r unhide()`
 
 ## Close the notebook
 
 To close the notebook:
 
--   Click on **"File"**.
--   From the dropdown options click **"Close and Halt"**.
+-   Click on **"File"**
+-   From the dropdown options click **"Close and Halt"**
 
-When you are back in the file explorer page you may not yet see the new file you saved. If so, you will need to refresh the page with the Refresh button 
+When you are back in the file explorer page you may not yet see the new file you saved. If so, you will need to refresh the page with the Refresh button
+
 ```{r, echo=FALSE}
 icons::icon_style(icons::ionicons("refresh"), background="white")
-``` 
+```
+
 towards the top right.
 
-<center>
-![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px"}
-</center>
+<center>![](figures/jupyter_notebook_refresh.png){style="width: 1000px; border-radius: 15px"}</center>
 
 With that quick tutorial of `jupyter-notebook` we can start our community analysis in the next chapter.
 
 For more info on `jupter-notebook` please see the [appendix](#jupyter_appendix).
 
 ## Video tutorial {#jup_vid_tut}
-<div class="container">
-<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" 
-frameborder="0" allowfullscreen class="video"></iframe>
-</div>
+
+::: container
+<iframe src="https://www.youtube.com/embed/-c_6HoPMw9g" frameborder="0" allowfullscreen class="video">
+
+</iframe>
+:::
 
 <!--chapter:end:05-Jupyter.Rmd-->
 
@@ -641,9 +602,9 @@ library(webexercises)
 
 In the next 3 chapters (7-9) we will learn how to:
 
-- [Import our data.](#import_chap)
-- [Summarise our `phyloseq` object.](#sum_phyloseq_chap)
-- [Determine the minimum read depth for samples to be used.](#mindepthchap)
+- [Import our data](#import_chap)
+- [Summarise our `phyloseq` object](#sum_phyloseq_chap)
+- [Determine the minimum read depth for samples to be used](#mindepthchap)
 
 We will also use this as a chance to reinforce how to use `jupyter-notebook` with clear instructions. 
 However, from chapters 10 onwards you will make more decisions on how many __"Coding"__ and __"Markdown"__ cells you want.
@@ -671,15 +632,15 @@ We will be creating many notebooks and numbering them so we can easily see the o
 
 First create a new directory.
 
-- In the notebook file explorer, click the __"New"__ button.
-- Select __"Folder"__.
+- In the notebook file explorer, click the __"New"__ button
+- Select __"Folder"__
 
 You will have an __"Untitled Folder"__. To rename it:
 
-- Click on the box left of the name.
-- Press the __"Rename"__ button that appeared.
-- Change the name to __"R_community_workshop"__.
-- Click __"Rename"__.
+- Click on the box left of the name
+- Press the __"Rename"__ button that appeared
+- Change the name to __"R_community_workshop"__
+- Click __"Rename"__
 
 Click on your __"R_community_workshop"__ folder to move into it.
 
@@ -712,9 +673,9 @@ pseq <- qiime2R::qza_to_phyloseq(
 
 This command creates a phyloseq object named `pseq`. It contains:
 
--   The ASV abundance table (`features = "table-dada2.qza"`).
--   The rooted phylogenetic tree (`tree = "rooted-tree.qza"`).
--   The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`).
+-   The ASV abundance table (`features = "table-dada2.qza"`)
+-   The rooted phylogenetic tree (`tree = "rooted-tree.qza"`)
+-   The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`)
 -   The sample metadata (`metadata = "media_metadata.txt"`)
 
 ## Import: Summarise phyloseq
@@ -738,19 +699,19 @@ microbiome::summarize_phyloseq(pseq)
 
 This gives us a plethora of information:
 
--   The top line tells us if the data is compositional (relative abundance).
--   We get the following list of values in a paragraph and via a list.
-    -   __Min. number of reads:__ Number of reads in the sample with the lowest number of reads.
-    -   __Max. number of reads:__ Number of reads in the sample with the largest number of reads.
-    -   __Total number of reads:__ Sum of all reads across all samples.
-    -   __Average number of reads:__ Sum of all reads / number of samples.
-    -   __Median number of reads:__ Midpoint read abundance across samples.
-    -   __Sparsity:__ See expandable box further down.
-    -   __Any OTU sum to 1 or less?:__ States if there are any ASVs with a summed abundance of 1 or less across all the samples. 
-    -   __Number of singletons:__ Number of ASVs with a sum of 1 across all samples.
-    -   __Percent of OTUs that are singletons:__ Percentage of ASVs that only contain one read across all the samples.
-    -   __Number of sample variables are:__ Number of sample variables/groupings in our metadata.
-    -   The last line shows the names of the sample variables/groupings in our metadata.
+-   The top line tells us if the data is compositional (relative abundance)
+-   We get the following list of values in a paragraph and via a list
+    -   __Min. number of reads:__ Number of reads in the sample with the lowest number of reads
+    -   __Max. number of reads:__ Number of reads in the sample with the largest number of reads
+    -   __Total number of reads:__ Sum of all reads across all samples
+    -   __Average number of reads:__ Sum of all reads / number of samples
+    -   __Median number of reads:__ Midpoint read abundance across samples
+    -   __Sparsity:__ See expandable box further down
+    -   __Any OTU sum to 1 or less?:__ States if there are any ASVs with a summed abundance of 1 or less across all the samples
+    -   __Number of singletons:__ Number of ASVs with a sum of 1 across all samples
+    -   __Percent of OTUs that are singletons:__ Percentage of ASVs that only contain one read across all the samples
+    -   __Number of sample variables are:__ Number of sample variables/groupings in our metadata
+    -   The last line shows the names of the sample variables/groupings in our metadata
 
 `r hide("Sparsity")`
 Sparsity is a measure of the number of 0s in a table. It can be represented by the following equation:
@@ -773,9 +734,9 @@ Let's look at an example of an abundance table with a small amount of ASVs and S
 | ASV3 | 6       | 25      | 0       |
 | ASV4 | 51      | 2       | 0       |
 
-- This abundance table has 12 cells (3 samples \* 4 ASVs). 
-- Of these cells, 4 have an abundance of zero. 
-- 4/12 = 0.3333, therefore its sparsity is 0.3333.
+- This abundance table has 12 cells (3 samples \* 4 ASVs)
+- Of these cells, 4 have an abundance of zero
+- 4/12 = 0.3333, therefore its sparsity is 0.3333
 
 Sparsity can be any value from 0-1. The higher the value the more sparse it is, with a value of 1 meaning all the cells have an abundance of zero. The lower the value the less sparse it is, with a value of 0 meaning all the cells have an abundance of 1 or more.
 
@@ -851,8 +812,8 @@ For good documentation add a second level heading to the first __"Markdown"__ ce
 
 To decrease the level of a heading add another `#`.
 
-- `# `: 1st level header.
-- `## `: 2nd level header.
+- `# `: 1st level header
+- `## `: 2nd level header
 - `### `: 3rd level header etc...
 
 I like to load all the packages to be used in the notebook in this section. We will explain their uses later in this chapter. Add the below to a new __"Code"__ cell in your notebook:
@@ -1011,11 +972,11 @@ This is the general consensus for __human microbiome__ data.
 
 In this chapter we will:
 
-- Cover a brief intro to considerations of what is an acceptable minimum depth for your dataset.
-- Reinvestigate our sample depths with a previously created histogram.
-- View the depth ranges of different sample groups (site & media) with box plots.
-- Create a rarefaction curve to assess if the depth of our samples has captured a good amount of biodiversity.
-- Demonstrate how to filter samples by depth.
+- Cover a brief intro to considerations of what is an acceptable minimum depth for your dataset
+- Reinvestigate our sample depths with a previously created histogram
+- View the depth ranges of different sample groups (site & media) with box plots
+- Create a rarefaction curve to assess if the depth of our samples has captured a good amount of biodiversity
+- Demonstrate how to filter samples by depth
 
 ## Considerations
 <center>
@@ -1024,19 +985,19 @@ In this chapter we will:
 
 There are 3 main considerations to take into account when choosing an appropriate depth for your dataset.
 
-- __The biodiversity of your samples.__
-  - If your sample is very biodiverse, such as the human gut microbiome, you will need a good depth (>20K per sample).
-  - If your sample is less biodiverse, such as many geological environments or skin, then you will not need as much read depth.
-  - Rarefaction curves are a good method to determine if your samples have enough depth. We will look at this in this chapter.
-- __The biomass of your samples.__
-  - Some environments are hard to extract DNA from.
-  - If this is the case for you, then people will hopefully accept that this is an unfortunate reality of life and you will use what you can.
-  - Be careful of your conclusions. If you think your dataset doesn't have as much data as it could, do not make very definitive detailed claims.
-- __Read depth of sample groups.__
-  - It may be possible that a few samples have a much lower depth than the rest. It may be a good idea to remove them.
-  - However, these may all come from the same sample group and so you will lose all information of one group.
-  - For instance, you may be comparing different geological surfaces and your rock samples have much lower read depths than the various soil samples.
-  - For comparisons including the lower depth sample group (e.g. rock samples) you will need to retain the lower depth samples.
+- __The biodiversity of your samples__
+  - If your sample is very biodiverse, such as the human gut microbiome, you will need a good depth (>20K per sample)
+  - If your sample is less biodiverse, such as many geological environments or skin, then you will not need as much read depth
+  - Rarefaction curves are a good method to determine if your samples have enough depth. We will look at this in this chapter
+- __The biomass of your samples__
+  - Some environments are hard to extract DNA from
+  - If this is the case for you, then people will hopefully accept that this is an unfortunate reality of life and you will use what you can
+  - Be careful of your conclusions. If you think your dataset doesn't have as much data as it could, do not make very definitive detailed claims
+- __Read depth of sample groups__
+  - It may be possible that a few samples have a much lower depth than the rest. It may be a good idea to remove them
+  - However, these may all come from the same sample group and so you will lose all information of one group
+  - For instance, you may be comparing different geological surfaces and your rock samples have much lower read depths than the various soil samples
+  - For comparisons including the lower depth sample group (e.g. rock samples) you will need to retain the lower depth samples
 
 That is a brief overview of that topic. If you are interested in more I suggest you look at papers where they have studied an environment similar to yours.
 
@@ -1094,10 +1055,10 @@ head(abundance_metadf)
 
 The 2 new functions above are:
 
-- `phyloseq::sample_data()`: Extracts the sample data (metadata) data frame from a `phyloseq` object.
-- `head()`: Returns the first 6 parts of an R object by default.
-  - It can be used for a vector, matrix, table, data frame, or function.
-  - In the case of a data frame it returns the first 6 rows.
+- `phyloseq::sample_data()`: Extracts the sample data (metadata) data frame from a `phyloseq` object
+- `head()`: Returns the first 6 parts of an R object by default
+  - It can be used for a vector, matrix, table, data frame, or function
+  - In the case of a data frame it returns the first 6 rows
 
 We need to add the depth information to our new data frame. 
 We have extracted this previously into an object called `sample_depths`. 
@@ -1133,11 +1094,13 @@ We won't go into too much detail on how the code works here, instead learning mo
 
 The code below creates a `ggplot2` boxplot. We carry this out with 2 functions:
 
-- `ggplot()`: This creates a `ggplot2` object, storing the information and aesthetics.
-  - The first option is the data we want to use for plotting (`abundance_metadf`).
-  - The second option is the aesthetics (`aes()`) to plot. In this case we want the depth column to be plotted on the y-axis (`y=depth`) and the site column to be plotted on the x-axis (`x=site`).
-- `+`: We need to have a `+` at the end of the `ggplot()` function to add the next component of the plot.
-- `geom_boxplot()`: This adds a __layer__ to our `ggplot2` object. In this case it converts the `ggplot` object, which is just information, into a boxplot.
+- `ggplot()`: This creates a `ggplot2` object, storing the information and aesthetics
+  - The first option is the data we want to use for plotting (`abundance_metadf`)
+  - The second option is the aesthetics (`aes()`) to plot
+    - In this case we want the depth column to be plotted on the y-axis (`y=depth`) and the site column to be plotted on the x-axis (`x=site`)
+- `+`: We need to have a `+` at the end of the `ggplot()` function to add the next component of the plot
+- `geom_boxplot()`: This adds a __layer__ to our `ggplot2` object 
+  - THe function converts the `ggplot` object, which is just information, into a boxplot
 
 Write and run the following code in a new cell:
 
@@ -1297,11 +1260,11 @@ This can occur when ASVs are only present in the samples which have been removed
 
 To remove these ASVs we can use two `phyloseq` functions:
 
-- __`taxa_sums()`__: Returns a vector showing sum of all taxa in the abundance table. 
-  - In our `phyloseq` object the ASVs are the taxa. 
-  - ASVs have long human unfriendly names that are unique to every single ASV possible.
-- __`prune_taxa()`__: This retains taxa/ASVs based on a provided vector.
-  - We are creating a logical vector (`TRUE`/`FALSE`) where ASVs with 0 abundance are `FALSE` and ASVs with abundance > 0 are `TRUE`.
+- __`taxa_sums()`__: Returns a vector showing sum of all taxa in the abundance table
+  - In our `phyloseq` object the ASVs are the taxa
+  - ASVs have long human unfriendly names that are unique to every single ASV possible
+- __`prune_taxa()`__: This retains taxa/ASVs based on a provided vector
+  - We are creating a logical vector (`TRUE`/`FALSE`) where ASVs with 0 abundance are `FALSE` and ASVs with abundance > 0 are `TRUE`
 
 We'll first write and run some commands with `taxa_sums()` to get some practice with it. Carry this out in the same __cell__ as the `subset_samples()` command.
 
@@ -1389,9 +1352,9 @@ Once you are finished with this notebook you can save it then close and halt it.
 We have assessed the read depth in this chapter and decided to not remove any samples. 
 This assessment included:
 
-- Viewing a histogram of sample read depths.
-- Creating boxplots to compare the sample read depths across sample groups (site and media).
-- Producing a rarefaction depth to determine if any samples did not represent a good amount of the ASVs present in the environment.
+- Viewing a histogram of sample read depths
+- Creating boxplots to compare the sample read depths across sample groups (site and media)
+- Producing a rarefaction depth to determine if any samples did not represent a good amount of the ASVs present in the environment
 
 Additionally, we created a new `phyloseq` object where the samples were filtered by depth.
 Ultimately we did not keep the filtered `phyloseq` object but it is good to know how to do this for your future research.
@@ -1409,7 +1372,7 @@ library(webexercises)
 </center>
 
 In this section we are going to create taxonomy bar charts.
-For this we are going to use relative abundance tables of different taxa levels; Genus, Family, & Phyla.
+For this we are going to use relative abundance tables of different taxa levels: Genus, Family, & Phyla.
 
 In this chapter we are going to create a `phyloseq` object with relative abundance values of phyla. 
 We would use read depth filtered data if we wanted to use it for other downstream analyses.
@@ -1422,10 +1385,10 @@ But, as stated in the last chapter all our samples had sufficient depth, so we w
 
 The first steps before analysis are:
 
-- Create a new notebook called __"3-taxonomy_barcharts.ipynb"__.
-  - We will use this to create our phyloseq objects and taxonomy bar charts.
-- Add a markdown cell with the first level header: `# Taxonomy bar charts`.
-- Add the below to a code cell to load in the `phyloseq` object and libraries.
+- Create a new notebook called __"3-taxonomy_barcharts.ipynb"__
+  - We will use this to create our phyloseq objects and taxonomy bar charts
+- Add a markdown cell with the first level header: `# Taxonomy bar charts`
+- Add the below to a code cell to load in the `phyloseq` object and libraries
 ```{r, eval=FALSE}
 #Libraries
 library("phyloseq")
@@ -1598,9 +1561,9 @@ This will give us less phyla to plot so we don't need to use so many colours.
 To carry this out we will use the `microbiome` function `aggregate_rare()`.
 The function has three main options:
 
-- __`level =`__: Taxa level to aggregate table.
-- __`detection =`__: Detection threshold (see below).
-- __`prevalence =`__: Prevalence threshold (see below).
+- __`level =`__: Taxa level to aggregate table
+- __`detection =`__: Detection threshold (see below)
+- __`prevalence =`__: Prevalence threshold (see below)
 
 The function will aggregate taxa to our specified level. 
 Whilst doing this it will aggregate the rare taxa of that level to one group called "Other".
@@ -1739,12 +1702,12 @@ IRdisplay::display_png(file="./phylum_relabund_site_media_rareaggregate.png")
 
 In this chapter we have:
 
-- Created taxa bar charts with `microbiome` and `ggplot2`.
-- Saved `ggplot2` plots as `pngs` with `ggsave()`.
-- Displayed `pngs` with `IRdisplay::display_png()`.
-- Produced taxa heatmaps.
-- Aggregated rare taxa based on detection and prevalence.
-- Grouped bars in bar charts by metadata groups.
+- Created taxa bar charts with `microbiome` and `ggplot2`
+- Saved `ggplot2` plots as `pngs` with `ggsave()`
+- Displayed `pngs` with `IRdisplay::display_png()`
+- Produced taxa heatmaps
+- Aggregated rare taxa based on detection and prevalence
+- Grouped bars in bar charts by metadata groups
 
 We will reinforce this by producing Family and Genus based plots in the next chapter.
 
@@ -1760,8 +1723,8 @@ library(webexercises)
 
 In this chapter you will:
 
-- Create Family plots by following example code.
-- Be tasked to create Genus plots with little instruction.
+- Create Family plots by following example code
+- Be tasked to create Genus plots with little instruction
 
 I highly encourage you to copy previous code and edit it.
 It is a major time saver.
@@ -1968,10 +1931,10 @@ Brilliant, we are now finished with the Family taxa plots. Onto something harder
 In this section you are running your own analysis for the Genus information in the "3-taxonomy_barchart.ipynb" notebook.
 Carry out the following tasks with the relative abundance `phyloseq` object (`pseq_relabund`):
 
-- Create an aggregated genus `phyloseq` object and summarise it (no rare aggregation).
-- Create a heatmap of the genera relative abundances.
-- Carry out genus rare aggregation so the resulting `phyloseq` object only contains 12 genera.
-- Use the rare aggregated `phyloseq` object to create a bar chart grouped by __media__.
+- Create an aggregated genus `phyloseq` object and summarise it (no rare aggregation)
+- Create a heatmap of the genera relative abundances
+- Carry out genus rare aggregation so the resulting `phyloseq` object only contains 12 genera
+- Use the rare aggregated `phyloseq` object to create a bar chart grouped by __media__
 
 In essence you are going through the workflow for the family data but for genus instead.
 Again, I encourage you to copy, paste, and edit previous code.
@@ -2276,11 +2239,10 @@ IRdisplay::display_png(file="./rarefaction_plot.png")
 It is a useful plot but we can make it better! 
 We will add the following options to `vegan::rarecurve()`:
 
-  -   `lwd`: Sets the line width of the plot.
-  -   `label`: Turn the sample labels on (`T`) or off (`F`). We will turn them off as it is hard to read them all.
-  -   `sample`: Draws a vertical line at the specified depth.
-        Additionally, draws a horizontal line for each sample showing
-        how many ASVs were discovered at the sampling depth.
+  -   `lwd`: Sets the line width of the plot
+  -   `label`: Turn the sample labels on (`T`) or off (`F`). We will turn them off as it is hard to read them all
+  -   `sample`: Draws a vertical line at the specified depth
+        Additionally, draws a horizontal line for each sample showing how many ASVs were discovered at the sampling depth
 
 We will initially use our minimum sample depth as our rarefaction/sampling depth.
 If you can use your minimum depth it is always preferable as it allows you to keep all your samples.
@@ -2380,12 +2342,12 @@ pseq_rarefy <- phyloseq::rarefy_even_depth(
 
 The options we provided to the function `rarefy_even_depth` were:
 
-- __`pseq`__: The `phyloseq` object to rarefy.
-- __`sample.size =`__: The sampling depth to rarefy to.
-- __`rngseed`__: This is the seed used for random subsampling.
-  - If you rarefy the data again with the same seed it will extract the same data.
-  - This is useful so you and others can replicate your work.
-  - Additionally, it means you will get the same output as me (the writer) so you can accurately compare your findings to mine.
+- __`pseq`__: The `phyloseq` object to rarefy
+- __`sample.size =`__: The sampling depth to rarefy to
+- __`rngseed`__: This is the seed used for random subsampling
+  - If you rarefy the data again with the same seed it will extract the same data
+  - This is useful so you and others can replicate your work
+  - Additionally, it means you will get the same output as me (the writer) so you can accurately compare your findings to mine
 
 As always, it is useful to check our data.
 
@@ -2420,8 +2382,8 @@ Now you can close and halt the notebook.
 
 In this chapter we:
 
-- Determined the sampling depth to rarefy to with rarefaction curves and slopes.
-- Rarefied our samples to the minimum read depth. This retained all our samples whilst using a good depth.
+- Determined the sampling depth to rarefy to with rarefaction curves and slopes
+- Rarefied our samples to the minimum read depth. This retained all our samples whilst using a good depth
 
 We now have an abundance table, relative abundance table, and rarefied abundance table. We will use these to carry out some analyses.
 
@@ -2502,8 +2464,9 @@ We can choose certain alpha diversity metrics to plot.
 Currently it is showing 7 metrics (Observed, Chao1 etc.).
 I like to use:
 
-- __Observed__: This is the number of observed features (ASVs, Genera, etc) in each sample.
-- __Shannon__: A measure of diversity where a higher number means higher diversity. Shannon's index accounts for both abundance and evenness of the features present.
+- __Observed__: This is the number of observed features (ASVs, Genera, etc) in each sample
+- __Shannon__: A measure of diversity where a higher number means higher diversity
+  - Shannon's index accounts for both abundance and evenness of the features present
 
 We'll choose these metrics with the `measures = ` option.
 Either make a new code block with new code or you can edit and run the previous code you wrote.
@@ -2535,7 +2498,7 @@ The last plot looks a bit better.
 To actually make them box plots we'll change the x axis so they are based on media rather than individual samples.
 
 The `phyloseq::plot_richness()` function produces a `ggplot2` object.
-To convert our dot plot into a box plot we can add the layer `geom_boxplot()` like with our [depth boxplots](#depth-boxplots).
+To convert our dot plot into a box plot we can add the layer `geom_boxplot()`.
 This will combine samples from one media into one IQR box.
 
 ```{r , eval = FALSE}
@@ -2646,10 +2609,10 @@ There is little to no overlap of the IQRs of KBC and TSA, or of KBC and ENV.
 
 We can therefore make these claims about the alpha diversity values of the groups.
 
-- ENV has the highest number of observed ASVs and the highest diversity.
-- ENV appears to have a wider range of diversities across its samples.
-- The different culture media have much lower numbers of ASVs and diversity compared to ENV.
-- Within each media grouping the samples have very similar numbers of ASVs present.
+- ENV has the highest number of observed ASVs and the highest diversity
+- ENV appears to have a wider range of diversities across its samples
+- The different culture media have much lower numbers of ASVs and diversity compared to ENV
+- Within each media grouping the samples have very similar numbers of ASVs present
 
 ## Alpha diversity: violin plot
 <center>
@@ -2705,8 +2668,8 @@ IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
 
 With all the knowledge, skills, and code from this chapter carry out the following tasks:
 
-- Produce a violin plot of Observed, Shannon with the Site groups.
-- Carry out paired Wilcoxon test for Observed and Shannon with the Site groups.
+- Produce a violin plot of Observed, Shannon with the Site groups
+- Carry out paired Wilcoxon test for Observed and Shannon with the Site groups
 
 `r hide("Alpha sites solution")`
 ```{r , eval = FALSE}
@@ -2792,8 +2755,8 @@ In a perfect example samples from the same group will form clusters that are dis
 
 In this chapter we will:
 
-- Calculate beta diversity ordination metrics and plot them as a scatter plot.
-- Determine if there is a statistical difference between beta diversity metrics of sample groups.
+- Calculate beta diversity ordination metrics and plot them as a scatter plot
+- Determine if there is a statistical difference between beta diversity metrics of sample groups
 
 ## Beta: setup
 <center>
@@ -3243,22 +3206,25 @@ Most likely there is not enough power for this analysis as there are only 3 repl
 We have produced Beta diversity plots and the statistics for weighted unifrac distances.
 There are many other things you could do such as:
 
-- Carry out beta diversity with taxa aggregated `phyloseq` objects.
-- Use different distance measures (`phyloseq::distanceMethodList`).
-  - We have a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac").
-  - If you do not have this you will have to use non-phylogenetic aware beta diversity distances such as "jaccard" or "bray".
-- Use different ordination methods (`?phyloseq:ordinate`).
-  - Different methods will produce different __percentage of variation explained__ values. If your plot has low values try another method to see if you can get higher values.
-  - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values. This is perfectly acceptable and encouraged by many.
-  - Others may have other thoughts about trying multiple different metrics and the possibility of p-hacking. Please see the following paper for more info: [The Power of Microbiome Studies: Some Considerations on Which Alpha and Beta Metrics to Use and How to Report Results](https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2021.796025/full)
+- Carry out beta diversity with taxa aggregated `phyloseq` objects
+- Use different distance measures (`phyloseq::distanceMethodList`)
+  - We have a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac")
+  - If you do not have this you will have to use non-phylogenetic aware beta diversity distances such as "jaccard" or "bray"
+- Use different ordination methods (`?phyloseq:ordinate`)
+  - Different methods will produce different __percentage of variation explained__ values
+    - If your plot has low values try another method to see if you can get higher values
+  - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values
+    - This is perfectly acceptable and encouraged by many
+  - Others may have other thoughts about trying multiple different metrics and the possibility of p-hacking
+    - Please see the following paper for more info: [The Power of Microbiome Studies: Some Considerations on Which Alpha and Beta Metrics to Use and How to Report Results](https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2021.796025/full)
   
 With our analyses we found out:
 
-- The samples significantly cluster by media with ENV being the most different followed by TSA.
-- It appears that the samples cluster by site within each media group, however this is not backed up by statistics.
-- There appears to be different levels of variation within the media groups (tightness/looseness of clusters).
-  - The CVP samples seem to have the lowest levels of variation (tight clusters), whilst the ENV samples seem to have the highest level of variation.
-  - This could be explored further  by ["Checking the homogeneity condition"](https://microbiome.github.io/tutorials/PERMANOVA.html).
+- The samples significantly cluster by media with ENV being the most different followed by TSA
+- It appears that the samples cluster by site within each media group, however this is not backed up by statistics
+- There appears to be different levels of variation within the media groups (tightness/looseness of clusters)
+  - The CVP samples seem to have the lowest levels of variation (tight clusters), whilst the ENV samples seem to have the highest level of variation
+  - This could be explored further by ["Checking the homogeneity condition"](https://microbiome.github.io/tutorials/PERMANOVA.html)
 
 We know there is a difference between the media groupings with the different medias causing different selections of certain taxa compared to the ENV samples.
 Let's try to figure out which taxa are affected in which ways.
@@ -3333,7 +3299,7 @@ levels(phyloseq::sample_data(pseq)$site)
 ## DA: ANCOM-BC analysis
 
 <center>
-![](figures/play_blue.png){style="width:200px"}
+![](figures/play_blue.png){style="width:150px"}
 </center>
 
 Now that we have our data the way we would like it we can carry out the ANCOM analysis. We'll use the function `ANCOMBC::ancombc2()` for our ANCOM-BC analysis.
@@ -3357,22 +3323,23 @@ save(ancom_class_out, file = "ANCOMBC2_class_analysis.RData")
 ### ANCOMBC2 options
 
 <center>
-![](figures/parameter_blue.png){style="width:200px"}
+![](figures/parameter_blue.png){style="width:150px"}
 </center>
 
 The options we used in the function are:
 
--   `data =`: The data to be analysed. This can be provided in various types of objects including the `phyloseq` object.
--   `fix_formula =`: The groupings within your data. It is important to add all groupings that may have an influence on the microbial abundances.
--   `p_adj_method =`: The p adjustment value to use.
--   `tax_level =`: The taxonomic level of interest.
+- `data =`: The data to be analysed. This can be provided in various types of objects including the `phyloseq` object
+- `fix_formula =`: The groupings within your data
+  - It is important to add all groupings that may have an influence on the microbial abundances.
+- `p_adj_method =`: The p adjustment value to use
+- `tax_level =`: The taxonomic level of interest
 
 There are many more options that have been left as the default. Please see the package [PDF](https://www.bioconductor.org/packages/release/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf) for more options and explanations.
 
 ## DA: ANCOM-BC results
 
 <center>
-![](figures/output_file_blue.png){style="width:200px"}
+![](figures/output_file_blue.png){style="width:150px"}
 </center>
 
 There is a lot of information in `ancom_class_out`. Therefore, let's extract the results we want to look at and then remove the large object.
@@ -3388,17 +3355,17 @@ head(res_ancom_class)
 
 These results only contain taxon where a significant result was found in at least one comparison. This is based on the adjusted p-values (\<0.05). There are a lot of columns (37) in our result data frame. Apart from the "taxon" column they are split by the comparison groups. These contain the following information:
 
--   **taxon:** The taxa groups found to be a biomarker in at least one comparison.
--   **lfc\_\*:** This contains the log (natural log) fold changes with respect to the reference group.
-    -   For example The values for lfc_mediaCVP would equal LFC(CVP - ENV).
-    -   A positive value means the abundances are higher in the comparison group (CVP) and lower in the ref (ENV).
-    -   A negative value means the abundances are lower in the comparison group (CVP) and higher in the ref (ENV).
-    -   The intercept value is the grand mean and is likely not of interest.
--   **se\_\*:** The standard error for the LFC values.
--   **W\_\*:** The W statistic. The higher this value the more significant the feature is differentially abundant between groups.
--   **p\_\*:** The P-value.
--   **q\_\*:** The Q-value. This is the adjusted P-value.
--   **diff\*:** This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value \< 0.05.
+-   **taxon:** The taxa groups found to be a biomarker in at least one comparison
+-   **lfc\_\*:** This contains the log (natural log) fold changes with respect to the reference group
+    -   For example The values for lfc_mediaCVP would equal LFC(CVP - ENV)
+    -   A positive value means the abundances are higher in the comparison group (CVP) and lower in the ref (ENV)
+    -   A negative value means the abundances are lower in the comparison group (CVP) and higher in the ref (ENV)
+    -   The intercept value is the grand mean and is likely not of interest
+-   **se\_\*:** The standard error for the LFC values
+-   **W\_\*:** The W statistic. The higher this value the more significant the feature is differentially abundant between groups
+-   **p\_\*:** The P-value
+-   **q\_\*:** The Q-value. This is the adjusted P-value
+-   **diff\*:** This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value \< 0.05
 
 It is quite a large table so let's save it as a tsv (tab separated value) file.
 
@@ -3452,7 +3419,7 @@ __Note:__ Website is still in development.
 ## DA: Create significant LFC long data frame
 
 <center>
-![](figures/portrait.png){style="width:200px; border-radius:15px; background:white"}
+![](figures/portrait.png){style="width:150px; border-radius:15px; background:white"}
 </center>
 
 The results table is good but let's make a heatmap showing the LFCs (Log fold changes) of the significant biomarkers. First, we need to do some preprocessing.
@@ -3492,9 +3459,9 @@ This has removed one biomarker which is great.
 
 Next we need to do a variety of preprocessing steps. This will create an edited long data frame. Long data frames are needed for `ggplot2()` when not using a `phyloseq` object. Instead of having the LFC (log fold change) values over many columns there will be only one column for the values. The long data frame will contain the following columns:
 
--   **taxon**: The biomarker name.
--   **group**: The comparison group.
--   **value**: The LFC value.
+-   **taxon**: The biomarker name
+-   **group**: The comparison group
+-   **value**: The LFC value
 
 Please see the code and its annotation below. If you do not fully understand the code that is fine. As long as you can edit it to work with your own future code.
 
@@ -3653,10 +3620,10 @@ We have used ANCOMBC to detect biomarkers in the media samples compared to the E
 
 You could carry out more analysis in your future research in various ways:
 
--   Carry out biomarker detection at different taxonomy levels such as genus.
-    -   We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there weren't too many results to look at.
--   There are many other types of tests and considerations to keep in mind. Check out the [ANCOMBC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html), it is very in depth.
-    -   There is also a handy FAQ on the [ANCOMBC github page](https://github.com/FrederickHuangLin/ANCOMBC).
+-   Carry out biomarker detection at different taxonomy levels such as genus
+    -   We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there weren't too many results to look at
+-   There are many other types of tests and considerations to keep in mind. Check out the [ANCOMBC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html), it is very in depth
+    -   There is also a handy FAQ on the [ANCOMBC github page](https://github.com/FrederickHuangLin/ANCOMBC)
 
 That is the last part of the analysis. In the final chapter we will review the steps we carried out and the answers to the various questions we have about the dataset.
 
@@ -3700,9 +3667,9 @@ We discovered these findings through our analysis.
 
 Briefly we carried out the following steps to prepare our data:
 
-- [Chapter 7](#import_chap): Imported a `phyloseq` object with `qiime2R`.
-- [Chapter 8](#sum_phyloseq_chap): Checked our data with summarisations.
-- [Chapter 9](#mindepthchap): Checked the minimum depth we should use and removed samples with lower depth.
+- [Chapter 7](#import_chap): Imported a `phyloseq` object with `qiime2R`
+- [Chapter 8](#sum_phyloseq_chap): Checked our data with summarisations
+- [Chapter 9](#mindepthchap): Checked the minimum depth we should use and removed samples with lower depth
 
 ## Taxonomy
 <center>
@@ -3711,10 +3678,10 @@ Briefly we carried out the following steps to prepare our data:
 
 We investigated the taxonomic composition of our samples.
 
-- [Chapter 10](#taxa_relabund_chap): Creation of taxonomic relative abundance tables.
-- [Chapter 11](#chaptaxaplots): Produced heat maps and bar plots of taxa relative abundances.
-  - We also learnt how to aggregate rare taxa to produce fewer taxa groups for plotting.
-- [Chapter 12](#family_genus_chap): Produced family and genus based taxa plots.
+- [Chapter 10](#taxa_relabund_chap): Creation of taxonomic relative abundance tables
+- [Chapter 11](#chaptaxaplots): Produced heat maps and bar plots of taxa relative abundances
+  - We also learnt how to aggregate rare taxa to produce fewer taxa groups for plotting
+- [Chapter 12](#family_genus_chap): Produced family and genus based taxa plots
 
 With our taxa plots we saw that the biggest difference was caused by the media.
 The ENV samples appear to have the most diversity with many different taxa groups.
@@ -3734,8 +3701,8 @@ Please make your own decision.
 
 Three of the leading papers are:
 
-- [Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible (McMurdie & Holmes 2014)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531).
-- [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data (Hong et al, 2022)](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959).
+- [Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible (McMurdie & Holmes 2014)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531)
+- [To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data (Hong et al, 2022)](https://academic.oup.com/bioinformatics/article/38/9/2389/6536959)
 - [Rarefaction is currently the best approach to control for uneven sequencing effort in amplicon sequence analyses, 2024](https://journals.asm.org/doi/10.1128/msphere.00354-23)
 
 ### Alpha & Beta
@@ -3745,8 +3712,8 @@ Three of the leading papers are:
 
 With our rarefied table we carried out diversity analysis.
 
-- [Chapter 15](#alpha_chap): Produced alpha violin plots and statistics to compare the diversity of groups.
-- [Chapter 16](#beta_chap): Produced MDS plots based on pairwise distance metrics. Along with statistics this allowed us to determine how similar/dissimilar samples were to each other.
+- [Chapter 15](#alpha_chap): Produced alpha violin plots and statistics to compare the diversity of groups
+- [Chapter 16](#beta_chap): Produced MDS plots based on pairwise distance metrics. Along with statistics this allowed us to determine how similar/dissimilar samples were to each other
 
 The alpha diversity showed significant differences between the media and ENV samples.
 Additionally, the alpha metrics between the 3 media groupings were also significantly different.
@@ -3834,9 +3801,9 @@ This is a definite yes.
 
 Compared to the ENV samples the media samples:
 
-- Have lower biodiversity.
-- Consist primarily of a few taxa.
-- There appear to be less differences between the sites within the CVP & KBC samples.
+- Have lower biodiversity
+- Consist primarily of a few taxa
+- There appear to be less differences between the sites within the CVP & KBC samples
 
 ## Conclusion
 <center>
@@ -4070,21 +4037,25 @@ The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It 
 
 Below are various resources if you would like to learn more about phyloseq and associated packages.
 
-- [Phyloseq](https://joey711.github.io/phyloseq/): The original `phyloseq`. The R object is still great but the included tutorials and some functions are a bit outdated.
-- [microbiome](https://microbiome.github.io/tutorials/): A supplemental package to `phyloseq`. It contains some much needed functions. The tutorials are much clearer than the `phyloseq` tutorials but still not always the clearest.
+- [Phyloseq](https://joey711.github.io/phyloseq/): The original `phyloseq`
+  - The R object is still great but the included tutorials and some functions are a bit outdated
+- [microbiome](https://microbiome.github.io/tutorials/): A supplemental package to `phyloseq`
+  - It contains some much needed functions
+  - The tutorials are much clearer than the `phyloseq` tutorials but still not always the clearest
 
 ## Importing into phyloseq
 <center>
 ![](figures/import.png){style="width:200px"}
 </center>
 
-- [QIIME2R](https://github.com/jbisanz/qiime2R): A very useful package to import QIIME2 artifacts into a `phyloseq` object.
-- [Phyloseqize R data](https://joey711.github.io/phyloseq/import-data.html): A tutorial on how to import data frames into a `phyloseq` object.
+- [QIIME2R](https://github.com/jbisanz/qiime2R): A very useful package to import QIIME2 artifacts into a `phyloseq` object
+- [Phyloseqize R data](https://joey711.github.io/phyloseq/import-data.html): A tutorial on how to import data frames into a `phyloseq` object
 - __Shotgun metagenomics data__
   - Tutorial in [Supplemental book](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/02-Importing.html)
-  - You can import Kraken2 data by converting the [report file to a biom file](https://github.com/smdabdoub/kraken-biom) then importing the biom file into a `phyloseq` object with the [`QIIME2R` function `read_q2biom()`](https://github.com/jbisanz/qiime2R).
-  - You can also import the [Kraken-Style Bracken report](https://github.com/jenniferlu717/Bracken#output-kraken-style-bracken-report) in the above manner.
-  - The [biom format](https://github.com/biocore/biom-format) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
+  - You can import Kraken2 data by converting the [report file to a biom file](https://github.com/smdabdoub/kraken-biom) then importing the biom file into a `phyloseq` object with the [`QIIME2R` function `read_q2biom()`](https://github.com/jbisanz/qiime2R)
+  - You can also import the [Kraken-Style Bracken report](https://github.com/jenniferlu717/Bracken#output-kraken-style-bracken-report) in the above manner
+  - The [biom format](https://github.com/biocore/biom-format) stands for the Biological Observation Matrix (BIOM) format
+    - It is used and created by a variety of tools
 
 # Diversity metrics
 <center>
@@ -4128,25 +4099,19 @@ O +
 {2(f2 + 1)}
 $$
 
-- C = Chao1 estimator, i.e. estimated total feature richness.
-- O = Observed number of features.
-- f1 = Frequency of
-<u id='singletons'>singletons</u> 
-.
-- f2 = Frequency of
-<u id='doubletons'>doubletons</u> 
-.
+- C = Chao1 estimator, i.e. estimated total feature richness
+- O = Observed number of features
+- f1 = Frequency of <u id='singletons'>singletons</u> 
+- f2 = Frequency of <u id='doubletons'>doubletons</u> 
 
-__Note:__ This cannot be used with DADA2 derived ASVs. DADA2 removes 
-<u id='singletons'>singletons</u>
-which Chao uses within its calculation.
+__Note:__ This cannot be used with DADA2 derived ASVs. DADA2 removes <u id='singletons'>singletons</u> which Chao uses within its calculation.
 
 ### Evenness
 
 How evenly spread the abundances are across all present features.
 
-- A sample with 4 ASVs, each with 25% relative abundance would be perfectly even.
-- A sample with 4 ASVs, where one ASV has 97% abundance and the other 3 have 1%, would be highly uneven.
+- A sample with 4 ASVs, each with 25% relative abundance would be perfectly even
+- A sample with 4 ASVs, where one ASV has 97% abundance and the other 3 have 1%, would be highly uneven
 
 ### Faith's PD (phylogenetic diversity) {#faith}
 
@@ -4216,15 +4181,16 @@ $$
 
 Beta diversity compares 2 samples at a time. This is measured in terms of dissimilarity:
 
-- A lower score indicate the 2 samples are more similar.
-- A higher score indicates the 2 samples are more dissimilar.
+- A lower score indicate the 2 samples are more similar
+- A higher score indicates the 2 samples are more dissimilar
 
 ### Weighted and unweighted UniFrac distances {#unifrac_explanation}
 
 The UniFrac metric is a phylogenetic distance measure between two samples. It is defined as “the sum of the unshared branch lengths between two samples divided by the total branch length (shared + unshared) of two samples” (Lozupone and Knight, 2005). This results in calculating the fraction of the branch lengths unique to each sample (ie. the higher this value is, the more dissimilar two samples are). The entire phylogenetic tree created for all the sequences of all the analysed samples is used for this calculation.
 
-- Unweighted UniFrac: Only considers feature presence/absence.
-- Weighted UniFrac: Takes into account feature presence/absence & abundance. I.e. the value is weighted by the abundances.
+- Unweighted UniFrac: Only considers feature presence/absence
+- Weighted UniFrac: Takes into account feature presence/absence & abundance
+  - I.e. the value is weighted by the abundances
 
 ### Bray-Curtis {#bray_explanation}
 

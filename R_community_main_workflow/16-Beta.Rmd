@@ -17,8 +17,8 @@ In a perfect example samples from the same group will form clusters that are dis
 
 In this chapter we will:
 
-- Calculate beta diversity ordination metrics and plot them as a scatter plot.
-- Determine if there is a statistical difference between beta diversity metrics of sample groups.
+- Calculate beta diversity ordination metrics and plot them as a scatter plot
+- Determine if there is a statistical difference between beta diversity metrics of sample groups
 
 ## Beta: setup
 <center>
@@ -468,22 +468,25 @@ Most likely there is not enough power for this analysis as there are only 3 repl
 We have produced Beta diversity plots and the statistics for weighted unifrac distances.
 There are many other things you could do such as:
 
-- Carry out beta diversity with taxa aggregated `phyloseq` objects.
-- Use different distance measures (`phyloseq::distanceMethodList`).
-  - We have a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac").
-  - If you do not have this you will have to use non-phylogenetic aware beta diversity distances such as "jaccard" or "bray".
-- Use different ordination methods (`?phyloseq:ordinate`).
-  - Different methods will produce different __percentage of variation explained__ values. If your plot has low values try another method to see if you can get higher values.
-  - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values. This is perfectly acceptable and encouraged by many.
-  - Others may have other thoughts about trying multiple different metrics and the possibility of p-hacking. Please see the following paper for more info: [The Power of Microbiome Studies: Some Considerations on Which Alpha and Beta Metrics to Use and How to Report Results](https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2021.796025/full)
+- Carry out beta diversity with taxa aggregated `phyloseq` objects
+- Use different distance measures (`phyloseq::distanceMethodList`)
+  - We have a phylogenetic tree in our `phyloseq` object which allows us to use `UniFrac` measures ("unifrac" and "wunifrac")
+  - If you do not have this you will have to use non-phylogenetic aware beta diversity distances such as "jaccard" or "bray"
+- Use different ordination methods (`?phyloseq:ordinate`)
+  - Different methods will produce different __percentage of variation explained__ values
+    - If your plot has low values try another method to see if you can get higher values
+  - Many people will try out different methods and use the one with the highest __percentage of variation explained__ values
+    - This is perfectly acceptable and encouraged by many
+  - Others may have other thoughts about trying multiple different metrics and the possibility of p-hacking
+    - Please see the following paper for more info: [The Power of Microbiome Studies: Some Considerations on Which Alpha and Beta Metrics to Use and How to Report Results](https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2021.796025/full)
   
 With our analyses we found out:
 
-- The samples significantly cluster by media with ENV being the most different followed by TSA.
-- It appears that the samples cluster by site within each media group, however this is not backed up by statistics.
-- There appears to be different levels of variation within the media groups (tightness/looseness of clusters).
-  - The CVP samples seem to have the lowest levels of variation (tight clusters), whilst the ENV samples seem to have the highest level of variation.
-  - This could be explored further  by ["Checking the homogeneity condition"](https://microbiome.github.io/tutorials/PERMANOVA.html).
+- The samples significantly cluster by media with ENV being the most different followed by TSA
+- It appears that the samples cluster by site within each media group, however this is not backed up by statistics
+- There appears to be different levels of variation within the media groups (tightness/looseness of clusters)
+  - The CVP samples seem to have the lowest levels of variation (tight clusters), whilst the ENV samples seem to have the highest level of variation
+  - This could be explored further by ["Checking the homogeneity condition"](https://microbiome.github.io/tutorials/PERMANOVA.html)
 
 We know there is a difference between the media groupings with the different medias causing different selections of certain taxa compared to the ENV samples.
 Let's try to figure out which taxa are affected in which ways.

@@ -16,15 +16,15 @@ We will be creating many notebooks and numbering them so we can easily see the o
 
 First create a new directory.
 
-- In the notebook file explorer, click the __"New"__ button.
-- Select __"Folder"__.
+- In the notebook file explorer, click the __"New"__ button
+- Select __"Folder"__
 
 You will have an __"Untitled Folder"__. To rename it:
 
-- Click on the box left of the name.
-- Press the __"Rename"__ button that appeared.
-- Change the name to __"R_community_workshop"__.
-- Click __"Rename"__.
+- Click on the box left of the name
+- Press the __"Rename"__ button that appeared
+- Change the name to __"R_community_workshop"__
+- Click __"Rename"__
 
 Click on your __"R_community_workshop"__ folder to move into it.
 
@@ -57,9 +57,9 @@ pseq <- qiime2R::qza_to_phyloseq(
 
 This command creates a phyloseq object named `pseq`. It contains:
 
--   The ASV abundance table (`features = "table-dada2.qza"`).
--   The rooted phylogenetic tree (`tree = "rooted-tree.qza"`).
--   The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`).
+-   The ASV abundance table (`features = "table-dada2.qza"`)
+-   The rooted phylogenetic tree (`tree = "rooted-tree.qza"`)
+-   The taxonomic classifications of the ASVs (`taxonomy = "taxonomy.sklearn.qza"`)
 -   The sample metadata (`metadata = "media_metadata.txt"`)
 
 ## Import: Summarise phyloseq
@@ -83,19 +83,19 @@ microbiome::summarize_phyloseq(pseq)
 
 This gives us a plethora of information:
 
--   The top line tells us if the data is compositional (relative abundance).
--   We get the following list of values in a paragraph and via a list.
-    -   __Min. number of reads:__ Number of reads in the sample with the lowest number of reads.
-    -   __Max. number of reads:__ Number of reads in the sample with the largest number of reads.
-    -   __Total number of reads:__ Sum of all reads across all samples.
-    -   __Average number of reads:__ Sum of all reads / number of samples.
-    -   __Median number of reads:__ Midpoint read abundance across samples.
-    -   __Sparsity:__ See expandable box further down.
-    -   __Any OTU sum to 1 or less?:__ States if there are any ASVs with a summed abundance of 1 or less across all the samples. 
-    -   __Number of singletons:__ Number of ASVs with a sum of 1 across all samples.
-    -   __Percent of OTUs that are singletons:__ Percentage of ASVs that only contain one read across all the samples.
-    -   __Number of sample variables are:__ Number of sample variables/groupings in our metadata.
-    -   The last line shows the names of the sample variables/groupings in our metadata.
+-   The top line tells us if the data is compositional (relative abundance)
+-   We get the following list of values in a paragraph and via a list
+    -   __Min. number of reads:__ Number of reads in the sample with the lowest number of reads
+    -   __Max. number of reads:__ Number of reads in the sample with the largest number of reads
+    -   __Total number of reads:__ Sum of all reads across all samples
+    -   __Average number of reads:__ Sum of all reads / number of samples
+    -   __Median number of reads:__ Midpoint read abundance across samples
+    -   __Sparsity:__ See expandable box further down
+    -   __Any OTU sum to 1 or less?:__ States if there are any ASVs with a summed abundance of 1 or less across all the samples
+    -   __Number of singletons:__ Number of ASVs with a sum of 1 across all samples
+    -   __Percent of OTUs that are singletons:__ Percentage of ASVs that only contain one read across all the samples
+    -   __Number of sample variables are:__ Number of sample variables/groupings in our metadata
+    -   The last line shows the names of the sample variables/groupings in our metadata
 
 `r hide("Sparsity")`
 Sparsity is a measure of the number of 0s in a table. It can be represented by the following equation:
@@ -118,9 +118,9 @@ Let's look at an example of an abundance table with a small amount of ASVs and S
 | ASV3 | 6       | 25      | 0       |
 | ASV4 | 51      | 2       | 0       |
 
-- This abundance table has 12 cells (3 samples \* 4 ASVs). 
-- Of these cells, 4 have an abundance of zero. 
-- 4/12 = 0.3333, therefore its sparsity is 0.3333.
+- This abundance table has 12 cells (3 samples \* 4 ASVs)
+- Of these cells, 4 have an abundance of zero
+- 4/12 = 0.3333, therefore its sparsity is 0.3333
 
 Sparsity can be any value from 0-1. The higher the value the more sparse it is, with a value of 1 meaning all the cells have an abundance of zero. The lower the value the less sparse it is, with a value of 0 meaning all the cells have an abundance of 1 or more.
 

@@ -5,8 +5,8 @@
 
 In this chapter you will:
 
-- Create Family plots by following example code.
-- Be tasked to create Genus plots with little instruction.
+- Create Family plots by following example code
+- Be tasked to create Genus plots with little instruction
 
 I highly encourage you to copy previous code and edit it.
 It is a major time saver.
@@ -213,10 +213,10 @@ Brilliant, we are now finished with the Family taxa plots. Onto something harder
 In this section you are running your own analysis for the Genus information in the "3-taxonomy_barchart.ipynb" notebook.
 Carry out the following tasks with the relative abundance `phyloseq` object (`pseq_relabund`):
 
-- Create an aggregated genus `phyloseq` object and summarise it (no rare aggregation).
-- Create a heatmap of the genera relative abundances.
-- Carry out genus rare aggregation so the resulting `phyloseq` object only contains 12 genera.
-- Use the rare aggregated `phyloseq` object to create a bar chart grouped by __media__.
+- Create an aggregated genus `phyloseq` object and summarise it (no rare aggregation)
+- Create a heatmap of the genera relative abundances
+- Carry out genus rare aggregation so the resulting `phyloseq` object only contains 12 genera
+- Use the rare aggregated `phyloseq` object to create a bar chart grouped by __media__
 
 In essence you are going through the workflow for the family data but for genus instead.
 Again, I encourage you to copy, paste, and edit previous code.

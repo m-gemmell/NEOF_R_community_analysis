@@ -6,7 +6,7 @@
 </center>
 
 In this section we are going to create taxonomy bar charts.
-For this we are going to use relative abundance tables of different taxa levels; Genus, Family, & Phyla.
+For this we are going to use relative abundance tables of different taxa levels: Genus, Family, & Phyla.
 
 In this chapter we are going to create a `phyloseq` object with relative abundance values of phyla. 
 We would use read depth filtered data if we wanted to use it for other downstream analyses.
@@ -19,10 +19,10 @@ But, as stated in the last chapter all our samples had sufficient depth, so we w
 
 The first steps before analysis are:
 
-- Create a new notebook called __"3-taxonomy_barcharts.ipynb"__.
-  - We will use this to create our phyloseq objects and taxonomy bar charts.
-- Add a markdown cell with the first level header: `# Taxonomy bar charts`.
-- Add the below to a code cell to load in the `phyloseq` object and libraries.
+- Create a new notebook called __"3-taxonomy_barcharts.ipynb"__
+  - We will use this to create our phyloseq objects and taxonomy bar charts
+- Add a markdown cell with the first level header: `# Taxonomy bar charts`
+- Add the below to a code cell to load in the `phyloseq` object and libraries
 ```{r, eval=FALSE}
 #Libraries
 library("phyloseq")

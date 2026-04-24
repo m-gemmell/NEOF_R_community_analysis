@@ -70,8 +70,9 @@ We can choose certain alpha diversity metrics to plot.
 Currently it is showing 7 metrics (Observed, Chao1 etc.).
 I like to use:
 
-- __Observed__: This is the number of observed features (ASVs, Genera, etc) in each sample.
-- __Shannon__: A measure of diversity where a higher number means higher diversity. Shannon's index accounts for both abundance and evenness of the features present.
+- __Observed__: This is the number of observed features (ASVs, Genera, etc) in each sample
+- __Shannon__: A measure of diversity where a higher number means higher diversity
+  - Shannon's index accounts for both abundance and evenness of the features present
 
 We'll choose these metrics with the `measures = ` option.
 Either make a new code block with new code or you can edit and run the previous code you wrote.
@@ -103,7 +104,7 @@ The last plot looks a bit better.
 To actually make them box plots we'll change the x axis so they are based on media rather than individual samples.
 
 The `phyloseq::plot_richness()` function produces a `ggplot2` object.
-To convert our dot plot into a box plot we can add the layer `geom_boxplot()` like with our [depth boxplots](#depth-boxplots).
+To convert our dot plot into a box plot we can add the layer `geom_boxplot()`.
 This will combine samples from one media into one IQR box.
 
 ```{r , eval = FALSE}
@@ -214,10 +215,10 @@ There is little to no overlap of the IQRs of KBC and TSA, or of KBC and ENV.
 
 We can therefore make these claims about the alpha diversity values of the groups.
 
-- ENV has the highest number of observed ASVs and the highest diversity.
-- ENV appears to have a wider range of diversities across its samples.
-- The different culture media have much lower numbers of ASVs and diversity compared to ENV.
-- Within each media grouping the samples have very similar numbers of ASVs present.
+- ENV has the highest number of observed ASVs and the highest diversity
+- ENV appears to have a wider range of diversities across its samples
+- The different culture media have much lower numbers of ASVs and diversity compared to ENV
+- Within each media grouping the samples have very similar numbers of ASVs present
 
 ## Alpha diversity: violin plot
 <center>
@@ -273,8 +274,8 @@ IRdisplay::display_png(file="./Alpha_diversity_media_violinplot.png")
 
 With all the knowledge, skills, and code from this chapter carry out the following tasks:
 
-- Produce a violin plot of Observed, Shannon with the Site groups.
-- Carry out paired Wilcoxon test for Observed and Shannon with the Site groups.
+- Produce a violin plot of Observed, Shannon with the Site groups
+- Carry out paired Wilcoxon test for Observed and Shannon with the Site groups
 
 `r hide("Alpha sites solution")`
 ```{r , eval = FALSE}

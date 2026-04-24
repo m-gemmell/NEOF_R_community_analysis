@@ -11,11 +11,11 @@ This is the general consensus for __human microbiome__ data.
 
 In this chapter we will:
 
-- Cover a brief intro to considerations of what is an acceptable minimum depth for your dataset.
-- Reinvestigate our sample depths with a previously created histogram.
-- View the depth ranges of different sample groups (site & media) with box plots.
-- Create a rarefaction curve to assess if the depth of our samples has captured a good amount of biodiversity.
-- Demonstrate how to filter samples by depth.
+- Cover a brief intro to considerations of what is an acceptable minimum depth for your dataset
+- Reinvestigate our sample depths with a previously created histogram
+- View the depth ranges of different sample groups (site & media) with box plots
+- Create a rarefaction curve to assess if the depth of our samples has captured a good amount of biodiversity
+- Demonstrate how to filter samples by depth
 
 ## Considerations
 <center>
@@ -24,19 +24,19 @@ In this chapter we will:
 
 There are 3 main considerations to take into account when choosing an appropriate depth for your dataset.
 
-- __The biodiversity of your samples.__
-  - If your sample is very biodiverse, such as the human gut microbiome, you will need a good depth (>20K per sample).
-  - If your sample is less biodiverse, such as many geological environments or skin, then you will not need as much read depth.
-  - Rarefaction curves are a good method to determine if your samples have enough depth. We will look at this in this chapter.
-- __The biomass of your samples.__
-  - Some environments are hard to extract DNA from.
-  - If this is the case for you, then people will hopefully accept that this is an unfortunate reality of life and you will use what you can.
-  - Be careful of your conclusions. If you think your dataset doesn't have as much data as it could, do not make very definitive detailed claims.
-- __Read depth of sample groups.__
-  - It may be possible that a few samples have a much lower depth than the rest. It may be a good idea to remove them.
-  - However, these may all come from the same sample group and so you will lose all information of one group.
-  - For instance, you may be comparing different geological surfaces and your rock samples have much lower read depths than the various soil samples.
-  - For comparisons including the lower depth sample group (e.g. rock samples) you will need to retain the lower depth samples.
+- __The biodiversity of your samples__
+  - If your sample is very biodiverse, such as the human gut microbiome, you will need a good depth (>20K per sample)
+  - If your sample is less biodiverse, such as many geological environments or skin, then you will not need as much read depth
+  - Rarefaction curves are a good method to determine if your samples have enough depth. We will look at this in this chapter
+- __The biomass of your samples__
+  - Some environments are hard to extract DNA from
+  - If this is the case for you, then people will hopefully accept that this is an unfortunate reality of life and you will use what you can
+  - Be careful of your conclusions. If you think your dataset doesn't have as much data as it could, do not make very definitive detailed claims
+- __Read depth of sample groups__
+  - It may be possible that a few samples have a much lower depth than the rest. It may be a good idea to remove them
+  - However, these may all come from the same sample group and so you will lose all information of one group
+  - For instance, you may be comparing different geological surfaces and your rock samples have much lower read depths than the various soil samples
+  - For comparisons including the lower depth sample group (e.g. rock samples) you will need to retain the lower depth samples
 
 That is a brief overview of that topic. If you are interested in more I suggest you look at papers where they have studied an environment similar to yours.
 
@@ -94,10 +94,10 @@ head(abundance_metadf)
 
 The 2 new functions above are:
 
-- `phyloseq::sample_data()`: Extracts the sample data (metadata) data frame from a `phyloseq` object.
-- `head()`: Returns the first 6 parts of an R object by default.
-  - It can be used for a vector, matrix, table, data frame, or function.
-  - In the case of a data frame it returns the first 6 rows.
+- `phyloseq::sample_data()`: Extracts the sample data (metadata) data frame from a `phyloseq` object
+- `head()`: Returns the first 6 parts of an R object by default
+  - It can be used for a vector, matrix, table, data frame, or function
+  - In the case of a data frame it returns the first 6 rows
 
 We need to add the depth information to our new data frame. 
 We have extracted this previously into an object called `sample_depths`. 
@@ -133,11 +133,13 @@ We won't go into too much detail on how the code works here, instead learning mo
 
 The code below creates a `ggplot2` boxplot. We carry this out with 2 functions:
 
-- `ggplot()`: This creates a `ggplot2` object, storing the information and aesthetics.
-  - The first option is the data we want to use for plotting (`abundance_metadf`).
-  - The second option is the aesthetics (`aes()`) to plot. In this case we want the depth column to be plotted on the y-axis (`y=depth`) and the site column to be plotted on the x-axis (`x=site`).
-- `+`: We need to have a `+` at the end of the `ggplot()` function to add the next component of the plot.
-- `geom_boxplot()`: This adds a __layer__ to our `ggplot2` object. In this case it converts the `ggplot` object, which is just information, into a boxplot.
+- `ggplot()`: This creates a `ggplot2` object, storing the information and aesthetics
+  - The first option is the data we want to use for plotting (`abundance_metadf`)
+  - The second option is the aesthetics (`aes()`) to plot
+    - In this case we want the depth column to be plotted on the y-axis (`y=depth`) and the site column to be plotted on the x-axis (`x=site`)
+- `+`: We need to have a `+` at the end of the `ggplot()` function to add the next component of the plot
+- `geom_boxplot()`: This adds a __layer__ to our `ggplot2` object 
+  - THe function converts the `ggplot` object, which is just information, into a boxplot
 
 Write and run the following code in a new cell:
 
@@ -297,11 +299,11 @@ This can occur when ASVs are only present in the samples which have been removed
 
 To remove these ASVs we can use two `phyloseq` functions:
 
-- __`taxa_sums()`__: Returns a vector showing sum of all taxa in the abundance table. 
-  - In our `phyloseq` object the ASVs are the taxa. 
-  - ASVs have long human unfriendly names that are unique to every single ASV possible.
-- __`prune_taxa()`__: This retains taxa/ASVs based on a provided vector.
-  - We are creating a logical vector (`TRUE`/`FALSE`) where ASVs with 0 abundance are `FALSE` and ASVs with abundance > 0 are `TRUE`.
+- __`taxa_sums()`__: Returns a vector showing sum of all taxa in the abundance table
+  - In our `phyloseq` object the ASVs are the taxa
+  - ASVs have long human unfriendly names that are unique to every single ASV possible
+- __`prune_taxa()`__: This retains taxa/ASVs based on a provided vector
+  - We are creating a logical vector (`TRUE`/`FALSE`) where ASVs with 0 abundance are `FALSE` and ASVs with abundance > 0 are `TRUE`
 
 We'll first write and run some commands with `taxa_sums()` to get some practice with it. Carry this out in the same __cell__ as the `subset_samples()` command.
 
@@ -389,9 +391,9 @@ Once you are finished with this notebook you can save it then close and halt it.
 We have assessed the read depth in this chapter and decided to not remove any samples. 
 This assessment included:
 
-- Viewing a histogram of sample read depths.
-- Creating boxplots to compare the sample read depths across sample groups (site and media).
-- Producing a rarefaction depth to determine if any samples did not represent a good amount of the ASVs present in the environment.
+- Viewing a histogram of sample read depths
+- Creating boxplots to compare the sample read depths across sample groups (site and media)
+- Producing a rarefaction depth to determine if any samples did not represent a good amount of the ASVs present in the environment
 
 Additionally, we created a new `phyloseq` object where the samples were filtered by depth.
 Ultimately we did not keep the filtered `phyloseq` object but it is good to know how to do this for your future research.

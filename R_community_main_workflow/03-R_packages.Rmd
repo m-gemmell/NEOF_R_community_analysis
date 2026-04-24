@@ -46,11 +46,12 @@ microbiome::summarize_phyloseq()
 
 This convention has 2 benefits:
 
-- We can easily tell which R package each function comes from.
-  - This is useful for your future coding where you may copy some, but not all, commands from one script to another. You will therefore know which packages you will need to load.
-  - If you need some more documentation about a function you will know what package to look up.
-  - Writing your methods will be a lot easier.
-- Different packages may have functions with the same name. Specifying the package will ensure you are using the correct function.
+- We can easily tell which R package each function comes from
+  - This is useful for your future coding where you may copy some, but not all, commands from one script to another 
+    - You will therefore know which packages you will need to load
+  - If you need some more documentation about a function you will know what package to look up
+  - Writing your methods will be a lot easier
+- Different packages may have functions with the same name. Specifying the package will ensure you are using the correct function
 
 ## The grammar of graphics
 <center>

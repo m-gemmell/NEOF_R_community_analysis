@@ -129,21 +129,25 @@ The [R Graphics Cookbook](https://r-graphics.org/) is a good place to start. It 
 
 Below are various resources if you would like to learn more about phyloseq and associated packages.
 
-- [Phyloseq](https://joey711.github.io/phyloseq/): The original `phyloseq`. The R object is still great but the included tutorials and some functions are a bit outdated.
-- [microbiome](https://microbiome.github.io/tutorials/): A supplemental package to `phyloseq`. It contains some much needed functions. The tutorials are much clearer than the `phyloseq` tutorials but still not always the clearest.
+- [Phyloseq](https://joey711.github.io/phyloseq/): The original `phyloseq`
+  - The R object is still great but the included tutorials and some functions are a bit outdated
+- [microbiome](https://microbiome.github.io/tutorials/): A supplemental package to `phyloseq`
+  - It contains some much needed functions
+  - The tutorials are much clearer than the `phyloseq` tutorials but still not always the clearest
 
 ## Importing into phyloseq
 <center>
 ![](figures/import.png){style="width:200px"}
 </center>
 
-- [QIIME2R](https://github.com/jbisanz/qiime2R): A very useful package to import QIIME2 artifacts into a `phyloseq` object.
-- [Phyloseqize R data](https://joey711.github.io/phyloseq/import-data.html): A tutorial on how to import data frames into a `phyloseq` object.
+- [QIIME2R](https://github.com/jbisanz/qiime2R): A very useful package to import QIIME2 artifacts into a `phyloseq` object
+- [Phyloseqize R data](https://joey711.github.io/phyloseq/import-data.html): A tutorial on how to import data frames into a `phyloseq` object
 - __Shotgun metagenomics data__
   - Tutorial in [Supplemental book](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/02-Importing.html)
-  - You can import Kraken2 data by converting the [report file to a biom file](https://github.com/smdabdoub/kraken-biom) then importing the biom file into a `phyloseq` object with the [`QIIME2R` function `read_q2biom()`](https://github.com/jbisanz/qiime2R).
-  - You can also import the [Kraken-Style Bracken report](https://github.com/jenniferlu717/Bracken#output-kraken-style-bracken-report) in the above manner.
-  - The [biom format](https://github.com/biocore/biom-format) stands for the Biological Observation Matrix (BIOM) format. It is used and created by a variety of tools. 
+  - You can import Kraken2 data by converting the [report file to a biom file](https://github.com/smdabdoub/kraken-biom) then importing the biom file into a `phyloseq` object with the [`QIIME2R` function `read_q2biom()`](https://github.com/jbisanz/qiime2R)
+  - You can also import the [Kraken-Style Bracken report](https://github.com/jenniferlu717/Bracken#output-kraken-style-bracken-report) in the above manner
+  - The [biom format](https://github.com/biocore/biom-format) stands for the Biological Observation Matrix (BIOM) format
+    - It is used and created by a variety of tools
 
 # Diversity metrics
 <center>
@@ -187,25 +191,19 @@ O +
 {2(f2 + 1)}
 $$
 
-- C = Chao1 estimator, i.e. estimated total feature richness.
-- O = Observed number of features.
-- f1 = Frequency of
-<u id='singletons'>singletons</u> 
-.
-- f2 = Frequency of
-<u id='doubletons'>doubletons</u> 
-.
+- C = Chao1 estimator, i.e. estimated total feature richness
+- O = Observed number of features
+- f1 = Frequency of <u id='singletons'>singletons</u> 
+- f2 = Frequency of <u id='doubletons'>doubletons</u> 
 
-__Note:__ This cannot be used with DADA2 derived ASVs. DADA2 removes 
-<u id='singletons'>singletons</u>
-which Chao uses within its calculation.
+__Note:__ This cannot be used with DADA2 derived ASVs. DADA2 removes <u id='singletons'>singletons</u> which Chao uses within its calculation.
 
 ### Evenness
 
 How evenly spread the abundances are across all present features.
 
-- A sample with 4 ASVs, each with 25% relative abundance would be perfectly even.
-- A sample with 4 ASVs, where one ASV has 97% abundance and the other 3 have 1%, would be highly uneven.
+- A sample with 4 ASVs, each with 25% relative abundance would be perfectly even
+- A sample with 4 ASVs, where one ASV has 97% abundance and the other 3 have 1%, would be highly uneven
 
 ### Faith's PD (phylogenetic diversity) {#faith}
 
@@ -275,15 +273,16 @@ $$
 
 Beta diversity compares 2 samples at a time. This is measured in terms of dissimilarity:
 
-- A lower score indicate the 2 samples are more similar.
-- A higher score indicates the 2 samples are more dissimilar.
+- A lower score indicate the 2 samples are more similar
+- A higher score indicates the 2 samples are more dissimilar
 
 ### Weighted and unweighted UniFrac distances {#unifrac_explanation}
 
 The UniFrac metric is a phylogenetic distance measure between two samples. It is defined as “the sum of the unshared branch lengths between two samples divided by the total branch length (shared + unshared) of two samples” (Lozupone and Knight, 2005). This results in calculating the fraction of the branch lengths unique to each sample (ie. the higher this value is, the more dissimilar two samples are). The entire phylogenetic tree created for all the sequences of all the analysed samples is used for this calculation.
 
-- Unweighted UniFrac: Only considers feature presence/absence.
-- Weighted UniFrac: Takes into account feature presence/absence & abundance. I.e. the value is weighted by the abundances.
+- Unweighted UniFrac: Only considers feature presence/absence
+- Weighted UniFrac: Takes into account feature presence/absence & abundance
+  - I.e. the value is weighted by the abundances
 
 ### Bray-Curtis {#bray_explanation}
 

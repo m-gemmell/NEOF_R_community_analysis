@@ -63,7 +63,7 @@ levels(phyloseq::sample_data(pseq)$site)
 ## DA: ANCOM-BC analysis
 
 <center>
-![](figures/play_blue.png){style="width:200px"}
+![](figures/play_blue.png){style="width:150px"}
 </center>
 
 Now that we have our data the way we would like it we can carry out the ANCOM analysis. We'll use the function `ANCOMBC::ancombc2()` for our ANCOM-BC analysis.
@@ -87,22 +87,23 @@ save(ancom_class_out, file = "ANCOMBC2_class_analysis.RData")
 ### ANCOMBC2 options
 
 <center>
-![](figures/parameter_blue.png){style="width:200px"}
+![](figures/parameter_blue.png){style="width:150px"}
 </center>
 
 The options we used in the function are:
 
--   `data =`: The data to be analysed. This can be provided in various types of objects including the `phyloseq` object.
--   `fix_formula =`: The groupings within your data. It is important to add all groupings that may have an influence on the microbial abundances.
--   `p_adj_method =`: The p adjustment value to use.
--   `tax_level =`: The taxonomic level of interest.
+- `data =`: The data to be analysed. This can be provided in various types of objects including the `phyloseq` object
+- `fix_formula =`: The groupings within your data
+  - It is important to add all groupings that may have an influence on the microbial abundances.
+- `p_adj_method =`: The p adjustment value to use
+- `tax_level =`: The taxonomic level of interest
 
 There are many more options that have been left as the default. Please see the package [PDF](https://www.bioconductor.org/packages/release/bioc/manuals/ANCOMBC/man/ANCOMBC.pdf) for more options and explanations.
 
 ## DA: ANCOM-BC results
 
 <center>
-![](figures/output_file_blue.png){style="width:200px"}
+![](figures/output_file_blue.png){style="width:150px"}
 </center>
 
 There is a lot of information in `ancom_class_out`. Therefore, let's extract the results we want to look at and then remove the large object.
@@ -118,17 +119,17 @@ head(res_ancom_class)
 
 These results only contain taxon where a significant result was found in at least one comparison. This is based on the adjusted p-values (\<0.05). There are a lot of columns (37) in our result data frame. Apart from the "taxon" column they are split by the comparison groups. These contain the following information:
 
--   **taxon:** The taxa groups found to be a biomarker in at least one comparison.
--   **lfc\_\*:** This contains the log (natural log) fold changes with respect to the reference group.
-    -   For example The values for lfc_mediaCVP would equal LFC(CVP - ENV).
-    -   A positive value means the abundances are higher in the comparison group (CVP) and lower in the ref (ENV).
-    -   A negative value means the abundances are lower in the comparison group (CVP) and higher in the ref (ENV).
-    -   The intercept value is the grand mean and is likely not of interest.
--   **se\_\*:** The standard error for the LFC values.
--   **W\_\*:** The W statistic. The higher this value the more significant the feature is differentially abundant between groups.
--   **p\_\*:** The P-value.
--   **q\_\*:** The Q-value. This is the adjusted P-value.
--   **diff\*:** This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value \< 0.05.
+-   **taxon:** The taxa groups found to be a biomarker in at least one comparison
+-   **lfc\_\*:** This contains the log (natural log) fold changes with respect to the reference group
+    -   For example The values for lfc_mediaCVP would equal LFC(CVP - ENV)
+    -   A positive value means the abundances are higher in the comparison group (CVP) and lower in the ref (ENV)
+    -   A negative value means the abundances are lower in the comparison group (CVP) and higher in the ref (ENV)
+    -   The intercept value is the grand mean and is likely not of interest
+-   **se\_\*:** The standard error for the LFC values
+-   **W\_\*:** The W statistic. The higher this value the more significant the feature is differentially abundant between groups
+-   **p\_\*:** The P-value
+-   **q\_\*:** The Q-value. This is the adjusted P-value
+-   **diff\*:** This indicates whether there is a significant difference in the abundances of the comparison and reference group. In other words, is the Q-value \< 0.05
 
 It is quite a large table so let's save it as a tsv (tab separated value) file.
 
@@ -182,7 +183,7 @@ __Note:__ Website is still in development.
 ## DA: Create significant LFC long data frame
 
 <center>
-![](figures/portrait.png){style="width:200px; border-radius:15px; background:white"}
+![](figures/portrait.png){style="width:150px; border-radius:15px; background:white"}
 </center>
 
 The results table is good but let's make a heatmap showing the LFCs (Log fold changes) of the significant biomarkers. First, we need to do some preprocessing.
@@ -222,9 +223,9 @@ This has removed one biomarker which is great.
 
 Next we need to do a variety of preprocessing steps. This will create an edited long data frame. Long data frames are needed for `ggplot2()` when not using a `phyloseq` object. Instead of having the LFC (log fold change) values over many columns there will be only one column for the values. The long data frame will contain the following columns:
 
--   **taxon**: The biomarker name.
--   **group**: The comparison group.
--   **value**: The LFC value.
+-   **taxon**: The biomarker name
+-   **group**: The comparison group
+-   **value**: The LFC value
 
 Please see the code and its annotation below. If you do not fully understand the code that is fine. As long as you can edit it to work with your own future code.
 
@@ -383,9 +384,9 @@ We have used ANCOMBC to detect biomarkers in the media samples compared to the E
 
 You could carry out more analysis in your future research in various ways:
 
--   Carry out biomarker detection at different taxonomy levels such as genus.
-    -   We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there weren't too many results to look at.
--   There are many other types of tests and considerations to keep in mind. Check out the [ANCOMBC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html), it is very in depth.
-    -   There is also a handy FAQ on the [ANCOMBC github page](https://github.com/FrederickHuangLin/ANCOMBC).
+-   Carry out biomarker detection at different taxonomy levels such as genus
+    -   We used class in this tutorial so we would have enough groups for a comparison but not too many to increase speed of analysis and so there weren't too many results to look at
+-   There are many other types of tests and considerations to keep in mind. Check out the [ANCOMBC2 tutorial](https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html), it is very in depth
+    -   There is also a handy FAQ on the [ANCOMBC github page](https://github.com/FrederickHuangLin/ANCOMBC)
 
 That is the last part of the analysis. In the final chapter we will review the steps we carried out and the answers to the various questions we have about the dataset.
