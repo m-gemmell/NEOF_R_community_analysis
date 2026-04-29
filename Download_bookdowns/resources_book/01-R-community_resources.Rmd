@@ -13,6 +13,14 @@ description: NEOF book for the Community analysis in R resources
 cover-image: "figures/NEOF.png"
 ---
 
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'webexercises'
+), 'packages.bib')
+```
+
 <center>
 ![](figures/neof_rounded_corners.png){style="width:300px"}
 </center>
@@ -25,18 +33,32 @@ cover-image: "figures/NEOF.png"
 ## Intro and Data importing & preprocessing
 
 <div class="container">
+<iframe src="https://www.youtube.com/embed/AfpcpIYkakg" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+`r hide("17 JUN 2025")`
+<div class="container">
 <iframe src="https://www.youtube.com/embed/oUl2HYj8fww" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
+`r unhide()`
 
 [__Slides__](https://docs.google.com/presentation/d/16p9xJs0TsUx5w7mLLtrY1tCFS_6NuYuCNwO1NmFN1lI/edit?usp=share_link)
 
 ## Preprocessing & taxonomy
 
 <div class="container">
+<iframe src="https://www.youtube.com/embed/4gq9JaRECCM" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+`r hide("17 JUN 2025")`
+<div class="container">
 <iframe src="https://www.youtube.com/embed/ePO_RnzrL9c" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
+`r unhide()`
 
 [__Slides__](https://docs.google.com/presentation/d/1Qms140vQcxiMG2iL03GKCQG4Nd-01QrhfjyY8iCjfrM/edit?usp=share_link)
 
@@ -47,6 +69,13 @@ frameborder="0" allowfullscreen class="video"></iframe>
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
+`r hide("19 JUN 2025")`
+<div class="container">
+<iframe src="https://www.youtube.com/embed/33526mh8ODw" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+`r unhide()`
+
 [__Slides__](https://docs.google.com/presentation/d/1SLtkfXU3SXmnHEf544KMGRJdsIMgSP43b01kQtKoNpo/edit?usp=share_link)
 
 ## Differential abundance analysis
@@ -55,6 +84,13 @@ frameborder="0" allowfullscreen class="video"></iframe>
 <iframe src="https://www.youtube.com/embed/MUcDBhR6ONE" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
+
+`r hide("19 JUN 2025")`
+<div class="container">
+<iframe src="https://www.youtube.com/embed/MUcDBhR6ONE" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+`r unhide()`
 
 [__Slides__](https://docs.google.com/presentation/d/1CUprELX4tOl_62S6hTM_fZbXPYcB8YO_ETPZ6EhU4pc/edit?usp=share_link)
 
