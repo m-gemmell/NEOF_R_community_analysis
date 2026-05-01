@@ -1982,7 +1982,7 @@ IRdisplay::display_png(file="./genus_relabund_heatmap.png")
 
 `r hide("Aggregate rare genus")`
 ```{r, eval=FALSE}
-#Summary of row means (families) from the family otu table
+#Summary of row means (genus) from the genus otu table
 summary(rowMeans(phyloseq::otu_table(genus_pseq)))
 ```
 ```{r, eval = FALSE}
