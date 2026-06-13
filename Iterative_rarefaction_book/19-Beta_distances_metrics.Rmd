@@ -4,7 +4,6 @@
 </center>
 
 Here we'll find out how to produce a paired distance matrix with our __beta diversity__ metric of choice.
-Unfortunately there is not one function that can calculate all the metrics we may want.
 
 ## Unifrac distances
 <center>
@@ -15,34 +14,38 @@ Unifrac distances are preferred by many when a phylogenetic tree is available fo
 We are working with 16S data so a phylogenetic tree was created.
 Other barcodes or types of data may not have a phylogenetic such as ITS data or complex shotgun metagenomic data.
 
-To produce a Unifrac distance matrix we will use the function `unifrac()` from the package `rbiom`.
+To produce a Unifrac distance matrix we will use the function `bdiv_matrix()` from the package `rbiom`.
 
-The function `rbiom::unifrac()` was created to work with biom files and not __phyloseq__ objects.
-Thankfully we don't need to convert our objects to a biom object, instead only needing to extract our count/abundance data and phylogenetic tree.
-We can carry this out with the following 2 functions:
+### Phyloseq to r_biom
 
-- `phyloseq::otu_table()`: Extracts the feature count/abundances table
-- `phyloseq::phy_tree()`: Extract the phylogenetic tree
+The function `rbiom::bdiv_matrix()` was created to work with biom files and not __phyloseq__ objects.
+Thankfully we can easily convert our `phyloseq` object to an `r_biom` with `rbiom::as_rbiom()`.
 
-There are 2 types of Unifrac distances:
+Run the function to see the summary of the produced `r_biom` object.
 
-- Weighted: Incorporate relative abundances
-- Unweighted: Does not incorporate relative abundances
+```{r, eval=FALSE}
+rbiom::as_rbiom(pseq)
+```
 
-We'll calculate weighted Unifrac distances by specifying the parameter `weighted = TRUE`.
+You'll notice that the `r_biom` object contains the phylogenetic tree in our `phyloseq` object.
+This means we can use it for Unifrac distance calculations.
 
-To ensure our output works with subsequent ordination steps we'll convert the output of `rbiom::unifrac()` into a matrix with `as.matrix()`.
+### Unifrac calculation
 
-Carry out the matrix production with the below script:
+The function `rbiom::bdiv_matrix()` can calculate many different many different beta diversity distances.
+Additionally, the output is a matrix which we need for our ordination step later on.
+We'll calculate weighted Unifrac distances by specifying the parameter `bdiv="weighted_unifrac"`.
 
-```{R, eval=FALSE}
+[`rbiom::bdiv_matrix()` manual page](https://cmmr.github.io/rbiom/reference/bdiv_table.html)
+
+```{r,eval=FALSE}
 #Calculate weighted unifrac values
-unifrac_rbiom_microbiome <- as.matrix(
-  rbiom::unifrac(biom = phyloseq::otu_table(pseq),
-                 tree = phyloseq::phy_tree(pseq),
-                 weighted = TRUE))
+unifrac_rbiom_microbiome <- 
+    rbiom::bdiv_matrix(
+        biom = rbiom::as_rbiom(pseq),
+        bdiv="weighted_unifrac")
 #Check the first 6 rows and columns of the resulting distance matrix
-head(unifrac_rbiom_microbiome)
+unifrac_rbiom_microbiome[1:6,1:6]
 ```
 
 ## Vegan distances

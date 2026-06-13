@@ -92,15 +92,18 @@ pseq_rarefy <- phyloseq::rarefy_even_depth(
 #Alpha diversity
 alpha_df_sum <- microbiome::alpha(pseq_rarefy, index= "all")
 #Beta diveristy values
-#Objects from phyloseq object
+#otu_df for non phylogenetic distances
 otu_df <- phyloseq::otu_table(pseq_rarefy)
-phylo_tree <- phyloseq::phy_tree(pseq_rarefy)
+#Biom object from phyloseq object
+biom_rarefy <- rbiom::as_rbiom(pseq_rarefy)
 #Weighted unifrac beta diversity
-wunifrac_df_sum <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
-                                  weighted = TRUE) |> as.matrix()
+wunifrac_df_sum <- rbiom::bdiv_matrix(
+    biom = biom_rarefy,
+    bdiv="weighted_unifrac")
 #Unweighted wunifrac beta diversity
-uwunifrac_df_sum <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
-                                   weighted = FALSE) |> as.matrix()
+uwunifrac_df_sum <- rbiom::bdiv_matrix(
+    biom = biom_rarefy,
+    bdiv="unweighted_unifrac")
 #Bray-curtis
 bray_df_sum <- vegan::vegdist(x = t(otu_df), method = "bray") |> as.matrix()
 #Jaccard
@@ -119,16 +122,19 @@ for (i in 2:rarefaction_iters){
     #Below we assign all beta diversity values to beta_df 
     # then add this to the appropriate sum dafa frame (e.g. wunifrac_df_sum)
     #This is to limit number of objects saved in env at one time
-    #Objects from phyloseq object
+    #otu_df for non phylogenetic distances
     otu_df <- phyloseq::otu_table(pseq_rarefy)
-    phylo_tree <- phyloseq::phy_tree(pseq_rarefy)
+    #Biom object from phyloseq object
+    biom_rarefy <- rbiom::as_rbiom(pseq_rarefy)
     #Weighted unifrac beta diversity
-    beta_df <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
-                              weighted = TRUE) |> as.matrix()
+    beta_df <- rbiom::bdiv_matrix(
+        biom = biom_rarefy,
+        bdiv="weighted_unifrac")
     wunifrac_df_sum <-  wunifrac_df_sum + beta_df
     #Unweighted unifrac beta diversity
-    beta_df <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
-            weighted = FALSE) |> as.matrix()
+    beta_df <- rbiom::bdiv_matrix(
+        biom = biom_rarefy,
+        bdiv="unweighted_unifrac")
     uwunifrac_df_sum <-  uwunifrac_df_sum + beta_df
     #Bray-curtis
     beta_df <- vegan::vegdist(x = t(otu_df), method = "bray") |> as.matrix()
@@ -158,6 +164,7 @@ save(jaccard_df_mean, file = "jaccard_df_mean.RData")
 
 #Remove unneeded objects
 rm(pseq, alpha_df_sum, alpha_df)
+
 ```
 
 ### Phylogenetically aware metrics excluded

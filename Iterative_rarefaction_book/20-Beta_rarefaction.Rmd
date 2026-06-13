@@ -35,45 +35,46 @@ The below code carries out __iterative rarefaction__ and produces an averaged __
 ```{R, eval = FALSE}
 #Loop to create iteration based rarefied weighted unifrac values
 
-#Create matrix to contain summed wunifrac beta diversity values
+#Create a matrix to contain the summed wunifrac beta diveristy values
 #In this case we'll run the first rarefied beta diversity analysis
 pseq_rarefy <- phyloseq::rarefy_even_depth(
-  pseq,
-  sample.size = rarefaction_size,
-  rngseed = rngseed_vec[1],
-  verbose = FALSE)
-#wunifrac beta diversity
-beta_df_sum <- as.matrix(
-  rbiom::unifrac(
-    biom = phyloseq::otu_table(pseq_rarefy),
-    tree = phyloseq::phy_tree(pseq_rarefy),
-    weighted = TRUE))
-
-#Loop through 2 to the number of iterations
-for (i in 2:rarefaction_iters){
-  #Rarefaction
-  pseq_rarefy <- phyloseq::rarefy_even_depth(
     pseq,
     sample.size = rarefaction_size,
-    rngseed = rngseed_vec[i],
-    verbose = FALSE)
-  #Beta diversity
-  beta_df <- as.matrix(
-    rbiom::unifrac(
-      biom = phyloseq::otu_table(pseq_rarefy),
-      tree = phyloseq::phy_tree(pseq_rarefy),
-      weighted = TRUE))
-  #Add/sum the new data frame values to the sum data frame
-  beta_df_sum <- beta_df_sum + beta_df
+    rngseed = rngseed_vec[1],
+    verbose = FALSE
+)
+#wunifrac beta diversity
+beta_df_sum <-
+    rbiom::bdiv_matrix(
+        biom = rbiom::as_rbiom(pseq_rarefy),
+        bdiv="weighted_unifrac")
+
+#Loop through 2 to the number of rarefaction iterations
+for (i in 2:rarefaction_iters){
+    #Rarefaction
+    pseq_rarefy <- phyloseq::rarefy_even_depth(
+        pseq,
+        sample.size = rarefaction_size,
+        rngseed = rngseed_vec[i],
+        verbose = FALSE
+    )
+    #Beta diversity
+    beta_df <-
+        rbiom::bdiv_matrix(
+            biom = rbiom::as_rbiom(pseq_rarefy),
+            bdiv="weighted_unifrac")
+    #Add/sum the new data frame values to the sum data frame
+    beta_df_sum <-  beta_df_sum + beta_df
 }
 #Divide by number of rarefaction iterations to get average
 beta_df_mean <- beta_df_sum / rarefaction_iters
-#Save beta mean data frame
+#Save beta mean dataframe
 save(beta_df_mean, file = "wunifrac_df_mean.RData")
-#View first 6 rows and columns of matrix
+#See first 6 rows and columns of matrix
 beta_df_mean[1:6,1:6]
-#Remove unneeded objects
+#Remove created objects
 rm(beta_df_sum, beta_df_mean, pseq_rarefy)
+
 ```
 
 `r hide("verbose = FALSE option")`

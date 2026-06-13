@@ -1700,7 +1700,6 @@ library(webexercises)
 </center>
 
 Here we'll find out how to produce a paired distance matrix with our __beta diversity__ metric of choice.
-Unfortunately there is not one function that can calculate all the metrics we may want.
 
 ## Unifrac distances
 <center>
@@ -1711,34 +1710,38 @@ Unifrac distances are preferred by many when a phylogenetic tree is available fo
 We are working with 16S data so a phylogenetic tree was created.
 Other barcodes or types of data may not have a phylogenetic such as ITS data or complex shotgun metagenomic data.
 
-To produce a Unifrac distance matrix we will use the function `unifrac()` from the package `rbiom`.
+To produce a Unifrac distance matrix we will use the function `bdiv_matrix()` from the package `rbiom`.
 
-The function `rbiom::unifrac()` was created to work with biom files and not __phyloseq__ objects.
-Thankfully we don't need to convert our objects to a biom object, instead only needing to extract our count/abundance data and phylogenetic tree.
-We can carry this out with the following 2 functions:
+### Phyloseq to r_biom
 
-- `phyloseq::otu_table()`: Extracts the feature count/abundances table
-- `phyloseq::phy_tree()`: Extract the phylogenetic tree
+The function `rbiom::bdiv_matrix()` was created to work with biom files and not __phyloseq__ objects.
+Thankfully we can easily convert our `phyloseq` object to an `r_biom` with `rbiom::as_rbiom()`.
 
-There are 2 types of Unifrac distances:
+Run the function to see the summary of the produced `r_biom` object.
 
-- Weighted: Incorporate relative abundances
-- Unweighted: Does not incorporate relative abundances
+```{r, eval=FALSE}
+rbiom::as_rbiom(pseq)
+```
 
-We'll calculate weighted Unifrac distances by specifying the parameter `weighted = TRUE`.
+You'll notice that the `r_biom` object contains the phylogenetic tree in our `phyloseq` object.
+This means we can use it for Unifrac distance calculations.
 
-To ensure our output works with subsequent ordination steps we'll convert the output of `rbiom::unifrac()` into a matrix with `as.matrix()`.
+### Unifrac calculation
 
-Carry out the matrix production with the below script:
+The function `rbiom::bdiv_matrix()` can calculate many different many different beta diversity distances.
+Additionally, the output is a matrix which we need for our ordination step later on.
+We'll calculate weighted Unifrac distances by specifying the parameter `bdiv="weighted_unifrac"`.
 
-```{R, eval=FALSE}
+[`rbiom::bdiv_matrix()` manual page](https://cmmr.github.io/rbiom/reference/bdiv_table.html)
+
+```{r,eval=FALSE}
 #Calculate weighted unifrac values
-unifrac_rbiom_microbiome <- as.matrix(
-  rbiom::unifrac(biom = phyloseq::otu_table(pseq),
-                 tree = phyloseq::phy_tree(pseq),
-                 weighted = TRUE))
+unifrac_rbiom_microbiome <- 
+    rbiom::bdiv_matrix(
+        biom = rbiom::as_rbiom(pseq),
+        bdiv="weighted_unifrac")
 #Check the first 6 rows and columns of the resulting distance matrix
-head(unifrac_rbiom_microbiome)
+unifrac_rbiom_microbiome[1:6,1:6]
 ```
 
 ## Vegan distances
@@ -1807,45 +1810,46 @@ The below code carries out __iterative rarefaction__ and produces an averaged __
 ```{R, eval = FALSE}
 #Loop to create iteration based rarefied weighted unifrac values
 
-#Create matrix to contain summed wunifrac beta diversity values
+#Create a matrix to contain the summed wunifrac beta diveristy values
 #In this case we'll run the first rarefied beta diversity analysis
 pseq_rarefy <- phyloseq::rarefy_even_depth(
-  pseq,
-  sample.size = rarefaction_size,
-  rngseed = rngseed_vec[1],
-  verbose = FALSE)
-#wunifrac beta diversity
-beta_df_sum <- as.matrix(
-  rbiom::unifrac(
-    biom = phyloseq::otu_table(pseq_rarefy),
-    tree = phyloseq::phy_tree(pseq_rarefy),
-    weighted = TRUE))
-
-#Loop through 2 to the number of iterations
-for (i in 2:rarefaction_iters){
-  #Rarefaction
-  pseq_rarefy <- phyloseq::rarefy_even_depth(
     pseq,
     sample.size = rarefaction_size,
-    rngseed = rngseed_vec[i],
-    verbose = FALSE)
-  #Beta diversity
-  beta_df <- as.matrix(
-    rbiom::unifrac(
-      biom = phyloseq::otu_table(pseq_rarefy),
-      tree = phyloseq::phy_tree(pseq_rarefy),
-      weighted = TRUE))
-  #Add/sum the new data frame values to the sum data frame
-  beta_df_sum <- beta_df_sum + beta_df
+    rngseed = rngseed_vec[1],
+    verbose = FALSE
+)
+#wunifrac beta diversity
+beta_df_sum <-
+    rbiom::bdiv_matrix(
+        biom = rbiom::as_rbiom(pseq_rarefy),
+        bdiv="weighted_unifrac")
+
+#Loop through 2 to the number of rarefaction iterations
+for (i in 2:rarefaction_iters){
+    #Rarefaction
+    pseq_rarefy <- phyloseq::rarefy_even_depth(
+        pseq,
+        sample.size = rarefaction_size,
+        rngseed = rngseed_vec[i],
+        verbose = FALSE
+    )
+    #Beta diversity
+    beta_df <-
+        rbiom::bdiv_matrix(
+            biom = rbiom::as_rbiom(pseq_rarefy),
+            bdiv="weighted_unifrac")
+    #Add/sum the new data frame values to the sum data frame
+    beta_df_sum <-  beta_df_sum + beta_df
 }
 #Divide by number of rarefaction iterations to get average
 beta_df_mean <- beta_df_sum / rarefaction_iters
-#Save beta mean data frame
+#Save beta mean dataframe
 save(beta_df_mean, file = "wunifrac_df_mean.RData")
-#View first 6 rows and columns of matrix
+#See first 6 rows and columns of matrix
 beta_df_mean[1:6,1:6]
-#Remove unneeded objects
+#Remove created objects
 rm(beta_df_sum, beta_df_mean, pseq_rarefy)
+
 ```
 
 `r hide("verbose = FALSE option")`
@@ -2660,15 +2664,18 @@ pseq_rarefy <- phyloseq::rarefy_even_depth(
 #Alpha diversity
 alpha_df_sum <- microbiome::alpha(pseq_rarefy, index= "all")
 #Beta diveristy values
-#Objects from phyloseq object
+#otu_df for non phylogenetic distances
 otu_df <- phyloseq::otu_table(pseq_rarefy)
-phylo_tree <- phyloseq::phy_tree(pseq_rarefy)
+#Biom object from phyloseq object
+biom_rarefy <- rbiom::as_rbiom(pseq_rarefy)
 #Weighted unifrac beta diversity
-wunifrac_df_sum <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
-                                  weighted = TRUE) |> as.matrix()
+wunifrac_df_sum <- rbiom::bdiv_matrix(
+    biom = biom_rarefy,
+    bdiv="weighted_unifrac")
 #Unweighted wunifrac beta diversity
-uwunifrac_df_sum <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
-                                   weighted = FALSE) |> as.matrix()
+uwunifrac_df_sum <- rbiom::bdiv_matrix(
+    biom = biom_rarefy,
+    bdiv="unweighted_unifrac")
 #Bray-curtis
 bray_df_sum <- vegan::vegdist(x = t(otu_df), method = "bray") |> as.matrix()
 #Jaccard
@@ -2687,16 +2694,19 @@ for (i in 2:rarefaction_iters){
     #Below we assign all beta diversity values to beta_df 
     # then add this to the appropriate sum dafa frame (e.g. wunifrac_df_sum)
     #This is to limit number of objects saved in env at one time
-    #Objects from phyloseq object
+    #otu_df for non phylogenetic distances
     otu_df <- phyloseq::otu_table(pseq_rarefy)
-    phylo_tree <- phyloseq::phy_tree(pseq_rarefy)
+    #Biom object from phyloseq object
+    biom_rarefy <- rbiom::as_rbiom(pseq_rarefy)
     #Weighted unifrac beta diversity
-    beta_df <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
-                              weighted = TRUE) |> as.matrix()
+    beta_df <- rbiom::bdiv_matrix(
+        biom = biom_rarefy,
+        bdiv="weighted_unifrac")
     wunifrac_df_sum <-  wunifrac_df_sum + beta_df
     #Unweighted unifrac beta diversity
-    beta_df <- rbiom::unifrac(biom = otu_df, tree = phylo_tree,
-            weighted = FALSE) |> as.matrix()
+    beta_df <- rbiom::bdiv_matrix(
+        biom = biom_rarefy,
+        bdiv="unweighted_unifrac")
     uwunifrac_df_sum <-  uwunifrac_df_sum + beta_df
     #Bray-curtis
     beta_df <- vegan::vegdist(x = t(otu_df), method = "bray") |> as.matrix()
@@ -2726,6 +2736,7 @@ save(jaccard_df_mean, file = "jaccard_df_mean.RData")
 
 #Remove unneeded objects
 rm(pseq, alpha_df_sum, alpha_df)
+
 ```
 
 ### Phylogenetically aware metrics excluded
