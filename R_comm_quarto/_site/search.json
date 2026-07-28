@@ -1,0 +1,46 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "A lot of different analyses and visualisations can be carried out with community data. This includes taxonomy and functional abundance tables from 16S rRNA and Shotgun metagenomics analysis. This workshop will teach you how to use R with the phyloseq R object; a specialised object containing an abundance, taxonomy, and metadata table.\nThe workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. Supplementary materials will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.\nThe sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. This book contains theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.",
+    "crumbs": [
+      "Intro",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "Introduction",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\n\n\nAt the end of the course learners will be able to:\n\nImport QIIME2 artifacts into a phyloseq object\nSummarise the abundance and taxonomy contents of a phyloseq object\nPreprocess the abundance and taxonomy tables\n\nThis will include transforming sample counts, and subsetting samples & taxonomies\n\nUnderstand the grammar of graphics (ggplot2) used by phyloseq and related packages\nCarry out alpha & beta diversity, and biomarker detection with the phyloseq object\nProduce and customise publication quality plots\nRun statistical analysis",
+    "crumbs": [
+      "Intro",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#extra-materials",
+    "href": "index.html#extra-materials",
+    "title": "Introduction",
+    "section": "Extra materials",
+    "text": "Extra materials",
+    "crumbs": [
+      "Intro",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#start",
+    "href": "index.html#start",
+    "title": "Introduction",
+    "section": "Start",
+    "text": "Start\n\n\n\nPlease start in the overview section and read through the website in order.",
+    "crumbs": [
+      "Intro",
+      "Introduction"
+    ]
+  }
+]

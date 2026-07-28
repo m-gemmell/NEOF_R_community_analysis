@@ -1,0 +1,53 @@
+---
+title: "Introduction"
+---
+
+<center>
+![](/images/R_community.png){style="width:200px; background: white; border-radius:5px"}
+</center>
+
+A lot of different analyses and visualisations can be carried out with community data. This includes taxonomy and functional abundance tables from 16S rRNA and Shotgun metagenomics analysis. This workshop will teach you how to use R with the `phyloseq` R object; a specialised object containing an abundance, taxonomy, and metadata table.
+
+The workshop will use a 16S dataset that has been pre-analysed with QIIME2 to create the ASV table, taxonomy table, and phylogenetic tree. [Supplementary materials](https://neof-workshops.github.io/R_community_whqkt8/Supplemental/) will show how to import Bracken shotgun metagenomic abundance data and generic abundance data frames into a phyloseq object.
+
+The sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. This book contains theory and practice code. This will be reinforced with multiple choice questions that will recap concepts and aid in interpretation of results.
+
+## Learning outcomes
+<center>
+![](/images/chalkboard.png){style="width:200px; background: white; border-radius:5px"}
+</center>
+
+At the end of the course learners will be able to:
+
+-   Import QIIME2 artifacts into a phyloseq object
+-   Summarise the abundance and taxonomy contents of a phyloseq object
+-   Preprocess the abundance and taxonomy tables
+    -   This will include transforming sample counts, and subsetting samples & taxonomies
+-   Understand the grammar of graphics (ggplot2) used by phyloseq and related packages
+-   Carry out alpha & beta diversity, and biomarker detection with the phyloseq object
+-   Produce and customise publication quality plots
+-   Run statistical analysis
+
+## Extra materials
+
+## Start
+<center>
+![](/images/overview.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
+</center>
+
+Please start in the [overview section](/overview/shotgun_metagenomics.qmd) and read through the website in order.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+#Note, &#013; is a newline entity (\n does not work)
+tippy::tippy_this(elementId = "kmer", 
+                  tooltip = "K-mers are substrings of length k within a DNA/RNA sequence. 
+                              The 1-mers of 'AGCT' are 'A', 'G', 'C', and 'T'. 
+                              Its 2-mers are 'AG', 'GC' and 'CT'. 
+                              Its 3-mers are 'AGC' and GCT'. 
+                              Its 4-mer is 'AGCT'.",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "mag", 
+                  tooltip = "Metagenome-Assembled Genome",
+                  arrow = TRUE, placement = "bottom")
+```

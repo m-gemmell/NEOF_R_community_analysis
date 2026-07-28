@@ -1,0 +1,15 @@
+{
+  "hash": "327d5b10e42796a7719b9faa52429072",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n\n# Taxonomic profiling {#taxprofile}\n<center>\n![](/images/classification.png){style=\"width:300px; background:white; border-radius:5px\"}\n</center>\n\nThere are a number of methods for determining the species composition of a metagenomic dataset, but for the purposes of this practical we will use `Kraken2` & `Bracken` (Bayesian Reestimation of Abundance with KrakEN).  `Kraken2` classifies short DNA with taxonomic labels and is frequently used for metagenomic studies. `Bracken` uses the taxonomic labels assigned by `Kraken2` to compute the abundance of species in a set of DNA sequences.\n\nWe will utilise `Krona` to create interactive tiered pie charts from the `Kraken2` output.\nFinally, we will carry out biomarker detection of the `Braken2` restimated baundances with `LEfSe`.\n\n\nFirst, we'll make a new directory for it and move into it, after returning home:\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncd ..\nmkdir 3-Taxonomy\ncd 3-Taxonomy\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "4116b951509067f1cc6d6549b7900472",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# str_count\n\n<center>\n![](images/stringr_str_count.png){style=\"width:200px\"}\n</center>\n\nThe function `stringr::str_counts()` counts the number of matches to a pattern/regular expression within each element of a string vector.\n\n[Tidyverse reference page](https://stringr.tidyverse.org/reference/str_count.html)\n\n## Count\n\nPrior to using the function create a vector of strings.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create vector of strings\nvec <- c(\"Rose\", \"Thistle\", \"Leek\", \"Shamrock\")\n#View vector\nvec\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Rose\"     \"Thistle\"  \"Leek\"     \"Shamrock\"\n```\n\n\n:::\n:::\n\n\nYou can specify a string pattern to be used for detection.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Count instances of s\nvec |> stringr::str_count(\"s\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 1 1 0 0\n```\n\n\n:::\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Count instances of e\nvec |> stringr::str_count(\"e\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 1 1 2 0\n```\n\n\n:::\n:::\n\n\nThe function is case-sensitive.\n\"R\" will detect \"Rose\" but not \"shamrock\".\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Detect the letter R\nvec |> stringr::str_count(\"R\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 1 0 0 0\n```\n\n\n:::\n:::\n\n\nThe function works with various regular expressions.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Detect the letter R or r\nvec |> stringr::str_count(\"[Rr]\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 1 0 0 1\n```\n\n\n:::\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Count number of vowels\nvec |> stringr::str_count(\"[aeiou]\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2 2 2 2\n```\n\n\n:::\n:::\n\n\nCount number of letters between A-M (inclusive), lower or upper case.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Count number of vowels\nvec |> stringr::str_count(\"[A-Ma-m]\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 1 4 4 5\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

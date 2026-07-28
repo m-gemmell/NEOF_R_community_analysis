@@ -1,0 +1,19 @@
+{
+  "hash": "935b0ee42992175a4a7c91d9c9847bf2",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n\n# Metagenome binning {#binning}\n<center>\n![](/images/yarn_binning.png){style=\"width:400px; background: white; border-radius:5px; border: white solid 5px\"}\n</center>\n\nA metagenome assembly consists of contigs from many different genomes. At this stage we don't know which contigs are from which species. We could try to taxonomically classify each contig but there are 2 problems with this approach:\n\n1. Some contigs may be misclassified which can lead to multiple contigs from the same genome/organism being classified as various taxa\n2. Databases are incomplete and so some contigs will not be classified at all (microbial dark matter)\n\nTo alleviate these issues genomic binning can be carried out. This will cluster contigs into bins based on:\n\n- __Depth__: Contigs with similar depth are more likely to be from the same genome\n- __Composition__: Contigs with similar GC content are more likely to belong to the same genome\n\nGenomic binning has been used to discover many new genomes. Additionally, it makes downstream analyses quicker as the downstream steps will be carried out on the sets of bins rather than on one large metagenome assembly.\n\nBinning produces \"bins\" of contigs of various quality (e.g. draft, complete). These bins are also known as <u id='mag'>MAGs</u> . In other words a <u id='mag'>MAG</u>  is a single genome assembly that was assembled with other genomes in a metagenome assembly but later separated from the other assemblies. The term <u id='mag'>MAGs</u>  has been adopted by the GSC (Genomics Standards Consortium).\n\nIt is recommended to ensure you do not have a poor quality metagenome assembly. Binning requires contigs of good length and good coverage. Extremely low coverage and very short contigs will be excluded from binning.\n\n\n::: {.cell}\n::: {.cell-output-display}\n\n```{=html}\n<span class=\"tippy html-widget html-fill-item\" height=\"382px\" id=\"htmlwidget-7739bddad743f013a77d\" width=\"100%\"></span>\n<script type=\"application/json\" data-for=\"htmlwidget-7739bddad743f013a77d\">{\"x\":{\"element\":\"mag\",\"opts\":{\"content\":\"Metagenome-Assembled Genome\",\"arrow\":true,\"placement\":\"bottom\"}},\"evals\":[],\"jsHooks\":[]}</script>\n```\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../site_libs/htmltools-fill-0.5.9/fill.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/htmlwidgets-1.6.4/htmlwidgets.js\"></script>\n<link href=\"../site_libs/tippyjs-3.2.0/themes/google.css\" rel=\"stylesheet\" />\n<link href=\"../site_libs/tippyjs-3.2.0/themes/light-border.css\" rel=\"stylesheet\" />\n<link href=\"../site_libs/tippyjs-3.2.0/themes/light.css\" rel=\"stylesheet\" />\n<link href=\"../site_libs/tippyjs-3.2.0/themes/translucent.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/tippyjs-3.2.0/tippy.all.min.js\"></script>\n<script src=\"../site_libs/tippy-binding-0.1.0/tippy.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

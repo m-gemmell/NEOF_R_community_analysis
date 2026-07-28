@@ -1,0 +1,58 @@
+/*-- scss:defaults --*/
+
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Lexend&display=swap');;
+
+// Colors
+$ibm-blue: #648fff;
+$ibm-purple: #785ef0;
+$ibm-maroon: #dc267f;
+$ibm-orange: #fe6100;
+$ibm-yellow: #ffb000;
+$neof-green: #00af37;
+$neof-grey: #333e47;
+
+// Base document colors
+$navbar-bg: $neof-grey;
+$navbar-hl: $neof-green; // highlight color when hovering over navbar links
+$footer-bg: $neof-grey; // footer
+$sidebar-hl: $neof-green;
+
+/*-- scss:rules --*/
+.navbar-logo {
+  max-height: 50px;
+}
+
+body {
+  font-family: "Lexend";
+}
+h1 {
+  font-family: "Lexend";
+  text-align: center;
+}
+h2, h3, h4, h5, h6 {
+  font-family: "Lexend";
+}
+monofont {
+  font-family: "Fira+Mono";
+}
+
+.tippy-tooltip {
+  font-size: 16px;
+  padding: 3px 5px;
+}
+ 
+// Embed videos
+.container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+}
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "aa7a7029e9d9beff7e5cb7c1c9d5594d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Distinct\"\n---\n\n<center>\n![](images/dplyr_distinct.png){style=\"width:200px\"}\n</center>\n\nThe `dplyr::distinct()` function extracts unique/distinct rows from a __tibble__.\n\n[Tidyverse reference page](https://dplyr.tidyverse.org//reference/distinct.html)\n\n## Dataset\n\nFor demonstration we’ll load and subset the `knz_bison` data from the [lterdatasampler package](/datasets/lterdatasampler.qmd) (hyperlink includes install instructions). This time we will duplicate rows.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Load package\nlibrary(\"lterdatasampler\")\n#Subset of knz_bison tibble for demonstration\nbison_tbl <- lterdatasampler::knz_bison |>\n    #Convert to tibble\n    tibble::as_tibble() |>\n    #Slice rows to get 1:5 duplicated once\n    dplyr::slice(c(1,1,2,2,3,3,4,4,5,5))\nbison_tbl\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 10 × 8\n   data_code rec_year rec_month rec_day animal_code animal_sex animal_weight\n   <chr>        <dbl>     <dbl>   <dbl> <chr>       <chr>              <dbl>\n 1 CBH01         1994        11       8 813         F                    890\n 2 CBH01         1994        11       8 813         F                    890\n 3 CBH01         1994        11       8 834         F                   1074\n 4 CBH01         1994        11       8 834         F                   1074\n 5 CBH01         1994        11       8 B-301       F                   1060\n 6 CBH01         1994        11       8 B-301       F                   1060\n 7 CBH01         1994        11       8 B-402       F                    989\n 8 CBH01         1994        11       8 B-402       F                    989\n 9 CBH01         1994        11       8 B-403       F                   1062\n10 CBH01         1994        11       8 B-403       F                   1062\n# ℹ 1 more variable: animal_yob <dbl>\n```\n\n\n:::\n:::\n\n\n## Extract unique rows\n\nExtract the unique rows.\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndplyr::distinct(bison_tbl)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 5 × 8\n  data_code rec_year rec_month rec_day animal_code animal_sex animal_weight\n  <chr>        <dbl>     <dbl>   <dbl> <chr>       <chr>              <dbl>\n1 CBH01         1994        11       8 813         F                    890\n2 CBH01         1994        11       8 834         F                   1074\n3 CBH01         1994        11       8 B-301       F                   1060\n4 CBH01         1994        11       8 B-402       F                    989\n5 CBH01         1994        11       8 B-403       F                   1062\n# ℹ 1 more variable: animal_yob <dbl>\n```\n\n\n:::\n:::\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

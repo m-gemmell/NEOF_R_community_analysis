@@ -1,0 +1,15 @@
+{
+  "hash": "d92a9336c2a97313bec00744bf282e1c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# str_subset\n\n<center>\n![](images/stringr_str_subset.png){style=\"width:200px\"}\n</center>\n\nThe function `stringr::str_subset()` returns the element of a vector that match a pattern/regular expression.\n\n[Tidyverse reference page](https://stringr.tidyverse.org/reference/str_subset.html)\n\n## String vector\n\nPrior to using the function create a vector of strings.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create vector of strings\nvec <- c(\"Rose\", \"Thistle\", \"Leek\", \"Shamrock\")\n#View vector\nvec\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Rose\"     \"Thistle\"  \"Leek\"     \"Shamrock\"\n```\n\n\n:::\n:::\n\n\n## Basic searches\n\nYou can specify a string pattern to be used for detection.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Subset elements containing letter a\nvec |> stringr::str_subset(\"a\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Shamrock\"\n```\n\n\n:::\n:::\n\n\nThe function is case-sensitive.\n\"R\" will detect \"Rose\" but not \"shamrock\".\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Subset elements containing the letter R\nvec |> stringr::str_subset(\"R\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Rose\"\n```\n\n\n:::\n:::\n\n\nYou can use various regular expressions.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Subset elements containing ending with k \nvec |> stringr::str_subset(\"k$\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Leek\"     \"Shamrock\"\n```\n\n\n:::\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Subset elements containing R or r\nvec |> stringr::str_subset(\"[Rr]\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Rose\"     \"Shamrock\"\n```\n\n\n:::\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Subset elements containing s that has a vowel before it\nvec |> stringr::str_subset(\"[aeiou]s\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Rose\"    \"Thistle\"\n```\n\n\n:::\n:::\n\n\n## Negate\n\nYou carry out an inverted search (i.e. it returns FALSE if it does match) with the option `negate=TRUE`.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Invert subset elements containing letter s that has a vowel before it\nvec |> stringr::str_subset(\"[aeiou]s\", negate=TRUE)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Leek\"     \"Shamrock\"\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

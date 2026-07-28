@@ -1,0 +1,15 @@
+{
+  "hash": "e553f6341efd3c1706a011bdd496378a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# str_flatten\n\n<center>\n![](images/stringr_str_flatten.png){style=\"width:200px\"}\n</center>\n\nThe function `stringr::str_flatten()` allows you to create a single string from a character vector.\n\n[Tidyverse reference page](https://stringr.tidyverse.org/reference/str_flatten.html)\n\n## Flatten\n\nBy default `str_flatten()` will add no spaces/separators when flattening.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create vector\nvec <- c(\"A\", \"C\", \"G\", \"T\")\n#Flatten vector\nvec |> stringr::str_flatten()\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"ACGT\"\n```\n\n\n:::\n:::\n\n\nYou can pipe the output for [`str_c()`](/stringr/str_c.qmd) to `str_flatten()`.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create vectors\nvec1 <- c(\"a\", \"b\", \"c\")\nvec2 <- c(\"x\", \"y\", \"z\")\n#Combine then flatten\nstringr::str_c(vec1, vec2) |> stringr::str_flatten()\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"axbycz\"\n```\n\n\n:::\n:::\n\n\n## Collapse and last\n\nThe individual vector elements can be separated in the out string with the `collapse=` option.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create vector\nvec <- c(\"A\", \"C\", \"G\", \"T\")\n#Flatten with , separator\nstringr::str_flatten(vec, collapse = \",\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"A,C,G,T\"\n```\n\n\n:::\n:::\n\n\nYou can specify a final separator with `last =`.\nAdditionally, separators can contain as many characters as you would like.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nstringr::str_flatten(vec, collapse = \", \", last = \", and \")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"A, C, G, and T\"\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

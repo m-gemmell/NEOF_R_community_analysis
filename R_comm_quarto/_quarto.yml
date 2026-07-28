@@ -1,0 +1,70 @@
+project:
+  type: website
+editor:
+  render-on-save: true
+knitr: true
+website:
+  bread-crumbs: false
+  favicon: /images/NEOF_favicon.png
+  page-navigation: true
+  title: NEOF R community analysis
+  description: R community analysis workshop by NEOF
+  navbar:
+    title: R comm
+    logo: "images/NEOF_logo_no_background.png"
+    collapse-below: lg
+    left:
+    - text: Intro
+      href: index.qmd
+    right:
+    - icon: house-fill
+      href: https://neof.org.uk/training/
+      aria-label: NEOF website
+    - icon: linkedin
+      href: https://www.linkedin.com/in/training-neof/
+      aria-label: LinkedIn
+    - icon: bluesky
+      href: https://bsky.app/profile/nerc-eof.bsky.social
+      aria-label: bluesky
+  page-footer:
+    left: |
+      [![](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png){fig-alt="CC BY-SA 4.0" height=30px}](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+    center: |
+      [![](/images/NEOF_rounded_corners.png){fig-alt="NEOF" height=60px}](https://neof.org.uk/)
+  sidebar:
+  - id: Intro
+    title: Intro
+    style: floating
+    align: left
+    contents:
+    - href: index.qmd
+format:
+  html:
+    engine: knitr
+    fig-width: 10.2
+    fig-height: 6
+###Page size
+    grid:
+####Width of sidebar
+      sidebar-width: 200px
+####Max width of main page
+      body-width: 1200px
+####Width of empty margin at right of toc
+#### needed to give room for long headers
+      margin-width: 150px
+####Space separating body from sidebar and toc  
+      gutter-width: 10px
+    css: include/webex.css
+    include-after-body: include/webex.js
+###Themes
+###HTML themes: https://quarto.org/docs/output-formats/html-themes.html
+    theme:
+####Dark theme with scss file
+      dark: [darkly, styles_dark.scss]
+####Light theme with scss
+      light: [styles_light.scss]
+    embed-resources: false
+    toc: true
+###Code highlighting style
+### a11y is accessible and auto switches between dark and light mode
+    highlight-style: a11y

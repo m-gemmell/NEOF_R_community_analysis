@@ -1,0 +1,15 @@
+{
+  "hash": "e845fc93647498678adc8aba4687636c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n\n# Startup & mamba\n<center>\n![](/images/mamba_logo.png){style=\"width:200px; border-radius:5px\"}\n</center>\n\nDuring this practical you will use a number of installed programs and scripts. To ensure that the system knows where to look for the scripts, run the following command (ensure this starts with a full stop and a space `. `):\n\n\n::: {.cell}\n\n```{.bash .cell-code}\n. useshotgun\n```\n:::\n\n\nThe `use` scripts in this workshop are custom scripts that set up `mamba` environments. You can look at the above script with `less /usr/local/bin/useshotgun` if you are interested in its contents.\n\nAlso, there’s a chance you’re currently not in your home directory, so let’s make sure you are with the following command:\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncd ~\n```\n:::\n\n\n## Next section\n<center>\n![](/images/usb_stick.png){style=\"width:150px; background: white; border-radius:5px; border: white solid 5px\"}\n</center>\n\nThe next section is the [Data & QC section](/data_and_qc/raw_data.qmd).",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

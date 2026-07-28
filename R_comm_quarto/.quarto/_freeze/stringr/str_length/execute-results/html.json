@@ -1,0 +1,15 @@
+{
+  "hash": "805a054ebc8a8dc1db25d98e158d8550",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# str_length\n\n<center>\n![](images/stringr_str_length.png){style=\"width:200px\"}\n</center>\n\nThe function `stringr::str_length()` allows you to determine the length of a string.\nThis will give you the number of characters each string has.\n\n[Tidyverse reference page](https://stringr.tidyverse.org/reference/str_length.html)\n\n## str_length\n\nFirst we'll count the number of characters in one string (a scalar).\n\n\n::: {.cell}\n\n```{.r .cell-code}\nstringr::str_length(\"abc\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 3\n```\n\n\n:::\n:::\n\n\nNext we can count the number of characters within each string of a vector.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create a vector of strings\nvec <- c(\"abc\", \"defghijk\", \"lmnopqrstuvwxyz\")\n#Count with a vector\nstringr::str_length(vec)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1]  3  8 15\n```\n\n\n:::\n:::\n\n\n## White spaces\n\nWhat about counting white spaces such as spaces (`\" \"`), tabs (`\\t`), and new spaces (`\\n`)?\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create a vector of strings\nvec <- c(\"gataac\", \"gat aac\", \"gat\\taac\", \"gat\\naac\")\n```\n:::\n\n\nView the strings with [`stringr::str_view()`](/stringr/str_view.qmd).\n\n::: {.cell}\n\n```{.r .cell-code}\n#View the strings\nstringr::str_view(vec)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] │ gataac\n[2] │ gat aac\n[3] │ gat{\\t}aac\n[4] │ gat\n    │ aac\n```\n\n\n:::\n:::\n\n\nCount the characters in the strings.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Count characters of strings\nstringr::str_length(vec)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 6 7 7 7\n```\n\n\n:::\n:::\n\n\nYou'll notice that these three white spaces count as 1 character.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

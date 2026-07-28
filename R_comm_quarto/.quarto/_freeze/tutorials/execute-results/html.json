@@ -1,0 +1,15 @@
+{
+  "hash": "8e9290ea661763049b45f3f6372c181e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Tutorials\n\nThere are various tutorials to run through for different sections of this website.\nBelow shows you the order and how to run each tutorial.\n\nImportant notes about these tutorials:\n\n- Progress is saved: If you close the tutorial and reopen it on the same computer & RStudio it will continue from where you left off.\n- Run in browser: You can click on the \"Open in Browser\" button at the top of the RStudio window with the tutorial to open the tutorial in a web browser.\n- Split screen: The intended way to run through the tutorials is with the tutorial on one half of your screen and this website at the relvant page on the other half.\n\n## Tibble\n\nThe first tutorial is on __Tibbles__.\n\nTo run the tutorial run the below [`learnr`](https://rstudio.github.io/learnr/) command.\n\n__Note:__ Ensure you have followed the [install directions before this](learnr.qmd).\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlearnr::run_tutorial(\"tibbles\", package = \"neoftidytutorials\")\n```\n:::\n\n\nWhilst running through the tutorial refer to the [Tibble section of this website](/tibble/tibble.qmd).\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

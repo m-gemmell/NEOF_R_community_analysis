@@ -1,0 +1,15 @@
+{
+  "hash": "987cf7a42528f7204aa3e18eca3d3cbf",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# str_trunc\n\nThe function `stringr::str_trunc()` allows you to set the maximum number of characters strings can contain.\nStrings that are longer will be truncated to the specified length.\n\n[Tidyverse reference page](https://stringr.tidyverse.org/reference/str_flatten.html)\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create vector of strings with varying lengths\nvec <- c(\"1\", \"to\",\"four\", \"_eight_\")\nvec |> stringr::str_view()\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] │ 1\n[2] │ to\n[3] │ four\n[4] │ _eight_\n```\n\n\n:::\n:::\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Trunc to length of 3\nvec |> stringr::str_trunc(3) |> stringr::str_view()\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] │ 1\n[2] │ to\n[3] │ ...\n[4] │ ...\n```\n\n\n:::\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

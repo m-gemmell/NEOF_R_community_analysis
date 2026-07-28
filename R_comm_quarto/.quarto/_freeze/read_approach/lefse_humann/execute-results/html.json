@@ -1,0 +1,15 @@
+{
+  "hash": "df1a084e97eb936274664f44e62831e2",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n\n# LEfSe {#humann_lefse}\n<center>\n![](/images/lefse_flip.png){style=\"width:150px; background: white; border-radius:5px; border: white solid 5px\"}\n</center>\n\nFor the final part of this section, we will see if there are any statistically significant differences between the two sample groups. \nThere are several ways in which this can be achieved but we will use `LEfSe` again.\n\n**Task**: Go back to your `shotgun_meta` terminal (or create a new terminal and use `. useshotgun`). \nThen change directory to `4-FunctionalProfiling`.\n\nThankfully we already formatted the file to work with `LEfSe` when we formatted it for `hclust2`.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\n#LEfSe format\nlefse_format_input.py \\\ndiet_unstratified.relab.comp.tsv \\\ndiet_unstratified.relab.comp.lefse \\\n-c 2 -u 1 -o 1000000\n#Run LEfSe\nlefse_run.py \\\ndiet_unstratified.relab.comp.lefse \\\ndiet_unstratified.relab.comp.lefse.out\n#Produce LEfSe plot\nlefse_plot_res.py \\\n--dpi 200 \\\n--format png \\\n#Below options added to increase max length of feature string\n--max_feature_len 200 \\\ndiet_unstratified.relab.comp.lefse.out \\\ndiet_unstratified.relab.comp.lefse.png\n#View plot\nfirefox diet_unstratified.relab.comp.lefse.png\n```\n:::\n\n\nLook at the output and see what pathways count as biomarkers for the 2 groups.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "hash": "0463d11387eb7102c39dbb0065e2359a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n# Metagenome assembly {#metagenomeassembly}\n<center>\n![](/images/jigsaw.png){style=\"width:250px; background: white; border-radius:5px\"}\n</center>\n\nSo far we have directly analysed the read data itself which is perfectly fine for taxonomic profiling and for certain methods of functional profiling. However, Illumina reads are generally short and therefore can not provide us with much data on larger constructs that are in the metagenomic samples, e.g. genes. While it is possible to predict from which gene a sequence read might originate, the short nature of the query can sometimes lead to ambiguous results.\n\nAdditionally, depending on the application it can become computationally intensive to analyse large numbers of reads. Here, we are only using samples with 1 million reads. Some metagenome samples consist of 50-100 million+ read pairs. If such a sample belonged to a set of 100 samples, that would be up to 10 billion read pairs, or 2 trillion bases of sequence data, with many of these being redundant.\n\nFor this reason, it is sometimes advantageous to assemble the reads into contigs, using a meta-genome assembler. This has the dual effect of:\n\n-   Reducing the overall size of the data for analysis\n    - If a metagenome was sequenced at 50x depth, then by assembling it you could theoretically reduce the amount of sequence to analyse by 50-fold\n-   Increase the size of the fragments you will analyse\n    - This is the main advantage of an assembly, as the \\~100 bp reads can be pieced together to form 100,000 kb+ contigs\n    - These contigs will contain complete genes, operons and regulatory elements: Reconstructed genome sections\n\nHere, we will carry out a couple of assemblies on our dataset.\n\n## Mamba\n<center>\n![](/images/mamba_logo.png){style=\"width:200px; border-radius:5px\"}\n</center>\n\nWe will use the `shotgun_meta` conda environment so use a terminal where this is activated or open a new one and run `. useshotgun`.\n\n\n::: {.cell}\n::: {.cell-output-display}\n\n```{=html}\n<span class=\"tippy html-widget html-fill-item\" height=\"382px\" id=\"htmlwidget-072cfa4b8b930f9dab51\" width=\"100%\"></span>\n<script type=\"application/json\" data-for=\"htmlwidget-072cfa4b8b930f9dab51\">{\"x\":{\"element\":\"kmer\",\"opts\":{\"content\":\"Substrings of length k within a DNA/RNA sequence. \\n                              The 1-mers of 'AGCT' are 'A', 'G', 'C', and 'T'. \\n                              Its 2-mers are 'AG', 'GC' and 'CT'. \\n                              Its 3-mers are 'AGC' and GCT'. \\n                              Its 4-mer is 'AGCT'.\",\"arrow\":true,\"placement\":\"bottom\"}},\"evals\":[],\"jsHooks\":[]}</script>\n```\n\n:::\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../site_libs/htmltools-fill-0.5.9/fill.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/htmlwidgets-1.6.4/htmlwidgets.js\"></script>\n<link href=\"../site_libs/tippyjs-3.2.0/themes/google.css\" rel=\"stylesheet\" />\n<link href=\"../site_libs/tippyjs-3.2.0/themes/light-border.css\" rel=\"stylesheet\" />\n<link href=\"../site_libs/tippyjs-3.2.0/themes/light.css\" rel=\"stylesheet\" />\n<link href=\"../site_libs/tippyjs-3.2.0/themes/translucent.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/tippyjs-3.2.0/tippy.all.min.js\"></script>\n<script src=\"../site_libs/tippy-binding-0.1.0/tippy.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

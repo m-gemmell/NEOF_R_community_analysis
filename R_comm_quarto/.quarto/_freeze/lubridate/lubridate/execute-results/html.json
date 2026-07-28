@@ -1,0 +1,15 @@
+{
+  "hash": "c42e87fc5270e82d4883710d95012da4",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Lubridate\"\n---\n\n<center>\n![](../images/lubridate.png){style=\"width:150px\"}\n</center>\n\nLubridate is a useful package to manipulate the date class.\n\nIn development\n\n[lubridate homepage](https://lubridate.tidyverse.org/)\n\n\n::: {.cell}\n\n:::\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

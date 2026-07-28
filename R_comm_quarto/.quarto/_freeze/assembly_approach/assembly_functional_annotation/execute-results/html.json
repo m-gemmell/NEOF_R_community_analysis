@@ -1,0 +1,19 @@
+{
+  "hash": "90f3eb1d863eb5e28ff615a2e83ee522",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n\n# Assembly functional annotation {#funcanno}\n<center>\n![](/images/pathways.png){style=\"width:200px; background:white; border-radius:5px\"}\n</center>\n\nIn this section we will carry out carry out functional annotation of our <u id='mag'>MAGs</u>/bin/bins.\nThere are many different ways to carry this.\nIn this tutorial we will use 2 tools:\n\n- [Bakta](#bakta_chap): Annotation of Bacterial genomes and plasmids\n- [MinPath](#minpath_chap): Prediction of metabolic pathways\n  - Include MetaCyc and KEGG pathways\n\n## Mamba\n<center>\n![](/images/mamba_logo.png){style=\"width:200px; border-radius:5px\"}\n</center>\n\nGo back to your shotgun_meta terminal (or create a new one and use `. useshotgun`).\n\n## Taxonomic annotation {-}\n<center>\n![](/images/classification.png){style=\"width:150px; background:white; border-radius:5px\"}\n</center>\n\nTaxonomic annotation of bins can be carried out with `Kraken2`. As we have already done this for the reads and taxonomic results from read and assembly approaches have similar performances we will not cover it here.\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n\n```{=html}\n<span class=\"tippy html-widget html-fill-item\" height=\"382px\" id=\"htmlwidget-fda07f5f5d377a4e09f6\" width=\"100%\"></span>\n<script type=\"application/json\" data-for=\"htmlwidget-fda07f5f5d377a4e09f6\">{\"x\":{\"element\":\"mag\",\"opts\":{\"content\":\"Metagenome-Assembled Genome\",\"arrow\":true,\"placement\":\"bottom\"}},\"evals\":[],\"jsHooks\":[]}</script>\n```\n\n:::\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../site_libs/htmltools-fill-0.5.9/fill.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/htmlwidgets-1.6.4/htmlwidgets.js\"></script>\n<link href=\"../site_libs/tippyjs-3.2.0/themes/google.css\" rel=\"stylesheet\" />\n<link href=\"../site_libs/tippyjs-3.2.0/themes/light-border.css\" rel=\"stylesheet\" />\n<link href=\"../site_libs/tippyjs-3.2.0/themes/light.css\" rel=\"stylesheet\" />\n<link href=\"../site_libs/tippyjs-3.2.0/themes/translucent.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/tippyjs-3.2.0/tippy.all.min.js\"></script>\n<script src=\"../site_libs/tippy-binding-0.1.0/tippy.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

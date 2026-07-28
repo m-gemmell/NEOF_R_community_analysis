@@ -1,0 +1,15 @@
+{
+  "hash": "3103bfa01537e32d3e879fe936a19f43",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Tibble\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n<center>\n![](../images/tibble.png){style=\"width:150px\"}\n</center>\n\n## Overview\n\nA __tibble__ (`tbl`) is a reimagining of the __data.frame__ (`df`) object. They are described as __data.frames__ that are:\n\n- __Lazy__: They don't change variable names and partial matching does not work\n- __Surly__: They complain more such as when a variable does not exist\n\nOne important note is that __tibbles__ don't have row names.\n\nAlthough __tibbles__ have advantages compared to __data.frames__ they are not always more suited to the task than __data.frames__. \nHowever, __tibbles__ are generally always preferred over __data.frames__ when using `tidyverse` packages.\n\n[Tibble homepage](https://tibble.tidyverse.org/)\n\n## Sections\n\n<div class=\"hexdplyrcolumnstop\">\n  <p><a href=\"/tibble/creating_tibbles.qmd\">\n  <img src=\"images/tibble_create.png\" width=\"150px\">\n  </a></p>\n\n  <p><a href=\"/tibble/structure.qmd\">\n  <img src=\"images/tibble_structure.png\" width=\"150px\">\n  </a></p>\n\n  <p><a href=\"/tibble/subsetting.qmd\">\n  <img src=\"images/tibble_subset.png\" width=\"150px\" class=\"hexcollast\">\n  </a></p>\n</div>\n\n\n<div class=\"hextblrowbottom\">\n  <p><a href=\"/tibble/printing.qmd\">\n  <img src=\"images/tibble_print.png\" width=\"150px\">\n  </a></p>\n\n  <p><a href=\"/tibble/add_rows_and_columns.qmd\">\n  <img src=\"images/tibble_add_rows_columns.png\" width=\"150px\">\n  </a></p>\n\n</div>\n\nThe sections in this book are:\n\n- [Creating tibbles](/tibble/creating_tibbles.qmd): Creating __tibbles__ with code, data.frame coercion, and reading in from files\n- [Structure](/tibble/structure.qmd): Demonstrates the sturcture/format of a __tibble__\n- [Subsetting](/tibble/subsetting.qmd): Subsetting __tibbles__ and the difference between using `$` and `[]`\n- [Printing or viewing](/tibble/printing.qmd): Unique features of viewing __tibbles__\n- [Adding rows and columns](/tibble/add_rows_and_columns.qmd): How to add new rows/columns and bind tibbles together\n\n## Tibble example\n\nBelow is an example of:\n\n- Creating a basic tibble\n- Printing the tibble\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create a tibble\ntbl <- tibble::tibble(Day = c(\"Mon\", \"Tue\", \"Wed\"),\n              Hawks = c(3,7,2),\n              Pigeons = c(52,21,61),\n              Starlings = c(1,2,1))\n#Print tibble\ntbl\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 3 × 4\n  Day   Hawks Pigeons Starlings\n  <chr> <dbl>   <dbl>     <dbl>\n1 Mon       3      52         1\n2 Tue       7      21         2\n3 Wed       2      61         1\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

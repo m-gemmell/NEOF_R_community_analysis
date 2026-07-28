@@ -1,0 +1,15 @@
+{
+  "hash": "b017a8f73675ebebbd4bb62c72bfe5eb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# str_detect\n\n<center>\n![](images/stringr_str_detect.png){style=\"width:200px\"}\n</center>\n\nThe function `stringr::str_detect()` detects the presence of a pattern/regular expression within each element of a string vector.\nIt returns a logical vector with `TRUE` for matches and `FALSE` otherwise.\n\n[Tidyverse reference page](https://stringr.tidyverse.org/reference/str_detect.html)\n\n## String vector\n\nPrior to using the function create a vector of strings.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create vector of strings\nvec <- c(\"Rose\", \"Thistle\", \"Leek\", \"Shamrock\")\n#View vector\nvec\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"Rose\"     \"Thistle\"  \"Leek\"     \"Shamrock\"\n```\n\n\n:::\n:::\n\n\n## Basic searches\n\nYou can specify a string pattern to be used for detection.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Detect the letter a\nvec |> stringr::str_detect(\"a\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] FALSE FALSE FALSE  TRUE\n```\n\n\n:::\n:::\n\n\nThe function is case-sensitive.\n\"R\" will detect \"Rose\" but not \"shamrock\".\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Detect the letter R\nvec |> stringr::str_detect(\"R\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1]  TRUE FALSE FALSE FALSE\n```\n\n\n:::\n:::\n\n\nYou can use various regular expressions.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Detect the strings ending with k \nvec |> stringr::str_detect(\"k$\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] FALSE FALSE  TRUE  TRUE\n```\n\n\n:::\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Detect the letter R or r\nvec |> stringr::str_detect(\"[Rr]\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1]  TRUE FALSE FALSE  TRUE\n```\n\n\n:::\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Detect letter s that has a vowel before it\nvec |> stringr::str_detect(\"[aeiou]s\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1]  TRUE  TRUE FALSE FALSE\n```\n\n\n:::\n:::\n\n\n## Negate\n\nYou carry out an inverted search (i.e. it returns FALSE if it does match) with the option `negate=TRUE`.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Invert detect letter s that has a vowel before it\nvec |> stringr::str_detect(\"[aeiou]s\", negate=TRUE)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] FALSE FALSE  TRUE  TRUE\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

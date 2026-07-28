@@ -1,0 +1,15 @@
+{
+  "hash": "71cb7c73a70005639430a1c93f3ddbd3",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n\n# Next steps\n<center>\n![](/images/step.png){style=\"width:200px\"}\n</center>\n\nBelow are some good links to start with before carrying out your own projects.\n\n- `KrakenTools`: A suite of scripts to be used alongside the Kraken, KrakenUniq, Kraken 2, or Bracken programs. \n  - [https://github.com/jenniferlu717/KrakenTools](https://github.com/jenniferlu717/KrakenTools)\n- A review of computational tools for generating metagenome-assembled genomes from metagenomic sequencing data\n  - [https://www.sciencedirect.com/science/article/pii/S2001037021004931](https://www.sciencedirect.com/science/article/pii/S2001037021004931)\n- A review paper on metagenome assembly approaches\n   - Genome-resolved metagenomics using environmental and clinical samples: [https://academic.oup.com/bib/advance-article/doi/10.1093/bib/bbab030/6184411](https://academic.oup.com/bib/advance-article/doi/10.1093/bib/bbab030/6184411)\n- bioBakery tools for meta'omic profiling\n   - [https://github.com/biobakery/biobakery](https://github.com/biobakery/biobakery)\n- Assessing the performance of different approaches for functional and taxonomic annotation of metagenomes\n   - [https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-019-6289-6](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-019-6289-6)\n- MicrobeAnnotator: Easy-to-use pipeline for the comprehensive metabolic annotation of microbial genomes.\n   - [https://github.com/cruizperez/MicrobeAnnotator](https://github.com/cruizperez/MicrobeAnnotator)\n- MetaEuk: Functional annotation of eukaryotic metagenome\n   - [https://github.com/soedinglab/metaeuk](https://github.com/soedinglab/metaeuk)\n- Methods for Metagenomic data visualisation and analysis\n   - [https://www.researchgate.net/publication/318252633_Methods_for_The_Metagenomic_Data_Visualization_and_Analysis](https://www.researchgate.net/publication/318252633_Methods_for_The_Metagenomic_Data_Visualization_and_Analysis)\n- Visualizing metagenomic and metatranscriptomic data: A comprehensive review\n  - [https://www.sciencedirect.com/science/article/pii/S2001037024001430](https://www.sciencedirect.com/science/article/pii/S2001037024001430)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

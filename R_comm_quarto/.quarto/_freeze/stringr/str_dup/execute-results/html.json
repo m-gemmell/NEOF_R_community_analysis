@@ -1,0 +1,15 @@
+{
+  "hash": "29e52531d2bb327e25e1aa319d61d5a1",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# str_dup\n\n<center>\n![](images/stringr_str_dup.png){style=\"width:200px\"}\n</center>\n\nDuplicates a string a designated number of times.\n\n[Tidyverse reference page](https://stringr.tidyverse.org/reference/str_dup.html)\n\n## Duplicate a string\n\nDuplicate the string \"hat\" 3 times.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nstringr::str_dup(\"hat\", 3)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"hathathat\"\n```\n\n\n:::\n:::\n\n\nA separator can be included.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nstringr::str_dup(\"lime\", 4, sep = \" \")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"lime lime lime lime\"\n```\n\n\n:::\n:::\n\n\nThis can be carried out with a vector.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create a vector\nvec <- c(\"rose\", \"thistle\", \"leek\", \"shamrock\")\n#Duplicate\nvec |> stringr::str_dup(2, sep = \",\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"rose,rose\"         \"thistle,thistle\"   \"leek,leek\"        \n[4] \"shamrock,shamrock\"\n```\n\n\n:::\n:::\n\n\nWith a vector you can duplicate the different elements to differing amounts.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#Create a vector\nvec <- c(\"once\", \"twice\", \"thrice\")\n#Duplicate\nvec |> stringr::str_dup(1:3, sep = \"|\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"once\"                 \"twice|twice\"          \"thrice|thrice|thrice\"\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

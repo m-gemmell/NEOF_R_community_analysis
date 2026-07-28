@@ -1,0 +1,15 @@
+{
+  "hash": "770d590d9296167368649c4a91a940dd",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n# Optional task\n<center>\n![](/images/tasks.png){style=\"width:150px; background: white; border-radius:5px\"}\n</center>\n\nCarry out all the steps starting from [Multi sample processing](#humannmultisampleprocessing) with the gene families information.\n\n-   Copy the gene families data from `/pub14/tea/nsc206/NEOF/Shotgun_metagenomics/DietGeneFamilies`\n-   Ensure you set the `--units` option to `cpm` in the [renormalising data](#humannrenormalise) step\n-   On top of analysing the unstratified data you can also analyse the stratified data\n\nAmazing! That completes the non assembly approach to shotgun metagenomic analysis. \n\n## Next section\n<center>\n![](/images/jigsaw.png){style=\"width:200px; background: white; border-radius:5px\"}\n</center>\n\nThe next section is the [assembly approach section](/assembly_approach/metagenome_assembly.qmd).\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

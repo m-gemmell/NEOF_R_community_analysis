@@ -1,0 +1,15 @@
+{
+  "hash": "83a5715b12815f66b493b22ec098032d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n\n# Manuals\n<center>\n![](/images/manual.png){style=\"width:150px; background: white; border-radius:5px\"}\n</center>\n\nConda: [https://conda.io/projects/conda/en/latest/user-guide/getting-started.html](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html)\n\nFastQC: [https://www.bioinformatics.babraham.ac.uk/projects/fastqc/](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)\n\nMultiQC: [https://multiqc.info/](https://multiqc.info/)\n\nTrim Galore: [https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/)\n\nBowtie2: [http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml)\n\nsamtools: [http://www.htslib.org/](http://www.htslib.org/)\n\nBBTools: [https://jgi.doe.gov/data-and-tools/bbtools/](https://jgi.doe.gov/data-and-tools/bbtools/)\n\nKraken2: [https://github.com/DerrickWood/kraken2/wiki/Manual](https://github.com/DerrickWood/kraken2/wiki/Manual)\n\nKrona: [https://github.com/marbl/Krona/wiki/KronaTools](https://github.com/marbl/Krona/wiki/KronaTools)\n\nBracken: [https://ccb.jhu.edu/software/bracken/index.shtml?t=manual](https://ccb.jhu.edu/software/bracken/index.shtml?t=manual)\n\nLEfSe: [https://huttenhower.sph.harvard.edu/lefse/](https://huttenhower.sph.harvard.edu/lefse/)\n\nHUMAnN 3.0: [https://huttenhower.sph.harvard.edu/humann/](https://huttenhower.sph.harvard.edu/humann/)\n\nMetaPhlAn 4.0: [https://github.com/biobakery/MetaPhlAn/wiki/MetaPhlAn-4](https://github.com/biobakery/MetaPhlAn/wiki/MetaPhlAn-4)\n\nBiobakery: [https://github.com/biobakery/biobakery](https://github.com/biobakery/biobakery)\n\nhclust2: [https://github.com/SegataLab/hclust2](https://github.com/SegataLab/hclust2)\n\nMegaHit: [https://github.com/voutcn/megahit](https://github.com/voutcn/megahit)\n\nBWA: [https://github.com/lh3/bwa](https://github.com/lh3/bwa)\n\nminimap2: [https://github.com/lh3/minimap2](https://github.com/lh3/minimap2)\n\nMetaBAT2: [https://bitbucket.org/berkeleylab/metabat/src/master/](https://bitbucket.org/berkeleylab/metabat/src/master/)\n\nCoCoPyE: [https://github.com/gobics/cocopye](https://github.com/gobics/cocopye)\n\nPhyloPhlAn: [https://github.com/biobakery/phylophlan/wiki](https://github.com/biobakery/phylophlan/wiki)\n\nProkka: [https://github.com/tseemann/prokka](https://github.com/tseemann/prokka)\n\nMinPath: [https://github.com/mgtools/MinPath/blob/master/readme](https://github.com/mgtools/MinPath/blob/master/readme)\n\nMetaCyc: [https://metacyc.org/](https://metacyc.org/)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
