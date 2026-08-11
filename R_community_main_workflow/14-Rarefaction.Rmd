@@ -235,6 +235,7 @@ With that decision we will rarefy our data to the minimum depth.
 #Rarefy to minimum depth
 pseq_rarefy <- phyloseq::rarefy_even_depth(
   pseq, sample.size = min(microbiome::readcount(pseq)),
+  replace=FALSE,
   rngseed = 1000
   )
 ```
@@ -242,7 +243,10 @@ pseq_rarefy <- phyloseq::rarefy_even_depth(
 The options we provided to the function `rarefy_even_depth` were:
 
 - __`pseq`__: The `phyloseq` object to rarefy
-- __`sample.size =`__: The sampling depth to rarefy to
+- __`sample.size`__: The sampling depth to rarefy to
+- __`replace`__: Whether to rarefy with replacement (`TRUE`) or without replacement (`FALSE`)
+  - The default is `TRUE` (with replacement)
+  - We recommend rarefying without replacement (`FALSE`)
 - __`rngseed`__: This is the seed used for random subsampling
   - If you rarefy the data again with the same seed it will extract the same data
   - This is useful so you and others can replicate your work
@@ -260,8 +264,8 @@ num_asvs_vec["rarefied"] <- nrow(phyloseq::otu_table(pseq_rarefy))
 num_asvs_vec
 ```
 
-With this we can see that all our samples have the correct depth (10,433) and very few ASVs have been lost (2551-2498 = 53).
-I would definetly be happy with this outcome.
+With this we can see that all our samples have the correct depth (10,433) and very few ASVs have been lost (2551-2541 = 10).
+I would definitely be happy with this outcome.
 
 Once you have viewed the outputs save your `phyloseq` object and ASV count vector.
 

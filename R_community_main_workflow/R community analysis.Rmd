@@ -2336,6 +2336,7 @@ With that decision we will rarefy our data to the minimum depth.
 #Rarefy to minimum depth
 pseq_rarefy <- phyloseq::rarefy_even_depth(
   pseq, sample.size = min(microbiome::readcount(pseq)),
+  replace=FALSE,
   rngseed = 1000
   )
 ```
@@ -2343,7 +2344,10 @@ pseq_rarefy <- phyloseq::rarefy_even_depth(
 The options we provided to the function `rarefy_even_depth` were:
 
 - __`pseq`__: The `phyloseq` object to rarefy
-- __`sample.size =`__: The sampling depth to rarefy to
+- __`sample.size`__: The sampling depth to rarefy to
+- __`replace`__: Whether to rarefy with replacement (`TRUE`) or without replacement (`FALSE`)
+  - The default is `TRUE` (with replacement)
+  - We recommend rarefying without replacement (`FALSE`)
 - __`rngseed`__: This is the seed used for random subsampling
   - If you rarefy the data again with the same seed it will extract the same data
   - This is useful so you and others can replicate your work
@@ -2361,8 +2365,8 @@ num_asvs_vec["rarefied"] <- nrow(phyloseq::otu_table(pseq_rarefy))
 num_asvs_vec
 ```
 
-With this we can see that all our samples have the correct depth (10,433) and very few ASVs have been lost (2551-2498 = 53).
-I would definetly be happy with this outcome.
+With this we can see that all our samples have the correct depth (10,433) and very few ASVs have been lost (2551-2541 = 10).
+I would definitely be happy with this outcome.
 
 Once you have viewed the outputs save your `phyloseq` object and ASV count vector.
 
@@ -2580,7 +2584,7 @@ opts_p <- c(answer="__Yes__", "__No__")
 ```
 Are all the pairwise comparisons significantly different (<0.05)? `r longmcq(opts_p)`
 
-The test has carried out P value adjustments using the Holm-Bonferroni method (`P value adjustment method: holm`) which is good.
+The test has carried out p-value adjustments using the Holm-Bonferroni method (`P value adjustment method: holm`) which is good.
 
 In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
 The only group with a large variance is the ENV group with observed values going from < 150 to > 450 (as seen on the boxplots).
@@ -2602,7 +2606,7 @@ pairwise.wilcox.test(alpha_df$Shannon, phyloseq::sample_data(pseq_rarefy)$media)
 `r unhide()`
 
 The p-values when comparing the Shannon values are not all significant.
-The only significant differences are between ENV & KBC, and between KBC & TSA. 
+The only significant differences are between ENV & KBC, ENV & CVP, and between KBC & TSA. 
 Going back to the boxplot, does this look like the case?
 I would say yes as the IQRs for CVP, KBC, and TSA all overlap.
 There is little to no overlap of the IQRs of KBC and TSA, or of KBC and ENV.
@@ -2827,11 +2831,11 @@ These are the __percentage variation explained__ values.
 These values show how much of the variation of the data is explained by each axis.
 We need these as we are converting high dimensional data (many pairwise comparisons) into a 2 dimensional plot.
 
-In our plot axis 1 has a very high percentage variation explained value of 72.5%.
+In our plot axis 1 has a very high percentage variation explained value of 72.4%.
 This indicates that most of the variation in our data is explained by the differences between the media samples (CVP, KBC, & TSA) and the ENV samples.
 This is because the ENV samples are far removed (large distances) from the media samples in terms of axis 1.
 
-On the other hand, axis.2 (15.8%) seems to be primarily showing the difference between the TSA samples and the other samples, and within the TSA samples.
+On the other hand, axis.2 (15.9%) seems to be primarily showing the difference between the TSA samples and the other samples, and within the TSA samples.
 
 The higher the total variation explained value is, the better our plot represents the beta diversity in our data.
 In this case the total is >88% which is very good.
@@ -2910,7 +2914,7 @@ wunifrac_adonis
 
 There is a lot of information in the resulting table.
 We are primarily interested in the P-value column (`Pr(>F)`).
-We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.018).
+We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.008).
 
 ### Pairwise PERMANOVA
 <center>
@@ -2966,7 +2970,7 @@ wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat_subset ~ media,
 wunifrac_pairwise_adonis
 ```
 
-We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
+We can see that there is a significant difference between the CVP and ENV samples (P = 0.001).
 
 #### Pairwise PERMANOVA on all combinations
 <center>
@@ -3095,7 +3099,7 @@ IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_site_no_env.png
 ```
 
 This has changed our plot in a few ways.
-The biggest difference is that our 1st axis explains 94.7% of variation, a very large amount.
+The biggest difference is that our 1st axis explains 95% of variation, a very large amount.
 This axis separates the media groups with TSA being the most different.
 
 We can clearly see separation of the sites within the media groups.

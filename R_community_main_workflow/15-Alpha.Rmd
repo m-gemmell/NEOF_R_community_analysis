@@ -186,7 +186,7 @@ opts_p <- c(answer="__Yes__", "__No__")
 ```
 Are all the pairwise comparisons significantly different (<0.05)? `r longmcq(opts_p)`
 
-The test has carried out P value adjustments using the Holm-Bonferroni method (`P value adjustment method: holm`) which is good.
+The test has carried out p-value adjustments using the Holm-Bonferroni method (`P value adjustment method: holm`) which is good.
 
 In this case the p-values are all identical as the values do not vary greatly but there are clear differences.
 The only group with a large variance is the ENV group with observed values going from < 150 to > 450 (as seen on the boxplots).
@@ -208,7 +208,7 @@ pairwise.wilcox.test(alpha_df$Shannon, phyloseq::sample_data(pseq_rarefy)$media)
 `r unhide()`
 
 The p-values when comparing the Shannon values are not all significant.
-The only significant differences are between ENV & KBC, and between KBC & TSA. 
+The only significant differences are between ENV & KBC, ENV & CVP, and between KBC & TSA. 
 Going back to the boxplot, does this look like the case?
 I would say yes as the IQRs for CVP, KBC, and TSA all overlap.
 There is little to no overlap of the IQRs of KBC and TSA, or of KBC and ENV.

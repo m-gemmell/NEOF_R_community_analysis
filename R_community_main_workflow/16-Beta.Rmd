@@ -89,11 +89,11 @@ These are the __percentage variation explained__ values.
 These values show how much of the variation of the data is explained by each axis.
 We need these as we are converting high dimensional data (many pairwise comparisons) into a 2 dimensional plot.
 
-In our plot axis 1 has a very high percentage variation explained value of 72.5%.
+In our plot axis 1 has a very high percentage variation explained value of 72.4%.
 This indicates that most of the variation in our data is explained by the differences between the media samples (CVP, KBC, & TSA) and the ENV samples.
 This is because the ENV samples are far removed (large distances) from the media samples in terms of axis 1.
 
-On the other hand, axis.2 (15.8%) seems to be primarily showing the difference between the TSA samples and the other samples, and within the TSA samples.
+On the other hand, axis.2 (15.9%) seems to be primarily showing the difference between the TSA samples and the other samples, and within the TSA samples.
 
 The higher the total variation explained value is, the better our plot represents the beta diversity in our data.
 In this case the total is >88% which is very good.
@@ -172,7 +172,7 @@ wunifrac_adonis
 
 There is a lot of information in the resulting table.
 We are primarily interested in the P-value column (`Pr(>F)`).
-We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.018).
+We can see that significant differences are found within the groups for media (P = 0.001) and site (P = 0.008).
 
 ### Pairwise PERMANOVA
 <center>
@@ -228,7 +228,7 @@ wunifrac_pairwise_adonis <- vegan::adonis2(wunifrac_dist_mat_subset ~ media,
 wunifrac_pairwise_adonis
 ```
 
-We can see that there is a significant difference between the CVP and ENV samples (P = 0.01).
+We can see that there is a significant difference between the CVP and ENV samples (P = 0.001).
 
 #### Pairwise PERMANOVA on all combinations
 <center>
@@ -357,7 +357,7 @@ IRdisplay::display_png(file="./Beta_diversity_mds_wunifrac_media_site_no_env.png
 ```
 
 This has changed our plot in a few ways.
-The biggest difference is that our 1st axis explains 94.7% of variation, a very large amount.
+The biggest difference is that our 1st axis explains 95% of variation, a very large amount.
 This axis separates the media groups with TSA being the most different.
 
 We can clearly see separation of the sites within the media groups.
